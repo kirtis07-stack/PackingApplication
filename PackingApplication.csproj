@@ -66,7 +66,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminAccount.Designer.cs">
+      <DependentUpon>AdminAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCFPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BCFPackingForm.Designer.cs">
+      <DependentUpon>BCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChipsPackingForm.Designer.cs">
+      <DependentUpon>ChipsPackingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Constants\DateTimeHelper.cs" />
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DTYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DTYPackingForm.Designer.cs">
+      <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\HTTPMethod.cs" />
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
@@ -99,6 +130,22 @@
     <Compile Include="Models\ResponseEntities\WindingTypeResponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MasterService.cs" />
+    <Compile Include="Services\PackingService.cs" />
+    <Compile Include="Services\ProductionService.cs" />
+    <Compile Include="Services\SaleService.cs" />
+    <EmbeddedResource Include="AdminAccount.resx">
+      <DependentUpon>AdminAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCFPackingForm.resx">
+      <DependentUpon>BCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChipsPackingForm.resx">
+      <DependentUpon>ChipsPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTYPackingForm.resx">
+      <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="POYPackingForm.resx">
       <DependentUpon>POYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +160,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -139,6 +187,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

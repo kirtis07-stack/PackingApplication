@@ -112,7 +112,7 @@ namespace PackingApplication
                         SessionManager.UserName = userResponse.FullName;
                         SessionManager.Role = userResponse.Role;
 
-                        POYPackingForm dashboard = new POYPackingForm();
+                        AdminAccount dashboard = new AdminAccount();
                         dashboard.Show();
 
                         this.Hide();

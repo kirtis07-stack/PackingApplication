@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PackingApplication.Models.CommonEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,5 +56,48 @@ namespace PackingApplication.Models.ResponseEntities
         public int ProcessId { get; set; }              //get for Lots master
         public string ProcessName { get; set; }         //get for Lots master
         public string CName { get; set; }
+    }
+
+    public class ItemAndItemStructureDetailsResponse : BaseAuditEntity
+    {
+        public int ItemId { get; set; }
+        public int ItemSPCategoryId { get; set; }
+        public string ItemSPCategoryName { get; set; }
+        public int ItemGSTCategoryId { get; set; }
+        public string ItemGSTCategoryName { get; set; }
+        public string ItemStructureHash { get; set; }
+        public int ItemTypeId { get; set; }
+        public int DopeTypeId { get; set; }
+        public string GSTItemTypeName { get; set; }
+        public string Name { get; set; }
+        public string TradeName { get; set; }
+        public string StoresitemCode { get; set; }
+        public string AdditionalDescription { get; set; }
+        public int UnitId { get; set; }
+        public string UnitOfMeasurementName { get; set; }
+        public int HSNId { get; set; }
+        public string HSNCode { get; set; }
+        public bool WasteItem { get; set; }
+        public int BusinessPartnerId { get; set; }
+        public string BusinessPartnerName { get; set; }
+        public List<GetItemAttributeByItemTypeAndItem> itemAttribute { get; set; }
+        public bool PrintWindingType { get; set; }
+        public int ItemGroupId { get; set; }
+        public string ItemGroupName { get; set; }
+        public bool IsNotEditable { get; set; }
+        public int AccountId { get; set; }
+        public string AccountName { get; set; }
+        public int SubAccountId { get; set; }
+        public string SubAccountName { get; set; }
+    }
+
+    public class GetItemAttributeByItemTypeAndItem
+    {
+        public int ItemId { get; set; }
+        public int ItemTypeId { get; set; }
+        public int ParameterId { get; set; }
+        public string Parameter { get; set; }
+        public int ParameterValueId { get; set; }
+        public string ParameterValue { get; set; }
     }
 }

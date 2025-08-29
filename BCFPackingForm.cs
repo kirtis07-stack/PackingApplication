@@ -1,50 +1,30 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using PackingApplication.Helper;
-using PackingApplication.Models.CommonEntities;
-using PackingApplication.Models.RequestEntities;
+﻿using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reflection.Emit;
-using System.Security.Cryptography;
-using System.Security.Policy;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using static System.Net.WebRequestMethods;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace PackingApplication
 {
-    public partial class POYPackingForm: Form
-    {          
-        private static Logger Log = Logger.GetLogger();
-
+    public partial class BCFPackingForm : Form
+    {
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
-        public POYPackingForm()
+        public BCFPackingForm()
         {
             InitializeComponent();
             this.AutoScroll = true;
         }
 
-        private void POYPackingForm_Load(object sender, EventArgs e)
+        private void BCFPackingForm_Load(object sender, EventArgs e)
         {
             AddHeader();
             getMachineList();
@@ -56,7 +36,7 @@ namespace PackingApplication
             getCopeItemList();
             getPalletItemList();
             getBoxItemList();
-            getAllPOYPackingList();
+            getAllBCFPackingList();
             getPrefixList();
 
             var getItem = new List<LotsResponse>();
@@ -92,7 +72,6 @@ namespace PackingApplication
             }
             if (LineNoList.SelectedValue != null)
             {
-                linenoerror.Visible = false;
                 MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
                 int selectedMachineId = selectedMachine.MachineId;
 
@@ -119,7 +98,6 @@ namespace PackingApplication
             }
             if (MergeNoList.SelectedValue != null)
             {
-                mergenoerror.Visible = false;
                 LotsResponse selectedLot = (LotsResponse)MergeNoList.SelectedItem;
                 int selectedLotId = selectedLot.LotId;
 
@@ -147,8 +125,6 @@ namespace PackingApplication
             }
             if (PackSizeList.SelectedValue != null)
             {
-                packsizeerror.Visible = false;
-
                 PackSizeResponse selectedPacksize = (PackSizeResponse)PackSizeList.SelectedItem;
                 int selectedPacksizeId = selectedPacksize.PackSizeId;
 
@@ -166,8 +142,6 @@ namespace PackingApplication
 
             if (QualityList.SelectedValue != null)
             {
-                qualityerror.Visible = false;
-
                 QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
                 int selectedQualityId = selectedQuality.QualityId;
 
@@ -177,12 +151,10 @@ namespace PackingApplication
 
         private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
             if (WindingTypeList.SelectedValue != null)
             {
-                windingerror.Visible = false;
-
                 WindingTypeResponse selectedWindingType = (WindingTypeResponse)WindingTypeList.SelectedItem;
                 int selectedWindingTypeId = selectedWindingType.WindingTypeId;
 
@@ -192,12 +164,10 @@ namespace PackingApplication
 
         private void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
             if (SaleOrderList.SelectedValue != null)
             {
-                soerror.Visible = false;
-
                 LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                 int selectedSaleOrderId = selectedSaleOrder.SaleOrderDetailsId;
 
@@ -210,7 +180,7 @@ namespace PackingApplication
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
             if (ComPortList.SelectedValue != null)
             {
@@ -220,7 +190,7 @@ namespace PackingApplication
 
         private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
             if (WeighingList.SelectedValue != null)
             {
@@ -230,7 +200,7 @@ namespace PackingApplication
 
         private void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
             if (CopsItemList.SelectedValue != null)
             {
@@ -243,7 +213,7 @@ namespace PackingApplication
 
         private void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
             if (BoxItemList.SelectedValue != null)
             {
@@ -266,8 +236,6 @@ namespace PackingApplication
 
             if (PrefixList.SelectedValue != null)
             {
-                boxnoerror.Visible = false;
-
                 PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
                 int selectedPrefixId = selectedPrefix.PrefixCode;
 
@@ -288,7 +256,7 @@ namespace PackingApplication
             LineNoList.SelectedIndex = 0;
         }
 
-        private void getLotList(int machineId) 
+        private void getLotList(int machineId)
         {
             var getLots = _productionService.getLotList(machineId);
             getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
@@ -442,7 +410,7 @@ namespace PackingApplication
                 if (existingPanel != null)
                 {
                     var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
-                    tag.Item2.Text = qty.ToString(); 
+                    tag.Item2.Text = qty.ToString();
                     //MessageBox.Show("Item quantity updated.");
                     return;
                 }
@@ -450,7 +418,7 @@ namespace PackingApplication
                 if (!alreadyExists)
                 {
                     rowCount++;
-                    
+
                     Panel rowPanel = new Panel();
                     rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
                     rowPanel.BorderStyle = BorderStyle.FixedSingle;
@@ -623,48 +591,43 @@ namespace PackingApplication
 
         private async void submit_Click(object sender, EventArgs e)
         {
-            if (ValidateForm())
+            productionRequest.PackingType = "BCFPacking";
+            productionRequest.Remarks = remarks.Text.Trim();
+            productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
+            productionRequest.SpoolsWt = Convert.ToDecimal(spoolwt.Text.Trim());
+            productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
+            productionRequest.GrossWt = Convert.ToDecimal(grosswtno.Text.Trim());
+            productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
+            productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
+            productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
+            productionRequest.ProductionDate = dateTimePicker1.Value;
+
+            productionRequest.PrintCompany = prcompany.Checked;
+            productionRequest.PrintOwner = prowner.Checked;
+            productionRequest.PrintDate = prdate.Checked;
+            productionRequest.PrintUser = pruser.Checked;
+            productionRequest.PrintQRCode = prqrcode.Checked;
+            productionRequest.PrintWTPS = prwtps.Checked;
+
+            productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
+            foreach (Control ctrl in flowLayoutPanel1.Controls)
             {
-                productionRequest.PackingType = "POYPacking";
-                productionRequest.Remarks = remarks.Text.Trim();
-                productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
-                productionRequest.SpoolsWt = Convert.ToDecimal(spoolwt.Text.Trim());
-                productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
-                productionRequest.GrossWt = Convert.ToDecimal(grosswtno.Text.Trim());
-                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
-                productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
-                productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
-                productionRequest.ProductionDate = dateTimePicker1.Value;
-
-                productionRequest.PrintCompany = prcompany.Checked;
-                productionRequest.PrintOwner = prowner.Checked;
-                productionRequest.PrintDate = prdate.Checked;
-                productionRequest.PrintUser = pruser.Checked;
-                productionRequest.PrintHindiWords = prhindi.Checked;
-                productionRequest.PrintQRCode = prqrcode.Checked;
-                productionRequest.PrintWTPS = prwtps.Checked;
-
-                productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
-                foreach (Control ctrl in flowLayoutPanel1.Controls)
+                ProductionPalletDetailsRequest pallet = new ProductionPalletDetailsRequest();
+                if (ctrl is Panel panel && panel.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tagData)
                 {
-                    ProductionPalletDetailsRequest pallet = new ProductionPalletDetailsRequest();
-                    if (ctrl is Panel panel && panel.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tagData)
-                    {
-                        pallet.PalletId = tagData.Item1.ItemId;
-                        pallet.Quantity = Convert.ToInt32(tagData.Item2.Text);
-                        productionRequest.PalletDetailsRequest.Add(pallet);
-                    }
-
+                    pallet.PalletId = tagData.Item1.ItemId;
+                    pallet.Quantity = Convert.ToInt32(tagData.Item2.Text);
+                    productionRequest.PalletDetailsRequest.Add(pallet);
                 }
 
-                ProductionResponse result = SubmitPacking(productionRequest);
             }
+
+            ProductionResponse result = SubmitPacking(productionRequest);
         }
 
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest)
         {
-            ProductionResponse result = new ProductionResponse();
-            result = _packingService.AddUpdatePOYPacking(0, productionRequest);
+            var result = _packingService.AddUpdatePOYPacking(0, productionRequest);
             if (result != null)
             {
                 if (result.ProductionId > 0)
@@ -676,7 +639,6 @@ namespace PackingApplication
                     MessageBox.Show("Something went wrong.");
                 }
             }
-
             return result;
         }
 
@@ -689,7 +651,7 @@ namespace PackingApplication
         //    this.Close();
         //}
 
-        private void getAllPOYPackingList()
+        private void getAllBCFPackingList()
         {
             var getPacking = _packingService.getAllPOYPackingList();
             getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
@@ -758,157 +720,8 @@ namespace PackingApplication
 
             if (parentForm != null)
             {
-                parentForm.LoadFormInContent(new Dashboard());  
+                parentForm.LoadFormInContent(new Dashboard());
             }
-        }
-
-        private bool ValidateForm()
-        {
-            bool isValid = true;
-
-            if (LineNoList.SelectedIndex <= 0)
-            {
-                linenoerror.Text = "Please select a line no";
-                linenoerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                linenoerror.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(copyno.Text))
-            {
-                copynoerror.Text = "Please enter no of copies";
-                copynoerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                copynoerror.Visible = false;
-            }
-
-            if (MergeNoList.SelectedIndex <= 0)
-            {
-                mergenoerror.Text = "Please select merge no";
-                mergenoerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                mergenoerror.Visible = false;
-            }
-
-            if (QualityList.SelectedIndex <= 0)
-            {
-                qualityerror.Text = "Please select quantity";
-                qualityerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                qualityerror.Visible = false;
-            }
-
-            if (SaleOrderList.SelectedIndex <= 0)
-            {
-                soerror.Text = "Please select sale order";
-                soerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                soerror.Visible = false;
-            }
-
-            if (PackSizeList.SelectedIndex <= 0)
-            {
-                packsizeerror.Text = "Please select pack size";
-                packsizeerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                packsizeerror.Visible = false;
-            }
-
-            if (WindingTypeList.SelectedIndex <= 0)
-            {
-                windingerror.Text = "Please select winding type";
-                windingerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                windingerror.Visible = false;
-            }
-
-            if (PrefixList.SelectedIndex <= 0)
-            {
-                boxnoerror.Text = "Please select prefix";
-                boxnoerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                boxnoerror.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) > 0)
-            {
-                spoolnoerror.Text = "Please enter valid spool no";
-                spoolnoerror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                spoolnoerror.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) > 0)
-            {
-                spoolwterror.Text = "Please enter valid spool weight";
-                spoolwterror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                spoolwterror.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) > 0)
-            {
-                palletwterror.Text = "Please enter valid empty box/pallet weight";
-                palletwterror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                palletwterror.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) >= 0)
-            {
-                grosswterror.Text = "Please enter valid gross weight";
-                grosswterror.Visible = true;
-                isValid = false;
-            }
-            else
-            {
-                grosswterror.Visible = false;
-            }
-
-            if (flowLayoutPanel1.Controls.Count == 1) {
-                MessageBox.Show("Please add atleast one record in Pallet details");
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
