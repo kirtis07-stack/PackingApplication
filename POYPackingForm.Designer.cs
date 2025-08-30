@@ -152,10 +152,6 @@ namespace PackingApplication
             this.windingprodqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backbutton = new System.Windows.Forms.Button();
             this.poyformlabel = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pOYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.lastboxdetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -166,7 +162,6 @@ namespace PackingApplication
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).BeginInit();
             this.panel3.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lineno
@@ -1423,42 +1418,11 @@ namespace PackingApplication
             this.poyformlabel.AutoSize = true;
             this.poyformlabel.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.poyformlabel.ForeColor = System.Drawing.Color.Maroon;
-            this.poyformlabel.Location = new System.Drawing.Point(16, 11);
+            this.poyformlabel.Location = new System.Drawing.Point(18, 7);
             this.poyformlabel.Name = "poyformlabel";
             this.poyformlabel.Size = new System.Drawing.Size(76, 16);
             this.poyformlabel.TabIndex = 97;
             this.poyformlabel.Text = "POY Packing";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(875, 24);
-            this.menuStrip1.TabIndex = 98;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pOYToolStripMenuItem,
-            this.dTYToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(125, 20);
-            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
-            // 
-            // pOYToolStripMenuItem
-            // 
-            this.pOYToolStripMenuItem.Name = "pOYToolStripMenuItem";
-            this.pOYToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pOYToolStripMenuItem.Text = "POY";
-            // 
-            // dTYToolStripMenuItem
-            // 
-            this.dTYToolStripMenuItem.Name = "dTYToolStripMenuItem";
-            this.dTYToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dTYToolStripMenuItem.Text = "DTY";
             // 
             // POYPackingForm
             // 
@@ -1469,10 +1433,8 @@ namespace PackingApplication
             this.Controls.Add(this.backbutton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.palletdetails);
-            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "POYPackingForm";
             this.Text = "POYPackingForm";
             this.Load += new System.EventHandler(this.POYPackingForm_Load);
@@ -1491,8 +1453,6 @@ namespace PackingApplication
             ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1614,7 +1574,6 @@ namespace PackingApplication
         private TextBox deniervalue;
         private System.Windows.Forms.Label denier;
         private Button backbutton;
-        private System.Windows.Forms.Label poyformlabel;
         private System.Windows.Forms.Label linenoerror;
         private System.Windows.Forms.Label copynoerror;
         private System.Windows.Forms.Label mergenoerror;
@@ -1627,10 +1586,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label palletwterror;
         private System.Windows.Forms.Label grosswterror;
         private System.Windows.Forms.Label boxnoerror;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem pOYToolStripMenuItem;
-        private ToolStripMenuItem dTYToolStripMenuItem;
+        private System.Windows.Forms.Label poyformlabel;
     }
 }
 

@@ -42,6 +42,17 @@ namespace PackingApplication
         {
             InitializeComponent();
             this.AutoScroll = true;
+
+            SetButtonBorderRadius(this.addqty, 8);
+            SetButtonBorderRadius(this.submit, 8);
+
+            LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
+            MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
+            PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
+            QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
+            WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
+            SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
+            PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
         }
 
         private void POYPackingForm_Load(object sender, EventArgs e)
@@ -90,6 +101,11 @@ namespace PackingApplication
                 departmentname.Text = "";
                 return;
             }
+            if (LineNoList.SelectedIndex > 0)
+            {
+                linenoerror.Text = "";
+                linenoerror.Visible = false;
+            }
             if (LineNoList.SelectedValue != null)
             {
                 linenoerror.Visible = false;
@@ -116,6 +132,11 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 return;
+            }
+            if (MergeNoList.SelectedIndex > 0)
+            {
+                mergenoerror.Text = "";
+                mergenoerror.Visible = false;
             }
             if (MergeNoList.SelectedValue != null)
             {
@@ -145,6 +166,11 @@ namespace PackingApplication
                 updenier.Text = "";
                 return;
             }
+            if (PackSizeList.SelectedIndex > 0)
+            {
+                packsizeerror.Text = "";
+                packsizeerror.Visible = false;
+            }
             if (PackSizeList.SelectedValue != null)
             {
                 packsizeerror.Visible = false;
@@ -164,6 +190,11 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
+            if (QualityList.SelectedIndex > 0)
+            {
+                qualityerror.Text = "";
+                qualityerror.Visible = false;
+            }
             if (QualityList.SelectedValue != null)
             {
                 qualityerror.Visible = false;
@@ -177,8 +208,13 @@ namespace PackingApplication
 
         private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
+            if (WindingTypeList.SelectedIndex > 0)
+            {
+                windingerror.Text = "";
+                windingerror.Visible = false;
+            }
             if (WindingTypeList.SelectedValue != null)
             {
                 windingerror.Visible = false;
@@ -192,8 +228,13 @@ namespace PackingApplication
 
         private void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!isFormReady) return; 
+            if (!isFormReady) return;
 
+            if (SaleOrderList.SelectedIndex > 0)
+            {
+                soerror.Text = "";
+                soerror.Visible = false;
+            }
             if (SaleOrderList.SelectedValue != null)
             {
                 soerror.Visible = false;
@@ -262,6 +303,12 @@ namespace PackingApplication
             {
                 prodtype.Text = "";
                 return;
+            }
+
+            if (PrefixList.SelectedIndex > 0)
+            {
+                boxnoerror.Text = "";
+                boxnoerror.Visible = false;
             }
 
             if (PrefixList.SelectedValue != null)
@@ -772,20 +819,12 @@ namespace PackingApplication
                 linenoerror.Visible = true;
                 isValid = false;
             }
-            else
-            {
-                linenoerror.Visible = false;
-            }
 
             if (string.IsNullOrWhiteSpace(copyno.Text))
             {
                 copynoerror.Text = "Please enter no of copies";
                 copynoerror.Visible = true;
                 isValid = false;
-            }
-            else
-            {
-                copynoerror.Visible = false;
             }
 
             if (MergeNoList.SelectedIndex <= 0)
@@ -794,20 +833,12 @@ namespace PackingApplication
                 mergenoerror.Visible = true;
                 isValid = false;
             }
-            else
-            {
-                mergenoerror.Visible = false;
-            }
 
             if (QualityList.SelectedIndex <= 0)
             {
                 qualityerror.Text = "Please select quantity";
                 qualityerror.Visible = true;
                 isValid = false;
-            }
-            else
-            {
-                qualityerror.Visible = false;
             }
 
             if (SaleOrderList.SelectedIndex <= 0)
@@ -816,20 +847,12 @@ namespace PackingApplication
                 soerror.Visible = true;
                 isValid = false;
             }
-            else
-            {
-                soerror.Visible = false;
-            }
 
             if (PackSizeList.SelectedIndex <= 0)
             {
                 packsizeerror.Text = "Please select pack size";
                 packsizeerror.Visible = true;
                 isValid = false;
-            }
-            else
-            {
-                packsizeerror.Visible = false;
             }
 
             if (WindingTypeList.SelectedIndex <= 0)
@@ -838,20 +861,12 @@ namespace PackingApplication
                 windingerror.Visible = true;
                 isValid = false;
             }
-            else
-            {
-                windingerror.Visible = false;
-            }
 
             if (PrefixList.SelectedIndex <= 0)
             {
                 boxnoerror.Text = "Please select prefix";
                 boxnoerror.Visible = true;
                 isValid = false;
-            }
-            else
-            {
-                boxnoerror.Visible = false;
             }
 
             if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) > 0)
@@ -860,20 +875,12 @@ namespace PackingApplication
                 spoolnoerror.Visible = true;
                 isValid = false;
             }
-            else
-            {
-                spoolnoerror.Visible = false;
-            }
 
             if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) > 0)
             {
                 spoolwterror.Text = "Please enter valid spool weight";
                 spoolwterror.Visible = true;
                 isValid = false;
-            }
-            else
-            {
-                spoolwterror.Visible = false;
             }
 
             if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) > 0)
@@ -882,20 +889,12 @@ namespace PackingApplication
                 palletwterror.Visible = true;
                 isValid = false;
             }
-            else
-            {
-                palletwterror.Visible = false;
-            }
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) >= 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;
                 isValid = false;
-            }
-            else
-            {
-                grosswterror.Visible = false;
             }
 
             if (flowLayoutPanel1.Controls.Count == 1) {
@@ -906,9 +905,34 @@ namespace PackingApplication
             return isValid;
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
         {
+            Log.writeMessage("SetButtonBorderRadius start");
+            try
+            {
+                button.FlatStyle = FlatStyle.Flat;
+                button.FlatAppearance.BorderSize = 0;
+                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
+                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
+                button.BackColor = Color.FromArgb(0, 92, 232);
 
+                // Set the border radius
+                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+                int diameter = radius * 2;
+                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
+                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
+                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
+                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
+                path.CloseFigure();
+
+                button.Region = new Region(path);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show($"An error occurred: {ex.Message}");
+                Log.writeMessage($"An error occurred: {ex.Message}");
+            }
+            Log.writeMessage("SetButtonBorderRadius end");
         }
     }
 }
