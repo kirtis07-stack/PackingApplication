@@ -28,6 +28,7 @@ using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PackingApplication
 {
@@ -41,6 +42,7 @@ namespace PackingApplication
         public POYPackingForm()
         {
             InitializeComponent();
+            this.Shown += POYPackingForm_Shown;
             this.AutoScroll = true;
 
             SetButtonBorderRadius(this.addqty, 8);
@@ -53,23 +55,17 @@ namespace PackingApplication
             WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
             SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
             PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
+            copyno.TextChanged += CopyNos_TextChanged;
+            spoolno.TextChanged += SpoolNo_TextChanged;
+            spoolwt.TextChanged += SpoolWeight_TextChanged;
+            palletwtno.TextChanged += PalletWeight_TextChanged;
+            grosswtno.TextChanged += GrossWeight_TextChanged;
         }
 
         private void POYPackingForm_Load(object sender, EventArgs e)
         {
             AddHeader();
-            getMachineList();
-            getQualityList();
-            getPackSizeList();
-            getWindingTypeList();
-            getComPortList();
-            getWeighingList();
-            getCopeItemList();
-            getPalletItemList();
-            getBoxItemList();
-            getAllPOYPackingList();
-            getPrefixList();
-
+            
             var getItem = new List<LotsResponse>();
             getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
             MergeNoList.DataSource = getItem;
@@ -84,9 +80,96 @@ namespace PackingApplication
             SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
+            copyno.Text = "1";
             //Username.Text = SessionManager.UserName;
             //role.Text = SessionManager.Role;
 
+            isFormReady = true;
+        }
+
+        private async void POYPackingForm_Shown(object sender, EventArgs e)
+        {
+            var machineList = await Task.Run(() => getMachineList());
+            //machine
+            machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+            LineNoList.DataSource = machineList;
+            LineNoList.DisplayMember = "MachineName";
+            LineNoList.ValueMember = "MachineId";
+            LineNoList.SelectedIndex = 0;
+
+            var prefixList = await Task.Run(() => getPrefixList());
+            //prefix
+            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+            PrefixList.DataSource = prefixList;
+            PrefixList.DisplayMember = "Prefix";
+            PrefixList.ValueMember = "PrefixCode";
+            PrefixList.SelectedIndex = 0;
+
+            var qualityList = await Task.Run(() => getQualityList());
+            //quality
+            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+            QualityList.DataSource = qualityList;
+            QualityList.DisplayMember = "Name";
+            QualityList.ValueMember = "QualityId";
+            QualityList.SelectedIndex = 0;
+
+            var packsizeList = await Task.Run(() => getPackSizeList());
+            //packsize
+            PackSizeList.DataSource = packsizeList;
+            PackSizeList.DisplayMember = "PackSizeName";
+            PackSizeList.ValueMember = "PackSizeId";
+            PackSizeList.SelectedIndex = 0;
+
+            var windingtypeList = await Task.Run(() => getWindingTypeList());
+            //windingtype
+            WindingTypeList.DataSource = windingtypeList;
+            WindingTypeList.DisplayMember = "WindingTypeName";
+            WindingTypeList.ValueMember = "WindingTypeId";
+            WindingTypeList.SelectedIndex = 0;
+
+            var comportList = await Task.Run(() => getComPortList());
+            //comport
+            ComPortList.DataSource = comportList;
+            ComPortList.SelectedIndex = 0;
+
+            var weightingList = await Task.Run(() => getWeighingList());
+            //weighting
+            WeighingList.DataSource = weightingList;
+            WeighingList.SelectedIndex = 0;
+
+            var copsitemList = await Task.Run(() => getCopeItemList());
+            //copsitem
+            copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+            CopsItemList.DataSource = copsitemList;
+            CopsItemList.DisplayMember = "Name";
+            CopsItemList.ValueMember = "ItemId";
+            CopsItemList.SelectedIndex = 0;
+
+            var palletitemList = await Task.Run(() => getPalletItemList());
+            //palletitem
+            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            PalletTypeList.DataSource = palletitemList;
+            PalletTypeList.DisplayMember = "Name";
+            PalletTypeList.ValueMember = "ItemId";
+            PalletTypeList.SelectedIndex = 0;
+
+            var boxitemList = await Task.Run(() => getBoxItemList());
+            //boxitem
+            boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            BoxItemList.DataSource = boxitemList;
+            BoxItemList.DisplayMember = "Name";
+            BoxItemList.ValueMember = "ItemId";
+            BoxItemList.SelectedIndex = 0;
+
+            var poypackingList = await Task.Run(() => getAllPOYPackingList());
+
+            //poypacking
+            var getLastBox = poypackingList.OrderByDescending(x => x.ProductionId).FirstOrDefault();
+            this.copstxtbox.Text = "";
+            this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+            this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+            this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+            this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             isFormReady = true;
         }
 
@@ -325,14 +408,10 @@ namespace PackingApplication
             }
         }
 
-        private void getMachineList()
+        private List<MachineResponse> getMachineList()
         {
-            var getMachine = _masterService.getMachineList();
-            getMachine.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-            LineNoList.DataSource = getMachine;
-            LineNoList.DisplayMember = "MachineName";
-            LineNoList.ValueMember = "MachineId";
-            LineNoList.SelectedIndex = 0;
+            var getMachine = _masterService.getMachineList();                     
+            return getMachine;
         }
 
         private void getLotList(int machineId) 
@@ -345,34 +424,24 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
         }
 
-        private void getQualityList()
+        private List<QualityResponse> getQualityList()
         {
             var getQuality = _masterService.getQualityList();
-            getQuality.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-            QualityList.DataSource = getQuality;
-            QualityList.DisplayMember = "Name";
-            QualityList.ValueMember = "QualityId";
-            QualityList.SelectedIndex = 0;
+            return getQuality;
         }
 
-        private void getPackSizeList()
+        private List<PackSizeResponse> getPackSizeList()
         {
             var getPackSize = _masterService.getPackSizeList();
             getPackSize.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
-            PackSizeList.DataSource = getPackSize;
-            PackSizeList.DisplayMember = "PackSizeName";
-            PackSizeList.ValueMember = "PackSizeId";
-            PackSizeList.SelectedIndex = 0;
+            return getPackSize;
         }
 
-        private void getWindingTypeList()
+        private List<WindingTypeResponse> getWindingTypeList()
         {
             var getWindingType = _masterService.getWindingTypeList();
             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-            WindingTypeList.DataSource = getWindingType;
-            WindingTypeList.DisplayMember = "WindingTypeName";
-            WindingTypeList.ValueMember = "WindingTypeId";
-            WindingTypeList.SelectedIndex = 0;
+            return getWindingType;
         }
 
         private void getSaleOrderList(int lotId)
@@ -385,7 +454,7 @@ namespace PackingApplication
             SaleOrderList.SelectedIndex = 0;
         }
 
-        private void getComPortList()
+        private List<string> getComPortList()
         {
             var getComPortType = new List<string>
             {
@@ -395,11 +464,10 @@ namespace PackingApplication
                 "COM 3"
             };
 
-            ComPortList.DataSource = getComPortType;
-            ComPortList.SelectedIndex = 0;
+            return getComPortType;
         }
 
-        private void getWeighingList()
+        private List<string> getWeighingList()
         {
             var getWeighingScale = new List<string>
             {
@@ -410,48 +478,31 @@ namespace PackingApplication
                 "JISL (2400)"
             };
 
-            WeighingList.DataSource = getWeighingScale;
-            WeighingList.SelectedIndex = 0;
+            return getWeighingScale;
         }
 
-        private void getCopeItemList()
+        private List<ItemResponse> getCopeItemList()
         {
             var getCopeItem = _masterService.getCopeItemList();
-            getCopeItem.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
-            CopsItemList.DataSource = getCopeItem;
-            CopsItemList.DisplayMember = "Name";
-            CopsItemList.ValueMember = "ItemId";
-            CopsItemList.SelectedIndex = 0;
+            return getCopeItem;
         }
 
-        private void getBoxItemList()
+        private List<ItemResponse> getBoxItemList()
         {
             var getBox = _masterService.getBoxItemList();
-            getBox.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            BoxItemList.DataSource = getBox;
-            BoxItemList.DisplayMember = "Name";
-            BoxItemList.ValueMember = "ItemId";
-            BoxItemList.SelectedIndex = 0;
+            return getBox;
         }
 
-        private void getPalletItemList()
+        private List<ItemResponse> getPalletItemList()
         {
             var getBox = _masterService.getBoxItemList();
-            getBox.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            PalletTypeList.DataSource = getBox;
-            PalletTypeList.DisplayMember = "Name";
-            PalletTypeList.ValueMember = "ItemId";
-            PalletTypeList.SelectedIndex = 0;
+            return getBox;
         }
 
-        private void getPrefixList()
+        private List<PrefixResponse> getPrefixList()
         {
             var getPrefix = _masterService.getPrefixList();
-            getPrefix.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-            PrefixList.DataSource = getPrefix;
-            PrefixList.DisplayMember = "Prefix";
-            PrefixList.ValueMember = "PrefixCode";
-            PrefixList.SelectedIndex = 0;
+            return getPrefix;
         }
 
         private int rowCount = 0; // Keeps track of SrNo
@@ -615,12 +666,28 @@ namespace PackingApplication
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
-            CalculateTareWeight();
+            if (string.IsNullOrWhiteSpace(spoolwt.Text))
+            {
+                spoolwterror.Text = "";
+                spoolwterror.Visible = false;
+            }
+            else
+            {
+                CalculateTareWeight();
+            }
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
-            CalculateTareWeight();
+            if (string.IsNullOrWhiteSpace(palletwtno.Text))
+            {
+                palletwterror.Text = "";
+                palletwterror.Visible = false;
+            }
+            else
+            {
+                CalculateTareWeight();
+            }
         }
 
         private void CalculateTareWeight()
@@ -635,7 +702,15 @@ namespace PackingApplication
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
         {
-            CalculateNetWeight();
+            if (string.IsNullOrWhiteSpace(grosswtno.Text))
+            {
+                grosswterror.Text = "";
+                grosswterror.Visible = true;
+            }
+            else
+            {
+                CalculateNetWeight();
+            }
         }
 
         private void CalculateNetWeight()
@@ -655,7 +730,14 @@ namespace PackingApplication
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
-            CalculateWeightPerCop();
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
+            {
+                spoolnoerror.Text = "";
+                spoolnoerror.Visible = false;
+            }
+            else {
+                CalculateWeightPerCop();
+            }
         }
 
         private void CalculateWeightPerCop()
@@ -736,16 +818,11 @@ namespace PackingApplication
         //    this.Close();
         //}
 
-        private void getAllPOYPackingList()
+        private List<ProductionResponse> getAllPOYPackingList()
         {
             var getPacking = _packingService.getAllPOYPackingList();
             getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
-
-            var getLastBox = getPacking.OrderByDescending(x => x.ProductionId).FirstOrDefault();
-            this.copstxtbox.Text = "";
-            this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-            this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-            this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+            return getPacking;
         }
 
         private void gradewiseprodn_Paint(object sender, PaintEventArgs e)
@@ -869,28 +946,28 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) > 0)
+            if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) == 0)
             {
                 spoolnoerror.Text = "Please enter valid spool no";
                 spoolnoerror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) > 0)
+            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) == 0)
             {
                 spoolwterror.Text = "Please enter valid spool weight";
                 spoolwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) > 0)
+            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) == 0)
             {
                 palletwterror.Text = "Please enter valid empty box/pallet weight";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) >= 0)
+            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) == 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;
@@ -933,6 +1010,15 @@ namespace PackingApplication
                 Log.writeMessage($"An error occurred: {ex.Message}");
             }
             Log.writeMessage("SetButtonBorderRadius end");
+        }
+
+        private void CopyNos_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(copyno.Text))
+            {
+                copynoerror.Text = "";
+                copynoerror.Visible = false;
+            }
         }
     }
 }

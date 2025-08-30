@@ -57,17 +57,19 @@ namespace PackingApplication
             // 
             this.emailid.AutoSize = true;
             this.emailid.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailid.Location = new System.Drawing.Point(52, 106);
+            this.emailid.Location = new System.Drawing.Point(78, 163);
+            this.emailid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.emailid.Name = "emailid";
-            this.emailid.Size = new System.Drawing.Size(48, 14);
+            this.emailid.Size = new System.Drawing.Size(73, 22);
             this.emailid.TabIndex = 0;
             this.emailid.Text = "Email ID";
             // 
             // email
             // 
-            this.email.Location = new System.Drawing.Point(55, 126);
+            this.email.Location = new System.Drawing.Point(82, 194);
+            this.email.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(257, 20);
+            this.email.Size = new System.Drawing.Size(384, 26);
             this.email.TabIndex = 1;
             this.email.Tag = "";
             this.email.TextChanged += new System.EventHandler(this.Email_TextChanged);
@@ -76,17 +78,19 @@ namespace PackingApplication
             // 
             this.password.AutoSize = true;
             this.password.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password.Location = new System.Drawing.Point(54, 170);
+            this.password.Location = new System.Drawing.Point(81, 262);
+            this.password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(56, 14);
+            this.password.Size = new System.Drawing.Size(81, 22);
             this.password.TabIndex = 2;
             this.password.Text = "Password";
             // 
             // passwrd
             // 
-            this.passwrd.Location = new System.Drawing.Point(55, 187);
+            this.passwrd.Location = new System.Drawing.Point(82, 288);
+            this.passwrd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.passwrd.Name = "passwrd";
-            this.passwrd.Size = new System.Drawing.Size(257, 20);
+            this.passwrd.Size = new System.Drawing.Size(384, 26);
             this.passwrd.TabIndex = 3;
             this.passwrd.UseSystemPasswordChar = true;
             this.passwrd.WordWrap = false;
@@ -96,18 +100,20 @@ namespace PackingApplication
             // 
             this.year.AutoSize = true;
             this.year.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.year.Location = new System.Drawing.Point(54, 238);
+            this.year.Location = new System.Drawing.Point(81, 366);
+            this.year.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.year.Name = "year";
-            this.year.Size = new System.Drawing.Size(28, 14);
+            this.year.Size = new System.Drawing.Size(43, 22);
             this.year.TabIndex = 4;
             this.year.Text = "Year";
             // 
             // YearList
             // 
             this.YearList.FormattingEnabled = true;
-            this.YearList.Location = new System.Drawing.Point(55, 255);
+            this.YearList.Location = new System.Drawing.Point(82, 392);
+            this.YearList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.YearList.Name = "YearList";
-            this.YearList.Size = new System.Drawing.Size(257, 21);
+            this.YearList.Size = new System.Drawing.Size(384, 28);
             this.YearList.TabIndex = 5;
             this.YearList.SelectedIndexChanged += new System.EventHandler(this.YearList_SelectedIndexChanged);
             // 
@@ -117,9 +123,10 @@ namespace PackingApplication
             this.rememberme.Checked = true;
             this.rememberme.CheckState = System.Windows.Forms.CheckState.Checked;
             this.rememberme.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rememberme.Location = new System.Drawing.Point(55, 312);
+            this.rememberme.Location = new System.Drawing.Point(82, 480);
+            this.rememberme.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rememberme.Name = "rememberme";
-            this.rememberme.Size = new System.Drawing.Size(98, 18);
+            this.rememberme.Size = new System.Drawing.Size(148, 26);
             this.rememberme.TabIndex = 7;
             this.rememberme.Text = "Remember me";
             this.rememberme.UseVisualStyleBackColor = true;
@@ -131,9 +138,10 @@ namespace PackingApplication
             this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signin.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.signin.Location = new System.Drawing.Point(55, 352);
+            this.signin.Location = new System.Drawing.Point(82, 542);
+            this.signin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.signin.Name = "signin";
-            this.signin.Size = new System.Drawing.Size(257, 32);
+            this.signin.Size = new System.Drawing.Size(386, 49);
             this.signin.TabIndex = 8;
             this.signin.Text = "SIGN IN";
             this.signin.UseVisualStyleBackColor = false;
@@ -143,9 +151,10 @@ namespace PackingApplication
             // 
             this.welcome.AutoSize = true;
             this.welcome.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome.Location = new System.Drawing.Point(128, 19);
+            this.welcome.Location = new System.Drawing.Point(192, 29);
+            this.welcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.welcome.Name = "welcome";
-            this.welcome.Size = new System.Drawing.Size(122, 21);
+            this.welcome.Size = new System.Drawing.Size(180, 31);
             this.welcome.TabIndex = 9;
             this.welcome.Text = "Welcome Back";
             this.welcome.UseWaitCursor = true;
@@ -155,9 +164,10 @@ namespace PackingApplication
             this.subtitle.AutoEllipsis = true;
             this.subtitle.AutoSize = true;
             this.subtitle.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtitle.Location = new System.Drawing.Point(52, 49);
+            this.subtitle.Location = new System.Drawing.Point(78, 75);
+            this.subtitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.subtitle.Name = "subtitle";
-            this.subtitle.Size = new System.Drawing.Size(293, 16);
+            this.subtitle.Size = new System.Drawing.Size(440, 23);
             this.subtitle.TabIndex = 10;
             this.subtitle.Text = "Enter your email and password to access your account";
             // 
@@ -167,9 +177,10 @@ namespace PackingApplication
             this.req1.BackColor = System.Drawing.Color.Transparent;
             this.req1.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.req1.ForeColor = System.Drawing.Color.Red;
-            this.req1.Location = new System.Drawing.Point(96, 106);
+            this.req1.Location = new System.Drawing.Point(144, 163);
+            this.req1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.req1.Name = "req1";
-            this.req1.Size = new System.Drawing.Size(12, 16);
+            this.req1.Size = new System.Drawing.Size(20, 25);
             this.req1.TabIndex = 11;
             this.req1.Text = "*";
             // 
@@ -179,9 +190,10 @@ namespace PackingApplication
             this.req2.BackColor = System.Drawing.Color.Transparent;
             this.req2.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.req2.ForeColor = System.Drawing.Color.Red;
-            this.req2.Location = new System.Drawing.Point(107, 169);
+            this.req2.Location = new System.Drawing.Point(160, 260);
+            this.req2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.req2.Name = "req2";
-            this.req2.Size = new System.Drawing.Size(12, 16);
+            this.req2.Size = new System.Drawing.Size(20, 25);
             this.req2.TabIndex = 12;
             this.req2.Text = "*";
             // 
@@ -191,9 +203,10 @@ namespace PackingApplication
             this.req3.BackColor = System.Drawing.Color.Transparent;
             this.req3.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.req3.ForeColor = System.Drawing.Color.Red;
-            this.req3.Location = new System.Drawing.Point(79, 238);
+            this.req3.Location = new System.Drawing.Point(118, 366);
+            this.req3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.req3.Name = "req3";
-            this.req3.Size = new System.Drawing.Size(12, 16);
+            this.req3.Size = new System.Drawing.Size(20, 25);
             this.req3.TabIndex = 13;
             this.req3.Text = "*";
             // 
@@ -202,13 +215,16 @@ namespace PackingApplication
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(18, 18);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 426);
+            this.panel1.Size = new System.Drawing.Size(1164, 655);
             this.panel1.TabIndex = 14;
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSize = true;
             this.panel2.Controls.Add(this.yearerror);
             this.panel2.Controls.Add(this.passworderror);
@@ -226,9 +242,10 @@ namespace PackingApplication
             this.panel2.Controls.Add(this.req2);
             this.panel2.Controls.Add(this.passwrd);
             this.panel2.Controls.Add(this.password);
-            this.panel2.Location = new System.Drawing.Point(384, 0);
+            this.panel2.Location = new System.Drawing.Point(528, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 426);
+            this.panel2.Size = new System.Drawing.Size(636, 655);
             this.panel2.TabIndex = 14;
             // 
             // yearerror
@@ -236,9 +253,10 @@ namespace PackingApplication
             this.yearerror.AutoSize = true;
             this.yearerror.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yearerror.ForeColor = System.Drawing.Color.Red;
-            this.yearerror.Location = new System.Drawing.Point(57, 279);
+            this.yearerror.Location = new System.Drawing.Point(86, 429);
+            this.yearerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.yearerror.Name = "yearerror";
-            this.yearerror.Size = new System.Drawing.Size(0, 14);
+            this.yearerror.Size = new System.Drawing.Size(0, 22);
             this.yearerror.TabIndex = 16;
             this.yearerror.Visible = false;
             // 
@@ -247,9 +265,10 @@ namespace PackingApplication
             this.passworderror.AutoSize = true;
             this.passworderror.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passworderror.ForeColor = System.Drawing.Color.Red;
-            this.passworderror.Location = new System.Drawing.Point(54, 210);
+            this.passworderror.Location = new System.Drawing.Point(81, 323);
+            this.passworderror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passworderror.Name = "passworderror";
-            this.passworderror.Size = new System.Drawing.Size(0, 14);
+            this.passworderror.Size = new System.Drawing.Size(0, 22);
             this.passworderror.TabIndex = 15;
             this.passworderror.Visible = false;
             // 
@@ -258,18 +277,20 @@ namespace PackingApplication
             this.emailerror.AutoSize = true;
             this.emailerror.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailerror.ForeColor = System.Drawing.Color.Red;
-            this.emailerror.Location = new System.Drawing.Point(54, 149);
+            this.emailerror.Location = new System.Drawing.Point(81, 229);
+            this.emailerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.emailerror.Name = "emailerror";
-            this.emailerror.Size = new System.Drawing.Size(0, 14);
+            this.emailerror.Size = new System.Drawing.Size(0, 22);
             this.emailerror.TabIndex = 14;
             this.emailerror.Visible = false;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "Login";
             this.panel1.ResumeLayout(false);
