@@ -1014,6 +1014,7 @@ namespace PackingApplication
             this.copyno.Name = "copyno";
             this.copyno.Size = new System.Drawing.Size(92, 26);
             this.copyno.TabIndex = 74;
+            this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
             // 
             // boxno
             // 

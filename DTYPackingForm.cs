@@ -375,7 +375,6 @@ namespace PackingApplication
         {
             var getMachine = _masterService.getMachineList();
             getMachine.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-
             return getMachine;
         }
 
@@ -455,13 +454,6 @@ namespace PackingApplication
         }
 
         private List<ItemResponse> getBoxItemList()
-        {
-            var getBox = _masterService.getBoxItemList();
-            getBox.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            return getBox;
-        }
-
-        private List<ItemResponse> getPalletItemList()
         {
             var getBox = _masterService.getBoxItemList();
             getBox.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
@@ -764,21 +756,6 @@ namespace PackingApplication
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
-        }
-
-        private void mergenoerror_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grosswterror_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void copynoerror_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
