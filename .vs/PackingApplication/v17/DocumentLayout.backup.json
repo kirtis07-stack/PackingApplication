@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\Projects\\BeekaylonERP\\PackingApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\chipspackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:chipspackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\adminaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:adminaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\adminaccount.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:adminaccount.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Projects\\BeekaylonERP\\PackingApplication\\dtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:dtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\adminaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:adminaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,39 +35,52 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChipsPackingForm.Designer.cs",
-              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\ChipsPackingForm.Designer.cs",
-              "RelativeDocumentMoniker": "ChipsPackingForm.Designer.cs",
-              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\ChipsPackingForm.Designer.cs",
-              "RelativeToolTip": "ChipsPackingForm.Designer.cs",
-              "ViewState": "AgIAAOcBAAAAAAAAAAAAAPIBAAAsAAAAAAAAAA==",
+              "Title": "AdminAccount.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\AdminAccount.cs",
+              "RelativeDocumentMoniker": "AdminAccount.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\AdminAccount.cs",
+              "RelativeToolTip": "AdminAccount.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAqwGkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T18:23:41.564Z",
+              "WhenOpened": "2025-09-03T19:11:41.246Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ChipsPackingForm.cs [Design]",
-              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\ChipsPackingForm.cs",
-              "RelativeDocumentMoniker": "ChipsPackingForm.cs",
-              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\ChipsPackingForm.cs [Design]",
-              "RelativeToolTip": "ChipsPackingForm.cs [Design]",
+              "Title": "AdminAccount.Designer.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\AdminAccount.Designer.cs",
+              "RelativeDocumentMoniker": "AdminAccount.Designer.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\AdminAccount.Designer.cs",
+              "RelativeToolTip": "AdminAccount.Designer.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwDcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T17:59:59.784Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-09-03T19:11:08.043Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DTYPackingForm.cs",
-              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\DTYPackingForm.cs",
-              "RelativeDocumentMoniker": "DTYPackingForm.cs",
-              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\DTYPackingForm.cs",
-              "RelativeToolTip": "DTYPackingForm.cs",
-              "ViewState": "AgIAAPICAAAAAAAAAAAiwPYCAAAJAAAAAAAAAA==",
+              "Title": "AdminAccount.cs [Design]",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\AdminAccount.cs",
+              "RelativeDocumentMoniker": "AdminAccount.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\AdminAccount.cs [Design]",
+              "RelativeToolTip": "AdminAccount.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T14:56:36.42Z",
+              "WhenOpened": "2025-09-03T19:10:37.713Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "Dashboard.Designer.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.Designer.cs",
+              "RelativeToolTip": "Dashboard.Designer.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T18:28:25.847Z",
               "EditorCaption": ""
             }
           ]

@@ -143,6 +143,9 @@
     <EmbeddedResource Include="ChipsPackingForm.resx">
       <DependentUpon>ChipsPackingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DTYPackingForm.resx">
       <DependentUpon>DTYPackingForm.cs</DependentUpon>
     </EmbeddedResource>

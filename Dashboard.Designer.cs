@@ -28,70 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 32);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // Dashboard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Dashboard";
             this.Text = "Dashboard";
-            this.poypackingform = new System.Windows.Forms.Label();
-            this.dtypackingform = new System.Windows.Forms.Label();
-            this.bcfpackingform = new System.Windows.Forms.Label();
-            this.chipspackingform = new System.Windows.Forms.Label();
+            this.Load += new System.EventHandler(this.DashboardForm_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-            // 
-            // poypackingform
-            // 
-            this.poypackingform.AutoSize = true;
-            this.poypackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.poypackingform.Location = new System.Drawing.Point(57, 73);
-            this.poypackingform.Name = "poypackingform";
-            this.poypackingform.Size = new System.Drawing.Size(85, 14);
-            this.poypackingform.TabIndex = 1;
-            this.poypackingform.Text = "1. POY Packing";
-            this.poypackingform.Click += new System.EventHandler(this.POYPacking_Click);
-            // 
-            // dtypackingform
-            // 
-            this.dtypackingform.AutoSize = true;
-            this.dtypackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtypackingform.Location = new System.Drawing.Point(57, 100);
-            this.dtypackingform.Name = "dtypackingform";
-            this.dtypackingform.Size = new System.Drawing.Size(84, 14);
-            this.dtypackingform.TabIndex = 2;
-            this.dtypackingform.Text = "2. DTY Packing";
-            this.dtypackingform.Click += new System.EventHandler(this.DTYPacking_Click);
-            // 
-            // bcfpackingform
-            // 
-            this.bcfpackingform.AutoSize = true;
-            this.bcfpackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bcfpackingform.Location = new System.Drawing.Point(58, 129);
-            this.bcfpackingform.Name = "bcfpackingform";
-            this.bcfpackingform.Size = new System.Drawing.Size(83, 14);
-            this.bcfpackingform.TabIndex = 3;
-            this.bcfpackingform.Text = "3. BCF Packing";
-            this.bcfpackingform.Click += new System.EventHandler(this.BCFPacking_Click);
-            // 
-            // chipspackingform
-            // 
-            this.chipspackingform.AutoSize = true;
-            this.chipspackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chipspackingform.Location = new System.Drawing.Point(57, 156);
-            this.chipspackingform.Name = "chipspackingform";
-            this.chipspackingform.Size = new System.Drawing.Size(92, 14);
-            this.chipspackingform.TabIndex = 4;
-            this.chipspackingform.Text = "4. Chips Packing";
-            this.chipspackingform.Click += new System.EventHandler(this.ChipsPacking_Click);
-
-            this.Controls.Add(this.chipspackingform);
-            this.Controls.Add(this.bcfpackingform);
-            this.Controls.Add(this.dtypackingform);
-            this.Controls.Add(this.poypackingform);
         }
 
         #endregion
-        private System.Windows.Forms.Label poypackingform;
-        private System.Windows.Forms.Label dtypackingform;
-        private System.Windows.Forms.Label bcfpackingform;
-        private System.Windows.Forms.Label chipspackingform;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }

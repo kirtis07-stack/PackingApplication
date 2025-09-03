@@ -28,80 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Logout = new System.Windows.Forms.Button();
-            //this.poypackingform = new System.Windows.Forms.Label();
-            //this.dtypackingform = new System.Windows.Forms.Label();
-            //this.bcfpackingform = new System.Windows.Forms.Label();
-            //this.chipspackingform = new System.Windows.Forms.Label();
+            //this.Logout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Logout
             // 
-            this.Logout.BackColor = System.Drawing.Color.DodgerBlue;
-            this.Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Logout.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Logout.ForeColor = System.Drawing.SystemColors.Control;
-            this.Logout.Location = new System.Drawing.Point(722, 12);
-            this.Logout.Name = "Logout";
-            this.Logout.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Logout.Size = new System.Drawing.Size(66, 23);
-            this.Logout.TabIndex = 0;
-            this.Logout.Text = "Logout";
-            this.Logout.UseVisualStyleBackColor = false;
-            this.Logout.Click += new System.EventHandler(this.Logout_Click);
-            //// 
-            //// poypackingform
-            //// 
-            //this.poypackingform.AutoSize = true;
-            //this.poypackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.poypackingform.Location = new System.Drawing.Point(57, 73);
-            //this.poypackingform.Name = "poypackingform";
-            //this.poypackingform.Size = new System.Drawing.Size(85, 14);
-            //this.poypackingform.TabIndex = 1;
-            //this.poypackingform.Text = "1. POY Packing";
-            //this.poypackingform.Click += new System.EventHandler(this.POYPacking_Click);
-            //// 
-            //// dtypackingform
-            //// 
-            //this.dtypackingform.AutoSize = true;
-            //this.dtypackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.dtypackingform.Location = new System.Drawing.Point(57, 100);
-            //this.dtypackingform.Name = "dtypackingform";
-            //this.dtypackingform.Size = new System.Drawing.Size(84, 14);
-            //this.dtypackingform.TabIndex = 2;
-            //this.dtypackingform.Text = "2. DTY Packing";
-            //this.dtypackingform.Click += new System.EventHandler(this.DTYPacking_Click);
-            //// 
-            //// bcfpackingform
-            //// 
-            //this.bcfpackingform.AutoSize = true;
-            //this.bcfpackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.bcfpackingform.Location = new System.Drawing.Point(58, 129);
-            //this.bcfpackingform.Name = "bcfpackingform";
-            //this.bcfpackingform.Size = new System.Drawing.Size(83, 14);
-            //this.bcfpackingform.TabIndex = 3;
-            //this.bcfpackingform.Text = "3. BCF Packing";
-            //// 
-            //// chipspackingform
-            //// 
-            //this.chipspackingform.AutoSize = true;
-            //this.chipspackingform.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.chipspackingform.Location = new System.Drawing.Point(57, 156);
-            //this.chipspackingform.Name = "chipspackingform";
-            //this.chipspackingform.Size = new System.Drawing.Size(92, 14);
-            //this.chipspackingform.TabIndex = 4;
-            //this.chipspackingform.Text = "4. Chips Packing";
+            //this.Logout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            //this.Logout.BackColor = System.Drawing.Color.DodgerBlue;
+            //this.Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            //this.Logout.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //this.Logout.ForeColor = System.Drawing.SystemColors.Control;
+            //this.Logout.Location = new System.Drawing.Point(1083, 18);
+            //this.Logout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            //this.Logout.Name = "Logout";
+            //this.Logout.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            //this.Logout.Size = new System.Drawing.Size(99, 35);
+            //this.Logout.TabIndex = 0;
+            //this.Logout.Text = "Logout";
+            //this.Logout.UseVisualStyleBackColor = false;
+            //this.Logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // AdminAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            //this.Controls.Add(this.chipspackingform);
-            //this.Controls.Add(this.bcfpackingform);
-            //this.Controls.Add(this.dtypackingform);
-            //this.Controls.Add(this.poypackingform);
-            this.Controls.Add(this.Logout);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
+            //this.Controls.Add(this.Logout);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AdminAccount";
             this.Text = "AdminAccount";
             this.ResumeLayout(false);
@@ -110,7 +63,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button Logout;
+        //private System.Windows.Forms.Button Logout;
         //private System.Windows.Forms.Label poypackingform;
         //private System.Windows.Forms.Label dtypackingform;
         //private System.Windows.Forms.Label bcfpackingform;

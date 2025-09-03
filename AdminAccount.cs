@@ -28,62 +28,81 @@ namespace PackingApplication
                 BackColor = Color.WhiteSmoke
             };
 
-            //Label headerLabel = new Label
-            //{
-            //    Text = "My Application Header",
-            //    Font = new Font("Microsoft Tai Le", 10, FontStyle.Bold),
-            //    AutoSize = true,
-            //    Location = new Point(10, 15)
-            //};
-
+            // ==== LEFT: LOGO ====
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string projectRoot = Directory.GetParent(basePath).Parent.Parent.FullName;
             string imagePath = Path.Combine(projectRoot, "Images", "logo.png");
 
-            if (!File.Exists(imagePath))
-            {
-                MessageBox.Show("Image not found: " + imagePath);
-            }
-            else
+            if (File.Exists(imagePath))
             {
                 PictureBox logoPictureBox = new PictureBox
                 {
-
-                    Image = Image.FromFile(imagePath),   
+                    Image = Image.FromFile(imagePath),
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Size = new Size(120, 40),
-                    Location = new Point(10, 10)            
+                    Location = new Point(10, 10)
                 };
                 headerPanel.Controls.Add(logoPictureBox);
             }
-            Panel userInfoPanel = new Panel
+            else
+            {
+                MessageBox.Show("Image not found: " + imagePath);
+            }
+
+            // ==== RIGHT SIDE CONTAINER ====
+            FlowLayoutPanel rightPanel = new FlowLayoutPanel
             {
                 AutoSize = true,
-                Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                Font = new Font("Microsoft Tai Le", 8, FontStyle.Bold),
-                Location = new Point(headerPanel.Width - 150, 10) 
+                FlowDirection = FlowDirection.RightToLeft, // logout first, then user info
+                Dock = DockStyle.Right,
+                Padding = new Padding(0, 10, 15, 0)
             };
 
-            // label for username
+            // Logout Button
+            Button logoutBtn = new Button
+            {
+                Text = "Logout",
+                BackColor = Color.DodgerBlue,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Width = 99,
+                Height = 35,
+                Font = new Font("Microsoft Tai Le", 8.25F, FontStyle.Bold)
+            };
+            logoutBtn.Click += Logout_Click;
+
+            // User Info (stacked vertically)
+            FlowLayoutPanel userInfoPanel = new FlowLayoutPanel
+            {
+                AutoSize = true,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                Font = new Font("Microsoft Tai Le", 8, FontStyle.Bold),
+                Padding = new Padding(5, 5, 5, 5)
+            };
+
             Label userNameInfoLabel = new Label
             {
                 Text = SessionManager.UserName,
                 AutoSize = true
             };
-            userInfoPanel.Controls.Add(userNameInfoLabel);
-
-            // label for role
             Label userRoleInfoLabel = new Label
             {
                 Text = SessionManager.Role,
-                AutoSize = true,
-                Top = userNameInfoLabel.Bottom + 2  
+                AutoSize = true
             };
 
+            userInfoPanel.Controls.Add(userNameInfoLabel);
             userInfoPanel.Controls.Add(userRoleInfoLabel);
 
-            headerPanel.Controls.Add(userInfoPanel);
+            // Add to right panel
+            rightPanel.Controls.Add(logoutBtn);
+            rightPanel.Controls.Add(userInfoPanel);
 
+            // Add right panel to header
+            headerPanel.Controls.Add(rightPanel);
+
+            // Add header to form
             this.Controls.Add(headerPanel);
 
             // footer
