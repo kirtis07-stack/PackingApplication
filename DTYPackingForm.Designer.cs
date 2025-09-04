@@ -127,7 +127,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.copssize = new System.Windows.Forms.Label();
             this.copweight = new System.Windows.Forms.Label();
-            this.backbutton = new System.Windows.Forms.Button();
             this.dtyformlabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.lastboxdetails.SuspendLayout();
@@ -165,7 +164,7 @@
             this.packsizeerror.Location = new System.Drawing.Point(98, 447);
             this.packsizeerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.packsizeerror.Name = "packsizeerror";
-            this.packsizeerror.Size = new System.Drawing.Size(103, 21);
+            this.packsizeerror.Size = new System.Drawing.Size(0, 21);
             this.packsizeerror.TabIndex = 103;
             // 
             // soerror
@@ -227,6 +226,9 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.boxnoerror);
             this.panel2.Controls.Add(this.windingerror);
@@ -955,7 +957,7 @@
             // 
             this.shadecode.AutoSize = true;
             this.shadecode.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.shadecode.Location = new System.Drawing.Point(11, 265);
+            this.shadecode.Location = new System.Drawing.Point(6, 267);
             this.shadecode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.shadecode.Name = "shadecode";
             this.shadecode.Size = new System.Drawing.Size(57, 44);
@@ -1016,7 +1018,7 @@
             // 
             this.quality.AutoSize = true;
             this.quality.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quality.Location = new System.Drawing.Point(9, 338);
+            this.quality.Location = new System.Drawing.Point(4, 338);
             this.quality.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.quality.Name = "quality";
             this.quality.Size = new System.Drawing.Size(68, 22);
@@ -1118,7 +1120,7 @@
             // 
             this.boxtype.AutoSize = true;
             this.boxtype.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boxtype.Location = new System.Drawing.Point(9, 527);
+            this.boxtype.Location = new System.Drawing.Point(4, 527);
             this.boxtype.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.boxtype.Name = "boxtype";
             this.boxtype.Size = new System.Drawing.Size(87, 44);
@@ -1157,7 +1159,7 @@
             // 
             this.scalemodel.AutoSize = true;
             this.scalemodel.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scalemodel.Location = new System.Drawing.Point(4, 648);
+            this.scalemodel.Location = new System.Drawing.Point(5, 632);
             this.scalemodel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.scalemodel.Name = "scalemodel";
             this.scalemodel.Size = new System.Drawing.Size(59, 44);
@@ -1239,7 +1241,7 @@
             // 
             this.copssize.AutoSize = true;
             this.copssize.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copssize.Location = new System.Drawing.Point(9, 484);
+            this.copssize.Location = new System.Drawing.Point(5, 483);
             this.copssize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.copssize.Name = "copssize";
             this.copssize.Size = new System.Drawing.Size(87, 22);
@@ -1256,23 +1258,6 @@
             this.copweight.Size = new System.Drawing.Size(36, 22);
             this.copweight.TabIndex = 34;
             this.copweight.Text = "Wt:";
-            // 
-            // backbutton
-            // 
-            this.backbutton.BackColor = System.Drawing.SystemColors.Highlight;
-            this.backbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.backbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backbutton.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backbutton.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.backbutton.Location = new System.Drawing.Point(1212, 18);
-            this.backbutton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.backbutton.Name = "backbutton";
-            this.backbutton.Size = new System.Drawing.Size(82, 35);
-            this.backbutton.TabIndex = 90;
-            this.backbutton.Text = "Back";
-            this.backbutton.UseVisualStyleBackColor = false;
-            this.backbutton.Click += new System.EventHandler(this.backbutton_Click);
             // 
             // dtyformlabel
             // 
@@ -1292,7 +1277,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 832);
             this.Controls.Add(this.dtyformlabel);
-            this.Controls.Add(this.backbutton);
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DTYPackingForm";
@@ -1399,7 +1383,7 @@
         private System.Windows.Forms.Label copweight;
         private System.Windows.Forms.Label denier;
         private System.Windows.Forms.TextBox deniervalue;
-        private System.Windows.Forms.Button backbutton;
+        //private System.Windows.Forms.Button backbutton;
         private System.Windows.Forms.CheckBox prtwist;
         private System.Windows.Forms.Label dtyformlabel;
         private System.Windows.Forms.Label linenoerror;

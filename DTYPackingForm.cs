@@ -469,7 +469,7 @@ namespace PackingApplication
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(spoolwt.Text))
+            if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 spoolwterror.Text = "";
                 spoolwterror.Visible = false;
@@ -482,7 +482,7 @@ namespace PackingApplication
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(palletwtno.Text))
+            if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 palletwterror.Text = "";
                 palletwterror.Visible = false;
@@ -533,7 +533,7 @@ namespace PackingApplication
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(spoolno.Text))
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 spoolnoerror.Text = "";
                 spoolnoerror.Visible = false;
@@ -688,28 +688,28 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) > 0)
+            if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) == 0)
             {
                 spoolnoerror.Text = "Please enter valid spool no";
                 spoolnoerror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) > 0)
+            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) == 0)
             {
                 spoolwterror.Text = "Please enter valid spool weight";
                 spoolwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) > 0)
+            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) == 0)
             {
                 palletwterror.Text = "Please enter valid empty box/pallet weight";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) >= 0)
+            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) == 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;
@@ -751,7 +751,7 @@ namespace PackingApplication
 
         private void CopyNos_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(copyno.Text))
+            if (string.IsNullOrWhiteSpace(copyno.Text))
             {
                 copynoerror.Text = "";
                 copynoerror.Visible = false;

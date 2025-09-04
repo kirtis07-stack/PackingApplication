@@ -444,7 +444,7 @@ namespace PackingApplication
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(palletwtno.Text))
+            if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 palletwterror.Text = "";
                 palletwterror.Visible = false;
@@ -641,14 +641,14 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) > 0)
+            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) == 0)
             {
                 palletwterror.Text = "Please enter valid empty box/pallet weight";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) >= 0)
+            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) == 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;

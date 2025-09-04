@@ -31,7 +31,6 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.backbutton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.boxnoerror = new System.Windows.Forms.Label();
             this.windingerror = new System.Windows.Forms.Label();
@@ -160,25 +159,11 @@ namespace PackingApplication
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // backbutton
-            // 
-            this.backbutton.BackColor = System.Drawing.SystemColors.Highlight;
-            this.backbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.backbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backbutton.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backbutton.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.backbutton.Location = new System.Drawing.Point(1208, 6);
-            this.backbutton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.backbutton.Name = "backbutton";
-            this.backbutton.Size = new System.Drawing.Size(82, 35);
-            this.backbutton.TabIndex = 91;
-            this.backbutton.Text = "Back";
-            this.backbutton.UseVisualStyleBackColor = false;
-            this.backbutton.Click += new System.EventHandler(this.backbutton_Click);
-            // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.boxnoerror);
             this.panel2.Controls.Add(this.windingerror);
@@ -507,7 +492,7 @@ namespace PackingApplication
             this.grosswterror.ForeColor = System.Drawing.Color.Red;
             this.grosswterror.Location = new System.Drawing.Point(16, 185);
             this.grosswterror.Name = "grosswterror";
-            this.grosswterror.Size = new System.Drawing.Size(105, 22);
+            this.grosswterror.Size = new System.Drawing.Size(0, 22);
             this.grosswterror.TabIndex = 89;
             this.grosswterror.Visible = false;
             // 
@@ -518,7 +503,7 @@ namespace PackingApplication
             this.palletwterror.ForeColor = System.Drawing.Color.Red;
             this.palletwterror.Location = new System.Drawing.Point(12, 120);
             this.palletwterror.Name = "palletwterror";
-            this.palletwterror.Size = new System.Drawing.Size(107, 22);
+            this.palletwterror.Size = new System.Drawing.Size(0, 22);
             this.palletwterror.TabIndex = 88;
             this.palletwterror.Visible = false;
             // 
@@ -529,7 +514,7 @@ namespace PackingApplication
             this.spoolwterror.ForeColor = System.Drawing.Color.Red;
             this.spoolwterror.Location = new System.Drawing.Point(181, 59);
             this.spoolwterror.Name = "spoolwterror";
-            this.spoolwterror.Size = new System.Drawing.Size(106, 22);
+            this.spoolwterror.Size = new System.Drawing.Size(0, 22);
             this.spoolwterror.TabIndex = 87;
             this.spoolwterror.Visible = false;
             // 
@@ -540,7 +525,7 @@ namespace PackingApplication
             this.spoolnoerror.ForeColor = System.Drawing.Color.Red;
             this.spoolnoerror.Location = new System.Drawing.Point(13, 59);
             this.spoolnoerror.Name = "spoolnoerror";
-            this.spoolnoerror.Size = new System.Drawing.Size(108, 22);
+            this.spoolnoerror.Size = new System.Drawing.Size(0, 22);
             this.spoolnoerror.TabIndex = 86;
             this.spoolnoerror.Visible = false;
             // 
@@ -1080,7 +1065,7 @@ namespace PackingApplication
             // 
             this.item.AutoSize = true;
             this.item.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.item.Location = new System.Drawing.Point(9, 214);
+            this.item.Location = new System.Drawing.Point(6, 205);
             this.item.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.item.Name = "item";
             this.item.Size = new System.Drawing.Size(49, 22);
@@ -1166,7 +1151,7 @@ namespace PackingApplication
             // 
             this.BoxItemList.AllowDrop = true;
             this.BoxItemList.FormattingEnabled = true;
-            this.BoxItemList.Location = new System.Drawing.Point(100, 499);
+            this.BoxItemList.Location = new System.Drawing.Point(97, 499);
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(187, 28);
             this.BoxItemList.TabIndex = 63;
@@ -1187,7 +1172,7 @@ namespace PackingApplication
             // 
             this.quality.AutoSize = true;
             this.quality.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quality.Location = new System.Drawing.Point(4, 309);
+            this.quality.Location = new System.Drawing.Point(4, 314);
             this.quality.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.quality.Name = "quality";
             this.quality.Size = new System.Drawing.Size(68, 22);
@@ -1269,7 +1254,7 @@ namespace PackingApplication
             // 
             this.PackSizeList.AllowDrop = true;
             this.PackSizeList.FormattingEnabled = true;
-            this.PackSizeList.Location = new System.Drawing.Point(100, 376);
+            this.PackSizeList.Location = new System.Drawing.Point(95, 378);
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(187, 28);
             this.PackSizeList.TabIndex = 58;
@@ -1279,7 +1264,7 @@ namespace PackingApplication
             // 
             this.CopsItemList.AllowDrop = true;
             this.CopsItemList.FormattingEnabled = true;
-            this.CopsItemList.Location = new System.Drawing.Point(101, 443);
+            this.CopsItemList.Location = new System.Drawing.Point(97, 440);
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(188, 28);
             this.CopsItemList.TabIndex = 62;
@@ -1309,7 +1294,7 @@ namespace PackingApplication
             // 
             this.WeighingList.AllowDrop = true;
             this.WeighingList.FormattingEnabled = true;
-            this.WeighingList.Location = new System.Drawing.Point(103, 550);
+            this.WeighingList.Location = new System.Drawing.Point(97, 547);
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(206, 28);
             this.WeighingList.TabIndex = 61;
@@ -1410,7 +1395,7 @@ namespace PackingApplication
             // 
             this.copssize.AutoSize = true;
             this.copssize.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copssize.Location = new System.Drawing.Point(8, 446);
+            this.copssize.Location = new System.Drawing.Point(1, 443);
             this.copssize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.copssize.Name = "copssize";
             this.copssize.Size = new System.Drawing.Size(87, 22);
@@ -1483,7 +1468,6 @@ namespace PackingApplication
             this.ClientSize = new System.Drawing.Size(1308, 1050);
             this.Controls.Add(this.bcfformlabel);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.backbutton);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "BCFPackingForm";
             this.Text = "BCFPackingForm";
@@ -1510,7 +1494,7 @@ namespace PackingApplication
 
         #endregion
 
-        private System.Windows.Forms.Button backbutton;
+        //private System.Windows.Forms.Button backbutton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox deniervalue;
         private System.Windows.Forms.Label denier;

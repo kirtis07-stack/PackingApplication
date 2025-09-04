@@ -53,23 +53,11 @@ namespace PackingApplication
             FlowLayoutPanel rightPanel = new FlowLayoutPanel
             {
                 AutoSize = true,
-                FlowDirection = FlowDirection.RightToLeft, // logout first, then user info
+                FlowDirection = FlowDirection.LeftToRight, // horizontal row
                 Dock = DockStyle.Right,
-                Padding = new Padding(0, 10, 15, 0)
+                Padding = new Padding(0, 10, 15, 0),
+                WrapContents = false
             };
-
-            // Logout Button
-            Button logoutBtn = new Button
-            {
-                Text = "Logout",
-                BackColor = Color.DodgerBlue,
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Width = 99,
-                Height = 35,
-                Font = new Font("Microsoft Tai Le", 8.25F, FontStyle.Bold)
-            };
-            logoutBtn.Click += Logout_Click;
 
             // User Info (stacked vertically)
             FlowLayoutPanel userInfoPanel = new FlowLayoutPanel
@@ -95,9 +83,24 @@ namespace PackingApplication
             userInfoPanel.Controls.Add(userNameInfoLabel);
             userInfoPanel.Controls.Add(userRoleInfoLabel);
 
+
+            // Logout Button
+            Button logoutBtn = new Button
+            {
+                Text = "Logout",
+                BackColor = Color.DodgerBlue,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Width = 80,
+                Height = 30,
+                Font = new Font("Microsoft Tai Le", 8.25F, FontStyle.Bold),
+                Margin = new Padding(10, 5, 0, 0) // spacing from user info
+            };
+            logoutBtn.Click += Logout_Click;
+
             // Add to right panel
-            rightPanel.Controls.Add(logoutBtn);
             rightPanel.Controls.Add(userInfoPanel);
+            rightPanel.Controls.Add(logoutBtn);
 
             // Add right panel to header
             headerPanel.Controls.Add(rightPanel);

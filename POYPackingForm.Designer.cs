@@ -150,7 +150,6 @@ namespace PackingApplication
             this.soqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.windingprodqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backbutton = new System.Windows.Forms.Button();
             this.poyformlabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.lastboxdetails.SuspendLayout();
@@ -917,6 +916,9 @@ namespace PackingApplication
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.boxnoerror);
             this.panel2.Controls.Add(this.windingerror);
@@ -993,9 +995,8 @@ namespace PackingApplication
             this.panel2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel2.Location = new System.Drawing.Point(12, 33);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(851, 702);
+            this.panel2.Size = new System.Drawing.Size(1268, 702);
             this.panel2.TabIndex = 89;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // boxnoerror
             // 
@@ -1407,27 +1408,11 @@ namespace PackingApplication
             this.windingprodqtyDataGridViewTextBoxColumn.Name = "windingprodqtyDataGridViewTextBoxColumn";
             this.windingprodqtyDataGridViewTextBoxColumn.Width = 150;
             // 
-            // backbutton
-            // 
-            this.backbutton.BackColor = System.Drawing.SystemColors.Highlight;
-            this.backbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.backbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backbutton.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backbutton.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.backbutton.Location = new System.Drawing.Point(788, 4);
-            this.backbutton.Name = "backbutton";
-            this.backbutton.Size = new System.Drawing.Size(55, 23);
-            this.backbutton.TabIndex = 90;
-            this.backbutton.Text = "Back";
-            this.backbutton.UseVisualStyleBackColor = false;
-            this.backbutton.Click += new System.EventHandler(this.backbutton_Click);
-            // 
             // poyformlabel
             // 
             this.poyformlabel.AutoSize = true;
             this.poyformlabel.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.poyformlabel.ForeColor = System.Drawing.Color.Maroon;
+            this.poyformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.poyformlabel.Location = new System.Drawing.Point(18, 7);
             this.poyformlabel.Name = "poyformlabel";
             this.poyformlabel.Size = new System.Drawing.Size(118, 23);
@@ -1438,9 +1423,8 @@ namespace PackingApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 749);
+            this.ClientSize = new System.Drawing.Size(1292, 749);
             this.Controls.Add(this.poyformlabel);
-            this.Controls.Add(this.backbutton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.palletdetails);
             this.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1583,7 +1567,7 @@ namespace PackingApplication
         private TextBox netwttxtbox;
         private TextBox deniervalue;
         private System.Windows.Forms.Label denier;
-        private Button backbutton;
+        //private Button backbutton;
         private System.Windows.Forms.Label linenoerror;
         private System.Windows.Forms.Label copynoerror;
         private System.Windows.Forms.Label mergenoerror;

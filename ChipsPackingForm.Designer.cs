@@ -36,7 +36,6 @@
             this.mergenoerror = new System.Windows.Forms.Label();
             this.copynoerror = new System.Windows.Forms.Label();
             this.linenoerror = new System.Windows.Forms.Label();
-            this.backbutton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.twistvalue = new System.Windows.Forms.TextBox();
             this.twist = new System.Windows.Forms.Label();
@@ -136,7 +135,7 @@
             this.boxnoerror.Location = new System.Drawing.Point(425, 115);
             this.boxnoerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.boxnoerror.Name = "boxnoerror";
-            this.boxnoerror.Size = new System.Drawing.Size(88, 21);
+            this.boxnoerror.Size = new System.Drawing.Size(0, 21);
             this.boxnoerror.TabIndex = 105;
             // 
             // windingerror
@@ -147,7 +146,7 @@
             this.windingerror.Location = new System.Drawing.Point(433, 482);
             this.windingerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.windingerror.Name = "windingerror";
-            this.windingerror.Size = new System.Drawing.Size(101, 21);
+            this.windingerror.Size = new System.Drawing.Size(0, 21);
             this.windingerror.TabIndex = 104;
             // 
             // packsizeerror
@@ -158,7 +157,7 @@
             this.packsizeerror.Location = new System.Drawing.Point(97, 482);
             this.packsizeerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.packsizeerror.Name = "packsizeerror";
-            this.packsizeerror.Size = new System.Drawing.Size(103, 21);
+            this.packsizeerror.Size = new System.Drawing.Size(0, 21);
             this.packsizeerror.TabIndex = 103;
             // 
             // soerror
@@ -169,7 +168,7 @@
             this.soerror.Location = new System.Drawing.Point(433, 415);
             this.soerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.soerror.Name = "soerror";
-            this.soerror.Size = new System.Drawing.Size(61, 21);
+            this.soerror.Size = new System.Drawing.Size(0, 21);
             this.soerror.TabIndex = 102;
             // 
             // qualityerror
@@ -180,7 +179,7 @@
             this.qualityerror.Location = new System.Drawing.Point(100, 415);
             this.qualityerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.qualityerror.Name = "qualityerror";
-            this.qualityerror.Size = new System.Drawing.Size(92, 21);
+            this.qualityerror.Size = new System.Drawing.Size(0, 21);
             this.qualityerror.TabIndex = 101;
             // 
             // mergenoerror
@@ -192,7 +191,7 @@
             this.mergenoerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.mergenoerror.Name = "mergenoerror";
             this.mergenoerror.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mergenoerror.Size = new System.Drawing.Size(108, 21);
+            this.mergenoerror.Size = new System.Drawing.Size(0, 21);
             this.mergenoerror.TabIndex = 100;
             // 
             // copynoerror
@@ -203,7 +202,7 @@
             this.copynoerror.Location = new System.Drawing.Point(955, 394);
             this.copynoerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.copynoerror.Name = "copynoerror";
-            this.copynoerror.Size = new System.Drawing.Size(96, 21);
+            this.copynoerror.Size = new System.Drawing.Size(0, 21);
             this.copynoerror.TabIndex = 99;
             // 
             // linenoerror
@@ -215,28 +214,14 @@
             this.linenoerror.Location = new System.Drawing.Point(103, 47);
             this.linenoerror.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.linenoerror.Name = "linenoerror";
-            this.linenoerror.Size = new System.Drawing.Size(88, 21);
+            this.linenoerror.Size = new System.Drawing.Size(0, 21);
             this.linenoerror.TabIndex = 98;
-            // 
-            // backbutton
-            // 
-            this.backbutton.BackColor = System.Drawing.SystemColors.Highlight;
-            this.backbutton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.backbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backbutton.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backbutton.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.backbutton.Location = new System.Drawing.Point(1194, 3);
-            this.backbutton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.backbutton.Name = "backbutton";
-            this.backbutton.Size = new System.Drawing.Size(82, 35);
-            this.backbutton.TabIndex = 91;
-            this.backbutton.Text = "Back";
-            this.backbutton.UseVisualStyleBackColor = false;
-            this.backbutton.Click += new System.EventHandler(this.backbutton_Click);
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.boxnoerror);
             this.panel2.Controls.Add(this.windingerror);
@@ -1185,6 +1170,7 @@
             // 
             this.chipsformlabel.AutoSize = true;
             this.chipsformlabel.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chipsformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.chipsformlabel.Location = new System.Drawing.Point(18, 14);
             this.chipsformlabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.chipsformlabel.Name = "chipsformlabel";
@@ -1199,7 +1185,6 @@
             this.ClientSize = new System.Drawing.Size(1282, 1050);
             this.Controls.Add(this.chipsformlabel);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.backbutton);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChipsPackingForm";
             this.Text = "ChipsPackingForm";
@@ -1219,7 +1204,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button backbutton;
+        //private System.Windows.Forms.Button backbutton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox deniervalue;
         private System.Windows.Forms.Label denier;
