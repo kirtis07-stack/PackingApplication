@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\Projects\\BeekaylonERP\\PackingApplication\\",
   "Documents": [
     {
@@ -40,10 +41,15 @@
 >>>>>>> 50edeb7666dd94f40bc6e57c082659fe7a499d3a
     }
   ],
+=======
+  "WorkspaceRootPath": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\",
+  "Documents": [],
+>>>>>>> d2dd7e0df4657a164f5f31ce67ac5649cb596dd4
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
+<<<<<<< HEAD
       "DocumentGroups": [
         {
           "DockedWidth": 200,
@@ -132,6 +138,9 @@
           ]
         }
       ]
+=======
+      "DocumentGroups": []
+>>>>>>> d2dd7e0df4657a164f5f31ce67ac5649cb596dd4
     }
   ]
 }
