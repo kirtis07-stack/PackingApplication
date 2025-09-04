@@ -80,6 +80,7 @@ namespace PackingApplication
             SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
+            copyno.Text = "1";
             //Username.Text = SessionManager.UserName;
             //role.Text = SessionManager.Role;
 
@@ -89,72 +90,78 @@ namespace PackingApplication
         private async void POYPackingForm_Shown(object sender, EventArgs e)
         {
             var machineList = await Task.Run(() => getMachineList());
-            var qualityList = await Task.Run(() => getQualityList());
-            var packsizeList = await Task.Run(() => getPackSizeList());
-            var windingtypeList = await Task.Run(() => getWindingTypeList());
-            var comportList = await Task.Run(() => getComPortList());
-            var weightingList = await Task.Run(() => getWeighingList());
-            var copsitemList = await Task.Run(() => getCopeItemList());
-            var palletitemList = await Task.Run(() => getPalletItemList());
-            var boxitemList = await Task.Run(() => getBoxItemList());
-            var prefixList = await Task.Run(() => getPrefixList());
-            var poypackingList = await Task.Run(() => getAllPOYPackingList());
-
             //machine
+            machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
             LineNoList.DataSource = machineList;
             LineNoList.DisplayMember = "MachineName";
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
 
+            var prefixList = await Task.Run(() => getPrefixList());
+            //prefix
+            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+            PrefixList.DataSource = prefixList;
+            PrefixList.DisplayMember = "Prefix";
+            PrefixList.ValueMember = "PrefixCode";
+            PrefixList.SelectedIndex = 0;
+
+            var qualityList = await Task.Run(() => getQualityList());
             //quality
+            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
             QualityList.DataSource = qualityList;
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
 
+            var packsizeList = await Task.Run(() => getPackSizeList());
             //packsize
             PackSizeList.DataSource = packsizeList;
             PackSizeList.DisplayMember = "PackSizeName";
             PackSizeList.ValueMember = "PackSizeId";
             PackSizeList.SelectedIndex = 0;
 
+            var windingtypeList = await Task.Run(() => getWindingTypeList());
             //windingtype
             WindingTypeList.DataSource = windingtypeList;
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
             WindingTypeList.SelectedIndex = 0;
 
+            var comportList = await Task.Run(() => getComPortList());
             //comport
             ComPortList.DataSource = comportList;
             ComPortList.SelectedIndex = 0;
 
+            var weightingList = await Task.Run(() => getWeighingList());
             //weighting
             WeighingList.DataSource = weightingList;
             WeighingList.SelectedIndex = 0;
 
+            var copsitemList = await Task.Run(() => getCopeItemList());
             //copsitem
+            copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
             CopsItemList.DataSource = copsitemList;
             CopsItemList.DisplayMember = "Name";
             CopsItemList.ValueMember = "ItemId";
             CopsItemList.SelectedIndex = 0;
 
+            var palletitemList = await Task.Run(() => getPalletItemList());
             //palletitem
+            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
             PalletTypeList.DataSource = palletitemList;
             PalletTypeList.DisplayMember = "Name";
             PalletTypeList.ValueMember = "ItemId";
             PalletTypeList.SelectedIndex = 0;
 
+            var boxitemList = await Task.Run(() => getBoxItemList());
             //boxitem
+            boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
             BoxItemList.DataSource = boxitemList;
             BoxItemList.DisplayMember = "Name";
             BoxItemList.ValueMember = "ItemId";
             BoxItemList.SelectedIndex = 0;
 
-            //prefix
-            PrefixList.DataSource = prefixList;
-            PrefixList.DisplayMember = "Prefix";
-            PrefixList.ValueMember = "PrefixCode";
-            PrefixList.SelectedIndex = 0;
+            var poypackingList = await Task.Run(() => getAllPOYPackingList());
 
             //poypacking
             var getLastBox = poypackingList.OrderByDescending(x => x.ProductionId).FirstOrDefault();
@@ -162,7 +169,7 @@ namespace PackingApplication
             this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
             this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
             this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-
+            this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             isFormReady = true;
         }
 
@@ -403,9 +410,7 @@ namespace PackingApplication
 
         private List<MachineResponse> getMachineList()
         {
-            var getMachine = _masterService.getMachineList();
-            getMachine.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-            
+            var getMachine = _masterService.getMachineList();                     
             return getMachine;
         }
 
@@ -422,7 +427,6 @@ namespace PackingApplication
         private List<QualityResponse> getQualityList()
         {
             var getQuality = _masterService.getQualityList();
-            getQuality.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
             return getQuality;
         }
 
@@ -480,28 +484,24 @@ namespace PackingApplication
         private List<ItemResponse> getCopeItemList()
         {
             var getCopeItem = _masterService.getCopeItemList();
-            getCopeItem.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
             return getCopeItem;
         }
 
         private List<ItemResponse> getBoxItemList()
         {
             var getBox = _masterService.getBoxItemList();
-            getBox.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
             return getBox;
         }
 
         private List<ItemResponse> getPalletItemList()
         {
             var getBox = _masterService.getBoxItemList();
-            getBox.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
             return getBox;
         }
 
         private List<PrefixResponse> getPrefixList()
         {
             var getPrefix = _masterService.getPrefixList();
-            getPrefix.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
             return getPrefix;
         }
 

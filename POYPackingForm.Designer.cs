@@ -696,6 +696,7 @@ namespace PackingApplication
             // 
             this.copyno.Location = new System.Drawing.Point(550, 181);
             this.copyno.Name = "copyno";
+            this.copyno.ReadOnly = true;
             this.copyno.Size = new System.Drawing.Size(63, 28);
             this.copyno.TabIndex = 74;
             this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
