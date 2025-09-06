@@ -567,7 +567,7 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllChipsPackingList()
         {
-            var getPacking = _packingService.getAllPOYPackingList();
+            var getPacking = _packingService.getAllPackingListByPackingType("chipspacking");
             getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
 
             return getPacking;

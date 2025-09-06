@@ -614,7 +614,7 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllDTYPackingList()
         {
-            var getPacking = _packingService.getAllPOYPackingList();
+            var getPacking = _packingService.getAllPackingListByPackingType("dtypacking");
             getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
             return getPacking;
         }

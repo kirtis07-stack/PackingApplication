@@ -16,10 +16,17 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string packingURL = ConfigurationManager.AppSettings["packingURL"];
 
-        public List<ProductionResponse> getAllPOYPackingList()
+        public List<ProductionResponse> getAllPackingListByPackingType(string packingType)
         {
-            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAll?IsDropDown=" + false);
+            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllProductionByPackingType?packingType=" + packingType);
             var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            return getPacking;
+        }
+
+        public ProductionResponse getLastBoxDetails()
+        {
+            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetLastBoxDetails");
+            var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
             return getPacking;
         }
 
@@ -35,6 +42,13 @@ namespace PackingApplication.Services
                 var getPackingResponse = method.PostCallApi(packingURL + "Production/Update?productionId=" + packingId, productionRequest).Result;
                 return JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
             }
+        }
+
+        public ProductionResponse getProductionById(int productionId)
+        {
+            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetById?PackingId=" + productionId);
+            var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
+            return getPacking;
         }
     }
 }

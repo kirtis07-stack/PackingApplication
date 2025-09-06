@@ -39,9 +39,11 @@ namespace PackingApplication
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
-        public POYPackingForm()
+        private int _productionId;
+        public POYPackingForm(int productionId)
         {
             InitializeComponent();
+            _productionId = productionId;
             this.Shown += POYPackingForm_Shown;
             this.AutoScroll = true;
 
@@ -145,14 +147,6 @@ namespace PackingApplication
             CopsItemList.ValueMember = "ItemId";
             CopsItemList.SelectedIndex = 0;
 
-            var palletitemList = await Task.Run(() => getPalletItemList());
-            //palletitem
-            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            PalletTypeList.DataSource = palletitemList;
-            PalletTypeList.DisplayMember = "Name";
-            PalletTypeList.ValueMember = "ItemId";
-            PalletTypeList.SelectedIndex = 0;
-
             var boxitemList = await Task.Run(() => getBoxItemList());
             //boxitem
             boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
@@ -161,16 +155,174 @@ namespace PackingApplication
             BoxItemList.ValueMember = "ItemId";
             BoxItemList.SelectedIndex = 0;
 
-            var poypackingList = await Task.Run(() => getAllPOYPackingList());
+            var palletitemList = await Task.Run(() => getPalletItemList());
+            //palletitem
+            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            PalletTypeList.DataSource = palletitemList;
+            PalletTypeList.DisplayMember = "Name";
+            PalletTypeList.ValueMember = "ItemId";
+            PalletTypeList.SelectedIndex = 0;
 
-            //poypacking
-            var getLastBox = poypackingList.OrderByDescending(x => x.ProductionId).FirstOrDefault();
-            this.copstxtbox.Text = "";
-            this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-            this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-            this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-            this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            var getLastBox = await Task.Run(() => getLastBoxDetails());
+
+            //lastboxdetails
+            if(getLastBox.ProductionId > 0)
+            {
+                this.copstxtbox.Text = "";
+                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
+
+            if (Convert.ToInt32(_productionId) > 0)
+            {
+                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt32(_productionId))).Result;
+
+                if (productionResponse != null)
+                {
+                    LineNoList.SelectedValue = productionResponse.MachineId;
+                    departmentname.Text = productionResponse.DepartmentName;
+                    PrefixList.SelectedValue = 316;         //added hardcoded for now
+                    MergeNoList.SelectedValue = productionResponse.LotId;
+                    dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
+                    QualityList.SelectedValue = productionResponse.QualityId;
+                    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                    PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                    BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                    prodtype.Text = productionResponse.ProductionType;
+                    remarks.Text = productionResponse.Remarks;
+                    prcompany.Checked = productionResponse.PrintCompany;
+                    prowner.Checked = productionResponse.PrintOwner;
+                    prdate.Checked = productionResponse.PrintDate;
+                    pruser.Checked = productionResponse.PrintUser;
+                    prhindi.Checked = productionResponse.PrintHindiWords;
+                    prwtps.Checked = productionResponse.PrintWTPS;
+                    prqrcode.Checked = productionResponse.PrintQRCode;
+                    spoolno.Text = productionResponse.Spools.ToString();
+                    spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                    palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                    grosswtno.Text = productionResponse.GrossWt.ToString();
+                    tarewt.Text = productionResponse.TareWt.ToString();
+                    netwt.Text = productionResponse.NetWt.ToString();
+
+                    if(productionResponse.PalletDetailsResponse.Count > 0 )
+                    {
+                        if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                        {
+                            BindPalletDetails(productionResponse.PalletDetailsResponse);
+                        }
+                        //flowLayoutPanel1.Controls.Clear();
+
+                        //foreach (var pallet in productionResponse.PalletDetailsResponse)
+                        //{
+                        //    // find pallet info (from master list)
+                        //    var palletItemList = Task.Run(() => getPalletItemList()).Result;
+                        //    var palletInfo = palletItemList.FirstOrDefault(x => x.ItemId == pallet.PalletId);
+
+                        //    // create label for quantity
+                        //    System.Windows.Forms.Label qtyLabel = new System.Windows.Forms.Label
+                        //    {
+                        //        Text = pallet.Quantity.ToString(),
+                        //        AutoSize = true,
+                        //    };
+
+                        //    // create panel to hold info
+                        //    Panel pnl = new Panel
+                        //    {
+                        //        Width = 200,
+                        //        Height = 50,
+                        //        BorderStyle = BorderStyle.FixedSingle,
+                        //        Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(palletInfo, qtyLabel)
+                        //    };
+
+                        //    // add child controls
+                        //    System.Windows.Forms.Label nameLabel = new System.Windows.Forms.Label
+                        //    {
+                        //        Text = palletInfo != null ? palletInfo.Name : $"Pallet {pallet.PalletId}",
+                        //        AutoSize = true,
+                        //        Location = new Point(5, 5)
+                        //    };
+
+                        //    qtyLabel.Location = new Point(5, 25);
+
+                        //    pnl.Controls.Add(nameLabel);
+                        //    pnl.Controls.Add(qtyLabel);
+
+                        //    // add panel to flowLayout
+                        //    flowLayoutPanel1.Controls.Add(pnl);
+                        //}
+                    }
+                }
+            }
             isFormReady = true;
+        }
+
+        private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            rowCount = 0;
+            headerAdded = false;
+
+            // add header first
+            AddHeader();
+
+            foreach (var palletDetail in palletDetailsResponse)
+            {
+                // find pallet info from master pallet list
+                var palletItemList = Task.Run(() => getPalletItemList()).Result;
+                var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
+
+                if (selectedItem == null)
+                {
+                    // fallback if master data not found
+                    selectedItem = new ItemResponse { ItemId = palletDetail.PalletId, Name = $"Pallet {palletDetail.PalletId}" };
+                }
+
+                rowCount++;
+
+                Panel rowPanel = new Panel();
+                rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
+                rowPanel.BorderStyle = BorderStyle.FixedSingle;
+
+                // SrNo
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10) };
+
+                // Item Name
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Tag = selectedItem.ItemId };
+
+                // Qty
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new Point(190, 10) };
+
+                // Edit Button
+                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Tag = new Tuple<ItemResponse, int>(selectedItem, palletDetail.Quantity) };
+                btnEdit.Click += editPallet_Click;
+
+                // Delete Button
+                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Delete", Size = new Size(60, 23), Location = new Point(310, 5), Tag = rowPanel };
+                btnDelete.Click += (s, args) =>
+                {
+                    flowLayoutPanel1.Controls.Remove(rowPanel);
+                    ReorderSrNo();
+                };
+
+                rowPanel.Controls.Add(lblSrNo);
+                rowPanel.Controls.Add(lblItem);
+                rowPanel.Controls.Add(lblQty);
+                rowPanel.Controls.Add(btnEdit);
+                rowPanel.Controls.Add(btnDelete);
+
+                // Store pallet info in Tag (same as addqty_Click)
+                rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+
+                flowLayoutPanel1.Controls.Add(rowPanel);
+            }
+
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.WrapContents = false;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
         }
 
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -505,6 +657,12 @@ namespace PackingApplication
             return getPrefix;
         }
 
+        private ProductionResponse getProductionById(int productionId)
+        {
+            var getProduction = _packingService.getProductionById(productionId);
+            return getProduction;
+        }
+
         private int rowCount = 0; // Keeps track of SrNo
         private bool headerAdded = false; // To ensure header is added only once
         private int currentY = 35; // Start below header height
@@ -793,12 +951,17 @@ namespace PackingApplication
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest)
         {
             ProductionResponse result = new ProductionResponse();
-            result = _packingService.AddUpdatePOYPacking(0, productionRequest);
+            result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null)
             {
                 if (result.ProductionId > 0)
                 {
                     MessageBox.Show("Packing added successfully.");
+                    //var dashboard = this.FindForm() as Dashboard;
+                    //if (dashboard != null)
+                    //{
+                    //    dashboard.LoadFormInContent(new POYPackingList());
+                    //}
                 }
                 else
                 {
@@ -818,10 +981,9 @@ namespace PackingApplication
         //    this.Close();
         //}
 
-        private List<ProductionResponse> getAllPOYPackingList()
+        private ProductionResponse getLastBoxDetails()
         {
-            var getPacking = _packingService.getAllPOYPackingList();
-            getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
+            var getPacking = _packingService.getLastBoxDetails();
             return getPacking;
         }
 
@@ -1018,6 +1180,15 @@ namespace PackingApplication
             {
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as Dashboard;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new POYPackingList());
             }
         }
     }

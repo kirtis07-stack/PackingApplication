@@ -794,7 +794,7 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllBCFPackingList()
         {
-            var getPacking = _packingService.getAllPOYPackingList();
+            var getPacking = _packingService.getAllPackingListByPackingType("bcfpacking");
             getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
             return getPacking;
         }

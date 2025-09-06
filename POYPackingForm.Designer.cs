@@ -151,6 +151,7 @@ namespace PackingApplication
             this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.windingprodqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.poyformlabel = new System.Windows.Forms.Label();
+            this.cancelbtn = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.lastboxdetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -921,6 +922,7 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cancelbtn);
             this.panel2.Controls.Add(this.boxnoerror);
             this.panel2.Controls.Add(this.windingerror);
             this.panel2.Controls.Add(this.packsizeerror);
@@ -1420,6 +1422,19 @@ namespace PackingApplication
             this.poyformlabel.TabIndex = 97;
             this.poyformlabel.Text = "POY Packing";
             // 
+            // cancelbtn
+            // 
+            this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cancelbtn.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.cancelbtn.Location = new System.Drawing.Point(271, 658);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(75, 28);
+            this.cancelbtn.TabIndex = 106;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = false;
+            this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // POYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
@@ -1582,6 +1597,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label grosswterror;
         private System.Windows.Forms.Label boxnoerror;
         private System.Windows.Forms.Label poyformlabel;
+        private Button cancelbtn;
     }
 }
 
