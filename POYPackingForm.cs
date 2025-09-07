@@ -39,8 +39,8 @@ namespace PackingApplication
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
-        private int _productionId;
-        public POYPackingForm(int productionId)
+        private long _productionId;
+        public POYPackingForm(long productionId)
         {
             InitializeComponent();
             _productionId = productionId;
@@ -55,7 +55,7 @@ namespace PackingApplication
             PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
             QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
             WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
+            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
             PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
             copyno.TextChanged += CopyNos_TextChanged;
             spoolno.TextChanged += SpoolNo_TextChanged;
@@ -175,9 +175,9 @@ namespace PackingApplication
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
 
-            if (Convert.ToInt32(_productionId) > 0)
+            if (Convert.ToInt64(_productionId) > 0)
             {
-                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt32(_productionId))).Result;
+                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
 
                 if (productionResponse != null)
                 {
@@ -599,10 +599,10 @@ namespace PackingApplication
         private void getSaleOrderList(int lotId)
         {
             var getSaleOrder = _productionService.getSaleOrderList(lotId);
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { LotSaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
+            SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
         }
 
@@ -657,7 +657,7 @@ namespace PackingApplication
             return getPrefix;
         }
 
-        private ProductionResponse getProductionById(int productionId)
+        private ProductionResponse getProductionById(long productionId)
         {
             var getProduction = _packingService.getProductionById(productionId);
             return getProduction;
@@ -850,10 +850,10 @@ namespace PackingApplication
 
         private void CalculateTareWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(spoolwt.Text, out num1);
-            int.TryParse(palletwtno.Text, out num2);
+            decimal.TryParse(spoolwt.Text, out num1);
+            decimal.TryParse(palletwtno.Text, out num2);
 
             tarewt.Text = (num1 + num2).ToString();
         }
@@ -873,10 +873,10 @@ namespace PackingApplication
 
         private void CalculateNetWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(grosswtno.Text, out num1);
-            int.TryParse(tarewt.Text, out num2);
+            decimal.TryParse(grosswtno.Text, out num1);
+            decimal.TryParse(tarewt.Text, out num2);
 
             netwt.Text = (num1 - num2).ToString();
         }
@@ -900,10 +900,10 @@ namespace PackingApplication
 
         private void CalculateWeightPerCop()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(netwt.Text, out num1);
-            int.TryParse(spoolno.Text, out num2);
+            decimal.TryParse(netwt.Text, out num1);
+            decimal.TryParse(spoolno.Text, out num2);
 
             wtpercop.Text = (num1 / num2).ToString();
         }
@@ -1115,21 +1115,21 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) == 0)
+            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToDecimal(spoolwt.Text) == 0)
             {
                 spoolwterror.Text = "Please enter valid spool weight";
                 spoolwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) == 0)
+            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
             {
                 palletwterror.Text = "Please enter valid empty box/pallet weight";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) == 0)
+            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;

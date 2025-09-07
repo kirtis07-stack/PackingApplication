@@ -58,5 +58,27 @@ namespace PackingApplication.Helper
             }
 
         }
+
+        public async Task<string> PutCallApi(string path, object data)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(path);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SessionManager.AuthToken);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using (var content = new StringContent(JsonConvert.SerializeObject(data), System.Text.Encoding.UTF8, "application/json"))
+            {
+                var response = client.PutAsync(path, content).Result;
+                //use await it has moved in some context on .core 6.0
+                if (response.IsSuccessStatusCode == true)
+                {
+                    return response.Content.ReadAsStringAsync().Result;
+                }
+                else
+                {
+                    return response.Content.ReadAsStringAsync().Result;
+                }
+            }
+
+        }
     }
 }
