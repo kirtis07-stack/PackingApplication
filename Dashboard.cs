@@ -93,7 +93,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new DTYPackingForm());
+                dashboard.LoadFormInContent(new DTYPackingList());
             }
         }
 

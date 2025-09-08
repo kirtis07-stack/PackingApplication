@@ -954,9 +954,9 @@ namespace PackingApplication
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null)
             {
-                if (result.ProductionId > 0)
+                if (_productionId == 0)
                 {
-                    MessageBox.Show("Packing added successfully.");
+                    MessageBox.Show("POY Packing added successfully.");
                     //var dashboard = this.FindForm() as Dashboard;
                     //if (dashboard != null)
                     //{
@@ -965,10 +965,13 @@ namespace PackingApplication
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong.");
+                    MessageBox.Show("POY Packing updated successfully.");
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
             return result;
         }
 
@@ -1185,7 +1188,7 @@ namespace PackingApplication
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            var dashboard = this.FindForm() as Dashboard;
+            var dashboard = this.ParentForm as Dashboard;
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new POYPackingList());
