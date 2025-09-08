@@ -107,7 +107,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new BCFPackingForm());
+                dashboard.LoadFormInContent(new BCFPackingList());
             }
         }
 
@@ -121,7 +121,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ChipsPackingForm());
+                dashboard.LoadFormInContent(new ChipsPackingList());
             }
         }
 

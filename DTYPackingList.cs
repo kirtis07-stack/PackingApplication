@@ -52,10 +52,10 @@ namespace PackingApplication
 
         private async void DTYPackingList_Shown(object sender, EventArgs e)
         {
-            var poypackingList = await Task.Run(() => getAllDTYPackingList());
+            var dtypackingList = await Task.Run(() => getAllDTYPackingList());
 
             int index = 1;
-            foreach (var item in poypackingList)
+            foreach (var item in dtypackingList)
             {
                 // Add items (rows)
                 ListViewItem item1 = new ListViewItem(index.ToString());

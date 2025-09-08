@@ -18,4 +18,3 @@ D:\Projects\BeekaylonERP\PackingApplication\obj\Debug\PackingApplication.csproj.
 D:\Projects\BeekaylonERP\PackingApplication\obj\Debug\PackingA.5D2CC269.Up2Date
 D:\Projects\BeekaylonERP\PackingApplication\obj\Debug\PackingApplication.exe
 D:\Projects\BeekaylonERP\PackingApplication\obj\Debug\PackingApplication.pdb
-D:\Projects\BeekaylonERP\PackingApplication\obj\Debug\PackingApplication.exe.config

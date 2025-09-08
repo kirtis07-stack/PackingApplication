@@ -22,11 +22,13 @@ namespace PackingApplication
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
-        public ChipsPackingForm()
+        private long _productionId;
+        public ChipsPackingForm(long productionId)
         {
             InitializeComponent();
             this.Shown += ChipsPackingForm_Shown;
             this.AutoScroll = true;
+            _productionId = productionId;
 
             SetButtonBorderRadius(this.submit, 8);
 
@@ -40,6 +42,7 @@ namespace PackingApplication
             copyno.TextChanged += CopyNos_TextChanged;
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
+            _productionId = productionId;
         }
 
         private void ChipsPackingForm_Load(object sender, EventArgs e)
@@ -52,10 +55,10 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
 
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { LotSaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
+            SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
             copyno.Text = "1";
@@ -125,14 +128,49 @@ namespace PackingApplication
             CopsItemList.ValueMember = "ItemId";
             CopsItemList.SelectedIndex = 0;
 
-            var chipspackingList = await Task.Run(() => getAllChipsPackingList());
-            //chipspacking
-            var getLastBox = chipspackingList.OrderByDescending(x => x.ProductionId).FirstOrDefault();
-            this.copstxtbox.Text = "";
-            this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-            this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-            this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-            this.lastbox.Text = getLastBox.BoxNo.ToString();
+            var getLastBox = await Task.Run(() => getLastBoxDetails());
+            //lastboxdetails
+            if (getLastBox.ProductionId > 0)
+            {
+                this.copstxtbox.Text = "";
+                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
+
+            if (Convert.ToInt64(_productionId) > 0)
+            {
+                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+
+                if (productionResponse != null)
+                {
+                    LineNoList.SelectedValue = productionResponse.MachineId;
+                    departmentname.Text = productionResponse.DepartmentName;
+                    PrefixList.SelectedValue = 316;         //added hardcoded for now
+                    MergeNoList.SelectedValue = productionResponse.LotId;
+                    dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
+                    QualityList.SelectedValue = productionResponse.QualityId;
+                    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                    PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                    prodtype.Text = productionResponse.ProductionType;
+                    remarks.Text = productionResponse.Remarks;
+                    prcompany.Checked = productionResponse.PrintCompany;
+                    prowner.Checked = productionResponse.PrintOwner;
+                    prdate.Checked = productionResponse.PrintDate;
+                    pruser.Checked = productionResponse.PrintUser;
+                    prhindi.Checked = productionResponse.PrintHindiWords;
+                    prwtps.Checked = productionResponse.PrintWTPS;
+                    prqrcode.Checked = productionResponse.PrintQRCode;
+                    prtwist.Checked = productionResponse.PrintTwist;
+                    palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                    grosswtno.Text = productionResponse.GrossWt.ToString();
+                    tarewt.Text = productionResponse.TareWt.ToString();
+                    netwt.Text = productionResponse.NetWt.ToString();
+                }
+            }
 
             isFormReady = true;
         }
@@ -392,10 +430,10 @@ namespace PackingApplication
         private void getSaleOrderList(int lotId)
         {
             var getSaleOrder = _productionService.getSaleOrderList(lotId);
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { LotSaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
+            SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
         }
 
@@ -437,6 +475,18 @@ namespace PackingApplication
         {
             var getPrefix = _masterService.getPrefixList();
             return getPrefix;
+        }
+
+        private ProductionResponse getLastBoxDetails()
+        {
+            var getPacking = _packingService.getLastBoxDetails();
+            return getPacking;
+        }
+
+        private ProductionResponse getProductionById(long productionId)
+        {
+            var getProduction = _packingService.getProductionById(productionId);
+            return getProduction;
         }
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
@@ -541,17 +591,22 @@ namespace PackingApplication
 
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest)
         {
-            var result = _packingService.AddUpdatePOYPacking(0, productionRequest);
+            ProductionResponse result = new ProductionResponse();
+            result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null)
             {
-                if (result.ProductionId > 0)
+                if (_productionId == 0)
                 {
-                    MessageBox.Show("Packing added successfully.");
+                    MessageBox.Show("Chips Packing added successfully.");
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong.");
+                    MessageBox.Show("Chips Packing updated successfully.");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong.");
             }
             return result;
         }
@@ -564,14 +619,6 @@ namespace PackingApplication
         //    loginForm.Show();
         //    this.Close();
         //}
-
-        private List<ProductionResponse> getAllChipsPackingList()
-        {
-            var getPacking = _packingService.getAllPackingListByPackingType("chipspacking");
-            getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
-
-            return getPacking;
-        }
 
         private void backbutton_Click(object sender, EventArgs e)
         {
@@ -643,14 +690,14 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) == 0)
+            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
             {
                 palletwterror.Text = "Please enter valid empty box/pallet weight";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) == 0)
+            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;
@@ -696,6 +743,15 @@ namespace PackingApplication
             {
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.ParentForm as Dashboard;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ChipsPackingList());
             }
         }
     }

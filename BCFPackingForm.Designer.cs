@@ -32,6 +32,7 @@ namespace PackingApplication
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cancelbtn = new System.Windows.Forms.Button();
             this.boxnoerror = new System.Windows.Forms.Label();
             this.windingerror = new System.Windows.Forms.Label();
             this.packsizeerror = new System.Windows.Forms.Label();
@@ -165,6 +166,7 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cancelbtn);
             this.panel2.Controls.Add(this.boxnoerror);
             this.panel2.Controls.Add(this.windingerror);
             this.panel2.Controls.Add(this.packsizeerror);
@@ -243,6 +245,19 @@ namespace PackingApplication
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1276, 995);
             this.panel2.TabIndex = 92;
+            // 
+            // cancelbtn
+            // 
+            this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cancelbtn.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.cancelbtn.Location = new System.Drawing.Point(407, 935);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(105, 43);
+            this.cancelbtn.TabIndex = 106;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = false;
+            this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // boxnoerror
             // 
@@ -1615,5 +1630,6 @@ namespace PackingApplication
         private System.Windows.Forms.Label palletwterror;
         private System.Windows.Forms.Label grosswterror;
         private System.Windows.Forms.Label boxnoerror;
+        private Button cancelbtn;
     }
 }

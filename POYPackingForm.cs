@@ -55,7 +55,7 @@ namespace PackingApplication
             PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
             QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
             WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
+            SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
             PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
             copyno.TextChanged += CopyNos_TextChanged;
             spoolno.TextChanged += SpoolNo_TextChanged;
@@ -76,10 +76,10 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
 
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { LotSaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
+            SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
             copyno.Text = "1";
