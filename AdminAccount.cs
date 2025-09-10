@@ -1,4 +1,5 @@
-﻿using PackingApplication.Models.CommonEntities;
+﻿using PackingApplication.Helper;
+using PackingApplication.Models.CommonEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,9 +26,16 @@ namespace PackingApplication
             {
                 Dock = DockStyle.Top,
                 Height = 60,
-                BackColor = Color.WhiteSmoke
+                BackColor = Color.White
             };
 
+            Panel bottomBorder = new Panel
+            {
+                Dock = DockStyle.Bottom,
+                Height = 1,
+                BackColor = Color.LightGray   // border color
+            };
+         
             // ==== LEFT: LOGO ====
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string projectRoot = Directory.GetParent(basePath).Parent.Parent.FullName;
@@ -38,8 +46,8 @@ namespace PackingApplication
                 PictureBox logoPictureBox = new PictureBox
                 {
                     Image = Image.FromFile(imagePath),
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(120, 40),
+                    SizeMode = PictureBoxSizeMode.Normal,
+                    Size = new Size(170, 45),
                     Location = new Point(10, 10)
                 };
                 headerPanel.Controls.Add(logoPictureBox);
@@ -59,52 +67,79 @@ namespace PackingApplication
                 WrapContents = false
             };
 
+            // Default profile PictureBox
+            PictureBox profilePictureBox = new PictureBox
+            {
+                Size = new Size(24, 24),                
+                SizeMode = PictureBoxSizeMode.StretchImage,     
+                Margin = new Padding(10, 5, 5, 5),       
+                Image = Properties.Resources.default_profile
+            };
+
             // User Info (stacked vertically)
             FlowLayoutPanel userInfoPanel = new FlowLayoutPanel
             {
                 AutoSize = true,
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
-                Font = new Font("Microsoft Tai Le", 8, FontStyle.Bold),
-                Padding = new Padding(5, 5, 5, 5)
+                Font = FontManager.GetFont(8, FontStyle.Bold),
+                Padding = new Padding(5, 0, 5, 5)
             };
 
             Label userNameInfoLabel = new Label
             {
                 Text = SessionManager.UserName,
-                AutoSize = true
+                AutoSize = true,
+                ForeColor = Color.FromArgb(0, 0, 0),
+                Font = FontManager.GetFont(9, FontStyle.Bold),
             };
             Label userRoleInfoLabel = new Label
             {
                 Text = SessionManager.Role,
-                AutoSize = true
+                AutoSize = true,
+                ForeColor = Color.FromArgb(115, 115, 115),
+                Font = FontManager.GetFont(8, FontStyle.Regular),
             };
 
             userInfoPanel.Controls.Add(userNameInfoLabel);
             userInfoPanel.Controls.Add(userRoleInfoLabel);
 
+            FlowLayoutPanel profileWithInfo = new FlowLayoutPanel
+            {
+                AutoSize = true,
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                Margin = new Padding(0),
+                Padding = new Padding(0)
+            };
 
+            profileWithInfo.Controls.Add(profilePictureBox);
+            profileWithInfo.Controls.Add(userInfoPanel);
             // Logout Button
             Button logoutBtn = new Button
             {
                 Text = "Logout",
-                BackColor = Color.DodgerBlue,
-                ForeColor = Color.White,
+                BackColor = Color.FromArgb(242, 242, 242),
+                ForeColor = Color.FromArgb(77, 77, 77),
                 FlatStyle = FlatStyle.Flat,
-                Width = 80,
-                Height = 30,
-                Font = new Font("Microsoft Tai Le", 8.25F, FontStyle.Bold),
-                Margin = new Padding(10, 5, 0, 0) // spacing from user info
+                Width = 75,
+                Height = 25,
+                Font = FontManager.GetFont(9, FontStyle.Regular),
+                Margin = new Padding(15, 5, 0, 0),
+                Cursor = Cursors.Hand
             };
+            logoutBtn.FlatAppearance.BorderSize = 0;
+            logoutBtn.FlatAppearance.MouseOverBackColor = logoutBtn.BackColor;
+            logoutBtn.FlatAppearance.MouseDownBackColor = logoutBtn.BackColor;
             logoutBtn.Click += Logout_Click;
 
             // Add to right panel
-            rightPanel.Controls.Add(userInfoPanel);
+            rightPanel.Controls.Add(profileWithInfo);
             rightPanel.Controls.Add(logoutBtn);
 
             // Add right panel to header
             headerPanel.Controls.Add(rightPanel);
-
+            headerPanel.Controls.Add(bottomBorder);
             // Add header to form
             this.Controls.Add(headerPanel);
 
@@ -113,13 +148,20 @@ namespace PackingApplication
             {
                 Dock = DockStyle.Bottom,
                 Height = 40,
-                BackColor = Color.LightGray
+                BackColor = Color.White
+            };
+
+            Panel topBorder = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 1,
+                BackColor = Color.LightGray   // border color
             };
 
             Label footerLabel = new Label
             {
                 Text = "YEAR: 2025 " + SessionManager.UserName,
-                Font = new Font("Microsoft Tai Le", 8, FontStyle.Bold),
+                Font = FontManager.GetFont(8, FontStyle.Bold),
                 AutoSize = true,
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right  
             };
@@ -138,6 +180,7 @@ namespace PackingApplication
             };
 
             footerPanel.Controls.Add(footerLabel);
+            footerPanel.Controls.Add(topBorder);
             this.Controls.Add(footerPanel);
 
             // CONTENT PANEL (sticky between header & footer)

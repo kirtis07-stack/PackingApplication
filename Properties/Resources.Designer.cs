@@ -63,6 +63,26 @@ namespace PackingApplication.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap default_profile {
+            get {
+                object obj = ResourceManager.GetObject("default-profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_edit_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-edit-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_eye_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-eye-24", resourceCulture);
@@ -91,31 +111,21 @@ namespace PackingApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PublicSans {
+            get {
+                object obj = ResourceManager.GetObject("PublicSans", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap whitelogo {
             get {
                 object obj = ResourceManager.GetObject("whitelogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap whitelogo1 {
-            get {
-                object obj = ResourceManager.GetObject("whitelogo1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap whitelogo2 {
-            get {
-                object obj = ResourceManager.GetObject("whitelogo2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -116,6 +116,7 @@
     <Compile Include="DTYPackingList.Designer.cs">
       <DependentUpon>DTYPackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\FontManager.cs" />
     <Compile Include="Helper\HTTPMethod.cs" />
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
@@ -222,8 +223,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\logo.png" />
-    <None Include="Resources\whitelogo2.png" />
-    <None Include="Resources\whitelogo1.png" />
+    <None Include="Resources\icons8-edit-48.png" />
+    <None Include="Resources\default-profile.png" />
+    <None Include="Resources\PublicSans.ttf" />
     <None Include="Resources\whitelogo.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\icons8-eye-24.png" />

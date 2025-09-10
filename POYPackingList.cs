@@ -23,65 +23,73 @@ namespace PackingApplication
             this.Shown += POYPackingList_Shown;
             this.AutoScroll = true;
 
-            SetButtonBorderRadius(this.addnew, 8);
+            SetButtonBorderRadius(this.addnew, 5);
         }
 
         private void POYPackingList_Load(object sender, EventArgs e)
         {
-            // Configure ListView
-            listView1.View = View.Details;
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
+            //dataGridView1.Columns.Clear();
+            //dataGridView1.Columns.Add("SrNo", "SR. No");
+            //dataGridView1.Columns.Add("PackingType", "Packing Type");
+            //dataGridView1.Columns.Add("Department", "Department");
+            //dataGridView1.Columns.Add("Machine", "Machine");
+            //dataGridView1.Columns.Add("LotNo", "Lot No");
+            //dataGridView1.Columns.Add("BoxNo", "Box No");
+            //dataGridView1.Columns.Add("ProductionDate", "Production Date");
+            //dataGridView1.Columns.Add("Quality", "Quality");
+            //dataGridView1.Columns.Add("SaleOrder", "Sale Order");
+            //dataGridView1.Columns.Add("PackSize", "Pack Size");
+            //dataGridView1.Columns.Add("WindingType", "Winding Type");
+            //dataGridView1.Columns.Add("ProdType", "Prod Type");
+            //dataGridView1.Columns.Add("NoOfCopies", "No Of Copies");
 
-            // Add columns
-            listView1.Columns.Add("SR. No", 50);
-            listView1.Columns.Add("PackingType", 100);
-            listView1.Columns.Add("Department", 100);
-            listView1.Columns.Add("Machine", 100);
-            listView1.Columns.Add("LotNo", 100);
-            listView1.Columns.Add("BoxNo", 100);
-            listView1.Columns.Add("ProductionDate", 100);
-            listView1.Columns.Add("Quality", 100);
-            listView1.Columns.Add("SaleOrder", 100);
-            listView1.Columns.Add("PackSize", 100);
-            listView1.Columns.Add("WindingType", 100);
-            listView1.Columns.Add("ProdType", 100);
-            listView1.Columns.Add("NoOfCopies", 100);
-            listView1.Columns.Add("Action", 100);
+            //// Add Edit button column
+            //DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            //btn.HeaderText = "Action";
+            //btn.Text = "Edit";
+            //btn.UseColumnTextForButtonValue = true;
+            //dataGridView1.Columns.Add(btn);
         }
 
         private async void POYPackingList_Shown(object sender, EventArgs e)
         {
             var poypackingList = await Task.Run(() => getAllPOYPackingList());
 
-            int index = 1;
-            foreach (var item in poypackingList)
-            {
-                // Add items (rows)
-                ListViewItem item1 = new ListViewItem(index.ToString());
-                item1.SubItems.Add(item.PackingType);
-                item1.SubItems.Add(item.DepartmentName);
-                item1.SubItems.Add(item.MachineName);
-                item1.SubItems.Add(item.LotNo);
-                item1.SubItems.Add(item.BoxNo);
-                item1.SubItems.Add(item.ProductionDate.ToString());
-                item1.SubItems.Add(item.QualityName);
-                item1.SubItems.Add(item.SalesOrderNumber);
-                item1.SubItems.Add(item.PackSizeName);
-                item1.SubItems.Add(item.WindingTypeName);
-                item1.SubItems.Add(item.ProductionType);
-                item1.SubItems.Add(item.NoOfCopies.ToString());
-                item1.SubItems.Add("Edit");
+            dataGridView1.Columns.Clear();
+            // Define columns
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNo", HeaderText = "Box No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
 
-                item1.Tag = item.ProductionId;
+            //dataGridView1.Columns["SrNo"].Width = 50;
+            //dataGridView1.Columns["PackingType"].Width = 100;
+            //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                // Add items to ListView
-                listView1.Items.Add(item1);
+            // Add Edit button column
+            DataGridViewImageColumn btn = new DataGridViewImageColumn();
+            btn.HeaderText = "Action";
+            btn.Name = "Action";
+            btn.Image = Properties.Resources.icons8_edit_48;
+            btn.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            btn.Width = 40;  // column width
+            dataGridView1.RowTemplate.Height = 40; // row height
+            dataGridView1.Columns.Add(btn);
 
-                index++;               
-            }
+            // Bind your list
+            dataGridView1.DataSource = poypackingList;
 
-            listView1.MouseClick += listView1_MouseClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
         }
 
         private List<ProductionResponse> getAllPOYPackingList()
@@ -146,6 +154,27 @@ namespace PackingApplication
                         dashboard.LoadFormInContent(new POYPackingForm(productionId)); // open Add form
                     }
                 }
+            }
+        }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = (e.RowIndex + 1).ToString();
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
+            {
+
+                long productionId = Convert.ToInt32(
+                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
+                );
+
+                var dashboard = this.ParentForm as Dashboard;
+                    if (dashboard != null)
+                    {
+                        dashboard.LoadFormInContent(new POYPackingForm(productionId)); // open edit form
+                    }
             }
         }
     }

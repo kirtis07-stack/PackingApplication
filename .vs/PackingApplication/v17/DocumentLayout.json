@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Projects\\BeekaylonERP\\PackingApplication\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\poypackinglist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackinglist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\poypackinglist.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackinglist.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\poypackinglist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackinglist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +34,87 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "POYPackingList.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingList.cs",
+              "RelativeDocumentMoniker": "POYPackingList.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingList.cs",
+              "RelativeToolTip": "POYPackingList.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAqwFIAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T12:14:10.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "POYPackingList.Designer.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingList.Designer.cs",
+              "RelativeDocumentMoniker": "POYPackingList.Designer.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingList.Designer.cs",
+              "RelativeToolTip": "POYPackingList.Designer.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAqwHIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T12:07:08.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T10:11:14.569Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "Dashboard.Designer.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.Designer.cs",
+              "RelativeToolTip": "Dashboard.Designer.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAuwCgAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T10:08:59.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\Dashboard.cs",
+              "RelativeToolTip": "Dashboard.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAA8wC8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T10:08:47.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "POYPackingList.cs [Design]",
+              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingList.cs",
+              "RelativeDocumentMoniker": "POYPackingList.cs",
+              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingList.cs [Design]",
+              "RelativeToolTip": "POYPackingList.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T12:12:51.766Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

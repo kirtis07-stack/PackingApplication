@@ -1,4 +1,8 @@
-﻿namespace PackingApplication
+﻿using PackingApplication.Helper;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace PackingApplication
 {
     partial class Dashboard
     {
@@ -33,11 +37,14 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.menuStrip1.Font = FontManager.GetFont(9, FontStyle.Bold);
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 32);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menuStrip1.Size = new System.Drawing.Size(800, 36);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
