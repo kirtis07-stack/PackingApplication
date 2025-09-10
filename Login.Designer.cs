@@ -46,11 +46,13 @@ namespace PackingApplication
             this.req3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.eyeicon = new System.Windows.Forms.PictureBox();
             this.yearerror = new System.Windows.Forms.Label();
             this.passworderror = new System.Windows.Forms.Label();
             this.emailerror = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eyeicon)).BeginInit();
             this.SuspendLayout();
             // 
             // emailid
@@ -138,7 +140,7 @@ namespace PackingApplication
             this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signin.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.signin.Location = new System.Drawing.Point(82, 542);
+            this.signin.Location = new System.Drawing.Point(82, 525);
             this.signin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.signin.Name = "signin";
             this.signin.Size = new System.Drawing.Size(386, 49);
@@ -150,11 +152,11 @@ namespace PackingApplication
             // welcome
             // 
             this.welcome.AutoSize = true;
-            this.welcome.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome.Location = new System.Drawing.Point(192, 29);
+            this.welcome.Font = new System.Drawing.Font("Microsoft Tai Le", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome.Location = new System.Drawing.Point(192, 36);
             this.welcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.welcome.Name = "welcome";
-            this.welcome.Size = new System.Drawing.Size(180, 31);
+            this.welcome.Size = new System.Drawing.Size(207, 35);
             this.welcome.TabIndex = 9;
             this.welcome.Text = "Welcome Back";
             this.welcome.UseWaitCursor = true;
@@ -164,7 +166,7 @@ namespace PackingApplication
             this.subtitle.AutoEllipsis = true;
             this.subtitle.AutoSize = true;
             this.subtitle.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtitle.Location = new System.Drawing.Point(78, 75);
+            this.subtitle.Location = new System.Drawing.Point(81, 92);
             this.subtitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.subtitle.Name = "subtitle";
             this.subtitle.Size = new System.Drawing.Size(440, 23);
@@ -226,6 +228,7 @@ namespace PackingApplication
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.eyeicon);
             this.panel2.Controls.Add(this.yearerror);
             this.panel2.Controls.Add(this.passworderror);
             this.panel2.Controls.Add(this.emailerror);
@@ -247,6 +250,20 @@ namespace PackingApplication
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(636, 655);
             this.panel2.TabIndex = 14;
+            // 
+            // eyeicon
+            // 
+            this.eyeicon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.eyeicon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.eyeicon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.eyeicon.Image = global::PackingApplication.Properties.Resources.icons8_hide_24;
+            this.eyeicon.Location = new System.Drawing.Point(442, 288);
+            this.eyeicon.Name = "eyeicon";
+            this.eyeicon.Size = new System.Drawing.Size(24, 24);
+            this.eyeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.eyeicon.TabIndex = 17;
+            this.eyeicon.TabStop = false;
+            this.eyeicon.Click += eyeIcon_Click;
             // 
             // yearerror
             // 
@@ -297,6 +314,7 @@ namespace PackingApplication
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eyeicon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,5 +339,6 @@ namespace PackingApplication
         private System.Windows.Forms.Label emailerror;
         private System.Windows.Forms.Label yearerror;
         private System.Windows.Forms.Label passworderror;
+        private System.Windows.Forms.PictureBox eyeicon;
     }
 }

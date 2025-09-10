@@ -25,6 +25,7 @@ namespace PackingApplication
     {
         string userURL = ConfigurationManager.AppSettings["userURL"];
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
+        private bool isPasswordVisible = false;
         public Login()
         {
             InitializeComponent();
@@ -227,6 +228,22 @@ namespace PackingApplication
             {
                 passworderror.Text = "";
                 passworderror.Visible = false;
+            }
+        }
+
+        private void eyeIcon_Click(object sender, EventArgs e)
+        {
+            if (isPasswordVisible)
+            {
+                this.passwrd.UseSystemPasswordChar = true;
+                this.eyeicon.Image = Properties.Resources.icons8_hide_24;  // set closed-eye icon
+                isPasswordVisible = false;
+            }
+            else
+            {
+                this.passwrd.UseSystemPasswordChar = false;
+                this.eyeicon.Image = Properties.Resources.icons8_eye_24;    // set open-eye icon
+                isPasswordVisible = true;
             }
         }
 
