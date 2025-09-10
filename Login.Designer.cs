@@ -45,16 +45,20 @@ namespace PackingApplication
             this.req2 = new System.Windows.Forms.Label();
             this.req3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.eyeicon = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.yearerror = new System.Windows.Forms.Label();
             this.passworderror = new System.Windows.Forms.Label();
             this.emailerror = new System.Windows.Forms.Label();
+            this.eyeicon = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eyeicon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // emailid
@@ -127,7 +131,7 @@ namespace PackingApplication
             this.rememberme.Checked = true;
             this.rememberme.CheckState = System.Windows.Forms.CheckState.Checked;
             this.rememberme.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rememberme.Location = new System.Drawing.Point(82, 480);
+            this.rememberme.Location = new System.Drawing.Point(82, 456);
             this.rememberme.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rememberme.Name = "rememberme";
             this.rememberme.Size = new System.Drawing.Size(148, 26);
@@ -142,7 +146,7 @@ namespace PackingApplication
             this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signin.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.signin.Location = new System.Drawing.Point(82, 525);
+            this.signin.Location = new System.Drawing.Point(82, 504);
             this.signin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.signin.Name = "signin";
             this.signin.Size = new System.Drawing.Size(386, 49);
@@ -168,7 +172,7 @@ namespace PackingApplication
             this.subtitle.AutoEllipsis = true;
             this.subtitle.AutoSize = true;
             this.subtitle.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtitle.Location = new System.Drawing.Point(81, 92);
+            this.subtitle.Location = new System.Drawing.Point(81, 80);
             this.subtitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.subtitle.Name = "subtitle";
             this.subtitle.Size = new System.Drawing.Size(440, 23);
@@ -219,30 +223,28 @@ namespace PackingApplication
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(0, -3);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1200, 694);
             this.panel1.TabIndex = 14;
             // 
-            // pictureBox1
+            // panel3
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::PackingApplication.Properties.Resources.login;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(643, 688);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(621, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(579, 694);
+            this.panel3.TabIndex = 16;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.eyeicon);
             this.panel2.Controls.Add(this.yearerror);
             this.panel2.Controls.Add(this.passworderror);
@@ -260,25 +262,32 @@ namespace PackingApplication
             this.panel2.Controls.Add(this.req2);
             this.panel2.Controls.Add(this.passwrd);
             this.panel2.Controls.Add(this.password);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(643, 0);
+            this.panel2.Location = new System.Drawing.Point(9, 42);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(557, 694);
+            this.panel2.Size = new System.Drawing.Size(557, 652);
             this.panel2.TabIndex = 14;
             // 
-            // eyeicon
+            // label2
             // 
-            this.eyeicon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.eyeicon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.eyeicon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.eyeicon.Image = global::PackingApplication.Properties.Resources.icons8_hide_24;
-            this.eyeicon.Location = new System.Drawing.Point(442, 288);
-            this.eyeicon.Name = "eyeicon";
-            this.eyeicon.Size = new System.Drawing.Size(24, 24);
-            this.eyeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.eyeicon.TabIndex = 17;
-            this.eyeicon.TabStop = false;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(145, 597);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(268, 21);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "BEEKAYLON SYNTHETICS PVT LTD";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(156, 572);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(229, 21);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "ALL RIGHT RESERVED © 2025";
             // 
             // yearerror
             // 
@@ -316,6 +325,34 @@ namespace PackingApplication
             this.emailerror.TabIndex = 14;
             this.emailerror.Visible = false;
             // 
+            // eyeicon
+            // 
+            this.eyeicon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.eyeicon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.eyeicon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.eyeicon.Image = global::PackingApplication.Properties.Resources.icons8_hide_24;
+            this.eyeicon.Location = new System.Drawing.Point(440, 290);
+            this.eyeicon.Name = "eyeicon";
+            this.eyeicon.Size = new System.Drawing.Size(24, 24);
+            this.eyeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.eyeicon.TabIndex = 17;
+            this.eyeicon.TabStop = false;
+            this.eyeicon.Click += eyeIcon_Click;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::PackingApplication.Properties.Resources.login;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(620, 702);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -327,10 +364,11 @@ namespace PackingApplication
             this.Name = "Login";
             this.Text = "Login";
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eyeicon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,6 +394,9 @@ namespace PackingApplication
         private System.Windows.Forms.Label yearerror;
         private System.Windows.Forms.Label passworderror;
         private System.Windows.Forms.PictureBox eyeicon;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -246,6 +246,5 @@ namespace PackingApplication
                 isPasswordVisible = true;
             }
         }
-
     }
 }
