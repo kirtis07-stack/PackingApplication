@@ -1233,8 +1233,8 @@ namespace PackingApplication
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
-                    ordertable.Width - thickness - 1,
-                    ordertable.Height - thickness - 1
+                    packagingtable.Width - thickness - 1,
+                    packagingtable.Height - thickness - 1
                 );
 
                 using (GraphicsPath path = GetRoundedRect(rect, radius))
@@ -1257,8 +1257,8 @@ namespace PackingApplication
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
-                    ordertable.Width - thickness - 1,
-                    ordertable.Height - thickness - 1
+                    weighttable.Width - thickness - 1,
+                    weighttable.Height - thickness - 1
                 );
 
                 using (GraphicsPath path = GetRoundedRect(rect, radius))
@@ -1281,8 +1281,8 @@ namespace PackingApplication
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
-                    ordertable.Width - thickness - 1,
-                    ordertable.Height - thickness - 1
+                    reviewtable.Width - thickness - 1,
+                    reviewtable.Height - thickness - 1
                 );
 
                 using (GraphicsPath path = GetRoundedRect(rect, radius))
@@ -1311,6 +1311,166 @@ namespace PackingApplication
 
             path.CloseFigure();
             return path;
+        }
+
+        private void orderboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    orderboxlayout.Width - thickness - 1,
+                    orderboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void orderboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, orderboxheader.Height - borderThickness / 1,
+                    orderboxheader.Width, orderboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void machineboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    machineboxlayout.Width - thickness - 1,
+                    machineboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void machineboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, machineboxheader.Height - borderThickness / 1,
+                    machineboxheader.Width, machineboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void weighboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    weighboxlayout.Width - thickness - 1,
+                    weighboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void weighboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, weighboxheader.Height - borderThickness / 1,
+                    weighboxheader.Width, weighboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    packagingboxlayout.Width - thickness - 1,
+                    packagingboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void packagingboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, packagingboxheader.Height - borderThickness / 1,
+                    packagingboxheader.Width, packagingboxheader.Height - borderThickness / 1
+                );
+            }
         }
     }
 }

@@ -112,6 +112,33 @@ namespace PackingApplication
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.submit = new System.Windows.Forms.Button();
             this.rightpanel = new System.Windows.Forms.Panel();
+            this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
+            this.machineboxpanel = new System.Windows.Forms.Panel();
+            this.deniervalue = new System.Windows.Forms.TextBox();
+            this.denier = new System.Windows.Forms.Label();
+            this.PrefixList = new System.Windows.Forms.ComboBox();
+            this.machineboxheader = new System.Windows.Forms.Panel();
+            this.Machinelbl = new System.Windows.Forms.Label();
+            this.weighboxlayout = new System.Windows.Forms.TableLayoutPanel();
+            this.weighboxpanel = new System.Windows.Forms.Panel();
+            this.grosswterror = new System.Windows.Forms.Label();
+            this.palletwterror = new System.Windows.Forms.Label();
+            this.spoolwterror = new System.Windows.Forms.Label();
+            this.spoolnoerror = new System.Windows.Forms.Label();
+            this.weighboxheader = new System.Windows.Forms.Panel();
+            this.Weighboxlbl = new System.Windows.Forms.Label();
+            this.packagingboxlayout = new System.Windows.Forms.TableLayoutPanel();
+            this.packagingboxpanel = new System.Windows.Forms.Panel();
+            this.packagingboxheader = new System.Windows.Forms.Panel();
+            this.Packagingboxlbl = new System.Windows.Forms.Label();
+            this.orderboxlayout = new System.Windows.Forms.TableLayoutPanel();
+            this.orderboxpanel = new System.Windows.Forms.Panel();
+            this.orderboxheader = new System.Windows.Forms.Panel();
+            this.Orderboxlbl = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.wgroupbox = new System.Windows.Forms.GroupBox();
+            this.windinggrid = new System.Windows.Forms.DataGridView();
+            this.windingqty = new System.Data.DataTable();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.boxnoerror = new System.Windows.Forms.Label();
             this.windingerror = new System.Windows.Forms.Label();
@@ -121,8 +148,6 @@ namespace PackingApplication
             this.mergenoerror = new System.Windows.Forms.Label();
             this.copynoerror = new System.Windows.Forms.Label();
             this.linenoerror = new System.Windows.Forms.Label();
-            this.deniervalue = new System.Windows.Forms.TextBox();
-            this.denier = new System.Windows.Forms.Label();
             this.lastboxdetails = new System.Windows.Forms.GroupBox();
             this.netwttxtbox = new System.Windows.Forms.TextBox();
             this.netweight = new System.Windows.Forms.Label();
@@ -133,21 +158,11 @@ namespace PackingApplication
             this.copstxtbox = new System.Windows.Forms.TextBox();
             this.cops = new System.Windows.Forms.Label();
             this.lastboxldetailist = new System.Windows.Forms.ListView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.grosswterror = new System.Windows.Forms.Label();
-            this.palletwterror = new System.Windows.Forms.Label();
-            this.spoolwterror = new System.Windows.Forms.Label();
-            this.spoolnoerror = new System.Windows.Forms.Label();
-            this.wgroupbox = new System.Windows.Forms.GroupBox();
-            this.windinggrid = new System.Windows.Forms.DataGridView();
-            this.windingqty = new System.Data.DataTable();
             this.gradewiseprodn = new System.Windows.Forms.GroupBox();
             this.totalprodbalqty = new System.Windows.Forms.Label();
             this.qualityqty = new System.Windows.Forms.DataGridView();
             this.qualityandqty = new System.Data.DataTable();
             this.saleordrqty = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.PrefixList = new System.Windows.Forms.ComboBox();
             this.windingtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -155,57 +170,68 @@ namespace PackingApplication
             this.poyformlabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.leftpanel = new System.Windows.Forms.Panel();
-            this.ordertable = new System.Windows.Forms.TableLayoutPanel();
-            this.orderdetailsrightpanel = new System.Windows.Forms.Panel();
-            this.orderlbl = new System.Windows.Forms.Label();
-            this.orderdetailssubtitle = new System.Windows.Forms.Label();
-            this.packagingtable = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.packaginglbl = new System.Windows.Forms.Label();
-            this.packagingsubtitle = new System.Windows.Forms.Label();
-            this.weighttable = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.weighlbl = new System.Windows.Forms.Label();
-            this.weighsubtitle = new System.Windows.Forms.Label();
             this.reviewtable = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.reviewlbl = new System.Windows.Forms.Label();
             this.reviewsubtitle = new System.Windows.Forms.Label();
             this.reviewdtls = new System.Windows.Forms.PictureBox();
+            this.weighttable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.weighlbl = new System.Windows.Forms.Label();
+            this.weighsubtitle = new System.Windows.Forms.Label();
             this.weightdtls = new System.Windows.Forms.PictureBox();
+            this.packagingtable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.packaginglbl = new System.Windows.Forms.Label();
+            this.packagingsubtitle = new System.Windows.Forms.Label();
             this.packagingdtls = new System.Windows.Forms.PictureBox();
+            this.ordertable = new System.Windows.Forms.TableLayoutPanel();
+            this.orderdetailsrightpanel = new System.Windows.Forms.Panel();
+            this.orderlbl = new System.Windows.Forms.Label();
+            this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
             this.rightpanel.SuspendLayout();
-            this.lastboxdetails.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.machineboxlayout.SuspendLayout();
+            this.machineboxpanel.SuspendLayout();
+            this.machineboxheader.SuspendLayout();
+            this.weighboxlayout.SuspendLayout();
+            this.weighboxpanel.SuspendLayout();
+            this.weighboxheader.SuspendLayout();
+            this.packagingboxlayout.SuspendLayout();
+            this.packagingboxpanel.SuspendLayout();
+            this.packagingboxheader.SuspendLayout();
+            this.orderboxlayout.SuspendLayout();
+            this.orderboxpanel.SuspendLayout();
+            this.orderboxheader.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.wgroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).BeginInit();
+            this.lastboxdetails.SuspendLayout();
             this.gradewiseprodn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).BeginInit();
-            this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.leftpanel.SuspendLayout();
-            this.ordertable.SuspendLayout();
-            this.orderdetailsrightpanel.SuspendLayout();
-            this.packagingtable.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.weighttable.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.reviewtable.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).BeginInit();
+            this.weighttable.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).BeginInit();
+            this.packagingtable.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).BeginInit();
+            this.ordertable.SuspendLayout();
+            this.orderdetailsrightpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).BeginInit();
             this.SuspendLayout();
             // 
             // lineno
             // 
             this.lineno.AutoSize = true;
-            this.lineno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lineno.Location = new System.Drawing.Point(6, 11);
+            this.lineno.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.lineno.Location = new System.Drawing.Point(6, 6);
             this.lineno.Name = "lineno";
             this.lineno.Size = new System.Drawing.Size(43, 20);
             this.lineno.TabIndex = 0;
@@ -214,8 +240,8 @@ namespace PackingApplication
             // department
             // 
             this.department.AutoSize = true;
-            this.department.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.department.Location = new System.Drawing.Point(6, 50);
+            this.department.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.department.Location = new System.Drawing.Point(9, 69);
             this.department.Name = "department";
             this.department.Size = new System.Drawing.Size(48, 20);
             this.department.TabIndex = 2;
@@ -224,8 +250,8 @@ namespace PackingApplication
             // mergeno
             // 
             this.mergeno.AutoSize = true;
-            this.mergeno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.mergeno.Location = new System.Drawing.Point(4, 88);
+            this.mergeno.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.mergeno.Location = new System.Drawing.Point(6, 130);
             this.mergeno.Name = "mergeno";
             this.mergeno.Size = new System.Drawing.Size(82, 20);
             this.mergeno.TabIndex = 4;
@@ -234,8 +260,8 @@ namespace PackingApplication
             // lastboxno
             // 
             this.lastboxno.AutoSize = true;
-            this.lastboxno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lastboxno.Location = new System.Drawing.Point(225, 11);
+            this.lastboxno.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.lastboxno.Location = new System.Drawing.Point(192, 5);
             this.lastboxno.Name = "lastboxno";
             this.lastboxno.Size = new System.Drawing.Size(75, 20);
             this.lastboxno.TabIndex = 6;
@@ -243,16 +269,16 @@ namespace PackingApplication
             // 
             // lastbox
             // 
-            this.lastbox.Location = new System.Drawing.Point(285, 8);
+            this.lastbox.Location = new System.Drawing.Point(193, 28);
             this.lastbox.Name = "lastbox";
-            this.lastbox.Size = new System.Drawing.Size(134, 26);
+            this.lastbox.Size = new System.Drawing.Size(152, 26);
             this.lastbox.TabIndex = 7;
             // 
             // item
             // 
             this.item.AutoSize = true;
-            this.item.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.item.Location = new System.Drawing.Point(6, 128);
+            this.item.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.item.Location = new System.Drawing.Point(9, 189);
             this.item.Name = "item";
             this.item.Size = new System.Drawing.Size(45, 20);
             this.item.TabIndex = 8;
@@ -261,8 +287,8 @@ namespace PackingApplication
             // shade
             // 
             this.shade.AutoSize = true;
-            this.shade.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.shade.Location = new System.Drawing.Point(224, 128);
+            this.shade.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.shade.Location = new System.Drawing.Point(192, 192);
             this.shade.Name = "shade";
             this.shade.Size = new System.Drawing.Size(60, 20);
             this.shade.TabIndex = 10;
@@ -271,18 +297,18 @@ namespace PackingApplication
             // shadecode
             // 
             this.shadecode.AutoSize = true;
-            this.shadecode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.shadecode.Location = new System.Drawing.Point(6, 158);
+            this.shadecode.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.shadecode.Location = new System.Drawing.Point(9, 249);
             this.shadecode.Name = "shadecode";
-            this.shadecode.Size = new System.Drawing.Size(56, 40);
+            this.shadecode.Size = new System.Drawing.Size(102, 20);
             this.shadecode.TabIndex = 12;
-            this.shadecode.Text = "Shade\nCode:";
+            this.shadecode.Text = "Shade Code:";
             // 
             // boxno
             // 
             this.boxno.AutoSize = true;
-            this.boxno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.boxno.Location = new System.Drawing.Point(225, 50);
+            this.boxno.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.boxno.Location = new System.Drawing.Point(189, 69);
             this.boxno.Name = "boxno";
             this.boxno.Size = new System.Drawing.Size(68, 20);
             this.boxno.TabIndex = 14;
@@ -291,8 +317,8 @@ namespace PackingApplication
             // packingdate
             // 
             this.packingdate.AutoSize = true;
-            this.packingdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.packingdate.Location = new System.Drawing.Point(227, 88);
+            this.packingdate.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.packingdate.Location = new System.Drawing.Point(192, 130);
             this.packingdate.Name = "packingdate";
             this.packingdate.Size = new System.Drawing.Size(48, 20);
             this.packingdate.TabIndex = 16;
@@ -300,16 +326,16 @@ namespace PackingApplication
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(285, 88);
+            this.dateTimePicker1.Location = new System.Drawing.Point(193, 154);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(134, 26);
+            this.dateTimePicker1.Size = new System.Drawing.Size(152, 26);
             this.dateTimePicker1.TabIndex = 17;
             // 
             // quality
             // 
             this.quality.AutoSize = true;
-            this.quality.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.quality.Location = new System.Drawing.Point(6, 203);
+            this.quality.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.quality.Location = new System.Drawing.Point(6, 10);
             this.quality.Name = "quality";
             this.quality.Size = new System.Drawing.Size(61, 20);
             this.quality.TabIndex = 18;
@@ -318,8 +344,8 @@ namespace PackingApplication
             // saleorderno
             // 
             this.saleorderno.AutoSize = true;
-            this.saleorderno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.saleorderno.Location = new System.Drawing.Point(229, 203);
+            this.saleorderno.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.saleorderno.Location = new System.Drawing.Point(188, 9);
             this.saleorderno.Name = "saleorderno";
             this.saleorderno.Size = new System.Drawing.Size(64, 20);
             this.saleorderno.TabIndex = 20;
@@ -328,8 +354,8 @@ namespace PackingApplication
             // packsize
             // 
             this.packsize.AutoSize = true;
-            this.packsize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.packsize.Location = new System.Drawing.Point(5, 247);
+            this.packsize.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.packsize.Location = new System.Drawing.Point(6, 9);
             this.packsize.Name = "packsize";
             this.packsize.Size = new System.Drawing.Size(83, 20);
             this.packsize.TabIndex = 22;
@@ -337,25 +363,27 @@ namespace PackingApplication
             // 
             // frdenier
             // 
-            this.frdenier.Location = new System.Drawing.Point(201, 244);
+            this.frdenier.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.frdenier.Location = new System.Drawing.Point(171, 31);
             this.frdenier.Name = "frdenier";
             this.frdenier.ReadOnly = true;
-            this.frdenier.Size = new System.Drawing.Size(36, 26);
+            this.frdenier.Size = new System.Drawing.Size(64, 26);
             this.frdenier.TabIndex = 25;
             // 
             // updenier
             // 
-            this.updenier.Location = new System.Drawing.Point(248, 244);
+            this.updenier.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.updenier.Location = new System.Drawing.Point(261, 31);
             this.updenier.Name = "updenier";
             this.updenier.ReadOnly = true;
-            this.updenier.Size = new System.Drawing.Size(36, 26);
+            this.updenier.Size = new System.Drawing.Size(58, 26);
             this.updenier.TabIndex = 27;
             // 
             // windingtype
             // 
             this.windingtype.AutoSize = true;
-            this.windingtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.windingtype.Location = new System.Drawing.Point(291, 247);
+            this.windingtype.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.windingtype.Location = new System.Drawing.Point(6, 73);
             this.windingtype.Name = "windingtype";
             this.windingtype.Size = new System.Drawing.Size(70, 20);
             this.windingtype.TabIndex = 28;
@@ -364,8 +392,8 @@ namespace PackingApplication
             // comport
             // 
             this.comport.AutoSize = true;
-            this.comport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.comport.Location = new System.Drawing.Point(227, 370);
+            this.comport.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.comport.Location = new System.Drawing.Point(188, 7);
             this.comport.Name = "comport";
             this.comport.Size = new System.Drawing.Size(79, 20);
             this.comport.TabIndex = 30;
@@ -375,8 +403,8 @@ namespace PackingApplication
             // copssize
             // 
             this.copssize.AutoSize = true;
-            this.copssize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.copssize.Location = new System.Drawing.Point(3, 286);
+            this.copssize.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.copssize.Location = new System.Drawing.Point(6, 128);
             this.copssize.Name = "copssize";
             this.copssize.Size = new System.Drawing.Size(85, 20);
             this.copssize.TabIndex = 32;
@@ -385,8 +413,8 @@ namespace PackingApplication
             // copweight
             // 
             this.copweight.AutoSize = true;
-            this.copweight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.copweight.Location = new System.Drawing.Point(198, 286);
+            this.copweight.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.copweight.Location = new System.Drawing.Point(174, 128);
             this.copweight.Name = "copweight";
             this.copweight.Size = new System.Drawing.Size(33, 20);
             this.copweight.TabIndex = 34;
@@ -395,43 +423,44 @@ namespace PackingApplication
             // copstock
             // 
             this.copstock.AutoSize = true;
-            this.copstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.copstock.Location = new System.Drawing.Point(291, 285);
+            this.copstock.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.copstock.Location = new System.Drawing.Point(223, 128);
             this.copstock.Name = "copstock";
-            this.copstock.Size = new System.Drawing.Size(54, 40);
+            this.copstock.Size = new System.Drawing.Size(95, 20);
             this.copstock.TabIndex = 35;
-            this.copstock.Text = "Cops\nStock:";
+            this.copstock.Text = "Cops Stock:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(227, 283);
+            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox1.Location = new System.Drawing.Point(171, 152);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(42, 26);
+            this.textBox1.Size = new System.Drawing.Size(48, 26);
             this.textBox1.TabIndex = 36;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(351, 283);
+            this.textBox2.Location = new System.Drawing.Point(227, 152);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(68, 26);
+            this.textBox2.Size = new System.Drawing.Size(118, 26);
             this.textBox2.TabIndex = 37;
             // 
             // boxtype
             // 
             this.boxtype.AutoSize = true;
-            this.boxtype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.boxtype.Location = new System.Drawing.Point(4, 325);
+            this.boxtype.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.boxtype.Location = new System.Drawing.Point(6, 69);
             this.boxtype.Name = "boxtype";
-            this.boxtype.Size = new System.Drawing.Size(79, 40);
+            this.boxtype.Size = new System.Drawing.Size(121, 20);
             this.boxtype.TabIndex = 38;
-            this.boxtype.Text = "Box/Pallet\nType:";
+            this.boxtype.Text = "Box/Pallet Type:";
             // 
             // boxweight
             // 
             this.boxweight.AutoSize = true;
-            this.boxweight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.boxweight.Location = new System.Drawing.Point(201, 328);
+            this.boxweight.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.boxweight.Location = new System.Drawing.Point(174, 69);
             this.boxweight.Name = "boxweight";
             this.boxweight.Size = new System.Drawing.Size(33, 20);
             this.boxweight.TabIndex = 40;
@@ -439,34 +468,35 @@ namespace PackingApplication
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(228, 323);
+            this.textBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox3.Location = new System.Drawing.Point(171, 92);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(42, 26);
+            this.textBox3.Size = new System.Drawing.Size(48, 26);
             this.textBox3.TabIndex = 41;
             // 
             // boxstock
             // 
             this.boxstock.AutoSize = true;
-            this.boxstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.boxstock.Location = new System.Drawing.Point(291, 319);
+            this.boxstock.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.boxstock.Location = new System.Drawing.Point(223, 69);
             this.boxstock.Name = "boxstock";
-            this.boxstock.Size = new System.Drawing.Size(79, 40);
+            this.boxstock.Size = new System.Drawing.Size(128, 20);
             this.boxstock.TabIndex = 42;
-            this.boxstock.Text = "Box/Pallet\nStock:";
+            this.boxstock.Text = "Box/Pallet Stock:";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(351, 321);
+            this.textBox4.Location = new System.Drawing.Point(227, 93);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(68, 26);
+            this.textBox4.Size = new System.Drawing.Size(118, 26);
             this.textBox4.TabIndex = 43;
             // 
             // productiontype
             // 
             this.productiontype.AutoSize = true;
-            this.productiontype.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.productiontype.Location = new System.Drawing.Point(6, 407);
+            this.productiontype.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.productiontype.Location = new System.Drawing.Point(188, 73);
             this.productiontype.Name = "productiontype";
             this.productiontype.Size = new System.Drawing.Size(84, 20);
             this.productiontype.TabIndex = 44;
@@ -475,8 +505,8 @@ namespace PackingApplication
             // remark
             // 
             this.remark.AutoSize = true;
-            this.remark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.remark.Location = new System.Drawing.Point(227, 407);
+            this.remark.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.remark.Location = new System.Drawing.Point(6, 134);
             this.remark.Name = "remark";
             this.remark.Size = new System.Drawing.Size(77, 20);
             this.remark.TabIndex = 46;
@@ -484,87 +514,91 @@ namespace PackingApplication
             // 
             // remarks
             // 
-            this.remarks.Location = new System.Drawing.Point(289, 404);
+            this.remarks.Location = new System.Drawing.Point(10, 157);
             this.remarks.Name = "remarks";
-            this.remarks.Size = new System.Drawing.Size(130, 26);
+            this.remarks.Size = new System.Drawing.Size(153, 26);
             this.remarks.TabIndex = 47;
             // 
             // scalemodel
             // 
             this.scalemodel.AutoSize = true;
-            this.scalemodel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.scalemodel.Location = new System.Drawing.Point(9, 361);
+            this.scalemodel.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.scalemodel.Location = new System.Drawing.Point(6, 5);
             this.scalemodel.Name = "scalemodel";
-            this.scalemodel.Size = new System.Drawing.Size(54, 40);
+            this.scalemodel.Size = new System.Drawing.Size(102, 20);
             this.scalemodel.TabIndex = 48;
-            this.scalemodel.Text = "Weigh\nScale:";
+            this.scalemodel.Text = "Weigh Scale:";
             // 
             // LineNoList
             // 
             this.LineNoList.AllowDrop = true;
             this.LineNoList.FormattingEnabled = true;
-            this.LineNoList.Location = new System.Drawing.Point(66, 8);
+            this.LineNoList.Location = new System.Drawing.Point(10, 28);
             this.LineNoList.Margin = new System.Windows.Forms.Padding(2);
             this.LineNoList.Name = "LineNoList";
-            this.LineNoList.Size = new System.Drawing.Size(138, 28);
+            this.LineNoList.Size = new System.Drawing.Size(161, 28);
             this.LineNoList.TabIndex = 50;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             // 
             // departmentname
             // 
-            this.departmentname.Location = new System.Drawing.Point(65, 47);
+            this.departmentname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.departmentname.Location = new System.Drawing.Point(10, 91);
             this.departmentname.Margin = new System.Windows.Forms.Padding(2);
             this.departmentname.Name = "departmentname";
             this.departmentname.ReadOnly = true;
-            this.departmentname.Size = new System.Drawing.Size(139, 26);
+            this.departmentname.Size = new System.Drawing.Size(161, 26);
             this.departmentname.TabIndex = 51;
             // 
             // MergeNoList
             // 
             this.MergeNoList.AllowDrop = true;
             this.MergeNoList.FormattingEnabled = true;
-            this.MergeNoList.Location = new System.Drawing.Point(66, 85);
+            this.MergeNoList.Location = new System.Drawing.Point(10, 154);
             this.MergeNoList.Margin = new System.Windows.Forms.Padding(2);
             this.MergeNoList.Name = "MergeNoList";
-            this.MergeNoList.Size = new System.Drawing.Size(139, 28);
+            this.MergeNoList.Size = new System.Drawing.Size(161, 28);
             this.MergeNoList.TabIndex = 53;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             // 
             // itemname
             // 
-            this.itemname.Location = new System.Drawing.Point(66, 125);
+            this.itemname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.itemname.Location = new System.Drawing.Point(10, 211);
             this.itemname.Margin = new System.Windows.Forms.Padding(2);
             this.itemname.Name = "itemname";
             this.itemname.ReadOnly = true;
-            this.itemname.Size = new System.Drawing.Size(139, 26);
+            this.itemname.Size = new System.Drawing.Size(161, 26);
             this.itemname.TabIndex = 54;
             // 
             // shadename
             // 
-            this.shadename.Location = new System.Drawing.Point(285, 125);
+            this.shadename.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.shadename.Location = new System.Drawing.Point(193, 214);
             this.shadename.Margin = new System.Windows.Forms.Padding(2);
             this.shadename.Name = "shadename";
             this.shadename.ReadOnly = true;
-            this.shadename.Size = new System.Drawing.Size(134, 26);
+            this.shadename.Size = new System.Drawing.Size(152, 26);
             this.shadename.TabIndex = 55;
             // 
             // shadecd
             // 
-            this.shadecd.Location = new System.Drawing.Point(66, 161);
+            this.shadecd.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.shadecd.Location = new System.Drawing.Point(10, 271);
             this.shadecd.Margin = new System.Windows.Forms.Padding(2);
             this.shadecd.Name = "shadecd";
             this.shadecd.ReadOnly = true;
-            this.shadecd.Size = new System.Drawing.Size(139, 26);
+            this.shadecd.Size = new System.Drawing.Size(161, 26);
             this.shadecd.TabIndex = 56;
             // 
             // QualityList
             // 
             this.QualityList.AllowDrop = true;
             this.QualityList.FormattingEnabled = true;
-            this.QualityList.Location = new System.Drawing.Point(66, 200);
+            this.QualityList.Location = new System.Drawing.Point(10, 32);
             this.QualityList.Margin = new System.Windows.Forms.Padding(2);
             this.QualityList.Name = "QualityList";
-            this.QualityList.Size = new System.Drawing.Size(139, 28);
+            this.QualityList.Size = new System.Drawing.Size(153, 28);
             this.QualityList.TabIndex = 57;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
@@ -572,10 +606,10 @@ namespace PackingApplication
             // 
             this.PackSizeList.AllowDrop = true;
             this.PackSizeList.FormattingEnabled = true;
-            this.PackSizeList.Location = new System.Drawing.Point(66, 244);
+            this.PackSizeList.Location = new System.Drawing.Point(10, 31);
             this.PackSizeList.Margin = new System.Windows.Forms.Padding(2);
             this.PackSizeList.Name = "PackSizeList";
-            this.PackSizeList.Size = new System.Drawing.Size(126, 28);
+            this.PackSizeList.Size = new System.Drawing.Size(144, 28);
             this.PackSizeList.TabIndex = 58;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             // 
@@ -583,10 +617,10 @@ namespace PackingApplication
             // 
             this.WindingTypeList.AllowDrop = true;
             this.WindingTypeList.FormattingEnabled = true;
-            this.WindingTypeList.Location = new System.Drawing.Point(351, 244);
+            this.WindingTypeList.Location = new System.Drawing.Point(10, 95);
             this.WindingTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.WindingTypeList.Name = "WindingTypeList";
-            this.WindingTypeList.Size = new System.Drawing.Size(68, 28);
+            this.WindingTypeList.Size = new System.Drawing.Size(153, 28);
             this.WindingTypeList.TabIndex = 59;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             // 
@@ -594,10 +628,10 @@ namespace PackingApplication
             // 
             this.ComPortList.AllowDrop = true;
             this.ComPortList.FormattingEnabled = true;
-            this.ComPortList.Location = new System.Drawing.Point(289, 367);
+            this.ComPortList.Location = new System.Drawing.Point(188, 29);
             this.ComPortList.Margin = new System.Windows.Forms.Padding(2);
             this.ComPortList.Name = "ComPortList";
-            this.ComPortList.Size = new System.Drawing.Size(130, 28);
+            this.ComPortList.Size = new System.Drawing.Size(152, 28);
             this.ComPortList.TabIndex = 60;
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             // 
@@ -605,10 +639,10 @@ namespace PackingApplication
             // 
             this.WeighingList.AllowDrop = true;
             this.WeighingList.FormattingEnabled = true;
-            this.WeighingList.Location = new System.Drawing.Point(66, 367);
+            this.WeighingList.Location = new System.Drawing.Point(10, 29);
             this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
             this.WeighingList.Name = "WeighingList";
-            this.WeighingList.Size = new System.Drawing.Size(139, 28);
+            this.WeighingList.Size = new System.Drawing.Size(155, 28);
             this.WeighingList.TabIndex = 61;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             // 
@@ -616,10 +650,10 @@ namespace PackingApplication
             // 
             this.CopsItemList.AllowDrop = true;
             this.CopsItemList.FormattingEnabled = true;
-            this.CopsItemList.Location = new System.Drawing.Point(66, 283);
+            this.CopsItemList.Location = new System.Drawing.Point(9, 150);
             this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
             this.CopsItemList.Name = "CopsItemList";
-            this.CopsItemList.Size = new System.Drawing.Size(127, 28);
+            this.CopsItemList.Size = new System.Drawing.Size(145, 28);
             this.CopsItemList.TabIndex = 62;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             // 
@@ -627,10 +661,10 @@ namespace PackingApplication
             // 
             this.BoxItemList.AllowDrop = true;
             this.BoxItemList.FormattingEnabled = true;
-            this.BoxItemList.Location = new System.Drawing.Point(67, 325);
+            this.BoxItemList.Location = new System.Drawing.Point(10, 91);
             this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
             this.BoxItemList.Name = "BoxItemList";
-            this.BoxItemList.Size = new System.Drawing.Size(126, 28);
+            this.BoxItemList.Size = new System.Drawing.Size(144, 28);
             this.BoxItemList.TabIndex = 63;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
@@ -638,10 +672,10 @@ namespace PackingApplication
             // 
             this.SaleOrderList.AllowDrop = true;
             this.SaleOrderList.FormattingEnabled = true;
-            this.SaleOrderList.Location = new System.Drawing.Point(284, 200);
+            this.SaleOrderList.Location = new System.Drawing.Point(192, 32);
             this.SaleOrderList.Margin = new System.Windows.Forms.Padding(2);
             this.SaleOrderList.Name = "SaleOrderList";
-            this.SaleOrderList.Size = new System.Drawing.Size(135, 28);
+            this.SaleOrderList.Size = new System.Drawing.Size(150, 28);
             this.SaleOrderList.TabIndex = 64;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             // 
@@ -723,8 +757,8 @@ namespace PackingApplication
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label1.Location = new System.Drawing.Point(438, 184);
+            this.label1.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.label1.Location = new System.Drawing.Point(188, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 20);
             this.label1.TabIndex = 73;
@@ -732,26 +766,28 @@ namespace PackingApplication
             // 
             // copyno
             // 
-            this.copyno.Location = new System.Drawing.Point(550, 181);
+            this.copyno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.copyno.Location = new System.Drawing.Point(192, 157);
             this.copyno.Name = "copyno";
             this.copyno.ReadOnly = true;
-            this.copyno.Size = new System.Drawing.Size(63, 26);
+            this.copyno.Size = new System.Drawing.Size(146, 26);
             this.copyno.TabIndex = 74;
             this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
             // 
             // wtpercop
             // 
-            this.wtpercop.Location = new System.Drawing.Point(122, 218);
+            this.wtpercop.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.wtpercop.Location = new System.Drawing.Point(196, 205);
             this.wtpercop.Name = "wtpercop";
             this.wtpercop.ReadOnly = true;
-            this.wtpercop.Size = new System.Drawing.Size(71, 26);
+            this.wtpercop.Size = new System.Drawing.Size(144, 26);
             this.wtpercop.TabIndex = 85;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label5.Location = new System.Drawing.Point(10, 221);
+            this.label5.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.label5.Location = new System.Drawing.Point(188, 179);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 20);
             this.label5.TabIndex = 84;
@@ -759,18 +795,19 @@ namespace PackingApplication
             // 
             // netwt
             // 
-            this.netwt.Location = new System.Drawing.Point(122, 178);
+            this.netwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.netwt.Location = new System.Drawing.Point(10, 202);
             this.netwt.Name = "netwt";
             this.netwt.ReadOnly = true;
-            this.netwt.Size = new System.Drawing.Size(71, 26);
+            this.netwt.Size = new System.Drawing.Size(155, 26);
             this.netwt.TabIndex = 83;
             this.netwt.TextChanged += new System.EventHandler(this.NetWeight_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label4.Location = new System.Drawing.Point(13, 181);
+            this.label4.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.label4.Location = new System.Drawing.Point(12, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 82;
@@ -778,17 +815,18 @@ namespace PackingApplication
             // 
             // tarewt
             // 
-            this.tarewt.Location = new System.Drawing.Point(122, 140);
+            this.tarewt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tarewt.Location = new System.Drawing.Point(196, 144);
             this.tarewt.Name = "tarewt";
             this.tarewt.ReadOnly = true;
-            this.tarewt.Size = new System.Drawing.Size(71, 26);
+            this.tarewt.Size = new System.Drawing.Size(144, 26);
             this.tarewt.TabIndex = 81;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label3.Location = new System.Drawing.Point(13, 143);
+            this.label3.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.label3.Location = new System.Drawing.Point(188, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 80;
@@ -796,17 +834,17 @@ namespace PackingApplication
             // 
             // grosswtno
             // 
-            this.grosswtno.Location = new System.Drawing.Point(122, 95);
+            this.grosswtno.Location = new System.Drawing.Point(10, 144);
             this.grosswtno.Name = "grosswtno";
-            this.grosswtno.Size = new System.Drawing.Size(71, 26);
+            this.grosswtno.Size = new System.Drawing.Size(154, 26);
             this.grosswtno.TabIndex = 79;
             this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label2.Location = new System.Drawing.Point(10, 102);
+            this.label2.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.label2.Location = new System.Drawing.Point(6, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 78;
@@ -814,17 +852,17 @@ namespace PackingApplication
             // 
             // palletwtno
             // 
-            this.palletwtno.Location = new System.Drawing.Point(122, 56);
+            this.palletwtno.Location = new System.Drawing.Point(189, 89);
             this.palletwtno.Name = "palletwtno";
-            this.palletwtno.Size = new System.Drawing.Size(71, 26);
+            this.palletwtno.Size = new System.Drawing.Size(151, 26);
             this.palletwtno.TabIndex = 77;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
             // 
             // palletwt
             // 
             this.palletwt.AutoSize = true;
-            this.palletwt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.palletwt.Location = new System.Drawing.Point(9, 59);
+            this.palletwt.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.palletwt.Location = new System.Drawing.Point(188, 69);
             this.palletwt.Name = "palletwt";
             this.palletwt.Size = new System.Drawing.Size(156, 20);
             this.palletwt.TabIndex = 76;
@@ -832,7 +870,7 @@ namespace PackingApplication
             // 
             // spoolwt
             // 
-            this.spoolwt.Location = new System.Drawing.Point(122, 17);
+            this.spoolwt.Location = new System.Drawing.Point(93, 92);
             this.spoolwt.Name = "spoolwt";
             this.spoolwt.Size = new System.Drawing.Size(71, 26);
             this.spoolwt.TabIndex = 76;
@@ -840,17 +878,17 @@ namespace PackingApplication
             // 
             // spoolno
             // 
-            this.spoolno.Location = new System.Drawing.Point(74, 17);
+            this.spoolno.Location = new System.Drawing.Point(10, 92);
             this.spoolno.Name = "spoolno";
-            this.spoolno.Size = new System.Drawing.Size(42, 26);
+            this.spoolno.Size = new System.Drawing.Size(71, 26);
             this.spoolno.TabIndex = 1;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             // 
             // spool
             // 
             this.spool.AutoSize = true;
-            this.spool.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.spool.Location = new System.Drawing.Point(9, 20);
+            this.spool.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.spool.Location = new System.Drawing.Point(6, 69);
             this.spool.Name = "spool";
             this.spool.Size = new System.Drawing.Size(62, 20);
             this.spool.TabIndex = 0;
@@ -858,17 +896,18 @@ namespace PackingApplication
             // 
             // prodtype
             // 
-            this.prodtype.Location = new System.Drawing.Point(67, 404);
+            this.prodtype.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.prodtype.Location = new System.Drawing.Point(192, 95);
             this.prodtype.Name = "prodtype";
             this.prodtype.ReadOnly = true;
-            this.prodtype.Size = new System.Drawing.Size(140, 26);
+            this.prodtype.Size = new System.Drawing.Size(149, 26);
             this.prodtype.TabIndex = 76;
             // 
             // palletdetails
             // 
             this.palletdetails.AutoSize = true;
-            this.palletdetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.palletdetails.Location = new System.Drawing.Point(448, 445);
+            this.palletdetails.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.palletdetails.Location = new System.Drawing.Point(802, 349);
             this.palletdetails.Name = "palletdetails";
             this.palletdetails.Size = new System.Drawing.Size(105, 20);
             this.palletdetails.TabIndex = 78;
@@ -878,8 +917,8 @@ namespace PackingApplication
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label6.Location = new System.Drawing.Point(9, 442);
+            this.label6.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.label6.Location = new System.Drawing.Point(805, 377);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 40);
             this.label6.TabIndex = 79;
@@ -890,7 +929,7 @@ namespace PackingApplication
             // 
             this.PalletTypeList.AllowDrop = true;
             this.PalletTypeList.FormattingEnabled = true;
-            this.PalletTypeList.Location = new System.Drawing.Point(64, 442);
+            this.PalletTypeList.Location = new System.Drawing.Point(878, 377);
             this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.PalletTypeList.Name = "PalletTypeList";
             this.PalletTypeList.Size = new System.Drawing.Size(140, 28);
@@ -899,8 +938,8 @@ namespace PackingApplication
             // pquantity
             // 
             this.pquantity.AutoSize = true;
-            this.pquantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.pquantity.Location = new System.Drawing.Point(225, 445);
+            this.pquantity.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.pquantity.Location = new System.Drawing.Point(805, 430);
             this.pquantity.Name = "pquantity";
             this.pquantity.Size = new System.Drawing.Size(37, 20);
             this.pquantity.TabIndex = 81;
@@ -909,7 +948,7 @@ namespace PackingApplication
             // 
             // qnty
             // 
-            this.qnty.Location = new System.Drawing.Point(267, 442);
+            this.qnty.Location = new System.Drawing.Point(878, 424);
             this.qnty.Name = "qnty";
             this.qnty.Size = new System.Drawing.Size(62, 26);
             this.qnty.TabIndex = 82;
@@ -920,9 +959,9 @@ namespace PackingApplication
             this.addqty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.addqty.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addqty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.addqty.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.addqty.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.addqty.Location = new System.Drawing.Point(361, 440);
+            this.addqty.Location = new System.Drawing.Point(960, 422);
             this.addqty.Name = "addqty";
             this.addqty.Size = new System.Drawing.Size(58, 25);
             this.addqty.TabIndex = 83;
@@ -933,9 +972,9 @@ namespace PackingApplication
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 485);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(801, 471);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(411, 167);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(217, 263);
             this.flowLayoutPanel1.TabIndex = 84;
             // 
             // submit
@@ -943,9 +982,9 @@ namespace PackingApplication
             this.submit.BackColor = System.Drawing.SystemColors.Highlight;
             this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.submit.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(392, 658);
+            this.submit.Location = new System.Drawing.Point(111, 744);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(95, 28);
             this.submit.TabIndex = 85;
@@ -959,7 +998,13 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.rightpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rightpanel.Controls.Add(this.machineboxlayout);
+            this.rightpanel.Controls.Add(this.weighboxlayout);
+            this.rightpanel.Controls.Add(this.packagingboxlayout);
+            this.rightpanel.Controls.Add(this.orderboxlayout);
+            this.rightpanel.Controls.Add(this.panel3);
+            this.rightpanel.Controls.Add(this.wgroupbox);
+            this.rightpanel.Controls.Add(this.flowLayoutPanel1);
             this.rightpanel.Controls.Add(this.cancelbtn);
             this.rightpanel.Controls.Add(this.boxnoerror);
             this.rightpanel.Controls.Add(this.palletdetails);
@@ -970,82 +1015,381 @@ namespace PackingApplication
             this.rightpanel.Controls.Add(this.mergenoerror);
             this.rightpanel.Controls.Add(this.copynoerror);
             this.rightpanel.Controls.Add(this.linenoerror);
-            this.rightpanel.Controls.Add(this.deniervalue);
-            this.rightpanel.Controls.Add(this.denier);
             this.rightpanel.Controls.Add(this.lastboxdetails);
-            this.rightpanel.Controls.Add(this.groupBox1);
-            this.rightpanel.Controls.Add(this.wgroupbox);
             this.rightpanel.Controls.Add(this.gradewiseprodn);
             this.rightpanel.Controls.Add(this.addqty);
             this.rightpanel.Controls.Add(this.qnty);
             this.rightpanel.Controls.Add(this.pquantity);
             this.rightpanel.Controls.Add(this.PalletTypeList);
             this.rightpanel.Controls.Add(this.label6);
-            this.rightpanel.Controls.Add(this.panel3);
-            this.rightpanel.Controls.Add(this.PrefixList);
-            this.rightpanel.Controls.Add(this.lineno);
-            this.rightpanel.Controls.Add(this.LineNoList);
-            this.rightpanel.Controls.Add(this.lastboxno);
-            this.rightpanel.Controls.Add(this.lastbox);
             this.rightpanel.Controls.Add(this.submit);
-            this.rightpanel.Controls.Add(this.department);
-            this.rightpanel.Controls.Add(this.flowLayoutPanel1);
-            this.rightpanel.Controls.Add(this.departmentname);
-            this.rightpanel.Controls.Add(this.label1);
-            this.rightpanel.Controls.Add(this.copyno);
-            this.rightpanel.Controls.Add(this.boxno);
-            this.rightpanel.Controls.Add(this.mergeno);
-            this.rightpanel.Controls.Add(this.MergeNoList);
-            this.rightpanel.Controls.Add(this.packingdate);
-            this.rightpanel.Controls.Add(this.dateTimePicker1);
-            this.rightpanel.Controls.Add(this.prodtype);
-            this.rightpanel.Controls.Add(this.item);
-            this.rightpanel.Controls.Add(this.itemname);
-            this.rightpanel.Controls.Add(this.shade);
-            this.rightpanel.Controls.Add(this.shadename);
-            this.rightpanel.Controls.Add(this.shadecd);
-            this.rightpanel.Controls.Add(this.shadecode);
-            this.rightpanel.Controls.Add(this.remarks);
-            this.rightpanel.Controls.Add(this.remark);
-            this.rightpanel.Controls.Add(this.QualityList);
-            this.rightpanel.Controls.Add(this.BoxItemList);
-            this.rightpanel.Controls.Add(this.productiontype);
-            this.rightpanel.Controls.Add(this.quality);
-            this.rightpanel.Controls.Add(this.textBox4);
-            this.rightpanel.Controls.Add(this.boxstock);
-            this.rightpanel.Controls.Add(this.saleorderno);
-            this.rightpanel.Controls.Add(this.textBox3);
-            this.rightpanel.Controls.Add(this.SaleOrderList);
-            this.rightpanel.Controls.Add(this.boxweight);
-            this.rightpanel.Controls.Add(this.packsize);
-            this.rightpanel.Controls.Add(this.PackSizeList);
-            this.rightpanel.Controls.Add(this.CopsItemList);
-            this.rightpanel.Controls.Add(this.boxtype);
-            this.rightpanel.Controls.Add(this.frdenier);
-            this.rightpanel.Controls.Add(this.WeighingList);
-            this.rightpanel.Controls.Add(this.updenier);
-            this.rightpanel.Controls.Add(this.scalemodel);
-            this.rightpanel.Controls.Add(this.ComPortList);
-            this.rightpanel.Controls.Add(this.windingtype);
-            this.rightpanel.Controls.Add(this.WindingTypeList);
-            this.rightpanel.Controls.Add(this.textBox2);
-            this.rightpanel.Controls.Add(this.comport);
-            this.rightpanel.Controls.Add(this.copstock);
-            this.rightpanel.Controls.Add(this.textBox1);
-            this.rightpanel.Controls.Add(this.copssize);
-            this.rightpanel.Controls.Add(this.copweight);
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rightpanel.Location = new System.Drawing.Point(261, 3);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(1028, 723);
+            this.rightpanel.Size = new System.Drawing.Size(1028, 789);
             this.rightpanel.TabIndex = 89;
+            // 
+            // machineboxlayout
+            // 
+            this.machineboxlayout.ColumnCount = 1;
+            this.machineboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.machineboxlayout.Controls.Add(this.machineboxpanel, 0, 1);
+            this.machineboxlayout.Controls.Add(this.machineboxheader, 0, 0);
+            this.machineboxlayout.Location = new System.Drawing.Point(13, 3);
+            this.machineboxlayout.Name = "machineboxlayout";
+            this.machineboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.machineboxlayout.RowCount = 2;
+            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
+            this.machineboxlayout.Size = new System.Drawing.Size(364, 378);
+            this.machineboxlayout.TabIndex = 110;
+            this.machineboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxlayout_Paint);
+            // 
+            // machineboxpanel
+            // 
+            this.machineboxpanel.Controls.Add(this.deniervalue);
+            this.machineboxpanel.Controls.Add(this.denier);
+            this.machineboxpanel.Controls.Add(this.shadecd);
+            this.machineboxpanel.Controls.Add(this.shadecode);
+            this.machineboxpanel.Controls.Add(this.lineno);
+            this.machineboxpanel.Controls.Add(this.LineNoList);
+            this.machineboxpanel.Controls.Add(this.lastboxno);
+            this.machineboxpanel.Controls.Add(this.lastbox);
+            this.machineboxpanel.Controls.Add(this.department);
+            this.machineboxpanel.Controls.Add(this.departmentname);
+            this.machineboxpanel.Controls.Add(this.boxno);
+            this.machineboxpanel.Controls.Add(this.PrefixList);
+            this.machineboxpanel.Controls.Add(this.mergeno);
+            this.machineboxpanel.Controls.Add(this.MergeNoList);
+            this.machineboxpanel.Controls.Add(this.packingdate);
+            this.machineboxpanel.Controls.Add(this.dateTimePicker1);
+            this.machineboxpanel.Controls.Add(this.item);
+            this.machineboxpanel.Controls.Add(this.itemname);
+            this.machineboxpanel.Controls.Add(this.shade);
+            this.machineboxpanel.Controls.Add(this.shadename);
+            this.machineboxpanel.Location = new System.Drawing.Point(5, 72);
+            this.machineboxpanel.Name = "machineboxpanel";
+            this.machineboxpanel.Size = new System.Drawing.Size(354, 301);
+            this.machineboxpanel.TabIndex = 107;
+            // 
+            // deniervalue
+            // 
+            this.deniervalue.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.deniervalue.Location = new System.Drawing.Point(193, 271);
+            this.deniervalue.Margin = new System.Windows.Forms.Padding(2);
+            this.deniervalue.Name = "deniervalue";
+            this.deniervalue.ReadOnly = true;
+            this.deniervalue.Size = new System.Drawing.Size(152, 26);
+            this.deniervalue.TabIndex = 95;
+            // 
+            // denier
+            // 
+            this.denier.AutoSize = true;
+            this.denier.Location = new System.Drawing.Point(197, 249);
+            this.denier.Name = "denier";
+            this.denier.Size = new System.Drawing.Size(60, 20);
+            this.denier.TabIndex = 94;
+            this.denier.Text = "Denier:";
+            // 
+            // PrefixList
+            // 
+            this.PrefixList.AllowDrop = true;
+            this.PrefixList.FormattingEnabled = true;
+            this.PrefixList.Location = new System.Drawing.Point(193, 91);
+            this.PrefixList.Margin = new System.Windows.Forms.Padding(2);
+            this.PrefixList.Name = "PrefixList";
+            this.PrefixList.Size = new System.Drawing.Size(152, 28);
+            this.PrefixList.TabIndex = 86;
+            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            // 
+            // machineboxheader
+            // 
+            this.machineboxheader.Controls.Add(this.Machinelbl);
+            this.machineboxheader.Location = new System.Drawing.Point(5, 5);
+            this.machineboxheader.Name = "machineboxheader";
+            this.machineboxheader.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.machineboxheader.Size = new System.Drawing.Size(354, 46);
+            this.machineboxheader.TabIndex = 107;
+            this.machineboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxheader_Paint);
+            // 
+            // Machinelbl
+            // 
+            this.Machinelbl.AutoSize = true;
+            this.Machinelbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.Machinelbl.Location = new System.Drawing.Point(6, 14);
+            this.Machinelbl.Name = "Machinelbl";
+            this.Machinelbl.Size = new System.Drawing.Size(133, 21);
+            this.Machinelbl.TabIndex = 107;
+            this.Machinelbl.Text = "Machine Details";
+            // 
+            // weighboxlayout
+            // 
+            this.weighboxlayout.ColumnCount = 1;
+            this.weighboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.weighboxlayout.Controls.Add(this.weighboxpanel, 0, 1);
+            this.weighboxlayout.Controls.Add(this.weighboxheader, 0, 0);
+            this.weighboxlayout.Location = new System.Drawing.Point(401, 5);
+            this.weighboxlayout.Name = "weighboxlayout";
+            this.weighboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.weighboxlayout.RowCount = 2;
+            this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
+            this.weighboxlayout.Size = new System.Drawing.Size(364, 296);
+            this.weighboxlayout.TabIndex = 109;
+            this.weighboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxlayout_Paint);
+            // 
+            // weighboxpanel
+            // 
+            this.weighboxpanel.Controls.Add(this.grosswterror);
+            this.weighboxpanel.Controls.Add(this.palletwterror);
+            this.weighboxpanel.Controls.Add(this.spoolwterror);
+            this.weighboxpanel.Controls.Add(this.spoolnoerror);
+            this.weighboxpanel.Controls.Add(this.scalemodel);
+            this.weighboxpanel.Controls.Add(this.WeighingList);
+            this.weighboxpanel.Controls.Add(this.comport);
+            this.weighboxpanel.Controls.Add(this.ComPortList);
+            this.weighboxpanel.Controls.Add(this.wtpercop);
+            this.weighboxpanel.Controls.Add(this.spool);
+            this.weighboxpanel.Controls.Add(this.label5);
+            this.weighboxpanel.Controls.Add(this.spoolno);
+            this.weighboxpanel.Controls.Add(this.netwt);
+            this.weighboxpanel.Controls.Add(this.spoolwt);
+            this.weighboxpanel.Controls.Add(this.label4);
+            this.weighboxpanel.Controls.Add(this.palletwt);
+            this.weighboxpanel.Controls.Add(this.tarewt);
+            this.weighboxpanel.Controls.Add(this.palletwtno);
+            this.weighboxpanel.Controls.Add(this.label3);
+            this.weighboxpanel.Controls.Add(this.label2);
+            this.weighboxpanel.Controls.Add(this.grosswtno);
+            this.weighboxpanel.Location = new System.Drawing.Point(5, 57);
+            this.weighboxpanel.Name = "weighboxpanel";
+            this.weighboxpanel.Size = new System.Drawing.Size(354, 234);
+            this.weighboxpanel.TabIndex = 107;
+            // 
+            // grosswterror
+            // 
+            this.grosswterror.AutoSize = true;
+            this.grosswterror.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.grosswterror.ForeColor = System.Drawing.Color.Red;
+            this.grosswterror.Location = new System.Drawing.Point(10, 122);
+            this.grosswterror.Name = "grosswterror";
+            this.grosswterror.Size = new System.Drawing.Size(0, 20);
+            this.grosswterror.TabIndex = 89;
+            this.grosswterror.Visible = false;
+            // 
+            // palletwterror
+            // 
+            this.palletwterror.AutoSize = true;
+            this.palletwterror.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.palletwterror.ForeColor = System.Drawing.Color.Red;
+            this.palletwterror.Location = new System.Drawing.Point(10, 78);
+            this.palletwterror.Name = "palletwterror";
+            this.palletwterror.Size = new System.Drawing.Size(0, 20);
+            this.palletwterror.TabIndex = 88;
+            this.palletwterror.Visible = false;
+            // 
+            // spoolwterror
+            // 
+            this.spoolwterror.AutoSize = true;
+            this.spoolwterror.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.spoolwterror.ForeColor = System.Drawing.Color.Red;
+            this.spoolwterror.Location = new System.Drawing.Point(96, 38);
+            this.spoolwterror.Name = "spoolwterror";
+            this.spoolwterror.Size = new System.Drawing.Size(0, 20);
+            this.spoolwterror.TabIndex = 87;
+            this.spoolwterror.Visible = false;
+            // 
+            // spoolnoerror
+            // 
+            this.spoolnoerror.AutoSize = true;
+            this.spoolnoerror.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.spoolnoerror.ForeColor = System.Drawing.Color.Red;
+            this.spoolnoerror.Location = new System.Drawing.Point(10, 38);
+            this.spoolnoerror.Name = "spoolnoerror";
+            this.spoolnoerror.Size = new System.Drawing.Size(0, 20);
+            this.spoolnoerror.TabIndex = 86;
+            this.spoolnoerror.Visible = false;
+            // 
+            // weighboxheader
+            // 
+            this.weighboxheader.Controls.Add(this.Weighboxlbl);
+            this.weighboxheader.Location = new System.Drawing.Point(5, 5);
+            this.weighboxheader.Name = "weighboxheader";
+            this.weighboxheader.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.weighboxheader.Size = new System.Drawing.Size(354, 46);
+            this.weighboxheader.TabIndex = 107;
+            this.weighboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxheader_Paint);
+            // 
+            // Weighboxlbl
+            // 
+            this.Weighboxlbl.AutoSize = true;
+            this.Weighboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.Weighboxlbl.Location = new System.Drawing.Point(6, 14);
+            this.Weighboxlbl.Name = "Weighboxlbl";
+            this.Weighboxlbl.Size = new System.Drawing.Size(138, 21);
+            this.Weighboxlbl.TabIndex = 107;
+            this.Weighboxlbl.Text = "Weigh and Label";
+            // 
+            // packagingboxlayout
+            // 
+            this.packagingboxlayout.ColumnCount = 1;
+            this.packagingboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.packagingboxlayout.Controls.Add(this.packagingboxpanel, 0, 1);
+            this.packagingboxlayout.Controls.Add(this.packagingboxheader, 0, 0);
+            this.packagingboxlayout.Location = new System.Drawing.Point(401, 309);
+            this.packagingboxlayout.Name = "packagingboxlayout";
+            this.packagingboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.packagingboxlayout.RowCount = 2;
+            this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
+            this.packagingboxlayout.Size = new System.Drawing.Size(364, 249);
+            this.packagingboxlayout.TabIndex = 108;
+            this.packagingboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxlayout_Paint);
+            // 
+            // packagingboxpanel
+            // 
+            this.packagingboxpanel.Controls.Add(this.packsize);
+            this.packagingboxpanel.Controls.Add(this.PackSizeList);
+            this.packagingboxpanel.Controls.Add(this.frdenier);
+            this.packagingboxpanel.Controls.Add(this.updenier);
+            this.packagingboxpanel.Controls.Add(this.copssize);
+            this.packagingboxpanel.Controls.Add(this.CopsItemList);
+            this.packagingboxpanel.Controls.Add(this.boxtype);
+            this.packagingboxpanel.Controls.Add(this.BoxItemList);
+            this.packagingboxpanel.Controls.Add(this.boxweight);
+            this.packagingboxpanel.Controls.Add(this.textBox3);
+            this.packagingboxpanel.Controls.Add(this.boxstock);
+            this.packagingboxpanel.Controls.Add(this.textBox4);
+            this.packagingboxpanel.Controls.Add(this.copweight);
+            this.packagingboxpanel.Controls.Add(this.textBox1);
+            this.packagingboxpanel.Controls.Add(this.copstock);
+            this.packagingboxpanel.Controls.Add(this.textBox2);
+            this.packagingboxpanel.Location = new System.Drawing.Point(5, 49);
+            this.packagingboxpanel.Name = "packagingboxpanel";
+            this.packagingboxpanel.Size = new System.Drawing.Size(354, 194);
+            this.packagingboxpanel.TabIndex = 107;
+            // 
+            // packagingboxheader
+            // 
+            this.packagingboxheader.Controls.Add(this.Packagingboxlbl);
+            this.packagingboxheader.Location = new System.Drawing.Point(5, 5);
+            this.packagingboxheader.Name = "packagingboxheader";
+            this.packagingboxheader.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.packagingboxheader.Size = new System.Drawing.Size(354, 38);
+            this.packagingboxheader.TabIndex = 107;
+            this.packagingboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxheader_Paint);
+            // 
+            // Packagingboxlbl
+            // 
+            this.Packagingboxlbl.AutoSize = true;
+            this.Packagingboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.Packagingboxlbl.Location = new System.Drawing.Point(6, 9);
+            this.Packagingboxlbl.Name = "Packagingboxlbl";
+            this.Packagingboxlbl.Size = new System.Drawing.Size(90, 21);
+            this.Packagingboxlbl.TabIndex = 107;
+            this.Packagingboxlbl.Text = "Packaging";
+            // 
+            // orderboxlayout
+            // 
+            this.orderboxlayout.ColumnCount = 1;
+            this.orderboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.orderboxlayout.Controls.Add(this.orderboxpanel, 0, 1);
+            this.orderboxlayout.Controls.Add(this.orderboxheader, 0, 0);
+            this.orderboxlayout.Location = new System.Drawing.Point(13, 389);
+            this.orderboxlayout.Name = "orderboxlayout";
+            this.orderboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.orderboxlayout.RowCount = 2;
+            this.orderboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.orderboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
+            this.orderboxlayout.Size = new System.Drawing.Size(364, 249);
+            this.orderboxlayout.TabIndex = 107;
+            this.orderboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.orderboxlayout_Paint);
+            // 
+            // orderboxpanel
+            // 
+            this.orderboxpanel.Controls.Add(this.quality);
+            this.orderboxpanel.Controls.Add(this.QualityList);
+            this.orderboxpanel.Controls.Add(this.saleorderno);
+            this.orderboxpanel.Controls.Add(this.SaleOrderList);
+            this.orderboxpanel.Controls.Add(this.windingtype);
+            this.orderboxpanel.Controls.Add(this.WindingTypeList);
+            this.orderboxpanel.Controls.Add(this.productiontype);
+            this.orderboxpanel.Controls.Add(this.prodtype);
+            this.orderboxpanel.Controls.Add(this.remark);
+            this.orderboxpanel.Controls.Add(this.remarks);
+            this.orderboxpanel.Controls.Add(this.label1);
+            this.orderboxpanel.Controls.Add(this.copyno);
+            this.orderboxpanel.Location = new System.Drawing.Point(5, 49);
+            this.orderboxpanel.Name = "orderboxpanel";
+            this.orderboxpanel.Size = new System.Drawing.Size(354, 194);
+            this.orderboxpanel.TabIndex = 107;
+            // 
+            // orderboxheader
+            // 
+            this.orderboxheader.Controls.Add(this.Orderboxlbl);
+            this.orderboxheader.Location = new System.Drawing.Point(5, 5);
+            this.orderboxheader.Name = "orderboxheader";
+            this.orderboxheader.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.orderboxheader.Size = new System.Drawing.Size(354, 38);
+            this.orderboxheader.TabIndex = 107;
+            this.orderboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.orderboxheader_Paint);
+            // 
+            // Orderboxlbl
+            // 
+            this.Orderboxlbl.AutoSize = true;
+            this.Orderboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.Orderboxlbl.Location = new System.Drawing.Point(6, 9);
+            this.Orderboxlbl.Name = "Orderboxlbl";
+            this.Orderboxlbl.Size = new System.Drawing.Size(110, 21);
+            this.Orderboxlbl.TabIndex = 107;
+            this.Orderboxlbl.Text = "Order Details";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.prowner);
+            this.panel3.Controls.Add(this.prwtps);
+            this.panel3.Controls.Add(this.prcompany);
+            this.panel3.Controls.Add(this.prqrcode);
+            this.panel3.Controls.Add(this.prhindi);
+            this.panel3.Controls.Add(this.pruser);
+            this.panel3.Controls.Add(this.prdate);
+            this.panel3.Location = new System.Drawing.Point(400, 572);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(170, 164);
+            this.panel3.TabIndex = 87;
+            // 
+            // wgroupbox
+            // 
+            this.wgroupbox.Controls.Add(this.windinggrid);
+            this.wgroupbox.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.wgroupbox.Location = new System.Drawing.Point(577, 564);
+            this.wgroupbox.Name = "wgroupbox";
+            this.wgroupbox.Size = new System.Drawing.Size(202, 161);
+            this.wgroupbox.TabIndex = 90;
+            this.wgroupbox.TabStop = false;
+            this.wgroupbox.Text = "Winding Type + Gradewise Production Status";
+            // 
+            // windinggrid
+            // 
+            this.windinggrid.AutoGenerateColumns = false;
+            this.windinggrid.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.windinggrid.ColumnHeadersHeight = 34;
+            this.windinggrid.DataSource = this.windingqty;
+            this.windinggrid.Location = new System.Drawing.Point(8, 20);
+            this.windinggrid.Name = "windinggrid";
+            this.windinggrid.RowHeadersVisible = false;
+            this.windinggrid.RowHeadersWidth = 62;
+            this.windinggrid.Size = new System.Drawing.Size(188, 135);
+            this.windinggrid.TabIndex = 92;
+            this.windinggrid.Paint += new System.Windows.Forms.PaintEventHandler(this.windinggrid_Paint);
             // 
             // cancelbtn
             // 
             this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.cancelbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.cancelbtn.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(271, 658);
+            this.cancelbtn.Location = new System.Drawing.Point(18, 744);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(75, 28);
             this.cancelbtn.TabIndex = 106;
@@ -1133,24 +1477,6 @@ namespace PackingApplication
             this.linenoerror.TabIndex = 98;
             this.linenoerror.Visible = false;
             // 
-            // deniervalue
-            // 
-            this.deniervalue.Location = new System.Drawing.Point(286, 161);
-            this.deniervalue.Margin = new System.Windows.Forms.Padding(2);
-            this.deniervalue.Name = "deniervalue";
-            this.deniervalue.ReadOnly = true;
-            this.deniervalue.Size = new System.Drawing.Size(134, 26);
-            this.deniervalue.TabIndex = 95;
-            // 
-            // denier
-            // 
-            this.denier.AutoSize = true;
-            this.denier.Location = new System.Drawing.Point(224, 164);
-            this.denier.Name = "denier";
-            this.denier.Size = new System.Drawing.Size(60, 20);
-            this.denier.TabIndex = 94;
-            this.denier.Text = "Denier:";
-            // 
             // lastboxdetails
             // 
             this.lastboxdetails.Controls.Add(this.netwttxtbox);
@@ -1162,10 +1488,10 @@ namespace PackingApplication
             this.lastboxdetails.Controls.Add(this.copstxtbox);
             this.lastboxdetails.Controls.Add(this.cops);
             this.lastboxdetails.Controls.Add(this.lastboxldetailist);
-            this.lastboxdetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.lastboxdetails.Location = new System.Drawing.Point(443, 273);
+            this.lastboxdetails.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.lastboxdetails.Location = new System.Drawing.Point(801, 5);
             this.lastboxdetails.Name = "lastboxdetails";
-            this.lastboxdetails.Size = new System.Drawing.Size(170, 161);
+            this.lastboxdetails.Size = new System.Drawing.Size(205, 161);
             this.lastboxdetails.TabIndex = 93;
             this.lastboxdetails.TabStop = false;
             this.lastboxdetails.Text = "Last Box Details";
@@ -1181,7 +1507,7 @@ namespace PackingApplication
             // netweight
             // 
             this.netweight.AutoSize = true;
-            this.netweight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.netweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.netweight.Location = new System.Drawing.Point(11, 105);
             this.netweight.Name = "netweight";
             this.netweight.Size = new System.Drawing.Size(88, 20);
@@ -1199,7 +1525,7 @@ namespace PackingApplication
             // grossweight
             // 
             this.grossweight.AutoSize = true;
-            this.grossweight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.grossweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.grossweight.Location = new System.Drawing.Point(11, 78);
             this.grossweight.Name = "grossweight";
             this.grossweight.Size = new System.Drawing.Size(106, 20);
@@ -1217,7 +1543,7 @@ namespace PackingApplication
             // tareweight
             // 
             this.tareweight.AutoSize = true;
-            this.tareweight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.tareweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.tareweight.Location = new System.Drawing.Point(11, 51);
             this.tareweight.Name = "tareweight";
             this.tareweight.Size = new System.Drawing.Size(95, 20);
@@ -1235,7 +1561,7 @@ namespace PackingApplication
             // cops
             // 
             this.cops.AutoSize = true;
-            this.cops.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.cops.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.cops.Location = new System.Drawing.Point(11, 26);
             this.cops.Name = "cops";
             this.cops.Size = new System.Drawing.Size(46, 20);
@@ -1253,110 +1579,14 @@ namespace PackingApplication
             this.lastboxldetailist.TabIndex = 0;
             this.lastboxldetailist.UseCompatibleStateImageBehavior = false;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.grosswterror);
-            this.groupBox1.Controls.Add(this.palletwterror);
-            this.groupBox1.Controls.Add(this.spoolwterror);
-            this.groupBox1.Controls.Add(this.spoolnoerror);
-            this.groupBox1.Controls.Add(this.wtpercop);
-            this.groupBox1.Controls.Add(this.spool);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.spoolno);
-            this.groupBox1.Controls.Add(this.netwt);
-            this.groupBox1.Controls.Add(this.spoolwt);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.palletwt);
-            this.groupBox1.Controls.Add(this.tarewt);
-            this.groupBox1.Controls.Add(this.palletwtno);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.grosswtno);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(630, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(205, 258);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Weighing Details";
-            // 
-            // grosswterror
-            // 
-            this.grosswterror.AutoSize = true;
-            this.grosswterror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.grosswterror.ForeColor = System.Drawing.Color.Red;
-            this.grosswterror.Location = new System.Drawing.Point(10, 122);
-            this.grosswterror.Name = "grosswterror";
-            this.grosswterror.Size = new System.Drawing.Size(0, 20);
-            this.grosswterror.TabIndex = 89;
-            this.grosswterror.Visible = false;
-            // 
-            // palletwterror
-            // 
-            this.palletwterror.AutoSize = true;
-            this.palletwterror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.palletwterror.ForeColor = System.Drawing.Color.Red;
-            this.palletwterror.Location = new System.Drawing.Point(10, 78);
-            this.palletwterror.Name = "palletwterror";
-            this.palletwterror.Size = new System.Drawing.Size(0, 20);
-            this.palletwterror.TabIndex = 88;
-            this.palletwterror.Visible = false;
-            // 
-            // spoolwterror
-            // 
-            this.spoolwterror.AutoSize = true;
-            this.spoolwterror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.spoolwterror.ForeColor = System.Drawing.Color.Red;
-            this.spoolwterror.Location = new System.Drawing.Point(96, 38);
-            this.spoolwterror.Name = "spoolwterror";
-            this.spoolwterror.Size = new System.Drawing.Size(0, 20);
-            this.spoolwterror.TabIndex = 87;
-            this.spoolwterror.Visible = false;
-            // 
-            // spoolnoerror
-            // 
-            this.spoolnoerror.AutoSize = true;
-            this.spoolnoerror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.spoolnoerror.ForeColor = System.Drawing.Color.Red;
-            this.spoolnoerror.Location = new System.Drawing.Point(10, 38);
-            this.spoolnoerror.Name = "spoolnoerror";
-            this.spoolnoerror.Size = new System.Drawing.Size(0, 20);
-            this.spoolnoerror.TabIndex = 86;
-            this.spoolnoerror.Visible = false;
-            // 
-            // wgroupbox
-            // 
-            this.wgroupbox.Controls.Add(this.windinggrid);
-            this.wgroupbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.wgroupbox.Location = new System.Drawing.Point(443, 485);
-            this.wgroupbox.Name = "wgroupbox";
-            this.wgroupbox.Size = new System.Drawing.Size(392, 161);
-            this.wgroupbox.TabIndex = 90;
-            this.wgroupbox.TabStop = false;
-            this.wgroupbox.Text = "Winding Type + Gradewise Production Status";
-            // 
-            // windinggrid
-            // 
-            this.windinggrid.AutoGenerateColumns = false;
-            this.windinggrid.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.windinggrid.ColumnHeadersHeight = 34;
-            this.windinggrid.DataSource = this.windingqty;
-            this.windinggrid.Location = new System.Drawing.Point(8, 20);
-            this.windinggrid.Name = "windinggrid";
-            this.windinggrid.RowHeadersVisible = false;
-            this.windinggrid.RowHeadersWidth = 62;
-            this.windinggrid.Size = new System.Drawing.Size(378, 135);
-            this.windinggrid.TabIndex = 92;
-            this.windinggrid.Paint += new System.Windows.Forms.PaintEventHandler(this.windinggrid_Paint);
-            // 
             // gradewiseprodn
             // 
             this.gradewiseprodn.Controls.Add(this.totalprodbalqty);
             this.gradewiseprodn.Controls.Add(this.qualityqty);
             this.gradewiseprodn.Controls.Add(this.saleordrqty);
-            this.gradewiseprodn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.gradewiseprodn.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.gradewiseprodn.ForeColor = System.Drawing.Color.Black;
-            this.gradewiseprodn.Location = new System.Drawing.Point(630, 273);
+            this.gradewiseprodn.Location = new System.Drawing.Point(801, 169);
             this.gradewiseprodn.Name = "gradewiseprodn";
             this.gradewiseprodn.Size = new System.Drawing.Size(205, 164);
             this.gradewiseprodn.TabIndex = 93;
@@ -1366,7 +1596,7 @@ namespace PackingApplication
             // totalprodbalqty
             // 
             this.totalprodbalqty.AutoSize = true;
-            this.totalprodbalqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.totalprodbalqty.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
             this.totalprodbalqty.Location = new System.Drawing.Point(10, 147);
             this.totalprodbalqty.Name = "totalprodbalqty";
@@ -1393,39 +1623,13 @@ namespace PackingApplication
             // saleordrqty
             // 
             this.saleordrqty.AutoSize = true;
-            this.saleordrqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.saleordrqty.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.saleordrqty.ForeColor = System.Drawing.SystemColors.ControlText;
             this.saleordrqty.Location = new System.Drawing.Point(10, 17);
             this.saleordrqty.Name = "saleordrqty";
             this.saleordrqty.Size = new System.Drawing.Size(121, 20);
             this.saleordrqty.TabIndex = 92;
             this.saleordrqty.Text = "Sale Order Qty :";
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.prowner);
-            this.panel3.Controls.Add(this.prwtps);
-            this.panel3.Controls.Add(this.prcompany);
-            this.panel3.Controls.Add(this.prqrcode);
-            this.panel3.Controls.Add(this.prhindi);
-            this.panel3.Controls.Add(this.pruser);
-            this.panel3.Controls.Add(this.prdate);
-            this.panel3.Location = new System.Drawing.Point(443, 8);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(170, 164);
-            this.panel3.TabIndex = 87;
-            // 
-            // PrefixList
-            // 
-            this.PrefixList.AllowDrop = true;
-            this.PrefixList.FormattingEnabled = true;
-            this.PrefixList.Location = new System.Drawing.Point(285, 47);
-            this.PrefixList.Margin = new System.Windows.Forms.Padding(2);
-            this.PrefixList.Name = "PrefixList";
-            this.PrefixList.Size = new System.Drawing.Size(134, 28);
-            this.PrefixList.TabIndex = 86;
-            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
             // 
             // windingtypeDataGridViewTextBoxColumn
             // 
@@ -1466,7 +1670,7 @@ namespace PackingApplication
             // poyformlabel
             // 
             this.poyformlabel.AutoSize = true;
-            this.poyformlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.poyformlabel.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.poyformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.poyformlabel.Location = new System.Drawing.Point(18, 7);
             this.poyformlabel.Name = "poyformlabel";
@@ -1486,7 +1690,7 @@ namespace PackingApplication
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1292, 749);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1292, 804);
             this.tableLayoutPanel1.TabIndex = 98;
             // 
             // leftpanel
@@ -1498,149 +1702,8 @@ namespace PackingApplication
             this.leftpanel.Controls.Add(this.ordertable);
             this.leftpanel.Location = new System.Drawing.Point(3, 3);
             this.leftpanel.Name = "leftpanel";
-            this.leftpanel.Size = new System.Drawing.Size(252, 743);
+            this.leftpanel.Size = new System.Drawing.Size(252, 798);
             this.leftpanel.TabIndex = 107;
-            // 
-            // ordertable
-            // 
-            this.ordertable.ColumnCount = 2;
-            this.ordertable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
-            this.ordertable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
-            this.ordertable.Controls.Add(this.orderdetailsrightpanel, 1, 0);
-            this.ordertable.Controls.Add(this.orderdetails1, 0, 0);
-            this.ordertable.Location = new System.Drawing.Point(9, 0);
-            this.ordertable.Name = "ordertable";
-            this.ordertable.Padding = new System.Windows.Forms.Padding(5);
-            this.ordertable.RowCount = 1;
-            this.ordertable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ordertable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.ordertable.Size = new System.Drawing.Size(230, 66);
-            this.ordertable.TabIndex = 107;
-            this.ordertable.Paint += new System.Windows.Forms.PaintEventHandler(this.ordertable_Paint);
-            // 
-            // orderdetailsrightpanel
-            // 
-            this.orderdetailsrightpanel.Controls.Add(this.orderlbl);
-            this.orderdetailsrightpanel.Controls.Add(this.orderdetailssubtitle);
-            this.orderdetailsrightpanel.Location = new System.Drawing.Point(52, 8);
-            this.orderdetailsrightpanel.Name = "orderdetailsrightpanel";
-            this.orderdetailsrightpanel.Size = new System.Drawing.Size(170, 49);
-            this.orderdetailsrightpanel.TabIndex = 0;
-            // 
-            // orderlbl
-            // 
-            this.orderlbl.AutoSize = true;
-            this.orderlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.orderlbl.Location = new System.Drawing.Point(3, 4);
-            this.orderlbl.Name = "orderlbl";
-            this.orderlbl.Size = new System.Drawing.Size(126, 22);
-            this.orderlbl.TabIndex = 0;
-            this.orderlbl.Text = "Order details";
-            this.orderlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // orderdetailssubtitle
-            // 
-            this.orderdetailssubtitle.AutoSize = true;
-            this.orderdetailssubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.orderdetailssubtitle.Location = new System.Drawing.Point(3, 27);
-            this.orderdetailssubtitle.Name = "orderdetailssubtitle";
-            this.orderdetailssubtitle.Size = new System.Drawing.Size(176, 20);
-            this.orderdetailssubtitle.TabIndex = 0;
-            this.orderdetailssubtitle.Text = "Shade, SO No, Winding";
-            // 
-            // packagingtable
-            // 
-            this.packagingtable.ColumnCount = 2;
-            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
-            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
-            this.packagingtable.Controls.Add(this.panel1, 1, 0);
-            this.packagingtable.Controls.Add(this.packagingdtls, 0, 0);
-            this.packagingtable.Location = new System.Drawing.Point(8, 89);
-            this.packagingtable.Name = "packagingtable";
-            this.packagingtable.Padding = new System.Windows.Forms.Padding(5);
-            this.packagingtable.RowCount = 1;
-            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.packagingtable.Size = new System.Drawing.Size(230, 66);
-            this.packagingtable.TabIndex = 108;
-            this.packagingtable.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingtable_Paint);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.packaginglbl);
-            this.panel1.Controls.Add(this.packagingsubtitle);
-            this.panel1.Location = new System.Drawing.Point(52, 8);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(170, 49);
-            this.panel1.TabIndex = 0;
-            // 
-            // packaginglbl
-            // 
-            this.packaginglbl.AutoSize = true;
-            this.packaginglbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.packaginglbl.Location = new System.Drawing.Point(3, 4);
-            this.packaginglbl.Name = "packaginglbl";
-            this.packaginglbl.Size = new System.Drawing.Size(103, 22);
-            this.packaginglbl.TabIndex = 0;
-            this.packaginglbl.Text = "Packaging";
-            this.packaginglbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // packagingsubtitle
-            // 
-            this.packagingsubtitle.AutoSize = true;
-            this.packagingsubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.packagingsubtitle.Location = new System.Drawing.Point(3, 27);
-            this.packagingsubtitle.Name = "packagingsubtitle";
-            this.packagingsubtitle.Size = new System.Drawing.Size(167, 20);
-            this.packagingsubtitle.TabIndex = 0;
-            this.packagingsubtitle.Text = "Pack, Cops, Box/Pallet";
-            // 
-            // weighttable
-            // 
-            this.weighttable.ColumnCount = 2;
-            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
-            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
-            this.weighttable.Controls.Add(this.panel2, 1, 0);
-            this.weighttable.Controls.Add(this.weightdtls, 0, 0);
-            this.weighttable.Location = new System.Drawing.Point(10, 179);
-            this.weighttable.Name = "weighttable";
-            this.weighttable.Padding = new System.Windows.Forms.Padding(5);
-            this.weighttable.RowCount = 1;
-            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.weighttable.Size = new System.Drawing.Size(230, 66);
-            this.weighttable.TabIndex = 109;
-            this.weighttable.Paint += new System.Windows.Forms.PaintEventHandler(this.weightable_Paint);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.weighlbl);
-            this.panel2.Controls.Add(this.weighsubtitle);
-            this.panel2.Location = new System.Drawing.Point(52, 8);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(170, 49);
-            this.panel2.TabIndex = 0;
-            // 
-            // weighlbl
-            // 
-            this.weighlbl.AutoSize = true;
-            this.weighlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.weighlbl.Location = new System.Drawing.Point(3, 4);
-            this.weighlbl.Name = "weighlbl";
-            this.weighlbl.Size = new System.Drawing.Size(127, 22);
-            this.weighlbl.TabIndex = 0;
-            this.weighlbl.Text = "Weigh & Label";
-            this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // weighsubtitle
-            // 
-            this.weighsubtitle.AutoSize = true;
-            this.weighsubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.weighsubtitle.Location = new System.Drawing.Point(3, 27);
-            this.weighsubtitle.Name = "weighsubtitle";
-            this.weighsubtitle.Size = new System.Drawing.Size(138, 20);
-            this.weighsubtitle.TabIndex = 0;
-            this.weighsubtitle.Text = "Scale, QR, Copies";
             // 
             // reviewtable
             // 
@@ -1671,7 +1734,7 @@ namespace PackingApplication
             // reviewlbl
             // 
             this.reviewlbl.AutoSize = true;
-            this.reviewlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.reviewlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.reviewlbl.Location = new System.Drawing.Point(3, 4);
             this.reviewlbl.Name = "reviewlbl";
             this.reviewlbl.Size = new System.Drawing.Size(154, 22);
@@ -1682,7 +1745,7 @@ namespace PackingApplication
             // reviewsubtitle
             // 
             this.reviewsubtitle.AutoSize = true;
-            this.reviewsubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.reviewsubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.reviewsubtitle.Location = new System.Drawing.Point(3, 27);
             this.reviewsubtitle.Name = "reviewsubtitle";
             this.reviewsubtitle.Size = new System.Drawing.Size(96, 20);
@@ -1700,6 +1763,53 @@ namespace PackingApplication
             this.reviewdtls.TabIndex = 107;
             this.reviewdtls.TabStop = false;
             // 
+            // weighttable
+            // 
+            this.weighttable.ColumnCount = 2;
+            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
+            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
+            this.weighttable.Controls.Add(this.panel2, 1, 0);
+            this.weighttable.Controls.Add(this.weightdtls, 0, 0);
+            this.weighttable.Location = new System.Drawing.Point(10, 179);
+            this.weighttable.Name = "weighttable";
+            this.weighttable.Padding = new System.Windows.Forms.Padding(5);
+            this.weighttable.RowCount = 1;
+            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.weighttable.Size = new System.Drawing.Size(230, 66);
+            this.weighttable.TabIndex = 109;
+            this.weighttable.Paint += new System.Windows.Forms.PaintEventHandler(this.weightable_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.weighlbl);
+            this.panel2.Controls.Add(this.weighsubtitle);
+            this.panel2.Location = new System.Drawing.Point(52, 8);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(170, 49);
+            this.panel2.TabIndex = 0;
+            // 
+            // weighlbl
+            // 
+            this.weighlbl.AutoSize = true;
+            this.weighlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.weighlbl.Location = new System.Drawing.Point(3, 4);
+            this.weighlbl.Name = "weighlbl";
+            this.weighlbl.Size = new System.Drawing.Size(127, 22);
+            this.weighlbl.TabIndex = 0;
+            this.weighlbl.Text = "Weigh & Label";
+            this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // weighsubtitle
+            // 
+            this.weighsubtitle.AutoSize = true;
+            this.weighsubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.weighsubtitle.Location = new System.Drawing.Point(3, 27);
+            this.weighsubtitle.Name = "weighsubtitle";
+            this.weighsubtitle.Size = new System.Drawing.Size(138, 20);
+            this.weighsubtitle.TabIndex = 0;
+            this.weighsubtitle.Text = "Scale, QR, Copies";
+            // 
             // weightdtls
             // 
             this.weightdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1711,6 +1821,53 @@ namespace PackingApplication
             this.weightdtls.TabIndex = 107;
             this.weightdtls.TabStop = false;
             // 
+            // packagingtable
+            // 
+            this.packagingtable.ColumnCount = 2;
+            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
+            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
+            this.packagingtable.Controls.Add(this.panel1, 1, 0);
+            this.packagingtable.Controls.Add(this.packagingdtls, 0, 0);
+            this.packagingtable.Location = new System.Drawing.Point(8, 89);
+            this.packagingtable.Name = "packagingtable";
+            this.packagingtable.Padding = new System.Windows.Forms.Padding(5);
+            this.packagingtable.RowCount = 1;
+            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.packagingtable.Size = new System.Drawing.Size(230, 66);
+            this.packagingtable.TabIndex = 108;
+            this.packagingtable.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingtable_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.packaginglbl);
+            this.panel1.Controls.Add(this.packagingsubtitle);
+            this.panel1.Location = new System.Drawing.Point(52, 8);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(170, 49);
+            this.panel1.TabIndex = 0;
+            // 
+            // packaginglbl
+            // 
+            this.packaginglbl.AutoSize = true;
+            this.packaginglbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.packaginglbl.Location = new System.Drawing.Point(3, 4);
+            this.packaginglbl.Name = "packaginglbl";
+            this.packaginglbl.Size = new System.Drawing.Size(103, 22);
+            this.packaginglbl.TabIndex = 0;
+            this.packaginglbl.Text = "Packaging";
+            this.packaginglbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // packagingsubtitle
+            // 
+            this.packagingsubtitle.AutoSize = true;
+            this.packagingsubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.packagingsubtitle.Location = new System.Drawing.Point(3, 27);
+            this.packagingsubtitle.Name = "packagingsubtitle";
+            this.packagingsubtitle.Size = new System.Drawing.Size(167, 20);
+            this.packagingsubtitle.TabIndex = 0;
+            this.packagingsubtitle.Text = "Pack, Cops, Box/Pallet";
+            // 
             // packagingdtls
             // 
             this.packagingdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1721,6 +1878,53 @@ namespace PackingApplication
             this.packagingdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.packagingdtls.TabIndex = 107;
             this.packagingdtls.TabStop = false;
+            // 
+            // ordertable
+            // 
+            this.ordertable.ColumnCount = 2;
+            this.ordertable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
+            this.ordertable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
+            this.ordertable.Controls.Add(this.orderdetailsrightpanel, 1, 0);
+            this.ordertable.Controls.Add(this.orderdetails1, 0, 0);
+            this.ordertable.Location = new System.Drawing.Point(9, 0);
+            this.ordertable.Name = "ordertable";
+            this.ordertable.Padding = new System.Windows.Forms.Padding(5);
+            this.ordertable.RowCount = 1;
+            this.ordertable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ordertable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.ordertable.Size = new System.Drawing.Size(230, 66);
+            this.ordertable.TabIndex = 107;
+            this.ordertable.Paint += new System.Windows.Forms.PaintEventHandler(this.ordertable_Paint);
+            // 
+            // orderdetailsrightpanel
+            // 
+            this.orderdetailsrightpanel.Controls.Add(this.orderlbl);
+            this.orderdetailsrightpanel.Controls.Add(this.orderdetailssubtitle);
+            this.orderdetailsrightpanel.Location = new System.Drawing.Point(52, 8);
+            this.orderdetailsrightpanel.Name = "orderdetailsrightpanel";
+            this.orderdetailsrightpanel.Size = new System.Drawing.Size(170, 49);
+            this.orderdetailsrightpanel.TabIndex = 0;
+            // 
+            // orderlbl
+            // 
+            this.orderlbl.AutoSize = true;
+            this.orderlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.orderlbl.Location = new System.Drawing.Point(3, 4);
+            this.orderlbl.Name = "orderlbl";
+            this.orderlbl.Size = new System.Drawing.Size(126, 22);
+            this.orderlbl.TabIndex = 0;
+            this.orderlbl.Text = "Order details";
+            this.orderlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // orderdetailssubtitle
+            // 
+            this.orderdetailssubtitle.AutoSize = true;
+            this.orderdetailssubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.orderdetailssubtitle.Location = new System.Drawing.Point(3, 27);
+            this.orderdetailssubtitle.Name = "orderdetailssubtitle";
+            this.orderdetailssubtitle.Size = new System.Drawing.Size(176, 20);
+            this.orderdetailssubtitle.TabIndex = 0;
+            this.orderdetailssubtitle.Text = "Shade, SO No, Winding";
             // 
             // orderdetails1
             // 
@@ -1738,46 +1942,64 @@ namespace PackingApplication
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1292, 749);
+            this.ClientSize = new System.Drawing.Size(1292, 804);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.poyformlabel);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "POYPackingForm";
             this.Text = "POYPackingForm";
             this.Load += new System.EventHandler(this.POYPackingForm_Load);
             this.rightpanel.ResumeLayout(false);
             this.rightpanel.PerformLayout();
-            this.lastboxdetails.ResumeLayout(false);
-            this.lastboxdetails.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.machineboxlayout.ResumeLayout(false);
+            this.machineboxpanel.ResumeLayout(false);
+            this.machineboxpanel.PerformLayout();
+            this.machineboxheader.ResumeLayout(false);
+            this.machineboxheader.PerformLayout();
+            this.weighboxlayout.ResumeLayout(false);
+            this.weighboxpanel.ResumeLayout(false);
+            this.weighboxpanel.PerformLayout();
+            this.weighboxheader.ResumeLayout(false);
+            this.weighboxheader.PerformLayout();
+            this.packagingboxlayout.ResumeLayout(false);
+            this.packagingboxpanel.ResumeLayout(false);
+            this.packagingboxpanel.PerformLayout();
+            this.packagingboxheader.ResumeLayout(false);
+            this.packagingboxheader.PerformLayout();
+            this.orderboxlayout.ResumeLayout(false);
+            this.orderboxpanel.ResumeLayout(false);
+            this.orderboxpanel.PerformLayout();
+            this.orderboxheader.ResumeLayout(false);
+            this.orderboxheader.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.wgroupbox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).EndInit();
+            this.lastboxdetails.ResumeLayout(false);
+            this.lastboxdetails.PerformLayout();
             this.gradewiseprodn.ResumeLayout(false);
             this.gradewiseprodn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.leftpanel.ResumeLayout(false);
-            this.ordertable.ResumeLayout(false);
-            this.orderdetailsrightpanel.ResumeLayout(false);
-            this.orderdetailsrightpanel.PerformLayout();
-            this.packagingtable.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.weighttable.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.reviewtable.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).EndInit();
+            this.weighttable.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).EndInit();
+            this.packagingtable.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).EndInit();
+            this.ordertable.ResumeLayout(false);
+            this.orderdetailsrightpanel.ResumeLayout(false);
+            this.orderdetailsrightpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1887,7 +2109,6 @@ namespace PackingApplication
         private GroupBox lastboxdetails;
         private DataGridView windinggrid;
         private GroupBox wgroupbox;
-        private GroupBox groupBox1;
         private ListView lastboxldetailist;
         private System.Windows.Forms.Label cops;
         private TextBox copstxtbox;
@@ -1936,6 +2157,22 @@ namespace PackingApplication
         private System.Windows.Forms.Label reviewlbl;
         private System.Windows.Forms.Label reviewsubtitle;
         private PictureBox reviewdtls;
+        private Panel orderboxheader;
+        private System.Windows.Forms.Label Orderboxlbl;
+        private TableLayoutPanel orderboxlayout;
+        private Panel orderboxpanel;
+        private TableLayoutPanel packagingboxlayout;
+        private Panel packagingboxpanel;
+        private Panel packagingboxheader;
+        private System.Windows.Forms.Label Packagingboxlbl;
+        private TableLayoutPanel weighboxlayout;
+        private Panel weighboxpanel;
+        private Panel weighboxheader;
+        private System.Windows.Forms.Label Weighboxlbl;
+        private TableLayoutPanel machineboxlayout;
+        private Panel machineboxpanel;
+        private Panel machineboxheader;
+        private System.Windows.Forms.Label Machinelbl;
     }
 }
 
