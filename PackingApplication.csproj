@@ -118,6 +118,9 @@
     </Compile>
     <Compile Include="Helper\FontManager.cs" />
     <Compile Include="Helper\HTTPMethod.cs" />
+    <Compile Include="Helper\RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
@@ -223,6 +226,10 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\logo.png" />
+    <None Include="Resources\icons8-circled-4-48.png" />
+    <None Include="Resources\icons8-circled-3-48.png" />
+    <None Include="Resources\icons8-circled-2-48.png" />
+    <None Include="Resources\icons8-one-48.png" />
     <None Include="Resources\icons8-edit-48.png" />
     <None Include="Resources\default-profile.png" />
     <None Include="Resources\PublicSans.ttf" />

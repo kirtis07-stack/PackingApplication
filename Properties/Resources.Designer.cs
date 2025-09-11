@@ -73,6 +73,36 @@ namespace PackingApplication.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_circled_2_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-circled-2-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_circled_3_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-circled-3-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_circled_4_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-circled-4-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_edit_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-edit-48", resourceCulture);
@@ -96,6 +126,16 @@ namespace PackingApplication.Properties {
         internal static System.Drawing.Bitmap icons8_hide_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-hide-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_one_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-one-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

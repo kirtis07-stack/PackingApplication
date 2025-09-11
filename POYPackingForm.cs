@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -1193,6 +1194,123 @@ namespace PackingApplication
             {
                 dashboard.LoadFormInContent(new POYPackingList());
             }
+        }
+
+        private void ordertable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    ordertable.Width - thickness - 1,
+                    ordertable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void packagingtable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    ordertable.Width - thickness - 1,
+                    ordertable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void weightable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    ordertable.Width - thickness - 1,
+                    ordertable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void reviewtable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    ordertable.Width - thickness - 1,
+                    ordertable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            int diameter = radius * 2;
+
+            // Top-left corner
+            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+
+            // Top-right corner
+            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
+
+            // Bottom-right corner
+            path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
+
+            // Bottom-left corner
+            path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
+
+            path.CloseFigure();
+            return path;
         }
     }
 }
