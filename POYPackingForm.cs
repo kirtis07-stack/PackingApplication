@@ -710,24 +710,101 @@ namespace PackingApplication
                     
                     Panel rowPanel = new Panel();
                     rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-                    rowPanel.BorderStyle = BorderStyle.FixedSingle;
+                    rowPanel.BorderStyle = BorderStyle.None; // disable default border
+
+                    // attach Paint event
+                    rowPanel.Paint += (s, pe) =>
+                    {
+                        using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                        {
+                            // dashed border example: pen.DashStyle = DashStyle.Dash;
+                            pe.Graphics.DrawLine(
+                                pen,
+                                0, rowPanel.Height - 1,
+                                rowPanel.Width, rowPanel.Height - 1
+                            );
+                        }
+                    };
 
                     // SrNo
-                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10) };
+                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Tag = selectedItem.ItemId };
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
 
                     // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(190, 10) };
+                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Tag = new Tuple<ItemResponse, int>(selectedItem, qty) };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
+                    btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
+                    btnEdit.FlatAppearance.BorderSize = 1;   // thickness
+                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); // hover effect
+                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255); // click effect
+                    btnEdit.FlatAppearance.BorderSize = 0;
+                    btnEdit.Paint += (s, f) =>
+                    {
+                        var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
+
+                        using (GraphicsPath path = GetRoundedRect(rect, 4)) // radius = 4
+                        using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
+                        {
+                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                            // Fill background
+                            f.Graphics.FillPath(brush, path);
+
+                            // Draw border
+                            f.Graphics.DrawPath(borderPen, path);
+
+                            // Draw text centered
+                            TextRenderer.DrawText(
+                                f.Graphics,
+                                btnEdit.Text,
+                                btnEdit.Font,
+                                rect,
+                                btnEdit.ForeColor,
+                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            );
+                        }
+                    };
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Delete", Size = new Size(60, 23), Location = new Point(310, 5), Tag = rowPanel };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(60, 23), Location = new Point(310, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
+                    btnDelete.FlatAppearance.BorderSize = 1;   // thickness
+                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204); // hover effect
+                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); // click effect
+                    btnDelete.FlatAppearance.BorderSize = 0;
+                    btnDelete.Paint += (s, f) =>
+                    {
+                        var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
 
+                        using (GraphicsPath path = GetRoundedRect(rect, 4)) // radius = 4
+                        using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
+                        {
+                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                            // Fill background
+                            f.Graphics.FillPath(brush, path);
+
+                            // Draw border
+                            f.Graphics.DrawPath(borderPen, path);
+
+                            // Draw text centered
+                            TextRenderer.DrawText(
+                                f.Graphics,
+                                btnDelete.Text,
+                                btnDelete.Font,
+                                rect,
+                                btnDelete.ForeColor,
+                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            );
+                        }
+                    };
                     // Remove Row
                     btnDelete.Click += (s, args) =>
                     {
@@ -788,12 +865,24 @@ namespace PackingApplication
         {
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-            headerPanel.BackColor = Color.LightGray;
+            headerPanel.BackColor = Color.White;
+            headerPanel.Paint += (s, pe) =>
+            {
+                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                {
+                    // dashed border example: pen.DashStyle = DashStyle.Dash;
+                    pe.Graphics.DrawLine(
+                        pen,
+                        0, headerPanel.Height - 1,
+                        headerPanel.Width, headerPanel.Height - 1
+                    );
+                }
+            };
 
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 40, Location = new Point(10, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 120, Location = new Point(60, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new Point(190, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new Point(250, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Sr No", Width = 40, Location = new Point(10, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 120, Location = new Point(60, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new Point(250, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
 
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
@@ -1008,7 +1097,7 @@ namespace PackingApplication
             );
 
             // Draw border
-            using (Pen pen = new Pen(Color.Black, 2))  // custom border color
+            using (Pen pen = new Pen(Color.LightGray, 2))  // custom border color
             {
                 e.Graphics.DrawRectangle(pen, rect);
             }
@@ -1538,5 +1627,159 @@ namespace PackingApplication
             }
         }
 
+        private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxtarepanel.Width - 1, lastbxtarepanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxgrosswtpanel.Width - 1, lastbxgrosswtpanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxnetwtpanel.Width - 1, lastbxnetwtpanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    printingdetailslayout.Width - thickness - 1,
+                    printingdetailslayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, printingdetailsheader.Height - borderThickness / 1,
+                    printingdetailsheader.Width, printingdetailsheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    palletdetailslayout.Width - thickness - 1,
+                    palletdetailslayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, palletdetailsheader.Height - borderThickness / 1,
+                    palletdetailsheader.Width, palletdetailsheader.Height - borderThickness / 1
+                );
+            }
+        }
     }
 }
