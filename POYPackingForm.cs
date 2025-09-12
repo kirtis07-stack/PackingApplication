@@ -1472,5 +1472,71 @@ namespace PackingApplication
                 );
             }
         }
+
+        private void lastboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    lastboxlayout.Width - thickness - 1,
+                    lastboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void lastboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, lastboxheader.Height - borderThickness / 1,
+                    lastboxheader.Width, lastboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxcopspanel.Width - 1, lastbxcopspanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
     }
 }

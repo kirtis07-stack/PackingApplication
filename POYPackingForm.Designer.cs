@@ -155,8 +155,6 @@ namespace PackingApplication
             this.grossweight = new System.Windows.Forms.Label();
             this.tarewghttxtbox = new System.Windows.Forms.TextBox();
             this.tareweight = new System.Windows.Forms.Label();
-            this.copstxtbox = new System.Windows.Forms.TextBox();
-            this.cops = new System.Windows.Forms.Label();
             this.lastboxldetailist = new System.Windows.Forms.ListView();
             this.gradewiseprodn = new System.Windows.Forms.GroupBox();
             this.totalprodbalqty = new System.Windows.Forms.Label();
@@ -190,6 +188,13 @@ namespace PackingApplication
             this.orderlbl = new System.Windows.Forms.Label();
             this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
+            this.lastboxlayout = new System.Windows.Forms.TableLayoutPanel();
+            this.lastboxpanel = new System.Windows.Forms.Panel();
+            this.lastboxheader = new System.Windows.Forms.Panel();
+            this.Lastboxlbl = new System.Windows.Forms.Label();
+            this.cops = new System.Windows.Forms.Label();
+            this.copstxtbox = new System.Windows.Forms.TextBox();
+            this.lastbxcopspanel = new System.Windows.Forms.Panel();
             this.rightpanel.SuspendLayout();
             this.machineboxlayout.SuspendLayout();
             this.machineboxpanel.SuspendLayout();
@@ -225,6 +230,10 @@ namespace PackingApplication
             this.ordertable.SuspendLayout();
             this.orderdetailsrightpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).BeginInit();
+            this.lastboxlayout.SuspendLayout();
+            this.lastboxpanel.SuspendLayout();
+            this.lastboxheader.SuspendLayout();
+            this.lastbxcopspanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lineno
@@ -233,7 +242,7 @@ namespace PackingApplication
             this.lineno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.lineno.Location = new System.Drawing.Point(6, 6);
             this.lineno.Name = "lineno";
-            this.lineno.Size = new System.Drawing.Size(43, 20);
+            this.lineno.Size = new System.Drawing.Size(42, 18);
             this.lineno.TabIndex = 0;
             this.lineno.Text = "Line:";
             // 
@@ -241,9 +250,9 @@ namespace PackingApplication
             // 
             this.department.AutoSize = true;
             this.department.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.department.Location = new System.Drawing.Point(9, 69);
+            this.department.Location = new System.Drawing.Point(9, 67);
             this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(48, 20);
+            this.department.Size = new System.Drawing.Size(46, 18);
             this.department.TabIndex = 2;
             this.department.Text = "Dept:";
             // 
@@ -251,9 +260,9 @@ namespace PackingApplication
             // 
             this.mergeno.AutoSize = true;
             this.mergeno.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.mergeno.Location = new System.Drawing.Point(6, 130);
+            this.mergeno.Location = new System.Drawing.Point(6, 128);
             this.mergeno.Name = "mergeno";
-            this.mergeno.Size = new System.Drawing.Size(82, 20);
+            this.mergeno.Size = new System.Drawing.Size(81, 18);
             this.mergeno.TabIndex = 4;
             this.mergeno.Text = "Merge No:";
             // 
@@ -263,7 +272,7 @@ namespace PackingApplication
             this.lastboxno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.lastboxno.Location = new System.Drawing.Point(192, 5);
             this.lastboxno.Name = "lastboxno";
-            this.lastboxno.Size = new System.Drawing.Size(75, 20);
+            this.lastboxno.Size = new System.Drawing.Size(73, 18);
             this.lastboxno.TabIndex = 6;
             this.lastboxno.Text = "Last Box:";
             // 
@@ -273,14 +282,15 @@ namespace PackingApplication
             this.lastbox.Name = "lastbox";
             this.lastbox.Size = new System.Drawing.Size(152, 26);
             this.lastbox.TabIndex = 7;
+            this.lastbox.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // item
             // 
             this.item.AutoSize = true;
             this.item.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.item.Location = new System.Drawing.Point(9, 189);
+            this.item.Location = new System.Drawing.Point(9, 187);
             this.item.Name = "item";
-            this.item.Size = new System.Drawing.Size(45, 20);
+            this.item.Size = new System.Drawing.Size(41, 18);
             this.item.TabIndex = 8;
             this.item.Text = "Item:";
             // 
@@ -288,9 +298,9 @@ namespace PackingApplication
             // 
             this.shade.AutoSize = true;
             this.shade.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.shade.Location = new System.Drawing.Point(192, 192);
+            this.shade.Location = new System.Drawing.Point(192, 187);
             this.shade.Name = "shade";
-            this.shade.Size = new System.Drawing.Size(60, 20);
+            this.shade.Size = new System.Drawing.Size(58, 18);
             this.shade.TabIndex = 10;
             this.shade.Text = "Shade:";
             // 
@@ -298,9 +308,9 @@ namespace PackingApplication
             // 
             this.shadecode.AutoSize = true;
             this.shadecode.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.shadecode.Location = new System.Drawing.Point(9, 249);
+            this.shadecode.Location = new System.Drawing.Point(9, 247);
             this.shadecode.Name = "shadecode";
-            this.shadecode.Size = new System.Drawing.Size(102, 20);
+            this.shadecode.Size = new System.Drawing.Size(101, 18);
             this.shadecode.TabIndex = 12;
             this.shadecode.Text = "Shade Code:";
             // 
@@ -308,9 +318,9 @@ namespace PackingApplication
             // 
             this.boxno.AutoSize = true;
             this.boxno.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.boxno.Location = new System.Drawing.Point(189, 69);
+            this.boxno.Location = new System.Drawing.Point(189, 67);
             this.boxno.Name = "boxno";
-            this.boxno.Size = new System.Drawing.Size(68, 20);
+            this.boxno.Size = new System.Drawing.Size(67, 18);
             this.boxno.TabIndex = 14;
             this.boxno.Text = "Box No.:";
             // 
@@ -318,18 +328,19 @@ namespace PackingApplication
             // 
             this.packingdate.AutoSize = true;
             this.packingdate.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.packingdate.Location = new System.Drawing.Point(192, 130);
+            this.packingdate.Location = new System.Drawing.Point(192, 128);
             this.packingdate.Name = "packingdate";
-            this.packingdate.Size = new System.Drawing.Size(48, 20);
+            this.packingdate.Size = new System.Drawing.Size(46, 18);
             this.packingdate.TabIndex = 16;
             this.packingdate.Text = "Date:";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(193, 154);
+            this.dateTimePicker1.Location = new System.Drawing.Point(193, 152);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(152, 26);
             this.dateTimePicker1.TabIndex = 17;
+            this.dateTimePicker1.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // quality
             // 
@@ -337,7 +348,7 @@ namespace PackingApplication
             this.quality.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.quality.Location = new System.Drawing.Point(6, 10);
             this.quality.Name = "quality";
-            this.quality.Size = new System.Drawing.Size(61, 20);
+            this.quality.Size = new System.Drawing.Size(59, 18);
             this.quality.TabIndex = 18;
             this.quality.Text = "Quality:";
             // 
@@ -347,7 +358,7 @@ namespace PackingApplication
             this.saleorderno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.saleorderno.Location = new System.Drawing.Point(188, 9);
             this.saleorderno.Name = "saleorderno";
-            this.saleorderno.Size = new System.Drawing.Size(64, 20);
+            this.saleorderno.Size = new System.Drawing.Size(63, 18);
             this.saleorderno.TabIndex = 20;
             this.saleorderno.Text = "SO No.:";
             // 
@@ -357,7 +368,7 @@ namespace PackingApplication
             this.packsize.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.packsize.Location = new System.Drawing.Point(6, 9);
             this.packsize.Name = "packsize";
-            this.packsize.Size = new System.Drawing.Size(83, 20);
+            this.packsize.Size = new System.Drawing.Size(83, 18);
             this.packsize.TabIndex = 22;
             this.packsize.Text = "Pack Size:";
             // 
@@ -369,6 +380,7 @@ namespace PackingApplication
             this.frdenier.ReadOnly = true;
             this.frdenier.Size = new System.Drawing.Size(64, 26);
             this.frdenier.TabIndex = 25;
+            this.frdenier.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // updenier
             // 
@@ -378,6 +390,7 @@ namespace PackingApplication
             this.updenier.ReadOnly = true;
             this.updenier.Size = new System.Drawing.Size(58, 26);
             this.updenier.TabIndex = 27;
+            this.updenier.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // windingtype
             // 
@@ -385,7 +398,7 @@ namespace PackingApplication
             this.windingtype.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.windingtype.Location = new System.Drawing.Point(6, 73);
             this.windingtype.Name = "windingtype";
-            this.windingtype.Size = new System.Drawing.Size(70, 20);
+            this.windingtype.Size = new System.Drawing.Size(69, 18);
             this.windingtype.TabIndex = 28;
             this.windingtype.Text = "Winding:";
             // 
@@ -395,7 +408,7 @@ namespace PackingApplication
             this.comport.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.comport.Location = new System.Drawing.Point(188, 7);
             this.comport.Name = "comport";
-            this.comport.Size = new System.Drawing.Size(79, 20);
+            this.comport.Size = new System.Drawing.Size(79, 18);
             this.comport.TabIndex = 30;
             this.comport.Text = "Com Port:";
             this.comport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -406,7 +419,7 @@ namespace PackingApplication
             this.copssize.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.copssize.Location = new System.Drawing.Point(6, 128);
             this.copssize.Name = "copssize";
-            this.copssize.Size = new System.Drawing.Size(85, 20);
+            this.copssize.Size = new System.Drawing.Size(85, 18);
             this.copssize.TabIndex = 32;
             this.copssize.Text = "Cops Size:";
             // 
@@ -416,7 +429,7 @@ namespace PackingApplication
             this.copweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.copweight.Location = new System.Drawing.Point(174, 128);
             this.copweight.Name = "copweight";
-            this.copweight.Size = new System.Drawing.Size(33, 20);
+            this.copweight.Size = new System.Drawing.Size(31, 18);
             this.copweight.TabIndex = 34;
             this.copweight.Text = "Wt:";
             // 
@@ -426,7 +439,7 @@ namespace PackingApplication
             this.copstock.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.copstock.Location = new System.Drawing.Point(223, 128);
             this.copstock.Name = "copstock";
-            this.copstock.Size = new System.Drawing.Size(95, 20);
+            this.copstock.Size = new System.Drawing.Size(94, 18);
             this.copstock.TabIndex = 35;
             this.copstock.Text = "Cops Stock:";
             // 
@@ -438,6 +451,7 @@ namespace PackingApplication
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(48, 26);
             this.textBox1.TabIndex = 36;
+            this.textBox1.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // textBox2
             // 
@@ -445,6 +459,7 @@ namespace PackingApplication
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(118, 26);
             this.textBox2.TabIndex = 37;
+            this.textBox2.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // boxtype
             // 
@@ -452,7 +467,7 @@ namespace PackingApplication
             this.boxtype.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.boxtype.Location = new System.Drawing.Point(6, 69);
             this.boxtype.Name = "boxtype";
-            this.boxtype.Size = new System.Drawing.Size(121, 20);
+            this.boxtype.Size = new System.Drawing.Size(119, 18);
             this.boxtype.TabIndex = 38;
             this.boxtype.Text = "Box/Pallet Type:";
             // 
@@ -462,7 +477,7 @@ namespace PackingApplication
             this.boxweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.boxweight.Location = new System.Drawing.Point(174, 69);
             this.boxweight.Name = "boxweight";
-            this.boxweight.Size = new System.Drawing.Size(33, 20);
+            this.boxweight.Size = new System.Drawing.Size(31, 18);
             this.boxweight.TabIndex = 40;
             this.boxweight.Text = "Wt:";
             // 
@@ -474,6 +489,7 @@ namespace PackingApplication
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(48, 26);
             this.textBox3.TabIndex = 41;
+            this.textBox3.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // boxstock
             // 
@@ -481,7 +497,7 @@ namespace PackingApplication
             this.boxstock.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.boxstock.Location = new System.Drawing.Point(223, 69);
             this.boxstock.Name = "boxstock";
-            this.boxstock.Size = new System.Drawing.Size(128, 20);
+            this.boxstock.Size = new System.Drawing.Size(126, 18);
             this.boxstock.TabIndex = 42;
             this.boxstock.Text = "Box/Pallet Stock:";
             // 
@@ -491,6 +507,7 @@ namespace PackingApplication
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(118, 26);
             this.textBox4.TabIndex = 43;
+            this.textBox4.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // productiontype
             // 
@@ -498,7 +515,7 @@ namespace PackingApplication
             this.productiontype.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.productiontype.Location = new System.Drawing.Point(188, 73);
             this.productiontype.Name = "productiontype";
-            this.productiontype.Size = new System.Drawing.Size(84, 20);
+            this.productiontype.Size = new System.Drawing.Size(83, 18);
             this.productiontype.TabIndex = 44;
             this.productiontype.Text = "Prod Type:";
             // 
@@ -508,7 +525,7 @@ namespace PackingApplication
             this.remark.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.remark.Location = new System.Drawing.Point(6, 134);
             this.remark.Name = "remark";
-            this.remark.Size = new System.Drawing.Size(77, 20);
+            this.remark.Size = new System.Drawing.Size(75, 18);
             this.remark.TabIndex = 46;
             this.remark.Text = "Remarks:";
             // 
@@ -518,6 +535,7 @@ namespace PackingApplication
             this.remarks.Name = "remarks";
             this.remarks.Size = new System.Drawing.Size(153, 26);
             this.remarks.TabIndex = 47;
+            this.remarks.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // scalemodel
             // 
@@ -525,7 +543,7 @@ namespace PackingApplication
             this.scalemodel.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.scalemodel.Location = new System.Drawing.Point(6, 5);
             this.scalemodel.Name = "scalemodel";
-            this.scalemodel.Size = new System.Drawing.Size(102, 20);
+            this.scalemodel.Size = new System.Drawing.Size(101, 18);
             this.scalemodel.TabIndex = 48;
             this.scalemodel.Text = "Weigh Scale:";
             // 
@@ -536,60 +554,66 @@ namespace PackingApplication
             this.LineNoList.Location = new System.Drawing.Point(10, 28);
             this.LineNoList.Margin = new System.Windows.Forms.Padding(2);
             this.LineNoList.Name = "LineNoList";
-            this.LineNoList.Size = new System.Drawing.Size(161, 28);
+            this.LineNoList.Size = new System.Drawing.Size(161, 26);
             this.LineNoList.TabIndex = 50;
+            this.LineNoList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             // 
             // departmentname
             // 
             this.departmentname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.departmentname.Location = new System.Drawing.Point(10, 91);
+            this.departmentname.Location = new System.Drawing.Point(10, 89);
             this.departmentname.Margin = new System.Windows.Forms.Padding(2);
             this.departmentname.Name = "departmentname";
             this.departmentname.ReadOnly = true;
             this.departmentname.Size = new System.Drawing.Size(161, 26);
             this.departmentname.TabIndex = 51;
+            this.departmentname.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // MergeNoList
             // 
             this.MergeNoList.AllowDrop = true;
             this.MergeNoList.FormattingEnabled = true;
-            this.MergeNoList.Location = new System.Drawing.Point(10, 154);
+            this.MergeNoList.Location = new System.Drawing.Point(10, 152);
             this.MergeNoList.Margin = new System.Windows.Forms.Padding(2);
             this.MergeNoList.Name = "MergeNoList";
-            this.MergeNoList.Size = new System.Drawing.Size(161, 28);
+            this.MergeNoList.Size = new System.Drawing.Size(161, 26);
             this.MergeNoList.TabIndex = 53;
+            this.MergeNoList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             // 
             // itemname
             // 
             this.itemname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.itemname.Location = new System.Drawing.Point(10, 211);
+            this.itemname.Location = new System.Drawing.Point(10, 209);
             this.itemname.Margin = new System.Windows.Forms.Padding(2);
             this.itemname.Name = "itemname";
             this.itemname.ReadOnly = true;
             this.itemname.Size = new System.Drawing.Size(161, 26);
             this.itemname.TabIndex = 54;
+            this.itemname.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // shadename
             // 
             this.shadename.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.shadename.Location = new System.Drawing.Point(193, 214);
+            this.shadename.Location = new System.Drawing.Point(193, 209);
             this.shadename.Margin = new System.Windows.Forms.Padding(2);
             this.shadename.Name = "shadename";
             this.shadename.ReadOnly = true;
             this.shadename.Size = new System.Drawing.Size(152, 26);
             this.shadename.TabIndex = 55;
+            this.shadename.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // shadecd
             // 
             this.shadecd.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.shadecd.Location = new System.Drawing.Point(10, 271);
+            this.shadecd.Location = new System.Drawing.Point(10, 269);
             this.shadecd.Margin = new System.Windows.Forms.Padding(2);
             this.shadecd.Name = "shadecd";
             this.shadecd.ReadOnly = true;
             this.shadecd.Size = new System.Drawing.Size(161, 26);
             this.shadecd.TabIndex = 56;
+            this.shadecd.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // QualityList
             // 
@@ -598,8 +622,9 @@ namespace PackingApplication
             this.QualityList.Location = new System.Drawing.Point(10, 32);
             this.QualityList.Margin = new System.Windows.Forms.Padding(2);
             this.QualityList.Name = "QualityList";
-            this.QualityList.Size = new System.Drawing.Size(153, 28);
+            this.QualityList.Size = new System.Drawing.Size(153, 26);
             this.QualityList.TabIndex = 57;
+            this.QualityList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
             // PackSizeList
@@ -609,8 +634,9 @@ namespace PackingApplication
             this.PackSizeList.Location = new System.Drawing.Point(10, 31);
             this.PackSizeList.Margin = new System.Windows.Forms.Padding(2);
             this.PackSizeList.Name = "PackSizeList";
-            this.PackSizeList.Size = new System.Drawing.Size(144, 28);
+            this.PackSizeList.Size = new System.Drawing.Size(144, 26);
             this.PackSizeList.TabIndex = 58;
+            this.PackSizeList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             // 
             // WindingTypeList
@@ -620,8 +646,9 @@ namespace PackingApplication
             this.WindingTypeList.Location = new System.Drawing.Point(10, 95);
             this.WindingTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.WindingTypeList.Name = "WindingTypeList";
-            this.WindingTypeList.Size = new System.Drawing.Size(153, 28);
+            this.WindingTypeList.Size = new System.Drawing.Size(153, 26);
             this.WindingTypeList.TabIndex = 59;
+            this.WindingTypeList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             // 
             // ComPortList
@@ -631,8 +658,9 @@ namespace PackingApplication
             this.ComPortList.Location = new System.Drawing.Point(188, 29);
             this.ComPortList.Margin = new System.Windows.Forms.Padding(2);
             this.ComPortList.Name = "ComPortList";
-            this.ComPortList.Size = new System.Drawing.Size(152, 28);
+            this.ComPortList.Size = new System.Drawing.Size(152, 26);
             this.ComPortList.TabIndex = 60;
+            this.ComPortList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             // 
             // WeighingList
@@ -642,8 +670,9 @@ namespace PackingApplication
             this.WeighingList.Location = new System.Drawing.Point(10, 29);
             this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
             this.WeighingList.Name = "WeighingList";
-            this.WeighingList.Size = new System.Drawing.Size(155, 28);
+            this.WeighingList.Size = new System.Drawing.Size(155, 26);
             this.WeighingList.TabIndex = 61;
+            this.WeighingList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             // 
             // CopsItemList
@@ -653,8 +682,9 @@ namespace PackingApplication
             this.CopsItemList.Location = new System.Drawing.Point(9, 150);
             this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
             this.CopsItemList.Name = "CopsItemList";
-            this.CopsItemList.Size = new System.Drawing.Size(145, 28);
+            this.CopsItemList.Size = new System.Drawing.Size(145, 26);
             this.CopsItemList.TabIndex = 62;
+            this.CopsItemList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             // 
             // BoxItemList
@@ -664,8 +694,9 @@ namespace PackingApplication
             this.BoxItemList.Location = new System.Drawing.Point(10, 91);
             this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
             this.BoxItemList.Name = "BoxItemList";
-            this.BoxItemList.Size = new System.Drawing.Size(144, 28);
+            this.BoxItemList.Size = new System.Drawing.Size(144, 26);
             this.BoxItemList.TabIndex = 63;
+            this.BoxItemList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
             // SaleOrderList
@@ -675,8 +706,9 @@ namespace PackingApplication
             this.SaleOrderList.Location = new System.Drawing.Point(192, 32);
             this.SaleOrderList.Margin = new System.Windows.Forms.Padding(2);
             this.SaleOrderList.Name = "SaleOrderList";
-            this.SaleOrderList.Size = new System.Drawing.Size(150, 28);
+            this.SaleOrderList.Size = new System.Drawing.Size(150, 26);
             this.SaleOrderList.TabIndex = 64;
+            this.SaleOrderList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             // 
             // prcompany
@@ -684,75 +716,82 @@ namespace PackingApplication
             this.prcompany.AutoSize = true;
             this.prcompany.Location = new System.Drawing.Point(8, 6);
             this.prcompany.Name = "prcompany";
-            this.prcompany.Size = new System.Drawing.Size(138, 24);
+            this.prcompany.Size = new System.Drawing.Size(137, 22);
             this.prcompany.TabIndex = 66;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
+            this.prcompany.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // prowner
             // 
             this.prowner.AutoSize = true;
             this.prowner.Location = new System.Drawing.Point(8, 28);
             this.prowner.Name = "prowner";
-            this.prowner.Size = new System.Drawing.Size(117, 24);
+            this.prowner.Size = new System.Drawing.Size(115, 22);
             this.prowner.TabIndex = 67;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
+            this.prowner.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // prdate
             // 
             this.prdate.AutoSize = true;
             this.prdate.Location = new System.Drawing.Point(8, 49);
             this.prdate.Name = "prdate";
-            this.prdate.Size = new System.Drawing.Size(106, 24);
+            this.prdate.Size = new System.Drawing.Size(104, 22);
             this.prdate.TabIndex = 68;
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prdate.UseVisualStyleBackColor = true;
+            this.prdate.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // pruser
             // 
             this.pruser.AutoSize = true;
             this.pruser.Location = new System.Drawing.Point(8, 72);
             this.pruser.Name = "pruser";
-            this.pruser.Size = new System.Drawing.Size(105, 24);
+            this.pruser.Size = new System.Drawing.Size(103, 22);
             this.pruser.TabIndex = 69;
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
+            this.pruser.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // prhindi
             // 
             this.prhindi.AutoSize = true;
             this.prhindi.Location = new System.Drawing.Point(8, 94);
             this.prhindi.Name = "prhindi";
-            this.prhindi.Size = new System.Drawing.Size(157, 24);
+            this.prhindi.Size = new System.Drawing.Size(156, 22);
             this.prhindi.TabIndex = 70;
             this.prhindi.Text = "Print Hindi Words";
             this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prhindi.UseVisualStyleBackColor = true;
+            this.prhindi.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // prwtps
             // 
             this.prwtps.AutoSize = true;
             this.prwtps.Location = new System.Drawing.Point(8, 116);
             this.prwtps.Name = "prwtps";
-            this.prwtps.Size = new System.Drawing.Size(120, 24);
+            this.prwtps.Size = new System.Drawing.Size(120, 22);
             this.prwtps.TabIndex = 71;
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
+            this.prwtps.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // prqrcode
             // 
             this.prqrcode.AutoSize = true;
             this.prqrcode.Location = new System.Drawing.Point(8, 137);
             this.prqrcode.Name = "prqrcode";
-            this.prqrcode.Size = new System.Drawing.Size(137, 24);
+            this.prqrcode.Size = new System.Drawing.Size(136, 22);
             this.prqrcode.TabIndex = 72;
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
+            this.prqrcode.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // label1
             // 
@@ -760,7 +799,7 @@ namespace PackingApplication
             this.label1.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.label1.Location = new System.Drawing.Point(188, 134);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 20);
+            this.label1.Size = new System.Drawing.Size(111, 18);
             this.label1.TabIndex = 73;
             this.label1.Text = "No. Of Copies:";
             // 
@@ -772,6 +811,7 @@ namespace PackingApplication
             this.copyno.ReadOnly = true;
             this.copyno.Size = new System.Drawing.Size(146, 26);
             this.copyno.TabIndex = 74;
+            this.copyno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
             // 
             // wtpercop
@@ -782,6 +822,7 @@ namespace PackingApplication
             this.wtpercop.ReadOnly = true;
             this.wtpercop.Size = new System.Drawing.Size(144, 26);
             this.wtpercop.TabIndex = 85;
+            this.wtpercop.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // label5
             // 
@@ -789,7 +830,7 @@ namespace PackingApplication
             this.label5.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.label5.Location = new System.Drawing.Point(188, 179);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 20);
+            this.label5.Size = new System.Drawing.Size(94, 18);
             this.label5.TabIndex = 84;
             this.label5.Text = "Wt.Per Cop:";
             // 
@@ -801,6 +842,7 @@ namespace PackingApplication
             this.netwt.ReadOnly = true;
             this.netwt.Size = new System.Drawing.Size(155, 26);
             this.netwt.TabIndex = 83;
+            this.netwt.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.netwt.TextChanged += new System.EventHandler(this.NetWeight_TextChanged);
             // 
             // label4
@@ -809,7 +851,7 @@ namespace PackingApplication
             this.label4.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.label4.Location = new System.Drawing.Point(12, 179);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 20);
+            this.label4.Size = new System.Drawing.Size(59, 18);
             this.label4.TabIndex = 82;
             this.label4.Text = "Net Wt:";
             // 
@@ -821,6 +863,7 @@ namespace PackingApplication
             this.tarewt.ReadOnly = true;
             this.tarewt.Size = new System.Drawing.Size(144, 26);
             this.tarewt.TabIndex = 81;
+            this.tarewt.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // label3
             // 
@@ -828,7 +871,7 @@ namespace PackingApplication
             this.label3.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.label3.Location = new System.Drawing.Point(188, 121);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 20);
+            this.label3.Size = new System.Drawing.Size(65, 18);
             this.label3.TabIndex = 80;
             this.label3.Text = "Tare Wt:";
             // 
@@ -838,6 +881,7 @@ namespace PackingApplication
             this.grosswtno.Name = "grosswtno";
             this.grosswtno.Size = new System.Drawing.Size(154, 26);
             this.grosswtno.TabIndex = 79;
+            this.grosswtno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
             // 
             // label2
@@ -846,7 +890,7 @@ namespace PackingApplication
             this.label2.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.label2.Location = new System.Drawing.Point(6, 121);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.Size = new System.Drawing.Size(77, 18);
             this.label2.TabIndex = 78;
             this.label2.Text = "Gross Wt:";
             // 
@@ -856,6 +900,7 @@ namespace PackingApplication
             this.palletwtno.Name = "palletwtno";
             this.palletwtno.Size = new System.Drawing.Size(151, 26);
             this.palletwtno.TabIndex = 77;
+            this.palletwtno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
             // 
             // palletwt
@@ -864,7 +909,7 @@ namespace PackingApplication
             this.palletwt.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.palletwt.Location = new System.Drawing.Point(188, 69);
             this.palletwt.Name = "palletwt";
-            this.palletwt.Size = new System.Drawing.Size(156, 20);
+            this.palletwt.Size = new System.Drawing.Size(153, 18);
             this.palletwt.TabIndex = 76;
             this.palletwt.Text = "Empty Box/Pallet Wt:";
             // 
@@ -874,6 +919,7 @@ namespace PackingApplication
             this.spoolwt.Name = "spoolwt";
             this.spoolwt.Size = new System.Drawing.Size(71, 26);
             this.spoolwt.TabIndex = 76;
+            this.spoolwt.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.spoolwt.TextChanged += new System.EventHandler(this.SpoolWeight_TextChanged);
             // 
             // spoolno
@@ -882,6 +928,7 @@ namespace PackingApplication
             this.spoolno.Name = "spoolno";
             this.spoolno.Size = new System.Drawing.Size(71, 26);
             this.spoolno.TabIndex = 1;
+            this.spoolno.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             // 
             // spool
@@ -890,7 +937,7 @@ namespace PackingApplication
             this.spool.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.spool.Location = new System.Drawing.Point(6, 69);
             this.spool.Name = "spool";
-            this.spool.Size = new System.Drawing.Size(62, 20);
+            this.spool.Size = new System.Drawing.Size(61, 18);
             this.spool.TabIndex = 0;
             this.spool.Text = "Spools:";
             // 
@@ -902,14 +949,15 @@ namespace PackingApplication
             this.prodtype.ReadOnly = true;
             this.prodtype.Size = new System.Drawing.Size(149, 26);
             this.prodtype.TabIndex = 76;
+            this.prodtype.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // palletdetails
             // 
             this.palletdetails.AutoSize = true;
-            this.palletdetails.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.palletdetails.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.palletdetails.Location = new System.Drawing.Point(802, 349);
             this.palletdetails.Name = "palletdetails";
-            this.palletdetails.Size = new System.Drawing.Size(105, 20);
+            this.palletdetails.Size = new System.Drawing.Size(104, 18);
             this.palletdetails.TabIndex = 78;
             this.palletdetails.Text = "Pallet Details:";
             this.palletdetails.UseMnemonic = false;
@@ -920,7 +968,7 @@ namespace PackingApplication
             this.label6.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.label6.Location = new System.Drawing.Point(805, 377);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 40);
+            this.label6.Size = new System.Drawing.Size(47, 36);
             this.label6.TabIndex = 79;
             this.label6.Text = "Pallet\nType:";
             this.label6.UseMnemonic = false;
@@ -932,8 +980,9 @@ namespace PackingApplication
             this.PalletTypeList.Location = new System.Drawing.Point(878, 377);
             this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.PalletTypeList.Name = "PalletTypeList";
-            this.PalletTypeList.Size = new System.Drawing.Size(140, 28);
+            this.PalletTypeList.Size = new System.Drawing.Size(140, 26);
             this.PalletTypeList.TabIndex = 80;
+            this.PalletTypeList.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // pquantity
             // 
@@ -941,7 +990,7 @@ namespace PackingApplication
             this.pquantity.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.pquantity.Location = new System.Drawing.Point(805, 430);
             this.pquantity.Name = "pquantity";
-            this.pquantity.Size = new System.Drawing.Size(37, 20);
+            this.pquantity.Size = new System.Drawing.Size(35, 18);
             this.pquantity.TabIndex = 81;
             this.pquantity.Text = "Qty:";
             this.pquantity.UseMnemonic = false;
@@ -952,6 +1001,7 @@ namespace PackingApplication
             this.qnty.Name = "qnty";
             this.qnty.Size = new System.Drawing.Size(62, 26);
             this.qnty.TabIndex = 82;
+            this.qnty.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // addqty
             // 
@@ -976,6 +1026,7 @@ namespace PackingApplication
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(217, 263);
             this.flowLayoutPanel1.TabIndex = 84;
+            this.flowLayoutPanel1.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // submit
             // 
@@ -984,7 +1035,7 @@ namespace PackingApplication
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submit.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(111, 744);
+            this.submit.Location = new System.Drawing.Point(533, 923);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(95, 28);
             this.submit.TabIndex = 85;
@@ -998,6 +1049,7 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.rightpanel.Controls.Add(this.lastboxlayout);
             this.rightpanel.Controls.Add(this.machineboxlayout);
             this.rightpanel.Controls.Add(this.weighboxlayout);
             this.rightpanel.Controls.Add(this.packagingboxlayout);
@@ -1026,7 +1078,7 @@ namespace PackingApplication
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rightpanel.Location = new System.Drawing.Point(261, 3);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(1028, 789);
+            this.rightpanel.Size = new System.Drawing.Size(1028, 954);
             this.rightpanel.TabIndex = 89;
             // 
             // machineboxlayout
@@ -1039,9 +1091,9 @@ namespace PackingApplication
             this.machineboxlayout.Name = "machineboxlayout";
             this.machineboxlayout.Padding = new System.Windows.Forms.Padding(2);
             this.machineboxlayout.RowCount = 2;
-            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
-            this.machineboxlayout.Size = new System.Drawing.Size(364, 378);
+            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86F));
+            this.machineboxlayout.Size = new System.Drawing.Size(364, 349);
             this.machineboxlayout.TabIndex = 110;
             this.machineboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxlayout_Paint);
             // 
@@ -1067,39 +1119,42 @@ namespace PackingApplication
             this.machineboxpanel.Controls.Add(this.itemname);
             this.machineboxpanel.Controls.Add(this.shade);
             this.machineboxpanel.Controls.Add(this.shadename);
-            this.machineboxpanel.Location = new System.Drawing.Point(5, 72);
+            this.machineboxpanel.Location = new System.Drawing.Point(5, 53);
             this.machineboxpanel.Name = "machineboxpanel";
-            this.machineboxpanel.Size = new System.Drawing.Size(354, 301);
+            this.machineboxpanel.Size = new System.Drawing.Size(354, 291);
             this.machineboxpanel.TabIndex = 107;
             // 
             // deniervalue
             // 
             this.deniervalue.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.deniervalue.Location = new System.Drawing.Point(193, 271);
+            this.deniervalue.Location = new System.Drawing.Point(193, 269);
             this.deniervalue.Margin = new System.Windows.Forms.Padding(2);
             this.deniervalue.Name = "deniervalue";
             this.deniervalue.ReadOnly = true;
             this.deniervalue.Size = new System.Drawing.Size(152, 26);
             this.deniervalue.TabIndex = 95;
+            this.deniervalue.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // denier
             // 
             this.denier.AutoSize = true;
-            this.denier.Location = new System.Drawing.Point(197, 249);
+            this.denier.Location = new System.Drawing.Point(197, 247);
             this.denier.Name = "denier";
-            this.denier.Size = new System.Drawing.Size(60, 20);
+            this.denier.Size = new System.Drawing.Size(59, 18);
             this.denier.TabIndex = 94;
             this.denier.Text = "Denier:";
+            this.denier.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // PrefixList
             // 
             this.PrefixList.AllowDrop = true;
             this.PrefixList.FormattingEnabled = true;
-            this.PrefixList.Location = new System.Drawing.Point(193, 91);
+            this.PrefixList.Location = new System.Drawing.Point(193, 89);
             this.PrefixList.Margin = new System.Windows.Forms.Padding(2);
             this.PrefixList.Name = "PrefixList";
-            this.PrefixList.Size = new System.Drawing.Size(152, 28);
+            this.PrefixList.Size = new System.Drawing.Size(152, 26);
             this.PrefixList.TabIndex = 86;
+            this.PrefixList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
             // 
             // machineboxheader
@@ -1108,17 +1163,18 @@ namespace PackingApplication
             this.machineboxheader.Location = new System.Drawing.Point(5, 5);
             this.machineboxheader.Name = "machineboxheader";
             this.machineboxheader.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.machineboxheader.Size = new System.Drawing.Size(354, 46);
+            this.machineboxheader.Size = new System.Drawing.Size(354, 42);
             this.machineboxheader.TabIndex = 107;
+            this.machineboxheader.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.machineboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxheader_Paint);
             // 
             // Machinelbl
             // 
             this.Machinelbl.AutoSize = true;
             this.Machinelbl.Font = FontManager.GetFont(8, FontStyle.Bold);
-            this.Machinelbl.Location = new System.Drawing.Point(6, 14);
+            this.Machinelbl.Location = new System.Drawing.Point(3, 12);
             this.Machinelbl.Name = "Machinelbl";
-            this.Machinelbl.Size = new System.Drawing.Size(133, 21);
+            this.Machinelbl.Size = new System.Drawing.Size(129, 19);
             this.Machinelbl.TabIndex = 107;
             this.Machinelbl.Text = "Machine Details";
             // 
@@ -1128,7 +1184,7 @@ namespace PackingApplication
             this.weighboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.weighboxlayout.Controls.Add(this.weighboxpanel, 0, 1);
             this.weighboxlayout.Controls.Add(this.weighboxheader, 0, 0);
-            this.weighboxlayout.Location = new System.Drawing.Point(401, 5);
+            this.weighboxlayout.Location = new System.Drawing.Point(401, 3);
             this.weighboxlayout.Name = "weighboxlayout";
             this.weighboxlayout.Padding = new System.Windows.Forms.Padding(2);
             this.weighboxlayout.RowCount = 2;
@@ -1173,7 +1229,7 @@ namespace PackingApplication
             this.grosswterror.ForeColor = System.Drawing.Color.Red;
             this.grosswterror.Location = new System.Drawing.Point(10, 122);
             this.grosswterror.Name = "grosswterror";
-            this.grosswterror.Size = new System.Drawing.Size(0, 20);
+            this.grosswterror.Size = new System.Drawing.Size(0, 18);
             this.grosswterror.TabIndex = 89;
             this.grosswterror.Visible = false;
             // 
@@ -1184,7 +1240,7 @@ namespace PackingApplication
             this.palletwterror.ForeColor = System.Drawing.Color.Red;
             this.palletwterror.Location = new System.Drawing.Point(10, 78);
             this.palletwterror.Name = "palletwterror";
-            this.palletwterror.Size = new System.Drawing.Size(0, 20);
+            this.palletwterror.Size = new System.Drawing.Size(0, 18);
             this.palletwterror.TabIndex = 88;
             this.palletwterror.Visible = false;
             // 
@@ -1195,7 +1251,7 @@ namespace PackingApplication
             this.spoolwterror.ForeColor = System.Drawing.Color.Red;
             this.spoolwterror.Location = new System.Drawing.Point(96, 38);
             this.spoolwterror.Name = "spoolwterror";
-            this.spoolwterror.Size = new System.Drawing.Size(0, 20);
+            this.spoolwterror.Size = new System.Drawing.Size(0, 18);
             this.spoolwterror.TabIndex = 87;
             this.spoolwterror.Visible = false;
             // 
@@ -1206,7 +1262,7 @@ namespace PackingApplication
             this.spoolnoerror.ForeColor = System.Drawing.Color.Red;
             this.spoolnoerror.Location = new System.Drawing.Point(10, 38);
             this.spoolnoerror.Name = "spoolnoerror";
-            this.spoolnoerror.Size = new System.Drawing.Size(0, 20);
+            this.spoolnoerror.Size = new System.Drawing.Size(0, 18);
             this.spoolnoerror.TabIndex = 86;
             this.spoolnoerror.Visible = false;
             // 
@@ -1226,7 +1282,7 @@ namespace PackingApplication
             this.Weighboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.Weighboxlbl.Location = new System.Drawing.Point(6, 14);
             this.Weighboxlbl.Name = "Weighboxlbl";
-            this.Weighboxlbl.Size = new System.Drawing.Size(138, 21);
+            this.Weighboxlbl.Size = new System.Drawing.Size(136, 19);
             this.Weighboxlbl.TabIndex = 107;
             this.Weighboxlbl.Text = "Weigh and Label";
             // 
@@ -1285,7 +1341,7 @@ namespace PackingApplication
             this.Packagingboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.Packagingboxlbl.Location = new System.Drawing.Point(6, 9);
             this.Packagingboxlbl.Name = "Packagingboxlbl";
-            this.Packagingboxlbl.Size = new System.Drawing.Size(90, 21);
+            this.Packagingboxlbl.Size = new System.Drawing.Size(90, 19);
             this.Packagingboxlbl.TabIndex = 107;
             this.Packagingboxlbl.Text = "Packaging";
             // 
@@ -1295,7 +1351,7 @@ namespace PackingApplication
             this.orderboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.orderboxlayout.Controls.Add(this.orderboxpanel, 0, 1);
             this.orderboxlayout.Controls.Add(this.orderboxheader, 0, 0);
-            this.orderboxlayout.Location = new System.Drawing.Point(13, 389);
+            this.orderboxlayout.Location = new System.Drawing.Point(13, 367);
             this.orderboxlayout.Name = "orderboxlayout";
             this.orderboxlayout.Padding = new System.Windows.Forms.Padding(2);
             this.orderboxlayout.RowCount = 2;
@@ -1340,7 +1396,7 @@ namespace PackingApplication
             this.Orderboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.Orderboxlbl.Location = new System.Drawing.Point(6, 9);
             this.Orderboxlbl.Name = "Orderboxlbl";
-            this.Orderboxlbl.Size = new System.Drawing.Size(110, 21);
+            this.Orderboxlbl.Size = new System.Drawing.Size(108, 19);
             this.Orderboxlbl.TabIndex = 107;
             this.Orderboxlbl.Text = "Order Details";
             // 
@@ -1389,7 +1445,7 @@ namespace PackingApplication
             this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.cancelbtn.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(18, 744);
+            this.cancelbtn.Location = new System.Drawing.Point(443, 923);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(75, 28);
             this.cancelbtn.TabIndex = 106;
@@ -1403,8 +1459,9 @@ namespace PackingApplication
             this.boxnoerror.ForeColor = System.Drawing.Color.Red;
             this.boxnoerror.Location = new System.Drawing.Point(286, 71);
             this.boxnoerror.Name = "boxnoerror";
-            this.boxnoerror.Size = new System.Drawing.Size(0, 20);
+            this.boxnoerror.Size = new System.Drawing.Size(0, 18);
             this.boxnoerror.TabIndex = 105;
+            this.boxnoerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // windingerror
             // 
@@ -1412,9 +1469,10 @@ namespace PackingApplication
             this.windingerror.ForeColor = System.Drawing.Color.Red;
             this.windingerror.Location = new System.Drawing.Point(291, 267);
             this.windingerror.Name = "windingerror";
-            this.windingerror.Size = new System.Drawing.Size(0, 20);
+            this.windingerror.Size = new System.Drawing.Size(0, 18);
             this.windingerror.TabIndex = 104;
             this.windingerror.Visible = false;
+            this.windingerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // packsizeerror
             // 
@@ -1422,9 +1480,10 @@ namespace PackingApplication
             this.packsizeerror.ForeColor = System.Drawing.Color.Red;
             this.packsizeerror.Location = new System.Drawing.Point(65, 267);
             this.packsizeerror.Name = "packsizeerror";
-            this.packsizeerror.Size = new System.Drawing.Size(0, 20);
+            this.packsizeerror.Size = new System.Drawing.Size(0, 18);
             this.packsizeerror.TabIndex = 103;
             this.packsizeerror.Visible = false;
+            this.packsizeerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // soerror
             // 
@@ -1432,8 +1491,9 @@ namespace PackingApplication
             this.soerror.ForeColor = System.Drawing.Color.Red;
             this.soerror.Location = new System.Drawing.Point(286, 224);
             this.soerror.Name = "soerror";
-            this.soerror.Size = new System.Drawing.Size(0, 20);
+            this.soerror.Size = new System.Drawing.Size(0, 18);
             this.soerror.TabIndex = 102;
+            this.soerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // qualityerror
             // 
@@ -1441,9 +1501,10 @@ namespace PackingApplication
             this.qualityerror.ForeColor = System.Drawing.Color.Red;
             this.qualityerror.Location = new System.Drawing.Point(65, 224);
             this.qualityerror.Name = "qualityerror";
-            this.qualityerror.Size = new System.Drawing.Size(0, 20);
+            this.qualityerror.Size = new System.Drawing.Size(0, 18);
             this.qualityerror.TabIndex = 101;
             this.qualityerror.Visible = false;
+            this.qualityerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // mergenoerror
             // 
@@ -1452,9 +1513,10 @@ namespace PackingApplication
             this.mergenoerror.Location = new System.Drawing.Point(65, 109);
             this.mergenoerror.Name = "mergenoerror";
             this.mergenoerror.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mergenoerror.Size = new System.Drawing.Size(0, 20);
+            this.mergenoerror.Size = new System.Drawing.Size(0, 18);
             this.mergenoerror.TabIndex = 100;
             this.mergenoerror.Visible = false;
+            this.mergenoerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // copynoerror
             // 
@@ -1462,9 +1524,10 @@ namespace PackingApplication
             this.copynoerror.ForeColor = System.Drawing.Color.Red;
             this.copynoerror.Location = new System.Drawing.Point(440, 208);
             this.copynoerror.Name = "copynoerror";
-            this.copynoerror.Size = new System.Drawing.Size(0, 20);
+            this.copynoerror.Size = new System.Drawing.Size(0, 18);
             this.copynoerror.TabIndex = 99;
             this.copynoerror.Visible = false;
+            this.copynoerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // linenoerror
             // 
@@ -1473,9 +1536,10 @@ namespace PackingApplication
             this.linenoerror.ForeColor = System.Drawing.Color.Red;
             this.linenoerror.Location = new System.Drawing.Point(65, 31);
             this.linenoerror.Name = "linenoerror";
-            this.linenoerror.Size = new System.Drawing.Size(0, 20);
+            this.linenoerror.Size = new System.Drawing.Size(0, 18);
             this.linenoerror.TabIndex = 98;
             this.linenoerror.Visible = false;
+            this.linenoerror.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // lastboxdetails
             // 
@@ -1485,8 +1549,6 @@ namespace PackingApplication
             this.lastboxdetails.Controls.Add(this.grossweight);
             this.lastboxdetails.Controls.Add(this.tarewghttxtbox);
             this.lastboxdetails.Controls.Add(this.tareweight);
-            this.lastboxdetails.Controls.Add(this.copstxtbox);
-            this.lastboxdetails.Controls.Add(this.cops);
             this.lastboxdetails.Controls.Add(this.lastboxldetailist);
             this.lastboxdetails.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.lastboxdetails.Location = new System.Drawing.Point(801, 5);
@@ -1503,6 +1565,7 @@ namespace PackingApplication
             this.netwttxtbox.ReadOnly = true;
             this.netwttxtbox.Size = new System.Drawing.Size(68, 26);
             this.netwttxtbox.TabIndex = 94;
+            this.netwttxtbox.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // netweight
             // 
@@ -1510,7 +1573,7 @@ namespace PackingApplication
             this.netweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.netweight.Location = new System.Drawing.Point(11, 105);
             this.netweight.Name = "netweight";
-            this.netweight.Size = new System.Drawing.Size(88, 20);
+            this.netweight.Size = new System.Drawing.Size(85, 18);
             this.netweight.TabIndex = 7;
             this.netweight.Text = "Net Weight";
             // 
@@ -1521,6 +1584,7 @@ namespace PackingApplication
             this.grosswttxtbox.ReadOnly = true;
             this.grosswttxtbox.Size = new System.Drawing.Size(67, 26);
             this.grosswttxtbox.TabIndex = 6;
+            this.grosswttxtbox.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // grossweight
             // 
@@ -1528,7 +1592,7 @@ namespace PackingApplication
             this.grossweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.grossweight.Location = new System.Drawing.Point(11, 78);
             this.grossweight.Name = "grossweight";
-            this.grossweight.Size = new System.Drawing.Size(106, 20);
+            this.grossweight.Size = new System.Drawing.Size(103, 18);
             this.grossweight.TabIndex = 5;
             this.grossweight.Text = "Gross Weight";
             // 
@@ -1539,6 +1603,7 @@ namespace PackingApplication
             this.tarewghttxtbox.ReadOnly = true;
             this.tarewghttxtbox.Size = new System.Drawing.Size(68, 26);
             this.tarewghttxtbox.TabIndex = 4;
+            this.tarewghttxtbox.Font = FontManager.GetFont(8, FontStyle.Regular);
             // 
             // tareweight
             // 
@@ -1546,27 +1611,9 @@ namespace PackingApplication
             this.tareweight.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.tareweight.Location = new System.Drawing.Point(11, 51);
             this.tareweight.Name = "tareweight";
-            this.tareweight.Size = new System.Drawing.Size(95, 20);
+            this.tareweight.Size = new System.Drawing.Size(91, 18);
             this.tareweight.TabIndex = 3;
             this.tareweight.Text = "Tare Weight";
-            // 
-            // copstxtbox
-            // 
-            this.copstxtbox.Location = new System.Drawing.Point(86, 23);
-            this.copstxtbox.Name = "copstxtbox";
-            this.copstxtbox.ReadOnly = true;
-            this.copstxtbox.Size = new System.Drawing.Size(68, 26);
-            this.copstxtbox.TabIndex = 2;
-            // 
-            // cops
-            // 
-            this.cops.AutoSize = true;
-            this.cops.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.cops.Location = new System.Drawing.Point(11, 26);
-            this.cops.Name = "cops";
-            this.cops.Size = new System.Drawing.Size(46, 20);
-            this.cops.TabIndex = 1;
-            this.cops.Text = "Cops";
             // 
             // lastboxldetailist
             // 
@@ -1600,7 +1647,7 @@ namespace PackingApplication
             this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
             this.totalprodbalqty.Location = new System.Drawing.Point(10, 147);
             this.totalprodbalqty.Name = "totalprodbalqty";
-            this.totalprodbalqty.Size = new System.Drawing.Size(144, 20);
+            this.totalprodbalqty.Size = new System.Drawing.Size(141, 18);
             this.totalprodbalqty.TabIndex = 93;
             this.totalprodbalqty.Text = "Production Bal Qty:";
             // 
@@ -1627,7 +1674,7 @@ namespace PackingApplication
             this.saleordrqty.ForeColor = System.Drawing.SystemColors.ControlText;
             this.saleordrqty.Location = new System.Drawing.Point(10, 17);
             this.saleordrqty.Name = "saleordrqty";
-            this.saleordrqty.Size = new System.Drawing.Size(121, 20);
+            this.saleordrqty.Size = new System.Drawing.Size(119, 18);
             this.saleordrqty.TabIndex = 92;
             this.saleordrqty.Text = "Sale Order Qty :";
             // 
@@ -1674,7 +1721,7 @@ namespace PackingApplication
             this.poyformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.poyformlabel.Location = new System.Drawing.Point(18, 7);
             this.poyformlabel.Name = "poyformlabel";
-            this.poyformlabel.Size = new System.Drawing.Size(128, 22);
+            this.poyformlabel.Size = new System.Drawing.Size(108, 19);
             this.poyformlabel.TabIndex = 97;
             this.poyformlabel.Text = "POY Packing";
             // 
@@ -1683,14 +1730,14 @@ namespace PackingApplication
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.Controls.Add(this.rightpanel, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.leftpanel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rightpanel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1292, 804);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1292, 969);
             this.tableLayoutPanel1.TabIndex = 98;
             // 
             // leftpanel
@@ -1702,7 +1749,7 @@ namespace PackingApplication
             this.leftpanel.Controls.Add(this.ordertable);
             this.leftpanel.Location = new System.Drawing.Point(3, 3);
             this.leftpanel.Name = "leftpanel";
-            this.leftpanel.Size = new System.Drawing.Size(252, 798);
+            this.leftpanel.Size = new System.Drawing.Size(252, 963);
             this.leftpanel.TabIndex = 107;
             // 
             // reviewtable
@@ -1737,9 +1784,9 @@ namespace PackingApplication
             this.reviewlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.reviewlbl.Location = new System.Drawing.Point(3, 4);
             this.reviewlbl.Name = "reviewlbl";
-            this.reviewlbl.Size = new System.Drawing.Size(154, 22);
+            this.reviewlbl.Size = new System.Drawing.Size(143, 19);
             this.reviewlbl.TabIndex = 0;
-            this.reviewlbl.Text = "Review & Submit ";
+            this.reviewlbl.Text = "Review && Submit ";
             this.reviewlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // reviewsubtitle
@@ -1748,7 +1795,7 @@ namespace PackingApplication
             this.reviewsubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.reviewsubtitle.Location = new System.Drawing.Point(3, 27);
             this.reviewsubtitle.Name = "reviewsubtitle";
-            this.reviewsubtitle.Size = new System.Drawing.Size(96, 20);
+            this.reviewsubtitle.Size = new System.Drawing.Size(89, 18);
             this.reviewsubtitle.TabIndex = 0;
             this.reviewsubtitle.Text = "Status, Item";
             // 
@@ -1795,9 +1842,9 @@ namespace PackingApplication
             this.weighlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.weighlbl.Location = new System.Drawing.Point(3, 4);
             this.weighlbl.Name = "weighlbl";
-            this.weighlbl.Size = new System.Drawing.Size(127, 22);
+            this.weighlbl.Size = new System.Drawing.Size(119, 19);
             this.weighlbl.TabIndex = 0;
-            this.weighlbl.Text = "Weigh & Label";
+            this.weighlbl.Text = "Weigh && Label";
             this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // weighsubtitle
@@ -1806,7 +1853,7 @@ namespace PackingApplication
             this.weighsubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.weighsubtitle.Location = new System.Drawing.Point(3, 27);
             this.weighsubtitle.Name = "weighsubtitle";
-            this.weighsubtitle.Size = new System.Drawing.Size(138, 20);
+            this.weighsubtitle.Size = new System.Drawing.Size(138, 18);
             this.weighsubtitle.TabIndex = 0;
             this.weighsubtitle.Text = "Scale, QR, Copies";
             // 
@@ -1853,7 +1900,7 @@ namespace PackingApplication
             this.packaginglbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.packaginglbl.Location = new System.Drawing.Point(3, 4);
             this.packaginglbl.Name = "packaginglbl";
-            this.packaginglbl.Size = new System.Drawing.Size(103, 22);
+            this.packaginglbl.Size = new System.Drawing.Size(90, 19);
             this.packaginglbl.TabIndex = 0;
             this.packaginglbl.Text = "Packaging";
             this.packaginglbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1864,7 +1911,7 @@ namespace PackingApplication
             this.packagingsubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.packagingsubtitle.Location = new System.Drawing.Point(3, 27);
             this.packagingsubtitle.Name = "packagingsubtitle";
-            this.packagingsubtitle.Size = new System.Drawing.Size(167, 20);
+            this.packagingsubtitle.Size = new System.Drawing.Size(168, 18);
             this.packagingsubtitle.TabIndex = 0;
             this.packagingsubtitle.Text = "Pack, Cops, Box/Pallet";
             // 
@@ -1911,7 +1958,7 @@ namespace PackingApplication
             this.orderlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
             this.orderlbl.Location = new System.Drawing.Point(3, 4);
             this.orderlbl.Name = "orderlbl";
-            this.orderlbl.Size = new System.Drawing.Size(126, 22);
+            this.orderlbl.Size = new System.Drawing.Size(106, 19);
             this.orderlbl.TabIndex = 0;
             this.orderlbl.Text = "Order details";
             this.orderlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1922,7 +1969,7 @@ namespace PackingApplication
             this.orderdetailssubtitle.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.orderdetailssubtitle.Location = new System.Drawing.Point(3, 27);
             this.orderdetailssubtitle.Name = "orderdetailssubtitle";
-            this.orderdetailssubtitle.Size = new System.Drawing.Size(176, 20);
+            this.orderdetailssubtitle.Size = new System.Drawing.Size(174, 18);
             this.orderdetailssubtitle.TabIndex = 0;
             this.orderdetailssubtitle.Text = "Shade, SO No, Winding";
             // 
@@ -1937,15 +1984,89 @@ namespace PackingApplication
             this.orderdetails1.TabIndex = 107;
             this.orderdetails1.TabStop = false;
             // 
+            // lastboxlayout
+            // 
+            this.lastboxlayout.ColumnCount = 1;
+            this.lastboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.lastboxlayout.Controls.Add(this.lastboxpanel, 0, 1);
+            this.lastboxlayout.Controls.Add(this.lastboxheader, 0, 0);
+            this.lastboxlayout.Location = new System.Drawing.Point(13, 633);
+            this.lastboxlayout.Name = "lastboxlayout";
+            this.lastboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.lastboxlayout.RowCount = 2;
+            this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82F));
+            this.lastboxlayout.Size = new System.Drawing.Size(364, 249);
+            this.lastboxlayout.TabIndex = 111;
+            this.lastboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxlayout_Paint);
+            // 
+            // lastboxpanel
+            // 
+            this.lastboxpanel.Controls.Add(this.lastbxcopspanel);
+            this.lastboxpanel.Location = new System.Drawing.Point(5, 49);
+            this.lastboxpanel.Name = "lastboxpanel";
+            this.lastboxpanel.Size = new System.Drawing.Size(354, 194);
+            this.lastboxpanel.TabIndex = 107;
+            // 
+            // lastboxheader
+            // 
+            this.lastboxheader.Controls.Add(this.Lastboxlbl);
+            this.lastboxheader.Location = new System.Drawing.Point(5, 5);
+            this.lastboxheader.Name = "lastboxheader";
+            this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.lastboxheader.Size = new System.Drawing.Size(354, 38);
+            this.lastboxheader.TabIndex = 107;
+            this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
+            // 
+            // Lastboxlbl
+            // 
+            this.Lastboxlbl.AutoSize = true;
+            this.Lastboxlbl.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.Lastboxlbl.Location = new System.Drawing.Point(6, 9);
+            this.Lastboxlbl.Name = "Lastboxlbl";
+            this.Lastboxlbl.Size = new System.Drawing.Size(135, 20);
+            this.Lastboxlbl.TabIndex = 107;
+            this.Lastboxlbl.Text = "Last box details";
+            // 
+            // cops
+            // 
+            this.cops.AutoSize = true;
+            this.cops.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.cops.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.cops.Location = new System.Drawing.Point(15, 10);
+            this.cops.Name = "cops";
+            this.cops.Size = new System.Drawing.Size(46, 20);
+            this.cops.TabIndex = 2;
+            this.cops.Text = "Cops";
+            // 
+            // copstxtbox
+            // 
+            this.copstxtbox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.copstxtbox.Location = new System.Drawing.Point(12, 30);
+            this.copstxtbox.Name = "copstxtbox";
+            this.copstxtbox.ReadOnly = true;
+            this.copstxtbox.Size = new System.Drawing.Size(42, 26);
+            this.copstxtbox.TabIndex = 3;
+            // 
+            // lastbxcopspanel
+            // 
+            this.lastbxcopspanel.Controls.Add(this.cops);
+            this.lastbxcopspanel.Controls.Add(this.copstxtbox);
+            this.lastbxcopspanel.Location = new System.Drawing.Point(7, 7);
+            this.lastbxcopspanel.Name = "lastbxcopspanel";
+            this.lastbxcopspanel.Size = new System.Drawing.Size(68, 68);
+            this.lastbxcopspanel.TabIndex = 4;
+            this.lastbxcopspanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxcopspanel_Paint);
+            // 
             // POYPackingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1292, 804);
+            this.ClientSize = new System.Drawing.Size(1292, 969);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.poyformlabel);
-            this.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.Font = FontManager.GetFont(9, FontStyle.Bold);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "POYPackingForm";
             this.Text = "POYPackingForm";
@@ -2001,6 +2122,12 @@ namespace PackingApplication
             this.orderdetailsrightpanel.ResumeLayout(false);
             this.orderdetailsrightpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).EndInit();
+            this.lastboxlayout.ResumeLayout(false);
+            this.lastboxpanel.ResumeLayout(false);
+            this.lastboxheader.ResumeLayout(false);
+            this.lastboxheader.PerformLayout();
+            this.lastbxcopspanel.ResumeLayout(false);
+            this.lastbxcopspanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2110,8 +2237,6 @@ namespace PackingApplication
         private DataGridView windinggrid;
         private GroupBox wgroupbox;
         private ListView lastboxldetailist;
-        private System.Windows.Forms.Label cops;
-        private TextBox copstxtbox;
         private TextBox tarewghttxtbox;
         private System.Windows.Forms.Label tareweight;
         private System.Windows.Forms.Label grossweight;
@@ -2173,6 +2298,13 @@ namespace PackingApplication
         private Panel machineboxpanel;
         private Panel machineboxheader;
         private System.Windows.Forms.Label Machinelbl;
+        private TableLayoutPanel lastboxlayout;
+        private Panel lastboxpanel;
+        private TextBox copstxtbox;
+        private System.Windows.Forms.Label cops;
+        private Panel lastboxheader;
+        private System.Windows.Forms.Label Lastboxlbl;
+        private Panel lastbxcopspanel;
     }
 }
 
