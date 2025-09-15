@@ -1,74 +1,45 @@
 {
   "Version": 1,
-<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\",
-  "Documents": [],
-=======
-  "WorkspaceRootPath": "D:\\Projects\\BeekaylonERP\\PackingApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Projects\\BeekaylonERP\\PackingApplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Projects\\BeekaylonERP\\PackingApplication\\poypackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\projects\\beekaylonerp\\packingapplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
->>>>>>> f44b36dd21522e04dba74ad2b911acd62dfdf6a7
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-<<<<<<< HEAD
-      "DocumentGroups": []
-=======
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "POYPackingForm.Designer.cs",
-              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingForm.Designer.cs",
-              "RelativeDocumentMoniker": "POYPackingForm.Designer.cs",
-              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingForm.Designer.cs",
-              "RelativeToolTip": "POYPackingForm.Designer.cs",
-              "ViewState": "AgIAANcEAAAAAAAAAAAqwOEEAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T10:56:34.089Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "POYPackingForm.cs",
-              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingForm.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
               "RelativeDocumentMoniker": "POYPackingForm.cs",
-              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
               "RelativeToolTip": "POYPackingForm.cs",
-              "ViewState": "AgIAABsDAAAAAAAAAAAqwAsDAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAHEHAAAAAAAAAAAiwHgHAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T04:19:46.903Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "POYPackingForm.cs [Design]",
-              "DocumentMoniker": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingForm.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
               "RelativeDocumentMoniker": "POYPackingForm.cs",
-              "ToolTip": "D:\\Projects\\BeekaylonERP\\PackingApplication\\POYPackingForm.cs [Design]",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs [Design]",
               "RelativeToolTip": "POYPackingForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T04:59:11.104Z",
@@ -77,7 +48,6 @@
           ]
         }
       ]
->>>>>>> f44b36dd21522e04dba74ad2b911acd62dfdf6a7
     }
   ]
 }
