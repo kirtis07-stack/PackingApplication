@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -39,9 +40,11 @@ namespace PackingApplication
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
-        public POYPackingForm()
+        private long _productionId;
+        public POYPackingForm(long productionId)
         {
             InitializeComponent();
+            _productionId = productionId;
             this.Shown += POYPackingForm_Shown;
             this.AutoScroll = true;
 
@@ -74,10 +77,10 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
 
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { LotSaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
+            SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
             copyno.Text = "1";
@@ -145,14 +148,6 @@ namespace PackingApplication
             CopsItemList.ValueMember = "ItemId";
             CopsItemList.SelectedIndex = 0;
 
-            var palletitemList = await Task.Run(() => getPalletItemList());
-            //palletitem
-            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            PalletTypeList.DataSource = palletitemList;
-            PalletTypeList.DisplayMember = "Name";
-            PalletTypeList.ValueMember = "ItemId";
-            PalletTypeList.SelectedIndex = 0;
-
             var boxitemList = await Task.Run(() => getBoxItemList());
             //boxitem
             boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
@@ -161,16 +156,174 @@ namespace PackingApplication
             BoxItemList.ValueMember = "ItemId";
             BoxItemList.SelectedIndex = 0;
 
-            var poypackingList = await Task.Run(() => getAllPOYPackingList());
+            var palletitemList = await Task.Run(() => getPalletItemList());
+            //palletitem
+            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            PalletTypeList.DataSource = palletitemList;
+            PalletTypeList.DisplayMember = "Name";
+            PalletTypeList.ValueMember = "ItemId";
+            PalletTypeList.SelectedIndex = 0;
 
-            //poypacking
-            var getLastBox = poypackingList.OrderByDescending(x => x.ProductionId).FirstOrDefault();
-            this.copstxtbox.Text = "";
-            this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-            this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-            this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-            this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            var getLastBox = await Task.Run(() => getLastBoxDetails());
+
+            //lastboxdetails
+            if(getLastBox.ProductionId > 0)
+            {
+                this.copstxtbox.Text = "";
+                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
+
+            if (Convert.ToInt64(_productionId) > 0)
+            {
+                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+
+                if (productionResponse != null)
+                {
+                    LineNoList.SelectedValue = productionResponse.MachineId;
+                    departmentname.Text = productionResponse.DepartmentName;
+                    PrefixList.SelectedValue = 316;         //added hardcoded for now
+                    MergeNoList.SelectedValue = productionResponse.LotId;
+                    dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
+                    QualityList.SelectedValue = productionResponse.QualityId;
+                    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                    PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                    BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                    prodtype.Text = productionResponse.ProductionType;
+                    remarks.Text = productionResponse.Remarks;
+                    prcompany.Checked = productionResponse.PrintCompany;
+                    prowner.Checked = productionResponse.PrintOwner;
+                    prdate.Checked = productionResponse.PrintDate;
+                    pruser.Checked = productionResponse.PrintUser;
+                    prhindi.Checked = productionResponse.PrintHindiWords;
+                    prwtps.Checked = productionResponse.PrintWTPS;
+                    prqrcode.Checked = productionResponse.PrintQRCode;
+                    spoolno.Text = productionResponse.Spools.ToString();
+                    spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                    palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                    grosswtno.Text = productionResponse.GrossWt.ToString();
+                    tarewt.Text = productionResponse.TareWt.ToString();
+                    netwt.Text = productionResponse.NetWt.ToString();
+
+                    if(productionResponse.PalletDetailsResponse.Count > 0 )
+                    {
+                        if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                        {
+                            BindPalletDetails(productionResponse.PalletDetailsResponse);
+                        }
+                        //flowLayoutPanel1.Controls.Clear();
+
+                        //foreach (var pallet in productionResponse.PalletDetailsResponse)
+                        //{
+                        //    // find pallet info (from master list)
+                        //    var palletItemList = Task.Run(() => getPalletItemList()).Result;
+                        //    var palletInfo = palletItemList.FirstOrDefault(x => x.ItemId == pallet.PalletId);
+
+                        //    // create label for quantity
+                        //    System.Windows.Forms.Label qtyLabel = new System.Windows.Forms.Label
+                        //    {
+                        //        Text = pallet.Quantity.ToString(),
+                        //        AutoSize = true,
+                        //    };
+
+                        //    // create panel to hold info
+                        //    Panel pnl = new Panel
+                        //    {
+                        //        Width = 200,
+                        //        Height = 50,
+                        //        BorderStyle = BorderStyle.FixedSingle,
+                        //        Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(palletInfo, qtyLabel)
+                        //    };
+
+                        //    // add child controls
+                        //    System.Windows.Forms.Label nameLabel = new System.Windows.Forms.Label
+                        //    {
+                        //        Text = palletInfo != null ? palletInfo.Name : $"Pallet {pallet.PalletId}",
+                        //        AutoSize = true,
+                        //        Location = new Point(5, 5)
+                        //    };
+
+                        //    qtyLabel.Location = new Point(5, 25);
+
+                        //    pnl.Controls.Add(nameLabel);
+                        //    pnl.Controls.Add(qtyLabel);
+
+                        //    // add panel to flowLayout
+                        //    flowLayoutPanel1.Controls.Add(pnl);
+                        //}
+                    }
+                }
+            }
             isFormReady = true;
+        }
+
+        private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            rowCount = 0;
+            headerAdded = false;
+
+            // add header first
+            AddHeader();
+
+            foreach (var palletDetail in palletDetailsResponse)
+            {
+                // find pallet info from master pallet list
+                var palletItemList = Task.Run(() => getPalletItemList()).Result;
+                var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
+
+                if (selectedItem == null)
+                {
+                    // fallback if master data not found
+                    selectedItem = new ItemResponse { ItemId = palletDetail.PalletId, Name = $"Pallet {palletDetail.PalletId}" };
+                }
+
+                rowCount++;
+
+                Panel rowPanel = new Panel();
+                rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
+                rowPanel.BorderStyle = BorderStyle.FixedSingle;
+
+                // SrNo
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10) };
+
+                // Item Name
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Tag = selectedItem.ItemId };
+
+                // Qty
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new Point(190, 10) };
+
+                // Edit Button
+                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Tag = new Tuple<ItemResponse, int>(selectedItem, palletDetail.Quantity) };
+                btnEdit.Click += editPallet_Click;
+
+                // Delete Button
+                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Delete", Size = new Size(60, 23), Location = new Point(310, 5), Tag = rowPanel };
+                btnDelete.Click += (s, args) =>
+                {
+                    flowLayoutPanel1.Controls.Remove(rowPanel);
+                    ReorderSrNo();
+                };
+
+                rowPanel.Controls.Add(lblSrNo);
+                rowPanel.Controls.Add(lblItem);
+                rowPanel.Controls.Add(lblQty);
+                rowPanel.Controls.Add(btnEdit);
+                rowPanel.Controls.Add(btnDelete);
+
+                // Store pallet info in Tag (same as addqty_Click)
+                rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+
+                flowLayoutPanel1.Controls.Add(rowPanel);
+            }
+
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.WrapContents = false;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
         }
 
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -447,10 +600,10 @@ namespace PackingApplication
         private void getSaleOrderList(int lotId)
         {
             var getSaleOrder = _productionService.getSaleOrderList(lotId);
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { LotSaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "LotSaleOrderDetailsId";
+            SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
         }
 
@@ -505,6 +658,12 @@ namespace PackingApplication
             return getPrefix;
         }
 
+        private ProductionResponse getProductionById(long productionId)
+        {
+            var getProduction = _packingService.getProductionById(productionId);
+            return getProduction;
+        }
+
         private int rowCount = 0; // Keeps track of SrNo
         private bool headerAdded = false; // To ensure header is added only once
         private int currentY = 35; // Start below header height
@@ -551,24 +710,101 @@ namespace PackingApplication
                     
                     Panel rowPanel = new Panel();
                     rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-                    rowPanel.BorderStyle = BorderStyle.FixedSingle;
+                    rowPanel.BorderStyle = BorderStyle.None; // disable default border
+
+                    // attach Paint event
+                    rowPanel.Paint += (s, pe) =>
+                    {
+                        using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                        {
+                            // dashed border example: pen.DashStyle = DashStyle.Dash;
+                            pe.Graphics.DrawLine(
+                                pen,
+                                0, rowPanel.Height - 1,
+                                rowPanel.Width, rowPanel.Height - 1
+                            );
+                        }
+                    };
 
                     // SrNo
-                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10) };
+                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Tag = selectedItem.ItemId };
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
 
                     // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(190, 10) };
+                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Tag = new Tuple<ItemResponse, int>(selectedItem, qty) };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
+                    btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
+                    btnEdit.FlatAppearance.BorderSize = 1;   // thickness
+                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); // hover effect
+                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255); // click effect
+                    btnEdit.FlatAppearance.BorderSize = 0;
+                    btnEdit.Paint += (s, f) =>
+                    {
+                        var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
+
+                        using (GraphicsPath path = GetRoundedRect(rect, 4)) // radius = 4
+                        using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
+                        {
+                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                            // Fill background
+                            f.Graphics.FillPath(brush, path);
+
+                            // Draw border
+                            f.Graphics.DrawPath(borderPen, path);
+
+                            // Draw text centered
+                            TextRenderer.DrawText(
+                                f.Graphics,
+                                btnEdit.Text,
+                                btnEdit.Font,
+                                rect,
+                                btnEdit.ForeColor,
+                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            );
+                        }
+                    };
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Delete", Size = new Size(60, 23), Location = new Point(310, 5), Tag = rowPanel };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(60, 23), Location = new Point(310, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
+                    btnDelete.FlatAppearance.BorderSize = 1;   // thickness
+                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204); // hover effect
+                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); // click effect
+                    btnDelete.FlatAppearance.BorderSize = 0;
+                    btnDelete.Paint += (s, f) =>
+                    {
+                        var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
 
+                        using (GraphicsPath path = GetRoundedRect(rect, 4)) // radius = 4
+                        using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
+                        {
+                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                            // Fill background
+                            f.Graphics.FillPath(brush, path);
+
+                            // Draw border
+                            f.Graphics.DrawPath(borderPen, path);
+
+                            // Draw text centered
+                            TextRenderer.DrawText(
+                                f.Graphics,
+                                btnDelete.Text,
+                                btnDelete.Font,
+                                rect,
+                                btnDelete.ForeColor,
+                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            );
+                        }
+                    };
                     // Remove Row
                     btnDelete.Click += (s, args) =>
                     {
@@ -629,12 +865,24 @@ namespace PackingApplication
         {
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-            headerPanel.BackColor = Color.LightGray;
+            headerPanel.BackColor = Color.White;
+            headerPanel.Paint += (s, pe) =>
+            {
+                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                {
+                    // dashed border example: pen.DashStyle = DashStyle.Dash;
+                    pe.Graphics.DrawLine(
+                        pen,
+                        0, headerPanel.Height - 1,
+                        headerPanel.Width, headerPanel.Height - 1
+                    );
+                }
+            };
 
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 40, Location = new Point(10, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 120, Location = new Point(60, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new Point(190, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new Point(250, 10), Font = new Font("Segoe UI", 9, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Sr No", Width = 40, Location = new Point(10, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 120, Location = new Point(60, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new Point(250, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
 
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
@@ -692,10 +940,10 @@ namespace PackingApplication
 
         private void CalculateTareWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(spoolwt.Text, out num1);
-            int.TryParse(palletwtno.Text, out num2);
+            decimal.TryParse(spoolwt.Text, out num1);
+            decimal.TryParse(palletwtno.Text, out num2);
 
             tarewt.Text = (num1 + num2).ToString();
         }
@@ -715,10 +963,10 @@ namespace PackingApplication
 
         private void CalculateNetWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(grosswtno.Text, out num1);
-            int.TryParse(tarewt.Text, out num2);
+            decimal.TryParse(grosswtno.Text, out num1);
+            decimal.TryParse(tarewt.Text, out num2);
 
             netwt.Text = (num1 - num2).ToString();
         }
@@ -742,10 +990,10 @@ namespace PackingApplication
 
         private void CalculateWeightPerCop()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(netwt.Text, out num1);
-            int.TryParse(spoolno.Text, out num2);
+            decimal.TryParse(netwt.Text, out num1);
+            decimal.TryParse(spoolno.Text, out num2);
 
             wtpercop.Text = (num1 / num2).ToString();
         }
@@ -793,19 +1041,27 @@ namespace PackingApplication
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest)
         {
             ProductionResponse result = new ProductionResponse();
-            result = _packingService.AddUpdatePOYPacking(0, productionRequest);
+            result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null)
             {
-                if (result.ProductionId > 0)
+                if (_productionId == 0)
                 {
-                    MessageBox.Show("Packing added successfully.");
+                    MessageBox.Show("POY Packing added successfully.");
+                    //var dashboard = this.FindForm() as Dashboard;
+                    //if (dashboard != null)
+                    //{
+                    //    dashboard.LoadFormInContent(new POYPackingList());
+                    //}
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong.");
+                    MessageBox.Show("POY Packing updated successfully.");
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Something went wrong.");
+            }
             return result;
         }
 
@@ -818,10 +1074,9 @@ namespace PackingApplication
         //    this.Close();
         //}
 
-        private List<ProductionResponse> getAllPOYPackingList()
+        private ProductionResponse getLastBoxDetails()
         {
-            var getPacking = _packingService.getAllPOYPackingList();
-            getPacking.Insert(0, new ProductionResponse { ProductionId = 0, PackingType = "Select Packing Type" });
+            var getPacking = _packingService.getLastBoxDetails();
             return getPacking;
         }
 
@@ -842,7 +1097,7 @@ namespace PackingApplication
             );
 
             // Draw border
-            using (Pen pen = new Pen(Color.Black, 2))  // custom border color
+            using (Pen pen = new Pen(Color.LightGray, 2))  // custom border color
             {
                 e.Graphics.DrawRectangle(pen, rect);
             }
@@ -953,21 +1208,21 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToInt32(spoolwt.Text) == 0)
+            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToDecimal(spoolwt.Text) == 0)
             {
                 spoolwterror.Text = "Please enter valid spool weight";
                 spoolwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToInt32(palletwtno.Text) == 0)
+            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
             {
                 palletwterror.Text = "Please enter valid empty box/pallet weight";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToInt32(grosswtno.Text) == 0)
+            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
             {
                 grosswterror.Text = "Please enter valid gross weight";
                 grosswterror.Visible = true;
@@ -1018,6 +1273,512 @@ namespace PackingApplication
             {
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.ParentForm as Dashboard;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new POYPackingList());
+            }
+        }
+
+        private void ordertable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    ordertable.Width - thickness - 1,
+                    ordertable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void packagingtable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    packagingtable.Width - thickness - 1,
+                    packagingtable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void weightable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    weighttable.Width - thickness - 1,
+                    weighttable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void reviewtable_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 12;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    reviewtable.Width - thickness - 1,
+                    reviewtable.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            int diameter = radius * 2;
+
+            // Top-left corner
+            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+
+            // Top-right corner
+            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
+
+            // Bottom-right corner
+            path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
+
+            // Bottom-left corner
+            path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
+
+            path.CloseFigure();
+            return path;
+        }
+
+        private void orderboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    orderboxlayout.Width - thickness - 1,
+                    orderboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void orderboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, orderboxheader.Height - borderThickness / 1,
+                    orderboxheader.Width, orderboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void machineboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    machineboxlayout.Width - thickness - 1,
+                    machineboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void machineboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, machineboxheader.Height - borderThickness / 1,
+                    machineboxheader.Width, machineboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void weighboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    weighboxlayout.Width - thickness - 1,
+                    weighboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void weighboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, weighboxheader.Height - borderThickness / 1,
+                    weighboxheader.Width, weighboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    packagingboxlayout.Width - thickness - 1,
+                    packagingboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void packagingboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, packagingboxheader.Height - borderThickness / 1,
+                    packagingboxheader.Width, packagingboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void lastboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    lastboxlayout.Width - thickness - 1,
+                    lastboxlayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void lastboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, lastboxheader.Height - borderThickness / 1,
+                    lastboxheader.Width, lastboxheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxcopspanel.Width - 1, lastbxcopspanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxtarepanel.Width - 1, lastbxtarepanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxgrosswtpanel.Width - 1, lastbxgrosswtpanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int borderRadius = 8;
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                Rectangle rect = new Rectangle(0, 0, lastbxnetwtpanel.Width - 1, lastbxnetwtpanel.Height - 1);
+
+                // Build rounded rectangle path
+                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
+                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
+                path.CloseFigure();
+
+                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
+                {
+                    dashedPen.DashStyle = DashStyle.Dash;
+                    e.Graphics.DrawPath(dashedPen, path);
+                }
+            }
+        }
+
+        private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    printingdetailslayout.Width - thickness - 1,
+                    printingdetailslayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, printingdetailsheader.Height - borderThickness / 1,
+                    printingdetailsheader.Width, printingdetailsheader.Height - borderThickness / 1
+                );
+            }
+        }
+
+        private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;     // corner radius
+
+            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+            {
+                // shrink rectangle so the border is fully visible
+                Rectangle rect = new Rectangle(
+                    thickness / 2,
+                    thickness / 2,
+                    palletdetailslayout.Width - thickness - 1,
+                    palletdetailslayout.Height - thickness - 1
+                );
+
+                using (GraphicsPath path = GetRoundedRect(rect, radius))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
+        private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
+        {
+            int borderThickness = 1;
+            Color borderColor = Color.FromArgb(191, 191, 191);
+
+            using (Pen pen = new Pen(borderColor, borderThickness))
+            {
+                // draw line at bottom
+                e.Graphics.DrawLine(
+                    pen,
+                    0, palletdetailsheader.Height - borderThickness / 1,
+                    palletdetailsheader.Width, palletdetailsheader.Height - borderThickness / 1
+                );
             }
         }
     }

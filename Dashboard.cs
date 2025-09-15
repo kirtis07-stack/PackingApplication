@@ -1,9 +1,12 @@
-﻿using System;
+﻿using PackingApplication.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,22 +44,56 @@ namespace PackingApplication
         private void DashboardForm_Load(object sender, EventArgs e)
         {
             MenuStrip menuStrip = new MenuStrip();
+            menuStrip.BackColor = Color.White;
+            menuStrip.Padding = new Padding(10, 10, 0, 0);
 
             // POY Menu
-            ToolStripMenuItem poy = new ToolStripMenuItem("POYPacking");
-            poy.DropDownItems.Add("POYPacking", null, POYPacking_Click);
+            ToolStripMenuItem poy = new ToolStripMenuItem("POYPacking")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Bold),
+                BackColor = Color.White
+            };
+            ToolStripMenuItem poysubItem = new ToolStripMenuItem("POYPacking", null, POYPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            poy.DropDownItems.Add(poysubItem);
 
             // DTY Menu
-            ToolStripMenuItem dty = new ToolStripMenuItem("DTYPacking");
-            dty.DropDownItems.Add("DTYPacking", null, DTYPacking_Click);
+            ToolStripMenuItem dty = new ToolStripMenuItem("DTYPacking")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Bold),
+                BackColor = Color.White
+            };
+            ToolStripMenuItem dtysubItem = new ToolStripMenuItem("DTYPacking", null, DTYPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            dty.DropDownItems.Add(dtysubItem);
 
             // BCF Menu
-            ToolStripMenuItem bcf = new ToolStripMenuItem("BCFPacking");
-            bcf.DropDownItems.Add("BCFPacking", null, BCFPacking_Click);
+            ToolStripMenuItem bcf = new ToolStripMenuItem("BCFPacking")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Bold),
+                BackColor = Color.White
+            };
+            ToolStripMenuItem bcfsubItem = new ToolStripMenuItem("BCFPacking", null, BCFPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            bcf.DropDownItems.Add(bcfsubItem);
 
             // Chips Menu
-            ToolStripMenuItem chips = new ToolStripMenuItem("ChipsPacking");
-            chips.DropDownItems.Add("ChipsPacking", null, ChipsPacking_Click);
+            ToolStripMenuItem chips = new ToolStripMenuItem("ChipsPacking")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Bold),
+                BackColor = Color.White
+            };
+            ToolStripMenuItem chipssubItem = new ToolStripMenuItem("ChipsPacking", null, ChipsPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            chips.DropDownItems.Add(chipssubItem);
 
             // Add to menuStrip
             menuStrip.Items.Add(poy);
@@ -79,7 +116,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new POYPackingForm());
+                dashboard.LoadFormInContent(new POYPackingList());
             }
         }
 
@@ -93,7 +130,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new DTYPackingForm());
+                dashboard.LoadFormInContent(new DTYPackingList());
             }
         }
 
@@ -107,7 +144,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new BCFPackingForm());
+                dashboard.LoadFormInContent(new BCFPackingList());
             }
         }
 
@@ -121,7 +158,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as Dashboard;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ChipsPackingForm());
+                dashboard.LoadFormInContent(new ChipsPackingList());
             }
         }
 
@@ -135,5 +172,21 @@ namespace PackingApplication
             contentPanel.Controls.Add(form);
             form.Show();
         }
+
+        public class StylishMenuRenderer : ToolStripProfessionalRenderer
+        {
+            public StylishMenuRenderer() : base(new StylishColorTable()) { }
+        }
+
+        public class StylishColorTable : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected => Color.FromArgb(255, 255, 255); // hover background
+            public override Color MenuItemBorder => Color.FromArgb(255, 255, 255);   // border on hover
+            public override Color MenuItemPressedGradientBegin => Color.FromArgb(255, 255, 255);
+            public override Color MenuItemPressedGradientEnd => Color.FromArgb(255, 255, 255);
+            public override Color ToolStripGradientBegin => Color.White;        // menu background
+            public override Color ToolStripGradientEnd => Color.White;
+        }
+
     }
 }

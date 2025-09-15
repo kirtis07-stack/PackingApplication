@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -115,7 +116,11 @@
     <Compile Include="DTYPackingList.Designer.cs">
       <DependentUpon>DTYPackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\FontManager.cs" />
     <Compile Include="Helper\HTTPMethod.cs" />
+    <Compile Include="Helper\RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
@@ -179,6 +184,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="POYPackingList.resx">
+      <DependentUpon>POYPackingList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -218,6 +226,17 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\logo.png" />
+    <None Include="Resources\icons8-circled-4-48.png" />
+    <None Include="Resources\icons8-circled-3-48.png" />
+    <None Include="Resources\icons8-circled-2-48.png" />
+    <None Include="Resources\icons8-one-48.png" />
+    <None Include="Resources\icons8-edit-48.png" />
+    <None Include="Resources\default-profile.png" />
+    <None Include="Resources\PublicSans.ttf" />
+    <None Include="Resources\whitelogo.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\icons8-eye-24.png" />
+    <None Include="Resources\icons8-hide-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

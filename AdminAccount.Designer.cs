@@ -56,7 +56,7 @@
             //this.Controls.Add(this.Logout);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AdminAccount";
-            this.Text = "AdminAccount";
+            this.Text = "AdminDashboard";
             this.ResumeLayout(false);
             this.PerformLayout();
 
