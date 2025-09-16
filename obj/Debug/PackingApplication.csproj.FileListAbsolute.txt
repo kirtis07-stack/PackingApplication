@@ -25,7 +25,6 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\PackingApp
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\Newtonsoft.Json.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\Newtonsoft.Json.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.csproj.AssemblyReference.cache
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.exe.config
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.AdminAccount.resources
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.BCFPackingForm.resources
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.ChipsPackingForm.resources
@@ -40,3 +39,4 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApp
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.pdb
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.exe.config

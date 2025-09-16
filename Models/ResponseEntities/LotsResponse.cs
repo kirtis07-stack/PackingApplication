@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PackingApplication.Models.CommonEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,5 +49,16 @@ namespace PackingApplication.Models.ResponseEntities
         public string LabelDescription { get; set; }
         public int ProcessId { get; set; }
         public string ProcessName { get; set; }
+        public List<LotsProductionDetailsResponse> LotsProductionDetailsResponses { get; set; }
+    }
+
+    public class LotsProductionDetailsResponse : BaseAuditEntity
+    {
+        public int LotProdDetailsId { get; set; }
+        public int LotId { get; set; }
+        public string LotType { get; set; }
+        public int WindingTypeId { get; set; }
+        public string WindingTypeName { get; set; }
+        public int Quantity { get; set; }
     }
 }

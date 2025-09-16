@@ -6,6 +6,7 @@ using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -41,6 +42,7 @@ namespace PackingApplication
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
+        SaleService _saleService = new SaleService();
         private long _productionId;
         public POYPackingForm(long productionId)
         {
@@ -58,7 +60,7 @@ namespace PackingApplication
             PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
             QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
             WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
+            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
             PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
             copyno.TextChanged += CopyNos_TextChanged;
             spoolno.TextChanged += SpoolNo_TextChanged;
@@ -214,6 +216,7 @@ namespace PackingApplication
             this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
@@ -512,6 +515,22 @@ namespace PackingApplication
                 shadecd.Text = item.ShadeCode;
                 deniervalue.Text = item.Denier.ToString();
 
+                List< LotsProductionDetailsResponse> lotProductionList = new List< LotsProductionDetailsResponse>();
+                foreach (var prod in item.LotsProductionDetailsResponses)
+                {
+                    LotsProductionDetailsResponse lotprod = new LotsProductionDetailsResponse();
+                    lotprod.LotId = prod.LotId;
+                    lotprod.WindingTypeId = prod.WindingTypeId;
+                    lotprod.Quantity = prod.Quantity;
+                    lotprod.WindingTypeName = prod.WindingTypeName;
+                    lotProductionList.Add(lotprod);
+
+                }
+                windinggrid.Columns.Clear();
+                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quantity", DataPropertyName = "Quantity", HeaderText = "SaleOrder Qty" });
+                windinggrid.DataSource = lotProductionList;
+
                 getSaleOrderList(productionRequest.LotId);
             }
         }
@@ -603,9 +622,29 @@ namespace PackingApplication
                 int selectedSaleOrderId = selectedSaleOrder.SaleOrderDetailsId;
 
                 productionRequest.SaleOrderId = selectedSaleOrderId;
-
-                //var getSaleOrderResponse = GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + productionRequest.SaleOrderId);
-                //var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse);
+                if(selectedSaleOrderId > 0)
+                {
+                    decimal totalQty = 0;
+                    var saleResponse = getSaleOrderById(productionRequest.SaleOrderId);
+                    List<SaleOrderItemsResponse> soItemList = new List<SaleOrderItemsResponse>();
+                    foreach (var soitem in saleResponse.saleOrderItemsResponses)
+                    {
+                        SaleOrderItemsResponse item = new SaleOrderItemsResponse();
+                        item.SaleOrderId = soitem.SaleOrderId;
+                        item.QualityId = soitem.QualityId;
+                        item.Quantity = soitem.Quantity;
+                        item.QualityName = soitem.QualityName;
+                        soItemList.Add(item);
+                        totalQty += soitem.Quantity;
+                    }
+                    qualityqty.Columns.Clear();
+                    // Define columns
+                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
+                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "Quantity", HeaderText = "Production Qty" });
+                    qualityqty.DataSource = soItemList;
+                    grdsoqty.Text = totalQty.ToString();
+                }
+                
             }
         }
 
@@ -780,6 +819,12 @@ namespace PackingApplication
         {
             var getPrefix = _masterService.getPrefixList();
             return getPrefix;
+        }
+
+        private SaleOrderResponse getSaleOrderById(int saleOrderId)
+        {
+            var getSaleOrder = _saleService.getSaleOrderById(saleOrderId);
+            return getSaleOrder;
         }
 
         private ProductionResponse getProductionById(long productionId)
@@ -1867,6 +1912,33 @@ namespace PackingApplication
                     palletdetailsheader.Width, palletdetailsheader.Height - borderThickness / 1
                 );
             }
+        }
+
+        private GraphicsPath GetTopRoundedRect(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            int diameter = radius * 2;
+
+            // Top-left corner
+            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+
+            // Top edge
+            path.AddLine(rect.X + radius, rect.Y, rect.Right - radius, rect.Y);
+
+            // Top-right corner
+            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
+
+            // Right edge (straight down)
+            path.AddLine(rect.Right, rect.Y + radius, rect.Right, rect.Bottom);
+
+            // Bottom edge (straight line)
+            path.AddLine(rect.Right, rect.Bottom, rect.X, rect.Bottom);
+
+            // Left edge (straight up)
+            path.AddLine(rect.X, rect.Bottom, rect.X, rect.Y + radius);
+
+            path.CloseFigure();
+            return path;
         }
     }
 }

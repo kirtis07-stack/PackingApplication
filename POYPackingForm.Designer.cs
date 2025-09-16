@@ -131,6 +131,7 @@ namespace PackingApplication
             this.grosswttxtbox = new System.Windows.Forms.TextBox();
             this.grossweight = new System.Windows.Forms.Label();
             this.gradewiseprodn = new System.Windows.Forms.GroupBox();
+            this.grdsoqty = new System.Windows.Forms.Label();
             this.qualityqty = new System.Windows.Forms.DataGridView();
             this.qualityandqty = new System.Data.DataTable();
             this.totalprodbalqty = new System.Windows.Forms.Label();
@@ -478,7 +479,7 @@ namespace PackingApplication
             // boxtype
             // 
             this.boxtype.AutoSize = true;
-            this.boxtype.Location = new System.Drawing.Point(8, 56);
+            this.boxtype.Location = new System.Drawing.Point(8, 54);
             this.boxtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxtype.Name = "boxtype";
             this.boxtype.Size = new System.Drawing.Size(86, 13);
@@ -488,7 +489,7 @@ namespace PackingApplication
             // boxweight
             // 
             this.boxweight.AutoSize = true;
-            this.boxweight.Location = new System.Drawing.Point(148, 56);
+            this.boxweight.Location = new System.Drawing.Point(148, 54);
             this.boxweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxweight.Name = "boxweight";
             this.boxweight.Size = new System.Drawing.Size(24, 13);
@@ -508,7 +509,7 @@ namespace PackingApplication
             // boxstock
             // 
             this.boxstock.AutoSize = true;
-            this.boxstock.Location = new System.Drawing.Point(184, 55);
+            this.boxstock.Location = new System.Drawing.Point(184, 54);
             this.boxstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxstock.Name = "boxstock";
             this.boxstock.Size = new System.Drawing.Size(90, 13);
@@ -1086,10 +1087,10 @@ namespace PackingApplication
             // 
             this.palletdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.palletdetailsheader.Controls.Add(this.palletdetails);
-            this.palletdetailsheader.Location = new System.Drawing.Point(4, 5);
-            this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.palletdetailsheader.Location = new System.Drawing.Point(2, 2);
+            this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(0);
             this.palletdetailsheader.Name = "palletdetailsheader";
-            this.palletdetailsheader.Size = new System.Drawing.Size(340, 33);
+            this.palletdetailsheader.Size = new System.Drawing.Size(344, 41);
             this.palletdetailsheader.TabIndex = 107;
             this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
             // 
@@ -1144,18 +1145,18 @@ namespace PackingApplication
             // 
             this.printingdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printingdetailsheader.Controls.Add(this.Printinglbl);
-            this.printingdetailsheader.Location = new System.Drawing.Point(4, 5);
-            this.printingdetailsheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.printingdetailsheader.Location = new System.Drawing.Point(2, 2);
+            this.printingdetailsheader.Margin = new System.Windows.Forms.Padding(0);
             this.printingdetailsheader.Name = "printingdetailsheader";
             this.printingdetailsheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.printingdetailsheader.Size = new System.Drawing.Size(340, 23);
+            this.printingdetailsheader.Size = new System.Drawing.Size(344, 29);
             this.printingdetailsheader.TabIndex = 107;
             this.printingdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailsheader_Paint);
             // 
             // Printinglbl
             // 
             this.Printinglbl.AutoSize = true;
-            this.Printinglbl.Location = new System.Drawing.Point(4, 8);
+            this.Printinglbl.Location = new System.Drawing.Point(4, 5);
             this.Printinglbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Printinglbl.Name = "Printinglbl";
             this.Printinglbl.Size = new System.Drawing.Size(75, 13);
@@ -1294,6 +1295,7 @@ namespace PackingApplication
             // 
             // gradewiseprodn
             // 
+            this.gradewiseprodn.Controls.Add(this.grdsoqty);
             this.gradewiseprodn.Controls.Add(this.qualityqty);
             this.gradewiseprodn.Controls.Add(this.totalprodbalqty);
             this.gradewiseprodn.Controls.Add(this.saleordrqty);
@@ -1306,6 +1308,14 @@ namespace PackingApplication
             this.gradewiseprodn.TabIndex = 93;
             this.gradewiseprodn.TabStop = false;
             this.gradewiseprodn.Text = "Gradewise Prodn Status";
+            // 
+            // grdsoqty
+            // 
+            this.grdsoqty.AutoSize = true;
+            this.grdsoqty.Location = new System.Drawing.Point(91, 16);
+            this.grdsoqty.Name = "grdsoqty";
+            this.grdsoqty.Size = new System.Drawing.Size(0, 13);
+            this.grdsoqty.TabIndex = 94;
             // 
             // qualityqty
             // 
@@ -1420,11 +1430,11 @@ namespace PackingApplication
             // 
             this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lastboxheader.Controls.Add(this.Lastboxlbl);
-            this.lastboxheader.Location = new System.Drawing.Point(4, 5);
-            this.lastboxheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastboxheader.Location = new System.Drawing.Point(2, 2);
+            this.lastboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.lastboxheader.Name = "lastboxheader";
             this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.lastboxheader.Size = new System.Drawing.Size(340, 29);
+            this.lastboxheader.Size = new System.Drawing.Size(344, 35);
             this.lastboxheader.TabIndex = 107;
             this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
             // 
@@ -1458,6 +1468,7 @@ namespace PackingApplication
             // 
             // machineboxpanel
             // 
+            this.machineboxpanel.BackColor = System.Drawing.Color.White;
             this.machineboxpanel.Controls.Add(this.deniervalue);
             this.machineboxpanel.Controls.Add(this.denier);
             this.machineboxpanel.Controls.Add(this.shadecd);
@@ -1557,10 +1568,10 @@ namespace PackingApplication
             // 
             this.machineboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.machineboxheader.Controls.Add(this.Machinelbl);
-            this.machineboxheader.Location = new System.Drawing.Point(4, 5);
-            this.machineboxheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.machineboxheader.Location = new System.Drawing.Point(2, 2);
+            this.machineboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.machineboxheader.Name = "machineboxheader";
-            this.machineboxheader.Size = new System.Drawing.Size(340, 32);
+            this.machineboxheader.Size = new System.Drawing.Size(344, 38);
             this.machineboxheader.TabIndex = 107;
             this.machineboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxheader_Paint);
             // 
@@ -1669,10 +1680,10 @@ namespace PackingApplication
             // 
             this.weighboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.weighboxheader.Controls.Add(this.Weighboxlbl);
-            this.weighboxheader.Location = new System.Drawing.Point(4, 5);
-            this.weighboxheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.weighboxheader.Location = new System.Drawing.Point(2, 2);
+            this.weighboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.weighboxheader.Name = "weighboxheader";
-            this.weighboxheader.Size = new System.Drawing.Size(340, 32);
+            this.weighboxheader.Size = new System.Drawing.Size(344, 38);
             this.weighboxheader.TabIndex = 107;
             this.weighboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxheader_Paint);
             // 
@@ -1744,10 +1755,10 @@ namespace PackingApplication
             // 
             this.packagingboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.packagingboxheader.Controls.Add(this.Packagingboxlbl);
-            this.packagingboxheader.Location = new System.Drawing.Point(4, 5);
-            this.packagingboxheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.packagingboxheader.Location = new System.Drawing.Point(2, 2);
+            this.packagingboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.packagingboxheader.Name = "packagingboxheader";
-            this.packagingboxheader.Size = new System.Drawing.Size(340, 29);
+            this.packagingboxheader.Size = new System.Drawing.Size(344, 35);
             this.packagingboxheader.TabIndex = 107;
             this.packagingboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxheader_Paint);
             // 
@@ -1851,10 +1862,10 @@ namespace PackingApplication
             // 
             this.orderboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.orderboxheader.Controls.Add(this.Orderboxlbl);
-            this.orderboxheader.Location = new System.Drawing.Point(4, 5);
-            this.orderboxheader.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.orderboxheader.Location = new System.Drawing.Point(2, 2);
+            this.orderboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.orderboxheader.Name = "orderboxheader";
-            this.orderboxheader.Size = new System.Drawing.Size(340, 29);
+            this.orderboxheader.Size = new System.Drawing.Size(344, 35);
             this.orderboxheader.TabIndex = 107;
             this.orderboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.orderboxheader_Paint);
             // 
@@ -2473,6 +2484,7 @@ namespace PackingApplication
         private Panel palletdetailsheader;
         private Panel palletdetailspanel;
         private System.Windows.Forms.Label palletdetails;
+        private System.Windows.Forms.Label grdsoqty;
     }
 }
 
