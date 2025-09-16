@@ -131,9 +131,9 @@ namespace PackingApplication
             this.grosswttxtbox = new System.Windows.Forms.TextBox();
             this.grossweight = new System.Windows.Forms.Label();
             this.gradewiseprodn = new System.Windows.Forms.GroupBox();
-            this.totalprodbalqty = new System.Windows.Forms.Label();
             this.qualityqty = new System.Windows.Forms.DataGridView();
             this.qualityandqty = new System.Data.DataTable();
+            this.totalprodbalqty = new System.Windows.Forms.Label();
             this.saleordrqty = new System.Windows.Forms.Label();
             this.lastbxtarepanel = new System.Windows.Forms.Panel();
             this.tarewghttxtbox = new System.Windows.Forms.TextBox();
@@ -1307,17 +1307,6 @@ namespace PackingApplication
             this.gradewiseprodn.TabStop = false;
             this.gradewiseprodn.Text = "Gradewise Prodn Status";
             // 
-            // totalprodbalqty
-            // 
-            this.totalprodbalqty.AutoSize = true;
-            this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.totalprodbalqty.Location = new System.Drawing.Point(9, 211);
-            this.totalprodbalqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.totalprodbalqty.Name = "totalprodbalqty";
-            this.totalprodbalqty.Size = new System.Drawing.Size(98, 13);
-            this.totalprodbalqty.TabIndex = 93;
-            this.totalprodbalqty.Text = "Production Bal Qty:";
-            // 
             // qualityqty
             // 
             this.qualityqty.AutoGenerateColumns = false;
@@ -1334,6 +1323,17 @@ namespace PackingApplication
             this.qualityqty.Size = new System.Drawing.Size(136, 178);
             this.qualityqty.TabIndex = 92;
             this.qualityqty.Paint += new System.Windows.Forms.PaintEventHandler(this.qualityqty_Paint);
+            // 
+            // totalprodbalqty
+            // 
+            this.totalprodbalqty.AutoSize = true;
+            this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totalprodbalqty.Location = new System.Drawing.Point(9, 211);
+            this.totalprodbalqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.totalprodbalqty.Name = "totalprodbalqty";
+            this.totalprodbalqty.Size = new System.Drawing.Size(98, 13);
+            this.totalprodbalqty.TabIndex = 93;
+            this.totalprodbalqty.Text = "Production Bal Qty:";
             // 
             // saleordrqty
             // 

@@ -399,13 +399,11 @@ namespace PackingApplication
 
             foreach (var palletDetail in palletDetailsResponse)
             {
-                // find pallet info from master pallet list
                 var palletItemList = Task.Run(() => getPalletItemList()).Result;
                 var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
 
                 if (selectedItem == null)
                 {
-                    // fallback if master data not found
                     selectedItem = new ItemResponse { ItemId = palletDetail.PalletId, Name = $"Pallet {palletDetail.PalletId}" };
                 }
 
@@ -442,7 +440,6 @@ namespace PackingApplication
                 rowPanel.Controls.Add(btnEdit);
                 rowPanel.Controls.Add(btnDelete);
 
-                // Store pallet info in Tag (same as addqty_Click)
                 rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
 
                 flowLayoutPanel1.Controls.Add(rowPanel);
@@ -837,9 +834,8 @@ namespace PackingApplication
                     
                     Panel rowPanel = new Panel();
                     rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-                    rowPanel.BorderStyle = BorderStyle.None; // disable default border
+                    rowPanel.BorderStyle = BorderStyle.None; 
 
-                    // attach Paint event
                     rowPanel.Paint += (s, pe) =>
                     {
                         using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
@@ -865,9 +861,9 @@ namespace PackingApplication
                     // Edit Button
                     System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
-                    btnEdit.FlatAppearance.BorderSize = 1;   // thickness
-                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); // hover effect
-                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255); // click effect
+                    btnEdit.FlatAppearance.BorderSize = 1;  
+                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); 
+                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
                     btnEdit.FlatAppearance.BorderSize = 0;
                     btnEdit.Paint += (s, f) =>
                     {
@@ -879,13 +875,10 @@ namespace PackingApplication
                         {
                             f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                            // Fill background
                             f.Graphics.FillPath(brush, path);
 
-                            // Draw border
                             f.Graphics.DrawPath(borderPen, path);
 
-                            // Draw text centered
                             TextRenderer.DrawText(
                                 f.Graphics,
                                 btnEdit.Text,
@@ -901,27 +894,23 @@ namespace PackingApplication
                     // Delete Button
                     System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(60, 23), Location = new Point(310, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
-                    btnDelete.FlatAppearance.BorderSize = 1;   // thickness
-                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204); // hover effect
-                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); // click effect
+                    btnDelete.FlatAppearance.BorderSize = 1;   
+                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
+                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); 
                     btnDelete.FlatAppearance.BorderSize = 0;
                     btnDelete.Paint += (s, f) =>
                     {
                         var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
 
-                        using (GraphicsPath path = GetRoundedRect(rect, 4)) // radius = 4
+                        using (GraphicsPath path = GetRoundedRect(rect, 4))
                         using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
                         using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
                         {
                             f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                            // Fill background
                             f.Graphics.FillPath(brush, path);
-
-                            // Draw border
                             f.Graphics.DrawPath(borderPen, path);
 
-                            // Draw text centered
                             TextRenderer.DrawText(
                                 f.Graphics,
                                 btnDelete.Text,
@@ -995,9 +984,8 @@ namespace PackingApplication
             headerPanel.BackColor = Color.White;
             headerPanel.Paint += (s, pe) =>
             {
-                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) 
                 {
-                    // dashed border example: pen.DashStyle = DashStyle.Dash;
                     pe.Graphics.DrawLine(
                         pen,
                         0, headerPanel.Height - 1,
@@ -1192,15 +1180,6 @@ namespace PackingApplication
             return result;
         }
 
-        //private void Logout_Click(object sender, EventArgs e)
-        //{
-        //    SessionManager.Clear();
-
-        //    var loginForm = new Login();
-        //    loginForm.Show();
-        //    this.Close();
-        //}
-
         private ProductionResponse getLastBoxDetails()
         {
             var getPacking = _packingService.getLastBoxDetails();
@@ -1215,7 +1194,6 @@ namespace PackingApplication
             // Get text size
             SizeF textSize = e.Graphics.MeasureString(gradewiseprodn.Text, gradewiseprodn.Font);
 
-            // Define rectangle for border (skip space for text)
             Rectangle rect = new Rectangle(
                 gradewiseprodn.ClientRectangle.X,
                 gradewiseprodn.ClientRectangle.Y + (int)(textSize.Height / 2),
@@ -1223,17 +1201,10 @@ namespace PackingApplication
                 gradewiseprodn.ClientRectangle.Height - (int)(textSize.Height / 2) - 1
             );
 
-            // Draw border
-            using (Pen pen = new Pen(Color.LightGray, 2))  // custom border color
+            using (Pen pen = new Pen(Color.LightGray, 2))  
             {
                 e.Graphics.DrawRectangle(pen, rect);
             }
-
-            //// Draw text manually
-            //using (Brush brush = new SolidBrush(Color.Maroon)) // custom text color
-            //{
-            //    e.Graphics.DrawString(gradewiseprodn.Text, gradewiseprodn.Font, brush, 10, 0);
-            //}
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)
@@ -1416,12 +1387,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 12;     // corner radius
+            int thickness = 1;   
+            int radius = 12;     
 
             using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1440,12 +1410,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 12;     // corner radius
+            int thickness = 1;   
+            int radius = 12;    
 
             using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1464,12 +1433,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 12;     // corner radius
+            int thickness = 1;   
+            int radius = 12;     
 
             using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1488,12 +1456,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 12;     // corner radius
+            int thickness = 1;   
+            int radius = 12;     
 
             using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1533,12 +1500,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;    
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1573,12 +1539,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;    
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1613,12 +1578,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;     
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1653,12 +1617,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;     
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1680,7 +1643,6 @@ namespace PackingApplication
 
             using (Pen pen = new Pen(borderColor, borderThickness))
             {
-                // draw line at bottom
                 e.Graphics.DrawLine(
                     pen,
                     0, packagingboxheader.Height - borderThickness / 1,
@@ -1693,12 +1655,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;    
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
@@ -1833,8 +1794,8 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;     
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
@@ -1873,12 +1834,11 @@ namespace PackingApplication
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            int thickness = 1;   // border thickness
-            int radius = 8;     // corner radius
+            int thickness = 1;   
+            int radius = 8;     
 
             using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
             {
-                // shrink rectangle so the border is fully visible
                 Rectangle rect = new Rectangle(
                     thickness / 2,
                     thickness / 2,
