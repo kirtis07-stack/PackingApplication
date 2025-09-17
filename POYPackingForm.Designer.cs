@@ -34,6 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lineno = new System.Windows.Forms.Label();
             this.department = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -124,18 +126,19 @@ namespace PackingApplication
             this.wgroupbox = new System.Windows.Forms.GroupBox();
             this.windinggrid = new System.Windows.Forms.DataGridView();
             this.windingqty = new System.Data.DataTable();
+            this.gradewiseprodn = new System.Windows.Forms.GroupBox();
+            this.prodnbalqty = new System.Windows.Forms.Label();
+            this.grdsoqty = new System.Windows.Forms.Label();
+            this.qualityqty = new System.Windows.Forms.DataGridView();
+            this.qualityandqty = new System.Data.DataTable();
+            this.totalprodbalqty = new System.Windows.Forms.Label();
+            this.saleordrqty = new System.Windows.Forms.Label();
             this.lastbxnetwtpanel = new System.Windows.Forms.Panel();
             this.netwttxtbox = new System.Windows.Forms.TextBox();
             this.netweight = new System.Windows.Forms.Label();
             this.lastbxgrosswtpanel = new System.Windows.Forms.Panel();
             this.grosswttxtbox = new System.Windows.Forms.TextBox();
             this.grossweight = new System.Windows.Forms.Label();
-            this.gradewiseprodn = new System.Windows.Forms.GroupBox();
-            this.grdsoqty = new System.Windows.Forms.Label();
-            this.qualityqty = new System.Windows.Forms.DataGridView();
-            this.qualityandqty = new System.Data.DataTable();
-            this.totalprodbalqty = new System.Windows.Forms.Label();
-            this.saleordrqty = new System.Windows.Forms.Label();
             this.lastbxtarepanel = new System.Windows.Forms.Panel();
             this.tarewghttxtbox = new System.Windows.Forms.TextBox();
             this.tareweight = new System.Windows.Forms.Label();
@@ -215,11 +218,11 @@ namespace PackingApplication
             this.wgroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).BeginInit();
-            this.lastbxnetwtpanel.SuspendLayout();
-            this.lastbxgrosswtpanel.SuspendLayout();
             this.gradewiseprodn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).BeginInit();
+            this.lastbxnetwtpanel.SuspendLayout();
+            this.lastbxgrosswtpanel.SuspendLayout();
             this.lastbxtarepanel.SuspendLayout();
             this.lastbxcopspanel.SuspendLayout();
             this.lastboxheader.SuspendLayout();
@@ -1176,22 +1179,22 @@ namespace PackingApplication
             this.lastboxlayout.RowCount = 2;
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.lastboxlayout.Size = new System.Drawing.Size(299, 298);
+            this.lastboxlayout.Size = new System.Drawing.Size(299, 328);
             this.lastboxlayout.TabIndex = 111;
             this.lastboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxlayout_Paint);
             // 
             // lastboxpanel
             // 
             this.lastboxpanel.Controls.Add(this.wgroupbox);
+            this.lastboxpanel.Controls.Add(this.gradewiseprodn);
             this.lastboxpanel.Controls.Add(this.lastbxnetwtpanel);
             this.lastboxpanel.Controls.Add(this.lastbxgrosswtpanel);
-            this.lastboxpanel.Controls.Add(this.gradewiseprodn);
             this.lastboxpanel.Controls.Add(this.lastbxtarepanel);
             this.lastboxpanel.Controls.Add(this.lastbxcopspanel);
-            this.lastboxpanel.Location = new System.Drawing.Point(4, 34);
+            this.lastboxpanel.Location = new System.Drawing.Point(4, 37);
             this.lastboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastboxpanel.Name = "lastboxpanel";
-            this.lastboxpanel.Size = new System.Drawing.Size(290, 259);
+            this.lastboxpanel.Size = new System.Drawing.Size(290, 286);
             this.lastboxpanel.TabIndex = 107;
             // 
             // wgroupbox
@@ -1201,25 +1204,140 @@ namespace PackingApplication
             this.wgroupbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.wgroupbox.Name = "wgroupbox";
             this.wgroupbox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.wgroupbox.Size = new System.Drawing.Size(142, 207);
+            this.wgroupbox.Size = new System.Drawing.Size(282, 104);
             this.wgroupbox.TabIndex = 90;
             this.wgroupbox.TabStop = false;
             this.wgroupbox.Text = "Winding Type + Gradewise Production Status";
             // 
             // windinggrid
             // 
+            this.windinggrid.AllowUserToAddRows = false;
+            this.windinggrid.AllowUserToDeleteRows = false;
+            this.windinggrid.AllowUserToResizeColumns = false;
+            this.windinggrid.AllowUserToResizeRows = false;
             this.windinggrid.AutoGenerateColumns = false;
             this.windinggrid.BackgroundColor = System.Drawing.Color.White;
+            this.windinggrid.EnableHeadersVisualStyles = false;
+            this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(230,240,255);
+            dataGridViewCellStyle1.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.windinggrid.ColumnHeadersHeight = 34;
+            this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.DataSource = this.windingqty;
-            this.windinggrid.Location = new System.Drawing.Point(7, 46);
+            this.windinggrid.Location = new System.Drawing.Point(0, 19);
             this.windinggrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.windinggrid.MultiSelect = false;
             this.windinggrid.Name = "windinggrid";
+            this.windinggrid.ReadOnly = true;
             this.windinggrid.RowHeadersVisible = false;
             this.windinggrid.RowHeadersWidth = 62;
-            this.windinggrid.Size = new System.Drawing.Size(130, 155);
+            this.windinggrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.windinggrid.Size = new System.Drawing.Size(281, 85);
             this.windinggrid.TabIndex = 92;
             this.windinggrid.Paint += new System.Windows.Forms.PaintEventHandler(this.windinggrid_Paint);
+            // 
+            // gradewiseprodn
+            // 
+            this.gradewiseprodn.Controls.Add(this.prodnbalqty);
+            this.gradewiseprodn.Controls.Add(this.grdsoqty);
+            this.gradewiseprodn.Controls.Add(this.qualityqty);
+            this.gradewiseprodn.Controls.Add(this.totalprodbalqty);
+            this.gradewiseprodn.Controls.Add(this.saleordrqty);
+            this.gradewiseprodn.ForeColor = System.Drawing.Color.Black;
+            this.gradewiseprodn.Location = new System.Drawing.Point(6, 166);
+            this.gradewiseprodn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.gradewiseprodn.Name = "gradewiseprodn";
+            this.gradewiseprodn.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.gradewiseprodn.Size = new System.Drawing.Size(278, 117);
+            this.gradewiseprodn.TabIndex = 93;
+            this.gradewiseprodn.TabStop = false;
+            this.gradewiseprodn.Text = "Gradewise Production Status";
+            // 
+            // prodnbalqty
+            // 
+            this.prodnbalqty.AutoSize = true;
+            this.prodnbalqty.Location = new System.Drawing.Point(91, 98);
+            this.prodnbalqty.Name = "prodnbalqty";
+            this.prodnbalqty.Size = new System.Drawing.Size(0, 13);
+            this.prodnbalqty.TabIndex = 95;
+            // 
+            // grdsoqty
+            // 
+            this.grdsoqty.AutoSize = true;
+            this.grdsoqty.Location = new System.Drawing.Point(91, 16);
+            this.grdsoqty.Name = "grdsoqty";
+            this.grdsoqty.Size = new System.Drawing.Size(0, 13);
+            this.grdsoqty.TabIndex = 94;
+            // 
+            // qualityqty
+            // 
+            this.qualityqty.AllowUserToAddRows = false;
+            this.qualityqty.AllowUserToDeleteRows = false;
+            this.qualityqty.AllowUserToResizeColumns = false;
+            this.qualityqty.AllowUserToResizeRows = false;
+            this.qualityqty.AutoGenerateColumns = false;
+            this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.qualityqty.BackgroundColor = System.Drawing.Color.White;
+            this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(230, 240, 255);
+            dataGridViewCellStyle2.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.qualityqty.ColumnHeadersHeight = 34;
+            this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.qualityqty.DataSource = this.qualityandqty;
+            this.qualityqty.EnableHeadersVisualStyles = false;
+            this.qualityqty.GridColor = System.Drawing.SystemColors.Control;
+            this.qualityqty.Location = new System.Drawing.Point(0, 30);
+            this.qualityqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.qualityqty.MultiSelect = false;
+            this.qualityqty.Name = "qualityqty";
+            this.qualityqty.ReadOnly = true;
+            this.qualityqty.RowHeadersVisible = false;
+            this.qualityqty.RowHeadersWidth = 62;
+            this.qualityqty.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.qualityqty.Size = new System.Drawing.Size(278, 65);
+            this.qualityqty.TabIndex = 92;
+            this.qualityqty.Paint += new System.Windows.Forms.PaintEventHandler(this.qualityqty_Paint);
+            // 
+            // totalprodbalqty
+            // 
+            this.totalprodbalqty.AutoSize = true;
+            this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totalprodbalqty.Location = new System.Drawing.Point(8, 98);
+            this.totalprodbalqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.totalprodbalqty.Name = "totalprodbalqty";
+            this.totalprodbalqty.Size = new System.Drawing.Size(98, 13);
+            this.totalprodbalqty.TabIndex = 93;
+            this.totalprodbalqty.Text = "Production Bal Qty:";
+            // 
+            // saleordrqty
+            // 
+            this.saleordrqty.AutoSize = true;
+            this.saleordrqty.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.saleordrqty.Location = new System.Drawing.Point(8, 15);
+            this.saleordrqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.saleordrqty.Name = "saleordrqty";
+            this.saleordrqty.Size = new System.Drawing.Size(82, 13);
+            this.saleordrqty.TabIndex = 92;
+            this.saleordrqty.Text = "Sale Order Qty :";
             // 
             // lastbxnetwtpanel
             // 
@@ -1238,11 +1356,11 @@ namespace PackingApplication
             this.netwttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.netwttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.netwttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.netwttxtbox.Location = new System.Drawing.Point(3, 21);
+            this.netwttxtbox.Location = new System.Drawing.Point(7, 23);
             this.netwttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.netwttxtbox.Name = "netwttxtbox";
             this.netwttxtbox.ReadOnly = true;
-            this.netwttxtbox.Size = new System.Drawing.Size(58, 13);
+            this.netwttxtbox.Size = new System.Drawing.Size(57, 13);
             this.netwttxtbox.TabIndex = 95;
             this.netwttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1250,7 +1368,7 @@ namespace PackingApplication
             // 
             this.netweight.AutoSize = true;
             this.netweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.netweight.Location = new System.Drawing.Point(17, 7);
+            this.netweight.Location = new System.Drawing.Point(20, 7);
             this.netweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.netweight.Name = "netweight";
             this.netweight.Size = new System.Drawing.Size(24, 13);
@@ -1292,69 +1410,6 @@ namespace PackingApplication
             this.grossweight.TabIndex = 6;
             this.grossweight.Text = "Gross";
             // 
-            // gradewiseprodn
-            // 
-            this.gradewiseprodn.Controls.Add(this.grdsoqty);
-            this.gradewiseprodn.Controls.Add(this.qualityqty);
-            this.gradewiseprodn.Controls.Add(this.totalprodbalqty);
-            this.gradewiseprodn.Controls.Add(this.saleordrqty);
-            this.gradewiseprodn.ForeColor = System.Drawing.Color.Black;
-            this.gradewiseprodn.Location = new System.Drawing.Point(154, 54);
-            this.gradewiseprodn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gradewiseprodn.Name = "gradewiseprodn";
-            this.gradewiseprodn.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gradewiseprodn.Size = new System.Drawing.Size(132, 207);
-            this.gradewiseprodn.TabIndex = 93;
-            this.gradewiseprodn.TabStop = false;
-            this.gradewiseprodn.Text = "Gradewise Prodn Status";
-            // 
-            // grdsoqty
-            // 
-            this.grdsoqty.AutoSize = true;
-            this.grdsoqty.Location = new System.Drawing.Point(91, 16);
-            this.grdsoqty.Name = "grdsoqty";
-            this.grdsoqty.Size = new System.Drawing.Size(0, 13);
-            this.grdsoqty.TabIndex = 94;
-            // 
-            // qualityqty
-            // 
-            this.qualityqty.AutoGenerateColumns = false;
-            this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.qualityqty.BackgroundColor = System.Drawing.Color.White;
-            this.qualityqty.ColumnHeadersHeight = 34;
-            this.qualityqty.DataSource = this.qualityandqty;
-            this.qualityqty.GridColor = System.Drawing.SystemColors.Control;
-            this.qualityqty.Location = new System.Drawing.Point(7, 30);
-            this.qualityqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.qualityqty.Name = "qualityqty";
-            this.qualityqty.RowHeadersVisible = false;
-            this.qualityqty.RowHeadersWidth = 62;
-            this.qualityqty.Size = new System.Drawing.Size(119, 155);
-            this.qualityqty.TabIndex = 92;
-            this.qualityqty.Paint += new System.Windows.Forms.PaintEventHandler(this.qualityqty_Paint);
-            // 
-            // totalprodbalqty
-            // 
-            this.totalprodbalqty.AutoSize = true;
-            this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.totalprodbalqty.Location = new System.Drawing.Point(4, 188);
-            this.totalprodbalqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.totalprodbalqty.Name = "totalprodbalqty";
-            this.totalprodbalqty.Size = new System.Drawing.Size(98, 13);
-            this.totalprodbalqty.TabIndex = 93;
-            this.totalprodbalqty.Text = "Production Bal Qty:";
-            // 
-            // saleordrqty
-            // 
-            this.saleordrqty.AutoSize = true;
-            this.saleordrqty.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saleordrqty.Location = new System.Drawing.Point(8, 15);
-            this.saleordrqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.saleordrqty.Name = "saleordrqty";
-            this.saleordrqty.Size = new System.Drawing.Size(82, 13);
-            this.saleordrqty.TabIndex = 92;
-            this.saleordrqty.Text = "Sale Order Qty :";
-            // 
             // lastbxtarepanel
             // 
             this.lastbxtarepanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
@@ -1371,11 +1426,11 @@ namespace PackingApplication
             // 
             this.tarewghttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.tarewghttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tarewghttxtbox.Location = new System.Drawing.Point(1, 21);
+            this.tarewghttxtbox.Location = new System.Drawing.Point(7, 23);
             this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tarewghttxtbox.Name = "tarewghttxtbox";
             this.tarewghttxtbox.ReadOnly = true;
-            this.tarewghttxtbox.Size = new System.Drawing.Size(64, 13);
+            this.tarewghttxtbox.Size = new System.Drawing.Size(57, 13);
             this.tarewghttxtbox.TabIndex = 5;
             this.tarewghttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1383,7 +1438,7 @@ namespace PackingApplication
             // 
             this.tareweight.AutoSize = true;
             this.tareweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tareweight.Location = new System.Drawing.Point(17, 5);
+            this.tareweight.Location = new System.Drawing.Point(17, 7);
             this.tareweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.tareweight.Name = "tareweight";
             this.tareweight.Size = new System.Drawing.Size(29, 13);
@@ -1417,11 +1472,11 @@ namespace PackingApplication
             // 
             this.copstxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.copstxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.copstxtbox.Location = new System.Drawing.Point(12, 24);
+            this.copstxtbox.Location = new System.Drawing.Point(7, 23);
             this.copstxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copstxtbox.Name = "copstxtbox";
             this.copstxtbox.ReadOnly = true;
-            this.copstxtbox.Size = new System.Drawing.Size(32, 13);
+            this.copstxtbox.Size = new System.Drawing.Size(57, 13);
             this.copstxtbox.TabIndex = 3;
             this.copstxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1967,7 +2022,7 @@ namespace PackingApplication
             this.leftpanel.Location = new System.Drawing.Point(2, 3);
             this.leftpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.leftpanel.Name = "leftpanel";
-            this.leftpanel.Size = new System.Drawing.Size(163, 455);
+            this.leftpanel.Size = new System.Drawing.Size(163, 502);
             this.leftpanel.TabIndex = 107;
             // 
             // reviewtable
@@ -2247,14 +2302,14 @@ namespace PackingApplication
             this.wgroupbox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).EndInit();
-            this.lastbxnetwtpanel.ResumeLayout(false);
-            this.lastbxnetwtpanel.PerformLayout();
-            this.lastbxgrosswtpanel.ResumeLayout(false);
-            this.lastbxgrosswtpanel.PerformLayout();
             this.gradewiseprodn.ResumeLayout(false);
             this.gradewiseprodn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).EndInit();
+            this.lastbxnetwtpanel.ResumeLayout(false);
+            this.lastbxnetwtpanel.PerformLayout();
+            this.lastbxgrosswtpanel.ResumeLayout(false);
+            this.lastbxgrosswtpanel.PerformLayout();
             this.lastbxtarepanel.ResumeLayout(false);
             this.lastbxtarepanel.PerformLayout();
             this.lastbxcopspanel.ResumeLayout(false);
@@ -2484,6 +2539,7 @@ namespace PackingApplication
         private Panel palletdetailspanel;
         private System.Windows.Forms.Label palletdetails;
         private System.Windows.Forms.Label grdsoqty;
+        private System.Windows.Forms.Label prodnbalqty;
     }
 }
 

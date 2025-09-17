@@ -125,6 +125,7 @@
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
     <Compile Include="Models\ResponseEntities\SaleOrderResponse.cs" />
+    <Compile Include="Models\ResponseEntities\WindingTypeGridResponse.cs" />
     <Compile Include="POYPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>

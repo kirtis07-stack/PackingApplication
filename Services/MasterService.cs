@@ -77,5 +77,19 @@ namespace PackingApplication.Services
             var getPacksize = JsonConvert.DeserializeObject<PackSizeResponse>(getPacksizeResponse);
             return getPacksize;
         }
+
+        public List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
+        {
+            var getQualityResponse = method.GetCallApi(masterURL + "Quality/GetByItemTypeId?itemTypeId=" + itemTypeId);
+            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse);
+            return getQuality;
+        }
+
+        public ItemResponse getItemById(int itemId)
+        {
+            var getItemResponse = method.GetCallApi(masterURL + "Items/GetById?itemsId=" + itemId);
+            var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse);
+            return getItem;
+        }
     }
 }

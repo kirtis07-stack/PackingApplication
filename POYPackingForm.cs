@@ -87,6 +87,13 @@ namespace PackingApplication
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
+            var qualityList = new List<QualityResponse>();
+            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+            QualityList.DataSource = qualityList;
+            QualityList.DisplayMember = "Name";
+            QualityList.ValueMember = "QualityId";
+            QualityList.SelectedIndex = 0;
+
             copyno.Text = "1";
             //Username.Text = SessionManager.UserName;
             //role.Text = SessionManager.Role;
@@ -217,6 +224,7 @@ namespace PackingApplication
             this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
@@ -237,14 +245,6 @@ namespace PackingApplication
             PrefixList.DisplayMember = "Prefix";
             PrefixList.ValueMember = "PrefixCode";
             PrefixList.SelectedIndex = 0;
-
-            var qualityList = await Task.Run(() => getQualityList());
-            //quality
-            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-            QualityList.DataSource = qualityList;
-            QualityList.DisplayMember = "Name";
-            QualityList.ValueMember = "QualityId";
-            QualityList.SelectedIndex = 0;
 
             var packsizeList = await Task.Run(() => getPackSizeList());
             //packsize
@@ -515,22 +515,15 @@ namespace PackingApplication
                 shadecd.Text = item.ShadeCode;
                 deniervalue.Text = item.Denier.ToString();
 
-                List< LotsProductionDetailsResponse> lotProductionList = new List< LotsProductionDetailsResponse>();
-                foreach (var prod in item.LotsProductionDetailsResponses)
-                {
-                    LotsProductionDetailsResponse lotprod = new LotsProductionDetailsResponse();
-                    lotprod.LotId = prod.LotId;
-                    lotprod.WindingTypeId = prod.WindingTypeId;
-                    lotprod.Quantity = prod.Quantity;
-                    lotprod.WindingTypeName = prod.WindingTypeName;
-                    lotProductionList.Add(lotprod);
+                var itemResponse = _masterService.getItemById(item.ItemId);
 
-                }
-                windinggrid.Columns.Clear();
-                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quantity", DataPropertyName = "Quantity", HeaderText = "SaleOrder Qty" });
-                windinggrid.DataSource = lotProductionList;
-
+                var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                QualityList.DataSource = qualityList;
+                QualityList.DisplayMember = "Name";
+                QualityList.ValueMember = "QualityId";
+                QualityList.SelectedIndex = 0;
+            
                 getSaleOrderList(productionRequest.LotId);
             }
         }
@@ -624,27 +617,46 @@ namespace PackingApplication
                 productionRequest.SaleOrderId = selectedSaleOrderId;
                 if(selectedSaleOrderId > 0)
                 {
-                    decimal totalQty = 0;
+                    var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(productionRequest.QualityId, productionRequest.SaleOrderId);
+                    qualityqty.Columns.Clear();
+                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
+                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                    qualityqty.DataSource = getProductionByQuality;
+
+                    decimal totalSOQty = 0;
+                    decimal totalProdQty = 0;
                     var saleResponse = getSaleOrderById(productionRequest.SaleOrderId);
-                    List<SaleOrderItemsResponse> soItemList = new List<SaleOrderItemsResponse>();
+                    
                     foreach (var soitem in saleResponse.saleOrderItemsResponses)
                     {
-                        SaleOrderItemsResponse item = new SaleOrderItemsResponse();
-                        item.SaleOrderId = soitem.SaleOrderId;
-                        item.QualityId = soitem.QualityId;
-                        item.Quantity = soitem.Quantity;
-                        item.QualityName = soitem.QualityName;
-                        soItemList.Add(item);
-                        totalQty += soitem.Quantity;
+                        totalSOQty += soitem.Quantity;
                     }
-                    qualityqty.Columns.Clear();
-                    // Define columns
-                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "Quantity", HeaderText = "Production Qty" });
-                    qualityqty.DataSource = soItemList;
-                    grdsoqty.Text = totalQty.ToString();
+                    grdsoqty.Text = totalSOQty.ToString();
+
+                    foreach (var proditem in getProductionByQuality)
+                    {
+                        totalProdQty += proditem.GrossWt;
+                    }
+                    prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
+
+                    var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(productionRequest.WindingTypeId, productionRequest.SaleOrderId);
+                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+                    foreach (var winding in getProductionByWindingType)
+                    {
+                        WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                        grid.WindingTypeName = winding.WindingTypeName;
+                        grid.SaleOrderQty = totalSOQty;
+                        grid.GrossWt = winding.GrossWt;
+                        gridList.Add(grid);
+                    }
+                    windinggrid.Columns.Clear();
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                    windinggrid.DataSource = gridList;
                 }
-                
+
             }
         }
 
@@ -740,9 +752,9 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
         }
 
-        private List<QualityResponse> getQualityList()
+        private List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
         {
-            var getQuality = _masterService.getQualityList();
+            var getQuality = _masterService.getQualityListByItemTypeId(itemTypeId);
             return getQuality;
         }
 
@@ -830,6 +842,18 @@ namespace PackingApplication
         private ProductionResponse getProductionById(long productionId)
         {
             var getProduction = _packingService.getProductionById(productionId);
+            return getProduction;
+        }
+
+        private List<ProductionResponse> getProductionByQualityIdAndSaleOrderId(int qualityId, int saleOrderId)
+        {
+            var getProduction = _packingService.getAllProductionByQualityandSaleOrder(qualityId, saleOrderId);
+            return getProduction;
+        }
+
+        private List<ProductionResponse> getProductionByWindingTypeAndSaleOrderId(int windingTypeId, int saleOrderId)
+        {
+            var getProduction = _packingService.getAllProductionByWindingTypeandSaleOrder(windingTypeId, saleOrderId);
             return getProduction;
         }
 

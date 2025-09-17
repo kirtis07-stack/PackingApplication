@@ -50,5 +50,19 @@ namespace PackingApplication.Services
             var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
             return getPacking;
         }
+
+        public List<ProductionResponse> getAllProductionByQualityandSaleOrder(int qualityId, int saleOrderId)
+        {
+            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllProductionByQualityandSaleOrder?qualityId=" + qualityId + "&saleOrderId=" + saleOrderId);
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            return getPacking;
+        }
+
+        public List<ProductionResponse> getAllProductionByWindingTypeandSaleOrder(int windingTypeId, int saleOrderId)
+        {
+            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllProductionByWindingTypeandSaleOrder?windingTypeId=" + windingTypeId + "&saleOrderId=" + saleOrderId);
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            return getPacking;
+        }
     }
 }

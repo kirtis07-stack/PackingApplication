@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PackingApplication.Models.ResponseEntities
+{
+    public class WindingTypeGridResponse
+    {
+        public string WindingTypeName { get; set; }
+        public decimal SaleOrderQty { get; set; } 
+        public decimal GrossWt { get; set; }
+
+        public decimal BalanceQty
+        {
+            get { return SaleOrderQty - GrossWt; }
+        }
+    }
+}
