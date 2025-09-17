@@ -113,7 +113,7 @@ namespace PackingApplication
             this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -225,6 +225,8 @@ namespace PackingApplication
             this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
@@ -525,6 +527,42 @@ namespace PackingApplication
                 QualityList.SelectedIndex = 0;
             
                 getSaleOrderList(productionRequest.LotId);
+
+                List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
+                foreach (var lot in item.LotsDetailsResponses)
+                {
+                    LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
+                    lotsDetails.LotId = lot.LotId;
+                    lotsDetails.UpdatedOn = lot.UpdatedOn;
+                    lotsDetails.UpdatedBy = lot.UpdatedBy;
+                    lotsDetails.CreatedBy = lot.CreatedBy;
+                    lotsDetails.CreatedOn = lot.CreatedOn;
+                    lotsDetails.EffectiveFrom = lot.EffectiveFrom;
+                    lotsDetails.EffectiveUpto = lot.EffectiveUpto;
+                    lotsDetails.GainLossPerc = lot.GainLossPerc;
+                    lotsDetails.InputPerc = lot.InputPerc;
+                    lotsDetails.ProductionPerc = lot.ProductionPerc;
+                    lotsDetails.Extruder = lot.Extruder;
+                    lotsDetails.LotType = lot.LotType;
+                    lotsDetails.PrevLotId = lot.PrevLotId;
+                    lotsDetails.PrevLotNo = lot.PrevLotNo;
+                    lotsDetails.PrevLotType = lot.PrevLotType;
+                    lotsDetails.PrevLotQuality = lot.PrevLotQuality;
+                    lotsDetails.PrevLotItemName = lot.PrevLotItemName;
+                    lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
+                    lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
+                    lotsDetailsList.Add(lot);
+                }
+                rowMaterial.Columns.Clear();
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
+                rowMaterial.DataSource = lotsDetailsList;
             }
         }
 

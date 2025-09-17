@@ -50,6 +50,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int ProcessId { get; set; }
         public string ProcessName { get; set; }
         public List<LotsProductionDetailsResponse> LotsProductionDetailsResponses { get; set; }
+        public List<LotsDetailsResponse> LotsDetailsResponses { get; set; }
     }
 
     public class LotsProductionDetailsResponse : BaseAuditEntity
@@ -60,5 +61,24 @@ namespace PackingApplication.Models.ResponseEntities
         public int WindingTypeId { get; set; }
         public string WindingTypeName { get; set; }
         public int Quantity { get; set; }
+    }
+
+    public class LotsDetailsResponse : BaseAuditEntity
+    {
+        public int LotDetailsId { get; set; }
+        public int LotId { get; set; }
+        public string LotType { get; set; }
+        public int PrevLotId { get; set; }
+        public string PrevLotType { get; set; }
+        public string PrevLotItemName { get; set; }
+        public string PrevLotShadeName { get; set; }
+        public string PrevLotShadeCode { get; set; }
+        public string PrevLotNo { get; set; }
+        public int PrevLotQualityId { get; set; }
+        public string PrevLotQuality { get; set; }
+        public decimal InputPerc { get; set; }
+        public decimal ProductionPerc { get; set; }
+        public decimal GainLossPerc { get; set; }
+        public byte Extruder { get; set; }
     }
 }

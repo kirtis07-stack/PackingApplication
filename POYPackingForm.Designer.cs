@@ -36,6 +36,7 @@ namespace PackingApplication
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lineno = new System.Windows.Forms.Label();
             this.department = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -114,6 +115,9 @@ namespace PackingApplication
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.submit = new System.Windows.Forms.Button();
             this.rightpanel = new System.Windows.Forms.Panel();
+            this.rowMaterialBox = new System.Windows.Forms.GroupBox();
+            this.rowMaterialPanel = new System.Windows.Forms.Panel();
+            this.rowMaterial = new System.Windows.Forms.DataGridView();
             this.palletdetailslayout = new System.Windows.Forms.TableLayoutPanel();
             this.palletdetailsheader = new System.Windows.Forms.Panel();
             this.palletdetailspanel = new System.Windows.Forms.Panel();
@@ -207,6 +211,9 @@ namespace PackingApplication
             this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
             this.rightpanel.SuspendLayout();
+            this.rowMaterialBox.SuspendLayout();
+            this.rowMaterialPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rowMaterial)).BeginInit();
             this.palletdetailslayout.SuspendLayout();
             this.palletdetailsheader.SuspendLayout();
             this.palletdetailspanel.SuspendLayout();
@@ -1036,7 +1043,7 @@ namespace PackingApplication
             this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(514, 461);
+            this.submit.Location = new System.Drawing.Point(477, 588);
             this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(71, 24);
@@ -1051,6 +1058,7 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.rightpanel.Controls.Add(this.rowMaterialBox);
             this.rightpanel.Controls.Add(this.palletdetailslayout);
             this.rightpanel.Controls.Add(this.printingdetailslayout);
             this.rightpanel.Controls.Add(this.lastboxlayout);
@@ -1064,8 +1072,61 @@ namespace PackingApplication
             this.rightpanel.Location = new System.Drawing.Point(169, 3);
             this.rightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(813, 511);
+            this.rightpanel.Size = new System.Drawing.Size(813, 632);
             this.rightpanel.TabIndex = 89;
+            // 
+            // rowMaterialBox
+            // 
+            this.rowMaterialBox.BackColor = System.Drawing.Color.White;
+            this.rowMaterialBox.Controls.Add(this.rowMaterialPanel);
+            this.rowMaterialBox.Location = new System.Drawing.Point(4, 461);
+            this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rowMaterialBox.Name = "rowMaterialBox";
+            this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rowMaterialBox.Size = new System.Drawing.Size(710, 104);
+            this.rowMaterialBox.TabIndex = 114;
+            this.rowMaterialBox.TabStop = false;
+            this.rowMaterialBox.Text = "Key Raw Material Stock Status";
+            // 
+            // rowMaterialPanel
+            // 
+            this.rowMaterialPanel.Controls.Add(this.rowMaterial);
+            this.rowMaterialPanel.Location = new System.Drawing.Point(13, 19);
+            this.rowMaterialPanel.Name = "rowMaterialPanel";
+            this.rowMaterialPanel.Size = new System.Drawing.Size(688, 79);
+            this.rowMaterialPanel.TabIndex = 115;
+            // 
+            // rowMaterial
+            // 
+            this.rowMaterial.AllowUserToAddRows = false;
+            this.rowMaterial.AllowUserToDeleteRows = false;
+            this.rowMaterial.AllowUserToResizeColumns = false;
+            this.rowMaterial.AllowUserToResizeRows = false;
+            this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
+            this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rowMaterial.EnableHeadersVisualStyles = false;
+            this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.rowMaterial.ColumnHeadersHeight = 34;
+            this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.rowMaterial.Location = new System.Drawing.Point(-2, 0);
+            this.rowMaterial.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rowMaterial.MultiSelect = false;
+            this.rowMaterial.Name = "rowMaterial";
+            this.rowMaterial.ReadOnly = true;
+            this.rowMaterial.RowHeadersVisible = false;
+            this.rowMaterial.RowHeadersWidth = 62;
+            this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.rowMaterial.Size = new System.Drawing.Size(688, 76);
+            this.rowMaterial.TabIndex = 92;
+            this.rowMaterial.AutoGenerateColumns = false;
             // 
             // palletdetailslayout
             // 
@@ -1217,26 +1278,19 @@ namespace PackingApplication
             this.windinggrid.AllowUserToResizeRows = false;
             this.windinggrid.AutoGenerateColumns = false;
             this.windinggrid.BackgroundColor = System.Drawing.Color.White;
-            this.windinggrid.EnableHeadersVisualStyles = false;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(230,240,255);
-            dataGridViewCellStyle1.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.DataSource = this.windingqty;
+            this.windinggrid.EnableHeadersVisualStyles = false;
             this.windinggrid.Location = new System.Drawing.Point(0, 19);
             this.windinggrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.windinggrid.MultiSelect = false;
@@ -1292,14 +1346,14 @@ namespace PackingApplication
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.qualityqty.BackgroundColor = System.Drawing.Color.White;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(230, 240, 255);
-            dataGridViewCellStyle2.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.DataSource = this.qualityandqty;
@@ -1937,7 +1991,7 @@ namespace PackingApplication
             // 
             this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(439, 461);
+            this.cancelbtn.Location = new System.Drawing.Point(396, 588);
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(56, 24);
@@ -2008,7 +2062,7 @@ namespace PackingApplication
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 517);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 638);
             this.tableLayoutPanel1.TabIndex = 98;
             // 
             // leftpanel
@@ -2278,7 +2332,7 @@ namespace PackingApplication
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(984, 517);
+            this.ClientSize = new System.Drawing.Size(984, 638);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.poyformlabel);
             this.ForeColor = System.Drawing.Color.Black;
@@ -2287,6 +2341,9 @@ namespace PackingApplication
             this.Text = "POYPackingForm";
             this.Load += new System.EventHandler(this.POYPackingForm_Load);
             this.rightpanel.ResumeLayout(false);
+            this.rowMaterialBox.ResumeLayout(false);
+            this.rowMaterialPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rowMaterial)).EndInit();
             this.palletdetailslayout.ResumeLayout(false);
             this.palletdetailsheader.ResumeLayout(false);
             this.palletdetailsheader.PerformLayout();
@@ -2540,6 +2597,9 @@ namespace PackingApplication
         private System.Windows.Forms.Label palletdetails;
         private System.Windows.Forms.Label grdsoqty;
         private System.Windows.Forms.Label prodnbalqty;
+        private GroupBox rowMaterialBox;
+        private DataGridView rowMaterial;
+        private Panel rowMaterialPanel;
     }
 }
 
