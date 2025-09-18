@@ -810,7 +810,7 @@ namespace PackingApplication
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            var dashboard = this.ParentForm as Dashboard;
+            var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new DTYPackingList());

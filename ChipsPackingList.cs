@@ -122,7 +122,7 @@ namespace PackingApplication
 
         private void addNew_Click(object sender, EventArgs e)
         {
-            var dashboard = this.ParentForm as Dashboard;
+            var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ChipsPackingForm(0)); // open Add form
@@ -140,7 +140,7 @@ namespace PackingApplication
                     // Get the item you clicked
                     int productionId = Convert.ToInt32(info.Item.Tag);
 
-                    var dashboard = this.ParentForm as Dashboard;
+                    var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
                         dashboard.LoadFormInContent(new ChipsPackingForm(productionId)); // open Add form

@@ -347,46 +347,6 @@ namespace PackingApplication
                         {
                             BindPalletDetails(productionResponse.PalletDetailsResponse);
                         }
-                        //flowLayoutPanel1.Controls.Clear();
-
-                        //foreach (var pallet in productionResponse.PalletDetailsResponse)
-                        //{
-                        //    // find pallet info (from master list)
-                        //    var palletItemList = Task.Run(() => getPalletItemList()).Result;
-                        //    var palletInfo = palletItemList.FirstOrDefault(x => x.ItemId == pallet.PalletId);
-
-                        //    // create label for quantity
-                        //    System.Windows.Forms.Label qtyLabel = new System.Windows.Forms.Label
-                        //    {
-                        //        Text = pallet.Quantity.ToString(),
-                        //        AutoSize = true,
-                        //    };
-
-                        //    // create panel to hold info
-                        //    Panel pnl = new Panel
-                        //    {
-                        //        Width = 200,
-                        //        Height = 50,
-                        //        BorderStyle = BorderStyle.FixedSingle,
-                        //        Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(palletInfo, qtyLabel)
-                        //    };
-
-                        //    // add child controls
-                        //    System.Windows.Forms.Label nameLabel = new System.Windows.Forms.Label
-                        //    {
-                        //        Text = palletInfo != null ? palletInfo.Name : $"Pallet {pallet.PalletId}",
-                        //        AutoSize = true,
-                        //        Location = new Point(5, 5)
-                        //    };
-
-                        //    qtyLabel.Location = new Point(5, 25);
-
-                        //    pnl.Controls.Add(nameLabel);
-                        //    pnl.Controls.Add(qtyLabel);
-
-                        //    // add panel to flowLayout
-                        //    flowLayoutPanel1.Controls.Add(pnl);
-                        //}
                     }
                 }
             }
@@ -966,7 +926,7 @@ namespace PackingApplication
                     System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(40, 23), Location = new Point(250, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;  
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); 
@@ -999,7 +959,7 @@ namespace PackingApplication
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(60, 23), Location = new Point(310, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(60, 23), Location = new Point(305, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                     btnDelete.FlatAppearance.BorderSize = 1;   
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -1483,7 +1443,7 @@ namespace PackingApplication
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            var dashboard = this.ParentForm as Dashboard;
+            var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new POYPackingList());

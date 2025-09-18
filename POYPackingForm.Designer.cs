@@ -34,9 +34,9 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lineno = new System.Windows.Forms.Label();
             this.department = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -361,7 +361,7 @@ namespace PackingApplication
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(153, 114);
+            this.dateTimePicker1.Location = new System.Drawing.Point(153, 111);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(127, 20);
@@ -1069,10 +1069,10 @@ namespace PackingApplication
             this.rightpanel.Controls.Add(this.cancelbtn);
             this.rightpanel.Controls.Add(this.submit);
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rightpanel.Location = new System.Drawing.Point(169, 3);
+            this.rightpanel.Location = new System.Drawing.Point(159, 3);
             this.rightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(813, 632);
+            this.rightpanel.Size = new System.Drawing.Size(823, 632);
             this.rightpanel.TabIndex = 89;
             // 
             // rowMaterialBox
@@ -1104,18 +1104,18 @@ namespace PackingApplication
             this.rowMaterial.AllowUserToResizeRows = false;
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rowMaterial.EnableHeadersVisualStyles = false;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.rowMaterial.EnableHeadersVisualStyles = false;
             this.rowMaterial.Location = new System.Drawing.Point(-2, 0);
             this.rowMaterial.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterial.MultiSelect = false;
@@ -1126,7 +1126,6 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.rowMaterial.Size = new System.Drawing.Size(688, 76);
             this.rowMaterial.TabIndex = 92;
-            this.rowMaterial.AutoGenerateColumns = false;
             // 
             // palletdetailslayout
             // 
@@ -1279,14 +1278,14 @@ namespace PackingApplication
             this.windinggrid.AutoGenerateColumns = false;
             this.windinggrid.BackgroundColor = System.Drawing.Color.White;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.DataSource = this.windingqty;
@@ -1346,14 +1345,14 @@ namespace PackingApplication
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.qualityqty.BackgroundColor = System.Drawing.Color.White;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.DataSource = this.qualityandqty;
@@ -1619,7 +1618,7 @@ namespace PackingApplication
             // denier
             // 
             this.denier.AutoSize = true;
-            this.denier.Location = new System.Drawing.Point(151, 190);
+            this.denier.Location = new System.Drawing.Point(151, 191);
             this.denier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.denier.Name = "denier";
             this.denier.Size = new System.Drawing.Size(41, 13);
@@ -2052,8 +2051,8 @@ namespace PackingApplication
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84F));
             this.tableLayoutPanel1.Controls.Add(this.leftpanel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rightpanel, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2064,6 +2063,11 @@ namespace PackingApplication
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 638);
             this.tableLayoutPanel1.TabIndex = 98;
+            this.tableLayoutPanel1.ColumnStyles[0].SizeType = SizeType.Percent;
+            this.tableLayoutPanel1.ColumnStyles[0].Width = 15;
+
+            this.tableLayoutPanel1.ColumnStyles[1].SizeType = SizeType.Percent;
+            this.tableLayoutPanel1.ColumnStyles[1].Width = 85;
             // 
             // leftpanel
             // 
@@ -2076,7 +2080,7 @@ namespace PackingApplication
             this.leftpanel.Location = new System.Drawing.Point(2, 3);
             this.leftpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.leftpanel.Name = "leftpanel";
-            this.leftpanel.Size = new System.Drawing.Size(163, 502);
+            this.leftpanel.Size = new System.Drawing.Size(153, 502);
             this.leftpanel.TabIndex = 107;
             // 
             // reviewtable
@@ -2094,7 +2098,7 @@ namespace PackingApplication
             this.reviewtable.RowCount = 1;
             this.reviewtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.reviewtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.reviewtable.Size = new System.Drawing.Size(157, 57);
+            this.reviewtable.Size = new System.Drawing.Size(151, 57);
             this.reviewtable.TabIndex = 110;
             this.reviewtable.Paint += new System.Windows.Forms.PaintEventHandler(this.reviewtable_Paint);
             // 
@@ -2102,10 +2106,10 @@ namespace PackingApplication
             // 
             this.panel4.Controls.Add(this.reviewlbl);
             this.panel4.Controls.Add(this.reviewsubtitle);
-            this.panel4.Location = new System.Drawing.Point(35, 7);
+            this.panel4.Location = new System.Drawing.Point(34, 7);
             this.panel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(116, 42);
+            this.panel4.Size = new System.Drawing.Size(111, 42);
             this.panel4.TabIndex = 0;
             // 
             // reviewlbl
@@ -2136,7 +2140,7 @@ namespace PackingApplication
             this.reviewdtls.Location = new System.Drawing.Point(6, 7);
             this.reviewdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.reviewdtls.Name = "reviewdtls";
-            this.reviewdtls.Size = new System.Drawing.Size(25, 43);
+            this.reviewdtls.Size = new System.Drawing.Size(24, 43);
             this.reviewdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.reviewdtls.TabIndex = 107;
             this.reviewdtls.TabStop = false;
@@ -2149,14 +2153,14 @@ namespace PackingApplication
             this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
             this.weighttable.Controls.Add(this.panel2, 1, 0);
             this.weighttable.Controls.Add(this.weightdtls, 0, 0);
-            this.weighttable.Location = new System.Drawing.Point(0, 152);
+            this.weighttable.Location = new System.Drawing.Point(2, 152);
             this.weighttable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.weighttable.Name = "weighttable";
             this.weighttable.Padding = new System.Windows.Forms.Padding(4);
             this.weighttable.RowCount = 1;
             this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.weighttable.Size = new System.Drawing.Size(159, 57);
+            this.weighttable.Size = new System.Drawing.Size(151, 57);
             this.weighttable.TabIndex = 109;
             this.weighttable.Paint += new System.Windows.Forms.PaintEventHandler(this.weightable_Paint);
             // 
@@ -2164,10 +2168,10 @@ namespace PackingApplication
             // 
             this.panel2.Controls.Add(this.weighlbl);
             this.panel2.Controls.Add(this.weighsubtitle);
-            this.panel2.Location = new System.Drawing.Point(36, 7);
+            this.panel2.Location = new System.Drawing.Point(34, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(117, 42);
+            this.panel2.Size = new System.Drawing.Size(111, 42);
             this.panel2.TabIndex = 0;
             // 
             // weighlbl
@@ -2198,7 +2202,7 @@ namespace PackingApplication
             this.weightdtls.Location = new System.Drawing.Point(6, 7);
             this.weightdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.weightdtls.Name = "weightdtls";
-            this.weightdtls.Size = new System.Drawing.Size(26, 43);
+            this.weightdtls.Size = new System.Drawing.Size(24, 43);
             this.weightdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.weightdtls.TabIndex = 107;
             this.weightdtls.TabStop = false;
@@ -2211,14 +2215,14 @@ namespace PackingApplication
             this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
             this.packagingtable.Controls.Add(this.panel1, 1, 0);
             this.packagingtable.Controls.Add(this.packagingdtls, 0, 0);
-            this.packagingtable.Location = new System.Drawing.Point(0, 76);
+            this.packagingtable.Location = new System.Drawing.Point(2, 76);
             this.packagingtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.packagingtable.Name = "packagingtable";
             this.packagingtable.Padding = new System.Windows.Forms.Padding(4);
             this.packagingtable.RowCount = 1;
             this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.packagingtable.Size = new System.Drawing.Size(159, 57);
+            this.packagingtable.Size = new System.Drawing.Size(151, 57);
             this.packagingtable.TabIndex = 108;
             this.packagingtable.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingtable_Paint);
             // 
@@ -2226,10 +2230,10 @@ namespace PackingApplication
             // 
             this.panel1.Controls.Add(this.packaginglbl);
             this.panel1.Controls.Add(this.packagingsubtitle);
-            this.panel1.Location = new System.Drawing.Point(36, 7);
+            this.panel1.Location = new System.Drawing.Point(34, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(117, 42);
+            this.panel1.Size = new System.Drawing.Size(111, 42);
             this.panel1.TabIndex = 0;
             // 
             // packaginglbl
@@ -2260,7 +2264,7 @@ namespace PackingApplication
             this.packagingdtls.Location = new System.Drawing.Point(6, 7);
             this.packagingdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.packagingdtls.Name = "packagingdtls";
-            this.packagingdtls.Size = new System.Drawing.Size(26, 43);
+            this.packagingdtls.Size = new System.Drawing.Size(24, 43);
             this.packagingdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.packagingdtls.TabIndex = 107;
             this.packagingdtls.TabStop = false;
@@ -2273,14 +2277,14 @@ namespace PackingApplication
             this.ordertable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
             this.ordertable.Controls.Add(this.orderdetailsrightpanel, 1, 0);
             this.ordertable.Controls.Add(this.orderdetails1, 0, 0);
-            this.ordertable.Location = new System.Drawing.Point(0, 0);
+            this.ordertable.Location = new System.Drawing.Point(2, 0);
             this.ordertable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ordertable.Name = "ordertable";
             this.ordertable.Padding = new System.Windows.Forms.Padding(4);
             this.ordertable.RowCount = 1;
             this.ordertable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ordertable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.ordertable.Size = new System.Drawing.Size(159, 57);
+            this.ordertable.Size = new System.Drawing.Size(151, 57);
             this.ordertable.TabIndex = 107;
             this.ordertable.Paint += new System.Windows.Forms.PaintEventHandler(this.ordertable_Paint);
             // 
@@ -2288,10 +2292,10 @@ namespace PackingApplication
             // 
             this.orderdetailsrightpanel.Controls.Add(this.orderlbl);
             this.orderdetailsrightpanel.Controls.Add(this.orderdetailssubtitle);
-            this.orderdetailsrightpanel.Location = new System.Drawing.Point(36, 7);
+            this.orderdetailsrightpanel.Location = new System.Drawing.Point(34, 7);
             this.orderdetailsrightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.orderdetailsrightpanel.Name = "orderdetailsrightpanel";
-            this.orderdetailsrightpanel.Size = new System.Drawing.Size(117, 42);
+            this.orderdetailsrightpanel.Size = new System.Drawing.Size(111, 42);
             this.orderdetailsrightpanel.TabIndex = 0;
             // 
             // orderlbl
@@ -2322,7 +2326,7 @@ namespace PackingApplication
             this.orderdetails1.Location = new System.Drawing.Point(6, 7);
             this.orderdetails1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.orderdetails1.Name = "orderdetails1";
-            this.orderdetails1.Size = new System.Drawing.Size(26, 43);
+            this.orderdetails1.Size = new System.Drawing.Size(24, 43);
             this.orderdetails1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.orderdetails1.TabIndex = 107;
             this.orderdetails1.TabStop = false;

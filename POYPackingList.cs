@@ -32,7 +32,7 @@ namespace PackingApplication
         private void ApplyFonts()
         {
             this.listView1.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.addnew.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.addnew.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dataGridView1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(10F, FontStyle.Bold);
             this.dataGridView1.ColumnHeadersDefaultCellStyle.Font = FontManager.GetFont(9F, FontStyle.Bold);
@@ -86,7 +86,7 @@ namespace PackingApplication
 
             dataGridView1.Columns["SrNo"].Width = 50;
             dataGridView1.Columns["PackingType"].Width = 100;
-            //dataGridView1.Columns["NoOfCopies"].Width = 50;
+            dataGridView1.Columns["NoOfCopies"].Width = 50;
             //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Add Edit button column
@@ -149,7 +149,7 @@ namespace PackingApplication
 
         private void addNew_Click(object sender, EventArgs e)
         {
-            var dashboard = this.ParentForm as Dashboard;
+            var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new POYPackingForm(0)); // open Add form
@@ -167,7 +167,7 @@ namespace PackingApplication
                     // Get the item you clicked
                     int productionId = Convert.ToInt32(info.Item.Tag);
 
-                    var dashboard = this.ParentForm as Dashboard;
+                    var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
                         dashboard.LoadFormInContent(new POYPackingForm(productionId)); // open Add form
@@ -189,7 +189,7 @@ namespace PackingApplication
                     ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
                 );
 
-                var dashboard = this.ParentForm as Dashboard;
+                var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
                         dashboard.LoadFormInContent(new POYPackingForm(productionId)); // open edit form
