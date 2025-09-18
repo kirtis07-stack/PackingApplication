@@ -204,7 +204,6 @@ namespace PackingApplication
             this.spoolnoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.Orderboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxnoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.windingerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -900,8 +899,8 @@ namespace PackingApplication
                     rowCount++;
                     
                     Panel rowPanel = new Panel();
-                    rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-                    rowPanel.BorderStyle = BorderStyle.None; 
+                    rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 35);
+                    rowPanel.BorderStyle = BorderStyle.None;
 
                     rowPanel.Paint += (s, pe) =>
                     {
@@ -917,16 +916,16 @@ namespace PackingApplication
                     };
 
                     // SrNo
-                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
 
                     // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(40, 23), Location = new Point(250, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;  
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); 
@@ -959,7 +958,7 @@ namespace PackingApplication
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(60, 23), Location = new Point(305, 5), Font = FontManager.GetFont(8F, FontStyle.Bold), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                     btnDelete.FlatAppearance.BorderSize = 1;   
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -1061,10 +1060,10 @@ namespace PackingApplication
                 }
             };
 
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Sr No", Width = 40, Location = new Point(10, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 120, Location = new Point(60, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new Point(190, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new Point(250, 10), Font = FontManager.GetFont(8F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 30, Location = new Point(2, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 140, Location = new Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new Point(200, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new Point(250, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
 
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
@@ -1561,45 +1560,6 @@ namespace PackingApplication
 
             path.CloseFigure();
             return path;
-        }
-
-        private void orderboxlayout_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;    
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    orderboxlayout.Width - thickness - 1,
-                    orderboxlayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
-        }
-
-        private void orderboxheader_Paint(object sender, PaintEventArgs e)
-        {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                // draw line at bottom
-                e.Graphics.DrawLine(
-                    pen,
-                    0, orderboxheader.Height - borderThickness / 1,
-                    orderboxheader.Width, orderboxheader.Height - borderThickness / 1
-                );
-            }
         }
 
         private void machineboxlayout_Paint(object sender, PaintEventArgs e)
