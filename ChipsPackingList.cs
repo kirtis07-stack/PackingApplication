@@ -18,7 +18,7 @@ namespace PackingApplication
     {
         private static Logger Log = Logger.GetLogger();
         PackingService _packingService = new PackingService();
-        CommonMethod commonMethod = new CommonMethod();
+        CommonMethod _cmethod = new CommonMethod();
         public ChipsPackingList()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace PackingApplication
             this.Shown += ChipsPackingList_Shown;
             this.AutoScroll = true;
 
-            commonMethod.SetButtonBorderRadius(this.addnew, 5);
+            _cmethod.SetButtonBorderRadius(this.addnew, 5);
         }
 
         private void ApplyFonts()
@@ -71,7 +71,7 @@ namespace PackingApplication
             DataGridViewImageColumn btn = new DataGridViewImageColumn();
             btn.HeaderText = "Action";
             btn.Name = "Action";
-            btn.Image = commonMethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+            btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
             btn.ImageLayout = DataGridViewImageCellLayout.Normal;
             btn.Width = 45;  // column width
             dataGridView1.RowTemplate.Height = 40; // row height
@@ -135,7 +135,7 @@ namespace PackingApplication
                 panel1.Height - thickness - 1
             );
 
-            using (GraphicsPath path = commonMethod.GetRoundedRect(rect, radius))
+            using (GraphicsPath path = _cmethod.GetRoundedRect(rect, radius))
             {
                 // Fill background with rounded shape
                 using (SolidBrush brush = new SolidBrush(panel1.BackColor))

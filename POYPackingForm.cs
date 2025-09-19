@@ -45,6 +45,7 @@ namespace PackingApplication
         SaleService _saleService = new SaleService();
         private long _productionId;
         private int width = 0;
+        CommonMethod _cmethod = new CommonMethod();
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -53,8 +54,8 @@ namespace PackingApplication
             this.Shown += POYPackingForm_Shown;
             this.AutoScroll = true;
 
-            SetButtonBorderRadius(this.addqty, 8);
-            SetButtonBorderRadius(this.submit, 8);
+            _cmethod.SetButtonBorderRadius(this.addqty, 8);
+            _cmethod.SetButtonBorderRadius(this.submit, 8);
 
             LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
             MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
@@ -856,6 +857,12 @@ namespace PackingApplication
             return getProduction;
         }
 
+        private ProductionResponse getLastBoxDetails()
+        {
+            var getPacking = _packingService.getLastBoxDetails();
+            return getPacking;
+        }
+
         private int rowCount = 0; // Keeps track of SrNo
         private bool headerAdded = false; // To ensure header is added only once
         private int currentY = 35; // Start below header height
@@ -937,7 +944,7 @@ namespace PackingApplication
                     {
                         var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
 
-                        using (GraphicsPath path = GetRoundedRect(rect, 4)) // radius = 4
+                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
                         using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
                         using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
                         {
@@ -970,7 +977,7 @@ namespace PackingApplication
                     {
                         var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
 
-                        using (GraphicsPath path = GetRoundedRect(rect, 4))
+                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
                         using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
                         using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
                         {
@@ -1184,6 +1191,19 @@ namespace PackingApplication
             wtpercop.Text = (num1 / num2).ToString();
         }
 
+        private void CopyNos_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(copyno.Text))
+            {
+                copynoerror.Visible = true;
+            }
+            else
+            {
+                copynoerror.Text = "";
+                copynoerror.Visible = false;
+            }
+        }
+
         private async void submit_Click(object sender, EventArgs e)
         {
             if (ValidateForm())
@@ -1249,65 +1269,6 @@ namespace PackingApplication
                 MessageBox.Show("Something went wrong.");
             }
             return result;
-        }
-
-        private ProductionResponse getLastBoxDetails()
-        {
-            var getPacking = _packingService.getLastBoxDetails();
-            return getPacking;
-        }
-
-        private void gradewiseprodn_Paint(object sender, PaintEventArgs e)
-        {
-            // Clear background
-            e.Graphics.Clear(this.BackColor);
-
-            // Get text size
-            SizeF textSize = e.Graphics.MeasureString(gradewiseprodn.Text, gradewiseprodn.Font);
-
-            Rectangle rect = new Rectangle(
-                gradewiseprodn.ClientRectangle.X,
-                gradewiseprodn.ClientRectangle.Y + (int)(textSize.Height / 2),
-                gradewiseprodn.ClientRectangle.Width - 1,
-                gradewiseprodn.ClientRectangle.Height - (int)(textSize.Height / 2) - 1
-            );
-
-            using (Pen pen = new Pen(Color.LightGray, 2))  
-            {
-                e.Graphics.DrawRectangle(pen, rect);
-            }
-        }
-
-        private void qualityqty_Paint(object sender, PaintEventArgs e)
-        {
-            using (Pen pen = new Pen(Color.LightGray, 2))
-            {
-                Rectangle rect = qualityqty.ClientRectangle;
-                rect.Width -= 1;
-                rect.Height -= 1;
-                e.Graphics.DrawRectangle(pen, rect);
-            }
-        }
-
-        private void windinggrid_Paint(object sender, PaintEventArgs e)
-        {
-            using (Pen pen = new Pen(Color.LightGray, 2))
-            {
-                Rectangle rect = windinggrid.ClientRectangle;
-                rect.Width -= 1;
-                rect.Height -= 1;
-                e.Graphics.DrawRectangle(pen, rect);
-            }
-        }
-
-        private void backbutton_Click(object sender, EventArgs e)
-        {
-            AdminAccount parentForm = this.ParentForm as AdminAccount;
-
-            if (parentForm != null)
-            {
-                parentForm.LoadFormInContent(new Dashboard());  
-            }
         }
 
         private bool ValidateForm()
@@ -1406,45 +1367,6 @@ namespace PackingApplication
             return isValid;
         }
 
-        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
-        {
-            Log.writeMessage("SetButtonBorderRadius start");
-            try
-            {
-                button.FlatStyle = FlatStyle.Flat;
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
-                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-                button.BackColor = Color.FromArgb(0, 92, 232);
-
-                // Set the border radius
-                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                int diameter = radius * 2;
-                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
-                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
-                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"An error occurred: {ex.Message}");
-                Log.writeMessage($"An error occurred: {ex.Message}");
-            }
-            Log.writeMessage("SetButtonBorderRadius end");
-        }
-
-        private void CopyNos_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(copyno.Text))
-            {
-                copynoerror.Text = "";
-                copynoerror.Visible = false;
-            }
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             var dashboard = this.ParentForm as AdminAccount;
@@ -1454,478 +1376,114 @@ namespace PackingApplication
             }
         }
 
+        private void qualityqty_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+        }
+
+        private void windinggrid_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+        }
+
         private void ordertable_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 12;     
-
-            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    ordertable.Width - thickness - 1,
-                    ordertable.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void packagingtable_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 12;    
-
-            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    packagingtable.Width - thickness - 1,
-                    packagingtable.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void weightable_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 12;     
-
-            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    weighttable.Width - thickness - 1,
-                    weighttable.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void reviewtable_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 12;     
-
-            using (Pen pen = new Pen(Color.FromArgb(102, 163, 255), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    reviewtable.Width - thickness - 1,
-                    reviewtable.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
-        }
-
-        private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-            int diameter = radius * 2;
-
-            // Top-left corner
-            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
-
-            // Top-right corner
-            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
-
-            // Bottom-right corner
-            path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
-
-            // Bottom-left corner
-            path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
-
-            path.CloseFigure();
-            return path;
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void machineboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;    
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    machineboxlayout.Width - thickness - 1,
-                    machineboxlayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void machineboxheader_Paint(object sender, PaintEventArgs e)
         {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                // draw line at bottom
-                e.Graphics.DrawLine(
-                    pen,
-                    0, machineboxheader.Height - borderThickness / 1,
-                    machineboxheader.Width, machineboxheader.Height - borderThickness / 1
-                );
-            }
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void weighboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;     
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    weighboxlayout.Width - thickness - 1,
-                    weighboxlayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void weighboxheader_Paint(object sender, PaintEventArgs e)
         {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                // draw line at bottom
-                e.Graphics.DrawLine(
-                    pen,
-                    0, weighboxheader.Height - borderThickness / 1,
-                    weighboxheader.Width, weighboxheader.Height - borderThickness / 1
-                );
-            }
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;     
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    packagingboxlayout.Width - thickness - 1,
-                    packagingboxlayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void packagingboxheader_Paint(object sender, PaintEventArgs e)
         {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                e.Graphics.DrawLine(
-                    pen,
-                    0, packagingboxheader.Height - borderThickness / 1,
-                    packagingboxheader.Width, packagingboxheader.Height - borderThickness / 1
-                );
-            }
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void lastboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;    
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    lastboxlayout.Width - thickness - 1,
-                    lastboxlayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void lastboxheader_Paint(object sender, PaintEventArgs e)
         {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                // draw line at bottom
-                e.Graphics.DrawLine(
-                    pen,
-                    0, lastboxheader.Height - borderThickness / 1,
-                    lastboxheader.Width, lastboxheader.Height - borderThickness / 1
-                );
-            }
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            int borderRadius = 8;
-
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                Rectangle rect = new Rectangle(0, 0, lastbxcopspanel.Width - 1, lastbxcopspanel.Height - 1);
-
-                // Build rounded rectangle path
-                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
-                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
-                path.CloseFigure();
-
-                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
-                {
-                    dashedPen.DashStyle = DashStyle.Dash;
-                    e.Graphics.DrawPath(dashedPen, path);
-                }
-            }
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            int borderRadius = 8;
-
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                Rectangle rect = new Rectangle(0, 0, lastbxtarepanel.Width - 1, lastbxtarepanel.Height - 1);
-
-                // Build rounded rectangle path
-                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
-                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
-                path.CloseFigure();
-
-                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
-                {
-                    dashedPen.DashStyle = DashStyle.Dash;
-                    e.Graphics.DrawPath(dashedPen, path);
-                }
-            }
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            int borderRadius = 8;
-
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                Rectangle rect = new Rectangle(0, 0, lastbxgrosswtpanel.Width - 1, lastbxgrosswtpanel.Height - 1);
-
-                // Build rounded rectangle path
-                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
-                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
-                path.CloseFigure();
-
-                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
-                {
-                    dashedPen.DashStyle = DashStyle.Dash;
-                    e.Graphics.DrawPath(dashedPen, path);
-                }
-            }
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            int borderRadius = 8;
-
-            using (GraphicsPath path = new GraphicsPath())
-            {
-                Rectangle rect = new Rectangle(0, 0, lastbxnetwtpanel.Width - 1, lastbxnetwtpanel.Height - 1);
-
-                // Build rounded rectangle path
-                path.AddArc(rect.X, rect.Y, borderRadius * 2, borderRadius * 2, 180, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Y, borderRadius * 2, borderRadius * 2, 270, 90);
-                path.AddArc(rect.Right - borderRadius * 2, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 0, 90);
-                path.AddArc(rect.X, rect.Bottom - borderRadius * 2, borderRadius * 2, borderRadius * 2, 90, 90);
-                path.CloseFigure();
-
-                using (Pen dashedPen = new Pen(Color.FromArgb(102, 163, 255), 1))
-                {
-                    dashedPen.DashStyle = DashStyle.Dash;
-                    e.Graphics.DrawPath(dashedPen, path);
-                }
-            }
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
         }
 
         private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;     
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                // shrink rectangle so the border is fully visible
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    printingdetailslayout.Width - thickness - 1,
-                    printingdetailslayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
         {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                // draw line at bottom
-                e.Graphics.DrawLine(
-                    pen,
-                    0, printingdetailsheader.Height - borderThickness / 1,
-                    printingdetailsheader.Width, printingdetailsheader.Height - borderThickness / 1
-                );
-            }
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            int thickness = 1;   
-            int radius = 8;     
-
-            using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
-            {
-                Rectangle rect = new Rectangle(
-                    thickness / 2,
-                    thickness / 2,
-                    palletdetailslayout.Width - thickness - 1,
-                    palletdetailslayout.Height - thickness - 1
-                );
-
-                using (GraphicsPath path = GetRoundedRect(rect, radius))
-                {
-                    e.Graphics.DrawPath(pen, path);
-                }
-            }
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
         }
 
         private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
         {
-            int borderThickness = 1;
-            Color borderColor = Color.FromArgb(191, 191, 191);
-
-            using (Pen pen = new Pen(borderColor, borderThickness))
-            {
-                // draw line at bottom
-                e.Graphics.DrawLine(
-                    pen,
-                    0, palletdetailsheader.Height - borderThickness / 1,
-                    palletdetailsheader.Width, palletdetailsheader.Height - borderThickness / 1
-                );
-            }
-        }
-
-        private GraphicsPath GetTopRoundedRect(Rectangle rect, int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-            int diameter = radius * 2;
-
-            // Top-left corner
-            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
-
-            // Top edge
-            path.AddLine(rect.X + radius, rect.Y, rect.Right - radius, rect.Y);
-
-            // Top-right corner
-            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
-
-            // Right edge (straight down)
-            path.AddLine(rect.Right, rect.Y + radius, rect.Right, rect.Bottom);
-
-            // Bottom edge (straight line)
-            path.AddLine(rect.Right, rect.Bottom, rect.X, rect.Bottom);
-
-            // Left edge (straight up)
-            path.AddLine(rect.X, rect.Bottom, rect.X, rect.Y + radius);
-
-            path.CloseFigure();
-            return path;
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
         }
     }
 }
