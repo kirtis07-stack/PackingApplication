@@ -38,7 +38,7 @@ namespace PackingApplication.Helper
             button.FlatAppearance.BorderSize = 0;
             button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
             button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-            button.BackColor = Color.FromArgb(0, 92, 232);
+            //button.BackColor = Color.FromArgb(0, 92, 232);
 
             // Set the border radius
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -120,6 +120,28 @@ namespace PackingApplication.Helper
                 rect.Width -= 1;
                 rect.Height -= 1;
                 e.Graphics.DrawRectangle(pen, rect);
+            }
+        }
+
+        public void SetTopRoundedRegion(Control ctrl, int radius)
+        {
+            Rectangle rect = new Rectangle(0, 0, ctrl.Width, ctrl.Height);
+
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                // Top-left rounded
+                path.AddArc(rect.X, rect.Y, radius * 2, radius * 2, 180, 90);
+                // Top edge
+                path.AddLine(rect.X + radius, rect.Y, rect.Right - radius, rect.Y);
+                // Top-right rounded
+                path.AddArc(rect.Right - radius * 2, rect.Y, radius * 2, radius * 2, 270, 90);
+                // Rest rectangle
+                path.AddLine(rect.Right, rect.Y + radius, rect.Right, rect.Bottom);
+                path.AddLine(rect.Right, rect.Bottom, rect.X, rect.Bottom);
+                path.AddLine(rect.X, rect.Bottom, rect.X, rect.Y + radius);
+
+                path.CloseFigure();
+                ctrl.Region = new Region(path);
             }
         }
     }

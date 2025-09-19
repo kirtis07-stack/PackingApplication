@@ -56,13 +56,14 @@ namespace PackingApplication
 
             _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.submit, 8);
+            _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
 
             LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
             MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
             PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
             QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
             WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
+            SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
             PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
             copyno.TextChanged += CopyNos_TextChanged;
             spoolno.TextChanged += SpoolNo_TextChanged;
@@ -1484,6 +1485,36 @@ namespace PackingApplication
         private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
         {
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void machineboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(machineboxheader, 8);
+        }
+
+        private void weighboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(weighboxheader, 8);
+        }
+
+        private void packagingboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(packagingboxheader, 8);
+        }
+
+        private void lastboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(lastboxheader, 8);
+        }
+
+        private void printingdetailsheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
+        }
+
+        private void palletdetailsheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
         }
     }
 }
