@@ -44,6 +44,7 @@ namespace PackingApplication
         PackingService _packingService = new PackingService();
         SaleService _saleService = new SaleService();
         private long _productionId;
+        private int width = 0;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -67,6 +68,7 @@ namespace PackingApplication
             spoolwt.TextChanged += SpoolWeight_TextChanged;
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
+            width = flowLayoutPanel1.ClientSize.Width;
         }
 
         private void POYPackingForm_Load(object sender, EventArgs e)
@@ -198,21 +200,21 @@ namespace PackingApplication
             this.PrefixList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.grosswterror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletwterror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spoolwterror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spoolnoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.palletwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxnoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.windingerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.packsizeerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.soerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.qualityerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.mergenoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.copynoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.linenoerror.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.soerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.qualityerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.poyformlabel.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -897,9 +899,9 @@ namespace PackingApplication
                 if (!alreadyExists)
                 {
                     rowCount++;
-                    
+
                     Panel rowPanel = new Panel();
-                    rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 35);
+                    rowPanel.Size = new Size(width, 35);
                     rowPanel.BorderStyle = BorderStyle.None;
 
                     rowPanel.Paint += (s, pe) =>
@@ -1002,7 +1004,6 @@ namespace PackingApplication
                     rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
 
                     flowLayoutPanel1.Controls.Add(rowPanel);
-
                     flowLayoutPanel1.AutoScroll = true;
                     flowLayoutPanel1.WrapContents = false;
                     flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
@@ -1097,12 +1098,13 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
-                spoolwterror.Text = "";
-                spoolwterror.Visible = false;
+                spoolwterror.Visible = true;
             }
             else
             {
                 CalculateTareWeight();
+                spoolwterror.Text = "";
+                spoolwterror.Visible = false;
             }
         }
 
@@ -1110,12 +1112,13 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
-                palletwterror.Text = "";
-                palletwterror.Visible = false;
+                palletwterror.Visible = true;
             }
             else
             {
                 CalculateTareWeight();
+                palletwterror.Text = "";
+                palletwterror.Visible = false;
             }
         }
 
@@ -1133,12 +1136,13 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
-                grosswterror.Text = "";
                 grosswterror.Visible = true;
             }
             else
             {
                 CalculateNetWeight();
+                grosswterror.Text = "";
+                grosswterror.Visible = false;
             }
         }
 
@@ -1161,11 +1165,12 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
-                spoolnoerror.Text = "";
-                spoolnoerror.Visible = false;
+                spoolnoerror.Visible = true;
             }
             else {
                 CalculateWeightPerCop();
+                spoolnoerror.Text = "";
+                spoolnoerror.Visible = false;
             }
         }
 
@@ -1332,7 +1337,7 @@ namespace PackingApplication
 
             if (QualityList.SelectedIndex <= 0)
             {
-                qualityerror.Text = "Please select quantity";
+                qualityerror.Text = "Please select quality";
                 qualityerror.Visible = true;
                 isValid = false;
             }
@@ -1367,28 +1372,28 @@ namespace PackingApplication
 
             if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) == 0)
             {
-                spoolnoerror.Text = "Please enter valid spool no";
+                spoolnoerror.Text = "Please enter spool no";
                 spoolnoerror.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToDecimal(spoolwt.Text) == 0)
             {
-                spoolwterror.Text = "Please enter valid spool weight";
+                spoolwterror.Text = "Please enter spool wt";
                 spoolwterror.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
             {
-                palletwterror.Text = "Please enter valid empty box/pallet weight";
+                palletwterror.Text = "Please enter pallet wt";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
             {
-                grosswterror.Text = "Please enter valid gross weight";
+                grosswterror.Text = "Please enter gross wt";
                 grosswterror.Visible = true;
                 isValid = false;
             }
