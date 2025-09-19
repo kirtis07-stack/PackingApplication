@@ -19,6 +19,7 @@ namespace PackingApplication
     {
         private static Logger Log = Logger.GetLogger();
         PackingService _packingService = new PackingService();
+        CommonMethod commonMethod = new CommonMethod();
         public POYPackingList()
         {
             InitializeComponent();
@@ -26,12 +27,11 @@ namespace PackingApplication
             this.Shown += POYPackingList_Shown;
             this.AutoScroll = true;
 
-            SetButtonBorderRadius(this.addnew, 5);
+            commonMethod.SetButtonBorderRadius(this.addnew, 5);
         }
 
         private void ApplyFonts()
         {
-            this.listView1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.addnew.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dataGridView1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(10F, FontStyle.Bold);
@@ -41,27 +41,6 @@ namespace PackingApplication
 
         private void POYPackingList_Load(object sender, EventArgs e)
         {
-            //dataGridView1.Columns.Clear();
-            //dataGridView1.Columns.Add("SrNo", "SR. No");
-            //dataGridView1.Columns.Add("PackingType", "Packing Type");
-            //dataGridView1.Columns.Add("Department", "Department");
-            //dataGridView1.Columns.Add("Machine", "Machine");
-            //dataGridView1.Columns.Add("LotNo", "Lot No");
-            //dataGridView1.Columns.Add("BoxNo", "Box No");
-            //dataGridView1.Columns.Add("ProductionDate", "Production Date");
-            //dataGridView1.Columns.Add("Quality", "Quality");
-            //dataGridView1.Columns.Add("SaleOrder", "Sale Order");
-            //dataGridView1.Columns.Add("PackSize", "Pack Size");
-            //dataGridView1.Columns.Add("WindingType", "Winding Type");
-            //dataGridView1.Columns.Add("ProdType", "Prod Type");
-            //dataGridView1.Columns.Add("NoOfCopies", "No Of Copies");
-
-            //// Add Edit button column
-            //DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-            //btn.HeaderText = "Action";
-            //btn.Text = "Edit";
-            //btn.UseColumnTextForButtonValue = true;
-            //dataGridView1.Columns.Add(btn);
         }
 
         private async void POYPackingList_Shown(object sender, EventArgs e)
@@ -93,7 +72,7 @@ namespace PackingApplication
             DataGridViewImageColumn btn = new DataGridViewImageColumn();
             btn.HeaderText = "Action";
             btn.Name = "Action";
-            btn.Image = ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+            btn.Image = commonMethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
             btn.ImageLayout = DataGridViewImageCellLayout.Normal;
             btn.Width = 45;  // column width
             dataGridView1.RowTemplate.Height = 40; // row height
@@ -106,45 +85,12 @@ namespace PackingApplication
             dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
         }
 
-        private Image ResizeImage(Image img, int width, int height)
-        {
-            return new Bitmap(img, new Size(width, height));
-        }
+
 
         private List<ProductionResponse> getAllPOYPackingList()
         {
             var getPacking = _packingService.getAllPackingListByPackingType("poypacking");
             return getPacking;
-        }
-
-        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
-        {
-            Log.writeMessage("SetButtonBorderRadius start");
-            try
-            {
-                button.FlatStyle = FlatStyle.Flat;
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
-                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-                button.BackColor = Color.FromArgb(0, 92, 232);
-
-                // Set the border radius
-                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                int diameter = radius * 2;
-                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
-                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
-                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"An error occurred: {ex.Message}");
-                Log.writeMessage($"An error occurred: {ex.Message}");
-            }
-            Log.writeMessage("SetButtonBorderRadius end");
         }
 
         private void addNew_Click(object sender, EventArgs e)
@@ -153,26 +99,6 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new POYPackingForm(0)); // open Add form
-            }
-        }
-
-        private void listView1_MouseClick(object sender, MouseEventArgs e)
-        {
-            var info = listView1.HitTest(e.X, e.Y);
-            if (info.Item != null && info.SubItem != null)
-            {
-                int colIndex = info.Item.SubItems.IndexOf(info.SubItem);
-                if (colIndex == listView1.Columns.Count - 1) // Action column (Edit)
-                {
-                    // Get the item you clicked
-                    int productionId = Convert.ToInt32(info.Item.Tag);
-
-                    var dashboard = this.ParentForm as AdminAccount;
-                    if (dashboard != null)
-                    {
-                        dashboard.LoadFormInContent(new POYPackingForm(productionId)); // open Add form
-                    }
-                }
             }
         }
 
@@ -212,7 +138,7 @@ namespace PackingApplication
                 panel1.Height - thickness - 1
             );
 
-            using (GraphicsPath path = GetRoundedRect(rect, radius))
+            using (GraphicsPath path = commonMethod.GetRoundedRect(rect, radius))
             {
                 // Fill background with rounded shape
                 using (SolidBrush brush = new SolidBrush(panel1.BackColor))
@@ -226,27 +152,6 @@ namespace PackingApplication
                     e.Graphics.DrawPath(pen, path);
                 }
             }
-        }
-
-        private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-            int diameter = radius * 2;
-
-            // Top-left corner
-            path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
-
-            // Top-right corner
-            path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
-
-            // Bottom-right corner
-            path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
-
-            // Bottom-left corner
-            path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
-
-            path.CloseFigure();
-            return path;
         }
     }
 }

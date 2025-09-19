@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,107 +18,76 @@ namespace PackingApplication
     {
         private static Logger Log = Logger.GetLogger();
         PackingService _packingService = new PackingService();
+        CommonMethod commonMethod = new CommonMethod();
         public DTYPackingList()
         {
             InitializeComponent();
+            ApplyFonts();
             this.Shown += DTYPackingList_Shown;
             this.AutoScroll = true;
 
-            SetButtonBorderRadius(this.addnew, 8);
+            commonMethod.SetButtonBorderRadius(this.addnew, 5);
+        }
+
+        private void ApplyFonts()
+        {
+            this.addnew.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dataGridView1.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label1.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.dataGridView1.DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private void DTYPackingList_Load(object sender, EventArgs e)
         {
-            // Configure ListView
-            listView1.View = View.Details;
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
-
-            // Add columns
-            listView1.Columns.Add("SR. No", 50);
-            listView1.Columns.Add("PackingType", 100);
-            listView1.Columns.Add("Department", 100);
-            listView1.Columns.Add("Machine", 100);
-            listView1.Columns.Add("LotNo", 100);
-            listView1.Columns.Add("BoxNo", 100);
-            listView1.Columns.Add("ProductionDate", 100);
-            listView1.Columns.Add("Quality", 100);
-            listView1.Columns.Add("SaleOrder", 100);
-            listView1.Columns.Add("PackSize", 100);
-            listView1.Columns.Add("WindingType", 100);
-            listView1.Columns.Add("ProdType", 100);
-            listView1.Columns.Add("NoOfCopies", 100);
-            listView1.Columns.Add("Action", 100);
         }
 
         private async void DTYPackingList_Shown(object sender, EventArgs e)
         {
             var dtypackingList = await Task.Run(() => getAllDTYPackingList());
 
-            int index = 1;
-            foreach (var item in dtypackingList)
-            {
-                // Add items (rows)
-                ListViewItem item1 = new ListViewItem(index.ToString());
-                item1.SubItems.Add(item.PackingType);
-                item1.SubItems.Add(item.DepartmentName);
-                item1.SubItems.Add(item.MachineName);
-                item1.SubItems.Add(item.LotNo);
-                item1.SubItems.Add(item.BoxNo);
-                item1.SubItems.Add(item.ProductionDate.ToString());
-                item1.SubItems.Add(item.QualityName);
-                item1.SubItems.Add(item.SalesOrderNumber);
-                item1.SubItems.Add(item.PackSizeName);
-                item1.SubItems.Add(item.WindingTypeName);
-                item1.SubItems.Add(item.ProductionType);
-                item1.SubItems.Add(item.NoOfCopies.ToString());
-                item1.SubItems.Add("Edit");
+            dataGridView1.Columns.Clear();
+            // Define columns
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNo", HeaderText = "Box No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
 
-                item1.Tag = item.ProductionId;
+            dataGridView1.Columns["SrNo"].Width = 50;
+            dataGridView1.Columns["PackingType"].Width = 100;
+            dataGridView1.Columns["NoOfCopies"].Width = 50;
+            //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                // Add items to ListView
-                listView1.Items.Add(item1);
+            // Add Edit button column
+            DataGridViewImageColumn btn = new DataGridViewImageColumn();
+            btn.HeaderText = "Action";
+            btn.Name = "Action";
+            btn.Image = commonMethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+            btn.ImageLayout = DataGridViewImageCellLayout.Normal;
+            btn.Width = 45;  // column width
+            dataGridView1.RowTemplate.Height = 40; // row height
+            dataGridView1.Columns.Add(btn);
 
-                index++;
-            }
+            // Bind your list
+            dataGridView1.DataSource = dtypackingList;
 
-            listView1.MouseClick += listView1_MouseClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
         }
 
         private List<ProductionResponse> getAllDTYPackingList()
         {
             var getPacking = _packingService.getAllPackingListByPackingType("dtypacking");
             return getPacking;
-        }
-
-        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
-        {
-            Log.writeMessage("SetButtonBorderRadius start");
-            try
-            {
-                button.FlatStyle = FlatStyle.Flat;
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
-                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-                button.BackColor = Color.FromArgb(0, 92, 232);
-
-                // Set the border radius
-                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                int diameter = radius * 2;
-                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
-                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
-                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"An error occurred: {ex.Message}");
-                Log.writeMessage($"An error occurred: {ex.Message}");
-            }
-            Log.writeMessage("SetButtonBorderRadius end");
         }
 
         private void addNew_Click(object sender, EventArgs e)
@@ -129,22 +99,54 @@ namespace PackingApplication
             }
         }
 
-        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            var info = listView1.HitTest(e.X, e.Y);
-            if (info.Item != null && info.SubItem != null)
+            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = (e.RowIndex + 1).ToString();
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
-                int colIndex = info.Item.SubItems.IndexOf(info.SubItem);
-                if (colIndex == listView1.Columns.Count - 1) // Action column (Edit)
-                {
-                    // Get the item you clicked
-                    int productionId = Convert.ToInt32(info.Item.Tag);
 
-                    var dashboard = this.ParentForm as AdminAccount;
-                    if (dashboard != null)
-                    {
-                        dashboard.LoadFormInContent(new DTYPackingForm(productionId)); // open Add form
-                    }
+                long productionId = Convert.ToInt32(
+                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
+                );
+
+                var dashboard = this.ParentForm as AdminAccount;
+                if (dashboard != null)
+                {
+                    dashboard.LoadFormInContent(new DTYPackingForm(productionId)); // open edit form
+                }
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            int thickness = 1;   // border thickness
+            int radius = 8;      // corner radius
+
+            // shrink rectangle so border fits inside
+            Rectangle rect = new Rectangle(
+                thickness / 2,
+                thickness / 2,
+                panel1.Width - thickness - 1,
+                panel1.Height - thickness - 1
+            );
+
+            using (GraphicsPath path = commonMethod.GetRoundedRect(rect, radius))
+            {
+                // Fill background with rounded shape
+                using (SolidBrush brush = new SolidBrush(panel1.BackColor))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+
+                // Draw border on same rounded shape
+                using (Pen pen = new Pen(Color.FromArgb(191, 191, 191), thickness))
+                {
+                    e.Graphics.DrawPath(pen, path);
                 }
             }
         }

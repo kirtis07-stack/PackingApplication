@@ -116,11 +116,9 @@
     <Compile Include="DTYPackingList.Designer.cs">
       <DependentUpon>DTYPackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CommonMethod.cs" />
     <Compile Include="Helper\FontManager.cs" />
     <Compile Include="Helper\HTTPMethod.cs" />
-    <Compile Include="Helper\RoundedPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />

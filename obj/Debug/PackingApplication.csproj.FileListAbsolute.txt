@@ -39,4 +39,3 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApp
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.pdb
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.exe.config
