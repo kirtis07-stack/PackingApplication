@@ -24,14 +24,17 @@ namespace PackingApplication
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
         private long _productionId;
+        CommonMethod _cmethod = new CommonMethod();
         public DTYPackingForm(long productionId)
         {
             InitializeComponent();
+            ApplyFonts();
             this.Shown += DTYPackingForm_Shown;
             this.AutoScroll = true;
             _productionId = productionId;
 
-            SetButtonBorderRadius(this.submit, 8);
+            _cmethod.SetButtonBorderRadius(this.submit, 8);
+            _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
 
             LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
             MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
@@ -63,11 +66,134 @@ namespace PackingApplication
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
+            var qualityList = new List<QualityResponse>();
+            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+            QualityList.DataSource = qualityList;
+            QualityList.DisplayMember = "Name";
+            QualityList.ValueMember = "QualityId";
+            QualityList.SelectedIndex = 0;
+
             copyno.Text = "1";
             //Username.Text = SessionManager.UserName;
             //role.Text = SessionManager.Role;
 
             isFormReady = true;
+        }
+
+        private void ApplyFonts()
+        {
+            this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastboxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.textBox1.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.textBox2.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.textBox3.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.textBox4.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.remark.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.remarks.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.scalemodel.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.LineNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.departmentname.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.MergeNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.itemname.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.shadename.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.ComPortList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.WeighingList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.CopsItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.BoxItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.SaleOrderList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prcompany.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pruser.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prhindi.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prtwist.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label4.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tarewt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label3.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grosswtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label2.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.palletwtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.palletwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.spoolwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.submit.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grossweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.PrefixList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.palletwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.soerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.qualityerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.dtyformlabel.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
         private async void DTYPackingForm_Shown(object sender, EventArgs e)
@@ -87,14 +213,6 @@ namespace PackingApplication
             PrefixList.DisplayMember = "Prefix";
             PrefixList.ValueMember = "PrefixCode";
             PrefixList.SelectedIndex = 0;
-
-            var qualityList = await Task.Run(() => getQualityList());
-            //quality
-            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-            QualityList.DataSource = qualityList;
-            QualityList.DisplayMember = "Name";
-            QualityList.ValueMember = "QualityId";
-            QualityList.SelectedIndex = 0;
 
             var packsizeList = await Task.Run(() => getPackSizeList());
             //packsize
@@ -250,7 +368,52 @@ namespace PackingApplication
                 shadecd.Text = item.ShadeCode;
                 deniervalue.Text = item.Denier.ToString();
 
+                var itemResponse = _masterService.getItemById(item.ItemId);
+
+                var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                QualityList.DataSource = qualityList;
+                QualityList.DisplayMember = "Name";
+                QualityList.ValueMember = "QualityId";
+                QualityList.SelectedIndex = 0;
+
                 getSaleOrderList(productionRequest.LotId);
+
+                List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
+                foreach (var lot in item.LotsDetailsResponses)
+                {
+                    LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
+                    lotsDetails.LotId = lot.LotId;
+                    lotsDetails.UpdatedOn = lot.UpdatedOn;
+                    lotsDetails.UpdatedBy = lot.UpdatedBy;
+                    lotsDetails.CreatedBy = lot.CreatedBy;
+                    lotsDetails.CreatedOn = lot.CreatedOn;
+                    lotsDetails.EffectiveFrom = lot.EffectiveFrom;
+                    lotsDetails.EffectiveUpto = lot.EffectiveUpto;
+                    lotsDetails.GainLossPerc = lot.GainLossPerc;
+                    lotsDetails.InputPerc = lot.InputPerc;
+                    lotsDetails.ProductionPerc = lot.ProductionPerc;
+                    lotsDetails.Extruder = lot.Extruder;
+                    lotsDetails.LotType = lot.LotType;
+                    lotsDetails.PrevLotId = lot.PrevLotId;
+                    lotsDetails.PrevLotNo = lot.PrevLotNo;
+                    lotsDetails.PrevLotType = lot.PrevLotType;
+                    lotsDetails.PrevLotQuality = lot.PrevLotQuality;
+                    lotsDetails.PrevLotItemName = lot.PrevLotItemName;
+                    lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
+                    lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
+                    lotsDetailsList.Add(lot);
+                }
+                rowMaterial.Columns.Clear();
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
+                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
+                rowMaterial.DataSource = lotsDetailsList;
             }
         }
 
@@ -435,9 +598,9 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
         }
 
-        private List<QualityResponse> getQualityList()
+        private List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
         {
-            var getQuality = _masterService.getQualityList();
+            var getQuality = _masterService.getQualityListByItemTypeId(itemTypeId);
             return getQuality;
         }
 
@@ -514,16 +677,23 @@ namespace PackingApplication
             return getProduction;
         }
 
+        private ProductionResponse getLastBoxDetails()
+        {
+            var getPacking = _packingService.getLastBoxDetails();
+            return getPacking;
+        }
+
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
-                spoolwterror.Text = "";
-                spoolwterror.Visible = false;
+                spoolwterror.Visible = true;
             }
             else
             {
                 CalculateTareWeight();
+                spoolwterror.Text = "";
+                spoolwterror.Visible = false;
             }
         }
 
@@ -531,21 +701,22 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
-                palletwterror.Text = "";
-                palletwterror.Visible = false;
+                palletwterror.Visible = true;
             }
             else
             {
                 CalculateTareWeight();
+                palletwterror.Text = "";
+                palletwterror.Visible = false;
             }
         }
 
         private void CalculateTareWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(spoolwt.Text, out num1);
-            int.TryParse(palletwtno.Text, out num2);
+            decimal.TryParse(spoolwt.Text, out num1);
+            decimal.TryParse(palletwtno.Text, out num2);
 
             tarewt.Text = (num1 + num2).ToString();
         }
@@ -554,21 +725,22 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
-                grosswterror.Text = "";
                 grosswterror.Visible = true;
             }
             else
             {
                 CalculateNetWeight();
+                grosswterror.Text = "";
+                grosswterror.Visible = false;
             }
         }
 
         private void CalculateNetWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(grosswtno.Text, out num1);
-            int.TryParse(tarewt.Text, out num2);
+            decimal.TryParse(grosswtno.Text, out num1);
+            decimal.TryParse(tarewt.Text, out num2);
 
             netwt.Text = (num1 - num2).ToString();
         }
@@ -582,23 +754,37 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
-                spoolnoerror.Text = "";
-                spoolnoerror.Visible = false;
+                spoolnoerror.Visible = true;
             }
             else
             {
                 CalculateWeightPerCop();
+                spoolnoerror.Text = "";
+                spoolnoerror.Visible = false;
             }
         }
 
         private void CalculateWeightPerCop()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(netwt.Text, out num1);
-            int.TryParse(spoolno.Text, out num2);
+            decimal.TryParse(netwt.Text, out num1);
+            decimal.TryParse(spoolno.Text, out num2);
 
             wtpercop.Text = (num1 / num2).ToString();
+        }
+
+        private void CopyNos_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(copyno.Text))
+            {
+                copynoerror.Visible = true;
+            }
+            else
+            {
+                copynoerror.Text = "";
+                copynoerror.Visible = false;
+            }
         }
 
         private async void submit_Click(object sender, EventArgs e)
@@ -651,31 +837,6 @@ namespace PackingApplication
                 MessageBox.Show("Something went wrong.");
             }
             return result;
-        }
-
-        //private void Logout_Click(object sender, EventArgs e)
-        //{
-        //    SessionManager.Clear();
-
-        //    var loginForm = new Login();
-        //    loginForm.Show();
-        //    this.Close();
-        //}
-
-        private ProductionResponse getLastBoxDetails()
-        {
-            var getPacking = _packingService.getLastBoxDetails();
-            return getPacking;
-        }
-
-        private void backbutton_Click(object sender, EventArgs e)
-        {
-            AdminAccount parentForm = this.ParentForm as AdminAccount;
-
-            if (parentForm != null)
-            {
-                parentForm.LoadFormInContent(new Dashboard());
-            }
         }
 
         private bool ValidateForm()
@@ -740,72 +901,33 @@ namespace PackingApplication
 
             if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) == 0)
             {
-                spoolnoerror.Text = "Please enter valid spool no";
+                spoolnoerror.Text = "Please enter spool no";
                 spoolnoerror.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToDecimal(spoolwt.Text) == 0)
             {
-                spoolwterror.Text = "Please enter valid spool weight";
+                spoolwterror.Text = "Please enter spool wt";
                 spoolwterror.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
             {
-                palletwterror.Text = "Please enter valid empty box/pallet weight";
+                palletwterror.Text = "Please enter pallet wt";
                 palletwterror.Visible = true;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
             {
-                grosswterror.Text = "Please enter valid gross weight";
+                grosswterror.Text = "Please enter gross wt";
                 grosswterror.Visible = true;
                 isValid = false;
             }
 
             return isValid;
-        }
-
-        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
-        {
-            Log.writeMessage("SetButtonBorderRadius start");
-            try
-            {
-                button.FlatStyle = FlatStyle.Flat;
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
-                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-                button.BackColor = Color.FromArgb(0, 92, 232);
-
-                // Set the border radius
-                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                int diameter = radius * 2;
-                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
-                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
-                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"An error occurred: {ex.Message}");
-                Log.writeMessage($"An error occurred: {ex.Message}");
-            }
-            Log.writeMessage("SetButtonBorderRadius end");
-        }
-
-        private void CopyNos_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(copyno.Text))
-            {
-                copynoerror.Text = "";
-                copynoerror.Visible = false;
-            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -815,6 +937,126 @@ namespace PackingApplication
             {
                 dashboard.LoadFormInContent(new DTYPackingList());
             }
+        }
+
+        private void ordertable_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void packagingtable_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void weightable_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void reviewtable_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void machineboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void machineboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void weighboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void weighboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void packagingboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void lastboxlayout_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void lastboxheader_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+        }
+
+        private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
+        {
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+        }
+
+        private void machineboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(machineboxheader, 8);
+        }
+
+        private void weighboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(weighboxheader, 8);
+        }
+
+        private void packagingboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(packagingboxheader, 8);
+        }
+
+        private void lastboxheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(lastboxheader, 8);
+        }
+
+        private void printingdetailsheader_Resize(object sender, EventArgs e)
+        {
+            _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
         }
     }
 }
