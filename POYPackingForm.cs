@@ -253,6 +253,7 @@ namespace PackingApplication
 
             var packsizeList = await Task.Run(() => getPackSizeList());
             //packsize
+            packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
             PackSizeList.DataSource = packsizeList;
             PackSizeList.DisplayMember = "PackSizeName";
             PackSizeList.ValueMember = "PackSizeId";
@@ -260,6 +261,7 @@ namespace PackingApplication
 
             var windingtypeList = await Task.Run(() => getWindingTypeList());
             //windingtype
+            windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
             WindingTypeList.DataSource = windingtypeList;
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
@@ -459,6 +461,7 @@ namespace PackingApplication
                 itemname.Text = "";
                 shadename.Text = "";
                 shadecd.Text = "";
+                deniervalue.Text = "";
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -761,15 +764,13 @@ namespace PackingApplication
 
         private List<PackSizeResponse> getPackSizeList()
         {
-            var getPackSize = _masterService.getPackSizeList();
-            getPackSize.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+            var getPackSize = _masterService.getPackSizeList();          
             return getPackSize;
         }
 
         private List<WindingTypeResponse> getWindingTypeList()
         {
             var getWindingType = _masterService.getWindingTypeList();
-            getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
             return getWindingType;
         }
 
