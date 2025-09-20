@@ -1982,7 +1982,6 @@ namespace PackingApplication
             // dtyformlabel
             // 
             this.dtyformlabel.AutoSize = true;
-            this.dtyformlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.dtyformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.dtyformlabel.Location = new System.Drawing.Point(14, 6);
             this.dtyformlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);

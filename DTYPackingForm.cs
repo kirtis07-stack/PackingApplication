@@ -347,6 +347,7 @@ namespace PackingApplication
                 itemname.Text = "";
                 shadename.Text = "";
                 shadecd.Text = "";
+                deniervalue.Text = "";
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
