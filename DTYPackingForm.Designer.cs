@@ -30,7 +30,7 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.leftpanel = new System.Windows.Forms.Panel();
             this.reviewtable = new System.Windows.Forms.TableLayoutPanel();
@@ -87,6 +87,9 @@ namespace PackingApplication
             this.Lastboxlbl = new System.Windows.Forms.Label();
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
+            this.req3 = new System.Windows.Forms.Label();
+            this.req2 = new System.Windows.Forms.Label();
+            this.req1 = new System.Windows.Forms.Label();
             this.deniervalue = new System.Windows.Forms.TextBox();
             this.denier = new System.Windows.Forms.Label();
             this.shadecd = new System.Windows.Forms.TextBox();
@@ -118,6 +121,10 @@ namespace PackingApplication
             this.Machinelbl = new System.Windows.Forms.Label();
             this.weighboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.weighboxpanel = new System.Windows.Forms.Panel();
+            this.req9 = new System.Windows.Forms.Label();
+            this.req8 = new System.Windows.Forms.Label();
+            this.req7 = new System.Windows.Forms.Label();
+            this.req10 = new System.Windows.Forms.Label();
             this.grosswterror = new System.Windows.Forms.Label();
             this.palletwterror = new System.Windows.Forms.Label();
             this.spoolwterror = new System.Windows.Forms.Label();
@@ -148,6 +155,9 @@ namespace PackingApplication
             this.packagingboxheader = new System.Windows.Forms.Panel();
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
+            this.req6 = new System.Windows.Forms.Label();
+            this.req5 = new System.Windows.Forms.Label();
+            this.req4 = new System.Windows.Forms.Label();
             this.SaleOrderList = new System.Windows.Forms.ComboBox();
             this.saleorderno = new System.Windows.Forms.Label();
             this.QualityList = new System.Windows.Forms.ComboBox();
@@ -550,14 +560,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -939,6 +949,9 @@ namespace PackingApplication
             // machineboxpanel
             // 
             this.machineboxpanel.BackColor = System.Drawing.Color.White;
+            this.machineboxpanel.Controls.Add(this.req3);
+            this.machineboxpanel.Controls.Add(this.req2);
+            this.machineboxpanel.Controls.Add(this.req1);
             this.machineboxpanel.Controls.Add(this.deniervalue);
             this.machineboxpanel.Controls.Add(this.denier);
             this.machineboxpanel.Controls.Add(this.shadecd);
@@ -971,6 +984,39 @@ namespace PackingApplication
             this.machineboxpanel.Name = "machineboxpanel";
             this.machineboxpanel.Size = new System.Drawing.Size(320, 165);
             this.machineboxpanel.TabIndex = 107;
+            // 
+            // req3
+            // 
+            this.req3.AutoSize = true;
+            this.req3.ForeColor = System.Drawing.Color.Red;
+            this.req3.Location = new System.Drawing.Point(165, 44);
+            this.req3.Name = "req3";
+            this.req3.Size = new System.Drawing.Size(11, 13);
+            this.req3.TabIndex = 108;
+            this.req3.Text = "*";
+            this.req3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req2
+            // 
+            this.req2.AutoSize = true;
+            this.req2.ForeColor = System.Drawing.Color.Red;
+            this.req2.Location = new System.Drawing.Point(256, 2);
+            this.req2.Name = "req2";
+            this.req2.Size = new System.Drawing.Size(11, 13);
+            this.req2.TabIndex = 107;
+            this.req2.Text = "*";
+            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req1
+            // 
+            this.req1.AutoSize = true;
+            this.req1.ForeColor = System.Drawing.Color.Red;
+            this.req1.Location = new System.Drawing.Point(30, 3);
+            this.req1.Name = "req1";
+            this.req1.Size = new System.Drawing.Size(11, 13);
+            this.req1.TabIndex = 99;
+            this.req1.Text = "*";
+            this.req1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // deniervalue
             // 
@@ -1286,6 +1332,10 @@ namespace PackingApplication
             // 
             // weighboxpanel
             // 
+            this.weighboxpanel.Controls.Add(this.req9);
+            this.weighboxpanel.Controls.Add(this.req8);
+            this.weighboxpanel.Controls.Add(this.req7);
+            this.weighboxpanel.Controls.Add(this.req10);
             this.weighboxpanel.Controls.Add(this.grosswterror);
             this.weighboxpanel.Controls.Add(this.palletwterror);
             this.weighboxpanel.Controls.Add(this.spoolwterror);
@@ -1315,6 +1365,50 @@ namespace PackingApplication
             this.weighboxpanel.Name = "weighboxpanel";
             this.weighboxpanel.Size = new System.Drawing.Size(313, 122);
             this.weighboxpanel.TabIndex = 107;
+            // 
+            // req9
+            // 
+            this.req9.AutoSize = true;
+            this.req9.ForeColor = System.Drawing.Color.Red;
+            this.req9.Location = new System.Drawing.Point(259, 44);
+            this.req9.Name = "req9";
+            this.req9.Size = new System.Drawing.Size(11, 13);
+            this.req9.TabIndex = 118;
+            this.req9.Text = "*";
+            this.req9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req8
+            // 
+            this.req8.AutoSize = true;
+            this.req8.ForeColor = System.Drawing.Color.Red;
+            this.req8.Location = new System.Drawing.Point(201, 44);
+            this.req8.Name = "req8";
+            this.req8.Size = new System.Drawing.Size(11, 13);
+            this.req8.TabIndex = 117;
+            this.req8.Text = "*";
+            this.req8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req7
+            // 
+            this.req7.AutoSize = true;
+            this.req7.ForeColor = System.Drawing.Color.Red;
+            this.req7.Location = new System.Drawing.Point(40, 44);
+            this.req7.Name = "req7";
+            this.req7.Size = new System.Drawing.Size(11, 13);
+            this.req7.TabIndex = 116;
+            this.req7.Text = "*";
+            this.req7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req10
+            // 
+            this.req10.AutoSize = true;
+            this.req10.ForeColor = System.Drawing.Color.Red;
+            this.req10.Location = new System.Drawing.Point(250, 2);
+            this.req10.Name = "req10";
+            this.req10.Size = new System.Drawing.Size(11, 13);
+            this.req10.TabIndex = 115;
+            this.req10.Text = "*";
+            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grosswterror
             // 
@@ -1417,7 +1511,7 @@ namespace PackingApplication
             // windingtype
             // 
             this.windingtype.AutoSize = true;
-            this.windingtype.Location = new System.Drawing.Point(211, 2);
+            this.windingtype.Location = new System.Drawing.Point(205, 2);
             this.windingtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.windingtype.Name = "windingtype";
             this.windingtype.Size = new System.Drawing.Size(49, 13);
@@ -1626,6 +1720,9 @@ namespace PackingApplication
             // 
             // packagingboxpanel
             // 
+            this.packagingboxpanel.Controls.Add(this.req6);
+            this.packagingboxpanel.Controls.Add(this.req5);
+            this.packagingboxpanel.Controls.Add(this.req4);
             this.packagingboxpanel.Controls.Add(this.SaleOrderList);
             this.packagingboxpanel.Controls.Add(this.saleorderno);
             this.packagingboxpanel.Controls.Add(this.QualityList);
@@ -1657,6 +1754,39 @@ namespace PackingApplication
             this.packagingboxpanel.Name = "packagingboxpanel";
             this.packagingboxpanel.Size = new System.Drawing.Size(320, 163);
             this.packagingboxpanel.TabIndex = 107;
+            // 
+            // req6
+            // 
+            this.req6.AutoSize = true;
+            this.req6.ForeColor = System.Drawing.Color.Red;
+            this.req6.Location = new System.Drawing.Point(55, 44);
+            this.req6.Name = "req6";
+            this.req6.Size = new System.Drawing.Size(11, 13);
+            this.req6.TabIndex = 121;
+            this.req6.Text = "*";
+            this.req6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req5
+            // 
+            this.req5.AutoSize = true;
+            this.req5.ForeColor = System.Drawing.Color.Red;
+            this.req5.Location = new System.Drawing.Point(150, 3);
+            this.req5.Name = "req5";
+            this.req5.Size = new System.Drawing.Size(11, 13);
+            this.req5.TabIndex = 120;
+            this.req5.Text = "*";
+            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req4
+            // 
+            this.req4.AutoSize = true;
+            this.req4.ForeColor = System.Drawing.Color.Red;
+            this.req4.Location = new System.Drawing.Point(40, 3);
+            this.req4.Name = "req4";
+            this.req4.Size = new System.Drawing.Size(11, 13);
+            this.req4.TabIndex = 119;
+            this.req4.Text = "*";
+            this.req4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // SaleOrderList
             // 
@@ -1986,7 +2116,7 @@ namespace PackingApplication
             this.dtyformlabel.Location = new System.Drawing.Point(14, 6);
             this.dtyformlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dtyformlabel.Name = "dtyformlabel";
-            this.dtyformlabel.Size = new System.Drawing.Size(82, 13);
+            this.dtyformlabel.Size = new System.Drawing.Size(71, 13);
             this.dtyformlabel.TabIndex = 97;
             this.dtyformlabel.Text = "DTY Packing";
             // 
@@ -2214,5 +2344,15 @@ namespace PackingApplication
         private Panel lastbxnetwtpanel;
         private Panel lastbxgrosswtpanel;
         private CheckBox prtwist;
+        private Label req1;
+        private Label req2;
+        private Label req3;
+        private Label req10;
+        private Label req7;
+        private Label req8;
+        private Label req9;
+        private Label req4;
+        private Label req5;
+        private Label req6;
     }
 }

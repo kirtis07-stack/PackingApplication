@@ -113,7 +113,7 @@ namespace PackingApplication
             menuStrip.Items.Add(chips);     
 
             leftPanel.Controls.Add(menuStrip);
-
+            SetHandCursorForMenuItems(poy, dty, bcf, chips);
             // right panel for profile and logout
             FlowLayoutPanel rightPanel = new FlowLayoutPanel
             {
@@ -249,6 +249,15 @@ namespace PackingApplication
             this.Controls.SetChildIndex(contentPanel, 0);
 
             //LoadFormInContent(new Dashboard());
+        }
+
+        private void SetHandCursorForMenuItems(params ToolStripMenuItem[] menuItems)
+        {
+            foreach (var item in menuItems)
+            {
+                item.MouseEnter += (s, e) => this.Cursor = Cursors.Hand;
+                item.MouseLeave += (s, e) => this.Cursor = Cursors.Default;
+            }
         }
 
         private void Logout_Click(object sender, EventArgs e)

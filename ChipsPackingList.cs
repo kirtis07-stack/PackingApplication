@@ -82,6 +82,19 @@ namespace PackingApplication
 
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
+
+            dataGridView1.CellMouseEnter += (s, te) =>
+            {
+                if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                {
+                    dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                }
+            };
+
+            dataGridView1.CellMouseLeave += (s, te) =>
+            {
+                dataGridView1.Cursor = Cursors.Default; // Reset back to default
+            };
         }
 
         private List<ProductionResponse> getAllChipsPackingList()

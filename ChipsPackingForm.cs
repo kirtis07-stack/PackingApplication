@@ -45,7 +45,7 @@ namespace PackingApplication
             copyno.TextChanged += CopyNos_TextChanged;
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
-            _productionId = productionId;
+            rowMaterial.AutoGenerateColumns = false;
         }
 
         private void ChipsPackingForm_Load(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace PackingApplication
             this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.lastboxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -94,8 +94,8 @@ namespace PackingApplication
             this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.textBox1.Font = FontManager.GetFont(8F, FontStyle.Regular);

@@ -50,10 +50,10 @@ namespace PackingApplication
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.eyeicon = new System.Windows.Forms.PictureBox();
             this.yearerror = new System.Windows.Forms.Label();
             this.passworderror = new System.Windows.Forms.Label();
             this.emailerror = new System.Windows.Forms.Label();
-            this.eyeicon = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -65,21 +65,19 @@ namespace PackingApplication
             // emailid
             // 
             this.emailid.AutoSize = true;
-            this.emailid.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.emailid.Location = new System.Drawing.Point(78, 163);
-            this.emailid.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.emailid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.emailid.Location = new System.Drawing.Point(52, 106);
             this.emailid.Name = "emailid";
-            this.emailid.Size = new System.Drawing.Size(73, 22);
+            this.emailid.Size = new System.Drawing.Size(46, 13);
             this.emailid.TabIndex = 0;
             this.emailid.Text = "Email ID";
             // 
             // email
             // 
-            this.email.Location = new System.Drawing.Point(82, 194);
-            this.email.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.email.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.email.Location = new System.Drawing.Point(55, 126);
             this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(384, 26);
-            this.email.Font = FontManager.GetFont(8, FontStyle.Regular);
+            this.email.Size = new System.Drawing.Size(257, 20);
             this.email.TabIndex = 1;
             this.email.Tag = "";
             this.email.TextChanged += new System.EventHandler(this.Email_TextChanged);
@@ -87,46 +85,42 @@ namespace PackingApplication
             // password
             // 
             this.password.AutoSize = true;
-            this.password.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.password.Location = new System.Drawing.Point(81, 262);
-            this.password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.password.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.password.Location = new System.Drawing.Point(54, 170);
             this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(81, 22);
+            this.password.Size = new System.Drawing.Size(53, 13);
             this.password.TabIndex = 2;
             this.password.Text = "Password";
             // 
             // passwrd
             // 
-            this.passwrd.Location = new System.Drawing.Point(82, 288);
-            this.passwrd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.passwrd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.passwrd.Location = new System.Drawing.Point(55, 187);
             this.passwrd.Name = "passwrd";
-            this.passwrd.Size = new System.Drawing.Size(384, 26);
+            this.passwrd.Size = new System.Drawing.Size(257, 20);
             this.passwrd.TabIndex = 3;
             this.passwrd.UseSystemPasswordChar = true;
             this.passwrd.WordWrap = false;
-            this.passwrd.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.passwrd.TextChanged += new System.EventHandler(this.Passwrd_TextChanged);
             // 
             // year
             // 
             this.year.AutoSize = true;
-            this.year.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.year.Location = new System.Drawing.Point(81, 366);
-            this.year.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.year.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.year.Location = new System.Drawing.Point(54, 238);
             this.year.Name = "year";
-            this.year.Size = new System.Drawing.Size(43, 22);
+            this.year.Size = new System.Drawing.Size(29, 13);
             this.year.TabIndex = 4;
             this.year.Text = "Year";
             // 
             // YearList
             // 
+            this.YearList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.YearList.FormattingEnabled = true;
-            this.YearList.Location = new System.Drawing.Point(82, 392);
-            this.YearList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.YearList.Location = new System.Drawing.Point(55, 255);
             this.YearList.Name = "YearList";
-            this.YearList.Size = new System.Drawing.Size(384, 28);
+            this.YearList.Size = new System.Drawing.Size(257, 21);
             this.YearList.TabIndex = 5;
-            this.YearList.Font = FontManager.GetFont(8, FontStyle.Regular);
             this.YearList.SelectedIndexChanged += new System.EventHandler(this.YearList_SelectedIndexChanged);
             // 
             // rememberme
@@ -134,11 +128,10 @@ namespace PackingApplication
             this.rememberme.AutoSize = true;
             this.rememberme.Checked = true;
             this.rememberme.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rememberme.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.rememberme.Location = new System.Drawing.Point(82, 456);
-            this.rememberme.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rememberme.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.rememberme.Location = new System.Drawing.Point(55, 296);
             this.rememberme.Name = "rememberme";
-            this.rememberme.Size = new System.Drawing.Size(148, 26);
+            this.rememberme.Size = new System.Drawing.Size(94, 17);
             this.rememberme.TabIndex = 7;
             this.rememberme.Text = "Remember me";
             this.rememberme.UseVisualStyleBackColor = true;
@@ -148,12 +141,11 @@ namespace PackingApplication
             this.signin.BackColor = System.Drawing.SystemColors.Highlight;
             this.signin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signin.Font = FontManager.GetFont(9, FontStyle.Bold);
+            this.signin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.signin.Location = new System.Drawing.Point(82, 504);
-            this.signin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.signin.Location = new System.Drawing.Point(55, 328);
             this.signin.Name = "signin";
-            this.signin.Size = new System.Drawing.Size(386, 49);
+            this.signin.Size = new System.Drawing.Size(257, 32);
             this.signin.TabIndex = 8;
             this.signin.Text = "SIGN IN";
             this.signin.UseVisualStyleBackColor = false;
@@ -162,11 +154,10 @@ namespace PackingApplication
             // welcome
             // 
             this.welcome.AutoSize = true;
-            this.welcome.Font = FontManager.GetFont(14, FontStyle.Bold);
-            this.welcome.Location = new System.Drawing.Point(192, 36);
-            this.welcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.welcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.welcome.Location = new System.Drawing.Point(128, 23);
             this.welcome.Name = "welcome";
-            this.welcome.Size = new System.Drawing.Size(207, 35);
+            this.welcome.Size = new System.Drawing.Size(149, 24);
             this.welcome.TabIndex = 9;
             this.welcome.Text = "Welcome Back";
             this.welcome.UseWaitCursor = true;
@@ -175,11 +166,10 @@ namespace PackingApplication
             // 
             this.subtitle.AutoEllipsis = true;
             this.subtitle.AutoSize = true;
-            this.subtitle.Font = FontManager.GetFont(9, FontStyle.Regular);
-            this.subtitle.Location = new System.Drawing.Point(81, 80);
-            this.subtitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.subtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.subtitle.Location = new System.Drawing.Point(54, 52);
             this.subtitle.Name = "subtitle";
-            this.subtitle.Size = new System.Drawing.Size(440, 23);
+            this.subtitle.Size = new System.Drawing.Size(302, 15);
             this.subtitle.TabIndex = 10;
             this.subtitle.Text = "Enter your email and password to access your account";
             // 
@@ -187,12 +177,11 @@ namespace PackingApplication
             // 
             this.req1.AutoSize = true;
             this.req1.BackColor = System.Drawing.Color.Transparent;
-            this.req1.Font = FontManager.GetFont(9, FontStyle.Regular);
+            this.req1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.req1.ForeColor = System.Drawing.Color.Red;
-            this.req1.Location = new System.Drawing.Point(144, 163);
-            this.req1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req1.Location = new System.Drawing.Point(95, 104);
             this.req1.Name = "req1";
-            this.req1.Size = new System.Drawing.Size(20, 25);
+            this.req1.Size = new System.Drawing.Size(12, 15);
             this.req1.TabIndex = 11;
             this.req1.Text = "*";
             // 
@@ -200,12 +189,11 @@ namespace PackingApplication
             // 
             this.req2.AutoSize = true;
             this.req2.BackColor = System.Drawing.Color.Transparent;
-            this.req2.Font = FontManager.GetFont(9, FontStyle.Regular);
+            this.req2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.req2.ForeColor = System.Drawing.Color.Red;
-            this.req2.Location = new System.Drawing.Point(160, 260);
-            this.req2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req2.Location = new System.Drawing.Point(103, 169);
             this.req2.Name = "req2";
-            this.req2.Size = new System.Drawing.Size(20, 25);
+            this.req2.Size = new System.Drawing.Size(12, 15);
             this.req2.TabIndex = 12;
             this.req2.Text = "*";
             // 
@@ -213,12 +201,11 @@ namespace PackingApplication
             // 
             this.req3.AutoSize = true;
             this.req3.BackColor = System.Drawing.Color.Transparent;
-            this.req3.Font = FontManager.GetFont(9, FontStyle.Regular);
+            this.req3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.req3.ForeColor = System.Drawing.Color.Red;
-            this.req3.Location = new System.Drawing.Point(118, 366);
-            this.req3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req3.Location = new System.Drawing.Point(79, 238);
             this.req3.Name = "req3";
-            this.req3.Size = new System.Drawing.Size(20, 25);
+            this.req3.Size = new System.Drawing.Size(12, 15);
             this.req3.TabIndex = 13;
             this.req3.Text = "*";
             // 
@@ -229,19 +216,19 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(0, -3);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Location = new System.Drawing.Point(0, -2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1200, 694);
+            this.panel1.Size = new System.Drawing.Size(800, 451);
             this.panel1.TabIndex = 14;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(621, 0);
+            this.panel3.Location = new System.Drawing.Point(414, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(579, 694);
+            this.panel3.Size = new System.Drawing.Size(386, 451);
             this.panel3.TabIndex = 16;
             // 
             // panel2
@@ -266,68 +253,33 @@ namespace PackingApplication
             this.panel2.Controls.Add(this.req2);
             this.panel2.Controls.Add(this.passwrd);
             this.panel2.Controls.Add(this.password);
-            this.panel2.Location = new System.Drawing.Point(9, 42);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Location = new System.Drawing.Point(6, 27);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(557, 652);
+            this.panel2.Size = new System.Drawing.Size(371, 424);
             this.panel2.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = FontManager.GetFont(8, FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(145, 597);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(97, 388);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(268, 21);
+            this.label2.Size = new System.Drawing.Size(218, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "BEEKAYLON SYNTHETICS PVT LTD";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = FontManager.GetFont(8, FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(156, 572);
+            this.label1.Location = new System.Drawing.Point(104, 372);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 21);
+            this.label1.Size = new System.Drawing.Size(189, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "ALL RIGHT RESERVED © 2025";
-            // 
-            // yearerror
-            // 
-            this.yearerror.AutoSize = true;
-            this.yearerror.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.yearerror.ForeColor = System.Drawing.Color.Red;
-            this.yearerror.Location = new System.Drawing.Point(86, 429);
-            this.yearerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.yearerror.Name = "yearerror";
-            this.yearerror.Size = new System.Drawing.Size(0, 22);
-            this.yearerror.TabIndex = 16;
-            this.yearerror.Visible = false;
-            // 
-            // passworderror
-            // 
-            this.passworderror.AutoSize = true;
-            this.passworderror.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.passworderror.ForeColor = System.Drawing.Color.Red;
-            this.passworderror.Location = new System.Drawing.Point(81, 323);
-            this.passworderror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.passworderror.Name = "passworderror";
-            this.passworderror.Size = new System.Drawing.Size(0, 22);
-            this.passworderror.TabIndex = 15;
-            this.passworderror.Visible = false;
-            // 
-            // emailerror
-            // 
-            this.emailerror.AutoSize = true;
-            this.emailerror.Font = FontManager.GetFont(8, FontStyle.Regular);
-            this.emailerror.ForeColor = System.Drawing.Color.Red;
-            this.emailerror.Location = new System.Drawing.Point(81, 229);
-            this.emailerror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.emailerror.Name = "emailerror";
-            this.emailerror.Size = new System.Drawing.Size(0, 22);
-            this.emailerror.TabIndex = 14;
-            this.emailerror.Visible = false;
             // 
             // eyeicon
             // 
@@ -335,13 +287,46 @@ namespace PackingApplication
             this.eyeicon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.eyeicon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.eyeicon.Image = global::PackingApplication.Properties.Resources.icons8_hide_24;
-            this.eyeicon.Location = new System.Drawing.Point(440, 290);
+            this.eyeicon.Location = new System.Drawing.Point(293, 188);
+            this.eyeicon.Margin = new System.Windows.Forms.Padding(2);
             this.eyeicon.Name = "eyeicon";
-            this.eyeicon.Size = new System.Drawing.Size(24, 24);
+            this.eyeicon.Size = new System.Drawing.Size(16, 16);
             this.eyeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.eyeicon.TabIndex = 17;
             this.eyeicon.TabStop = false;
-            this.eyeicon.Click += eyeIcon_Click;
+            // 
+            // yearerror
+            // 
+            this.yearerror.AutoSize = true;
+            this.yearerror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.yearerror.ForeColor = System.Drawing.Color.Red;
+            this.yearerror.Location = new System.Drawing.Point(57, 279);
+            this.yearerror.Name = "yearerror";
+            this.yearerror.Size = new System.Drawing.Size(0, 13);
+            this.yearerror.TabIndex = 16;
+            this.yearerror.Visible = false;
+            // 
+            // passworderror
+            // 
+            this.passworderror.AutoSize = true;
+            this.passworderror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.passworderror.ForeColor = System.Drawing.Color.Red;
+            this.passworderror.Location = new System.Drawing.Point(54, 210);
+            this.passworderror.Name = "passworderror";
+            this.passworderror.Size = new System.Drawing.Size(0, 13);
+            this.passworderror.TabIndex = 15;
+            this.passworderror.Visible = false;
+            // 
+            // emailerror
+            // 
+            this.emailerror.AutoSize = true;
+            this.emailerror.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.emailerror.ForeColor = System.Drawing.Color.Red;
+            this.emailerror.Location = new System.Drawing.Point(54, 149);
+            this.emailerror.Name = "emailerror";
+            this.emailerror.Size = new System.Drawing.Size(0, 13);
+            this.emailerror.TabIndex = 14;
+            this.emailerror.Visible = false;
             // 
             // pictureBox1
             // 
@@ -350,21 +335,21 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::PackingApplication.Properties.Resources.login;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(620, 702);
+            this.pictureBox1.Size = new System.Drawing.Size(413, 456);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "Login";
             this.panel1.ResumeLayout(false);

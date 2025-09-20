@@ -51,6 +51,7 @@ namespace PackingApplication
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
             width = flowLayoutPanel1.ClientSize.Width;
+            rowMaterial.AutoGenerateColumns = false;
         }
 
         private void BCFPackingForm_Load(object sender, EventArgs e)
@@ -91,7 +92,7 @@ namespace PackingApplication
             this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.lastboxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -101,8 +102,8 @@ namespace PackingApplication
             this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -360,24 +361,94 @@ namespace PackingApplication
                 rowCount++;
 
                 Panel rowPanel = new Panel();
-                rowPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
-                rowPanel.BorderStyle = BorderStyle.FixedSingle;
+                rowPanel.Size = new Size(width, 35);
+                rowPanel.BorderStyle = BorderStyle.None;
+
+                rowPanel.Paint += (s, pe) =>
+                {
+                    using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                    {
+                        // dashed border example: pen.DashStyle = DashStyle.Dash;
+                        pe.Graphics.DrawLine(
+                            pen,
+                            0, rowPanel.Height - 1,
+                            rowPanel.Width, rowPanel.Height - 1
+                        );
+                    }
+                };
 
                 // SrNo
-                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 40, Location = new Point(10, 10) };
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                 // Item Name
-                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 120, Location = new Point(60, 10), Tag = selectedItem.ItemId };
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
 
                 // Qty
-                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new Point(190, 10) };
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                 // Edit Button
-                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(50, 23), Location = new Point(250, 5), Tag = new Tuple<ItemResponse, int>(selectedItem, palletDetail.Quantity) };
+                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, palletDetail.Quantity), FlatStyle = FlatStyle.Flat };
+                btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
+                btnEdit.FlatAppearance.BorderSize = 1;
+                btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
+                btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
+                btnEdit.FlatAppearance.BorderSize = 0;
+                btnEdit.Paint += (s, f) =>
+                {
+                    var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
+
+                    using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
+                    using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
+                    using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
+                    {
+                        f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        f.Graphics.FillPath(brush, path);
+
+                        f.Graphics.DrawPath(borderPen, path);
+
+                        TextRenderer.DrawText(
+                            f.Graphics,
+                            btnEdit.Text,
+                            btnEdit.Font,
+                            rect,
+                            btnEdit.ForeColor,
+                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                        );
+                    }
+                };
                 btnEdit.Click += editPallet_Click;
 
                 // Delete Button
-                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Delete", Size = new Size(60, 23), Location = new Point(310, 5), Tag = rowPanel };
+                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
+                btnDelete.FlatAppearance.BorderSize = 1;
+                btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
+                btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
+                btnDelete.FlatAppearance.BorderSize = 0;
+                btnDelete.Paint += (s, f) =>
+                {
+                    var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
+
+                    using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
+                    using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
+                    using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
+                    {
+                        f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        f.Graphics.FillPath(brush, path);
+                        f.Graphics.DrawPath(borderPen, path);
+
+                        TextRenderer.DrawText(
+                            f.Graphics,
+                            btnDelete.Text,
+                            btnDelete.Font,
+                            rect,
+                            btnDelete.ForeColor,
+                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                        );
+                    }
+                };
                 btnDelete.Click += (s, args) =>
                 {
                     flowLayoutPanel1.Controls.Remove(rowPanel);
