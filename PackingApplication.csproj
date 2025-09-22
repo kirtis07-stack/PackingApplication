@@ -162,6 +162,12 @@
     <Compile Include="Services\PackingService.cs" />
     <Compile Include="Services\ProductionService.cs" />
     <Compile Include="Services\SaleService.cs" />
+    <Compile Include="Sidebar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sidebar.Designer.cs">
+      <DependentUpon>Sidebar.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminAccount.resx">
       <DependentUpon>AdminAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +202,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Sidebar.resx">
+      <DependentUpon>Sidebar.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -225,6 +234,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\logo.png" />
+    <None Include="Resources\icons8-menu-50.png" />
     <None Include="Resources\icons8-circled-4-48.png" />
     <None Include="Resources\icons8-circled-3-48.png" />
     <None Include="Resources\icons8-circled-2-48.png" />
