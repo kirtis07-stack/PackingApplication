@@ -119,6 +119,7 @@
     <Compile Include="Helper\CommonMethod.cs" />
     <Compile Include="Helper\FontManager.cs" />
     <Compile Include="Helper\HTTPMethod.cs" />
+    <Compile Include="Helper\WeighingScaleReader.cs" />
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
