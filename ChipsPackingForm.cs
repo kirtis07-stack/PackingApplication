@@ -24,6 +24,8 @@ namespace PackingApplication
         PackingService _packingService = new PackingService();
         private long _productionId;
         CommonMethod _cmethod = new CommonMethod();
+        bool sidebarExpand = false;
+        private bool showSidebarBorder = true;
         public ChipsPackingForm(long productionId)
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace PackingApplication
             this.Shown += ChipsPackingForm_Shown;
             this.AutoScroll = true;
             _productionId = productionId;
+            this.sidebarContainer.BringToFront();
 
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
@@ -46,6 +49,10 @@ namespace PackingApplication
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
             rowMaterial.AutoGenerateColumns = false;
+            sidebarContainer.Width = sidebarContainer.MinimumSize.Width;
+            panel10.Width = panel10.MinimumSize.Width;
+            panel12.Width = panel12.MinimumSize.Width;
+            leftpanel.Width = leftpanel.MinimumSize.Width;
         }
 
         private void ChipsPackingForm_Load(object sender, EventArgs e)
@@ -167,7 +174,6 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.chipsformlabel.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
@@ -986,6 +992,63 @@ namespace PackingApplication
         private void printingdetailsheader_Resize(object sender, EventArgs e)
         {
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
+        }
+
+        private async void sidebarTimer_Tick(object sender, EventArgs e)
+        {
+            showSidebarBorder = false;
+
+            if (sidebarExpand)
+            {
+                this.sidebarContainer.Width -= 10;
+                if (sidebarContainer.Width == sidebarContainer.MinimumSize.Width)
+                {
+                    panel12.Width = panel12.MinimumSize.Width;
+                    panel10.Width = panel10.MinimumSize.Width;
+
+                    if (panel10.Width == panel10.MinimumSize.Width)
+                    {
+                        sidebarExpand = false;
+                        leftpanel.Width = leftpanel.MinimumSize.Width;
+                    }
+                    sidebarTimer.Stop();
+                    sidebarContainer.Invalidate();
+                }
+            }
+            else
+            {
+                this.sidebarContainer.Width += 10;
+                if (sidebarContainer.Width == sidebarContainer.MaximumSize.Width)
+                {
+                    panel12.Width = panel12.MaximumSize.Width;
+                    panel10.Width = panel10.MaximumSize.Width;
+
+                    if (panel10.Width == panel10.MaximumSize.Width)
+                    {
+                        sidebarExpand = true;
+                        leftpanel.Width = leftpanel.MaximumSize.Width;
+                    }
+                    sidebarTimer.Stop();
+                    sidebarContainer.Invalidate();
+                }
+            }
+
+            // Show border after all animations
+            showSidebarBorder = true;
+            sidebarContainer.Invalidate();
+        }
+
+        private void menuBtn_Click(object sender, EventArgs e)
+        {
+            sidebarTimer.Start();
+        }
+
+        private void sidebarContainer_Paint(object sender, PaintEventArgs e)
+        {
+            if (showSidebarBorder)   // only draw when allowed
+            {
+                _cmethod.DrawRightBorder(sidebarContainer, e, Color.FromArgb(191, 191, 191), 1);
+            }
         }
     }
 }

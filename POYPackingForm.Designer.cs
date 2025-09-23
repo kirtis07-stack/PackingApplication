@@ -34,9 +34,10 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lineno = new System.Windows.Forms.Label();
             this.department = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -166,6 +167,7 @@ namespace PackingApplication
             this.Machinelbl = new System.Windows.Forms.Label();
             this.weighboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.weighboxpanel = new System.Windows.Forms.Panel();
+            this.req10 = new System.Windows.Forms.Label();
             this.req9 = new System.Windows.Forms.Label();
             this.req8 = new System.Windows.Forms.Label();
             this.req7 = new System.Windows.Forms.Label();
@@ -188,34 +190,47 @@ namespace PackingApplication
             this.copynoerror = new System.Windows.Forms.Label();
             this.qualityerror = new System.Windows.Forms.Label();
             this.cancelbtn = new System.Windows.Forms.Button();
-            this.windingtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.windingprodqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.poyformlabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.leftpanel = new System.Windows.Forms.Panel();
-            this.reviewtable = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.reviewlbl = new System.Windows.Forms.Label();
-            this.reviewsubtitle = new System.Windows.Forms.Label();
-            this.reviewdtls = new System.Windows.Forms.PictureBox();
-            this.weighttable = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.weighlbl = new System.Windows.Forms.Label();
-            this.weighsubtitle = new System.Windows.Forms.Label();
-            this.weightdtls = new System.Windows.Forms.PictureBox();
-            this.packagingtable = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.packaginglbl = new System.Windows.Forms.Label();
-            this.packagingsubtitle = new System.Windows.Forms.Label();
-            this.packagingdtls = new System.Windows.Forms.PictureBox();
+            this.menu1panel = new System.Windows.Forms.Panel();
             this.ordertable = new System.Windows.Forms.TableLayoutPanel();
             this.orderdetailsrightpanel = new System.Windows.Forms.Panel();
             this.orderlbl = new System.Windows.Forms.Label();
             this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
-            this.req10 = new System.Windows.Forms.Label();
+            this.menu2panel = new System.Windows.Forms.Panel();
+            this.packagingtable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.packaginglbl = new System.Windows.Forms.Label();
+            this.packagingsubtitle = new System.Windows.Forms.Label();
+            this.packagingdtls = new System.Windows.Forms.PictureBox();
+            this.menu3panel = new System.Windows.Forms.Panel();
+            this.weighttable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.weighlbl = new System.Windows.Forms.Label();
+            this.weighsubtitle = new System.Windows.Forms.Label();
+            this.weightdtls = new System.Windows.Forms.PictureBox();
+            this.menu4panel = new System.Windows.Forms.Panel();
+            this.reviewtable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.reviewlbl = new System.Windows.Forms.Label();
+            this.reviewsubtitle = new System.Windows.Forms.Label();
+            this.reviewdtls = new System.Windows.Forms.PictureBox();
+            this.windingtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.windingprodqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leftpanel = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.menu = new System.Windows.Forms.Label();
+            this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.sidebarContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
             this.rightpanel.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
             this.rowMaterialPanel.SuspendLayout();
@@ -248,20 +263,30 @@ namespace PackingApplication
             this.packagingboxlayout.SuspendLayout();
             this.packagingboxheader.SuspendLayout();
             this.packagingboxpanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.leftpanel.SuspendLayout();
-            this.reviewtable.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).BeginInit();
-            this.weighttable.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).BeginInit();
-            this.packagingtable.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).BeginInit();
+            this.menu1panel.SuspendLayout();
             this.ordertable.SuspendLayout();
             this.orderdetailsrightpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).BeginInit();
+            this.menu2panel.SuspendLayout();
+            this.packagingtable.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).BeginInit();
+            this.menu3panel.SuspendLayout();
+            this.weighttable.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).BeginInit();
+            this.menu4panel.SuspendLayout();
+            this.reviewtable.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).BeginInit();
+            this.leftpanel.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.sidebarContainer.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lineno
@@ -1076,10 +1101,10 @@ namespace PackingApplication
             this.rightpanel.Controls.Add(this.cancelbtn);
             this.rightpanel.Controls.Add(this.submit);
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rightpanel.Location = new System.Drawing.Point(162, 8);
+            this.rightpanel.Location = new System.Drawing.Point(44, 0);
             this.rightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(815, 622);
+            this.rightpanel.Size = new System.Drawing.Size(953, 553);
             this.rightpanel.TabIndex = 89;
             // 
             // rowMaterialBox
@@ -1112,14 +1137,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1287,14 +1312,14 @@ namespace PackingApplication
             this.windinggrid.AutoGenerateColumns = false;
             this.windinggrid.BackgroundColor = System.Drawing.Color.White;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.DataSource = this.windingqty;
@@ -1354,14 +1379,14 @@ namespace PackingApplication
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.qualityqty.BackgroundColor = System.Drawing.Color.White;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.DataSource = this.qualityandqty;
@@ -1797,6 +1822,17 @@ namespace PackingApplication
             this.weighboxpanel.Size = new System.Drawing.Size(306, 122);
             this.weighboxpanel.TabIndex = 107;
             // 
+            // req10
+            // 
+            this.req10.AutoSize = true;
+            this.req10.ForeColor = System.Drawing.Color.Red;
+            this.req10.Location = new System.Drawing.Point(244, 2);
+            this.req10.Name = "req10";
+            this.req10.Size = new System.Drawing.Size(11, 13);
+            this.req10.TabIndex = 114;
+            this.req10.Text = "*";
+            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // req9
             // 
             this.req9.AutoSize = true;
@@ -2076,271 +2112,15 @@ namespace PackingApplication
             this.cancelbtn.UseVisualStyleBackColor = false;
             this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // windingtypeDataGridViewTextBoxColumn
+            // menu1panel
             // 
-            this.windingtypeDataGridViewTextBoxColumn.DataPropertyName = "Winding Type";
-            this.windingtypeDataGridViewTextBoxColumn.FillWeight = 25F;
-            this.windingtypeDataGridViewTextBoxColumn.HeaderText = "Winding Type";
-            this.windingtypeDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.windingtypeDataGridViewTextBoxColumn.Name = "windingtypeDataGridViewTextBoxColumn";
-            this.windingtypeDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // soqtyDataGridViewTextBoxColumn
-            // 
-            this.soqtyDataGridViewTextBoxColumn.DataPropertyName = "Sale Order Qty";
-            this.soqtyDataGridViewTextBoxColumn.FillWeight = 25F;
-            this.soqtyDataGridViewTextBoxColumn.HeaderText = "Sale Order Qty";
-            this.soqtyDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.soqtyDataGridViewTextBoxColumn.Name = "soqtyDataGridViewTextBoxColumn";
-            this.soqtyDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // windingbalqtyDataGridViewTextBoxColumn
-            // 
-            this.windingbalqtyDataGridViewTextBoxColumn.DataPropertyName = "Balance Qty";
-            this.windingbalqtyDataGridViewTextBoxColumn.FillWeight = 25F;
-            this.windingbalqtyDataGridViewTextBoxColumn.HeaderText = "Balance Qty";
-            this.windingbalqtyDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.windingbalqtyDataGridViewTextBoxColumn.Name = "windingbalqtyDataGridViewTextBoxColumn";
-            this.windingbalqtyDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // windingprodqtyDataGridViewTextBoxColumn
-            // 
-            this.windingprodqtyDataGridViewTextBoxColumn.DataPropertyName = "WProduction Qty";
-            this.windingprodqtyDataGridViewTextBoxColumn.FillWeight = 25F;
-            this.windingprodqtyDataGridViewTextBoxColumn.HeaderText = "Production Qty";
-            this.windingprodqtyDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.windingprodqtyDataGridViewTextBoxColumn.Name = "windingprodqtyDataGridViewTextBoxColumn";
-            this.windingprodqtyDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // poyformlabel
-            // 
-            this.poyformlabel.AutoSize = true;
-            this.poyformlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.poyformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.poyformlabel.Location = new System.Drawing.Point(14, 6);
-            this.poyformlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.poyformlabel.Name = "poyformlabel";
-            this.poyformlabel.Size = new System.Drawing.Size(82, 13);
-            this.poyformlabel.TabIndex = 97;
-            this.poyformlabel.Text = "POY Packing";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84F));
-            this.tableLayoutPanel1.Controls.Add(this.leftpanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rightpanel, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 638);
-            this.tableLayoutPanel1.TabIndex = 98;
-            // 
-            // leftpanel
-            // 
-            this.leftpanel.AutoScroll = true;
-            this.leftpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.leftpanel.Controls.Add(this.reviewtable);
-            this.leftpanel.Controls.Add(this.weighttable);
-            this.leftpanel.Controls.Add(this.packagingtable);
-            this.leftpanel.Controls.Add(this.ordertable);
-            this.leftpanel.Location = new System.Drawing.Point(7, 8);
-            this.leftpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.leftpanel.Name = "leftpanel";
-            this.leftpanel.Size = new System.Drawing.Size(151, 502);
-            this.leftpanel.TabIndex = 107;
-            // 
-            // reviewtable
-            // 
-            this.reviewtable.BackColor = System.Drawing.Color.White;
-            this.reviewtable.ColumnCount = 2;
-            this.reviewtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
-            this.reviewtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
-            this.reviewtable.Controls.Add(this.panel4, 1, 0);
-            this.reviewtable.Controls.Add(this.reviewdtls, 0, 0);
-            this.reviewtable.Location = new System.Drawing.Point(0, 228);
-            this.reviewtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.reviewtable.Name = "reviewtable";
-            this.reviewtable.Padding = new System.Windows.Forms.Padding(4);
-            this.reviewtable.RowCount = 1;
-            this.reviewtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.reviewtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.reviewtable.Size = new System.Drawing.Size(151, 57);
-            this.reviewtable.TabIndex = 110;
-            this.reviewtable.Paint += new System.Windows.Forms.PaintEventHandler(this.reviewtable_Paint);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.reviewlbl);
-            this.panel4.Controls.Add(this.reviewsubtitle);
-            this.panel4.Location = new System.Drawing.Point(34, 7);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(111, 42);
-            this.panel4.TabIndex = 0;
-            // 
-            // reviewlbl
-            // 
-            this.reviewlbl.AutoSize = true;
-            this.reviewlbl.Location = new System.Drawing.Point(2, 6);
-            this.reviewlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.reviewlbl.Name = "reviewlbl";
-            this.reviewlbl.Size = new System.Drawing.Size(90, 13);
-            this.reviewlbl.TabIndex = 0;
-            this.reviewlbl.Text = "Review && Submit ";
-            this.reviewlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // reviewsubtitle
-            // 
-            this.reviewsubtitle.AutoSize = true;
-            this.reviewsubtitle.Location = new System.Drawing.Point(2, 23);
-            this.reviewsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.reviewsubtitle.Name = "reviewsubtitle";
-            this.reviewsubtitle.Size = new System.Drawing.Size(63, 13);
-            this.reviewsubtitle.TabIndex = 0;
-            this.reviewsubtitle.Text = "Status, Item";
-            // 
-            // reviewdtls
-            // 
-            this.reviewdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.reviewdtls.Image = global::PackingApplication.Properties.Resources.icons8_circled_4_48;
-            this.reviewdtls.Location = new System.Drawing.Point(6, 7);
-            this.reviewdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.reviewdtls.Name = "reviewdtls";
-            this.reviewdtls.Size = new System.Drawing.Size(24, 43);
-            this.reviewdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.reviewdtls.TabIndex = 107;
-            this.reviewdtls.TabStop = false;
-            // 
-            // weighttable
-            // 
-            this.weighttable.BackColor = System.Drawing.Color.White;
-            this.weighttable.ColumnCount = 2;
-            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
-            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
-            this.weighttable.Controls.Add(this.panel2, 1, 0);
-            this.weighttable.Controls.Add(this.weightdtls, 0, 0);
-            this.weighttable.Location = new System.Drawing.Point(0, 152);
-            this.weighttable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.weighttable.Name = "weighttable";
-            this.weighttable.Padding = new System.Windows.Forms.Padding(4);
-            this.weighttable.RowCount = 1;
-            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.weighttable.Size = new System.Drawing.Size(151, 57);
-            this.weighttable.TabIndex = 109;
-            this.weighttable.Paint += new System.Windows.Forms.PaintEventHandler(this.weightable_Paint);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.weighlbl);
-            this.panel2.Controls.Add(this.weighsubtitle);
-            this.panel2.Location = new System.Drawing.Point(34, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(111, 42);
-            this.panel2.TabIndex = 0;
-            // 
-            // weighlbl
-            // 
-            this.weighlbl.AutoSize = true;
-            this.weighlbl.Location = new System.Drawing.Point(2, 6);
-            this.weighlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.weighlbl.Name = "weighlbl";
-            this.weighlbl.Size = new System.Drawing.Size(76, 13);
-            this.weighlbl.TabIndex = 0;
-            this.weighlbl.Text = "Weigh && Label";
-            this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // weighsubtitle
-            // 
-            this.weighsubtitle.AutoSize = true;
-            this.weighsubtitle.Location = new System.Drawing.Point(2, 23);
-            this.weighsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.weighsubtitle.Name = "weighsubtitle";
-            this.weighsubtitle.Size = new System.Drawing.Size(94, 13);
-            this.weighsubtitle.TabIndex = 0;
-            this.weighsubtitle.Text = "Scale, QR, Copies";
-            // 
-            // weightdtls
-            // 
-            this.weightdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.weightdtls.Image = global::PackingApplication.Properties.Resources.icons8_circled_3_48;
-            this.weightdtls.Location = new System.Drawing.Point(6, 7);
-            this.weightdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.weightdtls.Name = "weightdtls";
-            this.weightdtls.Size = new System.Drawing.Size(24, 43);
-            this.weightdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.weightdtls.TabIndex = 107;
-            this.weightdtls.TabStop = false;
-            // 
-            // packagingtable
-            // 
-            this.packagingtable.BackColor = System.Drawing.Color.White;
-            this.packagingtable.ColumnCount = 2;
-            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
-            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
-            this.packagingtable.Controls.Add(this.panel1, 1, 0);
-            this.packagingtable.Controls.Add(this.packagingdtls, 0, 0);
-            this.packagingtable.Location = new System.Drawing.Point(0, 76);
-            this.packagingtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.packagingtable.Name = "packagingtable";
-            this.packagingtable.Padding = new System.Windows.Forms.Padding(4);
-            this.packagingtable.RowCount = 1;
-            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.packagingtable.Size = new System.Drawing.Size(151, 57);
-            this.packagingtable.TabIndex = 108;
-            this.packagingtable.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingtable_Paint);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.packaginglbl);
-            this.panel1.Controls.Add(this.packagingsubtitle);
-            this.panel1.Location = new System.Drawing.Point(34, 7);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(111, 42);
-            this.panel1.TabIndex = 0;
-            // 
-            // packaginglbl
-            // 
-            this.packaginglbl.AutoSize = true;
-            this.packaginglbl.Location = new System.Drawing.Point(2, 6);
-            this.packaginglbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.packaginglbl.Name = "packaginglbl";
-            this.packaginglbl.Size = new System.Drawing.Size(58, 13);
-            this.packaginglbl.TabIndex = 0;
-            this.packaginglbl.Text = "Packaging";
-            this.packaginglbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // packagingsubtitle
-            // 
-            this.packagingsubtitle.AutoSize = true;
-            this.packagingsubtitle.Location = new System.Drawing.Point(2, 23);
-            this.packagingsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.packagingsubtitle.Name = "packagingsubtitle";
-            this.packagingsubtitle.Size = new System.Drawing.Size(117, 13);
-            this.packagingsubtitle.TabIndex = 0;
-            this.packagingsubtitle.Text = "Pack, Cops, Box/Pallet";
-            // 
-            // packagingdtls
-            // 
-            this.packagingdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.packagingdtls.Image = global::PackingApplication.Properties.Resources.icons8_circled_2_48;
-            this.packagingdtls.Location = new System.Drawing.Point(6, 7);
-            this.packagingdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.packagingdtls.Name = "packagingdtls";
-            this.packagingdtls.Size = new System.Drawing.Size(24, 43);
-            this.packagingdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.packagingdtls.TabIndex = 107;
-            this.packagingdtls.TabStop = false;
+            this.menu1panel.Controls.Add(this.ordertable);
+            this.menu1panel.Location = new System.Drawing.Point(3, 3);
+            this.menu1panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu1panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu1panel.Name = "menu1panel";
+            this.menu1panel.Size = new System.Drawing.Size(151, 60);
+            this.menu1panel.TabIndex = 0;
             // 
             // ordertable
             // 
@@ -2352,6 +2132,8 @@ namespace PackingApplication
             this.ordertable.Controls.Add(this.orderdetails1, 0, 0);
             this.ordertable.Location = new System.Drawing.Point(0, 0);
             this.ordertable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ordertable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.ordertable.MinimumSize = new System.Drawing.Size(32, 57);
             this.ordertable.Name = "ordertable";
             this.ordertable.Padding = new System.Windows.Forms.Padding(4);
             this.ordertable.RowCount = 1;
@@ -2404,16 +2186,399 @@ namespace PackingApplication
             this.orderdetails1.TabIndex = 107;
             this.orderdetails1.TabStop = false;
             // 
-            // req10
+            // menu2panel
             // 
-            this.req10.AutoSize = true;
-            this.req10.ForeColor = System.Drawing.Color.Red;
-            this.req10.Location = new System.Drawing.Point(244, 2);
-            this.req10.Name = "req10";
-            this.req10.Size = new System.Drawing.Size(11, 13);
-            this.req10.TabIndex = 114;
-            this.req10.Text = "*";
-            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.menu2panel.Controls.Add(this.packagingtable);
+            this.menu2panel.Location = new System.Drawing.Point(3, 69);
+            this.menu2panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu2panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu2panel.Name = "menu2panel";
+            this.menu2panel.Size = new System.Drawing.Size(151, 60);
+            this.menu2panel.TabIndex = 0;
+            // 
+            // packagingtable
+            // 
+            this.packagingtable.BackColor = System.Drawing.Color.White;
+            this.packagingtable.ColumnCount = 2;
+            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
+            this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
+            this.packagingtable.Controls.Add(this.panel1, 1, 0);
+            this.packagingtable.Controls.Add(this.packagingdtls, 0, 0);
+            this.packagingtable.Location = new System.Drawing.Point(0, 0);
+            this.packagingtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.packagingtable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.packagingtable.MinimumSize = new System.Drawing.Size(32, 57);
+            this.packagingtable.Name = "packagingtable";
+            this.packagingtable.Padding = new System.Windows.Forms.Padding(4);
+            this.packagingtable.RowCount = 1;
+            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.packagingtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.packagingtable.Size = new System.Drawing.Size(151, 57);
+            this.packagingtable.TabIndex = 108;
+            this.packagingtable.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingtable_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.packaginglbl);
+            this.panel1.Controls.Add(this.packagingsubtitle);
+            this.panel1.Location = new System.Drawing.Point(34, 7);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(111, 42);
+            this.panel1.TabIndex = 0;
+            // 
+            // packaginglbl
+            // 
+            this.packaginglbl.AutoSize = true;
+            this.packaginglbl.Location = new System.Drawing.Point(2, 6);
+            this.packaginglbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.packaginglbl.Name = "packaginglbl";
+            this.packaginglbl.Size = new System.Drawing.Size(58, 13);
+            this.packaginglbl.TabIndex = 0;
+            this.packaginglbl.Text = "Packaging";
+            this.packaginglbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // packagingsubtitle
+            // 
+            this.packagingsubtitle.AutoSize = true;
+            this.packagingsubtitle.Location = new System.Drawing.Point(2, 23);
+            this.packagingsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.packagingsubtitle.Name = "packagingsubtitle";
+            this.packagingsubtitle.Size = new System.Drawing.Size(117, 13);
+            this.packagingsubtitle.TabIndex = 0;
+            this.packagingsubtitle.Text = "Pack, Cops, Box/Pallet";
+            // 
+            // packagingdtls
+            // 
+            this.packagingdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.packagingdtls.Image = global::PackingApplication.Properties.Resources.icons8_circled_2_48;
+            this.packagingdtls.Location = new System.Drawing.Point(6, 7);
+            this.packagingdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.packagingdtls.Name = "packagingdtls";
+            this.packagingdtls.Size = new System.Drawing.Size(24, 43);
+            this.packagingdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.packagingdtls.TabIndex = 107;
+            this.packagingdtls.TabStop = false;
+            // 
+            // menu3panel
+            // 
+            this.menu3panel.Controls.Add(this.weighttable);
+            this.menu3panel.Location = new System.Drawing.Point(3, 135);
+            this.menu3panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu3panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu3panel.Name = "menu3panel";
+            this.menu3panel.Size = new System.Drawing.Size(151, 60);
+            this.menu3panel.TabIndex = 0;
+            // 
+            // weighttable
+            // 
+            this.weighttable.BackColor = System.Drawing.Color.White;
+            this.weighttable.ColumnCount = 2;
+            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
+            this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
+            this.weighttable.Controls.Add(this.panel2, 1, 0);
+            this.weighttable.Controls.Add(this.weightdtls, 0, 0);
+            this.weighttable.Location = new System.Drawing.Point(0, 0);
+            this.weighttable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.weighttable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.weighttable.MinimumSize = new System.Drawing.Size(32, 57);
+            this.weighttable.Name = "weighttable";
+            this.weighttable.Padding = new System.Windows.Forms.Padding(4);
+            this.weighttable.RowCount = 1;
+            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.weighttable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.weighttable.Size = new System.Drawing.Size(151, 57);
+            this.weighttable.TabIndex = 109;
+            this.weighttable.Paint += new System.Windows.Forms.PaintEventHandler(this.weightable_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.weighlbl);
+            this.panel2.Controls.Add(this.weighsubtitle);
+            this.panel2.Location = new System.Drawing.Point(34, 7);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(111, 42);
+            this.panel2.TabIndex = 0;
+            // 
+            // weighlbl
+            // 
+            this.weighlbl.AutoSize = true;
+            this.weighlbl.Location = new System.Drawing.Point(2, 6);
+            this.weighlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.weighlbl.Name = "weighlbl";
+            this.weighlbl.Size = new System.Drawing.Size(76, 13);
+            this.weighlbl.TabIndex = 0;
+            this.weighlbl.Text = "Weigh && Label";
+            this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // weighsubtitle
+            // 
+            this.weighsubtitle.AutoSize = true;
+            this.weighsubtitle.Location = new System.Drawing.Point(2, 23);
+            this.weighsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.weighsubtitle.Name = "weighsubtitle";
+            this.weighsubtitle.Size = new System.Drawing.Size(94, 13);
+            this.weighsubtitle.TabIndex = 0;
+            this.weighsubtitle.Text = "Scale, QR, Copies";
+            // 
+            // weightdtls
+            // 
+            this.weightdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.weightdtls.Image = global::PackingApplication.Properties.Resources.icons8_circled_3_48;
+            this.weightdtls.Location = new System.Drawing.Point(6, 7);
+            this.weightdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.weightdtls.Name = "weightdtls";
+            this.weightdtls.Size = new System.Drawing.Size(24, 43);
+            this.weightdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.weightdtls.TabIndex = 107;
+            this.weightdtls.TabStop = false;
+            // 
+            // menu4panel
+            // 
+            this.menu4panel.Controls.Add(this.reviewtable);
+            this.menu4panel.Location = new System.Drawing.Point(3, 201);
+            this.menu4panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu4panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu4panel.Name = "menu4panel";
+            this.menu4panel.Size = new System.Drawing.Size(151, 60);
+            this.menu4panel.TabIndex = 0;
+            // 
+            // reviewtable
+            // 
+            this.reviewtable.BackColor = System.Drawing.Color.White;
+            this.reviewtable.ColumnCount = 2;
+            this.reviewtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.12384F));
+            this.reviewtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
+            this.reviewtable.Controls.Add(this.panel4, 1, 0);
+            this.reviewtable.Controls.Add(this.reviewdtls, 0, 0);
+            this.reviewtable.Location = new System.Drawing.Point(0, 0);
+            this.reviewtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.reviewtable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.reviewtable.MinimumSize = new System.Drawing.Size(32, 57);
+            this.reviewtable.Name = "reviewtable";
+            this.reviewtable.Padding = new System.Windows.Forms.Padding(4);
+            this.reviewtable.RowCount = 1;
+            this.reviewtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.reviewtable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.reviewtable.Size = new System.Drawing.Size(151, 57);
+            this.reviewtable.TabIndex = 110;
+            this.reviewtable.Paint += new System.Windows.Forms.PaintEventHandler(this.reviewtable_Paint);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.reviewlbl);
+            this.panel4.Controls.Add(this.reviewsubtitle);
+            this.panel4.Location = new System.Drawing.Point(34, 7);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(111, 42);
+            this.panel4.TabIndex = 0;
+            // 
+            // reviewlbl
+            // 
+            this.reviewlbl.AutoSize = true;
+            this.reviewlbl.Location = new System.Drawing.Point(2, 6);
+            this.reviewlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.reviewlbl.Name = "reviewlbl";
+            this.reviewlbl.Size = new System.Drawing.Size(90, 13);
+            this.reviewlbl.TabIndex = 0;
+            this.reviewlbl.Text = "Review && Submit ";
+            this.reviewlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // reviewsubtitle
+            // 
+            this.reviewsubtitle.AutoSize = true;
+            this.reviewsubtitle.Location = new System.Drawing.Point(2, 23);
+            this.reviewsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.reviewsubtitle.Name = "reviewsubtitle";
+            this.reviewsubtitle.Size = new System.Drawing.Size(63, 13);
+            this.reviewsubtitle.TabIndex = 0;
+            this.reviewsubtitle.Text = "Status, Item";
+            // 
+            // reviewdtls
+            // 
+            this.reviewdtls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.reviewdtls.Image = global::PackingApplication.Properties.Resources.icons8_circled_4_48;
+            this.reviewdtls.Location = new System.Drawing.Point(6, 7);
+            this.reviewdtls.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.reviewdtls.Name = "reviewdtls";
+            this.reviewdtls.Size = new System.Drawing.Size(24, 43);
+            this.reviewdtls.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.reviewdtls.TabIndex = 107;
+            this.reviewdtls.TabStop = false;
+            // 
+            // windingtypeDataGridViewTextBoxColumn
+            // 
+            this.windingtypeDataGridViewTextBoxColumn.DataPropertyName = "Winding Type";
+            this.windingtypeDataGridViewTextBoxColumn.FillWeight = 25F;
+            this.windingtypeDataGridViewTextBoxColumn.HeaderText = "Winding Type";
+            this.windingtypeDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.windingtypeDataGridViewTextBoxColumn.Name = "windingtypeDataGridViewTextBoxColumn";
+            this.windingtypeDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // soqtyDataGridViewTextBoxColumn
+            // 
+            this.soqtyDataGridViewTextBoxColumn.DataPropertyName = "Sale Order Qty";
+            this.soqtyDataGridViewTextBoxColumn.FillWeight = 25F;
+            this.soqtyDataGridViewTextBoxColumn.HeaderText = "Sale Order Qty";
+            this.soqtyDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.soqtyDataGridViewTextBoxColumn.Name = "soqtyDataGridViewTextBoxColumn";
+            this.soqtyDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // windingbalqtyDataGridViewTextBoxColumn
+            // 
+            this.windingbalqtyDataGridViewTextBoxColumn.DataPropertyName = "Balance Qty";
+            this.windingbalqtyDataGridViewTextBoxColumn.FillWeight = 25F;
+            this.windingbalqtyDataGridViewTextBoxColumn.HeaderText = "Balance Qty";
+            this.windingbalqtyDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.windingbalqtyDataGridViewTextBoxColumn.Name = "windingbalqtyDataGridViewTextBoxColumn";
+            this.windingbalqtyDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // windingprodqtyDataGridViewTextBoxColumn
+            // 
+            this.windingprodqtyDataGridViewTextBoxColumn.DataPropertyName = "WProduction Qty";
+            this.windingprodqtyDataGridViewTextBoxColumn.FillWeight = 25F;
+            this.windingprodqtyDataGridViewTextBoxColumn.HeaderText = "Production Qty";
+            this.windingprodqtyDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.windingprodqtyDataGridViewTextBoxColumn.Name = "windingprodqtyDataGridViewTextBoxColumn";
+            this.windingprodqtyDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // leftpanel
+            // 
+            this.leftpanel.AutoScroll = true;
+            this.leftpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.leftpanel.Controls.Add(this.menu4panel);
+            this.leftpanel.Controls.Add(this.menu3panel);
+            this.leftpanel.Controls.Add(this.menu2panel);
+            this.leftpanel.Controls.Add(this.menu1panel);
+            this.leftpanel.Location = new System.Drawing.Point(0, 45);
+            this.leftpanel.Margin = new System.Windows.Forms.Padding(0);
+            this.leftpanel.MaximumSize = new System.Drawing.Size(161, 499);
+            this.leftpanel.MinimumSize = new System.Drawing.Size(40, 499);
+            this.leftpanel.Name = "leftpanel";
+            this.leftpanel.Size = new System.Drawing.Size(161, 499);
+            this.leftpanel.TabIndex = 107;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(197, 76);
+            this.panel5.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.Location = new System.Drawing.Point(195, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(606, 447);
+            this.panel6.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.menu);
+            this.panel7.Controls.Add(this.menuBtn);
+            this.panel7.Location = new System.Drawing.Point(21, 9);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(139, 55);
+            this.panel7.TabIndex = 1;
+            // 
+            // menu
+            // 
+            this.menu.AutoSize = true;
+            this.menu.ForeColor = System.Drawing.Color.Black;
+            this.menu.Location = new System.Drawing.Point(48, 20);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(34, 13);
+            this.menu.TabIndex = 1;
+            this.menu.Text = "Menu";
+            // 
+            // menuBtn
+            // 
+            this.menuBtn.Image = global::PackingApplication.Properties.Resources.icons8_menu_50;
+            this.menuBtn.Location = new System.Drawing.Point(3, 15);
+            this.menuBtn.Name = "menuBtn";
+            this.menuBtn.Size = new System.Drawing.Size(29, 24);
+            this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.menuBtn.TabIndex = 1;
+            this.menuBtn.TabStop = false;
+            // 
+            // sidebarContainer
+            // 
+            this.sidebarContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.sidebarContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.sidebarContainer.Controls.Add(this.panel10);
+            this.sidebarContainer.Controls.Add(this.leftpanel);
+            this.sidebarContainer.Location = new System.Drawing.Point(0, 0);
+            this.sidebarContainer.MaximumSize = new System.Drawing.Size(170, 554);
+            this.sidebarContainer.MinimumSize = new System.Drawing.Size(42, 554);
+            this.sidebarContainer.Name = "sidebarContainer";
+            this.sidebarContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.sidebarContainer.Size = new System.Drawing.Size(170, 554);
+            this.sidebarContainer.TabIndex = 99;
+            this.sidebarContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.sidebarContainer_Paint);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.MaximumSize = new System.Drawing.Size(161, 45);
+            this.panel10.MinimumSize = new System.Drawing.Size(32, 45);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(161, 45);
+            this.panel10.TabIndex = 1;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panel11.Location = new System.Drawing.Point(195, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(606, 447);
+            this.panel11.TabIndex = 1;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panel12.Controls.Add(this.label7);
+            this.panel12.Controls.Add(this.pictureBox1);
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.MaximumSize = new System.Drawing.Size(139, 35);
+            this.panel12.MinimumSize = new System.Drawing.Size(32, 35);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(139, 35);
+            this.panel12.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(36, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Menu";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PackingApplication.Properties.Resources.icons8_menu_50;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.menuBtn_Click);
+            // 
+            // sidebarTimer
+            // 
+            this.sidebarTimer.Interval = 10;
+            this.sidebarTimer.Tick += new System.EventHandler(this.sidebarTimer_Tick);
             // 
             // POYPackingForm
             // 
@@ -2421,8 +2586,8 @@ namespace PackingApplication
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(984, 638);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.poyformlabel);
+            this.Controls.Add(this.sidebarContainer);
+            this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "POYPackingForm";
@@ -2476,26 +2641,37 @@ namespace PackingApplication
             this.packagingboxheader.PerformLayout();
             this.packagingboxpanel.ResumeLayout(false);
             this.packagingboxpanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.leftpanel.ResumeLayout(false);
-            this.reviewtable.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).EndInit();
-            this.weighttable.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).EndInit();
-            this.packagingtable.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).EndInit();
+            this.menu1panel.ResumeLayout(false);
             this.ordertable.ResumeLayout(false);
             this.orderdetailsrightpanel.ResumeLayout(false);
             this.orderdetailsrightpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).EndInit();
+            this.menu2panel.ResumeLayout(false);
+            this.packagingtable.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).EndInit();
+            this.menu3panel.ResumeLayout(false);
+            this.weighttable.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).EndInit();
+            this.menu4panel.ResumeLayout(false);
+            this.reviewtable.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).EndInit();
+            this.leftpanel.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.sidebarContainer.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -2611,9 +2787,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label palletwterror;
         private System.Windows.Forms.Label grosswterror;
         private System.Windows.Forms.Label boxnoerror;
-        private System.Windows.Forms.Label poyformlabel;
         private Button cancelbtn;
-        private TableLayoutPanel tableLayoutPanel1;
         private Panel leftpanel;
         private TableLayoutPanel ordertable;
         private PictureBox orderdetails1;
@@ -2689,6 +2863,22 @@ namespace PackingApplication
         private System.Windows.Forms.Label req8;
         private System.Windows.Forms.Label req7;
         private System.Windows.Forms.Label req10;
+        private Panel panel5;
+        private Panel panel6;
+        private Panel panel7;
+        private System.Windows.Forms.Label menu;
+        private PictureBox menuBtn;
+        public FlowLayoutPanel sidebarContainer;
+        private Panel panel10;
+        private Panel panel11;
+        private Panel panel12;
+        private System.Windows.Forms.Label label7;
+        private PictureBox pictureBox1;
+        private Timer sidebarTimer;
+        private Panel menu1panel;
+        private Panel menu3panel;
+        private Panel menu2panel;
+        private Panel menu4panel;
     }
 }
 

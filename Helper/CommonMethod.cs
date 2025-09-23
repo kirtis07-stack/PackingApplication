@@ -144,5 +144,14 @@ namespace PackingApplication.Helper
                 ctrl.Region = new Region(path);
             }
         }
+
+        public void DrawRightBorder(Control control, PaintEventArgs e, Color borderColor, int thickness)
+        {
+            using (Pen pen = new Pen(borderColor, thickness))
+            {
+                int x = control.ClientRectangle.Right - thickness;
+                e.Graphics.DrawLine(pen, x, 0, x, control.ClientRectangle.Height);
+            }
+        }
     }
 }

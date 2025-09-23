@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\sidebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:sidebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\sidebar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:sidebar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\sidebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:sidebar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:poypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,70 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Login.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Login.cs",
-              "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAIwGwAAABIAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ChipsPackingForm.cs [Design]",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs",
+              "RelativeDocumentMoniker": "ChipsPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs [Design]",
+              "RelativeToolTip": "ChipsPackingForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T12:33:23.215Z",
+              "WhenOpened": "2025-09-23T11:55:14.233Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChipsPackingForm.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs",
+              "RelativeDocumentMoniker": "ChipsPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs",
+              "RelativeToolTip": "ChipsPackingForm.cs",
+              "ViewState": "AgIAAJsCAAAAAAAAAAAgwKECAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T11:53:17.523Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "POYPackingForm.cs",
               "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
               "RelativeDocumentMoniker": "POYPackingForm.cs",
               "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
               "RelativeToolTip": "POYPackingForm.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAAADEAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAFwGAAAAAAAAAAAmwHMGAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-22T12:24:21.986Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Sidebar.Designer.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Sidebar.Designer.cs",
-              "RelativeDocumentMoniker": "Sidebar.Designer.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Sidebar.Designer.cs",
-              "RelativeToolTip": "Sidebar.Designer.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAUwEQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "POYPackingForm.cs [Design]",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
+              "RelativeDocumentMoniker": "POYPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs [Design]",
+              "RelativeToolTip": "POYPackingForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T09:38:49.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Sidebar.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Sidebar.cs",
-              "RelativeDocumentMoniker": "Sidebar.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Sidebar.cs",
-              "RelativeToolTip": "Sidebar.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAswCAAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T09:23:03.817Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Sidebar.cs [Design]",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Sidebar.cs",
-              "RelativeDocumentMoniker": "Sidebar.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\Sidebar.cs [Design]",
-              "RelativeToolTip": "Sidebar.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-22T06:24:01.453Z",
+              "WhenOpened": "2025-09-23T11:11:29.974Z",
               "EditorCaption": " [Design]"
             }
           ]

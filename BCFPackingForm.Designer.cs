@@ -31,12 +31,10 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.weighlbl = new System.Windows.Forms.Label();
-            this.weighsubtitle = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.boxnoerror = new System.Windows.Forms.Label();
             this.windingerror = new System.Windows.Forms.Label();
@@ -150,7 +148,6 @@ namespace PackingApplication
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.copssize = new System.Windows.Forms.Label();
             this.copweight = new System.Windows.Forms.Label();
-            this.bcfformlabel = new System.Windows.Forms.Label();
             this.windingtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,46 +173,58 @@ namespace PackingApplication
             this.Lastboxlbl = new System.Windows.Forms.Label();
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
+            this.req3 = new System.Windows.Forms.Label();
+            this.req2 = new System.Windows.Forms.Label();
+            this.req1 = new System.Windows.Forms.Label();
             this.machineboxheader = new System.Windows.Forms.Panel();
             this.Machinelbl = new System.Windows.Forms.Label();
             this.weighboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.weighboxpanel = new System.Windows.Forms.Panel();
+            this.req9 = new System.Windows.Forms.Label();
+            this.req8 = new System.Windows.Forms.Label();
+            this.req7 = new System.Windows.Forms.Label();
+            this.req10 = new System.Windows.Forms.Label();
             this.weighboxheader = new System.Windows.Forms.Panel();
             this.Weighboxlbl = new System.Windows.Forms.Label();
             this.packagingboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.packagingboxheader = new System.Windows.Forms.Panel();
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.req6 = new System.Windows.Forms.Label();
+            this.req5 = new System.Windows.Forms.Label();
+            this.req4 = new System.Windows.Forms.Label();
+            this.sidebarContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.leftpanel = new System.Windows.Forms.Panel();
+            this.menu4panel = new System.Windows.Forms.Panel();
             this.reviewtable = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.reviewlbl = new System.Windows.Forms.Label();
             this.reviewsubtitle = new System.Windows.Forms.Label();
             this.reviewdtls = new System.Windows.Forms.PictureBox();
+            this.menu3panel = new System.Windows.Forms.Panel();
             this.weighttable = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.weighlbl = new System.Windows.Forms.Label();
+            this.weighsubtitle = new System.Windows.Forms.Label();
             this.weightdtls = new System.Windows.Forms.PictureBox();
+            this.menu2panel = new System.Windows.Forms.Panel();
             this.packagingtable = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.packaginglbl = new System.Windows.Forms.Label();
             this.packagingsubtitle = new System.Windows.Forms.Label();
             this.packagingdtls = new System.Windows.Forms.PictureBox();
+            this.menu1panel = new System.Windows.Forms.Panel();
             this.ordertable = new System.Windows.Forms.TableLayoutPanel();
             this.orderdetailsrightpanel = new System.Windows.Forms.Panel();
             this.orderlbl = new System.Windows.Forms.Label();
             this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
-            this.req1 = new System.Windows.Forms.Label();
-            this.req2 = new System.Windows.Forms.Label();
-            this.req3 = new System.Windows.Forms.Label();
-            this.req4 = new System.Windows.Forms.Label();
-            this.req5 = new System.Windows.Forms.Label();
-            this.req6 = new System.Windows.Forms.Label();
-            this.req10 = new System.Windows.Forms.Label();
-            this.req7 = new System.Windows.Forms.Label();
-            this.req8 = new System.Windows.Forms.Label();
-            this.req9 = new System.Windows.Forms.Label();
-            this.panel2.SuspendLayout();
+            this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
             this.wgroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).BeginInit();
@@ -248,51 +257,28 @@ namespace PackingApplication
             this.packagingboxlayout.SuspendLayout();
             this.packagingboxheader.SuspendLayout();
             this.packagingboxpanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.sidebarContainer.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.leftpanel.SuspendLayout();
+            this.menu4panel.SuspendLayout();
             this.reviewtable.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).BeginInit();
+            this.menu3panel.SuspendLayout();
             this.weighttable.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).BeginInit();
+            this.menu2panel.SuspendLayout();
             this.packagingtable.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).BeginInit();
+            this.menu1panel.SuspendLayout();
             this.ordertable.SuspendLayout();
             this.orderdetailsrightpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.weighlbl);
-            this.panel2.Controls.Add(this.weighsubtitle);
-            this.panel2.Location = new System.Drawing.Point(34, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(111, 42);
-            this.panel2.TabIndex = 0;
-            // 
-            // weighlbl
-            // 
-            this.weighlbl.AutoSize = true;
-            this.weighlbl.Location = new System.Drawing.Point(2, 6);
-            this.weighlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.weighlbl.Name = "weighlbl";
-            this.weighlbl.Size = new System.Drawing.Size(76, 13);
-            this.weighlbl.TabIndex = 0;
-            this.weighlbl.Text = "Weigh && Label";
-            this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // weighsubtitle
-            // 
-            this.weighsubtitle.AutoSize = true;
-            this.weighsubtitle.Location = new System.Drawing.Point(2, 23);
-            this.weighsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.weighsubtitle.Name = "weighsubtitle";
-            this.weighsubtitle.Size = new System.Drawing.Size(94, 13);
-            this.weighsubtitle.TabIndex = 0;
-            this.weighsubtitle.Text = "Scale, QR, Copies";
             // 
             // cancelbtn
             // 
@@ -729,14 +715,14 @@ namespace PackingApplication
             this.windinggrid.AutoGenerateColumns = false;
             this.windinggrid.BackgroundColor = System.Drawing.Color.White;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle64.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle64.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.DataSource = this.windingqty;
@@ -796,14 +782,14 @@ namespace PackingApplication
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.qualityqty.BackgroundColor = System.Drawing.Color.White;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle65.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle65.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle65.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle65.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle65.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle65;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.DataSource = this.qualityandqty;
@@ -1514,18 +1500,6 @@ namespace PackingApplication
             this.copweight.TabIndex = 34;
             this.copweight.Text = "Wt:";
             // 
-            // bcfformlabel
-            // 
-            this.bcfformlabel.AutoSize = true;
-            this.bcfformlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.bcfformlabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.bcfformlabel.Location = new System.Drawing.Point(14, 6);
-            this.bcfformlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.bcfformlabel.Name = "bcfformlabel";
-            this.bcfformlabel.Size = new System.Drawing.Size(80, 13);
-            this.bcfformlabel.TabIndex = 97;
-            this.bcfformlabel.Text = "BCF Packing";
-            // 
             // windingtypeDataGridViewTextBoxColumn
             // 
             this.windingtypeDataGridViewTextBoxColumn.DataPropertyName = "Winding Type";
@@ -1578,10 +1552,10 @@ namespace PackingApplication
             this.rightpanel.Controls.Add(this.cancelbtn);
             this.rightpanel.Controls.Add(this.submit);
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.rightpanel.Location = new System.Drawing.Point(162, 8);
+            this.rightpanel.Location = new System.Drawing.Point(44, 0);
             this.rightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(815, 622);
+            this.rightpanel.Size = new System.Drawing.Size(953, 553);
             this.rightpanel.TabIndex = 89;
             // 
             // rowMaterialBox
@@ -1614,14 +1588,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle66.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle66.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1635,7 +1609,6 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.rowMaterial.Size = new System.Drawing.Size(688, 76);
             this.rowMaterial.TabIndex = 92;
-            this.rowMaterial.AutoGenerateColumns = false;
             // 
             // palletdetailslayout
             // 
@@ -1893,6 +1866,39 @@ namespace PackingApplication
             this.machineboxpanel.Size = new System.Drawing.Size(320, 165);
             this.machineboxpanel.TabIndex = 107;
             // 
+            // req3
+            // 
+            this.req3.AutoSize = true;
+            this.req3.ForeColor = System.Drawing.Color.Red;
+            this.req3.Location = new System.Drawing.Point(165, 44);
+            this.req3.Name = "req3";
+            this.req3.Size = new System.Drawing.Size(11, 13);
+            this.req3.TabIndex = 117;
+            this.req3.Text = "*";
+            this.req3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req2
+            // 
+            this.req2.AutoSize = true;
+            this.req2.ForeColor = System.Drawing.Color.Red;
+            this.req2.Location = new System.Drawing.Point(254, 2);
+            this.req2.Name = "req2";
+            this.req2.Size = new System.Drawing.Size(11, 13);
+            this.req2.TabIndex = 116;
+            this.req2.Text = "*";
+            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req1
+            // 
+            this.req1.AutoSize = true;
+            this.req1.ForeColor = System.Drawing.Color.Red;
+            this.req1.Location = new System.Drawing.Point(30, 3);
+            this.req1.Name = "req1";
+            this.req1.Size = new System.Drawing.Size(11, 13);
+            this.req1.TabIndex = 115;
+            this.req1.Text = "*";
+            this.req1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // machineboxheader
             // 
             this.machineboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
@@ -1968,6 +1974,50 @@ namespace PackingApplication
             this.weighboxpanel.Name = "weighboxpanel";
             this.weighboxpanel.Size = new System.Drawing.Size(306, 122);
             this.weighboxpanel.TabIndex = 107;
+            // 
+            // req9
+            // 
+            this.req9.AutoSize = true;
+            this.req9.ForeColor = System.Drawing.Color.Red;
+            this.req9.Location = new System.Drawing.Point(252, 44);
+            this.req9.Name = "req9";
+            this.req9.Size = new System.Drawing.Size(11, 13);
+            this.req9.TabIndex = 123;
+            this.req9.Text = "*";
+            this.req9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req8
+            // 
+            this.req8.AutoSize = true;
+            this.req8.ForeColor = System.Drawing.Color.Red;
+            this.req8.Location = new System.Drawing.Point(190, 44);
+            this.req8.Name = "req8";
+            this.req8.Size = new System.Drawing.Size(11, 13);
+            this.req8.TabIndex = 115;
+            this.req8.Text = "*";
+            this.req8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req7
+            // 
+            this.req7.AutoSize = true;
+            this.req7.ForeColor = System.Drawing.Color.Red;
+            this.req7.Location = new System.Drawing.Point(40, 44);
+            this.req7.Name = "req7";
+            this.req7.Size = new System.Drawing.Size(11, 13);
+            this.req7.TabIndex = 122;
+            this.req7.Text = "*";
+            this.req7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req10
+            // 
+            this.req10.AutoSize = true;
+            this.req10.ForeColor = System.Drawing.Color.Red;
+            this.req10.Location = new System.Drawing.Point(244, 2);
+            this.req10.Name = "req10";
+            this.req10.Size = new System.Drawing.Size(11, 13);
+            this.req10.TabIndex = 121;
+            this.req10.Text = "*";
+            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // weighboxheader
             // 
@@ -2068,37 +2118,134 @@ namespace PackingApplication
             this.packagingboxpanel.Size = new System.Drawing.Size(320, 163);
             this.packagingboxpanel.TabIndex = 107;
             // 
-            // tableLayoutPanel1
+            // req6
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84F));
-            this.tableLayoutPanel1.Controls.Add(this.leftpanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rightpanel, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 638);
-            this.tableLayoutPanel1.TabIndex = 98;
+            this.req6.AutoSize = true;
+            this.req6.ForeColor = System.Drawing.Color.Red;
+            this.req6.Location = new System.Drawing.Point(55, 44);
+            this.req6.Name = "req6";
+            this.req6.Size = new System.Drawing.Size(11, 13);
+            this.req6.TabIndex = 120;
+            this.req6.Text = "*";
+            this.req6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req5
+            // 
+            this.req5.AutoSize = true;
+            this.req5.ForeColor = System.Drawing.Color.Red;
+            this.req5.Location = new System.Drawing.Point(150, 3);
+            this.req5.Name = "req5";
+            this.req5.Size = new System.Drawing.Size(11, 13);
+            this.req5.TabIndex = 119;
+            this.req5.Text = "*";
+            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // req4
+            // 
+            this.req4.AutoSize = true;
+            this.req4.ForeColor = System.Drawing.Color.Red;
+            this.req4.Location = new System.Drawing.Point(40, 3);
+            this.req4.Name = "req4";
+            this.req4.Size = new System.Drawing.Size(11, 13);
+            this.req4.TabIndex = 118;
+            this.req4.Text = "*";
+            this.req4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // sidebarContainer
+            // 
+            this.sidebarContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.sidebarContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.sidebarContainer.Controls.Add(this.panel10);
+            this.sidebarContainer.Controls.Add(this.leftpanel);
+            this.sidebarContainer.Location = new System.Drawing.Point(0, 0);
+            this.sidebarContainer.MaximumSize = new System.Drawing.Size(170, 554);
+            this.sidebarContainer.MinimumSize = new System.Drawing.Size(42, 554);
+            this.sidebarContainer.Name = "sidebarContainer";
+            this.sidebarContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.sidebarContainer.Size = new System.Drawing.Size(170, 554);
+            this.sidebarContainer.TabIndex = 100;
+            this.sidebarContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.sidebarContainer_Paint);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.MaximumSize = new System.Drawing.Size(161, 45);
+            this.panel10.MinimumSize = new System.Drawing.Size(32, 45);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(161, 45);
+            this.panel10.TabIndex = 1;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panel11.Location = new System.Drawing.Point(195, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(606, 447);
+            this.panel11.TabIndex = 1;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panel12.Controls.Add(this.label7);
+            this.panel12.Controls.Add(this.pictureBox1);
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.MaximumSize = new System.Drawing.Size(139, 35);
+            this.panel12.MinimumSize = new System.Drawing.Size(32, 35);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(139, 35);
+            this.panel12.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(36, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Menu";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PackingApplication.Properties.Resources.icons8_menu_50;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.menuBtn_Click);
             // 
             // leftpanel
             // 
             this.leftpanel.AutoScroll = true;
             this.leftpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.leftpanel.Controls.Add(this.reviewtable);
-            this.leftpanel.Controls.Add(this.weighttable);
-            this.leftpanel.Controls.Add(this.packagingtable);
-            this.leftpanel.Controls.Add(this.ordertable);
-            this.leftpanel.Location = new System.Drawing.Point(7, 8);
-            this.leftpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.leftpanel.Controls.Add(this.menu4panel);
+            this.leftpanel.Controls.Add(this.menu3panel);
+            this.leftpanel.Controls.Add(this.menu2panel);
+            this.leftpanel.Controls.Add(this.menu1panel);
+            this.leftpanel.Location = new System.Drawing.Point(0, 45);
+            this.leftpanel.Margin = new System.Windows.Forms.Padding(0);
+            this.leftpanel.MaximumSize = new System.Drawing.Size(161, 499);
+            this.leftpanel.MinimumSize = new System.Drawing.Size(40, 499);
             this.leftpanel.Name = "leftpanel";
-            this.leftpanel.Size = new System.Drawing.Size(151, 502);
+            this.leftpanel.Size = new System.Drawing.Size(161, 499);
             this.leftpanel.TabIndex = 107;
+            // 
+            // menu4panel
+            // 
+            this.menu4panel.Controls.Add(this.reviewtable);
+            this.menu4panel.Location = new System.Drawing.Point(3, 201);
+            this.menu4panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu4panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu4panel.Name = "menu4panel";
+            this.menu4panel.Size = new System.Drawing.Size(151, 60);
+            this.menu4panel.TabIndex = 0;
             // 
             // reviewtable
             // 
@@ -2108,8 +2255,10 @@ namespace PackingApplication
             this.reviewtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
             this.reviewtable.Controls.Add(this.panel4, 1, 0);
             this.reviewtable.Controls.Add(this.reviewdtls, 0, 0);
-            this.reviewtable.Location = new System.Drawing.Point(0, 228);
+            this.reviewtable.Location = new System.Drawing.Point(0, 0);
             this.reviewtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.reviewtable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.reviewtable.MinimumSize = new System.Drawing.Size(32, 57);
             this.reviewtable.Name = "reviewtable";
             this.reviewtable.Padding = new System.Windows.Forms.Padding(4);
             this.reviewtable.RowCount = 1;
@@ -2162,6 +2311,16 @@ namespace PackingApplication
             this.reviewdtls.TabIndex = 107;
             this.reviewdtls.TabStop = false;
             // 
+            // menu3panel
+            // 
+            this.menu3panel.Controls.Add(this.weighttable);
+            this.menu3panel.Location = new System.Drawing.Point(3, 135);
+            this.menu3panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu3panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu3panel.Name = "menu3panel";
+            this.menu3panel.Size = new System.Drawing.Size(151, 60);
+            this.menu3panel.TabIndex = 0;
+            // 
             // weighttable
             // 
             this.weighttable.BackColor = System.Drawing.Color.White;
@@ -2170,8 +2329,10 @@ namespace PackingApplication
             this.weighttable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
             this.weighttable.Controls.Add(this.panel2, 1, 0);
             this.weighttable.Controls.Add(this.weightdtls, 0, 0);
-            this.weighttable.Location = new System.Drawing.Point(0, 152);
+            this.weighttable.Location = new System.Drawing.Point(0, 0);
             this.weighttable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.weighttable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.weighttable.MinimumSize = new System.Drawing.Size(32, 57);
             this.weighttable.Name = "weighttable";
             this.weighttable.Padding = new System.Windows.Forms.Padding(4);
             this.weighttable.RowCount = 1;
@@ -2180,6 +2341,37 @@ namespace PackingApplication
             this.weighttable.Size = new System.Drawing.Size(151, 57);
             this.weighttable.TabIndex = 109;
             this.weighttable.Paint += new System.Windows.Forms.PaintEventHandler(this.weightable_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.weighlbl);
+            this.panel2.Controls.Add(this.weighsubtitle);
+            this.panel2.Location = new System.Drawing.Point(34, 7);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(111, 42);
+            this.panel2.TabIndex = 0;
+            // 
+            // weighlbl
+            // 
+            this.weighlbl.AutoSize = true;
+            this.weighlbl.Location = new System.Drawing.Point(2, 6);
+            this.weighlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.weighlbl.Name = "weighlbl";
+            this.weighlbl.Size = new System.Drawing.Size(76, 13);
+            this.weighlbl.TabIndex = 0;
+            this.weighlbl.Text = "Weigh && Label";
+            this.weighlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // weighsubtitle
+            // 
+            this.weighsubtitle.AutoSize = true;
+            this.weighsubtitle.Location = new System.Drawing.Point(2, 23);
+            this.weighsubtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.weighsubtitle.Name = "weighsubtitle";
+            this.weighsubtitle.Size = new System.Drawing.Size(94, 13);
+            this.weighsubtitle.TabIndex = 0;
+            this.weighsubtitle.Text = "Scale, QR, Copies";
             // 
             // weightdtls
             // 
@@ -2193,6 +2385,16 @@ namespace PackingApplication
             this.weightdtls.TabIndex = 107;
             this.weightdtls.TabStop = false;
             // 
+            // menu2panel
+            // 
+            this.menu2panel.Controls.Add(this.packagingtable);
+            this.menu2panel.Location = new System.Drawing.Point(3, 69);
+            this.menu2panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu2panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu2panel.Name = "menu2panel";
+            this.menu2panel.Size = new System.Drawing.Size(151, 60);
+            this.menu2panel.TabIndex = 0;
+            // 
             // packagingtable
             // 
             this.packagingtable.BackColor = System.Drawing.Color.White;
@@ -2201,8 +2403,10 @@ namespace PackingApplication
             this.packagingtable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.87616F));
             this.packagingtable.Controls.Add(this.panel1, 1, 0);
             this.packagingtable.Controls.Add(this.packagingdtls, 0, 0);
-            this.packagingtable.Location = new System.Drawing.Point(0, 76);
+            this.packagingtable.Location = new System.Drawing.Point(0, 0);
             this.packagingtable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.packagingtable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.packagingtable.MinimumSize = new System.Drawing.Size(32, 57);
             this.packagingtable.Name = "packagingtable";
             this.packagingtable.Padding = new System.Windows.Forms.Padding(4);
             this.packagingtable.RowCount = 1;
@@ -2255,6 +2459,16 @@ namespace PackingApplication
             this.packagingdtls.TabIndex = 107;
             this.packagingdtls.TabStop = false;
             // 
+            // menu1panel
+            // 
+            this.menu1panel.Controls.Add(this.ordertable);
+            this.menu1panel.Location = new System.Drawing.Point(3, 3);
+            this.menu1panel.MaximumSize = new System.Drawing.Size(151, 60);
+            this.menu1panel.MinimumSize = new System.Drawing.Size(34, 60);
+            this.menu1panel.Name = "menu1panel";
+            this.menu1panel.Size = new System.Drawing.Size(151, 60);
+            this.menu1panel.TabIndex = 0;
+            // 
             // ordertable
             // 
             this.ordertable.BackColor = System.Drawing.Color.White;
@@ -2265,6 +2479,8 @@ namespace PackingApplication
             this.ordertable.Controls.Add(this.orderdetails1, 0, 0);
             this.ordertable.Location = new System.Drawing.Point(0, 0);
             this.ordertable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ordertable.MaximumSize = new System.Drawing.Size(151, 57);
+            this.ordertable.MinimumSize = new System.Drawing.Size(32, 57);
             this.ordertable.Name = "ordertable";
             this.ordertable.Padding = new System.Windows.Forms.Padding(4);
             this.ordertable.RowCount = 1;
@@ -2317,115 +2533,10 @@ namespace PackingApplication
             this.orderdetails1.TabIndex = 107;
             this.orderdetails1.TabStop = false;
             // 
-            // req1
+            // sidebarTimer
             // 
-            this.req1.AutoSize = true;
-            this.req1.ForeColor = System.Drawing.Color.Red;
-            this.req1.Location = new System.Drawing.Point(30, 3);
-            this.req1.Name = "req1";
-            this.req1.Size = new System.Drawing.Size(11, 13);
-            this.req1.TabIndex = 115;
-            this.req1.Text = "*";
-            this.req1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req2
-            // 
-            this.req2.AutoSize = true;
-            this.req2.ForeColor = System.Drawing.Color.Red;
-            this.req2.Location = new System.Drawing.Point(254, 2);
-            this.req2.Name = "req2";
-            this.req2.Size = new System.Drawing.Size(11, 13);
-            this.req2.TabIndex = 116;
-            this.req2.Text = "*";
-            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req3
-            // 
-            this.req3.AutoSize = true;
-            this.req3.ForeColor = System.Drawing.Color.Red;
-            this.req3.Location = new System.Drawing.Point(165, 44);
-            this.req3.Name = "req3";
-            this.req3.Size = new System.Drawing.Size(11, 13);
-            this.req3.TabIndex = 117;
-            this.req3.Text = "*";
-            this.req3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req4
-            // 
-            this.req4.AutoSize = true;
-            this.req4.ForeColor = System.Drawing.Color.Red;
-            this.req4.Location = new System.Drawing.Point(40, 3);
-            this.req4.Name = "req4";
-            this.req4.Size = new System.Drawing.Size(11, 13);
-            this.req4.TabIndex = 118;
-            this.req4.Text = "*";
-            this.req4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req5
-            // 
-            this.req5.AutoSize = true;
-            this.req5.ForeColor = System.Drawing.Color.Red;
-            this.req5.Location = new System.Drawing.Point(150, 3);
-            this.req5.Name = "req5";
-            this.req5.Size = new System.Drawing.Size(11, 13);
-            this.req5.TabIndex = 119;
-            this.req5.Text = "*";
-            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req6
-            // 
-            this.req6.AutoSize = true;
-            this.req6.ForeColor = System.Drawing.Color.Red;
-            this.req6.Location = new System.Drawing.Point(55, 44);
-            this.req6.Name = "req6";
-            this.req6.Size = new System.Drawing.Size(11, 13);
-            this.req6.TabIndex = 120;
-            this.req6.Text = "*";
-            this.req6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req10
-            // 
-            this.req10.AutoSize = true;
-            this.req10.ForeColor = System.Drawing.Color.Red;
-            this.req10.Location = new System.Drawing.Point(244, 2);
-            this.req10.Name = "req10";
-            this.req10.Size = new System.Drawing.Size(11, 13);
-            this.req10.TabIndex = 121;
-            this.req10.Text = "*";
-            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req7
-            // 
-            this.req7.AutoSize = true;
-            this.req7.ForeColor = System.Drawing.Color.Red;
-            this.req7.Location = new System.Drawing.Point(40, 44);
-            this.req7.Name = "req7";
-            this.req7.Size = new System.Drawing.Size(11, 13);
-            this.req7.TabIndex = 122;
-            this.req7.Text = "*";
-            this.req7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req8
-            // 
-            this.req8.AutoSize = true;
-            this.req8.ForeColor = System.Drawing.Color.Red;
-            this.req8.Location = new System.Drawing.Point(190, 44);
-            this.req8.Name = "req8";
-            this.req8.Size = new System.Drawing.Size(11, 13);
-            this.req8.TabIndex = 115;
-            this.req8.Text = "*";
-            this.req8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req9
-            // 
-            this.req9.AutoSize = true;
-            this.req9.ForeColor = System.Drawing.Color.Red;
-            this.req9.Location = new System.Drawing.Point(252, 44);
-            this.req9.Name = "req9";
-            this.req9.Size = new System.Drawing.Size(11, 13);
-            this.req9.TabIndex = 123;
-            this.req9.Text = "*";
-            this.req9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.sidebarTimer.Interval = 10;
+            this.sidebarTimer.Tick += new System.EventHandler(this.sidebarTimer_Tick);
             // 
             // BCFPackingForm
             // 
@@ -2433,15 +2544,13 @@ namespace PackingApplication
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(984, 638);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.bcfformlabel);
+            this.Controls.Add(this.rightpanel);
+            this.Controls.Add(this.sidebarContainer);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "BCFPackingForm";
             this.Text = "BCFPackingForm";
             this.Load += new System.EventHandler(this.BCFPackingForm_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.wgroupbox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).EndInit();
@@ -2490,31 +2599,37 @@ namespace PackingApplication
             this.packagingboxheader.PerformLayout();
             this.packagingboxpanel.ResumeLayout(false);
             this.packagingboxpanel.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.sidebarContainer.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.leftpanel.ResumeLayout(false);
+            this.menu4panel.ResumeLayout(false);
             this.reviewtable.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reviewdtls)).EndInit();
+            this.menu3panel.ResumeLayout(false);
             this.weighttable.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weightdtls)).EndInit();
+            this.menu2panel.ResumeLayout(false);
             this.packagingtable.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.packagingdtls)).EndInit();
+            this.menu1panel.ResumeLayout(false);
             this.ordertable.ResumeLayout(false);
             this.orderdetailsrightpanel.ResumeLayout(false);
             this.orderdetailsrightpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderdetails1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        //private System.Windows.Forms.Button backbutton;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox deniervalue;
         private System.Windows.Forms.Label denier;
         private System.Windows.Forms.GroupBox lastboxdetails;
@@ -2611,7 +2726,6 @@ namespace PackingApplication
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label copssize;
         private System.Windows.Forms.Label copweight;
-        private System.Windows.Forms.Label bcfformlabel;
         private DataTable windingqty;
         private DataTable qualityandqty;
         private DataGridViewTextBoxColumn windingtypeDataGridViewTextBoxColumn;
@@ -2634,28 +2748,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label grosswterror;
         private System.Windows.Forms.Label boxnoerror;
         private Button cancelbtn;
-        private TableLayoutPanel tableLayoutPanel1;
-        private Panel leftpanel;
         private Panel rightpanel;
-        private TableLayoutPanel ordertable;
-        private PictureBox orderdetails1;
-        private System.Windows.Forms.Label orderlbl;
-        private System.Windows.Forms.Label orderdetailssubtitle;
-        private Panel orderdetailsrightpanel;
-        private TableLayoutPanel packagingtable;
-        private Panel panel1;
-        private System.Windows.Forms.Label packaginglbl;
-        private System.Windows.Forms.Label packagingsubtitle;
-        private PictureBox packagingdtls;
-        private TableLayoutPanel weighttable;
-        private System.Windows.Forms.Label weighlbl;
-        private System.Windows.Forms.Label weighsubtitle;
-        private PictureBox weightdtls;
-        private TableLayoutPanel reviewtable;
-        private Panel panel4;
-        private System.Windows.Forms.Label reviewlbl;
-        private System.Windows.Forms.Label reviewsubtitle;
-        private PictureBox reviewdtls;
         private TableLayoutPanel packagingboxlayout;
         private Panel packagingboxpanel;
         private Panel packagingboxheader;
@@ -2698,5 +2791,37 @@ namespace PackingApplication
         private Label req7;
         private Label req8;
         private Label req9;
+        public FlowLayoutPanel sidebarContainer;
+        private Panel panel10;
+        private Panel panel11;
+        private Panel panel12;
+        private Label label7;
+        private PictureBox pictureBox1;
+        private Panel leftpanel;
+        private Panel menu4panel;
+        private TableLayoutPanel reviewtable;
+        private Panel panel4;
+        private Label reviewlbl;
+        private Label reviewsubtitle;
+        private PictureBox reviewdtls;
+        private Panel menu3panel;
+        private TableLayoutPanel weighttable;
+        private Panel panel2;
+        private Label weighlbl;
+        private Label weighsubtitle;
+        private PictureBox weightdtls;
+        private Panel menu2panel;
+        private TableLayoutPanel packagingtable;
+        private Panel panel1;
+        private Label packaginglbl;
+        private Label packagingsubtitle;
+        private PictureBox packagingdtls;
+        private Panel menu1panel;
+        private TableLayoutPanel ordertable;
+        private Panel orderdetailsrightpanel;
+        private Label orderlbl;
+        private Label orderdetailssubtitle;
+        private PictureBox orderdetails1;
+        private Timer sidebarTimer;
     }
 }

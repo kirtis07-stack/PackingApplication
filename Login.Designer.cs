@@ -286,6 +286,7 @@ namespace PackingApplication
             this.eyeicon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.eyeicon.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.eyeicon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.eyeicon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.eyeicon.Image = global::PackingApplication.Properties.Resources.icons8_hide_24;
             this.eyeicon.Location = new System.Drawing.Point(293, 188);
             this.eyeicon.Margin = new System.Windows.Forms.Padding(2);
@@ -294,6 +295,7 @@ namespace PackingApplication
             this.eyeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.eyeicon.TabIndex = 17;
             this.eyeicon.TabStop = false;
+            this.eyeicon.Click += new System.EventHandler(this.eyeIcon_Click);
             // 
             // yearerror
             // 
