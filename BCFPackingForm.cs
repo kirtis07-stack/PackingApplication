@@ -310,9 +310,9 @@ namespace PackingApplication
                     MergeNoList.SelectedValue = productionResponse.LotId;
                     dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
                     QualityList.SelectedValue = productionResponse.QualityId;
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                     SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
                     PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                     CopsItemList.SelectedValue = productionResponse.SpoolItemId;
                     BoxItemList.SelectedValue = productionResponse.BoxItemId;
                     prodtype.Text = productionResponse.ProductionType;

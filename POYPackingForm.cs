@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Reporting.WinForms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
@@ -14,6 +15,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -32,6 +34,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using File = System.IO.File;
+using PdfiumViewer;
+using System.Drawing.Printing;
 
 namespace PackingApplication
 {
@@ -60,6 +65,7 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
             LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
             MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
@@ -111,6 +117,7 @@ namespace PackingApplication
             //role.Text = SessionManager.Role;
 
             isFormReady = true;
+            //this.reportViewer1.RefreshReport();
         }
 
         private void ApplyFonts()
@@ -332,9 +339,9 @@ namespace PackingApplication
                     MergeNoList.SelectedValue = productionResponse.LotId;
                     dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
                     QualityList.SelectedValue = productionResponse.QualityId;
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                     SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
                     PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                     CopsItemList.SelectedValue = productionResponse.SpoolItemId;
                     BoxItemList.SelectedValue = productionResponse.BoxItemId;
                     prodtype.Text = productionResponse.ProductionType;
@@ -698,7 +705,8 @@ namespace PackingApplication
                 productionRequest.SaleOrderId = selectedSaleOrderId;
                 if(selectedSaleOrderId > 0)
                 {
-                    var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(productionRequest.QualityId, productionRequest.SaleOrderId);
+                    int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                    var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(selectedQualityId, selectedSaleOrderId);
                     qualityqty.Columns.Clear();
                     qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
                     qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
@@ -706,7 +714,7 @@ namespace PackingApplication
 
                     decimal totalSOQty = 0;
                     decimal totalProdQty = 0;
-                    var saleResponse = getSaleOrderById(productionRequest.SaleOrderId);
+                    var saleResponse = getSaleOrderById(selectedSaleOrderId);
                     
                     foreach (var soitem in saleResponse.saleOrderItemsResponses)
                     {
@@ -720,7 +728,8 @@ namespace PackingApplication
                     }
                     prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
 
-                    var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(productionRequest.WindingTypeId, productionRequest.SaleOrderId);
+                    int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
+                    var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(selectedWindingTypeId, selectedSaleOrderId);
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
@@ -1285,6 +1294,16 @@ namespace PackingApplication
 
         private async void submit_Click(object sender, EventArgs e)
         {
+            submitForm(false);
+        }
+
+        private async void saveprint_Click(object sender, EventArgs e)
+        {
+            submitForm(true);
+        }
+
+        public async void submitForm(bool isPrint)
+        {
             if (ValidateForm())
             {
                 productionRequest.PackingType = "POYPacking";
@@ -1319,11 +1338,11 @@ namespace PackingApplication
 
                 }
 
-                ProductionResponse result = SubmitPacking(productionRequest);
+                ProductionResponse result = SubmitPacking(productionRequest, isPrint);
             }
         }
 
-        public ProductionResponse SubmitPacking(ProductionRequest productionRequest)
+        public ProductionResponse SubmitPacking(ProductionRequest productionRequest, bool isPrint)
         {
             ProductionResponse result = new ProductionResponse();
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
@@ -1332,15 +1351,92 @@ namespace PackingApplication
                 if (_productionId == 0)
                 {
                     MessageBox.Show("POY Packing added successfully.");
-                    //var dashboard = this.FindForm() as Dashboard;
-                    //if (dashboard != null)
-                    //{
-                    //    dashboard.LoadFormInContent(new POYPackingList());
-                    //}
+                    if (isPrint)
+                    {
+                        //call ssrs report to print
+                        string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                        string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                        string format = "PDF";
+
+                        //set params
+                        string productionId = result.ProductionId.ToString();
+                        string startDate = "2025-09-01";
+                        string endDate = "2025-09-30";
+                        string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+
+                        WebClient client = new WebClient();
+                        client.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+                        byte[] bytes = client.DownloadData(url);
+
+                        // Save to file
+                        string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                        File.WriteAllBytes(tempFile, bytes);
+
+                        //// Open with default PDF reader
+                        //System.Diagnostics.Process.Start("Report.pdf");
+
+                        using (var pdfDoc = PdfDocument.Load(tempFile))
+                        {
+                            using (var printDoc = pdfDoc.CreatePrintDocument())
+                            {
+                                printDoc.PrinterSettings = new PrinterSettings()
+                                {
+                                    // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                    Copies = 1
+                                };
+                                printDoc.Print(); // sends PDF to printer
+                            }
+                        }
+
+                        // 5️⃣ Clean up temp file
+                        File.Delete(tempFile);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("POY Packing updated successfully.");
+                    if (isPrint)
+                    {
+                        string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                        string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                        string format = "PDF";
+
+                        //set params
+                        string productionId = result.ProductionId.ToString();
+                        string startDate = "2025-09-01";
+                        string endDate = "2025-09-30";
+                        string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+
+                        WebClient client = new WebClient();
+                        client.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+                        byte[] bytes = client.DownloadData(url);
+
+                        // Save to file
+                        string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                        File.WriteAllBytes(tempFile, bytes);
+
+                        //// Open with default PDF reader
+                        //System.Diagnostics.Process.Start("Report.pdf");
+
+                        using (var pdfDoc = PdfDocument.Load(tempFile))
+                        {
+                            using (var printDoc = pdfDoc.CreatePrintDocument())
+                            {
+                                printDoc.PrinterSettings = new PrinterSettings()
+                                {
+                                    // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                    Copies = 1
+                                };
+                                printDoc.Print(); // sends PDF to printer
+                            }
+                        }
+
+                        // 5️⃣ Clean up temp file
+                        File.Delete(tempFile);
+
+                    }
                 }
             }
             else
