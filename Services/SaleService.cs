@@ -21,6 +21,13 @@ namespace PackingApplication.Services
             var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse);
             return getSaleOrder;
         }
-        
+
+        public SaleOrderItemsResponse getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(int itemId, int shadeId, int saleOrderId)
+        {
+            var getSaleOrderItemResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderId=" + saleOrderId);
+            var getSaleOrderItem = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderItemResponse);
+            return getSaleOrderItem;
+        }
+
     }
 }

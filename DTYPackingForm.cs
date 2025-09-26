@@ -23,10 +23,13 @@ namespace PackingApplication
         MasterService _masterService = new MasterService();
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
+        SaleService _saleService = new SaleService();
         private long _productionId;
         CommonMethod _cmethod = new CommonMethod();
         bool sidebarExpand = false;
         private bool showSidebarBorder = true;
+        List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
+        LotsResponse lotResponse = new LotsResponse();
         public DTYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -370,13 +373,20 @@ namespace PackingApplication
 
                 productionRequest.LotId = selectedLot.LotId;
 
-                var item = _productionService.getLotById(selectedLotId);
-                itemname.Text = item.ItemName;
-                shadename.Text = item.ShadeName;
-                shadecd.Text = item.ShadeCode;
-                deniervalue.Text = item.Denier.ToString();
+                lotResponse = _productionService.getLotById(selectedLotId);
+                itemname.Text = lotResponse.ItemName;
+                shadename.Text = lotResponse.ShadeName;
+                shadecd.Text = lotResponse.ShadeCode;
+                deniervalue.Text = lotResponse.Denier.ToString();
+                productionRequest.SaleLot = lotResponse.SaleLot;
+                productionRequest.MachineId = lotResponse.MachineId;
 
-                var itemResponse = _masterService.getItemById(item.ItemId);
+                var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, lotResponse.LotSaleOrderDetailsResponses[0].SaleOrderDetailsId);
+                if (saleOrderItemResponse != null)
+                {
+                    productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
+                }
+                var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
                 var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
                 qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
@@ -388,7 +398,7 @@ namespace PackingApplication
                 getSaleOrderList(productionRequest.LotId);
 
                 List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
-                foreach (var lot in item.LotsDetailsResponses)
+                foreach (var lot in lotResponse.LotsDetailsResponses)
                 {
                     LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
                     lotsDetails.LotId = lot.LotId;
@@ -820,7 +830,22 @@ namespace PackingApplication
                 productionRequest.PrintTwist = prtwist.Checked;
 
                 productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
-
+                productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
+                foreach (var lot in lotsDetailsList)
+                {
+                    ProductionConsumptionDetailsRequest consumptionDetailsRequest = new ProductionConsumptionDetailsRequest();
+                    consumptionDetailsRequest.Extruder = lot.Extruder;
+                    consumptionDetailsRequest.InputPerc = lot.InputPerc;
+                    consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
+                    consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
+                    consumptionDetailsRequest.ProductionLotId = lot.LotId;
+                    consumptionDetailsRequest.InputLotId = lot.PrevLotId;
+                    consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
+                    consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
+                    consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
+                    //consumptionDetailsRequest.StockTrfDetailsId = 0;
+                    productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
+                }
                 ProductionResponse result = SubmitPacking(productionRequest);
             }
         }

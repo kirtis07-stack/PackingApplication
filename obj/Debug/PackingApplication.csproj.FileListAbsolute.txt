@@ -95,4 +95,3 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\PdfiumView
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\PdfiumViewer.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\nl\PdfiumViewer.resources.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\Debug\x64\pdfium.dll
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\Debug\PackingApplication.exe.config

@@ -51,6 +51,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string ProcessName { get; set; }
         public List<LotsProductionDetailsResponse> LotsProductionDetailsResponses { get; set; }
         public List<LotsDetailsResponse> LotsDetailsResponses { get; set; }
+        public List<LotSaleOrderDetailsResponse> LotSaleOrderDetailsResponses { get; set; }
     }
 
     public class LotsProductionDetailsResponse : BaseAuditEntity
