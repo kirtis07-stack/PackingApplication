@@ -359,6 +359,8 @@ namespace PackingApplication
                 twistvalue.Text = lotResponse.TwistName;
                 productionRequest.SaleLot = lotResponse.SaleLot;
                 productionRequest.MachineId = lotResponse.MachineId;
+                productionRequest.ItemId = lotResponse.ItemId;
+                productionRequest.ShadeId = lotResponse.ShadeId;
 
                 var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, lotResponse.LotSaleOrderDetailsResponses[0].SaleOrderDetailsId);
                 if (saleOrderItemResponse != null)

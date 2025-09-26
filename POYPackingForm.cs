@@ -570,10 +570,13 @@ namespace PackingApplication
                 deniervalue.Text = lotResponse.Denier.ToString();
                 productionRequest.SaleLot = lotResponse.SaleLot;
                 productionRequest.MachineId = lotResponse.MachineId;
+                productionRequest.ItemId = lotResponse.ItemId;
+                productionRequest.ShadeId = lotResponse.ShadeId;
 
                 var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, lotResponse.LotSaleOrderDetailsResponses[0].SaleOrderDetailsId);
                 if (saleOrderItemResponse != null) {
                     productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
+                    productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                 }
 
                 var itemResponse = _masterService.getItemById(lotResponse.ItemId);
@@ -1354,7 +1357,7 @@ namespace PackingApplication
                     consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
                     consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
                     consumptionDetailsRequest.ProductionLotId = lot.LotId;
-                    consumptionDetailsRequest.InputLotId = lot.PrevLotId;
+                    consumptionDetailsRequest.InputLotId = lot.LotId;
                     consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
                     consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
                     consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;

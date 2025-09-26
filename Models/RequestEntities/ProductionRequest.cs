@@ -48,6 +48,9 @@ namespace PackingApplication.Models.RequestEntities
         public int PalletId { get; set; }
         public string SaleLot { get; set; }
         public int DispatchReserveId { get; set; }
+        public int ItemId { get; set; }             //added for to insert in ProductionSummary and FinishedGoodsStock table
+        public int ShadeId { get; set; }            //added for to insert in ProductionSummary and FinishedGoodsStock table
+        public int ContainerTypeId { get; set; }    //added for to insert in ProductionSummary and FinishedGoodsStock table
     }
 
     public class ProductionPalletDetailsRequest : BaseAuditEntity
