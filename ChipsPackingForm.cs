@@ -250,7 +250,7 @@ namespace PackingApplication
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
             {
-                this.copstxtbox.Text = "";
+                this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
@@ -361,12 +361,6 @@ namespace PackingApplication
                 productionRequest.MachineId = lotResponse.MachineId;
                 productionRequest.ItemId = lotResponse.ItemId;
                 productionRequest.ShadeId = lotResponse.ShadeId;
-
-                var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, lotResponse.LotSaleOrderDetailsResponses[0].SaleOrderDetailsId);
-                if (saleOrderItemResponse != null)
-                {
-                    productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
-                }
 
                 var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
@@ -500,10 +494,18 @@ namespace PackingApplication
                 int selectedSaleOrderId = selectedSaleOrder.SaleOrderDetailsId;
 
                 productionRequest.SaleOrderId = selectedSaleOrderId;
-
-                //var getSaleOrderResponse = GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + productionRequest.SaleOrderId);
-                //var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse);
-            }
+                if (selectedSaleOrderId > 0)
+                {
+                    var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
+                    if (saleOrderItemResponse != null)
+                    {
+                        productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
+                        productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
+                    }
+                }
+                    //var getSaleOrderResponse = GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + productionRequest.SaleOrderId);
+                    //var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse);
+                }
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
@@ -654,7 +656,7 @@ namespace PackingApplication
 
         private ProductionResponse getLastBoxDetails()
         {
-            var getPacking = _packingService.getLastBoxDetails();
+            var getPacking = _packingService.getLastBoxDetails("chipspacking");
             return getPacking;
         }
 

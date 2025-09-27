@@ -293,7 +293,7 @@ namespace PackingApplication
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
             {
-                this.copstxtbox.Text = "";
+                this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
@@ -549,11 +549,6 @@ namespace PackingApplication
                 productionRequest.ItemId = lotResponse.ItemId;
                 productionRequest.ShadeId = lotResponse.ShadeId;
 
-                var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, lotResponse.LotSaleOrderDetailsResponses[0].SaleOrderDetailsId);
-                if (saleOrderItemResponse != null)
-                {
-                    productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
-                }
                 var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
                 var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
@@ -690,7 +685,15 @@ namespace PackingApplication
 
                 if (selectedSaleOrderId > 0)
                 {
-                    var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(productionRequest.QualityId, productionRequest.SaleOrderId);
+                    var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
+                    if (saleOrderItemResponse != null)
+                    {
+                        productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
+                        productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
+                    }
+
+                    int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                    var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(selectedQualityId, selectedSaleOrderId);
                     qualityqty.Columns.Clear();
                     qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
                     qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
@@ -712,7 +715,8 @@ namespace PackingApplication
                     }
                     prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
 
-                    var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(productionRequest.WindingTypeId, productionRequest.SaleOrderId);
+                    int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
+                    var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(selectedWindingTypeId, selectedSaleOrderId);
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
@@ -928,7 +932,7 @@ namespace PackingApplication
 
         private ProductionResponse getLastBoxDetails()
         {
-            var getPacking = _packingService.getLastBoxDetails();
+            var getPacking = _packingService.getLastBoxDetails("bcfpacking");
             return getPacking;
         }
 

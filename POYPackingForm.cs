@@ -55,6 +55,8 @@ namespace PackingApplication
         private bool showSidebarBorder = true;
         List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
         LotsResponse lotResponse = new LotsResponse();
+        WeighingScaleReader wtReader = new WeighingScaleReader();
+        string comPort;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -145,11 +147,11 @@ namespace PackingApplication
             this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox1.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.textBox2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox3.Font = FontManager.GetFont(8F, FontStyle.Regular);         
+            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);         
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.textBox4.Font = FontManager.GetFont(8F, FontStyle.Regular);           
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -207,6 +209,7 @@ namespace PackingApplication
             this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.grossweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -291,6 +294,8 @@ namespace PackingApplication
             var weightingList = await Task.Run(() => getWeighingList());
             //weighting
             WeighingList.DataSource = weightingList;
+            WeighingList.DisplayMember = "Name"; 
+            WeighingList.ValueMember = "Id";
             WeighingList.SelectedIndex = 0;
 
             var copsitemList = await Task.Run(() => getCopeItemList());
@@ -322,7 +327,7 @@ namespace PackingApplication
             //lastboxdetails
             if(getLastBox.ProductionId > 0)
             {
-                this.copstxtbox.Text = "";
+                this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
@@ -573,12 +578,6 @@ namespace PackingApplication
                 productionRequest.ItemId = lotResponse.ItemId;
                 productionRequest.ShadeId = lotResponse.ShadeId;
 
-                var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, lotResponse.LotSaleOrderDetailsResponses[0].SaleOrderDetailsId);
-                if (saleOrderItemResponse != null) {
-                    productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
-                    productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
-                }
-
                 var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
                 var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
@@ -716,6 +715,13 @@ namespace PackingApplication
                 productionRequest.SaleOrderId = selectedSaleOrderId;
                 if(selectedSaleOrderId > 0)
                 {
+                    var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
+                    if (saleOrderItemResponse != null)
+                    {
+                        productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
+                        productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
+                    }
+
                     int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                     var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(selectedQualityId, selectedSaleOrderId);
                     qualityqty.Columns.Clear();
@@ -768,6 +774,7 @@ namespace PackingApplication
             if (ComPortList.SelectedValue != null)
             {
                 var ComPort = ComPortList.SelectedValue.ToString();
+                comPort = ComPortList.SelectedValue.ToString();
             }
         }
 
@@ -777,7 +784,16 @@ namespace PackingApplication
 
             if (WeighingList.SelectedValue != null)
             {
-                var WeighingScale = WeighingList.SelectedValue.ToString();
+                WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
+                int selectedScaleId = selectedWeighingScale.Id;
+
+                //if (selectedScaleId >= 0)
+                //{
+                //    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
+                //    grosswtno.Text = readWeight.ToString();
+                //    grosswtno.ReadOnly = true;
+                //}
+
             }
         }
 
@@ -790,7 +806,15 @@ namespace PackingApplication
                 ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
                 int selectedItemId = selectedCopsItem.ItemId;
 
-                productionRequest.SpoolItemId = selectedItemId;
+                if (selectedItemId > 0) {
+                    productionRequest.SpoolItemId = selectedItemId;
+
+                    var itemResponse = _masterService.getItemById(selectedItemId);
+                    if (itemResponse != null)
+                    {
+                        copsitemwt.Text = itemResponse.Weight.ToString();
+                    }
+                }
             }
         }
 
@@ -803,7 +827,15 @@ namespace PackingApplication
                 ItemResponse selectedBoxItem = (ItemResponse)BoxItemList.SelectedItem;
                 int selectedBoxItemId = selectedBoxItem.ItemId;
 
-                productionRequest.BoxItemId = selectedBoxItemId;
+                if (selectedBoxItemId > 0) {
+                    productionRequest.BoxItemId = selectedBoxItemId;
+                    var itemResponse = _masterService.getItemById(selectedBoxItemId);
+                    if (itemResponse != null)
+                    {
+                        boxpalletitemwt.Text = itemResponse.Weight.ToString();
+                        palletwtno.Text = itemResponse.Weight.ToString();
+                    }
+                }
             }
         }
 
@@ -894,15 +926,15 @@ namespace PackingApplication
             return getComPortType;
         }
 
-        private List<string> getWeighingList()
+        private List<WeighingItem> getWeighingList()
         {
-            var getWeighingScale = new List<string>
+            var getWeighingScale = new List<WeighingItem>
             {
-                "Select Weigh Scale",
-                "Old",
-                "Unique",
-                "JISL (9600)",
-                "JISL (2400)"
+                new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
+                new WeighingItem { Id = 0, Name = "Old" },
+                new WeighingItem { Id = 1, Name = "Unique" },
+                new WeighingItem { Id = 2, Name = "JISL (9600)" },
+                new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
 
             return getWeighingScale;
@@ -958,7 +990,7 @@ namespace PackingApplication
 
         private ProductionResponse getLastBoxDetails()
         {
-            var getPacking = _packingService.getLastBoxDetails();
+            var getPacking = _packingService.getLastBoxDetails("poypacking");
             return getPacking;
         }
 
@@ -1222,6 +1254,7 @@ namespace PackingApplication
             }
             else
             {
+
                 CalculateTareWeight();
                 palletwterror.Text = "";
                 palletwterror.Visible = false;
@@ -1274,6 +1307,7 @@ namespace PackingApplication
                 spoolnoerror.Visible = true;
             }
             else {
+                spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
                 CalculateWeightPerCop();
                 spoolnoerror.Text = "";
                 spoolnoerror.Visible = false;
@@ -1287,7 +1321,7 @@ namespace PackingApplication
             decimal.TryParse(netwt.Text, out num1);
             decimal.TryParse(spoolno.Text, out num2);
 
-            wtpercop.Text = (num1 / num2).ToString();
+            wtpercop.Text = (num1 / num2).ToString("F3");
         }
 
         private void CopyNos_TextChanged(object sender, EventArgs e)

@@ -49,25 +49,25 @@ namespace PackingApplication
             };
 
             //leftpanel for logo and menustrip
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string projectRoot = Directory.GetParent(basePath).Parent.Parent.FullName;
-            string imagePath = Path.Combine(projectRoot, "Images", "logo.png");
+            //string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            //string projectRoot = Directory.GetParent(basePath).Parent.Parent.FullName;
+            //string imagePath = Path.Combine(projectRoot, "Images", "logo.png");
 
-            if (File.Exists(imagePath))
-            {
+            //if (File.Exists(imagePath))
+            //{
                 PictureBox logoPictureBox = new PictureBox
                 {
-                    Image = Image.FromFile(imagePath),
+                    Image = Properties.Resources.logo,
                     SizeMode = PictureBoxSizeMode.Normal,
                     Size = new Size(170, 50),
                     Location = new Point(10, 10)
                 };
                 leftPanel.Controls.Add(logoPictureBox);
-            }
-            else
-            {
-                MessageBox.Show("Image not found: " + imagePath);
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Image not found: " + imagePath);
+            //}
 
             menuStrip.BackColor = Color.White;
             menuStrip.Padding = new Padding(10, 18, 0, 0);

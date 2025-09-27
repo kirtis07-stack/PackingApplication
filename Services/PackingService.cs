@@ -23,9 +23,9 @@ namespace PackingApplication.Services
             return getPacking;
         }
 
-        public ProductionResponse getLastBoxDetails()
+        public ProductionResponse getLastBoxDetails(string packingType)
         {
-            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetLastBoxDetails");
+            var getPackingResponse = method.GetCallApi(packingURL + "Production/GetLastBoxDetails?packingType=" + packingType);
             var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
             return getPacking;
         }

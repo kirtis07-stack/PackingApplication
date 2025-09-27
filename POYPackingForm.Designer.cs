@@ -59,11 +59,11 @@ namespace PackingApplication
             this.copssize = new System.Windows.Forms.Label();
             this.copweight = new System.Windows.Forms.Label();
             this.copstock = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.copsitemwt = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.boxtype = new System.Windows.Forms.Label();
             this.boxweight = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.boxpalletitemwt = new System.Windows.Forms.TextBox();
             this.boxstock = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.productiontype = new System.Windows.Forms.Label();
@@ -232,7 +232,6 @@ namespace PackingApplication
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
-            //this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rightpanel.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
             this.rowMaterialPanel.SuspendLayout();
@@ -460,7 +459,7 @@ namespace PackingApplication
             // comport
             // 
             this.comport.AutoSize = true;
-            this.comport.Location = new System.Drawing.Point(101, 2);
+            this.comport.Location = new System.Drawing.Point(2, 2);
             this.comport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.comport.Name = "comport";
             this.comport.Size = new System.Drawing.Size(53, 13);
@@ -498,15 +497,15 @@ namespace PackingApplication
             this.copstock.TabIndex = 35;
             this.copstock.Text = "Cops Stock:";
             // 
-            // textBox1
+            // copsitemwt
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox1.Location = new System.Drawing.Point(116, 141);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(89, 20);
-            this.textBox1.TabIndex = 36;
+            this.copsitemwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.copsitemwt.Location = new System.Drawing.Point(116, 141);
+            this.copsitemwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copsitemwt.Name = "copsitemwt";
+            this.copsitemwt.ReadOnly = true;
+            this.copsitemwt.Size = new System.Drawing.Size(89, 20);
+            this.copsitemwt.TabIndex = 36;
             // 
             // textBox2
             // 
@@ -536,15 +535,15 @@ namespace PackingApplication
             this.boxweight.TabIndex = 40;
             this.boxweight.Text = "Wt:";
             // 
-            // textBox3
+            // boxpalletitemwt
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox3.Location = new System.Drawing.Point(117, 100);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(88, 20);
-            this.textBox3.TabIndex = 41;
+            this.boxpalletitemwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.boxpalletitemwt.Location = new System.Drawing.Point(117, 100);
+            this.boxpalletitemwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.boxpalletitemwt.Name = "boxpalletitemwt";
+            this.boxpalletitemwt.ReadOnly = true;
+            this.boxpalletitemwt.Size = new System.Drawing.Size(88, 20);
+            this.boxpalletitemwt.TabIndex = 41;
             // 
             // boxstock
             // 
@@ -595,7 +594,7 @@ namespace PackingApplication
             // scalemodel
             // 
             this.scalemodel.AutoSize = true;
-            this.scalemodel.Location = new System.Drawing.Point(2, 2);
+            this.scalemodel.Location = new System.Drawing.Point(101, 2);
             this.scalemodel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scalemodel.Name = "scalemodel";
             this.scalemodel.Size = new System.Drawing.Size(71, 13);
@@ -701,7 +700,7 @@ namespace PackingApplication
             // 
             this.ComPortList.AllowDrop = true;
             this.ComPortList.FormattingEnabled = true;
-            this.ComPortList.Location = new System.Drawing.Point(103, 16);
+            this.ComPortList.Location = new System.Drawing.Point(2, 16);
             this.ComPortList.Margin = new System.Windows.Forms.Padding(2);
             this.ComPortList.Name = "ComPortList";
             this.ComPortList.Size = new System.Drawing.Size(82, 21);
@@ -712,7 +711,7 @@ namespace PackingApplication
             // 
             this.WeighingList.AllowDrop = true;
             this.WeighingList.FormattingEnabled = true;
-            this.WeighingList.Location = new System.Drawing.Point(2, 16);
+            this.WeighingList.Location = new System.Drawing.Point(101, 16);
             this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(88, 21);
@@ -1093,7 +1092,6 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            //this.rightpanel.Controls.Add(this.reportViewer1);
             this.rightpanel.Controls.Add(this.saveprint);
             this.rightpanel.Controls.Add(this.rowMaterialBox);
             this.rightpanel.Controls.Add(this.palletdetailslayout);
@@ -1582,7 +1580,7 @@ namespace PackingApplication
             this.copstxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copstxtbox.Name = "copstxtbox";
             this.copstxtbox.ReadOnly = true;
-            this.copstxtbox.Size = new System.Drawing.Size(57, 13);
+            this.copstxtbox.Size = new System.Drawing.Size(45, 13);
             this.copstxtbox.TabIndex = 3;
             this.copstxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1807,6 +1805,7 @@ namespace PackingApplication
             // 
             // weighboxpanel
             // 
+            this.weighboxpanel.Controls.Add(this.WeighingList);
             this.weighboxpanel.Controls.Add(this.req10);
             this.weighboxpanel.Controls.Add(this.req9);
             this.weighboxpanel.Controls.Add(this.req8);
@@ -1816,7 +1815,6 @@ namespace PackingApplication
             this.weighboxpanel.Controls.Add(this.spoolwterror);
             this.weighboxpanel.Controls.Add(this.spoolnoerror);
             this.weighboxpanel.Controls.Add(this.scalemodel);
-            this.weighboxpanel.Controls.Add(this.WeighingList);
             this.weighboxpanel.Controls.Add(this.comport);
             this.weighboxpanel.Controls.Add(this.ComPortList);
             this.weighboxpanel.Controls.Add(this.WindingTypeList);
@@ -2023,11 +2021,11 @@ namespace PackingApplication
             this.packagingboxpanel.Controls.Add(this.boxtype);
             this.packagingboxpanel.Controls.Add(this.BoxItemList);
             this.packagingboxpanel.Controls.Add(this.boxweight);
-            this.packagingboxpanel.Controls.Add(this.textBox3);
+            this.packagingboxpanel.Controls.Add(this.boxpalletitemwt);
             this.packagingboxpanel.Controls.Add(this.boxstock);
             this.packagingboxpanel.Controls.Add(this.textBox4);
             this.packagingboxpanel.Controls.Add(this.copweight);
-            this.packagingboxpanel.Controls.Add(this.textBox1);
+            this.packagingboxpanel.Controls.Add(this.copsitemwt);
             this.packagingboxpanel.Controls.Add(this.copstock);
             this.packagingboxpanel.Controls.Add(this.textBox2);
             this.packagingboxpanel.Controls.Add(this.soerror);
@@ -2599,14 +2597,6 @@ namespace PackingApplication
             this.sidebarTimer.Interval = 10;
             this.sidebarTimer.Tick += new System.EventHandler(this.sidebarTimer_Tick);
             // 
-            // reportViewer1
-            // 
-            //this.reportViewer1.Location = new System.Drawing.Point(733, 402);
-            //this.reportViewer1.Name = "reportViewer1";
-            //this.reportViewer1.ServerReport.BearerToken = null;
-            //this.reportViewer1.Size = new System.Drawing.Size(207, 123);
-            //this.reportViewer1.TabIndex = 116;
-            // 
             // POYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2725,11 +2715,11 @@ namespace PackingApplication
         private System.Windows.Forms.Label copssize;
         private System.Windows.Forms.Label copweight;
         private System.Windows.Forms.Label copstock;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox copsitemwt;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label boxtype;
         private System.Windows.Forms.Label boxweight;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox boxpalletitemwt;
         private System.Windows.Forms.Label boxstock;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label productiontype;
