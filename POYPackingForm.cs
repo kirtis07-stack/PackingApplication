@@ -57,6 +57,9 @@ namespace PackingApplication
         LotsResponse lotResponse = new LotsResponse();
         WeighingScaleReader wtReader = new WeighingScaleReader();
         string comPort;
+        int selectedSOId = 0;
+        decimal totalSOQty = 0;
+        decimal totalProdQty = 0;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -64,7 +67,7 @@ namespace PackingApplication
             _productionId = productionId;
             this.Shown += POYPackingForm_Shown;
             this.AutoScroll = true;
-            this.sidebarContainer.BringToFront();
+         //   this.sidebarContainer.BringToFront();
 
             _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.submit, 8);
@@ -85,10 +88,10 @@ namespace PackingApplication
             grosswtno.TextChanged += GrossWeight_TextChanged;
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
-            sidebarContainer.Width = sidebarContainer.MinimumSize.Width;
-            panel10.Width = panel10.MinimumSize.Width;
-            panel12.Width = panel12.MinimumSize.Width;
-            leftpanel.Width = leftpanel.MinimumSize.Width;
+            //sidebarContainer.Width = sidebarContainer.MinimumSize.Width;
+            //panel10.Width = panel10.MinimumSize.Width;
+            //panel12.Width = panel12.MinimumSize.Width;
+            //leftpanel.Width = leftpanel.MinimumSize.Width;
         }
 
         private void POYPackingForm_Load(object sender, EventArgs e)
@@ -237,14 +240,14 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -696,7 +699,7 @@ namespace PackingApplication
             }
         }
 
-        private void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -715,6 +718,7 @@ namespace PackingApplication
                 productionRequest.SaleOrderId = selectedSaleOrderId;
                 if(selectedSaleOrderId > 0)
                 {
+                    selectedSOId = selectedSaleOrderId;
                     var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
                     if (saleOrderItemResponse != null)
                     {
@@ -722,15 +726,6 @@ namespace PackingApplication
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
 
-                    int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-                    var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(selectedQualityId, selectedSaleOrderId);
-                    qualityqty.Columns.Clear();
-                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                    qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-                    qualityqty.DataSource = getProductionByQuality;
-
-                    decimal totalSOQty = 0;
-                    decimal totalProdQty = 0;
                     var saleResponse = getSaleOrderById(selectedSaleOrderId);
                     
                     foreach (var soitem in saleResponse.saleOrderItemsResponses)
@@ -739,32 +734,82 @@ namespace PackingApplication
                     }
                     grdsoqty.Text = totalSOQty.ToString();
 
-                    foreach (var proditem in getProductionByQuality)
-                    {
-                        totalProdQty += proditem.GrossWt;
-                    }
-                    prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
-
-                    int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-                    var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(selectedWindingTypeId, selectedSaleOrderId);
-                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
-                    foreach (var winding in getProductionByWindingType)
-                    {
-                        WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                        grid.WindingTypeName = winding.WindingTypeName;
-                        grid.SaleOrderQty = totalSOQty;
-                        grid.GrossWt = winding.GrossWt;
-                        gridList.Add(grid);
-                    }
-                    windinggrid.Columns.Clear();
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                    windinggrid.DataSource = gridList;
+                    RefreshWindingGrid();
+                    RefreshGradewiseGrid();
                 }
 
             }
+        }
+        private async void RefreshWindingGrid()
+        {
+            int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
+            var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(selectedWindingTypeId, selectedSOId);
+            List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+            foreach (var winding in getProductionByWindingType)
+            {
+                var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
+
+                if (existing == null)
+                {
+                    WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                    grid.WindingTypeId = winding.WindingTypeId;
+                    grid.SaleOrderId = winding.SaleOrderId;
+                    grid.WindingTypeName = winding.WindingTypeName;
+                    grid.SaleOrderQty = totalSOQty;
+                    grid.GrossWt = winding.GrossWt;
+
+                    gridList.Add(grid);
+                }
+                else
+                {
+                    existing.GrossWt += winding.GrossWt;
+                }
+
+            }
+            windinggrid.Columns.Clear();
+            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
+            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+            windinggrid.DataSource = gridList;
+        }
+
+        private async void RefreshGradewiseGrid()
+        {
+            int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+            var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(selectedQualityId, selectedSOId);
+            List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+            foreach (var quality in getProductionByQuality)
+            {
+                var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
+
+                if (existing == null)
+                {
+                    QualityGridResponse grid = new QualityGridResponse();
+                    grid.QualityId = quality.QualityId;
+                    grid.SaleOrderId = quality.SaleOrderId;
+                    grid.QualityName = quality.QualityName;
+                    grid.SaleOrderQty = totalSOQty;
+                    grid.GrossWt = quality.GrossWt;
+
+                    gridList.Add(grid);
+                }
+                else
+                {
+                    existing.GrossWt += quality.GrossWt;
+                }
+
+            }
+            qualityqty.Columns.Clear();
+            qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
+            qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+            qualityqty.DataSource = gridList;
+
+            foreach (var proditem in gridList)
+            {
+                totalProdQty += proditem.GrossWt;
+            }
+            prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1752,49 +1797,49 @@ namespace PackingApplication
             _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
         }
 
-        private async void sidebarTimer_Tick(object sender, EventArgs e)
-        {
-            showSidebarBorder = false;
+        //private async void sidebarTimer_Tick(object sender, EventArgs e)
+        //{
+        //    showSidebarBorder = false;
 
-            if (sidebarExpand)
-            {
-                this.sidebarContainer.Width -= 10;
-                if (sidebarContainer.Width == sidebarContainer.MinimumSize.Width)
-                {
-                    panel12.Width = panel12.MinimumSize.Width;
-                    panel10.Width = panel10.MinimumSize.Width;
+        //    if (sidebarExpand)
+        //    {
+        //        this.sidebarContainer.Width -= 10;
+        //        if (sidebarContainer.Width == sidebarContainer.MinimumSize.Width)
+        //        {
+        //            panel12.Width = panel12.MinimumSize.Width;
+        //            panel10.Width = panel10.MinimumSize.Width;
 
-                    if(panel10.Width == panel10.MinimumSize.Width)
-                    {
-                        sidebarExpand = false;
-                        leftpanel.Width = leftpanel.MinimumSize.Width;
-                    }
-                    sidebarTimer.Stop();
-                    sidebarContainer.Invalidate();
-                }
-            }
-            else
-            {
-                this.sidebarContainer.Width += 10;
-                if (sidebarContainer.Width == sidebarContainer.MaximumSize.Width)
-                {
-                    panel12.Width = panel12.MaximumSize.Width;
-                    panel10.Width = panel10.MaximumSize.Width;
+        //            if(panel10.Width == panel10.MinimumSize.Width)
+        //            {
+        //                sidebarExpand = false;
+        //                leftpanel.Width = leftpanel.MinimumSize.Width;
+        //            }
+        //            sidebarTimer.Stop();
+        //            sidebarContainer.Invalidate();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        this.sidebarContainer.Width += 10;
+        //        if (sidebarContainer.Width == sidebarContainer.MaximumSize.Width)
+        //        {
+        //            panel12.Width = panel12.MaximumSize.Width;
+        //            panel10.Width = panel10.MaximumSize.Width;
 
-                    if (panel10.Width == panel10.MaximumSize.Width)
-                    {
-                        sidebarExpand = true;
-                        leftpanel.Width = leftpanel.MaximumSize.Width;
-                    }
-                    sidebarTimer.Stop();
-                    sidebarContainer.Invalidate();
-                }
-            }
+        //            if (panel10.Width == panel10.MaximumSize.Width)
+        //            {
+        //                sidebarExpand = true;
+        //                leftpanel.Width = leftpanel.MaximumSize.Width;
+        //            }
+        //            sidebarTimer.Stop();
+        //            sidebarContainer.Invalidate();
+        //        }
+        //    }
 
-            // Show border after all animations
-            showSidebarBorder = true;
-            sidebarContainer.Invalidate();
-        }
+        //    // Show border after all animations
+        //    showSidebarBorder = true;
+        //    sidebarContainer.Invalidate();
+        //}
 
         private void menuBtn_Click(object sender, EventArgs e)
         {
@@ -1805,7 +1850,7 @@ namespace PackingApplication
         {
             if (showSidebarBorder)   // only draw when allowed
             {
-                _cmethod.DrawRightBorder(sidebarContainer, e, Color.FromArgb(191, 191, 191), 1);
+               // _cmethod.DrawRightBorder(sidebarContainer, e, Color.FromArgb(191, 191, 191), 1);
             }
         }
     }

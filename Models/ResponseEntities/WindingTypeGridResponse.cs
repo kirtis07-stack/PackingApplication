@@ -8,7 +8,9 @@ namespace PackingApplication.Models.ResponseEntities
 {
     public class WindingTypeGridResponse
     {
+        public int WindingTypeId { get; set; }
         public string WindingTypeName { get; set; }
+        public int SaleOrderId { get; set; }
         public decimal SaleOrderQty { get; set; } 
         public decimal GrossWt { get; set; }
 
@@ -16,5 +18,14 @@ namespace PackingApplication.Models.ResponseEntities
         {
             get { return SaleOrderQty - GrossWt; }
         }
+    }
+
+    public class QualityGridResponse
+    {
+        public int QualityId { get; set; }
+        public string QualityName { get; set; }
+        public int SaleOrderId { get; set; }
+        public decimal SaleOrderQty { get; set; }
+        public decimal GrossWt { get; set; }
     }
 }

@@ -352,6 +352,7 @@ namespace PackingApplication
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Name = "Login";
             this.Text = "Login";
             this.panel1.ResumeLayout(false);
