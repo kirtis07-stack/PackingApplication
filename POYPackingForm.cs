@@ -99,12 +99,12 @@ namespace PackingApplication
         {
             AddHeader();
             
-            var getItem = new List<LotsResponse>();
-            getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            MergeNoList.DataSource = getItem;
-            MergeNoList.DisplayMember = "LotNo";
-            MergeNoList.ValueMember = "LotId";
-            MergeNoList.SelectedIndex = 0;
+            //var getItem = new List<LotsResponse>();
+            //getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+            //MergeNoList.DataSource = getItem;
+            //MergeNoList.DisplayMember = "LotNo";
+            //MergeNoList.ValueMember = "LotId";
+            //MergeNoList.SelectedIndex = 0;
 
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
@@ -268,6 +268,14 @@ namespace PackingApplication
             LineNoList.DisplayMember = "MachineName";
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
+
+            var lotList = await Task.Run(() => getAllLotList());
+            //lot
+            lotList.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+            MergeNoList.DataSource = lotList;
+            MergeNoList.DisplayMember = "LotNo";
+            MergeNoList.ValueMember = "LotId";
+            MergeNoList.SelectedIndex = 0;
 
             var prefixList = await Task.Run(() => getPrefixList());
             //prefix
@@ -529,14 +537,15 @@ namespace PackingApplication
                 linenoerror.Visible = false;
                 MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
                 int selectedMachineId = selectedMachine.MachineId;
+                if (selectedMachineId > 0) {
+                    productionRequest.MachineId = selectedMachineId;
+                    // Call API to get department info by MachineId
+                    var department = _masterService.getMachineById(selectedMachineId);
+                    departmentname.Text = department.DepartmentName;
+                    productionRequest.DepartmentId = department.DepartmentId;
 
-                productionRequest.MachineId = selectedMachineId;
-                // Call API to get department info by MachineId
-                var department = _masterService.getMachineById(selectedMachineId);
-                departmentname.Text = department.DepartmentName;
-                productionRequest.DepartmentId = department.DepartmentId;
-
-                getLotList(selectedMachineId);
+                    getLotList(selectedMachineId);
+                }
             }
         }
 
@@ -576,6 +585,7 @@ namespace PackingApplication
                     productionRequest.MachineId = lotResponse.MachineId;
                     productionRequest.ItemId = lotResponse.ItemId;
                     productionRequest.ShadeId = lotResponse.ShadeId;
+                    LineNoList.SelectedValue = lotResponse.MachineId;
 
                     var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
@@ -585,9 +595,13 @@ namespace PackingApplication
                     QualityList.DisplayMember = "Name";
                     QualityList.ValueMember = "QualityId";
                     QualityList.SelectedIndex = 0;
+                    if (QualityList.Items.Count > 0)
+                    {
+                        QualityList.SelectedIndex = 1;
+                    }
 
                     getSaleOrderList(productionRequest.LotId);
-
+                    lotsDetailsList = new List<LotsDetailsResponse>();
                     foreach (var lot in lotResponse.LotsDetailsResponses)
                     {
                         LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
@@ -947,6 +961,12 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
         }
 
+        private List<LotsResponse> getAllLotList()
+        {
+            var getLots = _productionService.getAllLotList();
+            return getLots;
+        }
+
         private List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
         {
             var getQuality = _masterService.getQualityListByItemTypeId(itemTypeId);
@@ -980,9 +1000,9 @@ namespace PackingApplication
             var getComPortType = new List<string>
             {
                 "Select Com Port",
-                "COM 1",
-                "COM 2",
-                "COM 3"
+                "COM1",
+                "COM2",
+                "COM3"
             };
 
             return getComPortType;
@@ -1473,16 +1493,28 @@ namespace PackingApplication
 
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest, bool isPrint)
         {
+            submit.Enabled = false;
+            saveprint.Enabled = false;
             ProductionResponse result = new ProductionResponse();
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null && result.ProductionId > 0)
             {
+                submit.Enabled = true;
+                saveprint.Enabled = true;
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
+                this.spoolno.Text = "";
+                this.grosswtno.Text = "";
+                this.tarewt.Text = "";
+                this.netwt.Text = "";
+                this.wtpercop.Text = "";
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("POY Packing added successfully.");
+                    MessageBox.Show("POY Packing added successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                     if (isPrint)
                     {
                         //call ssrs report to print
@@ -1573,7 +1605,12 @@ namespace PackingApplication
             }
             else
             {
-                MessageBox.Show("Something went wrong.");
+                submit.Enabled = true;
+                saveprint.Enabled = true;
+                MessageBox.Show("Something went wrong.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             return result;
         }

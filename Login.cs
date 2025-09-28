@@ -117,7 +117,7 @@ namespace PackingApplication
 
                             var userResponse = JsonConvert.DeserializeObject<ErrorResponse>(errorMessage);
 
-                            MessageBox.Show(userResponse.message.ToString());
+                            MessageBox.Show(userResponse.message.ToString(),"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 

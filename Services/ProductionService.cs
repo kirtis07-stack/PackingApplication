@@ -22,6 +22,13 @@ namespace PackingApplication.Services
             return getItem;
         }
 
+        public List<LotsResponse> getAllLotList()
+        {
+            var getLotsResponse = method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + true);
+            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse);
+            return getItem;
+        }
+
         public List<LotSaleOrderDetailsResponse> getSaleOrderList(int lotId)
         {
             var getSaleOrderResponse = method.GetCallApi(productionURL + "LotSaleOrderDetails/GetAllByLotsId?lotsId=" + lotId);
