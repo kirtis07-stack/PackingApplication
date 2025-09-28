@@ -60,6 +60,7 @@ namespace PackingApplication
         int selectedSOId = 0;
         decimal totalSOQty = 0;
         decimal totalProdQty = 0;
+        int selectLotId = 0;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -325,17 +326,7 @@ namespace PackingApplication
             PalletTypeList.ValueMember = "ItemId";
             PalletTypeList.SelectedIndex = 0;
 
-            var getLastBox = await Task.Run(() => getLastBoxDetails());
-
-            //lastboxdetails
-            if(getLastBox.ProductionId > 0)
-            {
-                this.copstxtbox.Text = getLastBox.Spools.ToString();
-                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
-            }
+            RefreshLastBoxDetails();
 
             if (Convert.ToInt64(_productionId) > 0)
             {
@@ -570,62 +561,66 @@ namespace PackingApplication
                 int selectedLotId = selectedLot.LotId;
 
                 productionRequest.LotId = selectedLot.LotId;
+                if (selectedLotId > 0) {
+                    selectLotId = selectedLotId;
 
-                lotResponse = _productionService.getLotById(selectedLotId);
-                itemname.Text = lotResponse.ItemName;
-                shadename.Text = lotResponse.ShadeName;
-                shadecd.Text = lotResponse.ShadeCode;
-                deniervalue.Text = lotResponse.Denier.ToString();
-                productionRequest.SaleLot = lotResponse.SaleLot;
-                productionRequest.MachineId = lotResponse.MachineId;
-                productionRequest.ItemId = lotResponse.ItemId;
-                productionRequest.ShadeId = lotResponse.ShadeId;
+                    lotResponse = _productionService.getLotById(selectedLotId);
+                    itemname.Text = lotResponse.ItemName;
+                    shadename.Text = lotResponse.ShadeName;
+                    shadecd.Text = lotResponse.ShadeCode;
+                    deniervalue.Text = lotResponse.Denier.ToString();
+                    productionRequest.SaleLot = lotResponse.SaleLot;
+                    productionRequest.MachineId = lotResponse.MachineId;
+                    productionRequest.ItemId = lotResponse.ItemId;
+                    productionRequest.ShadeId = lotResponse.ShadeId;
 
-                var itemResponse = _masterService.getItemById(lotResponse.ItemId);
+                    var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
-                var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
-                qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                QualityList.DataSource = qualityList;
-                QualityList.DisplayMember = "Name";
-                QualityList.ValueMember = "QualityId";
-                QualityList.SelectedIndex = 0;
-            
-                getSaleOrderList(productionRequest.LotId);
+                    var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                    QualityList.DataSource = qualityList;
+                    QualityList.DisplayMember = "Name";
+                    QualityList.ValueMember = "QualityId";
+                    QualityList.SelectedIndex = 0;
 
-                foreach (var lot in lotResponse.LotsDetailsResponses)
-                {
-                    LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
-                    lotsDetails.LotId = lot.LotId;
-                    lotsDetails.UpdatedOn = lot.UpdatedOn;
-                    lotsDetails.UpdatedBy = lot.UpdatedBy;
-                    lotsDetails.CreatedBy = lot.CreatedBy;
-                    lotsDetails.CreatedOn = lot.CreatedOn;
-                    lotsDetails.EffectiveFrom = lot.EffectiveFrom;
-                    lotsDetails.EffectiveUpto = lot.EffectiveUpto;
-                    lotsDetails.GainLossPerc = lot.GainLossPerc;
-                    lotsDetails.InputPerc = lot.InputPerc;
-                    lotsDetails.ProductionPerc = lot.ProductionPerc;
-                    lotsDetails.Extruder = lot.Extruder;
-                    lotsDetails.LotType = lot.LotType;
-                    lotsDetails.PrevLotId = lot.PrevLotId;
-                    lotsDetails.PrevLotNo = lot.PrevLotNo;
-                    lotsDetails.PrevLotType = lot.PrevLotType;
-                    lotsDetails.PrevLotQuality = lot.PrevLotQuality;
-                    lotsDetails.PrevLotItemName = lot.PrevLotItemName;
-                    lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
-                    lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
-                    lotsDetailsList.Add(lot);
+                    getSaleOrderList(productionRequest.LotId);
+
+                    foreach (var lot in lotResponse.LotsDetailsResponses)
+                    {
+                        LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
+                        lotsDetails.LotId = lot.LotId;
+                        lotsDetails.UpdatedOn = lot.UpdatedOn;
+                        lotsDetails.UpdatedBy = lot.UpdatedBy;
+                        lotsDetails.CreatedBy = lot.CreatedBy;
+                        lotsDetails.CreatedOn = lot.CreatedOn;
+                        lotsDetails.EffectiveFrom = lot.EffectiveFrom;
+                        lotsDetails.EffectiveUpto = lot.EffectiveUpto;
+                        lotsDetails.GainLossPerc = lot.GainLossPerc;
+                        lotsDetails.InputPerc = lot.InputPerc;
+                        lotsDetails.ProductionPerc = lot.ProductionPerc;
+                        lotsDetails.Extruder = lot.Extruder;
+                        lotsDetails.LotType = lot.LotType;
+                        lotsDetails.PrevLotId = lot.PrevLotId;
+                        lotsDetails.PrevLotNo = lot.PrevLotNo;
+                        lotsDetails.PrevLotType = lot.PrevLotType;
+                        lotsDetails.PrevLotQuality = lot.PrevLotQuality;
+                        lotsDetails.PrevLotItemName = lot.PrevLotItemName;
+                        lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
+                        lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
+                        lotsDetailsList.Add(lot);
+                    }
+                    rowMaterial.Columns.Clear();
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
+                    rowMaterial.DataSource = lotsDetailsList;
                 }
-                rowMaterial.Columns.Clear();
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
-                rowMaterial.DataSource = lotsDetailsList;
+                
             }
         }
 
@@ -652,10 +647,13 @@ namespace PackingApplication
                 int selectedPacksizeId = selectedPacksize.PackSizeId;
 
                 productionRequest.PackSizeId = selectedPacksizeId;
+                if(selectedPacksizeId > 0)
+                {
+                    var packsize = _masterService.getPackSizeById(selectedPacksizeId);
+                    frdenier.Text = packsize.FromDenier.ToString();
+                    updenier.Text = packsize.UpToDenier.ToString();
+                }
 
-                var packsize = _masterService.getPackSizeById(selectedPacksizeId);
-                frdenier.Text = packsize.FromDenier.ToString();
-                updenier.Text = packsize.UpToDenier.ToString();
             }
         }
 
@@ -736,6 +734,7 @@ namespace PackingApplication
 
                     RefreshWindingGrid();
                     RefreshGradewiseGrid();
+                    RefreshLastBoxDetails();
                 }
 
             }
@@ -743,7 +742,7 @@ namespace PackingApplication
         private async void RefreshWindingGrid()
         {
             int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-            var getProductionByWindingType = getProductionByWindingTypeAndSaleOrderId(selectedWindingTypeId, selectedSOId);
+            var getProductionByWindingType = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
             List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
             foreach (var winding in getProductionByWindingType)
             {
@@ -777,7 +776,7 @@ namespace PackingApplication
         private async void RefreshGradewiseGrid()
         {
             int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-            var getProductionByQuality = getProductionByQualityIdAndSaleOrderId(selectedQualityId, selectedSOId);
+            var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
             List<QualityGridResponse> gridList = new List<QualityGridResponse>();
             foreach (var quality in getProductionByQuality)
             {
@@ -810,6 +809,21 @@ namespace PackingApplication
                 totalProdQty += proditem.GrossWt;
             }
             prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
+        }
+
+        private async void RefreshLastBoxDetails()
+        {
+            var getLastBox = await Task.Run(() => getLastBoxDetails());
+
+            //lastboxdetails
+            if (getLastBox.ProductionId > 0)
+            {
+                this.copstxtbox.Text = getLastBox.Spools.ToString();
+                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1030,6 +1044,12 @@ namespace PackingApplication
         private List<ProductionResponse> getProductionByWindingTypeAndSaleOrderId(int windingTypeId, int saleOrderId)
         {
             var getProduction = _packingService.getAllProductionByWindingTypeandSaleOrder(windingTypeId, saleOrderId);
+            return getProduction;
+        }
+
+        private List<ProductionResponse> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
+        {
+            var getProduction = _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId, "poypacking");
             return getProduction;
         }
 
@@ -1452,8 +1472,11 @@ namespace PackingApplication
         {
             ProductionResponse result = new ProductionResponse();
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
-            if (result != null)
+            if (result != null && result.ProductionId > 0)
             {
+                RefreshWindingGrid();
+                RefreshGradewiseGrid();
+                RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
                     MessageBox.Show("POY Packing added successfully.");
