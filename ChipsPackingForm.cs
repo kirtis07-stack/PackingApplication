@@ -29,6 +29,12 @@ namespace PackingApplication
         private bool showSidebarBorder = true;
         List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
         LotsResponse lotResponse = new LotsResponse();
+        WeighingScaleReader wtReader = new WeighingScaleReader();
+        string comPort;
+        int selectedSOId = 0;
+        decimal totalSOQty = 0;
+        decimal totalProdQty = 0;
+        int selectLotId = 0;
         public ChipsPackingForm(long productionId)
         {
             InitializeComponent();
@@ -36,7 +42,6 @@ namespace PackingApplication
             this.Shown += ChipsPackingForm_Shown;
             this.AutoScroll = true;
             _productionId = productionId;
-            this.sidebarContainer.BringToFront();
 
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
@@ -52,20 +57,16 @@ namespace PackingApplication
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
             rowMaterial.AutoGenerateColumns = false;
-            sidebarContainer.Width = sidebarContainer.MinimumSize.Width;
-            panel10.Width = panel10.MinimumSize.Width;
-            panel12.Width = panel12.MinimumSize.Width;
-            leftpanel.Width = leftpanel.MinimumSize.Width;
         }
 
         private void ChipsPackingForm_Load(object sender, EventArgs e)
         {
-            var getItem = new List<LotsResponse>();
-            getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            MergeNoList.DataSource = getItem;
-            MergeNoList.DisplayMember = "LotNo";
-            MergeNoList.ValueMember = "LotId";
-            MergeNoList.SelectedIndex = 0;
+            //var getItem = new List<LotsResponse>();
+            //getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+            //MergeNoList.DataSource = getItem;
+            //MergeNoList.DisplayMember = "LotNo";
+            //MergeNoList.ValueMember = "LotId";
+            //MergeNoList.SelectedIndex = 0;
 
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
@@ -191,6 +192,8 @@ namespace PackingApplication
             this.bagsstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.bagstype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.bagsweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
@@ -203,6 +206,14 @@ namespace PackingApplication
             LineNoList.DisplayMember = "MachineName";
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
+
+            var lotList = await Task.Run(() => getAllLotList());
+            //lot
+            lotList.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+            MergeNoList.DataSource = lotList;
+            MergeNoList.DisplayMember = "LotNo";
+            MergeNoList.ValueMember = "LotId";
+            MergeNoList.SelectedIndex = 0;
 
             var prefixList = await Task.Run(() => getPrefixList());
             //prefix
@@ -236,6 +247,8 @@ namespace PackingApplication
             var weightingList = await Task.Run(() => getWeighingList());
             //weighting
             WeighingList.DataSource = weightingList;
+            WeighingList.DisplayMember = "Name";
+            WeighingList.ValueMember = "Id";
             WeighingList.SelectedIndex = 0;
 
             var copsitemList = await Task.Run(() => getCopeItemList());
@@ -315,13 +328,16 @@ namespace PackingApplication
                 MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
                 int selectedMachineId = selectedMachine.MachineId;
 
-                productionRequest.MachineId = selectedMachineId;
-                // Call API to get department info by MachineId
-                var department = _masterService.getMachineById(selectedMachineId);
-                departmentname.Text = department.DepartmentName;
-                productionRequest.DepartmentId = department.DepartmentId;
+                if (selectedMachineId > 0)
+                {
+                    productionRequest.MachineId = selectedMachineId;
+                    // Call API to get department info by MachineId
+                    var department = _masterService.getMachineById(selectedMachineId);
+                    departmentname.Text = department.DepartmentName;
+                    productionRequest.DepartmentId = department.DepartmentId;
 
-                getLotList(selectedMachineId);
+                    getLotList(selectedMachineId);
+                }
             }
         }
 
@@ -348,66 +364,69 @@ namespace PackingApplication
                 mergenoerror.Visible = false;
                 LotsResponse selectedLot = (LotsResponse)MergeNoList.SelectedItem;
                 int selectedLotId = selectedLot.LotId;
-
-                productionRequest.LotId = selectedLot.LotId;
-
-                lotResponse = _productionService.getLotById(selectedLotId);
-                itemname.Text = lotResponse.ItemName;
-                shadename.Text = lotResponse.ShadeName;
-                shadecd.Text = lotResponse.ShadeCode;
-                deniervalue.Text = lotResponse.Denier.ToString();
-                twistvalue.Text = lotResponse.TwistName;
-                productionRequest.SaleLot = lotResponse.SaleLot;
-                productionRequest.MachineId = lotResponse.MachineId;
-                productionRequest.ItemId = lotResponse.ItemId;
-                productionRequest.ShadeId = lotResponse.ShadeId;
-
-                var itemResponse = _masterService.getItemById(lotResponse.ItemId);
-
-                var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
-                qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                QualityList.DataSource = qualityList;
-                QualityList.DisplayMember = "Name";
-                QualityList.ValueMember = "QualityId";
-                QualityList.SelectedIndex = 0;
-
-                getSaleOrderList(productionRequest.LotId);
-
-                List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
-                foreach (var lot in lotResponse.LotsDetailsResponses)
+                if (selectedLotId > 0)
                 {
-                    LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
-                    lotsDetails.LotId = lot.LotId;
-                    lotsDetails.UpdatedOn = lot.UpdatedOn;
-                    lotsDetails.UpdatedBy = lot.UpdatedBy;
-                    lotsDetails.CreatedBy = lot.CreatedBy;
-                    lotsDetails.CreatedOn = lot.CreatedOn;
-                    lotsDetails.EffectiveFrom = lot.EffectiveFrom;
-                    lotsDetails.EffectiveUpto = lot.EffectiveUpto;
-                    lotsDetails.GainLossPerc = lot.GainLossPerc;
-                    lotsDetails.InputPerc = lot.InputPerc;
-                    lotsDetails.ProductionPerc = lot.ProductionPerc;
-                    lotsDetails.Extruder = lot.Extruder;
-                    lotsDetails.LotType = lot.LotType;
-                    lotsDetails.PrevLotId = lot.PrevLotId;
-                    lotsDetails.PrevLotNo = lot.PrevLotNo;
-                    lotsDetails.PrevLotType = lot.PrevLotType;
-                    lotsDetails.PrevLotQuality = lot.PrevLotQuality;
-                    lotsDetails.PrevLotItemName = lot.PrevLotItemName;
-                    lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
-                    lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
-                    lotsDetailsList.Add(lot);
+                    selectLotId = selectedLotId;
+                    productionRequest.LotId = selectedLot.LotId;
+
+                    lotResponse = _productionService.getLotById(selectedLotId);
+                    itemname.Text = lotResponse.ItemName;
+                    shadename.Text = lotResponse.ShadeName;
+                    shadecd.Text = lotResponse.ShadeCode;
+                    deniervalue.Text = lotResponse.Denier.ToString();
+                    twistvalue.Text = lotResponse.TwistName;
+                    productionRequest.SaleLot = lotResponse.SaleLot;
+                    productionRequest.MachineId = lotResponse.MachineId;
+                    productionRequest.ItemId = lotResponse.ItemId;
+                    productionRequest.ShadeId = lotResponse.ShadeId;
+
+                    var itemResponse = _masterService.getItemById(lotResponse.ItemId);
+
+                    var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                    QualityList.DataSource = qualityList;
+                    QualityList.DisplayMember = "Name";
+                    QualityList.ValueMember = "QualityId";
+                    QualityList.SelectedIndex = 0;
+
+                    getSaleOrderList(productionRequest.LotId);
+
+                    List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
+                    foreach (var lot in lotResponse.LotsDetailsResponses)
+                    {
+                        LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
+                        lotsDetails.LotId = lot.LotId;
+                        lotsDetails.UpdatedOn = lot.UpdatedOn;
+                        lotsDetails.UpdatedBy = lot.UpdatedBy;
+                        lotsDetails.CreatedBy = lot.CreatedBy;
+                        lotsDetails.CreatedOn = lot.CreatedOn;
+                        lotsDetails.EffectiveFrom = lot.EffectiveFrom;
+                        lotsDetails.EffectiveUpto = lot.EffectiveUpto;
+                        lotsDetails.GainLossPerc = lot.GainLossPerc;
+                        lotsDetails.InputPerc = lot.InputPerc;
+                        lotsDetails.ProductionPerc = lot.ProductionPerc;
+                        lotsDetails.Extruder = lot.Extruder;
+                        lotsDetails.LotType = lot.LotType;
+                        lotsDetails.PrevLotId = lot.PrevLotId;
+                        lotsDetails.PrevLotNo = lot.PrevLotNo;
+                        lotsDetails.PrevLotType = lot.PrevLotType;
+                        lotsDetails.PrevLotQuality = lot.PrevLotQuality;
+                        lotsDetails.PrevLotItemName = lot.PrevLotItemName;
+                        lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
+                        lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
+                        lotsDetailsList.Add(lot);
+                    }
+                    rowMaterial.Columns.Clear();
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
+                    rowMaterial.DataSource = lotsDetailsList;
                 }
-                rowMaterial.Columns.Clear();
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
-                rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
-                rowMaterial.DataSource = lotsDetailsList;
             }
         }
 
@@ -434,9 +453,12 @@ namespace PackingApplication
 
                 productionRequest.PackSizeId = selectedPacksizeId;
 
-                var packsize = _masterService.getPackSizeById(selectedPacksizeId);
-                frdenier.Text = packsize.FromDenier.ToString();
-                updenier.Text = packsize.UpToDenier.ToString();
+                if (selectedPacksizeId > 0)
+                {
+                    var packsize = _masterService.getPackSizeById(selectedPacksizeId);
+                    frdenier.Text = packsize.FromDenier.ToString();
+                    updenier.Text = packsize.UpToDenier.ToString();
+                }
             }
         }
 
@@ -493,19 +515,34 @@ namespace PackingApplication
                 LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                 int selectedSaleOrderId = selectedSaleOrder.SaleOrderDetailsId;
 
-                productionRequest.SaleOrderId = selectedSaleOrderId;
                 if (selectedSaleOrderId > 0)
                 {
+                    productionRequest.SaleOrderId = selectedSaleOrderId;
+                    selectedSOId = selectedSaleOrderId;
                     var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
                     if (saleOrderItemResponse != null)
                     {
                         productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
+                    RefreshLastBoxDetails();
                 }
-                    //var getSaleOrderResponse = GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + productionRequest.SaleOrderId);
-                    //var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse);
-                }
+            }
+        }
+
+        private async void RefreshLastBoxDetails()
+        {
+            var getLastBox = await Task.Run(() => getLastBoxDetails());
+
+            //lastboxdetails
+            if (getLastBox.ProductionId > 0)
+            {
+                this.copstxtbox.Text = getLastBox.Spools.ToString();
+                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
@@ -524,7 +561,15 @@ namespace PackingApplication
 
             if (WeighingList.SelectedValue != null)
             {
-                var WeighingScale = WeighingList.SelectedValue.ToString();
+                WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
+                int selectedScaleId = selectedWeighingScale.Id;
+
+                //if (selectedScaleId >= 0)
+                //{
+                //    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
+                //    grosswtno.Text = readWeight.ToString();
+                //    grosswtno.ReadOnly = true;
+                //}
             }
         }
 
@@ -537,7 +582,16 @@ namespace PackingApplication
                 ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
                 int selectedItemId = selectedCopsItem.ItemId;
 
-                productionRequest.SpoolItemId = selectedItemId;
+                if (selectedItemId > 0)
+                {
+                    productionRequest.SpoolItemId = selectedItemId;
+
+                    var itemResponse = _masterService.getItemById(selectedItemId);
+                    if (itemResponse != null)
+                    {
+                        copsitemwt.Text = itemResponse.Weight.ToString();
+                    }
+                }
             }
         }
 
@@ -585,7 +639,11 @@ namespace PackingApplication
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
         }
-
+        private List<LotsResponse> getAllLotList()
+        {
+            var getLots = _productionService.getAllLotList();
+            return getLots;
+        }
         private List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
         {
             var getQuality = _masterService.getQualityListByItemTypeId(itemTypeId);
@@ -619,23 +677,23 @@ namespace PackingApplication
             var getComPortType = new List<string>
             {
                 "Select Com Port",
-                "COM 1",
-                "COM 2",
-                "COM 3"
+                "COM1",
+                "COM2",
+                "COM3"
             };
 
             return getComPortType;
         }
 
-        private List<string> getWeighingList()
+        private List<WeighingItem> getWeighingList()
         {
-            var getWeighingScale = new List<string>
+            var getWeighingScale = new List<WeighingItem>
             {
-                "Select Weigh Scale",
-                "Old",
-                "Unique",
-                "JISL (9600)",
-                "JISL (2400)"
+                new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
+                new WeighingItem { Id = 0, Name = "Old" },
+                new WeighingItem { Id = 1, Name = "Unique" },
+                new WeighingItem { Id = 2, Name = "JISL (9600)" },
+                new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
 
             return getWeighingScale;
@@ -753,6 +811,16 @@ namespace PackingApplication
 
         private async void submit_Click(object sender, EventArgs e)
         {
+            submitForm(false);
+        }
+
+        private async void saveprint_Click(object sender, EventArgs e)
+        {
+            submitForm(true);
+        }
+
+        private async void submitForm(bool isPrint)
+        {
             if (ValidateForm())
             {
                 productionRequest.PackingType = "ChipsPacking";
@@ -785,26 +853,41 @@ namespace PackingApplication
                     consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
                     consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
                     consumptionDetailsRequest.ProductionLotId = lot.LotId;
-                    consumptionDetailsRequest.InputLotId = lot.PrevLotId;
+                    consumptionDetailsRequest.InputLotId = lot.LotId;
                     consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
                     consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
                     consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
                     //consumptionDetailsRequest.StockTrfDetailsId = 0;
                     productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
                 }
-                ProductionResponse result = SubmitPacking(productionRequest);
+                ProductionResponse result = SubmitPacking(productionRequest, isPrint);
             }
         }
 
-        public ProductionResponse SubmitPacking(ProductionRequest productionRequest)
+        public ProductionResponse SubmitPacking(ProductionRequest productionRequest, bool isPrint)
         {
+            submit.Enabled = false;
+            saveprint.Enabled = false;
             ProductionResponse result = new ProductionResponse();
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
-            if (result != null)
+            if (result != null && result.ProductionId > 0)
             {
+                submit.Enabled = true;
+                saveprint.Enabled = true;
+                RefreshLastBoxDetails();
+                this.grosswtno.Text = "";
+                this.tarewt.Text = "";
+                this.netwt.Text = "";
+                this.wtpercop.Text = "";
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("Chips Packing added successfully.");
+                    MessageBox.Show("Chips Packing added successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    if (isPrint)
+                    {
+                    }
                 }
                 else
                 {
@@ -813,7 +896,12 @@ namespace PackingApplication
             }
             else
             {
-                MessageBox.Show("Something went wrong.");
+                submit.Enabled = true;
+                saveprint.Enabled = true;
+                MessageBox.Show("Something went wrong.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             return result;
         }
@@ -1024,60 +1112,69 @@ namespace PackingApplication
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
         }
 
-        private async void sidebarTimer_Tick(object sender, EventArgs e)
+        //private async void sidebarTimer_Tick(object sender, EventArgs e)
+        //{
+        //    showSidebarBorder = false;
+
+        //    if (sidebarExpand)
+        //    {
+        //        this.sidebarContainer.Width -= 10;
+        //        if (sidebarContainer.Width == sidebarContainer.MinimumSize.Width)
+        //        {
+        //            panel12.Width = panel12.MinimumSize.Width;
+        //            panel10.Width = panel10.MinimumSize.Width;
+
+        //            if (panel10.Width == panel10.MinimumSize.Width)
+        //            {
+        //                sidebarExpand = false;
+        //                leftpanel.Width = leftpanel.MinimumSize.Width;
+        //            }
+        //            sidebarTimer.Stop();
+        //            sidebarContainer.Invalidate();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        this.sidebarContainer.Width += 10;
+        //        if (sidebarContainer.Width == sidebarContainer.MaximumSize.Width)
+        //        {
+        //            panel12.Width = panel12.MaximumSize.Width;
+        //            panel10.Width = panel10.MaximumSize.Width;
+
+        //            if (panel10.Width == panel10.MaximumSize.Width)
+        //            {
+        //                sidebarExpand = true;
+        //                leftpanel.Width = leftpanel.MaximumSize.Width;
+        //            }
+        //            sidebarTimer.Stop();
+        //            sidebarContainer.Invalidate();
+        //        }
+        //    }
+
+        //    // Show border after all animations
+        //    showSidebarBorder = true;
+        //    sidebarContainer.Invalidate();
+        //}
+
+        //private void menuBtn_Click(object sender, EventArgs e)
+        //{
+        //    sidebarTimer.Start();
+        //}
+
+        //private void sidebarContainer_Paint(object sender, PaintEventArgs e)
+        //{
+        //    if (showSidebarBorder)   // only draw when allowed
+        //    {
+        //        _cmethod.DrawRightBorder(sidebarContainer, e, Color.FromArgb(191, 191, 191), 1);
+        //    }
+        //}
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            showSidebarBorder = false;
-
-            if (sidebarExpand)
+            // Allow control keys (backspace, delete, etc.)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                this.sidebarContainer.Width -= 10;
-                if (sidebarContainer.Width == sidebarContainer.MinimumSize.Width)
-                {
-                    panel12.Width = panel12.MinimumSize.Width;
-                    panel10.Width = panel10.MinimumSize.Width;
-
-                    if (panel10.Width == panel10.MinimumSize.Width)
-                    {
-                        sidebarExpand = false;
-                        leftpanel.Width = leftpanel.MinimumSize.Width;
-                    }
-                    sidebarTimer.Stop();
-                    sidebarContainer.Invalidate();
-                }
-            }
-            else
-            {
-                this.sidebarContainer.Width += 10;
-                if (sidebarContainer.Width == sidebarContainer.MaximumSize.Width)
-                {
-                    panel12.Width = panel12.MaximumSize.Width;
-                    panel10.Width = panel10.MaximumSize.Width;
-
-                    if (panel10.Width == panel10.MaximumSize.Width)
-                    {
-                        sidebarExpand = true;
-                        leftpanel.Width = leftpanel.MaximumSize.Width;
-                    }
-                    sidebarTimer.Stop();
-                    sidebarContainer.Invalidate();
-                }
-            }
-
-            // Show border after all animations
-            showSidebarBorder = true;
-            sidebarContainer.Invalidate();
-        }
-
-        private void menuBtn_Click(object sender, EventArgs e)
-        {
-            sidebarTimer.Start();
-        }
-
-        private void sidebarContainer_Paint(object sender, PaintEventArgs e)
-        {
-            if (showSidebarBorder)   // only draw when allowed
-            {
-                _cmethod.DrawRightBorder(sidebarContainer, e, Color.FromArgb(191, 191, 191), 1);
+                e.Handled = true; // Reject the input
             }
         }
     }
