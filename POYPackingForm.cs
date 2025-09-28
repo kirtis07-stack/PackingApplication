@@ -734,6 +734,8 @@ namespace PackingApplication
                 if(selectedSaleOrderId > 0)
                 {
                     selectedSOId = selectedSaleOrderId;
+                    totalSOQty = 0;
+                    grdsoqty.Text = "";
                     var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
                     if (saleOrderItemResponse != null)
                     {
@@ -759,39 +761,44 @@ namespace PackingApplication
         private async void RefreshWindingGrid()
         {
             int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-            var getProductionByWindingType = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
-            List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
-            foreach (var winding in getProductionByWindingType)
+            if(selectedWindingTypeId > 0)
             {
-                var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
-
-                if (existing == null)
+                var getProductionByWindingType = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+                foreach (var winding in getProductionByWindingType)
                 {
-                    WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                    grid.WindingTypeId = winding.WindingTypeId;
-                    grid.SaleOrderId = winding.SaleOrderId;
-                    grid.WindingTypeName = winding.WindingTypeName;
-                    grid.SaleOrderQty = totalSOQty;
-                    grid.GrossWt = winding.GrossWt;
+                    var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
 
-                    gridList.Add(grid);
-                }
-                else
-                {
-                    existing.GrossWt += winding.GrossWt;
-                }
+                    if (existing == null)
+                    {
+                        WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                        grid.WindingTypeId = winding.WindingTypeId;
+                        grid.SaleOrderId = winding.SaleOrderId;
+                        grid.WindingTypeName = winding.WindingTypeName;
+                        grid.SaleOrderQty = totalSOQty;
+                        grid.GrossWt = winding.GrossWt;
 
-            }
-            windinggrid.Columns.Clear();
-            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
-            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-            windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-            windinggrid.DataSource = gridList;
+                        gridList.Add(grid);
+                    }
+                    else
+                    {
+                        existing.GrossWt += winding.GrossWt;
+                    }
+
+                }
+                windinggrid.Columns.Clear();
+                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
+                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                windinggrid.DataSource = gridList;
+            }         
         }
 
         private async void RefreshGradewiseGrid()
         {
+            totalProdQty = 0;
+            prodnbalqty.Text = "";
             int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
             var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
             List<QualityGridResponse> gridList = new List<QualityGridResponse>();

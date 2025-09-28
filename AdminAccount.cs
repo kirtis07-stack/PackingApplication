@@ -71,6 +71,7 @@ namespace PackingApplication
 
             menuStrip.BackColor = Color.White;
             menuStrip.Padding = new Padding(10, 18, 0, 0);
+            menuStrip.TabIndex = 0;
 
             // POY Menu
             ToolStripMenuItem poy = new ToolStripMenuItem("POYPacking", null, POYPacking_Click)
@@ -182,6 +183,57 @@ namespace PackingApplication
                 Font = FontManager.GetFont(9, FontStyle.Regular),
                 Margin = new Padding(15, 5, 0, 0),
                 Cursor = Cursors.Hand
+            };
+            int currentIndex = 0;
+
+            menuStrip.TabStop = true;
+            menuStrip.TabIndex = 0;
+            logoutBtn.TabIndex = 1;
+
+            // When MenuStrip gets focus, highlight first item
+            menuStrip.Enter += (s, e) =>
+            {
+                if (menuStrip.Items.Count > 0)
+                {
+                    currentIndex = 0;
+                    ((ToolStripMenuItem)menuStrip.Items[currentIndex]).Select();
+                }
+            };
+
+            // Handle Tab/Shift+Tab inside MenuStrip
+            menuStrip.PreviewKeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Tab)
+                {
+                    e.IsInputKey = true;
+
+                    if (e.Shift) // backwards
+                    {
+                        if (currentIndex == 0)
+                        {
+                            // Shift+Tab on first item → leave MenuStrip, go to Logout
+                            logoutBtn.Focus();
+                        }
+                        else
+                        {
+                            currentIndex--;
+                            ((ToolStripMenuItem)menuStrip.Items[currentIndex]).Select();
+                        }
+                    }
+                    else // forwards
+                    {
+                        if (currentIndex == menuStrip.Items.Count - 1)
+                        {
+                            // Tab on last item → go to Logout
+                            logoutBtn.Focus();
+                        }
+                        else
+                        {
+                            currentIndex++;
+                            ((ToolStripMenuItem)menuStrip.Items[currentIndex]).Select();
+                        }
+                    }
+                }
             };
             logoutBtn.FlatAppearance.BorderSize = 0;
             logoutBtn.FlatAppearance.MouseOverBackColor = logoutBtn.BackColor;
