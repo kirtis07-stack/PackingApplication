@@ -184,6 +184,8 @@ namespace PackingApplication
             this.packagingboxheader = new System.Windows.Forms.Panel();
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
+            this.uptodenier = new System.Windows.Forms.Label();
+            this.fromdenier = new System.Windows.Forms.Label();
             this.req6 = new System.Windows.Forms.Label();
             this.req5 = new System.Windows.Forms.Label();
             this.req4 = new System.Windows.Forms.Label();
@@ -284,6 +286,7 @@ namespace PackingApplication
             this.lastbox.Location = new System.Drawing.Point(140, 16);
             this.lastbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastbox.Name = "lastbox";
+            this.lastbox.ReadOnly = true;
             this.lastbox.Size = new System.Drawing.Size(120, 20);
             this.lastbox.TabIndex = 7;
             // 
@@ -875,6 +878,7 @@ namespace PackingApplication
             this.grosswtno.Size = new System.Drawing.Size(110, 20);
             this.grosswtno.TabIndex = 79;
             this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
+            this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label2
             // 
@@ -913,6 +917,7 @@ namespace PackingApplication
             this.spoolwt.Size = new System.Drawing.Size(58, 20);
             this.spoolwt.TabIndex = 76;
             this.spoolwt.TextChanged += new System.EventHandler(this.SpoolWeight_TextChanged);
+            this.spoolwt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // spoolno
             // 
@@ -922,6 +927,7 @@ namespace PackingApplication
             this.spoolno.Size = new System.Drawing.Size(38, 20);
             this.spoolno.TabIndex = 1;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
+            this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // spool
             // 
@@ -2010,6 +2016,8 @@ namespace PackingApplication
             // 
             this.packagingboxpanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.packagingboxpanel.Controls.Add(this.uptodenier);
+            this.packagingboxpanel.Controls.Add(this.fromdenier);
             this.packagingboxpanel.Controls.Add(this.req6);
             this.packagingboxpanel.Controls.Add(this.req5);
             this.packagingboxpanel.Controls.Add(this.req4);
@@ -2044,6 +2052,26 @@ namespace PackingApplication
             this.packagingboxpanel.Name = "packagingboxpanel";
             this.packagingboxpanel.Size = new System.Drawing.Size(320, 163);
             this.packagingboxpanel.TabIndex = 107;
+            // 
+            // uptodenier
+            // 
+            this.uptodenier.AutoSize = true;
+            this.uptodenier.Location = new System.Drawing.Point(276, 44);
+            this.uptodenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.uptodenier.Name = "uptodenier";
+            this.uptodenier.Size = new System.Drawing.Size(67, 13);
+            this.uptodenier.TabIndex = 117;
+            this.uptodenier.Text = "Upto Denier:";
+            // 
+            // fromdenier
+            // 
+            this.fromdenier.AutoSize = true;
+            this.fromdenier.Location = new System.Drawing.Point(140, 44);
+            this.fromdenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.fromdenier.Name = "fromdenier";
+            this.fromdenier.Size = new System.Drawing.Size(67, 13);
+            this.fromdenier.TabIndex = 116;
+            this.fromdenier.Text = "From Denier:";
             // 
             // req6
             // 
@@ -2467,6 +2495,8 @@ namespace PackingApplication
         private Timer sidebarTimer;
         private Button saveprint;
         private System.Windows.Forms.Label spoolweight;
+        private System.Windows.Forms.Label fromdenier;
+        private System.Windows.Forms.Label uptodenier;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
