@@ -125,12 +125,12 @@ namespace PackingApplication
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.textBox1.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.textBox2.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.textBox3.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox4.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.remark.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.remarks.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -1184,26 +1184,31 @@ namespace PackingApplication
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
                     btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
                     btnDelete.FlatAppearance.BorderSize = 0;
-                    btnEdit.TabIndex = 5;
+                    btnDelete.TabIndex = 5;
                     btnDelete.Paint += (s, f) =>
                     {
-                        var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
+                        var button = (System.Windows.Forms.Button)s;
+                        var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
+
+                        // button color change for enabled/disabled
+                        Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
+                        Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
+                        Color foreColor = button.Enabled ? button.ForeColor : Color.DarkGray;
 
                         using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
-                        using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
-                        using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
+                        using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(backColor))
                         {
                             f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
                             f.Graphics.FillPath(brush, path);
                             f.Graphics.DrawPath(borderPen, path);
 
                             TextRenderer.DrawText(
                                 f.Graphics,
-                                btnDelete.Text,
-                                btnDelete.Font,
+                                button.Text,
+                                button.Font,
                                 rect,
-                                btnDelete.ForeColor,
+                                foreColor,
                                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
                             );
                         }
@@ -1336,12 +1341,13 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 spoolwterror.Visible = true;
+                CalculateTareWeight();
             }
             else
             {
-                CalculateTareWeight();
                 spoolwterror.Text = "";
                 spoolwterror.Visible = false;
+                CalculateTareWeight();
             }
         }
 
@@ -1350,12 +1356,13 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 palletwterror.Visible = true;
+                CalculateTareWeight();
             }
             else
             {
-                CalculateTareWeight();
                 palletwterror.Text = "";
                 palletwterror.Visible = false;
+                CalculateTareWeight();
             }
         }
 
@@ -1419,14 +1426,20 @@ namespace PackingApplication
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || string.IsNullOrWhiteSpace(copsitemwt.Text))
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 spoolnoerror.Visible = true;
+                tarewt.Text = "";
+            }
+            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+            {
+                spoolwt.Text = "";
             }
             else
             {
                 spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
                 CalculateWeightPerCop();
+                CalculateTareWeight();
                 spoolnoerror.Text = "";
                 spoolnoerror.Visible = false;
             }
@@ -1545,6 +1558,8 @@ namespace PackingApplication
                 this.tarewt.Text = "";
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
+                this.boxpalletstock.Text = "";
+                this.copsstock.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("BCF Packing added successfully!",
@@ -1628,6 +1643,16 @@ namespace PackingApplication
             {
                 boxnoerror.Text = "Please select prefix";
                 boxnoerror.Visible = true;
+                isValid = false;
+            }
+
+            if (BoxItemList.SelectedIndex <= 0)
+            {
+                isValid = false;
+            }
+
+            if (CopsItemList.SelectedIndex <= 0)
+            {
                 isValid = false;
             }
 

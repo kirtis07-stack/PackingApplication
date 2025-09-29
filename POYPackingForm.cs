@@ -152,12 +152,12 @@ namespace PackingApplication
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.textBox2.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);         
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox4.Font = FontManager.GetFont(8F, FontStyle.Regular);           
+            this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);           
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.remark.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.remarks.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -1214,7 +1214,7 @@ namespace PackingApplication
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
                     btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); 
                     btnDelete.FlatAppearance.BorderSize = 0;
-                    btnEdit.TabIndex = 5;
+                    btnDelete.TabIndex = 5;
                     btnDelete.Paint += (s, f) =>
                     {
                         var button = (System.Windows.Forms.Button)s;
@@ -1371,6 +1371,7 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 spoolwterror.Visible = true;
+                CalculateTareWeight();
             }
             else
             {
@@ -1385,13 +1386,13 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 palletwterror.Visible = true;
+                CalculateTareWeight();
             }
             else
             {
-
-                CalculateTareWeight();
                 palletwterror.Text = "";
                 palletwterror.Visible = false;
+                CalculateTareWeight();
             }
         }
 
@@ -1402,7 +1403,7 @@ namespace PackingApplication
             decimal.TryParse(spoolwt.Text, out num1);
             decimal.TryParse(palletwtno.Text, out num2);
 
-            tarewt.Text = (num1 + num2).ToString();
+            tarewt.Text = (num1 + num2).ToString("F3");
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
@@ -1443,7 +1444,7 @@ namespace PackingApplication
             decimal.TryParse(tarewt.Text, out num2);
             if (num1 > num2)
             {
-                netwt.Text = (num1 - num2).ToString();
+                netwt.Text = (num1 - num2).ToString("F3");
             }
         }
 
@@ -1454,13 +1455,19 @@ namespace PackingApplication
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || string.IsNullOrWhiteSpace(copsitemwt.Text))
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 spoolnoerror.Visible = true;
+                tarewt.Text = "";
+            }
+            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+            {
+                spoolwt.Text = "";
             }
             else {
                 spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
                 CalculateWeightPerCop();
+                CalculateTareWeight();
                 spoolnoerror.Text = "";
                 spoolnoerror.Visible = false;
             }
@@ -1580,6 +1587,8 @@ namespace PackingApplication
                 this.tarewt.Text = "";
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
+                this.boxpalletstock.Text = "";
+                this.copsstock.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("POY Packing added successfully!",
@@ -1743,6 +1752,16 @@ namespace PackingApplication
             {
                 boxnoerror.Text = "Please select prefix";
                 boxnoerror.Visible = true;
+                isValid = false;
+            }
+
+            if (BoxItemList.SelectedIndex <= 0)
+            {
+                isValid = false;
+            }
+
+            if (CopsItemList.SelectedIndex <= 0)
+            {
                 isValid = false;
             }
 

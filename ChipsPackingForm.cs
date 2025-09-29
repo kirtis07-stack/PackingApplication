@@ -903,6 +903,7 @@ namespace PackingApplication
                 this.tarewt.Text = "";
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
+                this.bagstockvalue.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("Chips Packing added successfully!",

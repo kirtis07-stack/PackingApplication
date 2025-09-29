@@ -117,12 +117,12 @@ namespace PackingApplication
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.textBox1.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.textBox2.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.textBox3.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox4.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.remark.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.remarks.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -970,6 +970,8 @@ namespace PackingApplication
                 this.tarewt.Text = "";
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
+                this.boxpalletstock.Text = "";
+                this.copsstock.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("DTY Packing added successfully!",

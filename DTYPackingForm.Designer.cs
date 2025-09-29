@@ -156,11 +156,11 @@ namespace PackingApplication
             this.boxweight = new System.Windows.Forms.Label();
             this.boxpalletitemwt = new System.Windows.Forms.TextBox();
             this.boxstock = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.boxpalletstock = new System.Windows.Forms.TextBox();
             this.copweight = new System.Windows.Forms.Label();
             this.copsitemwt = new System.Windows.Forms.TextBox();
             this.copstock = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.copsstock = new System.Windows.Forms.TextBox();
             this.soerror = new System.Windows.Forms.Label();
             this.copynoerror = new System.Windows.Forms.Label();
             this.qualityerror = new System.Windows.Forms.Label();
@@ -1469,11 +1469,11 @@ namespace PackingApplication
             this.packagingboxpanel.Controls.Add(this.boxweight);
             this.packagingboxpanel.Controls.Add(this.boxpalletitemwt);
             this.packagingboxpanel.Controls.Add(this.boxstock);
-            this.packagingboxpanel.Controls.Add(this.textBox4);
+            this.packagingboxpanel.Controls.Add(this.boxpalletstock);
             this.packagingboxpanel.Controls.Add(this.copweight);
             this.packagingboxpanel.Controls.Add(this.copsitemwt);
             this.packagingboxpanel.Controls.Add(this.copstock);
-            this.packagingboxpanel.Controls.Add(this.textBox2);
+            this.packagingboxpanel.Controls.Add(this.copsstock);
             this.packagingboxpanel.Controls.Add(this.soerror);
             this.packagingboxpanel.Controls.Add(this.copynoerror);
             this.packagingboxpanel.Controls.Add(this.qualityerror);
@@ -1723,13 +1723,13 @@ namespace PackingApplication
             this.boxstock.TabIndex = 42;
             this.boxstock.Text = "Box/Pallet Stock:";
             // 
-            // textBox4
+            // boxpalletstock
             // 
-            this.textBox4.Location = new System.Drawing.Point(276, 100);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(120, 20);
-            this.textBox4.TabIndex = 9;
+            this.boxpalletstock.Location = new System.Drawing.Point(276, 100);
+            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.boxpalletstock.Name = "boxpalletstock";
+            this.boxpalletstock.Size = new System.Drawing.Size(120, 20);
+            this.boxpalletstock.TabIndex = 9;
             // 
             // copweight
             // 
@@ -1761,13 +1761,13 @@ namespace PackingApplication
             this.copstock.TabIndex = 35;
             this.copstock.Text = "Cops Stock:";
             // 
-            // textBox2
+            // copsstock
             // 
-            this.textBox2.Location = new System.Drawing.Point(276, 141);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(120, 20);
-            this.textBox2.TabIndex = 12;
+            this.copsstock.Location = new System.Drawing.Point(276, 141);
+            this.copsstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copsstock.Name = "copsstock";
+            this.copsstock.Size = new System.Drawing.Size(120, 20);
+            this.copsstock.TabIndex = 12;
             // 
             // soerror
             // 
@@ -2011,7 +2011,7 @@ namespace PackingApplication
         private System.Windows.Forms.ComboBox BoxItemList;
         private System.Windows.Forms.Label productiontype;
         private System.Windows.Forms.Label quality;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox boxpalletstock;
         private System.Windows.Forms.Label boxstock;
         private System.Windows.Forms.Label saleorderno;
         private System.Windows.Forms.TextBox textBox3;
@@ -2028,7 +2028,7 @@ namespace PackingApplication
         private System.Windows.Forms.ComboBox ComPortList;
         private System.Windows.Forms.Label windingtype;
         private System.Windows.Forms.ComboBox WindingTypeList;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox copsstock;
         private System.Windows.Forms.Label comport;
         private System.Windows.Forms.Label copstock;
         private System.Windows.Forms.TextBox textBox1;

@@ -35,9 +35,9 @@ namespace PackingApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lineno = new System.Windows.Forms.Label();
             this.department = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -60,12 +60,12 @@ namespace PackingApplication
             this.copweight = new System.Windows.Forms.Label();
             this.copstock = new System.Windows.Forms.Label();
             this.copsitemwt = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.copsstock = new System.Windows.Forms.TextBox();
             this.boxtype = new System.Windows.Forms.Label();
             this.boxweight = new System.Windows.Forms.Label();
             this.boxpalletitemwt = new System.Windows.Forms.TextBox();
             this.boxstock = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.boxpalletstock = new System.Windows.Forms.TextBox();
             this.productiontype = new System.Windows.Forms.Label();
             this.remark = new System.Windows.Forms.Label();
             this.remarks = new System.Windows.Forms.TextBox();
@@ -204,6 +204,8 @@ namespace PackingApplication
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.rightpanel.SuspendLayout();
             this.gradewiseprodn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
@@ -463,13 +465,13 @@ namespace PackingApplication
             this.copsitemwt.Size = new System.Drawing.Size(120, 20);
             this.copsitemwt.TabIndex = 11;
             // 
-            // textBox2
+            // copsstock
             // 
-            this.textBox2.Location = new System.Drawing.Point(276, 141);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(120, 20);
-            this.textBox2.TabIndex = 12;
+            this.copsstock.Location = new System.Drawing.Point(276, 141);
+            this.copsstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copsstock.Name = "copsstock";
+            this.copsstock.Size = new System.Drawing.Size(120, 20);
+            this.copsstock.TabIndex = 12;
             // 
             // boxtype
             // 
@@ -511,13 +513,13 @@ namespace PackingApplication
             this.boxstock.TabIndex = 42;
             this.boxstock.Text = "Box/Pallet Stock:";
             // 
-            // textBox4
+            // boxpalletstock
             // 
-            this.textBox4.Location = new System.Drawing.Point(276, 100);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(120, 20);
-            this.textBox4.TabIndex = 9;
+            this.boxpalletstock.Location = new System.Drawing.Point(276, 100);
+            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.boxpalletstock.Name = "boxpalletstock";
+            this.boxpalletstock.Size = new System.Drawing.Size(120, 20);
+            this.boxpalletstock.TabIndex = 9;
             // 
             // productiontype
             // 
@@ -1126,14 +1128,14 @@ namespace PackingApplication
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.qualityqty.BackgroundColor = System.Drawing.Color.White;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.DataSource = this.qualityandqty;
@@ -1197,14 +1199,14 @@ namespace PackingApplication
             this.windinggrid.AutoGenerateColumns = false;
             this.windinggrid.BackgroundColor = System.Drawing.Color.White;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.DataSource = this.windingqty;
@@ -1272,14 +1274,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -2023,6 +2025,8 @@ namespace PackingApplication
             // 
             this.packagingboxpanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.packagingboxpanel.Controls.Add(this.label8);
+            this.packagingboxpanel.Controls.Add(this.label7);
             this.packagingboxpanel.Controls.Add(this.uptodenier);
             this.packagingboxpanel.Controls.Add(this.fromdenier);
             this.packagingboxpanel.Controls.Add(this.req6);
@@ -2046,11 +2050,11 @@ namespace PackingApplication
             this.packagingboxpanel.Controls.Add(this.boxweight);
             this.packagingboxpanel.Controls.Add(this.boxpalletitemwt);
             this.packagingboxpanel.Controls.Add(this.boxstock);
-            this.packagingboxpanel.Controls.Add(this.textBox4);
+            this.packagingboxpanel.Controls.Add(this.boxpalletstock);
             this.packagingboxpanel.Controls.Add(this.copweight);
             this.packagingboxpanel.Controls.Add(this.copsitemwt);
             this.packagingboxpanel.Controls.Add(this.copstock);
-            this.packagingboxpanel.Controls.Add(this.textBox2);
+            this.packagingboxpanel.Controls.Add(this.copsstock);
             this.packagingboxpanel.Controls.Add(this.soerror);
             this.packagingboxpanel.Controls.Add(this.copynoerror);
             this.packagingboxpanel.Controls.Add(this.qualityerror);
@@ -2257,6 +2261,28 @@ namespace PackingApplication
             // 
             this.sidebarTimer.Interval = 10;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(84, 84);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 13);
+            this.label7.TabIndex = 118;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(55, 126);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(11, 13);
+            this.label8.TabIndex = 119;
+            this.label8.Text = "*";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // POYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2351,12 +2377,12 @@ namespace PackingApplication
         private System.Windows.Forms.Label copweight;
         private System.Windows.Forms.Label copstock;
         private System.Windows.Forms.TextBox copsitemwt;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox copsstock;
         private System.Windows.Forms.Label boxtype;
         private System.Windows.Forms.Label boxweight;
         private System.Windows.Forms.TextBox boxpalletitemwt;
         private System.Windows.Forms.Label boxstock;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox boxpalletstock;
         private System.Windows.Forms.Label productiontype;
         private System.Windows.Forms.Label remark;
         private System.Windows.Forms.TextBox remarks;
@@ -2504,6 +2530,8 @@ namespace PackingApplication
         private System.Windows.Forms.Label spoolweight;
         private System.Windows.Forms.Label fromdenier;
         private System.Windows.Forms.Label uptodenier;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

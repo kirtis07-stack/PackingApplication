@@ -125,7 +125,7 @@ namespace PackingApplication
             this.BoxItemList = new System.Windows.Forms.ComboBox();
             this.productiontype = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.boxpalletstock = new System.Windows.Forms.TextBox();
             this.boxstock = new System.Windows.Forms.Label();
             this.saleorderno = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -142,7 +142,7 @@ namespace PackingApplication
             this.ComPortList = new System.Windows.Forms.ComboBox();
             this.windingtype = new System.Windows.Forms.Label();
             this.WindingTypeList = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.copsstock = new System.Windows.Forms.TextBox();
             this.comport = new System.Windows.Forms.Label();
             this.copstock = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -224,6 +224,8 @@ namespace PackingApplication
             this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.wgroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windingqty)).BeginInit();
@@ -1271,13 +1273,13 @@ namespace PackingApplication
             this.quality.TabIndex = 18;
             this.quality.Text = "Quality:";
             // 
-            // textBox4
+            // boxpalletstock
             // 
-            this.textBox4.Location = new System.Drawing.Point(276, 100);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(120, 20);
-            this.textBox4.TabIndex = 9;
+            this.boxpalletstock.Location = new System.Drawing.Point(276, 100);
+            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.boxpalletstock.Name = "boxpalletstock";
+            this.boxpalletstock.Size = new System.Drawing.Size(120, 20);
+            this.boxpalletstock.TabIndex = 9;
             // 
             // boxstock
             // 
@@ -1442,13 +1444,13 @@ namespace PackingApplication
             this.WindingTypeList.TabIndex = 3;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             // 
-            // textBox2
+            // copsstock
             // 
-            this.textBox2.Location = new System.Drawing.Point(276, 141);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(120, 20);
-            this.textBox2.TabIndex = 12;
+            this.copsstock.Location = new System.Drawing.Point(276, 141);
+            this.copsstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copsstock.Name = "copsstock";
+            this.copsstock.Size = new System.Drawing.Size(120, 20);
+            this.copsstock.TabIndex = 12;
             // 
             // comport
             // 
@@ -2142,6 +2144,8 @@ namespace PackingApplication
             // 
             this.packagingboxpanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.packagingboxpanel.Controls.Add(this.label8);
+            this.packagingboxpanel.Controls.Add(this.label7);
             this.packagingboxpanel.Controls.Add(this.uptodenier);
             this.packagingboxpanel.Controls.Add(this.fromdenier);
             this.packagingboxpanel.Controls.Add(this.req6);
@@ -2165,11 +2169,11 @@ namespace PackingApplication
             this.packagingboxpanel.Controls.Add(this.boxweight);
             this.packagingboxpanel.Controls.Add(this.boxpalletitemwt);
             this.packagingboxpanel.Controls.Add(this.boxstock);
-            this.packagingboxpanel.Controls.Add(this.textBox4);
+            this.packagingboxpanel.Controls.Add(this.boxpalletstock);
             this.packagingboxpanel.Controls.Add(this.copweight);
             this.packagingboxpanel.Controls.Add(this.copsitemwt);
             this.packagingboxpanel.Controls.Add(this.copstock);
-            this.packagingboxpanel.Controls.Add(this.textBox2);
+            this.packagingboxpanel.Controls.Add(this.copsstock);
             this.packagingboxpanel.Controls.Add(this.soerror);
             this.packagingboxpanel.Controls.Add(this.copynoerror);
             this.packagingboxpanel.Controls.Add(this.qualityerror);
@@ -2424,6 +2428,28 @@ namespace PackingApplication
             this.orderdetails1.TabIndex = 0;
             this.orderdetails1.TabStop = false;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(84, 84);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 13);
+            this.label7.TabIndex = 119;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(55, 126);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(11, 13);
+            this.label8.TabIndex = 120;
+            this.label8.Text = "*";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // BCFPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2567,7 +2593,7 @@ namespace PackingApplication
         private System.Windows.Forms.ComboBox BoxItemList;
         private System.Windows.Forms.Label productiontype;
         private System.Windows.Forms.Label quality;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox boxpalletstock;
         private System.Windows.Forms.Label boxstock;
         private System.Windows.Forms.Label saleorderno;
         private System.Windows.Forms.TextBox textBox3;
@@ -2584,7 +2610,7 @@ namespace PackingApplication
         private System.Windows.Forms.ComboBox ComPortList;
         private System.Windows.Forms.Label windingtype;
         private System.Windows.Forms.ComboBox WindingTypeList;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox copsstock;
         private System.Windows.Forms.Label comport;
         private System.Windows.Forms.Label copstock;
         private System.Windows.Forms.TextBox textBox1;
@@ -2686,5 +2712,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label uptodenier;
         private System.Windows.Forms.TextBox copsitemwt;
         private System.Windows.Forms.TextBox boxpalletitemwt;
+        private Label label7;
+        private Label label8;
     }
 }
