@@ -6,6 +6,7 @@ using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
@@ -27,6 +29,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
@@ -35,8 +38,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 using File = System.IO.File;
-using PdfiumViewer;
-using System.Drawing.Printing;
 
 namespace PackingApplication
 {
@@ -1195,13 +1196,14 @@ namespace PackingApplication
                     System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, qty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;  
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); 
                     btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
                     btnEdit.FlatAppearance.BorderSize = 0;
                     btnEdit.TabIndex = 4;
+                    btnEdit.TabStop = true;
                     btnEdit.Paint += (s, f) =>
                     {
                         var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
@@ -1215,6 +1217,11 @@ namespace PackingApplication
                             f.Graphics.FillPath(brush, path);
 
                             f.Graphics.DrawPath(borderPen, path);
+
+                            if (btnEdit.Focused)
+                            {
+                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                            }
 
                             TextRenderer.DrawText(
                                 f.Graphics,
@@ -1236,6 +1243,7 @@ namespace PackingApplication
                     btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); 
                     btnDelete.FlatAppearance.BorderSize = 0;
                     btnDelete.TabIndex = 5;
+                    btnDelete.TabStop = true;
                     btnDelete.Paint += (s, f) =>
                     {
                         var button = (System.Windows.Forms.Button)s;
@@ -1253,6 +1261,11 @@ namespace PackingApplication
                             f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                             f.Graphics.FillPath(brush, path);
                             f.Graphics.DrawPath(borderPen, path);
+
+                            if (btnDelete.Focused)
+                            {
+                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                            }
 
                             TextRenderer.DrawText(
                                 f.Graphics,
@@ -1286,6 +1299,7 @@ namespace PackingApplication
 
                     qnty.Text = "";
                     PalletTypeList.SelectedIndex = 0;
+                    PalletTypeList.Focus();
                 }
                 else
                 {
@@ -1322,6 +1336,7 @@ namespace PackingApplication
 
             currentY = y; // Reset currentY for next added row
             rowCount = srNo - 1;
+            PalletTypeList.Focus();
         }
 
         private void AddHeader()
@@ -1353,12 +1368,12 @@ namespace PackingApplication
         private void editPallet_Click(object sender, EventArgs e)
         {
             var btn = sender as System.Windows.Forms.Button;
-            var data = btn.Tag as Tuple<ItemResponse, int>;
+            var data = btn.Tag as Tuple<ItemResponse, System.Windows.Forms.Label>;
 
             if (data != null)
             {
                 ItemResponse item = data.Item1;
-                int quantity = data.Item2;
+                int quantity = Convert.ToInt32(data.Item2.Text);
 
                 foreach (ItemResponse entry in PalletTypeList.Items)
                 {
@@ -1384,6 +1399,7 @@ namespace PackingApplication
                         }
                     }
                 }
+                PalletTypeList.Focus();
             }
         }
 
