@@ -343,6 +343,7 @@ namespace PackingApplication
             this.prowner.TabIndex = 2;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
+            this.prowner.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prwtps
             // 
@@ -355,6 +356,7 @@ namespace PackingApplication
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
+            this.prwtps.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prcompany
             // 
@@ -366,6 +368,7 @@ namespace PackingApplication
             this.prcompany.TabIndex = 1;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
+            this.prcompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prqrcode
             // 
@@ -378,6 +381,7 @@ namespace PackingApplication
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
+            this.prqrcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prhindi
             // 
@@ -390,6 +394,7 @@ namespace PackingApplication
             this.prhindi.Text = "Print Hindi Words";
             this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prhindi.UseVisualStyleBackColor = true;
+            this.prhindi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // pruser
             // 
@@ -402,6 +407,7 @@ namespace PackingApplication
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
+            this.pruser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prdate
             // 
@@ -414,6 +420,7 @@ namespace PackingApplication
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prdate.UseVisualStyleBackColor = true;
+            this.prdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // printingdetailsheader
             // 

@@ -595,9 +595,17 @@ namespace PackingApplication
                     QualityList.DisplayMember = "Name";
                     QualityList.ValueMember = "QualityId";
                     QualityList.SelectedIndex = 0;
-                    if (QualityList.Items.Count > 0)
+                    if (QualityList.Items.Count > 1)  
                     {
                         QualityList.SelectedIndex = 1;
+                    }
+                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                    {
+                        QualityList.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        QualityList.SelectedIndex = -1; // no selection possible
                     }
 
                     getSaleOrderList(productionRequest.LotId);
@@ -2026,6 +2034,19 @@ namespace PackingApplication
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true; // Reject the input
+            }
+        }
+
+        private void checkBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+                if (cb != null)
+                {
+                    cb.Checked = !cb.Checked; // toggle the checkbox
+                    e.Handled = true;          // prevent beep
+                }
             }
         }
     }

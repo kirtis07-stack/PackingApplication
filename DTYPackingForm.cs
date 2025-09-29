@@ -1297,5 +1297,18 @@ namespace PackingApplication
                 e.Handled = true; // Reject the input
             }
         }
+
+        private void checkBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+                if (cb != null)
+                {
+                    cb.Checked = !cb.Checked; // toggle the checkbox
+                    e.Handled = true;          // prevent beep
+                }
+            }
+        }
     }
 }
