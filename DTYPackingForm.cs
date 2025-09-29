@@ -200,6 +200,7 @@ namespace PackingApplication
             this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 

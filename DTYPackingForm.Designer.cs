@@ -300,13 +300,12 @@ namespace PackingApplication
             // 
             // printingdetailslayout
             // 
-            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailslayout.BackColor = System.Drawing.Color.White;
             this.printingdetailslayout.ColumnCount = 1;
             this.printingdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.printingdetailslayout.Controls.Add(this.panel3, 0, 1);
             this.printingdetailslayout.Controls.Add(this.printingdetailsheader, 0, 0);
-            this.printingdetailslayout.Location = new System.Drawing.Point(422, 3);
+            this.printingdetailslayout.Location = new System.Drawing.Point(418, 1);
             this.printingdetailslayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.printingdetailslayout.Name = "printingdetailslayout";
             this.printingdetailslayout.Padding = new System.Windows.Forms.Padding(2);
@@ -443,13 +442,12 @@ namespace PackingApplication
             // 
             // lastboxlayout
             // 
-            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxlayout.BackColor = System.Drawing.Color.White;
             this.lastboxlayout.ColumnCount = 1;
             this.lastboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.lastboxlayout.Controls.Add(this.lastboxpanel, 0, 1);
             this.lastboxlayout.Controls.Add(this.lastboxheader, 0, 0);
-            this.lastboxlayout.Location = new System.Drawing.Point(422, 84);
+            this.lastboxlayout.Location = new System.Drawing.Point(418, 84);
             this.lastboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastboxlayout.Name = "lastboxlayout";
             this.lastboxlayout.Padding = new System.Windows.Forms.Padding(2);
@@ -1018,13 +1016,12 @@ namespace PackingApplication
             // 
             // weighboxlayout
             // 
-            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.weighboxlayout.BackColor = System.Drawing.Color.White;
             this.weighboxlayout.ColumnCount = 1;
             this.weighboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.weighboxlayout.Controls.Add(this.weighboxpanel, 0, 1);
             this.weighboxlayout.Controls.Add(this.weighboxheader, 0, 0);
-            this.weighboxlayout.Location = new System.Drawing.Point(422, 172);
+            this.weighboxlayout.Location = new System.Drawing.Point(418, 172);
             this.weighboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.weighboxlayout.Name = "weighboxlayout";
             this.weighboxlayout.Padding = new System.Windows.Forms.Padding(2);
@@ -1818,8 +1815,7 @@ namespace PackingApplication
             // 
             // remarks
             // 
-            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.remarks.Location = new System.Drawing.Point(422, 343);
+            this.remarks.Location = new System.Drawing.Point(418, 343);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
@@ -1843,9 +1839,8 @@ namespace PackingApplication
             // 
             // remark
             // 
-            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
-            this.remark.Location = new System.Drawing.Point(419, 327);
+            this.remark.Location = new System.Drawing.Point(415, 327);
             this.remark.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.remark.Name = "remark";
             this.remark.Size = new System.Drawing.Size(52, 13);

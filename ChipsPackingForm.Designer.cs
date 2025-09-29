@@ -313,12 +313,11 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rowMaterial.Size = new System.Drawing.Size(1178, 76);
+            this.rowMaterial.Size = new System.Drawing.Size(684, 76);
             this.rowMaterial.TabIndex = 2;
             // 
             // printingdetailslayout
             // 
-            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailslayout.BackColor = System.Drawing.Color.White;
             this.printingdetailslayout.ColumnCount = 1;
             this.printingdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -461,7 +460,6 @@ namespace PackingApplication
             // 
             // lastboxlayout
             // 
-            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxlayout.BackColor = System.Drawing.Color.White;
             this.lastboxlayout.ColumnCount = 1;
             this.lastboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1036,7 +1034,6 @@ namespace PackingApplication
             // 
             // weighboxlayout
             // 
-            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.weighboxlayout.BackColor = System.Drawing.Color.White;
             this.weighboxlayout.ColumnCount = 1;
             this.weighboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1137,7 +1134,7 @@ namespace PackingApplication
             this.grosswterror.Location = new System.Drawing.Point(125, 76);
             this.grosswterror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.grosswterror.Name = "grosswterror";
-            this.grosswterror.Size = new System.Drawing.Size(64, 13);
+            this.grosswterror.Size = new System.Drawing.Size(0, 13);
             this.grosswterror.TabIndex = 89;
             this.grosswterror.Visible = false;
             // 
@@ -1148,7 +1145,7 @@ namespace PackingApplication
             this.palletwterror.Location = new System.Drawing.Point(2, 76);
             this.palletwterror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.palletwterror.Name = "palletwterror";
-            this.palletwterror.Size = new System.Drawing.Size(64, 13);
+            this.palletwterror.Size = new System.Drawing.Size(0, 13);
             this.palletwterror.TabIndex = 88;
             this.palletwterror.Visible = false;
             // 
@@ -1696,7 +1693,6 @@ namespace PackingApplication
             // 
             // remarks
             // 
-            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(416, 347);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
@@ -1721,7 +1717,6 @@ namespace PackingApplication
             // 
             // remark
             // 
-            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
             this.remark.Location = new System.Drawing.Point(413, 329);
             this.remark.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
