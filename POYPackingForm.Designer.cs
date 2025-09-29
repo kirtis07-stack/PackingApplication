@@ -986,7 +986,7 @@ namespace PackingApplication
             this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.PalletTypeList.Name = "PalletTypeList";
             this.PalletTypeList.Size = new System.Drawing.Size(100, 21);
-            this.PalletTypeList.TabIndex = 80;
+            this.PalletTypeList.TabIndex = 1;
             // 
             // pquantity
             // 
@@ -1005,7 +1005,7 @@ namespace PackingApplication
             this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.qnty.Name = "qnty";
             this.qnty.Size = new System.Drawing.Size(48, 20);
-            this.qnty.TabIndex = 82;
+            this.qnty.TabIndex = 2;
             // 
             // addqty
             // 
@@ -1021,8 +1021,8 @@ namespace PackingApplication
             this.addqty.Location = new System.Drawing.Point(256, 4);
             this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.addqty.Name = "addqty";
-            this.addqty.Size = new System.Drawing.Size(48, 17);
-            this.addqty.TabIndex = 83;
+            this.addqty.Size = new System.Drawing.Size(48, 19);
+            this.addqty.TabIndex = 3;
             this.addqty.Text = "Add";
             this.addqty.UseVisualStyleBackColor = false;
             this.addqty.Click += new System.EventHandler(this.addqty_Click);

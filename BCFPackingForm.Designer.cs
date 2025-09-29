@@ -836,7 +836,7 @@ namespace PackingApplication
             this.addqty.Location = new System.Drawing.Point(256, 4);
             this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.addqty.Name = "addqty";
-            this.addqty.Size = new System.Drawing.Size(48, 17);
+            this.addqty.Size = new System.Drawing.Size(48, 19);
             this.addqty.TabIndex = 83;
             this.addqty.Text = "Add";
             this.addqty.UseVisualStyleBackColor = false;

@@ -1127,8 +1127,19 @@ namespace PackingApplication
                 if (existingPanel != null)
                 {
                     var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
-                    tag.Item2.Text = qty.ToString(); 
+                    tag.Item2.Text = qty.ToString();
                     //MessageBox.Show("Item quantity updated.");
+                    foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
+                    {
+                        if (control.Text == "Remove")
+                        {
+                            control.Enabled = true;
+                        }
+                    }
+
+                    addqty.Text = "Add"; // reset button text back to Add
+                    qnty.Text = "";
+                    PalletTypeList.SelectedIndex = 0;
                     return;
                 }
 
@@ -1169,6 +1180,7 @@ namespace PackingApplication
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); 
                     btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
                     btnEdit.FlatAppearance.BorderSize = 0;
+                    btnEdit.TabIndex = 4;
                     btnEdit.Paint += (s, f) =>
                     {
                         var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
@@ -1202,25 +1214,31 @@ namespace PackingApplication
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
                     btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230); 
                     btnDelete.FlatAppearance.BorderSize = 0;
+                    btnEdit.TabIndex = 5;
                     btnDelete.Paint += (s, f) =>
                     {
-                        var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
+                        var button = (System.Windows.Forms.Button)s;
+                        var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
+
+                        // button color change for enabled/disabled
+                        Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
+                        Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
+                        Color foreColor = button.Enabled ? button.ForeColor : Color.DarkGray;
 
                         using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
-                        using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
-                        using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
+                        using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(backColor))
                         {
                             f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
                             f.Graphics.FillPath(brush, path);
                             f.Graphics.DrawPath(borderPen, path);
 
                             TextRenderer.DrawText(
                                 f.Graphics,
-                                btnDelete.Text,
-                                btnDelete.Font,
+                                button.Text,
+                                button.Font,
                                 rect,
-                                btnDelete.ForeColor,
+                                foreColor,
                                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
                             );
                         }
@@ -1245,18 +1263,23 @@ namespace PackingApplication
                     flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
                     addqty.Text = "Add";
 
-                    getPalletItemList();
                     qnty.Text = "";
-
+                    PalletTypeList.SelectedIndex = 0;
                 }
                 else
                 {
-                    MessageBox.Show("Item already added.");
+                    MessageBox.Show("Item already added.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Please select an item.");
+                MessageBox.Show("Please select an item.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -1327,6 +1350,19 @@ namespace PackingApplication
 
                 qnty.Text = quantity.ToString();
                 addqty.Text = "Update";
+
+                //disable remove button when edit row
+                var rowPanel = btn.Parent as Panel;
+                if (rowPanel != null)
+                {
+                    foreach (var control in rowPanel.Controls.OfType<System.Windows.Forms.Button>())
+                    {
+                        if (control.Text == "Remove")
+                        {
+                            control.Enabled = false;
+                        }
+                    }
+                }
             }
         }
 
