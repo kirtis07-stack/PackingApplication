@@ -592,6 +592,12 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
+            if (CopsItemList.SelectedIndex <= 0)
+            {
+                copsitemwt.Text = "";
+                return;
+            }
+
             if (CopsItemList.SelectedValue != null)
             {
                 ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
@@ -613,6 +619,13 @@ namespace PackingApplication
         private void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
+
+            if (BoxItemList.SelectedIndex <= 0)
+            {
+                boxpalletitemwt.Text = "";
+                palletwtno.Text = "";
+                return;
+            }
 
             if (BoxItemList.SelectedValue != null)
             {

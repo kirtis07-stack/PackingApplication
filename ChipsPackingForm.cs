@@ -582,6 +582,12 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
+            if (CopsItemList.SelectedIndex <= 0)
+            {
+                copsitemwt.Text = "";
+                return;
+            }
+
             if (CopsItemList.SelectedValue != null)
             {
                 ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
