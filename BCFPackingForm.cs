@@ -47,6 +47,7 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
             LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
             MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
@@ -686,7 +687,11 @@ namespace PackingApplication
                 WindingTypeResponse selectedWindingType = (WindingTypeResponse)WindingTypeList.SelectedItem;
                 int selectedWindingTypeId = selectedWindingType.WindingTypeId;
 
-                productionRequest.WindingTypeId = selectedWindingTypeId;
+                if (selectedWindingTypeId > 0)
+                {
+                    productionRequest.WindingTypeId = selectedWindingTypeId;
+                    RefreshWindingGrid();
+                }
             }
         }
 
@@ -727,7 +732,6 @@ namespace PackingApplication
                     }
                     grdsoqty.Text = totalSOQty.ToString();
 
-                    RefreshWindingGrid();
                     RefreshGradewiseGrid();
                     RefreshLastBoxDetails();
                 }
