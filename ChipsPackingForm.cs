@@ -764,9 +764,25 @@ namespace PackingApplication
             }
             else
             {
-                CalculateNetWeight();
-                grosswterror.Text = "";
-                grosswterror.Visible = false;
+                if (!string.IsNullOrWhiteSpace(tarewt.Text))
+                {
+                    decimal gross, tare;
+                    if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
+                    {
+                        if (gross > tare)
+                        {
+                            CalculateNetWeight();
+                            grosswterror.Text = "";
+                            grosswterror.Visible = false;
+                        }
+                        else
+                        {
+                            grosswterror.Text = "Gross Weight should be greater than Tare Weight";
+                            grosswterror.Visible = false;
+                        }
+                    }
+                }
+
             }
         }
 
@@ -777,7 +793,10 @@ namespace PackingApplication
             int.TryParse(grosswtno.Text, out num1);
             int.TryParse(tarewt.Text, out num2);
 
-            netwt.Text = (num1 - num2).ToString();
+            if (num1 > num2)
+            {
+                netwt.Text = (num1 - num2).ToString();
+            }
         }
 
         private void NetWeight_TextChanged(object sender, EventArgs e)

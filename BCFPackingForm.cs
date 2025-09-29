@@ -1346,9 +1346,25 @@ namespace PackingApplication
             }
             else
             {
-                CalculateNetWeight();
-                grosswterror.Text = "";
-                grosswterror.Visible = false;
+                if (!string.IsNullOrWhiteSpace(tarewt.Text))
+                {
+                    decimal gross, tare;
+                    if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
+                    {
+                        if (gross > tare)
+                        {
+                            CalculateNetWeight();
+                            grosswterror.Text = "";
+                            grosswterror.Visible = false;
+                        }
+                        else
+                        {
+                            grosswterror.Text = "Gross Weight should be greater than Tare Weight";
+                            grosswterror.Visible = false;
+                        }
+                    }
+                }
+
             }
         }
 
@@ -1359,7 +1375,10 @@ namespace PackingApplication
             decimal.TryParse(grosswtno.Text, out num1);
             decimal.TryParse(tarewt.Text, out num2);
 
-            netwt.Text = (num1 - num2).ToString();
+            if (num1 > num2)
+            {
+                netwt.Text = (num1 - num2).ToString();
+            }
         }
 
         private void NetWeight_TextChanged(object sender, EventArgs e)
@@ -1389,7 +1408,10 @@ namespace PackingApplication
             decimal.TryParse(netwt.Text, out num1);
             decimal.TryParse(spoolno.Text, out num2);
 
-            wtpercop.Text = (num1 / num2).ToString();
+            if (num1 > num2)
+            {
+                wtpercop.Text = (num1 / num2).ToString("F3");
+            }
         }
 
         private void CopyNos_TextChanged(object sender, EventArgs e)
@@ -1483,7 +1505,12 @@ namespace PackingApplication
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
                 this.spoolno.Text = "";
+                this.spoolnoerror.Text = "";
+                this.spoolnoerror.Visible = false;
+                this.spoolwt.Text = "";
                 this.grosswtno.Text = "";
+                this.grosswterror.Text = "";
+                this.grosswterror.Visible = false;
                 this.tarewt.Text = "";
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
