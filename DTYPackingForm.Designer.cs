@@ -1285,9 +1285,11 @@ namespace PackingApplication
             // 
             // spoolwt
             // 
+            this.spoolwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.spoolwt.Location = new System.Drawing.Point(49, 57);
             this.spoolwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.spoolwt.Name = "spoolwt";
+            this.spoolwt.ReadOnly = true;
             this.spoolwt.Size = new System.Drawing.Size(58, 20);
             this.spoolwt.TabIndex = 5;
             this.spoolwt.TextChanged += new System.EventHandler(this.SpoolWeight_TextChanged);
@@ -1325,6 +1327,7 @@ namespace PackingApplication
             // 
             // palletwtno
             // 
+            this.palletwtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.palletwtno.Location = new System.Drawing.Point(125, 57);
             this.palletwtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletwtno.Name = "palletwtno";
