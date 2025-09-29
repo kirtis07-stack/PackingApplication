@@ -1637,6 +1637,7 @@ namespace PackingApplication
             this.bagstockvalue.Name = "bagstockvalue";
             this.bagstockvalue.Size = new System.Drawing.Size(120, 20);
             this.bagstockvalue.TabIndex = 0;
+            this.bagstockvalue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // bagsstock
             // 

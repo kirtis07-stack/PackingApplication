@@ -68,7 +68,17 @@ namespace PackingApplication
             //MergeNoList.DisplayMember = "LotNo";
             //MergeNoList.ValueMember = "LotId";
             //MergeNoList.SelectedIndex = 0;
+            getLotRelatedDetails();
 
+            copyno.Text = "1";
+            //Username.Text = SessionManager.UserName;
+            //role.Text = SessionManager.Role;
+
+            isFormReady = true;
+        }
+
+        private void getLotRelatedDetails()
+        {
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -89,12 +99,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-
-            copyno.Text = "1";
-            //Username.Text = SessionManager.UserName;
-            //role.Text = SessionManager.Role;
-
-            isFormReady = true;
         }
 
         private void ApplyFonts()
@@ -353,6 +357,13 @@ namespace PackingApplication
                 shadecd.Text = "";
                 deniervalue.Text = "";
                 twistvalue.Text = "";
+                lotResponse = new LotsResponse();
+                lotsDetailsList = new List<LotsDetailsResponse>();
+                getLotRelatedDetails();
+                rowMaterial.Columns.Clear();
+                totalProdQty = 0;
+                selectedSOId = 0;
+                totalSOQty = 0;
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -600,6 +611,7 @@ namespace PackingApplication
                     if (itemResponse != null)
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
+                        SpoolNo_TextChanged(sender, e);
                     }
                 }
             }
@@ -788,6 +800,8 @@ namespace PackingApplication
                         {
                             grosswterror.Text = "Gross Wt > Tare Wt";
                             grosswterror.Visible = true;
+                            netwt.Text = "";
+                            wtpercop.Text = "";
                         }
                     }
                 }

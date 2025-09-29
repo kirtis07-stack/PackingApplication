@@ -99,7 +99,7 @@ namespace PackingApplication
         private void POYPackingForm_Load(object sender, EventArgs e)
         {
             AddHeader();
-            
+
             //var getItem = new List<LotsResponse>();
             //getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
             //MergeNoList.DataSource = getItem;
@@ -107,6 +107,18 @@ namespace PackingApplication
             //MergeNoList.ValueMember = "LotId";
             //MergeNoList.SelectedIndex = 0;
 
+            getLotRelatedDetails();
+
+            copyno.Text = "1";
+            //Username.Text = SessionManager.UserName;
+            //role.Text = SessionManager.Role;
+
+            isFormReady = true;
+            //this.reportViewer1.RefreshReport();
+        }
+
+        private void getLotRelatedDetails()
+        {
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -127,13 +139,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-
-            copyno.Text = "1";
-            //Username.Text = SessionManager.UserName;
-            //role.Text = SessionManager.Role;
-
-            isFormReady = true;
-            //this.reportViewer1.RefreshReport();
         }
 
         private void ApplyFonts()
@@ -559,6 +564,17 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                lotResponse = new LotsResponse();
+                lotsDetailsList = new List<LotsDetailsResponse>();
+                getLotRelatedDetails();
+                rowMaterial.Columns.Clear();
+                windinggrid.Columns.Clear();
+                qualityqty.Columns.Clear();
+                totalProdQty = 0;
+                prodnbalqty.Text = "";
+                selectedSOId = 0;
+                totalSOQty = 0;
+                grdsoqty.Text = "";
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -1470,6 +1486,8 @@ namespace PackingApplication
                         {
                             grosswterror.Text = "Gross Wt > Tare Wt";
                             grosswterror.Visible = true;
+                            netwt.Text = "";
+                            wtpercop.Text = "";
                         }
                     }
                 }

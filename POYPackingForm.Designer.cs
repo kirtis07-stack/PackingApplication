@@ -472,6 +472,7 @@ namespace PackingApplication
             this.copsstock.Name = "copsstock";
             this.copsstock.Size = new System.Drawing.Size(120, 20);
             this.copsstock.TabIndex = 12;
+            this.copsstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // boxtype
             // 
@@ -520,6 +521,7 @@ namespace PackingApplication
             this.boxpalletstock.Name = "boxpalletstock";
             this.boxpalletstock.Size = new System.Drawing.Size(120, 20);
             this.boxpalletstock.TabIndex = 9;
+            this.boxpalletstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // productiontype
             // 

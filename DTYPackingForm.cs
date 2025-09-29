@@ -72,6 +72,17 @@ namespace PackingApplication
             //MergeNoList.ValueMember = "LotId";
             //MergeNoList.SelectedIndex = 0;
 
+            getLotRelatedDetails();
+
+            copyno.Text = "1";
+            //Username.Text = SessionManager.UserName;
+            //role.Text = SessionManager.Role;
+
+            isFormReady = true;
+        }
+
+        private void getLotRelatedDetails()
+        {
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -92,12 +103,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-
-            copyno.Text = "1";
-            //Username.Text = SessionManager.UserName;
-            //role.Text = SessionManager.Role;
-
-            isFormReady = true;
         }
 
         private void ApplyFonts()
@@ -208,6 +213,7 @@ namespace PackingApplication
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
@@ -359,6 +365,13 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                lotResponse = new LotsResponse();
+                lotsDetailsList = new List<LotsDetailsResponse>();
+                getLotRelatedDetails();
+                rowMaterial.Columns.Clear();
+                totalProdQty = 0;
+                selectedSOId = 0;
+                totalSOQty = 0;
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -846,6 +859,8 @@ namespace PackingApplication
                         {
                             grosswterror.Text = "Gross Wt > Tare Wt";
                             grosswterror.Visible = true;
+                            netwt.Text = "";
+                            wtpercop.Text = "";
                         }
                     }
                 }
