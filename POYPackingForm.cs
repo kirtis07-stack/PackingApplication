@@ -1448,8 +1448,8 @@ namespace PackingApplication
                         }
                         else
                         {
-                            grosswterror.Text = "Gross Wt should be greater than Tare Wt";
-                            grosswterror.Visible = false;
+                            grosswterror.Text = "Gross Wt > Tare Wt";
+                            grosswterror.Visible = true;
                         }
                     }
                 }
