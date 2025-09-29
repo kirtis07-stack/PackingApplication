@@ -874,6 +874,7 @@ namespace PackingApplication
                     if (itemResponse != null)
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
+                        SpoolNo_TextChanged(sender, e);
                     }
                 }
             }
