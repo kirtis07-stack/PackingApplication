@@ -76,6 +76,13 @@ namespace PackingApplication
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
 
+            var windingtypeList = new List<LotsProductionDetailsResponse>();
+            windingtypeList.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+            WindingTypeList.DataSource = windingtypeList;
+            WindingTypeList.DisplayMember = "WindingTypeName";
+            WindingTypeList.ValueMember = "WindingTypeId";
+            WindingTypeList.SelectedIndex = 0;
+
             var qualityList = new List<QualityResponse>();
             qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
             QualityList.DataSource = qualityList;
@@ -233,14 +240,6 @@ namespace PackingApplication
             PackSizeList.ValueMember = "PackSizeId";
             PackSizeList.SelectedIndex = 0;
 
-            var windingtypeList = await Task.Run(() => getWindingTypeList());
-            //windingtype
-            windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-            WindingTypeList.DataSource = windingtypeList;
-            WindingTypeList.DisplayMember = "WindingTypeName";
-            WindingTypeList.ValueMember = "WindingTypeId";
-            WindingTypeList.SelectedIndex = 0;
-
             var comportList = await Task.Run(() => getComPortList());
             //comport
             ComPortList.DataSource = comportList;
@@ -390,7 +389,7 @@ namespace PackingApplication
                     QualityList.DisplayMember = "Name";
                     QualityList.ValueMember = "QualityId";
                     QualityList.SelectedIndex = 0;
-
+                    getWindingTypeList(productionRequest.LotId);
                     getSaleOrderList(productionRequest.LotId);
 
                     List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
@@ -425,8 +424,8 @@ namespace PackingApplication
                     rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
                     rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
                     rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150 });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
                     rowMaterial.DataSource = lotsDetailsList;
                 }
             }
@@ -667,10 +666,14 @@ namespace PackingApplication
             return getPackSize;
         }
 
-        private List<WindingTypeResponse> getWindingTypeList()
+        private void getWindingTypeList(int lotId)
         {
-            var getWindingType = _masterService.getWindingTypeList();
-            return getWindingType;
+            var getWindingType = _productionService.getWinderTypeList(lotId);
+            getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+            WindingTypeList.DataSource = getWindingType;
+            WindingTypeList.DisplayMember = "WindingTypeName";
+            WindingTypeList.ValueMember = "WindingTypeId";
+            WindingTypeList.SelectedIndex = 0;
         }
 
         private void getSaleOrderList(int lotId)
@@ -1219,6 +1222,16 @@ namespace PackingApplication
                     cb.Checked = !cb.Checked; // toggle the checkbox
                     e.Handled = true;          // prevent beep
                 }
+            }
+        }
+
+        private void comboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+                cb.DroppedDown = true;   // open dropdown
+                e.Handled = true;        // stop space being typed in
             }
         }
     }
