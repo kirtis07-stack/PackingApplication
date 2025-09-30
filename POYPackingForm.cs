@@ -125,6 +125,9 @@ namespace PackingApplication
             SaleOrderList.DisplayMember = "SaleOrderNumber";
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
+            SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var windingtypeList = new List<LotsProductionDetailsResponse>();
             windingtypeList.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
@@ -132,6 +135,9 @@ namespace PackingApplication
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
             WindingTypeList.SelectedIndex = 0;
+            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var qualityList = new List<QualityResponse>();
             qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
@@ -139,6 +145,9 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
+            QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            QualityList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void ApplyFonts()
@@ -281,6 +290,9 @@ namespace PackingApplication
             LineNoList.DisplayMember = "MachineName";
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
+            LineNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            LineNoList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var lotList = await Task.Run(() => getAllLotList());
             //lot
@@ -289,6 +301,9 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNo";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+            MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var prefixList = await Task.Run(() => getPrefixList());
             //prefix
@@ -297,6 +312,9 @@ namespace PackingApplication
             PrefixList.DisplayMember = "Prefix";
             PrefixList.ValueMember = "PrefixCode";
             PrefixList.SelectedIndex = 0;
+            PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            PrefixList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var packsizeList = await Task.Run(() => getPackSizeList());
             //packsize
@@ -305,11 +323,17 @@ namespace PackingApplication
             PackSizeList.DisplayMember = "PackSizeName";
             PackSizeList.ValueMember = "PackSizeId";
             PackSizeList.SelectedIndex = 0;
+            PackSizeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            PackSizeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            PackSizeList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var comportList = await Task.Run(() => getComPortList());
             //comport
             ComPortList.DataSource = comportList;
             ComPortList.SelectedIndex = 0;
+            ComPortList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ComPortList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            ComPortList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var weightingList = await Task.Run(() => getWeighingList());
             //weighting
@@ -317,6 +341,9 @@ namespace PackingApplication
             WeighingList.DisplayMember = "Name"; 
             WeighingList.ValueMember = "Id";
             WeighingList.SelectedIndex = 0;
+            WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            WeighingList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var copsitemList = await Task.Run(() => getCopeItemList());
             //copsitem
@@ -325,6 +352,9 @@ namespace PackingApplication
             CopsItemList.DisplayMember = "Name";
             CopsItemList.ValueMember = "ItemId";
             CopsItemList.SelectedIndex = 0;
+            CopsItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            CopsItemList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var boxitemList = await Task.Run(() => getBoxItemList());
             //boxitem
@@ -333,6 +363,9 @@ namespace PackingApplication
             BoxItemList.DisplayMember = "Name";
             BoxItemList.ValueMember = "ItemId";
             BoxItemList.SelectedIndex = 0;
+            BoxItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            BoxItemList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var palletitemList = await Task.Run(() => getPalletItemList());
             //palletitem
@@ -341,6 +374,9 @@ namespace PackingApplication
             PalletTypeList.DisplayMember = "Name";
             PalletTypeList.ValueMember = "ItemId";
             PalletTypeList.SelectedIndex = 0;
+            PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            PalletTypeList.DropDownStyle = ComboBoxStyle.DropDown;
 
             RefreshLastBoxDetails();
 
@@ -611,6 +647,9 @@ namespace PackingApplication
                     QualityList.DisplayMember = "Name";
                     QualityList.ValueMember = "QualityId";
                     QualityList.SelectedIndex = 0;
+                    QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    QualityList.DropDownStyle = ComboBoxStyle.DropDown;
                     if (QualityList.Items.Count > 1)  
                     {
                         QualityList.SelectedIndex = 1;
@@ -1007,6 +1046,9 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNo";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+            MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<LotsResponse> getAllLotList()
@@ -1035,6 +1077,9 @@ namespace PackingApplication
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
             WindingTypeList.SelectedIndex = 0;
+            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void getSaleOrderList(int lotId)
@@ -1045,6 +1090,9 @@ namespace PackingApplication
             SaleOrderList.DisplayMember = "SaleOrderNumber";
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
+            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<string> getComPortList()
@@ -2088,14 +2136,14 @@ namespace PackingApplication
             }
         }
 
-        private void comboBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Space)
-            {
-                System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
-                cb.DroppedDown = true;   // open dropdown
-                e.Handled = true;        // stop space being typed in
-            }
-        }
+        //private void comboBox_KeyDown(object sender, KeyEventArgs e)
+        //{
+            //if (e.KeyCode == Keys.Space)
+            //{
+            //    System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            //    cb.DroppedDown = true;   // open dropdown
+            //    e.Handled = true;        // stop space being typed in
+            //}
+        //}
     }
 }

@@ -872,7 +872,6 @@ namespace PackingApplication
             this.LineNoList.Size = new System.Drawing.Size(120, 21);
             this.LineNoList.TabIndex = 0;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
-            this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // lastboxno
             // 
@@ -934,7 +933,6 @@ namespace PackingApplication
             this.PrefixList.Size = new System.Drawing.Size(120, 21);
             this.PrefixList.TabIndex = 3;
             this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
-            this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // mergeno
             // 
@@ -956,7 +954,6 @@ namespace PackingApplication
             this.MergeNoList.Size = new System.Drawing.Size(120, 21);
             this.MergeNoList.TabIndex = 5;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
-            this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // packingdate
             // 
@@ -1104,7 +1101,6 @@ namespace PackingApplication
             this.WeighingList.Size = new System.Drawing.Size(110, 21);
             this.WeighingList.TabIndex = 2;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
-            this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // req10
             // 
@@ -1214,7 +1210,6 @@ namespace PackingApplication
             this.ComPortList.Size = new System.Drawing.Size(105, 21);
             this.ComPortList.TabIndex = 1;
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
-            this.ComPortList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // WindingTypeList
             // 
@@ -1226,7 +1221,6 @@ namespace PackingApplication
             this.WindingTypeList.Size = new System.Drawing.Size(110, 21);
             this.WindingTypeList.TabIndex = 3;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
-            this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // windingtype
             // 
@@ -1511,7 +1505,6 @@ namespace PackingApplication
             this.SaleOrderList.Size = new System.Drawing.Size(120, 21);
             this.SaleOrderList.TabIndex = 2;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
-            this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // saleorderno
             // 
@@ -1533,7 +1526,6 @@ namespace PackingApplication
             this.QualityList.Size = new System.Drawing.Size(120, 21);
             this.QualityList.TabIndex = 1;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
-            this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // quality
             // 
@@ -1586,7 +1578,6 @@ namespace PackingApplication
             this.PackSizeList.Size = new System.Drawing.Size(120, 21);
             this.PackSizeList.TabIndex = 4;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
-            this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // frdenier
             // 
@@ -1629,7 +1620,6 @@ namespace PackingApplication
             this.CopsItemList.Size = new System.Drawing.Size(120, 21);
             this.CopsItemList.TabIndex = 10;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
-            this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             // 
             // bagstockvalue
             // 
