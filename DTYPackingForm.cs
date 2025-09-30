@@ -33,8 +33,6 @@ namespace PackingApplication
         WeighingScaleReader wtReader = new WeighingScaleReader();
         string comPort;
         int selectedSOId = 0;
-        decimal totalSOQty = 0;
-        decimal totalProdQty = 0;
         int selectLotId = 0;
         public DTYPackingForm(long productionId)
         {
@@ -65,18 +63,9 @@ namespace PackingApplication
 
         private void DTYPackingForm_Load(object sender, EventArgs e)
         {
-            //var getItem = new List<LotsResponse>();
-            //getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            //MergeNoList.DataSource = getItem;
-            //MergeNoList.DisplayMember = "LotNo";
-            //MergeNoList.ValueMember = "LotId";
-            //MergeNoList.SelectedIndex = 0;
-
             getLotRelatedDetails();
 
             copyno.Text = "1";
-            //Username.Text = SessionManager.UserName;
-            //role.Text = SessionManager.Role;
 
             isFormReady = true;
         }
@@ -89,9 +78,6 @@ namespace PackingApplication
             SaleOrderList.DisplayMember = "SaleOrderNumber";
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
-            SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var windingtypeList = new List<LotsProductionDetailsResponse>();
             windingtypeList.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
@@ -99,9 +85,6 @@ namespace PackingApplication
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
             WindingTypeList.SelectedIndex = 0;
-            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var qualityList = new List<QualityResponse>();
             qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
@@ -109,9 +92,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-            QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            QualityList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void ApplyFonts()
@@ -402,9 +382,7 @@ namespace PackingApplication
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
                 rowMaterial.Columns.Clear();
-                totalProdQty = 0;
                 selectedSOId = 0;
-                totalSOQty = 0;
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -432,29 +410,33 @@ namespace PackingApplication
                     productionRequest.ItemId = lotResponse.ItemId;
                     productionRequest.ShadeId = lotResponse.ShadeId;
 
-                    var itemResponse = _masterService.getItemById(lotResponse.ItemId);
+                    if(lotResponse.ItemId > 0)
+                    {
+                        var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
-                    var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
-                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                    QualityList.DataSource = qualityList;
-                    QualityList.DisplayMember = "Name";
-                    QualityList.ValueMember = "QualityId";
-                    QualityList.SelectedIndex = 0;
-                    QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                    QualityList.DropDownStyle = ComboBoxStyle.DropDown;
-                    if (QualityList.Items.Count > 1)
-                    {
-                        QualityList.SelectedIndex = 1;
-                    }
-                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                    {
+                        var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                        qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        QualityList.DataSource = qualityList;
+                        QualityList.DisplayMember = "Name";
+                        QualityList.ValueMember = "QualityId";
                         QualityList.SelectedIndex = 0;
+                        QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        QualityList.DropDownStyle = ComboBoxStyle.DropDown;
+                        if (QualityList.Items.Count > 1)
+                        {
+                            QualityList.SelectedIndex = 1;
+                        }
+                        else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                        {
+                            QualityList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            QualityList.SelectedIndex = -1; // no selection possible
+                        }
                     }
-                    else
-                    {
-                        QualityList.SelectedIndex = -1; // no selection possible
-                    }
+                    
                     getWindingTypeList(productionRequest.LotId);
                     getSaleOrderList(productionRequest.LotId);
                     lotsDetailsList = new List<LotsDetailsResponse>();
@@ -745,6 +727,9 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNo";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+            MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<LotsResponse> getAllLotList()
@@ -773,6 +758,9 @@ namespace PackingApplication
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
             WindingTypeList.SelectedIndex = 0;
+            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void getSaleOrderList(int lotId)
@@ -783,6 +771,9 @@ namespace PackingApplication
             SaleOrderList.DisplayMember = "SaleOrderNumber";
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
+            SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<string> getComPortList()

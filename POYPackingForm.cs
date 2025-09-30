@@ -62,6 +62,7 @@ namespace PackingApplication
         decimal totalSOQty = 0;
         decimal totalProdQty = 0;
         int selectLotId = 0;
+        decimal balanceQty = 0;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -100,18 +101,9 @@ namespace PackingApplication
         {
             AddHeader();
 
-            //var getItem = new List<LotsResponse>();
-            //getItem.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            //MergeNoList.DataSource = getItem;
-            //MergeNoList.DisplayMember = "LotNo";
-            //MergeNoList.ValueMember = "LotId";
-            //MergeNoList.SelectedIndex = 0;
-
             getLotRelatedDetails();
 
             copyno.Text = "1";
-            //Username.Text = SessionManager.UserName;
-            //role.Text = SessionManager.Role;
 
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
@@ -125,9 +117,6 @@ namespace PackingApplication
             SaleOrderList.DisplayMember = "SaleOrderNumber";
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
-            SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var windingtypeList = new List<LotsProductionDetailsResponse>();
             windingtypeList.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
@@ -135,9 +124,6 @@ namespace PackingApplication
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
             WindingTypeList.SelectedIndex = 0;
-            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
 
             var qualityList = new List<QualityResponse>();
             qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
@@ -145,9 +131,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-            QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            QualityList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private void ApplyFonts()
@@ -611,6 +594,7 @@ namespace PackingApplication
                 selectedSOId = 0;
                 totalSOQty = 0;
                 grdsoqty.Text = "";
+                balanceQty = 0;
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -639,29 +623,33 @@ namespace PackingApplication
                     productionRequest.ShadeId = lotResponse.ShadeId;
                     LineNoList.SelectedValue = lotResponse.MachineId;
 
-                    var itemResponse = _masterService.getItemById(lotResponse.ItemId);
+                    if(lotResponse.ItemId > 0)
+                    {
+                        var itemResponse = _masterService.getItemById(lotResponse.ItemId);
 
-                    var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
-                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                    QualityList.DataSource = qualityList;
-                    QualityList.DisplayMember = "Name";
-                    QualityList.ValueMember = "QualityId";
-                    QualityList.SelectedIndex = 0;
-                    QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                    QualityList.DropDownStyle = ComboBoxStyle.DropDown;
-                    if (QualityList.Items.Count > 1)  
-                    {
-                        QualityList.SelectedIndex = 1;
-                    }
-                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                    {
+                        var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                        qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        QualityList.DataSource = qualityList;
+                        QualityList.DisplayMember = "Name";
+                        QualityList.ValueMember = "QualityId";
                         QualityList.SelectedIndex = 0;
+                        QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        QualityList.DropDownStyle = ComboBoxStyle.DropDown;
+                        if (QualityList.Items.Count > 1)
+                        {
+                            QualityList.SelectedIndex = 1;
+                        }
+                        else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                        {
+                            QualityList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            QualityList.SelectedIndex = -1; // no selection possible
+                        }
                     }
-                    else
-                    {
-                        QualityList.SelectedIndex = -1; // no selection possible
-                    }
+                    
                     getWindingTypeList(productionRequest.LotId);
                     getSaleOrderList(productionRequest.LotId);
                     lotsDetailsList = new List<LotsDetailsResponse>();
@@ -898,7 +886,19 @@ namespace PackingApplication
             {
                 totalProdQty += proditem.GrossWt;
             }
-            prodnbalqty.Text = (totalSOQty - totalProdQty).ToString();
+            balanceQty = (totalSOQty - totalProdQty);
+            if(balanceQty <= 0)
+            {
+                submit.Enabled = false;
+                saveprint.Enabled = false;
+                ResetForm(this);
+            }
+            else
+            {
+                submit.Enabled = true;
+                saveprint.Enabled = true;
+            }
+            prodnbalqty.Text = balanceQty.ToString();
         }
 
         private async void RefreshLastBoxDetails()
@@ -1090,9 +1090,9 @@ namespace PackingApplication
             SaleOrderList.DisplayMember = "SaleOrderNumber";
             SaleOrderList.ValueMember = "SaleOrderDetailsId";
             SaleOrderList.SelectedIndex = 0;
-            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
+            SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<string> getComPortList()
@@ -1524,6 +1524,22 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
+                        decimal newBalanceQty = balanceQty - gross;
+                        if (newBalanceQty < 0)
+                        {
+                            grosswterror.Text = "No Prod Bal Qty remaining";
+                            grosswterror.Visible = true;
+                            submit.Enabled = false;
+                            saveprint.Enabled = false;
+                            return;
+                        }
+                        else
+                        {
+                            grosswterror.Text = "";
+                            grosswterror.Visible = false;
+                            submit.Enabled = true;
+                            saveprint.Enabled = true;
+                        }
                         if (gross > tare)
                         {
                             CalculateNetWeight();
@@ -2138,12 +2154,38 @@ namespace PackingApplication
 
         //private void comboBox_KeyDown(object sender, KeyEventArgs e)
         //{
-            //if (e.KeyCode == Keys.Space)
-            //{
-            //    System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
-            //    cb.DroppedDown = true;   // open dropdown
-            //    e.Handled = true;        // stop space being typed in
-            //}
+        //if (e.KeyCode == Keys.Space)
+        //{
+        //    System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+        //    cb.DroppedDown = true;   // open dropdown
+        //    e.Handled = true;        // stop space being typed in
         //}
+        //}
+
+        private void ResetForm(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is System.Windows.Forms.TextBox)
+                    ((System.Windows.Forms.TextBox)c).Clear();
+
+                else if (c is System.Windows.Forms.ComboBox)
+                    ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
+
+                else if (c is DateTimePicker)
+                    ((DateTimePicker)c).Value = DateTime.Now;
+
+                else if (c is System.Windows.Forms.CheckBox)
+                    ((System.Windows.Forms.CheckBox)c).Checked = false;
+
+                else if (c is System.Windows.Forms.RadioButton)
+                    ((System.Windows.Forms.RadioButton)c).Checked = false;
+
+                // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
+                if (c.HasChildren)
+                    ResetForm(c);
+            }
+        }
+
     }
 }
