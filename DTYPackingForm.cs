@@ -328,6 +328,8 @@ namespace PackingApplication
                     grosswtno.Text = productionResponse.GrossWt.ToString();
                     tarewt.Text = productionResponse.TareWt.ToString();
                     netwt.Text = productionResponse.NetWt.ToString();
+                    submit.Text = "Update";
+                    saveprint.Enabled = false;
                 }
             }
 
@@ -1055,6 +1057,12 @@ namespace PackingApplication
                 else
                 {
                     MessageBox.Show("DTY Packing updated successfully.");
+                    var dashboard = this.ParentForm as AdminAccount;
+                    if (dashboard != null)
+                    {
+                        // Open the List form instead of Add form
+                        dashboard.LoadFormInContent(new DTYPackingList());
+                    }
                 }
             }
             else

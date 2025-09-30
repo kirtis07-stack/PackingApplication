@@ -367,6 +367,8 @@ namespace PackingApplication
                     grosswtno.Text = productionResponse.GrossWt.ToString();
                     tarewt.Text = productionResponse.TareWt.ToString();
                     netwt.Text = productionResponse.NetWt.ToString();
+                    submit.Text = "Update";
+                    saveprint.Enabled = false;
 
                     if (productionResponse.PalletDetailsResponse.Count > 0)
                     {
@@ -796,7 +798,7 @@ namespace PackingApplication
                     {
                         totalSOQty += soitem.Quantity;
                     }
-                    grdsoqty.Text = totalSOQty.ToString();
+                    grdsoqty.Text = totalSOQty.ToString("F2");
 
                     RefreshGradewiseGrid();
                     RefreshLastBoxDetails();
@@ -895,7 +897,7 @@ namespace PackingApplication
                     submit.Enabled = true;
                     saveprint.Enabled = true;
                 }
-                prodnbalqty.Text = balanceQty.ToString();
+                prodnbalqty.Text = balanceQty.ToString("F2");
             }
         }
 
@@ -1718,6 +1720,12 @@ namespace PackingApplication
                 else
                 {
                     MessageBox.Show("BCF Packing updated successfully.");
+                    var dashboard = this.ParentForm as AdminAccount;
+                    if (dashboard != null)
+                    {
+                        // Open the List form instead of Add form
+                        dashboard.LoadFormInContent(new BCFPackingList());
+                    }
                 }
             }
             else
