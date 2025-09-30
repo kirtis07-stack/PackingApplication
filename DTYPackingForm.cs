@@ -196,7 +196,7 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);          
-            this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);

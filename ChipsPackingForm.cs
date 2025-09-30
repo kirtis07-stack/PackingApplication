@@ -188,7 +188,7 @@ namespace PackingApplication
             this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.bagstockvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.bagsstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
