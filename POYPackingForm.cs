@@ -373,10 +373,11 @@ namespace PackingApplication
                     departmentname.Text = productionResponse.DepartmentName;
                     PrefixList.SelectedValue = 316;         //added hardcoded for now
                     MergeNoList.SelectedValue = productionResponse.LotId;
-                    dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
+                    dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                    dateTimePicker1.Value = productionResponse.ProductionDate;
+                    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
                     QualityList.SelectedValue = productionResponse.QualityId;
                     WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
                     PackSizeList.SelectedValue = productionResponse.PackSizeId;
                     CopsItemList.SelectedValue = productionResponse.SpoolItemId;
                     BoxItemList.SelectedValue = productionResponse.BoxItemId;
@@ -454,14 +455,16 @@ namespace PackingApplication
 
                 // Qty
                 System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
-
                 // Edit Button
-                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, int>(selectedItem, palletDetail.Quantity), FlatStyle = FlatStyle.Flat };
+                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
                 btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                 btnEdit.FlatAppearance.BorderSize = 1;
                 btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
                 btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
                 btnEdit.FlatAppearance.BorderSize = 0;
+                btnEdit.TabIndex = 4;
+                btnEdit.TabStop = true;
+                btnEdit.Cursor = Cursors.Hand;
                 btnEdit.Paint += (s, f) =>
                 {
                     var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
@@ -475,6 +478,11 @@ namespace PackingApplication
                         f.Graphics.FillPath(brush, path);
 
                         f.Graphics.DrawPath(borderPen, path);
+
+                        if (btnEdit.Focused)
+                        {
+                            ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                        }
 
                         TextRenderer.DrawText(
                             f.Graphics,
@@ -495,6 +503,9 @@ namespace PackingApplication
                 btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
                 btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
                 btnDelete.FlatAppearance.BorderSize = 0;
+                btnDelete.TabIndex = 5;
+                btnDelete.TabStop = true;
+                btnDelete.Cursor = Cursors.Hand;
                 btnDelete.Paint += (s, f) =>
                 {
                     var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
@@ -814,91 +825,98 @@ namespace PackingApplication
         }
         private async void RefreshWindingGrid()
         {
-            int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-            if(selectedWindingTypeId > 0)
+            if (WindingTypeList.SelectedValue != null)
             {
-                var getProductionByWindingType = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
-                List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
-                foreach (var winding in getProductionByWindingType)
+                int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
+                if (selectedWindingTypeId > 0)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
+                    var getProductionByWindingType = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+                    foreach (var winding in getProductionByWindingType)
+                    {
+                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
+
+                        if (existing == null)
+                        {
+                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                            grid.WindingTypeId = winding.WindingTypeId;
+                            grid.SaleOrderId = winding.SaleOrderId;
+                            grid.WindingTypeName = winding.WindingTypeName;
+                            grid.SaleOrderQty = totalSOQty;
+                            grid.GrossWt = winding.GrossWt;
+
+                            gridList.Add(grid);
+                        }
+                        else
+                        {
+                            existing.GrossWt += winding.GrossWt;
+                        }
+
+                    }
+                    windinggrid.Columns.Clear();
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                    windinggrid.DataSource = gridList;
+                }
+            }
+            
+        }
+
+        private async void RefreshGradewiseGrid()
+        {
+            if (QualityList.SelectedValue != null)
+            {
+                totalProdQty = 0;
+                prodnbalqty.Text = "";
+                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+                foreach (var quality in getProductionByQuality)
+                {
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
 
                     if (existing == null)
                     {
-                        WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                        grid.WindingTypeId = winding.WindingTypeId;
-                        grid.SaleOrderId = winding.SaleOrderId;
-                        grid.WindingTypeName = winding.WindingTypeName;
+                        QualityGridResponse grid = new QualityGridResponse();
+                        grid.QualityId = quality.QualityId;
+                        grid.SaleOrderId = quality.SaleOrderId;
+                        grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
-                        grid.GrossWt = winding.GrossWt;
+                        grid.GrossWt = quality.GrossWt;
 
                         gridList.Add(grid);
                     }
                     else
                     {
-                        existing.GrossWt += winding.GrossWt;
+                        existing.GrossWt += quality.GrossWt;
                     }
 
                 }
-                windinggrid.Columns.Clear();
-                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
-                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-                windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                windinggrid.DataSource = gridList;
-            }         
-        }
+                qualityqty.Columns.Clear();
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                qualityqty.DataSource = gridList;
 
-        private async void RefreshGradewiseGrid()
-        {
-            totalProdQty = 0;
-            prodnbalqty.Text = "";
-            int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-            var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
-            List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-            foreach (var quality in getProductionByQuality)
-            {
-                var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
-
-                if (existing == null)
+                foreach (var proditem in gridList)
                 {
-                    QualityGridResponse grid = new QualityGridResponse();
-                    grid.QualityId = quality.QualityId;
-                    grid.SaleOrderId = quality.SaleOrderId;
-                    grid.QualityName = quality.QualityName;
-                    grid.SaleOrderQty = totalSOQty;
-                    grid.GrossWt = quality.GrossWt;
-
-                    gridList.Add(grid);
+                    totalProdQty += proditem.GrossWt;
+                }
+                balanceQty = (totalSOQty - totalProdQty);
+                if (balanceQty <= 0)
+                {
+                    submit.Enabled = false;
+                    saveprint.Enabled = false;
+                    ResetForm(this);
                 }
                 else
                 {
-                    existing.GrossWt += quality.GrossWt;
+                    submit.Enabled = true;
+                    saveprint.Enabled = true;
                 }
-
+                prodnbalqty.Text = balanceQty.ToString();
             }
-            qualityqty.Columns.Clear();
-            qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-            qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-            qualityqty.DataSource = gridList;
-
-            foreach (var proditem in gridList)
-            {
-                totalProdQty += proditem.GrossWt;
-            }
-            balanceQty = (totalSOQty - totalProdQty);
-            if(balanceQty <= 0)
-            {
-                submit.Enabled = false;
-                saveprint.Enabled = false;
-                ResetForm(this);
-            }
-            else
-            {
-                submit.Enabled = true;
-                saveprint.Enabled = true;
-            }
-            prodnbalqty.Text = balanceQty.ToString();
         }
 
         private async void RefreshLastBoxDetails()
@@ -1272,6 +1290,7 @@ namespace PackingApplication
                     btnEdit.FlatAppearance.BorderSize = 0;
                     btnEdit.TabIndex = 4;
                     btnEdit.TabStop = true;
+                    btnEdit.Cursor = Cursors.Hand;
                     btnEdit.Paint += (s, f) =>
                     {
                         var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
@@ -1312,6 +1331,7 @@ namespace PackingApplication
                     btnDelete.FlatAppearance.BorderSize = 0;
                     btnDelete.TabIndex = 5;
                     btnDelete.TabStop = true;
+                    btnDelete.Cursor = Cursors.Hand;
                     btnDelete.Paint += (s, f) =>
                     {
                         var button = (System.Windows.Forms.Button)s;
@@ -1591,6 +1611,7 @@ namespace PackingApplication
                 spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
                 CalculateWeightPerCop();
                 CalculateTareWeight();
+                GrossWeight_TextChanged(sender, e);
                 spoolnoerror.Text = "";
                 spoolnoerror.Visible = false;
             }

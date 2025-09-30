@@ -1283,7 +1283,7 @@ namespace PackingApplication
             // netwt
             // 
             this.netwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.netwt.Location = new System.Drawing.Point(125, 98);
+            this.netwt.Location = new System.Drawing.Point(125, 100);
             this.netwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.netwt.Name = "netwt";
             this.netwt.ReadOnly = true;

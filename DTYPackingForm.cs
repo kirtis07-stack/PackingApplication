@@ -304,7 +304,8 @@ namespace PackingApplication
                     departmentname.Text = productionResponse.DepartmentName;
                     PrefixList.SelectedValue = 316;         //added hardcoded for now
                     MergeNoList.SelectedValue = productionResponse.LotId;
-                    dateTimePicker1.Text = productionResponse.ProductionDate.ToShortDateString();
+                    dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                    dateTimePicker1.Value = productionResponse.ProductionDate;
                     QualityList.SelectedValue = productionResponse.QualityId;
                     SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
                     PackSizeList.SelectedValue = productionResponse.PackSizeId;
@@ -931,6 +932,8 @@ namespace PackingApplication
             {
                 spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
                 CalculateWeightPerCop();
+                CalculateTareWeight();
+                GrossWeight_TextChanged(sender, e);
                 spoolnoerror.Text = "";
                 spoolnoerror.Visible = false;
             }
@@ -1093,7 +1096,7 @@ namespace PackingApplication
 
             if (QualityList.SelectedIndex <= 0)
             {
-                qualityerror.Text = "Please select quantity";
+                qualityerror.Text = "Please select quality";
                 qualityerror.Visible = true;
                 isValid = false;
             }
