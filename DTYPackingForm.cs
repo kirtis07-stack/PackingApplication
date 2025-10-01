@@ -944,7 +944,7 @@ namespace PackingApplication
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || string.IsNullOrWhiteSpace(copsitemwt.Text))
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 spoolnoerror.Visible = true;
                 spoolnoerror.Text = "Please enter spool no";
