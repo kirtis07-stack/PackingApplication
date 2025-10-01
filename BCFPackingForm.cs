@@ -77,7 +77,20 @@ namespace PackingApplication
             getLotRelatedDetails();
 
             copyno.Text = "2";
-
+            spoolno.Text = "0";
+            spoolwt.Text = "0";
+            palletwtno.Text = "0";
+            grosswtno.Text = "0";
+            tarewt.Text = "0";
+            netwt.Text = "0";
+            wtpercop.Text = "0";
+            boxpalletitemwt.Text = "0";
+            boxpalletstock.Text = "0";
+            copsitemwt.Text = "0";
+            copsstock.Text = "0";
+            frdenier.Text = "0";
+            updenier.Text = "0";
+            deniervalue.Text = "0";
             isFormReady = true;
         }
 
@@ -694,8 +707,8 @@ namespace PackingApplication
 
             if (PackSizeList.SelectedIndex <= 0)
             {
-                frdenier.Text = "";
-                updenier.Text = "";
+                frdenier.Text = "0";
+                updenier.Text = "0";
                 return;
             }
             if (PackSizeList.SelectedIndex > 0)
@@ -961,6 +974,7 @@ namespace PackingApplication
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
                         SpoolNo_TextChanged(sender, e);
+                        GrossWeight_TextChanged(sender, e);
                     }
                 }
             }
@@ -990,6 +1004,7 @@ namespace PackingApplication
                     {
                         boxpalletitemwt.Text = itemResponse.Weight.ToString();
                         palletwtno.Text = itemResponse.Weight.ToString();
+                        GrossWeight_TextChanged(sender, e);
                     }
                 }
             }
@@ -1502,7 +1517,7 @@ namespace PackingApplication
             decimal.TryParse(spoolwt.Text, out num1);
             decimal.TryParse(palletwtno.Text, out num2);
 
-            tarewt.Text = (num1 + num2).ToString();
+            tarewt.Text = (num1 + num2).ToString("F3");
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
@@ -1534,7 +1549,7 @@ namespace PackingApplication
                             submit.Enabled = true;
                             saveprint.Enabled = true;
                         }
-                        if (gross > tare)
+                        if (gross >= tare)
                         {
                             CalculateNetWeight();
                             grosswterror.Text = "";
@@ -1544,8 +1559,8 @@ namespace PackingApplication
                         {
                             grosswterror.Text = "Gross Wt > Tare Wt";
                             grosswterror.Visible = true;
-                            netwt.Text = "";
-                            wtpercop.Text = "";
+                            netwt.Text = "0";
+                            wtpercop.Text = "0";
                         }
                     }
                 }
@@ -1559,10 +1574,10 @@ namespace PackingApplication
 
             decimal.TryParse(grosswtno.Text, out num1);
             decimal.TryParse(tarewt.Text, out num2);
-
             if (num1 > num2)
             {
-                netwt.Text = (num1 - num2).ToString();
+                netwt.Text = (num1 - num2).ToString("F3");
+                CalculateWeightPerCop();
             }
         }
 
@@ -1584,12 +1599,23 @@ namespace PackingApplication
             }
             else
             {
-                spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
-                CalculateWeightPerCop();
-                CalculateTareWeight();
-                GrossWeight_TextChanged(sender, e);
-                spoolnoerror.Text = "";
-                spoolnoerror.Visible = false;
+                decimal spoolnum = 0, copswt = 0;
+                decimal.TryParse(spoolno.Text, out spoolnum);
+                decimal.TryParse(copsitemwt.Text, out copswt);
+                if (spoolnum > 0)
+                {
+                    spoolwt.Text = (spoolnum * copswt).ToString();
+                    CalculateWeightPerCop();
+                    CalculateTareWeight();
+                    GrossWeight_TextChanged(sender, e);
+                    spoolnoerror.Text = "";
+                    spoolnoerror.Visible = false;
+                }
+                else if (spoolnum == 0)
+                {
+                    spoolnoerror.Text = "Spool no > 0";
+                    spoolnoerror.Visible = true;
+                }
             }
         }
 
@@ -1599,10 +1625,12 @@ namespace PackingApplication
 
             decimal.TryParse(netwt.Text, out num1);
             decimal.TryParse(spoolno.Text, out num2);
-
-            if (num1 > num2)
+            if (num1 > 0 && num2 > 0)
             {
-                wtpercop.Text = (num1 / num2).ToString("F3");
+                if (num1 >= num2)
+                {
+                    wtpercop.Text = (num1 / num2).ToString("F3");
+                }
             }
         }
 
@@ -1719,7 +1747,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    MessageBox.Show("BCF Packing updated successfully.");
+                    MessageBox.Show("BCF Packing updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
@@ -2108,6 +2136,21 @@ namespace PackingApplication
                 if (c.HasChildren)
                     ResetForm(c);
             }
+            copyno.Text = "2";
+            spoolno.Text = "0";
+            spoolwt.Text = "0";
+            palletwtno.Text = "0";
+            grosswtno.Text = "0";
+            tarewt.Text = "0";
+            netwt.Text = "0";
+            wtpercop.Text = "0";
+            boxpalletitemwt.Text = "0";
+            boxpalletstock.Text = "0";
+            copsitemwt.Text = "0";
+            copsstock.Text = "0";
+            frdenier.Text = "0";
+            updenier.Text = "0";
+            deniervalue.Text = "0";
         }
     }
 }

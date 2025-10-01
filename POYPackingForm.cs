@@ -36,6 +36,7 @@ using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 using File = System.IO.File;
 
@@ -104,7 +105,20 @@ namespace PackingApplication
             getLotRelatedDetails();
 
             copyno.Text = "1";
-
+            spoolno.Text = "0";
+            spoolwt.Text = "0";
+            palletwtno.Text = "0";
+            grosswtno.Text = "0";
+            tarewt.Text = "0";
+            netwt.Text = "0";
+            wtpercop.Text = "0";
+            boxpalletitemwt.Text = "0";
+            boxpalletstock.Text = "0";
+            copsitemwt.Text = "0";
+            copsstock.Text = "0";
+            frdenier.Text = "0";
+            updenier.Text = "0";
+            deniervalue.Text = "0";
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
         }
@@ -718,8 +732,8 @@ namespace PackingApplication
 
             if (PackSizeList.SelectedIndex <= 0)
             {
-                frdenier.Text = "";
-                updenier.Text = "";
+                frdenier.Text = "0";
+                updenier.Text = "0";
                 return;
             }
             if (PackSizeList.SelectedIndex > 0)
@@ -979,7 +993,7 @@ namespace PackingApplication
 
             if (CopsItemList.SelectedIndex <= 0)
             {
-                copsitemwt.Text = "";
+                copsitemwt.Text = "0";
                 return;
             }
 
@@ -996,6 +1010,7 @@ namespace PackingApplication
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
                         SpoolNo_TextChanged(sender, e);
+                        GrossWeight_TextChanged(sender, e);
                     }
                 }
             }
@@ -1007,8 +1022,8 @@ namespace PackingApplication
 
             if (BoxItemList.SelectedIndex <= 0)
             {
-                boxpalletitemwt.Text = "";
-                palletwtno.Text = "";
+                boxpalletitemwt.Text = "0";
+                palletwtno.Text = "0";
                 return;
             }
 
@@ -1024,6 +1039,7 @@ namespace PackingApplication
                     {
                         boxpalletitemwt.Text = itemResponse.Weight.ToString();
                         palletwtno.Text = itemResponse.Weight.ToString();
+                        GrossWeight_TextChanged(sender, e);
                     }
                 }
             }
@@ -1569,7 +1585,7 @@ namespace PackingApplication
                             submit.Enabled = true;
                             saveprint.Enabled = true;
                         }
-                        if (gross > tare)
+                        if (gross >= tare)
                         {
                             CalculateNetWeight();
                             grosswterror.Text = "";
@@ -1579,8 +1595,8 @@ namespace PackingApplication
                         {
                             grosswterror.Text = "Gross Wt > Tare Wt";
                             grosswterror.Visible = true;
-                            netwt.Text = "";
-                            wtpercop.Text = "";
+                            netwt.Text = "0";
+                            wtpercop.Text = "0";
                         }
                     }
                 }
@@ -1597,6 +1613,7 @@ namespace PackingApplication
             if (num1 > num2)
             {
                 netwt.Text = (num1 - num2).ToString("F3");
+                CalculateWeightPerCop();
             }
         }
 
@@ -1610,19 +1627,30 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 spoolnoerror.Visible = true;
-                tarewt.Text = "";
+                tarewt.Text = "0";
             }
             else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
-                spoolwt.Text = "";
+                spoolwt.Text = "0";
             }
             else {
-                spoolwt.Text = (Convert.ToInt32(spoolno.Text.ToString()) * Convert.ToDecimal(copsitemwt.Text.ToString())).ToString();
-                CalculateWeightPerCop();
-                CalculateTareWeight();
-                GrossWeight_TextChanged(sender, e);
-                spoolnoerror.Text = "";
-                spoolnoerror.Visible = false;
+                decimal spoolnum = 0, copswt = 0;
+                decimal.TryParse(spoolno.Text, out spoolnum);
+                decimal.TryParse(copsitemwt.Text, out copswt);
+                if (spoolnum > 0)
+                {
+                    spoolwt.Text = (spoolnum * copswt).ToString();
+                    CalculateWeightPerCop();
+                    CalculateTareWeight();
+                    GrossWeight_TextChanged(sender, e);
+                    spoolnoerror.Text = "";
+                    spoolnoerror.Visible = false;
+                }
+                else if(spoolnum == 0)
+                {
+                    spoolnoerror.Text = "Spool no > 0";
+                    spoolnoerror.Visible = true;
+                }
             }
         }
 
@@ -1632,9 +1660,12 @@ namespace PackingApplication
 
             decimal.TryParse(netwt.Text, out num1);
             decimal.TryParse(spoolno.Text, out num2);
-            if (num1 > num2)
+            if(num1 > 0 && num2 > 0)
             {
-                wtpercop.Text = (num1 / num2).ToString("F3");
+                if (num1 >= num2)
+                {
+                    wtpercop.Text = (num1 / num2).ToString("F3");
+                }
             }
         }
 
@@ -1792,7 +1823,9 @@ namespace PackingApplication
                 }
                 else
                 {
-                    MessageBox.Show("POY Packing updated successfully.");
+                    MessageBox.Show("POY Packing updated successfully!", "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                     if (isPrint)
                     {
                         string reportServer = "http://desktop-ocu1bqt/ReportServer";
@@ -2221,6 +2254,21 @@ namespace PackingApplication
                 if (c.HasChildren)
                     ResetForm(c);
             }
+            copyno.Text = "1";
+            spoolno.Text = "0";
+            spoolwt.Text = "0";
+            palletwtno.Text = "0";
+            grosswtno.Text = "0";
+            tarewt.Text = "0";
+            netwt.Text = "0";
+            wtpercop.Text = "0";
+            boxpalletitemwt.Text = "0";
+            boxpalletstock.Text = "0";
+            copsitemwt.Text = "0";
+            copsstock.Text = "0";
+            frdenier.Text = "0";
+            updenier.Text = "0";
+            deniervalue.Text = "0";
         }
 
     }

@@ -63,7 +63,15 @@ namespace PackingApplication
             getLotRelatedDetails();
 
             copyno.Text = "1";
-
+            palletwtno.Text = "0";
+            grosswtno.Text = "0";
+            tarewt.Text = "0";
+            netwt.Text = "0";
+            wtpercop.Text = "0";
+            copsitemwt.Text = "0";
+            frdenier.Text = "0";
+            updenier.Text = "0";
+            deniervalue.Text = "0";
             isFormReady = true;
         }
 
@@ -286,6 +294,8 @@ namespace PackingApplication
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
 
+            copyno.Text = "1";
+
             if (Convert.ToInt64(_productionId) > 0)
             {
                 var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
@@ -479,8 +489,8 @@ namespace PackingApplication
 
             if (PackSizeList.SelectedIndex <= 0)
             {
-                frdenier.Text = "";
-                updenier.Text = "";
+                frdenier.Text = "0";
+                updenier.Text = "0";
                 return;
             }
             if (PackSizeList.SelectedIndex > 0)
@@ -643,6 +653,7 @@ namespace PackingApplication
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
                         SpoolNo_TextChanged(sender, e);
+                        GrossWeight_TextChanged(sender, e);
                     }
                 }
             }
@@ -800,6 +811,7 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 palletwterror.Visible = true;
+                CalculateTareWeight();
             }
             else
             {
@@ -814,7 +826,7 @@ namespace PackingApplication
             int num1 = 0;
             int.TryParse(palletwtno.Text, out num1);
 
-            tarewt.Text = (num1).ToString();
+            tarewt.Text = (num1).ToString("F3");
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
@@ -830,7 +842,7 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        if (gross > tare)
+                        if (gross >= tare)
                         {
                             CalculateNetWeight();
                             grosswterror.Text = "";
@@ -840,8 +852,8 @@ namespace PackingApplication
                         {
                             grosswterror.Text = "Gross Wt > Tare Wt";
                             grosswterror.Visible = true;
-                            netwt.Text = "";
-                            wtpercop.Text = "";
+                            netwt.Text = "0";
+                            wtpercop.Text = "0";
                         }
                     }
                 }
@@ -855,10 +867,10 @@ namespace PackingApplication
 
             int.TryParse(grosswtno.Text, out num1);
             int.TryParse(tarewt.Text, out num2);
-
             if (num1 > num2)
             {
-                netwt.Text = (num1 - num2).ToString();
+                netwt.Text = (num1 - num2).ToString("F3");
+                CalculateWeightPerCop();
             }
         }
 
@@ -979,7 +991,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    MessageBox.Show("Chips Packing updated successfully.");
+                    MessageBox.Show("Chips Packing updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
