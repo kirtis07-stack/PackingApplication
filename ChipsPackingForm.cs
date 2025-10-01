@@ -635,7 +635,7 @@ namespace PackingApplication
 
             if (CopsItemList.SelectedIndex <= 0)
             {
-                copsitemwt.Text = "";
+                copsitemwt.Text = "0";
                 return;
             }
 
@@ -834,7 +834,7 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 grosswterror.Visible = true;
-                grosswterror.Text = "Please enter gross weight";
+                //grosswterror.Text = "Please enter gross weight";
             }
             else
             {
@@ -980,6 +980,7 @@ namespace PackingApplication
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
                 this.bagstockvalue.Text = "";
+                this.palletwtno.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("Chips Packing added successfully!",

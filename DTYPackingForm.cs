@@ -648,7 +648,7 @@ namespace PackingApplication
 
             if (CopsItemList.SelectedIndex <= 0)
             {
-                copsitemwt.Text = "";
+                copsitemwt.Text = "0";
                 return;
             }
 
@@ -896,7 +896,7 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 grosswterror.Visible = true;
-                grosswterror.Text = "Please enter gross weight";
+                //grosswterror.Text = "Please enter gross weight";
             }
             else
             {
