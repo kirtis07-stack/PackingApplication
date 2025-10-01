@@ -20,6 +20,12 @@ namespace PackingApplication
         private static Logger Log = Logger.GetLogger();
         PackingService _packingService = new PackingService();
         CommonMethod _cmethod = new CommonMethod();
+
+        private int pageSize = 10;
+        private int currentPage = 1;
+        private int totalRecords = 0;
+        private int totalPages = 0;
+        private List<ProductionResponse> poypackingList;
         public POYPackingList()
         {
             InitializeComponent();
@@ -45,8 +51,8 @@ namespace PackingApplication
 
         private async void POYPackingList_Shown(object sender, EventArgs e)
         {
-            var poypackingList = await Task.Run(() => getAllPOYPackingList());
-
+            poypackingList = await Task.Run(() => getAllPOYPackingList());
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
             // Define columns
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
@@ -96,9 +102,9 @@ namespace PackingApplication
             {
                 dataGridView1.Cursor = Cursors.Default; // Reset back to default
             };
+
+            SetupPagination();
         }
-
-
 
         private List<ProductionResponse> getAllPOYPackingList()
         {
@@ -117,7 +123,8 @@ namespace PackingApplication
 
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = (e.RowIndex + 1).ToString();
+            int srNo = (currentPage - 1) * pageSize + e.RowIndex + 1;
+            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = srNo;
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -165,6 +172,58 @@ namespace PackingApplication
                     e.Graphics.DrawPath(pen, path);
                 }
             }
+        }
+
+        private void SetupPagination()
+        {
+            int totalRecords = poypackingList.Count;
+            totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            BindGrid();
+        }
+
+        private void BindGrid()
+        {
+            var data = poypackingList.Skip((currentPage - 1) * pageSize)
+                          .Take(pageSize)
+                          .Select((item, index) =>
+                          {
+                              item.SrNo = (currentPage - 1) * pageSize + index + 1;
+                              return item;
+                          })
+                          .ToList();
+
+            dataGridView1.DataSource = data;
+            lblPageInfo.Text = $"Page {currentPage} of {totalPages}";
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                BindGrid();
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                BindGrid();
+            }
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;
+            BindGrid();
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            currentPage = totalPages;
+            BindGrid();
         }
     }
 }

@@ -58,6 +58,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int ChallanId { get; set; }
         public List<ProductionPalletDetailsResponse> PalletDetailsResponse { get; set; }
         //public List<ProductionConsumptionDetailsResponse> ConsumptionDetailsResponse { get; set; }
+        public int SrNo { get; set; }
     }
 
     public class ProductionPalletDetailsResponse : BaseAuditEntity
