@@ -1525,6 +1525,7 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 grosswterror.Visible = true;
+                grosswterror.Text = "Please enter gross weight";
             }
             else
             {
@@ -1590,8 +1591,9 @@ namespace PackingApplication
         {
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
+                spoolnoerror.Text = "Please enter spool no";
                 spoolnoerror.Visible = true;
-                tarewt.Text = "";
+                tarewt.Text = "0";
             }
             else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {

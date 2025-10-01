@@ -834,6 +834,7 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 grosswterror.Visible = true;
+                grosswterror.Text = "Please enter gross weight";
             }
             else
             {
