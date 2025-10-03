@@ -34,6 +34,10 @@ namespace PackingApplication
         string comPort;
         int selectedSOId = 0;
         int selectLotId = 0;
+        decimal totalSOQty = 0;
+        decimal totalProdQty = 0;
+        decimal balanceQty = 0;
+        string selectedSONumber = "";
         public DTYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -586,14 +590,26 @@ namespace PackingApplication
 
                 if (selectedSaleOrderId > 0)
                 {
-                    productionRequest.SaleOrderId = selectedSaleOrderId;
                     selectedSOId = selectedSaleOrderId;
+                    selectedSONumber = selectedSaleOrder.SaleOrderNumber;
+                    totalSOQty = 0;
+
+                    productionRequest.SaleOrderId = selectedSaleOrderId;
                     var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
                     if (saleOrderItemResponse != null)
                     {
                         productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
+
+                    var saleResponse = getSaleOrderById(selectedSaleOrderId);
+
+                    foreach (var soitem in saleResponse.saleOrderItemsResponses)
+                    {
+                        totalSOQty += soitem.Quantity;
+                    }
+
+                    RefreshGradewiseGrid();
                     RefreshLastBoxDetails();
                 }
             }
@@ -611,6 +627,56 @@ namespace PackingApplication
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
+        }
+
+        private async void RefreshGradewiseGrid()
+        {
+            if (QualityList.SelectedValue != null)
+            {
+                totalProdQty = 0;
+                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+                foreach (var quality in getProductionByQuality)
+                {
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
+
+                    if (existing == null)
+                    {
+                        QualityGridResponse grid = new QualityGridResponse();
+                        grid.QualityId = quality.QualityId;
+                        grid.SaleOrderId = quality.SaleOrderId;
+                        grid.QualityName = quality.QualityName;
+                        grid.SaleOrderQty = totalSOQty;
+                        grid.GrossWt = quality.GrossWt;
+
+                        gridList.Add(grid);
+                    }
+                    else
+                    {
+                        existing.GrossWt += quality.GrossWt;
+                    }
+
+                }
+
+                foreach (var proditem in gridList)
+                {
+                    totalProdQty += proditem.GrossWt;
+                }
+                balanceQty = (totalSOQty - totalProdQty);
+                if (balanceQty <= 0)
+                {
+                    submit.Enabled = false;
+                    saveprint.Enabled = false;
+                    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                    ResetForm(this);
+                }
+                else
+                {
+                    submit.Enabled = true;
+                    saveprint.Enabled = true;
+                }
             }
         }
 
@@ -842,6 +908,18 @@ namespace PackingApplication
         private ProductionResponse getProductionById(long productionId)
         {
             var getProduction = _packingService.getProductionById(productionId);
+            return getProduction;
+        }
+
+        private SaleOrderResponse getSaleOrderById(int saleOrderId)
+        {
+            var getSaleOrder = _saleService.getSaleOrderById(saleOrderId);
+            return getSaleOrder;
+        }
+
+        private List<ProductionResponse> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
+        {
+            var getProduction = _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId);
             return getProduction;
         }
 
@@ -1424,5 +1502,45 @@ namespace PackingApplication
         //        e.Handled = true;        // stop space being typed in
         //    }
         //}
+
+        private void ResetForm(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is System.Windows.Forms.TextBox)
+                    ((System.Windows.Forms.TextBox)c).Clear();
+
+                else if (c is System.Windows.Forms.ComboBox)
+                    ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
+
+                else if (c is DateTimePicker)
+                    ((DateTimePicker)c).Value = DateTime.Now;
+
+                else if (c is System.Windows.Forms.CheckBox)
+                    ((System.Windows.Forms.CheckBox)c).Checked = false;
+
+                else if (c is System.Windows.Forms.RadioButton)
+                    ((System.Windows.Forms.RadioButton)c).Checked = false;
+
+                // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
+                if (c.HasChildren)
+                    ResetForm(c);
+            }
+            copyno.Text = "1";
+            spoolno.Text = "0";
+            spoolwt.Text = "0";
+            palletwtno.Text = "0";
+            grosswtno.Text = "0";
+            tarewt.Text = "0";
+            netwt.Text = "0";
+            wtpercop.Text = "0";
+            boxpalletitemwt.Text = "0";
+            boxpalletstock.Text = "0";
+            copsitemwt.Text = "0";
+            copsstock.Text = "0";
+            frdenier.Text = "0";
+            updenier.Text = "0";
+            deniervalue.Text = "0";
+        }
     }
 }

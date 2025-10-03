@@ -1259,7 +1259,7 @@ namespace PackingApplication
 
         private List<ProductionResponse> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
         {
-            var getProduction = _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId, "poypacking");
+            var getProduction = _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId);
             return getProduction;
         }
 
