@@ -983,6 +983,22 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
+                        decimal newBalanceQty = balanceQty - gross;
+                        if (newBalanceQty < 0)
+                        {
+                            grosswterror.Text = "No Prod Bal Qty remaining";
+                            grosswterror.Visible = true;
+                            submit.Enabled = false;
+                            saveprint.Enabled = false;
+                            return;
+                        }
+                        else
+                        {
+                            grosswterror.Text = "";
+                            grosswterror.Visible = false;
+                            submit.Enabled = true;
+                            saveprint.Enabled = true;
+                        }
                         if (gross >= tare)
                         {
                             CalculateNetWeight();

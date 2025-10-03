@@ -577,15 +577,28 @@ namespace PackingApplication
 
                 if (selectedSaleOrderId > 0)
                 {
-                    productionRequest.SaleOrderId = selectedSaleOrderId;
                     selectedSOId = selectedSaleOrderId;
+                    selectedSONumber = selectedSaleOrder.SaleOrderNumber;
+                    totalSOQty = 0;
+
+                    productionRequest.SaleOrderId = selectedSaleOrderId;
+
                     var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
                     if (saleOrderItemResponse != null)
                     {
                         productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
+
+                    var saleResponse = getSaleOrderById(selectedSaleOrderId);
+
+                    foreach (var soitem in saleResponse.saleOrderItemsResponses)
+                    {
+                        totalSOQty += soitem.Quantity;
+                    }
+
                     RefreshLastBoxDetails();
+                    RefreshGradewiseGrid();
                 }
             }
         }
@@ -909,6 +922,22 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
+                        decimal newBalanceQty = balanceQty - gross;
+                        if (newBalanceQty < 0)
+                        {
+                            grosswterror.Text = "No Prod Bal Qty remaining";
+                            grosswterror.Visible = true;
+                            submit.Enabled = false;
+                            saveprint.Enabled = false;
+                            return;
+                        }
+                        else
+                        {
+                            grosswterror.Text = "";
+                            grosswterror.Visible = false;
+                            submit.Enabled = true;
+                            saveprint.Enabled = true;
+                        }
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -1041,8 +1070,10 @@ namespace PackingApplication
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshLastBoxDetails();
-                this.grosswtno.Text = "";
                 this.tarewt.Text = "";
+                this.grosswtno.Text = "";
+                this.grosswterror.Text = "";
+                this.grosswterror.Visible = false;
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
                 this.bagstockvalue.Text = "";
