@@ -5,6 +5,7 @@ using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
+using PackingApplication.Properties;
 using PackingApplication.Services;
 using PdfiumViewer;
 using System;
@@ -1851,11 +1852,16 @@ namespace PackingApplication
                         {
                             using (var printDoc = pdfDoc.CreatePrintDocument())
                             {
-                                printDoc.PrinterSettings = new PrinterSettings()
+                                var printerSettings = new PrinterSettings()
                                 {
                                     // PrinterName = "YourPrinterName", // optional, default printer if omitted
                                     Copies = 1
                                 };
+                                // Set custom 4x4 label size
+                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                                printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+
+                                printDoc.PrinterSettings = printerSettings;
                                 printDoc.Print(); // sends PDF to printer
                             }
                         }
