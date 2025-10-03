@@ -1615,6 +1615,27 @@ namespace PackingApplication
             decimal.TryParse(palletwtno.Text, out num2);
 
             tarewt.Text = (num1 + num2).ToString("F3");
+            if (!string.IsNullOrWhiteSpace(grosswtno.Text) && !string.IsNullOrWhiteSpace(tarewt.Text))
+            {
+                decimal gross, tare;
+                if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
+                {
+                    if (gross >= tare)
+                    {
+                        CalculateNetWeight();
+                        grosswterror.Text = "";
+                        grosswterror.Visible = false;
+                    }
+                    else
+                    {
+                        grosswterror.Text = "Gross Wt > Tare Wt";
+                        grosswterror.Visible = true;
+                        netwt.Text = "0";
+                        wtpercop.Text = "0";
+                    }
+                }
+            }
+            
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)

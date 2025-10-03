@@ -906,6 +906,26 @@ namespace PackingApplication
             int.TryParse(palletwtno.Text, out num1);
 
             tarewt.Text = (num1).ToString("F3");
+            if (!string.IsNullOrWhiteSpace(grosswtno.Text) && !string.IsNullOrWhiteSpace(tarewt.Text))
+            {
+                decimal gross, tare;
+                if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
+                {
+                    if (gross >= tare)
+                    {
+                        CalculateNetWeight();
+                        grosswterror.Text = "";
+                        grosswterror.Visible = false;
+                    }
+                    else
+                    {
+                        grosswterror.Text = "Gross Wt > Tare Wt";
+                        grosswterror.Visible = true;
+                        netwt.Text = "0";
+                        wtpercop.Text = "0";
+                    }
+                }
+            }
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
@@ -982,9 +1002,9 @@ namespace PackingApplication
 
         private void CalculateWeightPerCop()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(netwt.Text, out num1);
+            decimal.TryParse(netwt.Text, out num1);
             //int.TryParse(spoolno.Text, out num2);
 
             //wtpercop.Text = (num1 / num2).ToString();

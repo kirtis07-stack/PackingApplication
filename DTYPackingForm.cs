@@ -665,7 +665,7 @@ namespace PackingApplication
                     totalProdQty += proditem.GrossWt;
                 }
                 balanceQty = (totalSOQty - totalProdQty);
-                if (balanceQty <= 0)
+                if (balanceQty < 0)
                 {
                     submit.Enabled = false;
                     saveprint.Enabled = false;
@@ -967,6 +967,26 @@ namespace PackingApplication
             decimal.TryParse(palletwtno.Text, out num2);
 
             tarewt.Text = (num1 + num2).ToString("F3");
+            if (!string.IsNullOrWhiteSpace(grosswtno.Text) && !string.IsNullOrWhiteSpace(tarewt.Text))
+            {
+                decimal gross, tare;
+                if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
+                {
+                    if (gross >= tare)
+                    {
+                        CalculateNetWeight();
+                        grosswterror.Text = "";
+                        grosswterror.Visible = false;
+                    }
+                    else
+                    {
+                        grosswterror.Text = "Gross Wt > Tare Wt";
+                        grosswterror.Visible = true;
+                        netwt.Text = "0";
+                        wtpercop.Text = "0";
+                    }
+                }
+            }
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
@@ -984,7 +1004,7 @@ namespace PackingApplication
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
                         decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
+                        if (newBalanceQty <= 0)
                         {
                             grosswterror.Text = "No Prod Bal Qty remaining";
                             grosswterror.Visible = true;
@@ -1543,7 +1563,8 @@ namespace PackingApplication
                     ResetForm(c);
             }
             copyno.Text = "1";
-            spoolno.Text = "0";
+            spoolno.Text = "";
+            spoolnoerror.Visible = false;
             spoolwt.Text = "0";
             palletwtno.Text = "0";
             grosswtno.Text = "0";
