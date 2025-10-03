@@ -864,10 +864,10 @@ namespace PackingApplication
 
         private void CalculateNetWeight()
         {
-            int num1 = 0, num2 = 0;
+            decimal num1 = 0, num2 = 0;
 
-            int.TryParse(grosswtno.Text, out num1);
-            int.TryParse(tarewt.Text, out num2);
+            decimal.TryParse(grosswtno.Text, out num1);
+            decimal.TryParse(tarewt.Text, out num2);
             if (num1 > num2)
             {
                 netwt.Text = (num1 - num2).ToString("F3");

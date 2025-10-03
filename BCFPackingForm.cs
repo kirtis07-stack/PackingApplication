@@ -1669,10 +1669,10 @@ namespace PackingApplication
             decimal.TryParse(spoolno.Text, out num2);
             if (num1 > 0 && num2 > 0)
             {
-                if (num1 >= num2)
-                {
+                //if (num1 >= num2)
+                //{
                     wtpercop.Text = (num1 / num2).ToString("F3");
-                }
+                //}
             }
         }
 

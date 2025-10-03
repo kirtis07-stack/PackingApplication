@@ -1611,22 +1611,22 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
-                        {
-                            grosswterror.Text = "No Prod Bal Qty remaining";
-                            grosswterror.Visible = true;
-                            submit.Enabled = false;
-                            saveprint.Enabled = false;
-                            return;
-                        }
-                        else
-                        {
-                            grosswterror.Text = "";
-                            grosswterror.Visible = false;
-                            submit.Enabled = true;
-                            saveprint.Enabled = true;
-                        }
+                        //decimal newBalanceQty = balanceQty - gross;
+                        //if (newBalanceQty < 0)
+                        //{
+                        //    grosswterror.Text = "No Prod Bal Qty remaining";
+                        //    grosswterror.Visible = true;
+                        //    submit.Enabled = false;
+                        //    saveprint.Enabled = false;
+                        //    return;
+                        //}
+                        //else
+                        //{
+                        //    grosswterror.Text = "";
+                        //    grosswterror.Visible = false;
+                        //    submit.Enabled = true;
+                        //    saveprint.Enabled = true;
+                        //}
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -1705,10 +1705,10 @@ namespace PackingApplication
             decimal.TryParse(spoolno.Text, out num2);
             if(num1 > 0 && num2 > 0)
             {
-                if (num1 >= num2)
-                {
+                //if (num1 >= num2)
+                //{
                     wtpercop.Text = (num1 / num2).ToString("F3");
-                }
+                //}
             }
         }
 
