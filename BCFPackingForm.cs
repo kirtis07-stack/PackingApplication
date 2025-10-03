@@ -807,50 +807,53 @@ namespace PackingApplication
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
 
-                    var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
-                    if (getProductionByQuality != null)
+                    var saleResponse = getSaleOrderById(selectedSaleOrderId);
+
+                    foreach (var soitem in saleResponse.saleOrderItemsResponses)
                     {
-                        if (getProductionByQuality.Count > 0)
-                        {
-                            List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-                            foreach (var quality in getProductionByQuality)
-                            {
-                                var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
-
-                                if (existing == null)
-                                {
-                                    QualityGridResponse grid = new QualityGridResponse();
-                                    grid.QualityId = quality.QualityId;
-                                    grid.SaleOrderId = quality.SaleOrderId;
-                                    grid.QualityName = quality.QualityName;
-                                    grid.SaleOrderQty = totalSOQty;
-                                    grid.GrossWt = quality.GrossWt;
-
-                                    gridList.Add(grid);
-                                }
-                                else
-                                {
-                                    existing.GrossWt += quality.GrossWt;
-                                }
-
-                            }
-                            foreach (var proditem in gridList)
-                            {
-                                totalSOQty += proditem.GrossWt;
-                            }
-                            grdsoqty.Text = totalSOQty.ToString("F2");
-                        }
-                        else
-                        {
-                            var saleResponse = getSaleOrderById(selectedSaleOrderId);
-
-                            foreach (var soitem in saleResponse.saleOrderItemsResponses)
-                            {
-                                totalSOQty += soitem.Quantity;
-                            }
-                            grdsoqty.Text = totalSOQty.ToString("F2");
-                        }
+                        totalSOQty += soitem.Quantity;
                     }
+
+                    //var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                    //if (getProductionByQuality != null)
+                    //{
+                    //    if (getProductionByQuality.Count > 0)
+                    //    {
+                    //        List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+                    //        foreach (var quality in getProductionByQuality)
+                    //        {
+                    //            var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
+
+                    //            if (existing == null)
+                    //            {
+                    //                QualityGridResponse grid = new QualityGridResponse();
+                    //                grid.QualityId = quality.QualityId;
+                    //                grid.SaleOrderId = quality.SaleOrderId;
+                    //                grid.QualityName = quality.QualityName;
+                    //                grid.SaleOrderQty = totalSOQty;
+                    //                grid.GrossWt = quality.GrossWt;
+
+                    //                gridList.Add(grid);
+                    //            }
+                    //            else
+                    //            {
+                    //                existing.GrossWt += quality.GrossWt;
+                    //            }
+
+                    //        }
+                    //        foreach (var proditem in gridList)
+                    //        {
+                    //            totalSOQty += proditem.GrossWt;
+                    //        }
+                    //        grdsoqty.Text = totalSOQty.ToString("F2");
+                    //    }
+                    //    else
+                    //    {
+
+                    //        grdsoqty.Text = totalSOQty.ToString("F2");
+                    //    }
+                    //}
+                    grdsoqty.Text = totalSOQty.ToString("F2");
 
                     RefreshGradewiseGrid();
                     RefreshLastBoxDetails();
@@ -1235,6 +1238,24 @@ namespace PackingApplication
         private void addqty_Click(object sender, EventArgs e)
         {
             var selectedItem = (ItemResponse)PalletTypeList.SelectedItem;
+            if (selectedItem != null)
+            {
+                if (selectedItem.ItemId == 0)
+                {
+                    MessageBox.Show("Please select an item.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if (string.IsNullOrEmpty(qnty.Text))
+            {
+                MessageBox.Show("Please enter quantity.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error); return;
+            }
             int qty = Convert.ToInt32(qnty.Text);
 
             if (selectedItem.ItemId > 0)
