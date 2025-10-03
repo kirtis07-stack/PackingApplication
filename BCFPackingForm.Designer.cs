@@ -1252,7 +1252,7 @@ namespace PackingApplication
             // 
             this.BoxItemList.AllowDrop = true;
             this.BoxItemList.FormattingEnabled = true;
-            this.BoxItemList.Location = new System.Drawing.Point(2, 99);
+            this.BoxItemList.Location = new System.Drawing.Point(2, 141);
             this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(120, 21);
@@ -1281,7 +1281,7 @@ namespace PackingApplication
             // 
             // boxpalletstock
             // 
-            this.boxpalletstock.Location = new System.Drawing.Point(276, 100);
+            this.boxpalletstock.Location = new System.Drawing.Point(276, 141);
             this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.boxpalletstock.Name = "boxpalletstock";
             this.boxpalletstock.Size = new System.Drawing.Size(120, 20);
@@ -1291,7 +1291,7 @@ namespace PackingApplication
             // boxstock
             // 
             this.boxstock.AutoSize = true;
-            this.boxstock.Location = new System.Drawing.Point(276, 85);
+            this.boxstock.Location = new System.Drawing.Point(276, 126);
             this.boxstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxstock.Name = "boxstock";
             this.boxstock.Size = new System.Drawing.Size(90, 13);
@@ -1329,7 +1329,7 @@ namespace PackingApplication
             // boxweight
             // 
             this.boxweight.AutoSize = true;
-            this.boxweight.Location = new System.Drawing.Point(140, 85);
+            this.boxweight.Location = new System.Drawing.Point(140, 126);
             this.boxweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxweight.Name = "boxweight";
             this.boxweight.Size = new System.Drawing.Size(24, 13);
@@ -1361,7 +1361,7 @@ namespace PackingApplication
             // 
             this.CopsItemList.AllowDrop = true;
             this.CopsItemList.FormattingEnabled = true;
-            this.CopsItemList.Location = new System.Drawing.Point(2, 141);
+            this.CopsItemList.Location = new System.Drawing.Point(2, 99);
             this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(120, 21);
@@ -1371,7 +1371,7 @@ namespace PackingApplication
             // boxtype
             // 
             this.boxtype.AutoSize = true;
-            this.boxtype.Location = new System.Drawing.Point(2, 85);
+            this.boxtype.Location = new System.Drawing.Point(2, 126);
             this.boxtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxtype.Name = "boxtype";
             this.boxtype.Size = new System.Drawing.Size(86, 13);
@@ -1453,7 +1453,7 @@ namespace PackingApplication
             // 
             // copsstock
             // 
-            this.copsstock.Location = new System.Drawing.Point(276, 141);
+            this.copsstock.Location = new System.Drawing.Point(276, 100);
             this.copsstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copsstock.Name = "copsstock";
             this.copsstock.Size = new System.Drawing.Size(120, 20);
@@ -1474,7 +1474,7 @@ namespace PackingApplication
             // copstock
             // 
             this.copstock.AutoSize = true;
-            this.copstock.Location = new System.Drawing.Point(276, 126);
+            this.copstock.Location = new System.Drawing.Point(276, 85);
             this.copstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copstock.Name = "copstock";
             this.copstock.Size = new System.Drawing.Size(65, 13);
@@ -1491,7 +1491,7 @@ namespace PackingApplication
             // copssize
             // 
             this.copssize.AutoSize = true;
-            this.copssize.Location = new System.Drawing.Point(2, 126);
+            this.copssize.Location = new System.Drawing.Point(2, 85);
             this.copssize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copssize.Name = "copssize";
             this.copssize.Size = new System.Drawing.Size(57, 13);
@@ -1501,7 +1501,7 @@ namespace PackingApplication
             // copweight
             // 
             this.copweight.AutoSize = true;
-            this.copweight.Location = new System.Drawing.Point(140, 126);
+            this.copweight.Location = new System.Drawing.Point(140, 85);
             this.copweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copweight.Name = "copweight";
             this.copweight.Size = new System.Drawing.Size(24, 13);
@@ -2195,7 +2195,7 @@ namespace PackingApplication
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(55, 126);
+            this.label8.Location = new System.Drawing.Point(55, 84);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(11, 13);
             this.label8.TabIndex = 120;
@@ -2206,7 +2206,7 @@ namespace PackingApplication
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(80, 84);
+            this.label7.Location = new System.Drawing.Point(80, 126);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(11, 13);
             this.label7.TabIndex = 119;
@@ -2269,7 +2269,7 @@ namespace PackingApplication
             // boxpalletitemwt
             // 
             this.boxpalletitemwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.boxpalletitemwt.Location = new System.Drawing.Point(140, 100);
+            this.boxpalletitemwt.Location = new System.Drawing.Point(140, 141);
             this.boxpalletitemwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.boxpalletitemwt.Name = "boxpalletitemwt";
             this.boxpalletitemwt.ReadOnly = true;
@@ -2279,7 +2279,7 @@ namespace PackingApplication
             // copsitemwt
             // 
             this.copsitemwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.copsitemwt.Location = new System.Drawing.Point(140, 141);
+            this.copsitemwt.Location = new System.Drawing.Point(140, 100);
             this.copsitemwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copsitemwt.Name = "copsitemwt";
             this.copsitemwt.ReadOnly = true;
