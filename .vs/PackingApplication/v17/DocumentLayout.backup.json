@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:chipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -35,15 +35,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\App.config",
-              "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\App.config",
-              "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-03T13:05:50.485Z",
-              "EditorCaption": ""
+              "Title": "ChipsPackingForm.cs [Design]",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs",
+              "RelativeDocumentMoniker": "ChipsPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs [Design]",
+              "RelativeToolTip": "ChipsPackingForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T14:37:32.713Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -53,7 +52,7 @@
               "RelativeDocumentMoniker": "DTYPackingForm.cs",
               "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DTYPackingForm.cs",
               "RelativeToolTip": "DTYPackingForm.cs",
-              "ViewState": "AgIAAGMCAAAAAAAAAAAswJoCAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAANIDAAAAAAAAAADwv+YDAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T09:56:59.968Z",
               "EditorCaption": ""
@@ -66,7 +65,7 @@
               "RelativeDocumentMoniker": "BCFPackingForm.cs",
               "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\BCFPackingForm.cs",
               "RelativeToolTip": "BCFPackingForm.cs",
-              "ViewState": "AgIAACIHAAAAAAAAAAAAAC0HAABGAAAAAAAAAA==",
+              "ViewState": "AgIAADYGAAAAAAAAAADwv0oGAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T09:00:14.583Z",
               "EditorCaption": ""
@@ -79,7 +78,7 @@
               "RelativeDocumentMoniker": "ChipsPackingForm.cs",
               "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ChipsPackingForm.cs",
               "RelativeToolTip": "ChipsPackingForm.cs",
-              "ViewState": "AgIAAN8DAAAAAAAAAAAkwOgDAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAKoDAAAAAAAAAAAUwLgDAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T12:51:47.917Z",
               "EditorCaption": ""
@@ -92,7 +91,7 @@
               "RelativeDocumentMoniker": "POYPackingForm.cs",
               "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\POYPackingForm.cs",
               "RelativeToolTip": "POYPackingForm.cs",
-              "ViewState": "AgIAAL4GAAAAAAAAAAAUwM4GAAATAAAAAAAAAA==",
+              "ViewState": "AgIAABYGAAAAAAAAAAAswHIGAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-03T07:27:31.465Z",
               "EditorCaption": ""

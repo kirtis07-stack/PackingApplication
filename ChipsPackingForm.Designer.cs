@@ -31,7 +31,7 @@ namespace PackingApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.saveprint = new System.Windows.Forms.Button();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
@@ -128,6 +128,7 @@ namespace PackingApplication
             this.packagingboxheader = new System.Windows.Forms.Panel();
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.uptodenier = new System.Windows.Forms.Label();
             this.fromdenier = new System.Windows.Forms.Label();
             this.req6 = new System.Windows.Forms.Label();
@@ -189,7 +190,6 @@ namespace PackingApplication
             this.orderdetailssubtitle = new System.Windows.Forms.Label();
             this.orderdetails1 = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
-            this.label7 = new System.Windows.Forms.Label();
             this.rightpanel.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
             this.rowMaterialPanel.SuspendLayout();
@@ -295,14 +295,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1444,6 +1444,17 @@ namespace PackingApplication
             this.packagingboxpanel.Size = new System.Drawing.Size(399, 136);
             this.packagingboxpanel.TabIndex = 107;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(55, 84);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 13);
+            this.label7.TabIndex = 120;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // uptodenier
             // 
             this.uptodenier.AutoSize = true;
@@ -1628,7 +1639,7 @@ namespace PackingApplication
             this.bagstockvalue.Location = new System.Drawing.Point(276, 100);
             this.bagstockvalue.Name = "bagstockvalue";
             this.bagstockvalue.Size = new System.Drawing.Size(120, 20);
-            this.bagstockvalue.TabIndex = 0;
+            this.bagstockvalue.TabIndex = 12;
             this.bagstockvalue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // bagsstock
@@ -1975,17 +1986,6 @@ namespace PackingApplication
             // sidebarTimer
             // 
             this.sidebarTimer.Interval = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(55, 84);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 13);
-            this.label7.TabIndex = 120;
-            this.label7.Text = "*";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ChipsPackingForm
             // 

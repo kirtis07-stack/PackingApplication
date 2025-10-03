@@ -1640,6 +1640,11 @@ namespace PackingApplication
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
         {
+            if (selectedSOId == 0) {
+                soerror.Visible = true;
+                soerror.Text = "Please select Sale Order";
+                return;
+            }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 grosswterror.Visible = true;
@@ -1647,7 +1652,9 @@ namespace PackingApplication
             }
             else
             {
-                if(!string.IsNullOrWhiteSpace(tarewt.Text))
+                soerror.Visible = false;
+                soerror.Text = "";
+                if (!string.IsNullOrWhiteSpace(tarewt.Text))
                 {
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
