@@ -2366,6 +2366,5 @@ namespace PackingApplication
             updenier.Text = "0";
             deniervalue.Text = "0";
         }
-
     }
 }
