@@ -35,9 +35,9 @@ namespace PackingApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lineno = new System.Windows.Forms.Label();
             this.department = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -114,9 +114,27 @@ namespace PackingApplication
             this.qnty = new System.Windows.Forms.TextBox();
             this.addqty = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel28 = new System.Windows.Forms.Panel();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.req10 = new System.Windows.Forms.Label();
+            this.windingerror = new System.Windows.Forms.Label();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.spoolweight = new System.Windows.Forms.Label();
+            this.req7 = new System.Windows.Forms.Label();
+            this.spoolnoerror = new System.Windows.Forms.Label();
+            this.panel32 = new System.Windows.Forms.Panel();
+            this.req8 = new System.Windows.Forms.Label();
+            this.palletwterror = new System.Windows.Forms.Label();
+            this.panel33 = new System.Windows.Forms.Panel();
+            this.grosswterror = new System.Windows.Forms.Label();
+            this.req9 = new System.Windows.Forms.Label();
+            this.panel34 = new System.Windows.Forms.Panel();
+            this.panel35 = new System.Windows.Forms.Panel();
+            this.panel36 = new System.Windows.Forms.Panel();
             this.submit = new System.Windows.Forms.Button();
             this.rightpanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
             this.rowMaterialPanel = new System.Windows.Forms.Panel();
@@ -139,37 +157,70 @@ namespace PackingApplication
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
-            this.req3 = new System.Windows.Forms.Label();
-            this.req2 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.req1 = new System.Windows.Forms.Label();
-            this.deniervalue = new System.Windows.Forms.TextBox();
-            this.denier = new System.Windows.Forms.Label();
             this.linenoerror = new System.Windows.Forms.Label();
-            this.boxnoerror = new System.Windows.Forms.Label();
-            this.mergenoerror = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.req2 = new System.Windows.Forms.Label();
             this.PrefixList = new System.Windows.Forms.ComboBox();
+            this.boxnoerror = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.req3 = new System.Windows.Forms.Label();
+            this.mergenoerror = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.denier = new System.Windows.Forms.Label();
+            this.deniervalue = new System.Windows.Forms.TextBox();
+            this.panel15 = new System.Windows.Forms.Panel();
             this.machineboxheader = new System.Windows.Forms.Panel();
             this.Machinelbl = new System.Windows.Forms.Label();
             this.packagingboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.packagingboxheader = new System.Windows.Forms.Panel();
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.uptodenier = new System.Windows.Forms.Label();
-            this.fromdenier = new System.Windows.Forms.Label();
-            this.req6 = new System.Windows.Forms.Label();
-            this.req5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel16 = new System.Windows.Forms.Panel();
             this.req4 = new System.Windows.Forms.Label();
-            this.packsizeerror = new System.Windows.Forms.Label();
-            this.soerror = new System.Windows.Forms.Label();
-            this.copynoerror = new System.Windows.Forms.Label();
             this.qualityerror = new System.Windows.Forms.Label();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.req5 = new System.Windows.Forms.Label();
+            this.soerror = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.copynoerror = new System.Windows.Forms.Label();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.req6 = new System.Windows.Forms.Label();
+            this.packsizeerror = new System.Windows.Forms.Label();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.fromdenier = new System.Windows.Forms.Label();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.uptodenier = new System.Windows.Forms.Label();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.panel27 = new System.Windows.Forms.Panel();
             this.tblpanl1 = new System.Windows.Forms.Panel();
             this.printingdetailslayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel37 = new System.Windows.Forms.Panel();
+            this.panel38 = new System.Windows.Forms.Panel();
+            this.panel39 = new System.Windows.Forms.Panel();
+            this.panel40 = new System.Windows.Forms.Panel();
+            this.panel41 = new System.Windows.Forms.Panel();
+            this.panel42 = new System.Windows.Forms.Panel();
+            this.panel43 = new System.Windows.Forms.Panel();
             this.printingdetailsheader = new System.Windows.Forms.Panel();
             this.Printinglbl = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.lastboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.lastboxpanel = new System.Windows.Forms.Panel();
             this.lastbxnetwtpanel = new System.Windows.Forms.Panel();
@@ -191,16 +242,7 @@ namespace PackingApplication
             this.weighboxheader = new System.Windows.Forms.Panel();
             this.Weighboxlbl = new System.Windows.Forms.Label();
             this.weighboxpanel = new System.Windows.Forms.Panel();
-            this.spoolweight = new System.Windows.Forms.Label();
-            this.req10 = new System.Windows.Forms.Label();
-            this.req9 = new System.Windows.Forms.Label();
-            this.req8 = new System.Windows.Forms.Label();
-            this.req7 = new System.Windows.Forms.Label();
-            this.grosswterror = new System.Windows.Forms.Label();
-            this.palletwterror = new System.Windows.Forms.Label();
             this.spoolwterror = new System.Windows.Forms.Label();
-            this.spoolnoerror = new System.Windows.Forms.Label();
-            this.windingerror = new System.Windows.Forms.Label();
             this.saveprint = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.windingtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -213,19 +255,17 @@ namespace PackingApplication
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.panel28.SuspendLayout();
+            this.panel29.SuspendLayout();
+            this.panel30.SuspendLayout();
+            this.panel31.SuspendLayout();
+            this.panel32.SuspendLayout();
+            this.panel33.SuspendLayout();
+            this.panel34.SuspendLayout();
+            this.panel35.SuspendLayout();
+            this.panel36.SuspendLayout();
             this.rightpanel.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
             this.rowMaterialPanel.SuspendLayout();
@@ -244,14 +284,47 @@ namespace PackingApplication
             this.tableLayoutPanel1.SuspendLayout();
             this.machineboxlayout.SuspendLayout();
             this.machineboxpanel.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.machineboxheader.SuspendLayout();
             this.packagingboxlayout.SuspendLayout();
             this.packagingboxheader.SuspendLayout();
             this.packagingboxpanel.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel19.SuspendLayout();
+            this.panel20.SuspendLayout();
+            this.panel21.SuspendLayout();
+            this.panel22.SuspendLayout();
+            this.panel23.SuspendLayout();
+            this.panel24.SuspendLayout();
+            this.panel25.SuspendLayout();
+            this.panel26.SuspendLayout();
+            this.panel27.SuspendLayout();
             this.tblpanl1.SuspendLayout();
             this.printingdetailslayout.SuspendLayout();
-            this.printingdetailsheader.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.panel37.SuspendLayout();
+            this.panel38.SuspendLayout();
+            this.panel39.SuspendLayout();
+            this.panel40.SuspendLayout();
+            this.panel41.SuspendLayout();
+            this.panel42.SuspendLayout();
+            this.panel43.SuspendLayout();
+            this.printingdetailsheader.SuspendLayout();
             this.lastboxlayout.SuspendLayout();
             this.lastboxpanel.SuspendLayout();
             this.lastbxnetwtpanel.SuspendLayout();
@@ -266,46 +339,32 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // lineno
             // 
             this.lineno.AutoSize = true;
             this.lineno.Location = new System.Drawing.Point(2, 2);
-            this.lineno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lineno.Name = "lineno";
-            this.lineno.Size = new System.Drawing.Size(30, 13);
+            this.lineno.Size = new System.Drawing.Size(43, 20);
             this.lineno.TabIndex = 108;
             this.lineno.Text = "Line:";
             // 
             // department
             // 
             this.department.AutoSize = true;
-            this.department.Location = new System.Drawing.Point(2, 0);
-            this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.department.Location = new System.Drawing.Point(2, 2);
             this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(33, 13);
+            this.department.Size = new System.Drawing.Size(48, 20);
             this.department.TabIndex = 2;
             this.department.Text = "Dept:";
             // 
             // mergeno
             // 
             this.mergeno.AutoSize = true;
-            this.mergeno.Location = new System.Drawing.Point(2, -1);
-            this.mergeno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.mergeno.Location = new System.Drawing.Point(2, 2);
             this.mergeno.Name = "mergeno";
-            this.mergeno.Size = new System.Drawing.Size(57, 13);
+            this.mergeno.Size = new System.Drawing.Size(82, 20);
             this.mergeno.TabIndex = 4;
             this.mergeno.Text = "Merge No:";
             // 
@@ -313,49 +372,48 @@ namespace PackingApplication
             // 
             this.lastboxno.AutoSize = true;
             this.lastboxno.Location = new System.Drawing.Point(2, 2);
-            this.lastboxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lastboxno.Name = "lastboxno";
-            this.lastboxno.Size = new System.Drawing.Size(51, 13);
+            this.lastboxno.Size = new System.Drawing.Size(75, 20);
             this.lastboxno.TabIndex = 6;
             this.lastboxno.Text = "Last Box:";
             // 
             // lastbox
             // 
+            this.lastbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lastbox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lastbox.Location = new System.Drawing.Point(2, 16);
-            this.lastbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbox.Location = new System.Drawing.Point(2, 21);
+            this.lastbox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastbox.Name = "lastbox";
             this.lastbox.ReadOnly = true;
-            this.lastbox.Size = new System.Drawing.Size(99, 20);
+            this.lastbox.Size = new System.Drawing.Size(146, 26);
             this.lastbox.TabIndex = 1;
+            this.lastbox.TabStop = false;
             // 
             // item
             // 
             this.item.AutoSize = true;
-            this.item.Location = new System.Drawing.Point(2, 0);
-            this.item.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.item.Location = new System.Drawing.Point(2, 2);
             this.item.Name = "item";
-            this.item.Size = new System.Drawing.Size(30, 13);
+            this.item.Size = new System.Drawing.Size(45, 20);
             this.item.TabIndex = 8;
             this.item.Text = "Item:";
             // 
             // shade
             // 
             this.shade.AutoSize = true;
-            this.shade.Location = new System.Drawing.Point(-1, 0);
-            this.shade.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.shade.Location = new System.Drawing.Point(2, 2);
             this.shade.Name = "shade";
-            this.shade.Size = new System.Drawing.Size(41, 13);
+            this.shade.Size = new System.Drawing.Size(60, 20);
             this.shade.TabIndex = 10;
             this.shade.Text = "Shade:";
             // 
             // shadecode
             // 
             this.shadecode.AutoSize = true;
-            this.shadecode.Location = new System.Drawing.Point(-3, 0);
-            this.shadecode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.shadecode.Location = new System.Drawing.Point(2, 2);
             this.shadecode.Name = "shadecode";
-            this.shadecode.Size = new System.Drawing.Size(69, 13);
+            this.shadecode.Size = new System.Drawing.Size(102, 20);
             this.shadecode.TabIndex = 12;
             this.shadecode.Text = "Shade Code:";
             // 
@@ -363,90 +421,93 @@ namespace PackingApplication
             // 
             this.boxno.AutoSize = true;
             this.boxno.Location = new System.Drawing.Point(2, 2);
-            this.boxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxno.Name = "boxno";
-            this.boxno.Size = new System.Drawing.Size(48, 13);
+            this.boxno.Size = new System.Drawing.Size(68, 20);
             this.boxno.TabIndex = 14;
             this.boxno.Text = "Box No.:";
             // 
             // packingdate
             // 
             this.packingdate.AutoSize = true;
-            this.packingdate.Location = new System.Drawing.Point(2, 0);
-            this.packingdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.packingdate.Location = new System.Drawing.Point(2, 2);
             this.packingdate.Name = "packingdate";
-            this.packingdate.Size = new System.Drawing.Size(33, 13);
+            this.packingdate.Size = new System.Drawing.Size(48, 20);
             this.packingdate.TabIndex = 16;
             this.packingdate.Text = "Date:";
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(1, 12);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dateTimePicker1.Location = new System.Drawing.Point(2, 21);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(146, 26);
             this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePicker1.TabStop = false;
             // 
             // quality
             // 
             this.quality.AutoSize = true;
             this.quality.Location = new System.Drawing.Point(2, 2);
-            this.quality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.quality.Name = "quality";
-            this.quality.Size = new System.Drawing.Size(42, 13);
+            this.quality.Size = new System.Drawing.Size(61, 20);
             this.quality.TabIndex = 18;
             this.quality.Text = "Quality:";
             // 
             // saleorderno
             // 
             this.saleorderno.AutoSize = true;
-            this.saleorderno.Location = new System.Drawing.Point(140, 2);
-            this.saleorderno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.saleorderno.Location = new System.Drawing.Point(2, 2);
             this.saleorderno.Name = "saleorderno";
-            this.saleorderno.Size = new System.Drawing.Size(45, 13);
+            this.saleorderno.Size = new System.Drawing.Size(64, 20);
             this.saleorderno.TabIndex = 20;
             this.saleorderno.Text = "SO No.:";
             // 
             // packsize
             // 
             this.packsize.AutoSize = true;
-            this.packsize.Location = new System.Drawing.Point(2, 44);
-            this.packsize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.packsize.Location = new System.Drawing.Point(2, 2);
             this.packsize.Name = "packsize";
-            this.packsize.Size = new System.Drawing.Size(58, 13);
+            this.packsize.Size = new System.Drawing.Size(83, 20);
             this.packsize.TabIndex = 22;
             this.packsize.Text = "Pack Size:";
             // 
             // frdenier
             // 
+            this.frdenier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.frdenier.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.frdenier.Location = new System.Drawing.Point(140, 59);
-            this.frdenier.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.frdenier.Location = new System.Drawing.Point(2, 21);
+            this.frdenier.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.frdenier.Name = "frdenier";
             this.frdenier.ReadOnly = true;
-            this.frdenier.Size = new System.Drawing.Size(120, 20);
+            this.frdenier.Size = new System.Drawing.Size(147, 26);
             this.frdenier.TabIndex = 5;
+            this.frdenier.TabStop = false;
             // 
             // updenier
             // 
+            this.updenier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.updenier.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.updenier.Location = new System.Drawing.Point(276, 59);
-            this.updenier.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.updenier.Location = new System.Drawing.Point(2, 21);
+            this.updenier.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.updenier.Name = "updenier";
             this.updenier.ReadOnly = true;
-            this.updenier.Size = new System.Drawing.Size(120, 20);
+            this.updenier.Size = new System.Drawing.Size(144, 26);
             this.updenier.TabIndex = 6;
+            this.updenier.TabStop = false;
             // 
             // windingtype
             // 
             this.windingtype.AutoSize = true;
-            this.windingtype.Location = new System.Drawing.Point(255, 2);
-            this.windingtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.windingtype.Location = new System.Drawing.Point(2, 2);
             this.windingtype.Name = "windingtype";
-            this.windingtype.Size = new System.Drawing.Size(49, 13);
+            this.windingtype.Size = new System.Drawing.Size(70, 20);
             this.windingtype.TabIndex = 28;
             this.windingtype.Text = "Winding:";
             // 
@@ -454,9 +515,8 @@ namespace PackingApplication
             // 
             this.comport.AutoSize = true;
             this.comport.Location = new System.Drawing.Point(2, 2);
-            this.comport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.comport.Name = "comport";
-            this.comport.Size = new System.Drawing.Size(53, 13);
+            this.comport.Size = new System.Drawing.Size(79, 20);
             this.comport.TabIndex = 30;
             this.comport.Text = "Com Port:";
             this.comport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -464,108 +524,111 @@ namespace PackingApplication
             // copssize
             // 
             this.copssize.AutoSize = true;
-            this.copssize.Location = new System.Drawing.Point(2, 85);
-            this.copssize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.copssize.Location = new System.Drawing.Point(2, 2);
             this.copssize.Name = "copssize";
-            this.copssize.Size = new System.Drawing.Size(57, 13);
+            this.copssize.Size = new System.Drawing.Size(85, 20);
             this.copssize.TabIndex = 32;
             this.copssize.Text = "Cops Size:";
             // 
             // copweight
             // 
             this.copweight.AutoSize = true;
-            this.copweight.Location = new System.Drawing.Point(140, 85);
-            this.copweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.copweight.Location = new System.Drawing.Point(2, 2);
             this.copweight.Name = "copweight";
-            this.copweight.Size = new System.Drawing.Size(24, 13);
+            this.copweight.Size = new System.Drawing.Size(33, 20);
             this.copweight.TabIndex = 34;
             this.copweight.Text = "Wt:";
             // 
             // copstock
             // 
             this.copstock.AutoSize = true;
-            this.copstock.Location = new System.Drawing.Point(276, 85);
-            this.copstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.copstock.Location = new System.Drawing.Point(2, 2);
             this.copstock.Name = "copstock";
-            this.copstock.Size = new System.Drawing.Size(65, 13);
+            this.copstock.Size = new System.Drawing.Size(95, 20);
             this.copstock.TabIndex = 35;
             this.copstock.Text = "Cops Stock:";
             // 
             // copsitemwt
             // 
+            this.copsitemwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.copsitemwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.copsitemwt.Location = new System.Drawing.Point(140, 100);
-            this.copsitemwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copsitemwt.Location = new System.Drawing.Point(2, 21);
+            this.copsitemwt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.copsitemwt.Name = "copsitemwt";
             this.copsitemwt.ReadOnly = true;
-            this.copsitemwt.Size = new System.Drawing.Size(120, 20);
+            this.copsitemwt.Size = new System.Drawing.Size(147, 26);
             this.copsitemwt.TabIndex = 11;
+            this.copsitemwt.TabStop = false;
             // 
             // copsstock
             // 
-            this.copsstock.Location = new System.Drawing.Point(276, 100);
-            this.copsstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copsstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.copsstock.Location = new System.Drawing.Point(2, 21);
+            this.copsstock.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.copsstock.Name = "copsstock";
-            this.copsstock.Size = new System.Drawing.Size(120, 20);
+            this.copsstock.Size = new System.Drawing.Size(144, 26);
             this.copsstock.TabIndex = 12;
             this.copsstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // boxtype
             // 
             this.boxtype.AutoSize = true;
-            this.boxtype.Location = new System.Drawing.Point(2, 126);
-            this.boxtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxtype.Location = new System.Drawing.Point(2, 2);
             this.boxtype.Name = "boxtype";
-            this.boxtype.Size = new System.Drawing.Size(86, 13);
+            this.boxtype.Size = new System.Drawing.Size(121, 20);
             this.boxtype.TabIndex = 38;
             this.boxtype.Text = "Box/Pallet Type:";
             // 
             // boxweight
             // 
             this.boxweight.AutoSize = true;
-            this.boxweight.Location = new System.Drawing.Point(140, 126);
-            this.boxweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxweight.Location = new System.Drawing.Point(2, 2);
             this.boxweight.Name = "boxweight";
-            this.boxweight.Size = new System.Drawing.Size(24, 13);
+            this.boxweight.Size = new System.Drawing.Size(33, 20);
             this.boxweight.TabIndex = 40;
             this.boxweight.Text = "Wt:";
             // 
             // boxpalletitemwt
             // 
+            this.boxpalletitemwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.boxpalletitemwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.boxpalletitemwt.Location = new System.Drawing.Point(140, 141);
-            this.boxpalletitemwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.boxpalletitemwt.Location = new System.Drawing.Point(2, 21);
+            this.boxpalletitemwt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.boxpalletitemwt.Name = "boxpalletitemwt";
             this.boxpalletitemwt.ReadOnly = true;
-            this.boxpalletitemwt.Size = new System.Drawing.Size(120, 20);
+            this.boxpalletitemwt.Size = new System.Drawing.Size(147, 26);
             this.boxpalletitemwt.TabIndex = 8;
+            this.boxpalletitemwt.TabStop = false;
             // 
             // boxstock
             // 
             this.boxstock.AutoSize = true;
-            this.boxstock.Location = new System.Drawing.Point(276, 126);
-            this.boxstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxstock.Location = new System.Drawing.Point(2, 2);
             this.boxstock.Name = "boxstock";
-            this.boxstock.Size = new System.Drawing.Size(90, 13);
+            this.boxstock.Size = new System.Drawing.Size(128, 20);
             this.boxstock.TabIndex = 42;
             this.boxstock.Text = "Box/Pallet Stock:";
             // 
             // boxpalletstock
             // 
-            this.boxpalletstock.Location = new System.Drawing.Point(276, 141);
-            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.boxpalletstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxpalletstock.Location = new System.Drawing.Point(2, 21);
+            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.boxpalletstock.Name = "boxpalletstock";
-            this.boxpalletstock.Size = new System.Drawing.Size(120, 20);
+            this.boxpalletstock.Size = new System.Drawing.Size(144, 26);
             this.boxpalletstock.TabIndex = 9;
             this.boxpalletstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // productiontype
             // 
             this.productiontype.AutoSize = true;
-            this.productiontype.Location = new System.Drawing.Point(0, 0);
-            this.productiontype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.productiontype.Location = new System.Drawing.Point(2, 2);
             this.productiontype.Name = "productiontype";
-            this.productiontype.Size = new System.Drawing.Size(59, 13);
+            this.productiontype.Size = new System.Drawing.Size(84, 20);
             this.productiontype.TabIndex = 44;
             this.productiontype.Text = "Prod Type:";
             // 
@@ -574,30 +637,28 @@ namespace PackingApplication
             this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
-            this.remark.Location = new System.Drawing.Point(2, 150);
-            this.remark.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.remark.Location = new System.Drawing.Point(3, 231);
             this.remark.Name = "remark";
-            this.remark.Size = new System.Drawing.Size(52, 13);
+            this.remark.Size = new System.Drawing.Size(77, 20);
             this.remark.TabIndex = 46;
             this.remark.Text = "Remarks:";
             // 
             // remarks
             // 
             this.remarks.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.remarks.Location = new System.Drawing.Point(0, 172);
-            this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.remarks.Location = new System.Drawing.Point(0, 265);
+            this.remarks.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
-            this.remarks.Size = new System.Drawing.Size(328, 44);
+            this.remarks.Size = new System.Drawing.Size(493, 66);
             this.remarks.TabIndex = 6;
             // 
             // scalemodel
             // 
             this.scalemodel.AutoSize = true;
-            this.scalemodel.Location = new System.Drawing.Point(125, 2);
-            this.scalemodel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.scalemodel.Location = new System.Drawing.Point(2, 2);
             this.scalemodel.Name = "scalemodel";
-            this.scalemodel.Size = new System.Drawing.Size(71, 13);
+            this.scalemodel.Size = new System.Drawing.Size(102, 20);
             this.scalemodel.TabIndex = 48;
             this.scalemodel.Text = "Weigh Scale:";
             // 
@@ -607,149 +668,165 @@ namespace PackingApplication
             this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LineNoList.FormattingEnabled = true;
-            this.LineNoList.Location = new System.Drawing.Point(2, 16);
-            this.LineNoList.Margin = new System.Windows.Forms.Padding(2);
+            this.LineNoList.Location = new System.Drawing.Point(2, 21);
             this.LineNoList.Name = "LineNoList";
-            this.LineNoList.Size = new System.Drawing.Size(98, 21);
+            this.LineNoList.Size = new System.Drawing.Size(146, 28);
             this.LineNoList.TabIndex = 0;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             // 
             // departmentname
             // 
+            this.departmentname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.departmentname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.departmentname.Location = new System.Drawing.Point(0, 15);
-            this.departmentname.Margin = new System.Windows.Forms.Padding(2);
+            this.departmentname.Location = new System.Drawing.Point(2, 21);
             this.departmentname.Name = "departmentname";
             this.departmentname.ReadOnly = true;
-            this.departmentname.Size = new System.Drawing.Size(100, 20);
+            this.departmentname.Size = new System.Drawing.Size(146, 26);
             this.departmentname.TabIndex = 4;
+            this.departmentname.TabStop = false;
             // 
             // MergeNoList
             // 
             this.MergeNoList.AllowDrop = true;
+            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MergeNoList.FormattingEnabled = true;
-            this.MergeNoList.Location = new System.Drawing.Point(1, 12);
-            this.MergeNoList.Margin = new System.Windows.Forms.Padding(2);
+            this.MergeNoList.Location = new System.Drawing.Point(2, 21);
             this.MergeNoList.Name = "MergeNoList";
-            this.MergeNoList.Size = new System.Drawing.Size(99, 21);
+            this.MergeNoList.Size = new System.Drawing.Size(146, 28);
             this.MergeNoList.TabIndex = 5;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             // 
             // itemname
             // 
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.itemname.Location = new System.Drawing.Point(0, 11);
-            this.itemname.Margin = new System.Windows.Forms.Padding(2);
+            this.itemname.Location = new System.Drawing.Point(2, 21);
             this.itemname.Name = "itemname";
             this.itemname.ReadOnly = true;
-            this.itemname.Size = new System.Drawing.Size(100, 20);
+            this.itemname.Size = new System.Drawing.Size(146, 26);
             this.itemname.TabIndex = 7;
+            this.itemname.TabStop = false;
             // 
             // shadename
             // 
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.shadename.Location = new System.Drawing.Point(2, 11);
-            this.shadename.Margin = new System.Windows.Forms.Padding(2);
+            this.shadename.Location = new System.Drawing.Point(2, 21);
             this.shadename.Name = "shadename";
             this.shadename.ReadOnly = true;
-            this.shadename.Size = new System.Drawing.Size(97, 20);
+            this.shadename.Size = new System.Drawing.Size(146, 26);
             this.shadename.TabIndex = 8;
+            this.shadename.TabStop = false;
             // 
             // shadecd
             // 
+            this.shadecd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.shadecd.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.shadecd.Location = new System.Drawing.Point(1, 11);
-            this.shadecd.Margin = new System.Windows.Forms.Padding(2);
+            this.shadecd.Location = new System.Drawing.Point(2, 21);
             this.shadecd.Name = "shadecd";
             this.shadecd.ReadOnly = true;
-            this.shadecd.Size = new System.Drawing.Size(101, 20);
+            this.shadecd.Size = new System.Drawing.Size(146, 26);
             this.shadecd.TabIndex = 9;
+            this.shadecd.TabStop = false;
             // 
             // QualityList
             // 
             this.QualityList.AllowDrop = true;
+            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.QualityList.FormattingEnabled = true;
-            this.QualityList.Location = new System.Drawing.Point(2, 16);
-            this.QualityList.Margin = new System.Windows.Forms.Padding(2);
+            this.QualityList.Location = new System.Drawing.Point(2, 21);
             this.QualityList.Name = "QualityList";
-            this.QualityList.Size = new System.Drawing.Size(120, 21);
+            this.QualityList.Size = new System.Drawing.Size(147, 28);
             this.QualityList.TabIndex = 1;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
             // PackSizeList
             // 
             this.PackSizeList.AllowDrop = true;
+            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PackSizeList.FormattingEnabled = true;
-            this.PackSizeList.Location = new System.Drawing.Point(2, 58);
-            this.PackSizeList.Margin = new System.Windows.Forms.Padding(2);
+            this.PackSizeList.Location = new System.Drawing.Point(2, 21);
             this.PackSizeList.Name = "PackSizeList";
-            this.PackSizeList.Size = new System.Drawing.Size(120, 21);
+            this.PackSizeList.Size = new System.Drawing.Size(147, 28);
             this.PackSizeList.TabIndex = 4;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             // 
             // WindingTypeList
             // 
             this.WindingTypeList.AllowDrop = true;
+            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WindingTypeList.FormattingEnabled = true;
-            this.WindingTypeList.Location = new System.Drawing.Point(255, 16);
-            this.WindingTypeList.Margin = new System.Windows.Forms.Padding(2);
+            this.WindingTypeList.Location = new System.Drawing.Point(2, 21);
             this.WindingTypeList.Name = "WindingTypeList";
-            this.WindingTypeList.Size = new System.Drawing.Size(110, 21);
+            this.WindingTypeList.Size = new System.Drawing.Size(146, 28);
             this.WindingTypeList.TabIndex = 3;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             // 
             // ComPortList
             // 
             this.ComPortList.AllowDrop = true;
+            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ComPortList.FormattingEnabled = true;
-            this.ComPortList.Location = new System.Drawing.Point(2, 16);
-            this.ComPortList.Margin = new System.Windows.Forms.Padding(2);
+            this.ComPortList.Location = new System.Drawing.Point(2, 21);
             this.ComPortList.Name = "ComPortList";
-            this.ComPortList.Size = new System.Drawing.Size(105, 21);
+            this.ComPortList.Size = new System.Drawing.Size(146, 28);
             this.ComPortList.TabIndex = 1;
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             // 
             // WeighingList
             // 
             this.WeighingList.AllowDrop = true;
+            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WeighingList.FormattingEnabled = true;
-            this.WeighingList.Location = new System.Drawing.Point(125, 16);
-            this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
+            this.WeighingList.Location = new System.Drawing.Point(2, 21);
             this.WeighingList.Name = "WeighingList";
-            this.WeighingList.Size = new System.Drawing.Size(110, 21);
+            this.WeighingList.Size = new System.Drawing.Size(146, 28);
             this.WeighingList.TabIndex = 2;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             // 
             // CopsItemList
             // 
             this.CopsItemList.AllowDrop = true;
+            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CopsItemList.FormattingEnabled = true;
-            this.CopsItemList.Location = new System.Drawing.Point(2, 99);
-            this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
+            this.CopsItemList.Location = new System.Drawing.Point(2, 21);
             this.CopsItemList.Name = "CopsItemList";
-            this.CopsItemList.Size = new System.Drawing.Size(120, 21);
+            this.CopsItemList.Size = new System.Drawing.Size(147, 28);
             this.CopsItemList.TabIndex = 10;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             // 
             // BoxItemList
             // 
             this.BoxItemList.AllowDrop = true;
+            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BoxItemList.FormattingEnabled = true;
-            this.BoxItemList.Location = new System.Drawing.Point(2, 141);
-            this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
+            this.BoxItemList.Location = new System.Drawing.Point(2, 21);
             this.BoxItemList.Name = "BoxItemList";
-            this.BoxItemList.Size = new System.Drawing.Size(120, 21);
+            this.BoxItemList.Size = new System.Drawing.Size(147, 28);
             this.BoxItemList.TabIndex = 7;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
             // SaleOrderList
             // 
             this.SaleOrderList.AllowDrop = true;
+            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SaleOrderList.FormattingEnabled = true;
-            this.SaleOrderList.Location = new System.Drawing.Point(140, 16);
-            this.SaleOrderList.Margin = new System.Windows.Forms.Padding(2);
+            this.SaleOrderList.Location = new System.Drawing.Point(2, 21);
             this.SaleOrderList.Name = "SaleOrderList";
-            this.SaleOrderList.Size = new System.Drawing.Size(120, 21);
+            this.SaleOrderList.Size = new System.Drawing.Size(147, 28);
             this.SaleOrderList.TabIndex = 2;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             // 
@@ -757,9 +834,9 @@ namespace PackingApplication
             // 
             this.prcompany.AutoSize = true;
             this.prcompany.Location = new System.Drawing.Point(2, 2);
-            this.prcompany.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prcompany.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prcompany.Name = "prcompany";
-            this.prcompany.Size = new System.Drawing.Size(94, 17);
+            this.prcompany.Size = new System.Drawing.Size(138, 24);
             this.prcompany.TabIndex = 1;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
@@ -768,10 +845,10 @@ namespace PackingApplication
             // prowner
             // 
             this.prowner.AutoSize = true;
-            this.prowner.Location = new System.Drawing.Point(100, 2);
-            this.prowner.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prowner.Location = new System.Drawing.Point(2, 2);
+            this.prowner.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prowner.Name = "prowner";
-            this.prowner.Size = new System.Drawing.Size(81, 17);
+            this.prowner.Size = new System.Drawing.Size(117, 24);
             this.prowner.TabIndex = 2;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
@@ -780,10 +857,10 @@ namespace PackingApplication
             // prdate
             // 
             this.prdate.AutoSize = true;
-            this.prdate.Location = new System.Drawing.Point(212, 2);
-            this.prdate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prdate.Location = new System.Drawing.Point(2, 2);
+            this.prdate.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prdate.Name = "prdate";
-            this.prdate.Size = new System.Drawing.Size(73, 17);
+            this.prdate.Size = new System.Drawing.Size(106, 24);
             this.prdate.TabIndex = 3;
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -793,10 +870,10 @@ namespace PackingApplication
             // pruser
             // 
             this.pruser.AutoSize = true;
-            this.pruser.Location = new System.Drawing.Point(2, 23);
-            this.pruser.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pruser.Location = new System.Drawing.Point(2, 2);
+            this.pruser.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.pruser.Name = "pruser";
-            this.pruser.Size = new System.Drawing.Size(72, 17);
+            this.pruser.Size = new System.Drawing.Size(105, 24);
             this.pruser.TabIndex = 5;
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -806,10 +883,10 @@ namespace PackingApplication
             // prhindi
             // 
             this.prhindi.AutoSize = true;
-            this.prhindi.Location = new System.Drawing.Point(100, 23);
-            this.prhindi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prhindi.Location = new System.Drawing.Point(2, 2);
+            this.prhindi.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prhindi.Name = "prhindi";
-            this.prhindi.Size = new System.Drawing.Size(108, 17);
+            this.prhindi.Size = new System.Drawing.Size(157, 24);
             this.prhindi.TabIndex = 6;
             this.prhindi.Text = "Print Hindi Words";
             this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -819,10 +896,10 @@ namespace PackingApplication
             // prwtps
             // 
             this.prwtps.AutoSize = true;
-            this.prwtps.Location = new System.Drawing.Point(212, 23);
-            this.prwtps.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prwtps.Location = new System.Drawing.Point(2, 2);
+            this.prwtps.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prwtps.Name = "prwtps";
-            this.prwtps.Size = new System.Drawing.Size(87, 17);
+            this.prwtps.Size = new System.Drawing.Size(120, 24);
             this.prwtps.TabIndex = 7;
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -832,10 +909,10 @@ namespace PackingApplication
             // prqrcode
             // 
             this.prqrcode.AutoSize = true;
-            this.prqrcode.Location = new System.Drawing.Point(2, 44);
-            this.prqrcode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prqrcode.Location = new System.Drawing.Point(2, 2);
+            this.prqrcode.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prqrcode.Name = "prqrcode";
-            this.prqrcode.Size = new System.Drawing.Size(94, 17);
+            this.prqrcode.Size = new System.Drawing.Size(137, 24);
             this.prqrcode.TabIndex = 4;
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -845,91 +922,101 @@ namespace PackingApplication
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(276, 2);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(2, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(111, 20);
             this.label1.TabIndex = 73;
             this.label1.Text = "No. Of Copies:";
             // 
             // copyno
             // 
+            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.copyno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.copyno.Location = new System.Drawing.Point(276, 16);
-            this.copyno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copyno.Location = new System.Drawing.Point(2, 21);
+            this.copyno.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.copyno.Name = "copyno";
             this.copyno.ReadOnly = true;
-            this.copyno.Size = new System.Drawing.Size(120, 20);
+            this.copyno.Size = new System.Drawing.Size(144, 26);
             this.copyno.TabIndex = 3;
+            this.copyno.TabStop = false;
             this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
             // 
             // wtpercop
             // 
+            this.wtpercop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.wtpercop.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.wtpercop.Location = new System.Drawing.Point(255, 100);
-            this.wtpercop.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.wtpercop.Location = new System.Drawing.Point(2, 21);
+            this.wtpercop.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.wtpercop.Name = "wtpercop";
             this.wtpercop.ReadOnly = true;
-            this.wtpercop.Size = new System.Drawing.Size(110, 20);
+            this.wtpercop.Size = new System.Drawing.Size(146, 26);
             this.wtpercop.TabIndex = 10;
+            this.wtpercop.TabStop = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(252, 85);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(2, 2);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.Size = new System.Drawing.Size(94, 20);
             this.label5.TabIndex = 84;
             this.label5.Text = "Wt.Per Cop:";
             // 
             // netwt
             // 
+            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.netwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.netwt.Location = new System.Drawing.Point(125, 98);
-            this.netwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.netwt.Location = new System.Drawing.Point(2, 21);
+            this.netwt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.netwt.Name = "netwt";
             this.netwt.ReadOnly = true;
-            this.netwt.Size = new System.Drawing.Size(110, 20);
+            this.netwt.Size = new System.Drawing.Size(146, 26);
             this.netwt.TabIndex = 9;
+            this.netwt.TabStop = false;
             this.netwt.TextChanged += new System.EventHandler(this.NetWeight_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(122, 85);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(2, 2);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 82;
             this.label4.Text = "Net Wt:";
             // 
             // tarewt
             // 
+            this.tarewt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tarewt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tarewt.Location = new System.Drawing.Point(2, 100);
-            this.tarewt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tarewt.Location = new System.Drawing.Point(2, 21);
+            this.tarewt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tarewt.Name = "tarewt";
             this.tarewt.ReadOnly = true;
-            this.tarewt.Size = new System.Drawing.Size(105, 20);
+            this.tarewt.Size = new System.Drawing.Size(146, 26);
             this.tarewt.TabIndex = 8;
+            this.tarewt.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 85);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(2, 2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(69, 20);
             this.label3.TabIndex = 80;
             this.label3.Text = "Tare Wt:";
             // 
             // grosswtno
             // 
-            this.grosswtno.Location = new System.Drawing.Point(255, 57);
-            this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grosswtno.Location = new System.Drawing.Point(2, 20);
+            this.grosswtno.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grosswtno.Name = "grosswtno";
-            this.grosswtno.Size = new System.Drawing.Size(110, 20);
+            this.grosswtno.Size = new System.Drawing.Size(146, 26);
             this.grosswtno.TabIndex = 7;
             this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -937,51 +1024,51 @@ namespace PackingApplication
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(255, 44);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(80, 20);
             this.label2.TabIndex = 78;
             this.label2.Text = "Gross Wt:";
             // 
             // palletwtno
             // 
+            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.palletwtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.palletwtno.Location = new System.Drawing.Point(125, 57);
-            this.palletwtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.palletwtno.Location = new System.Drawing.Point(2, 21);
+            this.palletwtno.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.palletwtno.Name = "palletwtno";
-            this.palletwtno.Size = new System.Drawing.Size(110, 20);
+            this.palletwtno.Size = new System.Drawing.Size(146, 26);
             this.palletwtno.TabIndex = 6;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
             // 
             // palletwt
             // 
             this.palletwt.AutoSize = true;
-            this.palletwt.Location = new System.Drawing.Point(119, 41);
-            this.palletwt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.palletwt.Location = new System.Drawing.Point(2, 2);
             this.palletwt.Name = "palletwt";
-            this.palletwt.Size = new System.Drawing.Size(108, 13);
+            this.palletwt.Size = new System.Drawing.Size(156, 20);
             this.palletwt.TabIndex = 76;
             this.palletwt.Text = "Empty Box/Pallet Wt:";
             // 
             // spoolwt
             // 
             this.spoolwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.spoolwt.Location = new System.Drawing.Point(49, 57);
-            this.spoolwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.spoolwt.Location = new System.Drawing.Point(69, 21);
+            this.spoolwt.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.spoolwt.Name = "spoolwt";
             this.spoolwt.ReadOnly = true;
-            this.spoolwt.Size = new System.Drawing.Size(58, 20);
+            this.spoolwt.Size = new System.Drawing.Size(85, 26);
             this.spoolwt.TabIndex = 5;
             this.spoolwt.TextChanged += new System.EventHandler(this.SpoolWeight_TextChanged);
             this.spoolwt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // spoolno
             // 
-            this.spoolno.Location = new System.Drawing.Point(2, 57);
-            this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.spoolno.Location = new System.Drawing.Point(2, 21);
+            this.spoolno.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.spoolno.Name = "spoolno";
-            this.spoolno.Size = new System.Drawing.Size(38, 20);
+            this.spoolno.Size = new System.Drawing.Size(55, 26);
             this.spoolno.TabIndex = 4;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -989,30 +1076,31 @@ namespace PackingApplication
             // spool
             // 
             this.spool.AutoSize = true;
-            this.spool.Location = new System.Drawing.Point(2, 44);
-            this.spool.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.spool.Location = new System.Drawing.Point(2, 2);
             this.spool.Name = "spool";
-            this.spool.Size = new System.Drawing.Size(42, 13);
+            this.spool.Size = new System.Drawing.Size(62, 20);
             this.spool.TabIndex = 0;
             this.spool.Text = "Spools:";
             // 
             // prodtype
             // 
+            this.prodtype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.prodtype.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.prodtype.Location = new System.Drawing.Point(2, 15);
-            this.prodtype.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prodtype.Location = new System.Drawing.Point(2, 21);
+            this.prodtype.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.prodtype.Name = "prodtype";
             this.prodtype.ReadOnly = true;
-            this.prodtype.Size = new System.Drawing.Size(98, 20);
+            this.prodtype.Size = new System.Drawing.Size(146, 26);
             this.prodtype.TabIndex = 11;
+            this.prodtype.TabStop = false;
             // 
             // palletdetails
             // 
             this.palletdetails.AutoSize = true;
-            this.palletdetails.Location = new System.Drawing.Point(2, 5);
-            this.palletdetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.palletdetails.Location = new System.Drawing.Point(3, 8);
             this.palletdetails.Name = "palletdetails";
-            this.palletdetails.Size = new System.Drawing.Size(71, 13);
+            this.palletdetails.Size = new System.Drawing.Size(105, 20);
             this.palletdetails.TabIndex = 78;
             this.palletdetails.Text = "Pallet Details:";
             this.palletdetails.UseMnemonic = false;
@@ -1020,10 +1108,9 @@ namespace PackingApplication
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 11);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(3, 17);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.Size = new System.Drawing.Size(90, 20);
             this.label6.TabIndex = 79;
             this.label6.Text = "Pallet Type:";
             this.label6.UseMnemonic = false;
@@ -1032,29 +1119,27 @@ namespace PackingApplication
             // 
             this.PalletTypeList.AllowDrop = true;
             this.PalletTypeList.FormattingEnabled = true;
-            this.PalletTypeList.Location = new System.Drawing.Point(69, 5);
-            this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
+            this.PalletTypeList.Location = new System.Drawing.Point(104, 8);
             this.PalletTypeList.Name = "PalletTypeList";
-            this.PalletTypeList.Size = new System.Drawing.Size(116, 21);
+            this.PalletTypeList.Size = new System.Drawing.Size(172, 28);
             this.PalletTypeList.TabIndex = 1;
             // 
             // pquantity
             // 
             this.pquantity.AutoSize = true;
-            this.pquantity.Location = new System.Drawing.Point(189, 9);
-            this.pquantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pquantity.Location = new System.Drawing.Point(284, 14);
             this.pquantity.Name = "pquantity";
-            this.pquantity.Size = new System.Drawing.Size(26, 13);
+            this.pquantity.Size = new System.Drawing.Size(37, 20);
             this.pquantity.TabIndex = 81;
             this.pquantity.Text = "Qty:";
             this.pquantity.UseMnemonic = false;
             // 
             // qnty
             // 
-            this.qnty.Location = new System.Drawing.Point(219, 6);
-            this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.qnty.Location = new System.Drawing.Point(328, 9);
+            this.qnty.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.qnty.Name = "qnty";
-            this.qnty.Size = new System.Drawing.Size(48, 20);
+            this.qnty.Size = new System.Drawing.Size(70, 26);
             this.qnty.TabIndex = 2;
             // 
             // addqty
@@ -1068,10 +1153,10 @@ namespace PackingApplication
             this.addqty.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.addqty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addqty.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.addqty.Location = new System.Drawing.Point(285, 3);
-            this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.addqty.Location = new System.Drawing.Point(428, 5);
+            this.addqty.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.addqty.Name = "addqty";
-            this.addqty.Size = new System.Drawing.Size(48, 19);
+            this.addqty.Size = new System.Drawing.Size(72, 29);
             this.addqty.TabIndex = 3;
             this.addqty.Text = "Add";
             this.addqty.UseVisualStyleBackColor = false;
@@ -1081,11 +1166,253 @@ namespace PackingApplication
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 31);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 48);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(387, 202);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(580, 311);
             this.flowLayoutPanel1.TabIndex = 84;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel6.Controls.Add(this.panel28, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel29, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel30, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.panel31, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.panel32, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.panel33, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.panel34, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.panel35, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.panel36, 2, 2);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 3);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(476, 177);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // panel28
+            // 
+            this.panel28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel28.Controls.Add(this.comport);
+            this.panel28.Controls.Add(this.ComPortList);
+            this.panel28.Location = new System.Drawing.Point(0, 0);
+            this.panel28.Margin = new System.Windows.Forms.Padding(0);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(158, 61);
+            this.panel28.TabIndex = 0;
+            // 
+            // panel29
+            // 
+            this.panel29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel29.Controls.Add(this.scalemodel);
+            this.panel29.Controls.Add(this.WeighingList);
+            this.panel29.Location = new System.Drawing.Point(158, 0);
+            this.panel29.Margin = new System.Windows.Forms.Padding(0);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(158, 61);
+            this.panel29.TabIndex = 1;
+            // 
+            // panel30
+            // 
+            this.panel30.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel30.Controls.Add(this.windingtype);
+            this.panel30.Controls.Add(this.req10);
+            this.panel30.Controls.Add(this.WindingTypeList);
+            this.panel30.Controls.Add(this.windingerror);
+            this.panel30.Location = new System.Drawing.Point(316, 0);
+            this.panel30.Margin = new System.Windows.Forms.Padding(0);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(160, 61);
+            this.panel30.TabIndex = 2;
+            // 
+            // req10
+            // 
+            this.req10.AutoSize = true;
+            this.req10.ForeColor = System.Drawing.Color.Red;
+            this.req10.Location = new System.Drawing.Point(68, 2);
+            this.req10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req10.Name = "req10";
+            this.req10.Size = new System.Drawing.Size(15, 20);
+            this.req10.TabIndex = 114;
+            this.req10.Text = "*";
+            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // windingerror
+            // 
+            this.windingerror.AutoSize = true;
+            this.windingerror.ForeColor = System.Drawing.Color.Red;
+            this.windingerror.Location = new System.Drawing.Point(3, 46);
+            this.windingerror.Name = "windingerror";
+            this.windingerror.Size = new System.Drawing.Size(0, 20);
+            this.windingerror.TabIndex = 104;
+            this.windingerror.Visible = false;
+            // 
+            // panel31
+            // 
+            this.panel31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel31.Controls.Add(this.spoolweight);
+            this.panel31.Controls.Add(this.spool);
+            this.panel31.Controls.Add(this.spoolno);
+            this.panel31.Controls.Add(this.req7);
+            this.panel31.Controls.Add(this.spoolwt);
+            this.panel31.Controls.Add(this.spoolnoerror);
+            this.panel31.Location = new System.Drawing.Point(0, 61);
+            this.panel31.Margin = new System.Windows.Forms.Padding(0);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(158, 61);
+            this.panel31.TabIndex = 3;
+            // 
+            // spoolweight
+            // 
+            this.spoolweight.AutoSize = true;
+            this.spoolweight.Location = new System.Drawing.Point(91, 2);
+            this.spoolweight.Name = "spoolweight";
+            this.spoolweight.Size = new System.Drawing.Size(33, 20);
+            this.spoolweight.TabIndex = 116;
+            this.spoolweight.Text = "Wt:";
+            // 
+            // req7
+            // 
+            this.req7.AutoSize = true;
+            this.req7.ForeColor = System.Drawing.Color.Red;
+            this.req7.Location = new System.Drawing.Point(62, 2);
+            this.req7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req7.Name = "req7";
+            this.req7.Size = new System.Drawing.Size(15, 20);
+            this.req7.TabIndex = 111;
+            this.req7.Text = "*";
+            this.req7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // spoolnoerror
+            // 
+            this.spoolnoerror.AutoSize = true;
+            this.spoolnoerror.ForeColor = System.Drawing.Color.Red;
+            this.spoolnoerror.Location = new System.Drawing.Point(3, 46);
+            this.spoolnoerror.Name = "spoolnoerror";
+            this.spoolnoerror.Size = new System.Drawing.Size(0, 20);
+            this.spoolnoerror.TabIndex = 86;
+            this.spoolnoerror.Visible = false;
+            // 
+            // panel32
+            // 
+            this.panel32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel32.Controls.Add(this.palletwt);
+            this.panel32.Controls.Add(this.req8);
+            this.panel32.Controls.Add(this.palletwterror);
+            this.panel32.Controls.Add(this.palletwtno);
+            this.panel32.Location = new System.Drawing.Point(158, 61);
+            this.panel32.Margin = new System.Windows.Forms.Padding(0);
+            this.panel32.Name = "panel32";
+            this.panel32.Size = new System.Drawing.Size(158, 61);
+            this.panel32.TabIndex = 4;
+            // 
+            // req8
+            // 
+            this.req8.AutoSize = true;
+            this.req8.ForeColor = System.Drawing.Color.Red;
+            this.req8.Location = new System.Drawing.Point(154, 2);
+            this.req8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req8.Name = "req8";
+            this.req8.Size = new System.Drawing.Size(15, 20);
+            this.req8.TabIndex = 112;
+            this.req8.Text = "*";
+            this.req8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // palletwterror
+            // 
+            this.palletwterror.AutoSize = true;
+            this.palletwterror.ForeColor = System.Drawing.Color.Red;
+            this.palletwterror.Location = new System.Drawing.Point(3, 46);
+            this.palletwterror.Name = "palletwterror";
+            this.palletwterror.Size = new System.Drawing.Size(0, 20);
+            this.palletwterror.TabIndex = 88;
+            this.palletwterror.Visible = false;
+            // 
+            // panel33
+            // 
+            this.panel33.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel33.Controls.Add(this.grosswterror);
+            this.panel33.Controls.Add(this.req9);
+            this.panel33.Controls.Add(this.label2);
+            this.panel33.Controls.Add(this.grosswtno);
+            this.panel33.Location = new System.Drawing.Point(316, 61);
+            this.panel33.Margin = new System.Windows.Forms.Padding(0);
+            this.panel33.Name = "panel33";
+            this.panel33.Size = new System.Drawing.Size(160, 61);
+            this.panel33.TabIndex = 5;
+            // 
+            // grosswterror
+            // 
+            this.grosswterror.AutoSize = true;
+            this.grosswterror.ForeColor = System.Drawing.Color.Red;
+            this.grosswterror.Location = new System.Drawing.Point(3, 47);
+            this.grosswterror.Name = "grosswterror";
+            this.grosswterror.Size = new System.Drawing.Size(0, 20);
+            this.grosswterror.TabIndex = 89;
+            this.grosswterror.Visible = false;
+            // 
+            // req9
+            // 
+            this.req9.AutoSize = true;
+            this.req9.ForeColor = System.Drawing.Color.Red;
+            this.req9.Location = new System.Drawing.Point(81, 0);
+            this.req9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req9.Name = "req9";
+            this.req9.Size = new System.Drawing.Size(15, 20);
+            this.req9.TabIndex = 113;
+            this.req9.Text = "*";
+            this.req9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel34
+            // 
+            this.panel34.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel34.Controls.Add(this.label3);
+            this.panel34.Controls.Add(this.tarewt);
+            this.panel34.Location = new System.Drawing.Point(0, 122);
+            this.panel34.Margin = new System.Windows.Forms.Padding(0);
+            this.panel34.Name = "panel34";
+            this.panel34.Size = new System.Drawing.Size(158, 55);
+            this.panel34.TabIndex = 6;
+            // 
+            // panel35
+            // 
+            this.panel35.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel35.Controls.Add(this.label4);
+            this.panel35.Controls.Add(this.netwt);
+            this.panel35.Location = new System.Drawing.Point(158, 122);
+            this.panel35.Margin = new System.Windows.Forms.Padding(0);
+            this.panel35.Name = "panel35";
+            this.panel35.Size = new System.Drawing.Size(158, 55);
+            this.panel35.TabIndex = 7;
+            // 
+            // panel36
+            // 
+            this.panel36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel36.Controls.Add(this.label5);
+            this.panel36.Controls.Add(this.wtpercop);
+            this.panel36.Location = new System.Drawing.Point(316, 122);
+            this.panel36.Margin = new System.Windows.Forms.Padding(0);
+            this.panel36.Name = "panel36";
+            this.panel36.Size = new System.Drawing.Size(160, 55);
+            this.panel36.TabIndex = 8;
             // 
             // submit
             // 
@@ -1093,10 +1420,10 @@ namespace PackingApplication
             this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(486, 542);
-            this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.submit.Location = new System.Drawing.Point(729, 834);
+            this.submit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(71, 24);
+            this.submit.Size = new System.Drawing.Size(106, 37);
             this.submit.TabIndex = 11;
             this.submit.Text = "Save";
             this.submit.UseVisualStyleBackColor = false;
@@ -1115,10 +1442,356 @@ namespace PackingApplication
             this.rightpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rightpanel.Location = new System.Drawing.Point(0, 0);
-            this.rightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rightpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(1075, 569);
+            this.rightpanel.Size = new System.Drawing.Size(1612, 875);
             this.rightpanel.TabIndex = 89;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.Controls.Add(this.rowMaterialBox, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 662);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1002, 163);
+            this.tableLayoutPanel3.TabIndex = 15;
+            // 
+            // rowMaterialBox
+            // 
+            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rowMaterialBox.BackColor = System.Drawing.Color.White;
+            this.rowMaterialBox.Controls.Add(this.rowMaterialPanel);
+            this.rowMaterialBox.Location = new System.Drawing.Point(3, 5);
+            this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.rowMaterialBox.Name = "rowMaterialBox";
+            this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.rowMaterialBox.Size = new System.Drawing.Size(996, 153);
+            this.rowMaterialBox.TabIndex = 10;
+            this.rowMaterialBox.TabStop = false;
+            this.rowMaterialBox.Text = "Key Raw Material Stock Status";
+            // 
+            // rowMaterialPanel
+            // 
+            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rowMaterialPanel.Controls.Add(this.rowMaterial);
+            this.rowMaterialPanel.Location = new System.Drawing.Point(10, 29);
+            this.rowMaterialPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rowMaterialPanel.Name = "rowMaterialPanel";
+            this.rowMaterialPanel.Size = new System.Drawing.Size(978, 117);
+            this.rowMaterialPanel.TabIndex = 115;
+            // 
+            // rowMaterial
+            // 
+            this.rowMaterial.AllowUserToAddRows = false;
+            this.rowMaterial.AllowUserToDeleteRows = false;
+            this.rowMaterial.AllowUserToResizeColumns = false;
+            this.rowMaterial.AllowUserToResizeRows = false;
+            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
+            this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.rowMaterial.ColumnHeadersHeight = 34;
+            this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.rowMaterial.EnableHeadersVisualStyles = false;
+            this.rowMaterial.Location = new System.Drawing.Point(6, 0);
+            this.rowMaterial.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.rowMaterial.MultiSelect = false;
+            this.rowMaterial.Name = "rowMaterial";
+            this.rowMaterial.ReadOnly = true;
+            this.rowMaterial.RowHeadersVisible = false;
+            this.rowMaterial.RowHeadersWidth = 62;
+            this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.rowMaterial.Size = new System.Drawing.Size(972, 114);
+            this.rowMaterial.TabIndex = 2;
+            this.rowMaterial.TabStop = false;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Controls.Add(this.tblpnl3, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(1002, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 811F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(606, 811);
+            this.tableLayoutPanel2.TabIndex = 14;
+            // 
+            // tblpnl3
+            // 
+            this.tblpnl3.Controls.Add(this.wgroupbox);
+            this.tblpnl3.Controls.Add(this.gradewiseprodn);
+            this.tblpnl3.Controls.Add(this.palletdetailslayout);
+            this.tblpnl3.Location = new System.Drawing.Point(4, 5);
+            this.tblpnl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tblpnl3.Name = "tblpnl3";
+            this.tblpnl3.Size = new System.Drawing.Size(597, 801);
+            this.tblpnl3.TabIndex = 0;
+            // 
+            // wgroupbox
+            // 
+            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.wgroupbox.Controls.Add(this.windinggrid);
+            this.wgroupbox.Location = new System.Drawing.Point(3, 0);
+            this.wgroupbox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.wgroupbox.Name = "wgroupbox";
+            this.wgroupbox.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.wgroupbox.Size = new System.Drawing.Size(594, 160);
+            this.wgroupbox.TabIndex = 7;
+            this.wgroupbox.TabStop = false;
+            this.wgroupbox.Text = "Winding Type + Gradewise Production Status";
+            // 
+            // windinggrid
+            // 
+            this.windinggrid.AllowUserToAddRows = false;
+            this.windinggrid.AllowUserToDeleteRows = false;
+            this.windinggrid.AllowUserToResizeColumns = false;
+            this.windinggrid.AllowUserToResizeRows = false;
+            this.windinggrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.windinggrid.AutoGenerateColumns = false;
+            this.windinggrid.BackgroundColor = System.Drawing.Color.White;
+            this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.windinggrid.ColumnHeadersHeight = 34;
+            this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.windinggrid.DataSource = this.windingqty;
+            this.windinggrid.EnableHeadersVisualStyles = false;
+            this.windinggrid.Location = new System.Drawing.Point(6, 29);
+            this.windinggrid.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.windinggrid.MultiSelect = false;
+            this.windinggrid.Name = "windinggrid";
+            this.windinggrid.ReadOnly = true;
+            this.windinggrid.RowHeadersVisible = false;
+            this.windinggrid.RowHeadersWidth = 62;
+            this.windinggrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.windinggrid.Size = new System.Drawing.Size(585, 126);
+            this.windinggrid.TabIndex = 92;
+            this.windinggrid.TabStop = false;
+            this.windinggrid.Paint += new System.Windows.Forms.PaintEventHandler(this.windinggrid_Paint);
+            // 
+            // gradewiseprodn
+            // 
+            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gradewiseprodn.Controls.Add(this.prodnbalqty);
+            this.gradewiseprodn.Controls.Add(this.grdsoqty);
+            this.gradewiseprodn.Controls.Add(this.qualityqty);
+            this.gradewiseprodn.Controls.Add(this.totalprodbalqty);
+            this.gradewiseprodn.Controls.Add(this.saleordrqty);
+            this.gradewiseprodn.ForeColor = System.Drawing.Color.Black;
+            this.gradewiseprodn.Location = new System.Drawing.Point(3, 163);
+            this.gradewiseprodn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.gradewiseprodn.Name = "gradewiseprodn";
+            this.gradewiseprodn.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.gradewiseprodn.Size = new System.Drawing.Size(591, 205);
+            this.gradewiseprodn.TabIndex = 8;
+            this.gradewiseprodn.TabStop = false;
+            this.gradewiseprodn.Text = "Gradewise Production Status";
+            // 
+            // prodnbalqty
+            // 
+            this.prodnbalqty.AutoSize = true;
+            this.prodnbalqty.Location = new System.Drawing.Point(153, 152);
+            this.prodnbalqty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.prodnbalqty.Name = "prodnbalqty";
+            this.prodnbalqty.Size = new System.Drawing.Size(0, 20);
+            this.prodnbalqty.TabIndex = 95;
+            // 
+            // grdsoqty
+            // 
+            this.grdsoqty.AutoSize = true;
+            this.grdsoqty.Location = new System.Drawing.Point(136, 25);
+            this.grdsoqty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.grdsoqty.Name = "grdsoqty";
+            this.grdsoqty.Size = new System.Drawing.Size(0, 20);
+            this.grdsoqty.TabIndex = 94;
+            // 
+            // qualityqty
+            // 
+            this.qualityqty.AllowUserToAddRows = false;
+            this.qualityqty.AllowUserToDeleteRows = false;
+            this.qualityqty.AllowUserToResizeColumns = false;
+            this.qualityqty.AllowUserToResizeRows = false;
+            this.qualityqty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.qualityqty.AutoGenerateColumns = false;
+            this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.qualityqty.BackgroundColor = System.Drawing.Color.White;
+            this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.qualityqty.ColumnHeadersHeight = 34;
+            this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.qualityqty.DataSource = this.qualityandqty;
+            this.qualityqty.EnableHeadersVisualStyles = false;
+            this.qualityqty.GridColor = System.Drawing.SystemColors.Control;
+            this.qualityqty.Location = new System.Drawing.Point(3, 46);
+            this.qualityqty.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.qualityqty.MultiSelect = false;
+            this.qualityqty.Name = "qualityqty";
+            this.qualityqty.ReadOnly = true;
+            this.qualityqty.RowHeadersVisible = false;
+            this.qualityqty.RowHeadersWidth = 62;
+            this.qualityqty.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.qualityqty.Size = new System.Drawing.Size(582, 126);
+            this.qualityqty.TabIndex = 92;
+            this.qualityqty.TabStop = false;
+            this.qualityqty.Paint += new System.Windows.Forms.PaintEventHandler(this.qualityqty_Paint);
+            // 
+            // totalprodbalqty
+            // 
+            this.totalprodbalqty.AutoSize = true;
+            this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.totalprodbalqty.Location = new System.Drawing.Point(2, 177);
+            this.totalprodbalqty.Name = "totalprodbalqty";
+            this.totalprodbalqty.Size = new System.Drawing.Size(144, 20);
+            this.totalprodbalqty.TabIndex = 93;
+            this.totalprodbalqty.Text = "Production Bal Qty:";
+            // 
+            // saleordrqty
+            // 
+            this.saleordrqty.AutoSize = true;
+            this.saleordrqty.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.saleordrqty.Location = new System.Drawing.Point(12, 22);
+            this.saleordrqty.Name = "saleordrqty";
+            this.saleordrqty.Size = new System.Drawing.Size(121, 20);
+            this.saleordrqty.TabIndex = 92;
+            this.saleordrqty.Text = "Sale Order Qty :";
+            // 
+            // palletdetailslayout
+            // 
+            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.palletdetailslayout.BackColor = System.Drawing.Color.White;
+            this.palletdetailslayout.ColumnCount = 1;
+            this.palletdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.palletdetailslayout.Controls.Add(this.palletdetailsheader, 0, 0);
+            this.palletdetailslayout.Controls.Add(this.palletdetailspanel, 0, 1);
+            this.palletdetailslayout.Location = new System.Drawing.Point(3, 382);
+            this.palletdetailslayout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.palletdetailslayout.Name = "palletdetailslayout";
+            this.palletdetailslayout.Padding = new System.Windows.Forms.Padding(3);
+            this.palletdetailslayout.RowCount = 2;
+            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.palletdetailslayout.Size = new System.Drawing.Size(594, 415);
+            this.palletdetailslayout.TabIndex = 9;
+            this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
+            // 
+            // palletdetailsheader
+            // 
+            this.palletdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.palletdetailsheader.Controls.Add(this.palletdetails);
+            this.palletdetailsheader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.palletdetailsheader.Location = new System.Drawing.Point(3, 3);
+            this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(0);
+            this.palletdetailsheader.Name = "palletdetailsheader";
+            this.palletdetailsheader.Size = new System.Drawing.Size(588, 40);
+            this.palletdetailsheader.TabIndex = 107;
+            this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
+            this.palletdetailsheader.Resize += new System.EventHandler(this.palletdetailsheader_Resize);
+            // 
+            // palletdetailspanel
+            // 
+            this.palletdetailspanel.Controls.Add(this.label6);
+            this.palletdetailspanel.Controls.Add(this.PalletTypeList);
+            this.palletdetailspanel.Controls.Add(this.pquantity);
+            this.palletdetailspanel.Controls.Add(this.qnty);
+            this.palletdetailspanel.Controls.Add(this.addqty);
+            this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
+            this.palletdetailspanel.Location = new System.Drawing.Point(6, 48);
+            this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.palletdetailspanel.Name = "palletdetailspanel";
+            this.palletdetailspanel.Size = new System.Drawing.Size(582, 359);
+            this.palletdetailspanel.TabIndex = 108;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.machineboxlayout, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.packagingboxlayout, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tblpanl1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tblpnl2, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1002, 655);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // machineboxlayout
+            // 
+            this.machineboxlayout.BackColor = System.Drawing.Color.White;
+            this.machineboxlayout.ColumnCount = 1;
+            this.machineboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.machineboxlayout.Controls.Add(this.machineboxpanel, 0, 1);
+            this.machineboxlayout.Controls.Add(this.machineboxheader, 0, 0);
+            this.machineboxlayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineboxlayout.Location = new System.Drawing.Point(3, 5);
+            this.machineboxlayout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.machineboxlayout.Name = "machineboxlayout";
+            this.machineboxlayout.Padding = new System.Windows.Forms.Padding(3);
+            this.machineboxlayout.RowCount = 2;
+            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.machineboxlayout.Size = new System.Drawing.Size(495, 304);
+            this.machineboxlayout.TabIndex = 0;
+            this.machineboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxlayout_Paint);
+            // 
+            // machineboxpanel
+            // 
+            this.machineboxpanel.BackColor = System.Drawing.Color.White;
+            this.machineboxpanel.Controls.Add(this.tableLayoutPanel4);
+            this.machineboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.machineboxpanel.Location = new System.Drawing.Point(6, 37);
+            this.machineboxpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.machineboxpanel.Name = "machineboxpanel";
+            this.machineboxpanel.Size = new System.Drawing.Size(483, 259);
+            this.machineboxpanel.TabIndex = 107;
             // 
             // tableLayoutPanel4
             // 
@@ -1139,452 +1812,244 @@ namespace PackingApplication
             this.tableLayoutPanel4.Controls.Add(this.panel13, 2, 2);
             this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 3);
             this.tableLayoutPanel4.Controls.Add(this.panel15, 1, 3);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 5);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 4;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(320, 167);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(480, 257);
             this.tableLayoutPanel4.TabIndex = 16;
             // 
-            // tableLayoutPanel3
+            // panel1
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.rowMaterialBox, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 430);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(668, 106);
-            this.tableLayoutPanel3.TabIndex = 15;
-            // 
-            // rowMaterialBox
-            // 
-            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rowMaterialBox.BackColor = System.Drawing.Color.White;
-            this.rowMaterialBox.Controls.Add(this.rowMaterialPanel);
-            this.rowMaterialBox.Location = new System.Drawing.Point(2, 3);
-            this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterialBox.Name = "rowMaterialBox";
-            this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterialBox.Size = new System.Drawing.Size(664, 91);
-            this.rowMaterialBox.TabIndex = 10;
-            this.rowMaterialBox.TabStop = false;
-            this.rowMaterialBox.Text = "Key Raw Material Stock Status";
-            // 
-            // rowMaterialPanel
-            // 
-            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rowMaterialPanel.Controls.Add(this.rowMaterial);
-            this.rowMaterialPanel.Location = new System.Drawing.Point(4, 19);
-            this.rowMaterialPanel.Name = "rowMaterialPanel";
-            this.rowMaterialPanel.Size = new System.Drawing.Size(655, 79);
-            this.rowMaterialPanel.TabIndex = 115;
-            // 
-            // rowMaterial
-            // 
-            this.rowMaterial.AllowUserToAddRows = false;
-            this.rowMaterial.AllowUserToDeleteRows = false;
-            this.rowMaterial.AllowUserToResizeColumns = false;
-            this.rowMaterial.AllowUserToResizeRows = false;
-            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
-            this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
-            this.rowMaterial.ColumnHeadersHeight = 34;
-            this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.rowMaterial.EnableHeadersVisualStyles = false;
-            this.rowMaterial.Location = new System.Drawing.Point(0, 0);
-            this.rowMaterial.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterial.MultiSelect = false;
-            this.rowMaterial.Name = "rowMaterial";
-            this.rowMaterial.ReadOnly = true;
-            this.rowMaterial.RowHeadersVisible = false;
-            this.rowMaterial.RowHeadersWidth = 62;
-            this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rowMaterial.Size = new System.Drawing.Size(655, 79);
-            this.rowMaterial.TabIndex = 2;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.tblpnl3, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(668, 1);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 527F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(404, 527);
-            this.tableLayoutPanel2.TabIndex = 14;
-            // 
-            // tblpnl3
-            // 
-            this.tblpnl3.Controls.Add(this.wgroupbox);
-            this.tblpnl3.Controls.Add(this.gradewiseprodn);
-            this.tblpnl3.Controls.Add(this.palletdetailslayout);
-            this.tblpnl3.Location = new System.Drawing.Point(3, 3);
-            this.tblpnl3.Name = "tblpnl3";
-            this.tblpnl3.Size = new System.Drawing.Size(398, 521);
-            this.tblpnl3.TabIndex = 0;
-            // 
-            // wgroupbox
-            // 
-            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.wgroupbox.Controls.Add(this.windinggrid);
-            this.wgroupbox.Location = new System.Drawing.Point(2, 0);
-            this.wgroupbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.wgroupbox.Name = "wgroupbox";
-            this.wgroupbox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.wgroupbox.Size = new System.Drawing.Size(396, 104);
-            this.wgroupbox.TabIndex = 7;
-            this.wgroupbox.TabStop = false;
-            this.wgroupbox.Text = "Winding Type + Gradewise Production Status";
-            // 
-            // windinggrid
-            // 
-            this.windinggrid.AllowUserToAddRows = false;
-            this.windinggrid.AllowUserToDeleteRows = false;
-            this.windinggrid.AllowUserToResizeColumns = false;
-            this.windinggrid.AllowUserToResizeRows = false;
-            this.windinggrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.windinggrid.AutoGenerateColumns = false;
-            this.windinggrid.BackgroundColor = System.Drawing.Color.White;
-            this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
-            this.windinggrid.ColumnHeadersHeight = 34;
-            this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.windinggrid.DataSource = this.windingqty;
-            this.windinggrid.EnableHeadersVisualStyles = false;
-            this.windinggrid.Location = new System.Drawing.Point(4, 19);
-            this.windinggrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.windinggrid.MultiSelect = false;
-            this.windinggrid.Name = "windinggrid";
-            this.windinggrid.ReadOnly = true;
-            this.windinggrid.RowHeadersVisible = false;
-            this.windinggrid.RowHeadersWidth = 62;
-            this.windinggrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.windinggrid.Size = new System.Drawing.Size(390, 82);
-            this.windinggrid.TabIndex = 92;
-            this.windinggrid.Paint += new System.Windows.Forms.PaintEventHandler(this.windinggrid_Paint);
-            // 
-            // gradewiseprodn
-            // 
-            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gradewiseprodn.Controls.Add(this.prodnbalqty);
-            this.gradewiseprodn.Controls.Add(this.grdsoqty);
-            this.gradewiseprodn.Controls.Add(this.qualityqty);
-            this.gradewiseprodn.Controls.Add(this.totalprodbalqty);
-            this.gradewiseprodn.Controls.Add(this.saleordrqty);
-            this.gradewiseprodn.ForeColor = System.Drawing.Color.Black;
-            this.gradewiseprodn.Location = new System.Drawing.Point(2, 106);
-            this.gradewiseprodn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gradewiseprodn.Name = "gradewiseprodn";
-            this.gradewiseprodn.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.gradewiseprodn.Size = new System.Drawing.Size(394, 133);
-            this.gradewiseprodn.TabIndex = 8;
-            this.gradewiseprodn.TabStop = false;
-            this.gradewiseprodn.Text = "Gradewise Production Status";
-            // 
-            // prodnbalqty
-            // 
-            this.prodnbalqty.AutoSize = true;
-            this.prodnbalqty.Location = new System.Drawing.Point(102, 99);
-            this.prodnbalqty.Name = "prodnbalqty";
-            this.prodnbalqty.Size = new System.Drawing.Size(0, 13);
-            this.prodnbalqty.TabIndex = 95;
-            // 
-            // grdsoqty
-            // 
-            this.grdsoqty.AutoSize = true;
-            this.grdsoqty.Location = new System.Drawing.Point(91, 16);
-            this.grdsoqty.Name = "grdsoqty";
-            this.grdsoqty.Size = new System.Drawing.Size(0, 13);
-            this.grdsoqty.TabIndex = 94;
-            // 
-            // qualityqty
-            // 
-            this.qualityqty.AllowUserToAddRows = false;
-            this.qualityqty.AllowUserToDeleteRows = false;
-            this.qualityqty.AllowUserToResizeColumns = false;
-            this.qualityqty.AllowUserToResizeRows = false;
-            this.qualityqty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.qualityqty.AutoGenerateColumns = false;
-            this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.qualityqty.BackgroundColor = System.Drawing.Color.White;
-            this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
-            this.qualityqty.ColumnHeadersHeight = 34;
-            this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.qualityqty.DataSource = this.qualityandqty;
-            this.qualityqty.EnableHeadersVisualStyles = false;
-            this.qualityqty.GridColor = System.Drawing.SystemColors.Control;
-            this.qualityqty.Location = new System.Drawing.Point(2, 30);
-            this.qualityqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.qualityqty.MultiSelect = false;
-            this.qualityqty.Name = "qualityqty";
-            this.qualityqty.ReadOnly = true;
-            this.qualityqty.RowHeadersVisible = false;
-            this.qualityqty.RowHeadersWidth = 62;
-            this.qualityqty.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.qualityqty.Size = new System.Drawing.Size(388, 82);
-            this.qualityqty.TabIndex = 92;
-            this.qualityqty.Paint += new System.Windows.Forms.PaintEventHandler(this.qualityqty_Paint);
-            // 
-            // totalprodbalqty
-            // 
-            this.totalprodbalqty.AutoSize = true;
-            this.totalprodbalqty.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.totalprodbalqty.Location = new System.Drawing.Point(1, 115);
-            this.totalprodbalqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.totalprodbalqty.Name = "totalprodbalqty";
-            this.totalprodbalqty.Size = new System.Drawing.Size(98, 13);
-            this.totalprodbalqty.TabIndex = 93;
-            this.totalprodbalqty.Text = "Production Bal Qty:";
-            // 
-            // saleordrqty
-            // 
-            this.saleordrqty.AutoSize = true;
-            this.saleordrqty.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saleordrqty.Location = new System.Drawing.Point(8, 14);
-            this.saleordrqty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.saleordrqty.Name = "saleordrqty";
-            this.saleordrqty.Size = new System.Drawing.Size(82, 13);
-            this.saleordrqty.TabIndex = 92;
-            this.saleordrqty.Text = "Sale Order Qty :";
-            // 
-            // palletdetailslayout
-            // 
-            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.palletdetailslayout.BackColor = System.Drawing.Color.White;
-            this.palletdetailslayout.ColumnCount = 1;
-            this.palletdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.palletdetailslayout.Controls.Add(this.palletdetailsheader, 0, 0);
-            this.palletdetailslayout.Controls.Add(this.palletdetailspanel, 0, 1);
-            this.palletdetailslayout.Location = new System.Drawing.Point(2, 248);
-            this.palletdetailslayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.palletdetailslayout.Name = "palletdetailslayout";
-            this.palletdetailslayout.Padding = new System.Windows.Forms.Padding(2);
-            this.palletdetailslayout.RowCount = 2;
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.palletdetailslayout.Size = new System.Drawing.Size(396, 270);
-            this.palletdetailslayout.TabIndex = 9;
-            this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
-            // 
-            // palletdetailsheader
-            // 
-            this.palletdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.palletdetailsheader.Controls.Add(this.palletdetails);
-            this.palletdetailsheader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.palletdetailsheader.Location = new System.Drawing.Point(2, 2);
-            this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(0);
-            this.palletdetailsheader.Name = "palletdetailsheader";
-            this.palletdetailsheader.Size = new System.Drawing.Size(392, 26);
-            this.palletdetailsheader.TabIndex = 107;
-            this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
-            this.palletdetailsheader.Resize += new System.EventHandler(this.palletdetailsheader_Resize);
-            // 
-            // palletdetailspanel
-            // 
-            this.palletdetailspanel.Controls.Add(this.label6);
-            this.palletdetailspanel.Controls.Add(this.PalletTypeList);
-            this.palletdetailspanel.Controls.Add(this.pquantity);
-            this.palletdetailspanel.Controls.Add(this.qnty);
-            this.palletdetailspanel.Controls.Add(this.addqty);
-            this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
-            this.palletdetailspanel.Location = new System.Drawing.Point(4, 31);
-            this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.palletdetailspanel.Name = "palletdetailspanel";
-            this.palletdetailspanel.Size = new System.Drawing.Size(388, 234);
-            this.palletdetailspanel.TabIndex = 108;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.machineboxlayout, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.packagingboxlayout, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tblpanl1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tblpnl2, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 1);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(668, 426);
-            this.tableLayoutPanel1.TabIndex = 3;
-            // 
-            // machineboxlayout
-            // 
-            this.machineboxlayout.BackColor = System.Drawing.Color.White;
-            this.machineboxlayout.ColumnCount = 1;
-            this.machineboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.machineboxlayout.Controls.Add(this.machineboxpanel, 0, 1);
-            this.machineboxlayout.Controls.Add(this.machineboxheader, 0, 0);
-            this.machineboxlayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.machineboxlayout.Location = new System.Drawing.Point(2, 3);
-            this.machineboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.machineboxlayout.Name = "machineboxlayout";
-            this.machineboxlayout.Padding = new System.Windows.Forms.Padding(2);
-            this.machineboxlayout.RowCount = 2;
-            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.machineboxlayout.Size = new System.Drawing.Size(330, 198);
-            this.machineboxlayout.TabIndex = 0;
-            this.machineboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxlayout_Paint);
-            // 
-            // machineboxpanel
-            // 
-            this.machineboxpanel.BackColor = System.Drawing.Color.White;
-            this.machineboxpanel.Controls.Add(this.tableLayoutPanel4);
-            this.machineboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.machineboxpanel.Location = new System.Drawing.Point(4, 24);
-            this.machineboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.machineboxpanel.Name = "machineboxpanel";
-            this.machineboxpanel.Size = new System.Drawing.Size(322, 169);
-            this.machineboxpanel.TabIndex = 107;
-            // 
-            // req3
-            // 
-            this.req3.AutoSize = true;
-            this.req3.ForeColor = System.Drawing.Color.Red;
-            this.req3.Location = new System.Drawing.Point(56, -3);
-            this.req3.Name = "req3";
-            this.req3.Size = new System.Drawing.Size(11, 13);
-            this.req3.TabIndex = 107;
-            this.req3.Text = "*";
-            this.req3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req2
-            // 
-            this.req2.AutoSize = true;
-            this.req2.ForeColor = System.Drawing.Color.Red;
-            this.req2.Location = new System.Drawing.Point(48, 0);
-            this.req2.Name = "req2";
-            this.req2.Size = new System.Drawing.Size(11, 13);
-            this.req2.TabIndex = 106;
-            this.req2.Text = "*";
-            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.panel1.Controls.Add(this.lineno);
+            this.panel1.Controls.Add(this.req1);
+            this.panel1.Controls.Add(this.LineNoList);
+            this.panel1.Controls.Add(this.linenoerror);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(160, 64);
+            this.panel1.TabIndex = 0;
             // 
             // req1
             // 
             this.req1.AutoSize = true;
             this.req1.ForeColor = System.Drawing.Color.Red;
-            this.req1.Location = new System.Drawing.Point(27, 3);
+            this.req1.Location = new System.Drawing.Point(40, 2);
+            this.req1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.req1.Name = "req1";
-            this.req1.Size = new System.Drawing.Size(11, 13);
+            this.req1.Size = new System.Drawing.Size(15, 20);
             this.req1.TabIndex = 93;
             this.req1.Text = "*";
             this.req1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // deniervalue
-            // 
-            this.deniervalue.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.deniervalue.Location = new System.Drawing.Point(-1, 15);
-            this.deniervalue.Margin = new System.Windows.Forms.Padding(2);
-            this.deniervalue.Name = "deniervalue";
-            this.deniervalue.ReadOnly = true;
-            this.deniervalue.Size = new System.Drawing.Size(101, 20);
-            this.deniervalue.TabIndex = 10;
-            // 
-            // denier
-            // 
-            this.denier.AutoSize = true;
-            this.denier.Location = new System.Drawing.Point(2, 0);
-            this.denier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.denier.Name = "denier";
-            this.denier.Size = new System.Drawing.Size(41, 13);
-            this.denier.TabIndex = 94;
-            this.denier.Text = "Denier:";
             // 
             // linenoerror
             // 
             this.linenoerror.AutoSize = true;
             this.linenoerror.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.linenoerror.ForeColor = System.Drawing.Color.Red;
-            this.linenoerror.Location = new System.Drawing.Point(2, 30);
-            this.linenoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linenoerror.Location = new System.Drawing.Point(3, 49);
             this.linenoerror.Name = "linenoerror";
-            this.linenoerror.Size = new System.Drawing.Size(56, 13);
+            this.linenoerror.Size = new System.Drawing.Size(0, 20);
             this.linenoerror.TabIndex = 98;
-            this.linenoerror.Text = "linenoerror";
+            this.linenoerror.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lastboxno);
+            this.panel2.Controls.Add(this.lastbox);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(160, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(160, 64);
+            this.panel2.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.req2);
+            this.panel4.Controls.Add(this.boxno);
+            this.panel4.Controls.Add(this.PrefixList);
+            this.panel4.Controls.Add(this.boxnoerror);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(320, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(160, 64);
+            this.panel4.TabIndex = 2;
+            // 
+            // req2
+            // 
+            this.req2.AutoSize = true;
+            this.req2.ForeColor = System.Drawing.Color.Red;
+            this.req2.Location = new System.Drawing.Point(72, 2);
+            this.req2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req2.Name = "req2";
+            this.req2.Size = new System.Drawing.Size(15, 20);
+            this.req2.TabIndex = 106;
+            this.req2.Text = "*";
+            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // PrefixList
+            // 
+            this.PrefixList.AllowDrop = true;
+            this.PrefixList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrefixList.FormattingEnabled = true;
+            this.PrefixList.Location = new System.Drawing.Point(2, 21);
+            this.PrefixList.Name = "PrefixList";
+            this.PrefixList.Size = new System.Drawing.Size(146, 28);
+            this.PrefixList.TabIndex = 3;
+            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
             // 
             // boxnoerror
             // 
             this.boxnoerror.AutoSize = true;
             this.boxnoerror.ForeColor = System.Drawing.Color.Red;
-            this.boxnoerror.Location = new System.Drawing.Point(2, 28);
-            this.boxnoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxnoerror.Location = new System.Drawing.Point(3, 49);
             this.boxnoerror.Name = "boxnoerror";
-            this.boxnoerror.Size = new System.Drawing.Size(57, 13);
+            this.boxnoerror.Size = new System.Drawing.Size(0, 20);
             this.boxnoerror.TabIndex = 105;
-            this.boxnoerror.Text = "boxnoerror";
+            this.boxnoerror.Visible = false;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.department);
+            this.panel8.Controls.Add(this.departmentname);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(0, 64);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(160, 64);
+            this.panel8.TabIndex = 3;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.req3);
+            this.panel9.Controls.Add(this.mergeno);
+            this.panel9.Controls.Add(this.MergeNoList);
+            this.panel9.Controls.Add(this.mergenoerror);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(160, 64);
+            this.panel9.Margin = new System.Windows.Forms.Padding(0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(160, 64);
+            this.panel9.TabIndex = 4;
+            // 
+            // req3
+            // 
+            this.req3.AutoSize = true;
+            this.req3.ForeColor = System.Drawing.Color.Red;
+            this.req3.Location = new System.Drawing.Point(84, 2);
+            this.req3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req3.Name = "req3";
+            this.req3.Size = new System.Drawing.Size(15, 20);
+            this.req3.TabIndex = 107;
+            this.req3.Text = "*";
+            this.req3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // mergenoerror
             // 
             this.mergenoerror.AutoSize = true;
             this.mergenoerror.ForeColor = System.Drawing.Color.Red;
-            this.mergenoerror.Location = new System.Drawing.Point(2, 28);
-            this.mergenoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.mergenoerror.Location = new System.Drawing.Point(3, 49);
             this.mergenoerror.Name = "mergenoerror";
             this.mergenoerror.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mergenoerror.Size = new System.Drawing.Size(69, 13);
+            this.mergenoerror.Size = new System.Drawing.Size(0, 20);
             this.mergenoerror.TabIndex = 100;
-            this.mergenoerror.Text = "mergenoerror";
+            this.mergenoerror.Visible = false;
             // 
-            // PrefixList
+            // panel10
             // 
-            this.PrefixList.AllowDrop = true;
-            this.PrefixList.FormattingEnabled = true;
-            this.PrefixList.Location = new System.Drawing.Point(2, 16);
-            this.PrefixList.Margin = new System.Windows.Forms.Padding(2);
-            this.PrefixList.Name = "PrefixList";
-            this.PrefixList.Size = new System.Drawing.Size(99, 21);
-            this.PrefixList.TabIndex = 3;
-            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            this.panel10.Controls.Add(this.packingdate);
+            this.panel10.Controls.Add(this.dateTimePicker1);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(320, 64);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(160, 64);
+            this.panel10.TabIndex = 5;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.item);
+            this.panel11.Controls.Add(this.itemname);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(0, 128);
+            this.panel11.Margin = new System.Windows.Forms.Padding(0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(160, 64);
+            this.panel11.TabIndex = 6;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.shade);
+            this.panel12.Controls.Add(this.shadename);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(160, 128);
+            this.panel12.Margin = new System.Windows.Forms.Padding(0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(160, 64);
+            this.panel12.TabIndex = 7;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.shadecode);
+            this.panel13.Controls.Add(this.shadecd);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(320, 128);
+            this.panel13.Margin = new System.Windows.Forms.Padding(0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(160, 64);
+            this.panel13.TabIndex = 8;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.denier);
+            this.panel14.Controls.Add(this.deniervalue);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel14.Location = new System.Drawing.Point(0, 192);
+            this.panel14.Margin = new System.Windows.Forms.Padding(0);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(160, 65);
+            this.panel14.TabIndex = 9;
+            // 
+            // denier
+            // 
+            this.denier.AutoSize = true;
+            this.denier.Location = new System.Drawing.Point(2, 2);
+            this.denier.Name = "denier";
+            this.denier.Size = new System.Drawing.Size(60, 20);
+            this.denier.TabIndex = 94;
+            this.denier.Text = "Denier:";
+            // 
+            // deniervalue
+            // 
+            this.deniervalue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.deniervalue.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.deniervalue.Location = new System.Drawing.Point(-2, 23);
+            this.deniervalue.Name = "deniervalue";
+            this.deniervalue.ReadOnly = true;
+            this.deniervalue.Size = new System.Drawing.Size(150, 26);
+            this.deniervalue.TabIndex = 10;
+            this.deniervalue.TabStop = false;
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.productiontype);
+            this.panel15.Controls.Add(this.prodtype);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel15.Location = new System.Drawing.Point(160, 192);
+            this.panel15.Margin = new System.Windows.Forms.Padding(0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(160, 65);
+            this.panel15.TabIndex = 10;
             // 
             // machineboxheader
             // 
@@ -1592,10 +2057,10 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.machineboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.machineboxheader.Controls.Add(this.Machinelbl);
-            this.machineboxheader.Location = new System.Drawing.Point(2, 2);
+            this.machineboxheader.Location = new System.Drawing.Point(3, 3);
             this.machineboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.machineboxheader.Name = "machineboxheader";
-            this.machineboxheader.Size = new System.Drawing.Size(326, 18);
+            this.machineboxheader.Size = new System.Drawing.Size(489, 28);
             this.machineboxheader.TabIndex = 107;
             this.machineboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxheader_Paint);
             this.machineboxheader.Resize += new System.EventHandler(this.machineboxheader_Resize);
@@ -1603,10 +2068,9 @@ namespace PackingApplication
             // Machinelbl
             // 
             this.Machinelbl.AutoSize = true;
-            this.Machinelbl.Location = new System.Drawing.Point(2, 3);
-            this.Machinelbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Machinelbl.Location = new System.Drawing.Point(3, 5);
             this.Machinelbl.Name = "Machinelbl";
-            this.Machinelbl.Size = new System.Drawing.Size(68, 13);
+            this.Machinelbl.Size = new System.Drawing.Size(102, 20);
             this.Machinelbl.TabIndex = 107;
             this.Machinelbl.Text = "Order Details";
             // 
@@ -1618,14 +2082,14 @@ namespace PackingApplication
             this.packagingboxlayout.Controls.Add(this.packagingboxheader, 0, 0);
             this.packagingboxlayout.Controls.Add(this.packagingboxpanel, 0, 1);
             this.packagingboxlayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packagingboxlayout.Location = new System.Drawing.Point(2, 207);
-            this.packagingboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.packagingboxlayout.Location = new System.Drawing.Point(3, 319);
+            this.packagingboxlayout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.packagingboxlayout.Name = "packagingboxlayout";
-            this.packagingboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.packagingboxlayout.Padding = new System.Windows.Forms.Padding(3);
             this.packagingboxlayout.RowCount = 2;
             this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11F));
             this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89F));
-            this.packagingboxlayout.Size = new System.Drawing.Size(330, 216);
+            this.packagingboxlayout.Size = new System.Drawing.Size(495, 331);
             this.packagingboxlayout.TabIndex = 3;
             this.packagingboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxlayout_Paint);
             // 
@@ -1635,10 +2099,10 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.packagingboxheader.Controls.Add(this.Packagingboxlbl);
-            this.packagingboxheader.Location = new System.Drawing.Point(2, 2);
+            this.packagingboxheader.Location = new System.Drawing.Point(3, 3);
             this.packagingboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.packagingboxheader.Name = "packagingboxheader";
-            this.packagingboxheader.Size = new System.Drawing.Size(326, 20);
+            this.packagingboxheader.Size = new System.Drawing.Size(489, 31);
             this.packagingboxheader.TabIndex = 107;
             this.packagingboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxheader_Paint);
             this.packagingboxheader.Resize += new System.EventHandler(this.packagingboxheader_Resize);
@@ -1646,182 +2110,320 @@ namespace PackingApplication
             // Packagingboxlbl
             // 
             this.Packagingboxlbl.AutoSize = true;
-            this.Packagingboxlbl.Location = new System.Drawing.Point(2, 3);
-            this.Packagingboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Packagingboxlbl.Location = new System.Drawing.Point(3, 5);
             this.Packagingboxlbl.Name = "Packagingboxlbl";
-            this.Packagingboxlbl.Size = new System.Drawing.Size(58, 13);
+            this.Packagingboxlbl.Size = new System.Drawing.Size(83, 20);
             this.Packagingboxlbl.TabIndex = 107;
             this.Packagingboxlbl.Text = "Packaging";
             // 
             // packagingboxpanel
             // 
-            this.packagingboxpanel.Controls.Add(this.label8);
-            this.packagingboxpanel.Controls.Add(this.label7);
-            this.packagingboxpanel.Controls.Add(this.uptodenier);
-            this.packagingboxpanel.Controls.Add(this.fromdenier);
-            this.packagingboxpanel.Controls.Add(this.req6);
-            this.packagingboxpanel.Controls.Add(this.req5);
-            this.packagingboxpanel.Controls.Add(this.req4);
-            this.packagingboxpanel.Controls.Add(this.SaleOrderList);
-            this.packagingboxpanel.Controls.Add(this.saleorderno);
-            this.packagingboxpanel.Controls.Add(this.QualityList);
-            this.packagingboxpanel.Controls.Add(this.quality);
-            this.packagingboxpanel.Controls.Add(this.label1);
-            this.packagingboxpanel.Controls.Add(this.packsize);
-            this.packagingboxpanel.Controls.Add(this.copyno);
-            this.packagingboxpanel.Controls.Add(this.PackSizeList);
-            this.packagingboxpanel.Controls.Add(this.frdenier);
-            this.packagingboxpanel.Controls.Add(this.updenier);
-            this.packagingboxpanel.Controls.Add(this.copssize);
-            this.packagingboxpanel.Controls.Add(this.packsizeerror);
-            this.packagingboxpanel.Controls.Add(this.CopsItemList);
-            this.packagingboxpanel.Controls.Add(this.boxtype);
-            this.packagingboxpanel.Controls.Add(this.BoxItemList);
-            this.packagingboxpanel.Controls.Add(this.boxweight);
-            this.packagingboxpanel.Controls.Add(this.boxpalletitemwt);
-            this.packagingboxpanel.Controls.Add(this.boxstock);
-            this.packagingboxpanel.Controls.Add(this.boxpalletstock);
-            this.packagingboxpanel.Controls.Add(this.copweight);
-            this.packagingboxpanel.Controls.Add(this.copsitemwt);
-            this.packagingboxpanel.Controls.Add(this.copstock);
-            this.packagingboxpanel.Controls.Add(this.copsstock);
-            this.packagingboxpanel.Controls.Add(this.soerror);
-            this.packagingboxpanel.Controls.Add(this.copynoerror);
-            this.packagingboxpanel.Controls.Add(this.qualityerror);
+            this.packagingboxpanel.Controls.Add(this.tableLayoutPanel5);
             this.packagingboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.packagingboxpanel.Location = new System.Drawing.Point(4, 28);
-            this.packagingboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.packagingboxpanel.Location = new System.Drawing.Point(6, 43);
+            this.packagingboxpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.packagingboxpanel.Name = "packagingboxpanel";
-            this.packagingboxpanel.Size = new System.Drawing.Size(322, 183);
+            this.packagingboxpanel.Size = new System.Drawing.Size(483, 280);
             this.packagingboxpanel.TabIndex = 107;
             // 
-            // label8
+            // tableLayoutPanel5
             // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(55, 84);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(11, 13);
-            this.label8.TabIndex = 119;
-            this.label8.Text = "*";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.Controls.Add(this.panel16, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel17, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel18, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel19, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.panel20, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.panel21, 2, 1);
+            this.tableLayoutPanel5.Controls.Add(this.panel22, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.panel23, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.panel24, 2, 2);
+            this.tableLayoutPanel5.Controls.Add(this.panel25, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.panel26, 1, 3);
+            this.tableLayoutPanel5.Controls.Add(this.panel27, 2, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 4;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 277);
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // label7
+            // panel16
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(80, 126);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 13);
-            this.label7.TabIndex = 118;
-            this.label7.Text = "*";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // uptodenier
-            // 
-            this.uptodenier.AutoSize = true;
-            this.uptodenier.Location = new System.Drawing.Point(276, 44);
-            this.uptodenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uptodenier.Name = "uptodenier";
-            this.uptodenier.Size = new System.Drawing.Size(67, 13);
-            this.uptodenier.TabIndex = 117;
-            this.uptodenier.Text = "Upto Denier:";
-            // 
-            // fromdenier
-            // 
-            this.fromdenier.AutoSize = true;
-            this.fromdenier.Location = new System.Drawing.Point(140, 44);
-            this.fromdenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.fromdenier.Name = "fromdenier";
-            this.fromdenier.Size = new System.Drawing.Size(67, 13);
-            this.fromdenier.TabIndex = 116;
-            this.fromdenier.Text = "From Denier:";
-            // 
-            // req6
-            // 
-            this.req6.AutoSize = true;
-            this.req6.ForeColor = System.Drawing.Color.Red;
-            this.req6.Location = new System.Drawing.Point(55, 44);
-            this.req6.Name = "req6";
-            this.req6.Size = new System.Drawing.Size(11, 13);
-            this.req6.TabIndex = 110;
-            this.req6.Text = "*";
-            this.req6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req5
-            // 
-            this.req5.AutoSize = true;
-            this.req5.ForeColor = System.Drawing.Color.Red;
-            this.req5.Location = new System.Drawing.Point(176, 3);
-            this.req5.Name = "req5";
-            this.req5.Size = new System.Drawing.Size(11, 13);
-            this.req5.TabIndex = 109;
-            this.req5.Text = "*";
-            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.panel16.Controls.Add(this.quality);
+            this.panel16.Controls.Add(this.req4);
+            this.panel16.Controls.Add(this.QualityList);
+            this.panel16.Controls.Add(this.qualityerror);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel16.Location = new System.Drawing.Point(0, 0);
+            this.panel16.Margin = new System.Windows.Forms.Padding(0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(159, 69);
+            this.panel16.TabIndex = 0;
             // 
             // req4
             // 
             this.req4.AutoSize = true;
             this.req4.ForeColor = System.Drawing.Color.Red;
-            this.req4.Location = new System.Drawing.Point(40, 3);
+            this.req4.Location = new System.Drawing.Point(60, 2);
+            this.req4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.req4.Name = "req4";
-            this.req4.Size = new System.Drawing.Size(11, 13);
+            this.req4.Size = new System.Drawing.Size(15, 20);
             this.req4.TabIndex = 108;
             this.req4.Text = "*";
             this.req4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // packsizeerror
-            // 
-            this.packsizeerror.AutoSize = true;
-            this.packsizeerror.ForeColor = System.Drawing.Color.Red;
-            this.packsizeerror.Location = new System.Drawing.Point(2, 75);
-            this.packsizeerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.packsizeerror.Name = "packsizeerror";
-            this.packsizeerror.Size = new System.Drawing.Size(0, 13);
-            this.packsizeerror.TabIndex = 103;
-            this.packsizeerror.Visible = false;
-            // 
-            // soerror
-            // 
-            this.soerror.AutoSize = true;
-            this.soerror.ForeColor = System.Drawing.Color.Red;
-            this.soerror.Location = new System.Drawing.Point(140, 35);
-            this.soerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.soerror.Name = "soerror";
-            this.soerror.Size = new System.Drawing.Size(0, 13);
-            this.soerror.TabIndex = 102;
-            this.soerror.Visible = false;
-            // 
-            // copynoerror
-            // 
-            this.copynoerror.AutoSize = true;
-            this.copynoerror.ForeColor = System.Drawing.Color.Red;
-            this.copynoerror.Location = new System.Drawing.Point(276, 35);
-            this.copynoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.copynoerror.Name = "copynoerror";
-            this.copynoerror.Size = new System.Drawing.Size(0, 13);
-            this.copynoerror.TabIndex = 99;
-            this.copynoerror.Visible = false;
             // 
             // qualityerror
             // 
             this.qualityerror.AutoSize = true;
             this.qualityerror.ForeColor = System.Drawing.Color.Red;
-            this.qualityerror.Location = new System.Drawing.Point(2, 35);
-            this.qualityerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.qualityerror.Location = new System.Drawing.Point(3, 49);
             this.qualityerror.Name = "qualityerror";
-            this.qualityerror.Size = new System.Drawing.Size(0, 13);
+            this.qualityerror.Size = new System.Drawing.Size(0, 20);
             this.qualityerror.TabIndex = 101;
             this.qualityerror.Visible = false;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.saleorderno);
+            this.panel17.Controls.Add(this.req5);
+            this.panel17.Controls.Add(this.SaleOrderList);
+            this.panel17.Controls.Add(this.soerror);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel17.Location = new System.Drawing.Point(159, 0);
+            this.panel17.Margin = new System.Windows.Forms.Padding(0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(159, 69);
+            this.panel17.TabIndex = 1;
+            // 
+            // req5
+            // 
+            this.req5.AutoSize = true;
+            this.req5.ForeColor = System.Drawing.Color.Red;
+            this.req5.Location = new System.Drawing.Point(60, 2);
+            this.req5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req5.Name = "req5";
+            this.req5.Size = new System.Drawing.Size(15, 20);
+            this.req5.TabIndex = 109;
+            this.req5.Text = "*";
+            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // soerror
+            // 
+            this.soerror.AutoSize = true;
+            this.soerror.ForeColor = System.Drawing.Color.Red;
+            this.soerror.Location = new System.Drawing.Point(3, 49);
+            this.soerror.Name = "soerror";
+            this.soerror.Size = new System.Drawing.Size(0, 20);
+            this.soerror.TabIndex = 102;
+            this.soerror.Visible = false;
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.label1);
+            this.panel18.Controls.Add(this.copyno);
+            this.panel18.Controls.Add(this.copynoerror);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel18.Location = new System.Drawing.Point(318, 0);
+            this.panel18.Margin = new System.Windows.Forms.Padding(0);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(159, 69);
+            this.panel18.TabIndex = 2;
+            // 
+            // copynoerror
+            // 
+            this.copynoerror.AutoSize = true;
+            this.copynoerror.ForeColor = System.Drawing.Color.Red;
+            this.copynoerror.Location = new System.Drawing.Point(3, 49);
+            this.copynoerror.Name = "copynoerror";
+            this.copynoerror.Size = new System.Drawing.Size(0, 20);
+            this.copynoerror.TabIndex = 99;
+            this.copynoerror.Visible = false;
+            // 
+            // panel19
+            // 
+            this.panel19.Controls.Add(this.packsize);
+            this.panel19.Controls.Add(this.req6);
+            this.panel19.Controls.Add(this.PackSizeList);
+            this.panel19.Controls.Add(this.packsizeerror);
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel19.Location = new System.Drawing.Point(0, 69);
+            this.panel19.Margin = new System.Windows.Forms.Padding(0);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(159, 69);
+            this.panel19.TabIndex = 3;
+            // 
+            // req6
+            // 
+            this.req6.AutoSize = true;
+            this.req6.ForeColor = System.Drawing.Color.Red;
+            this.req6.Location = new System.Drawing.Point(84, 2);
+            this.req6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.req6.Name = "req6";
+            this.req6.Size = new System.Drawing.Size(15, 20);
+            this.req6.TabIndex = 110;
+            this.req6.Text = "*";
+            this.req6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // packsizeerror
+            // 
+            this.packsizeerror.AutoSize = true;
+            this.packsizeerror.ForeColor = System.Drawing.Color.Red;
+            this.packsizeerror.Location = new System.Drawing.Point(3, 49);
+            this.packsizeerror.Name = "packsizeerror";
+            this.packsizeerror.Size = new System.Drawing.Size(0, 20);
+            this.packsizeerror.TabIndex = 103;
+            this.packsizeerror.Visible = false;
+            // 
+            // panel20
+            // 
+            this.panel20.Controls.Add(this.fromdenier);
+            this.panel20.Controls.Add(this.frdenier);
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel20.Location = new System.Drawing.Point(159, 69);
+            this.panel20.Margin = new System.Windows.Forms.Padding(0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(159, 69);
+            this.panel20.TabIndex = 4;
+            // 
+            // fromdenier
+            // 
+            this.fromdenier.AutoSize = true;
+            this.fromdenier.Location = new System.Drawing.Point(2, 2);
+            this.fromdenier.Name = "fromdenier";
+            this.fromdenier.Size = new System.Drawing.Size(101, 20);
+            this.fromdenier.TabIndex = 116;
+            this.fromdenier.Text = "From Denier:";
+            // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.uptodenier);
+            this.panel21.Controls.Add(this.updenier);
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel21.Location = new System.Drawing.Point(318, 69);
+            this.panel21.Margin = new System.Windows.Forms.Padding(0);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(159, 69);
+            this.panel21.TabIndex = 5;
+            // 
+            // uptodenier
+            // 
+            this.uptodenier.AutoSize = true;
+            this.uptodenier.Location = new System.Drawing.Point(2, 2);
+            this.uptodenier.Name = "uptodenier";
+            this.uptodenier.Size = new System.Drawing.Size(99, 20);
+            this.uptodenier.TabIndex = 117;
+            this.uptodenier.Text = "Upto Denier:";
+            // 
+            // panel22
+            // 
+            this.panel22.Controls.Add(this.label8);
+            this.panel22.Controls.Add(this.CopsItemList);
+            this.panel22.Controls.Add(this.copssize);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel22.Location = new System.Drawing.Point(0, 138);
+            this.panel22.Margin = new System.Windows.Forms.Padding(0);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(159, 69);
+            this.panel22.TabIndex = 6;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(84, 2);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(15, 20);
+            this.label8.TabIndex = 119;
+            this.label8.Text = "*";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel23
+            // 
+            this.panel23.Controls.Add(this.copweight);
+            this.panel23.Controls.Add(this.copsitemwt);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel23.Location = new System.Drawing.Point(159, 138);
+            this.panel23.Margin = new System.Windows.Forms.Padding(0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(159, 69);
+            this.panel23.TabIndex = 7;
+            // 
+            // panel24
+            // 
+            this.panel24.Controls.Add(this.copstock);
+            this.panel24.Controls.Add(this.copsstock);
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel24.Location = new System.Drawing.Point(318, 138);
+            this.panel24.Margin = new System.Windows.Forms.Padding(0);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(159, 69);
+            this.panel24.TabIndex = 8;
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.BoxItemList);
+            this.panel25.Controls.Add(this.label7);
+            this.panel25.Controls.Add(this.boxtype);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel25.Location = new System.Drawing.Point(0, 207);
+            this.panel25.Margin = new System.Windows.Forms.Padding(0);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(159, 70);
+            this.panel25.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(120, 2);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(15, 20);
+            this.label7.TabIndex = 118;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.boxpalletitemwt);
+            this.panel26.Controls.Add(this.boxweight);
+            this.panel26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel26.Location = new System.Drawing.Point(159, 207);
+            this.panel26.Margin = new System.Windows.Forms.Padding(0);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(159, 70);
+            this.panel26.TabIndex = 10;
+            // 
+            // panel27
+            // 
+            this.panel27.Controls.Add(this.boxpalletstock);
+            this.panel27.Controls.Add(this.boxstock);
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel27.Location = new System.Drawing.Point(318, 207);
+            this.panel27.Margin = new System.Windows.Forms.Padding(0);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(159, 70);
+            this.panel27.TabIndex = 11;
             // 
             // tblpanl1
             // 
             this.tblpanl1.Controls.Add(this.printingdetailslayout);
             this.tblpanl1.Controls.Add(this.lastboxlayout);
             this.tblpanl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblpanl1.Location = new System.Drawing.Point(337, 3);
+            this.tblpanl1.Location = new System.Drawing.Point(505, 5);
+            this.tblpanl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tblpanl1.Name = "tblpanl1";
-            this.tblpanl1.Size = new System.Drawing.Size(328, 198);
+            this.tblpanl1.Size = new System.Drawing.Size(493, 304);
             this.tblpanl1.TabIndex = 4;
             // 
             // printingdetailslayout
@@ -1829,19 +2431,117 @@ namespace PackingApplication
             this.printingdetailslayout.BackColor = System.Drawing.Color.White;
             this.printingdetailslayout.ColumnCount = 1;
             this.printingdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.printingdetailslayout.Controls.Add(this.printingdetailsheader, 0, 0);
             this.printingdetailslayout.Controls.Add(this.panel3, 0, 1);
+            this.printingdetailslayout.Controls.Add(this.printingdetailsheader, 0, 0);
             this.printingdetailslayout.Dock = System.Windows.Forms.DockStyle.Top;
             this.printingdetailslayout.Location = new System.Drawing.Point(0, 0);
-            this.printingdetailslayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.printingdetailslayout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.printingdetailslayout.Name = "printingdetailslayout";
-            this.printingdetailslayout.Padding = new System.Windows.Forms.Padding(2);
+            this.printingdetailslayout.Padding = new System.Windows.Forms.Padding(3);
             this.printingdetailslayout.RowCount = 2;
             this.printingdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
             this.printingdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78F));
-            this.printingdetailslayout.Size = new System.Drawing.Size(328, 90);
+            this.printingdetailslayout.Size = new System.Drawing.Size(493, 138);
             this.printingdetailslayout.TabIndex = 2;
             this.printingdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailslayout_Paint);
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.tableLayoutPanel7);
+            this.panel3.Location = new System.Drawing.Point(6, 37);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(481, 93);
+            this.panel3.TabIndex = 87;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel7.ColumnCount = 3;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.Controls.Add(this.panel37, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel38, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel39, 2, 0);
+            this.tableLayoutPanel7.Controls.Add(this.panel40, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.panel41, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.panel42, 2, 1);
+            this.tableLayoutPanel7.Controls.Add(this.panel43, 0, 2);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(6, 7);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(474, 83);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // panel37
+            // 
+            this.panel37.Controls.Add(this.prcompany);
+            this.panel37.Location = new System.Drawing.Point(0, 0);
+            this.panel37.Margin = new System.Windows.Forms.Padding(0);
+            this.panel37.Name = "panel37";
+            this.panel37.Size = new System.Drawing.Size(157, 27);
+            this.panel37.TabIndex = 0;
+            // 
+            // panel38
+            // 
+            this.panel38.Controls.Add(this.prowner);
+            this.panel38.Location = new System.Drawing.Point(158, 0);
+            this.panel38.Margin = new System.Windows.Forms.Padding(0);
+            this.panel38.Name = "panel38";
+            this.panel38.Size = new System.Drawing.Size(157, 27);
+            this.panel38.TabIndex = 1;
+            // 
+            // panel39
+            // 
+            this.panel39.Controls.Add(this.prdate);
+            this.panel39.Location = new System.Drawing.Point(316, 0);
+            this.panel39.Margin = new System.Windows.Forms.Padding(0);
+            this.panel39.Name = "panel39";
+            this.panel39.Size = new System.Drawing.Size(158, 27);
+            this.panel39.TabIndex = 2;
+            // 
+            // panel40
+            // 
+            this.panel40.Controls.Add(this.pruser);
+            this.panel40.Location = new System.Drawing.Point(0, 27);
+            this.panel40.Margin = new System.Windows.Forms.Padding(0);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(157, 27);
+            this.panel40.TabIndex = 3;
+            // 
+            // panel41
+            // 
+            this.panel41.Controls.Add(this.prhindi);
+            this.panel41.Location = new System.Drawing.Point(158, 27);
+            this.panel41.Margin = new System.Windows.Forms.Padding(0);
+            this.panel41.Name = "panel41";
+            this.panel41.Size = new System.Drawing.Size(157, 27);
+            this.panel41.TabIndex = 4;
+            // 
+            // panel42
+            // 
+            this.panel42.Controls.Add(this.prwtps);
+            this.panel42.Location = new System.Drawing.Point(316, 27);
+            this.panel42.Margin = new System.Windows.Forms.Padding(0);
+            this.panel42.Name = "panel42";
+            this.panel42.Size = new System.Drawing.Size(158, 27);
+            this.panel42.TabIndex = 5;
+            // 
+            // panel43
+            // 
+            this.panel43.Controls.Add(this.prqrcode);
+            this.panel43.Location = new System.Drawing.Point(0, 54);
+            this.panel43.Margin = new System.Windows.Forms.Padding(0);
+            this.panel43.Name = "panel43";
+            this.panel43.Size = new System.Drawing.Size(157, 29);
+            this.panel43.TabIndex = 6;
             // 
             // printingdetailsheader
             // 
@@ -1849,11 +2549,11 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printingdetailsheader.Controls.Add(this.Printinglbl);
-            this.printingdetailsheader.Location = new System.Drawing.Point(2, 2);
+            this.printingdetailsheader.Location = new System.Drawing.Point(3, 3);
             this.printingdetailsheader.Margin = new System.Windows.Forms.Padding(0);
             this.printingdetailsheader.Name = "printingdetailsheader";
-            this.printingdetailsheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.printingdetailsheader.Size = new System.Drawing.Size(324, 18);
+            this.printingdetailsheader.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.printingdetailsheader.Size = new System.Drawing.Size(487, 28);
             this.printingdetailsheader.TabIndex = 107;
             this.printingdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailsheader_Paint);
             this.printingdetailsheader.Resize += new System.EventHandler(this.printingdetailsheader_Resize);
@@ -1861,28 +2561,11 @@ namespace PackingApplication
             // Printinglbl
             // 
             this.Printinglbl.AutoSize = true;
-            this.Printinglbl.Location = new System.Drawing.Point(2, 3);
-            this.Printinglbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Printinglbl.Location = new System.Drawing.Point(3, 5);
             this.Printinglbl.Name = "Printinglbl";
-            this.Printinglbl.Size = new System.Drawing.Size(77, 13);
+            this.Printinglbl.Size = new System.Drawing.Size(115, 20);
             this.Printinglbl.TabIndex = 107;
             this.Printinglbl.Text = "Printing Details";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.prowner);
-            this.panel3.Controls.Add(this.prwtps);
-            this.panel3.Controls.Add(this.prcompany);
-            this.panel3.Controls.Add(this.prqrcode);
-            this.panel3.Controls.Add(this.prhindi);
-            this.panel3.Controls.Add(this.pruser);
-            this.panel3.Controls.Add(this.prdate);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(4, 23);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(320, 62);
-            this.panel3.TabIndex = 87;
             // 
             // lastboxlayout
             // 
@@ -1892,14 +2575,14 @@ namespace PackingApplication
             this.lastboxlayout.Controls.Add(this.lastboxpanel, 0, 1);
             this.lastboxlayout.Controls.Add(this.lastboxheader, 0, 0);
             this.lastboxlayout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lastboxlayout.Location = new System.Drawing.Point(0, 116);
-            this.lastboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastboxlayout.Location = new System.Drawing.Point(0, 178);
+            this.lastboxlayout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastboxlayout.Name = "lastboxlayout";
-            this.lastboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.lastboxlayout.Padding = new System.Windows.Forms.Padding(3);
             this.lastboxlayout.RowCount = 2;
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.lastboxlayout.Size = new System.Drawing.Size(328, 82);
+            this.lastboxlayout.Size = new System.Drawing.Size(493, 126);
             this.lastboxlayout.TabIndex = 4;
             this.lastboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxlayout_Paint);
             // 
@@ -1910,10 +2593,10 @@ namespace PackingApplication
             this.lastboxpanel.Controls.Add(this.lastbxtarepanel);
             this.lastboxpanel.Controls.Add(this.lastbxcopspanel);
             this.lastboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lastboxpanel.Location = new System.Drawing.Point(4, 28);
-            this.lastboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastboxpanel.Location = new System.Drawing.Point(6, 44);
+            this.lastboxpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastboxpanel.Name = "lastboxpanel";
-            this.lastboxpanel.Size = new System.Drawing.Size(320, 49);
+            this.lastboxpanel.Size = new System.Drawing.Size(481, 74);
             this.lastboxpanel.TabIndex = 107;
             // 
             // lastbxnetwtpanel
@@ -1922,10 +2605,10 @@ namespace PackingApplication
             this.lastbxnetwtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxnetwtpanel.Controls.Add(this.netwttxtbox);
             this.lastbxnetwtpanel.Controls.Add(this.netweight);
-            this.lastbxnetwtpanel.Location = new System.Drawing.Point(242, 2);
-            this.lastbxnetwtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxnetwtpanel.Location = new System.Drawing.Point(363, 3);
+            this.lastbxnetwtpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastbxnetwtpanel.Name = "lastbxnetwtpanel";
-            this.lastbxnetwtpanel.Size = new System.Drawing.Size(74, 45);
+            this.lastbxnetwtpanel.Size = new System.Drawing.Size(111, 69);
             this.lastbxnetwtpanel.TabIndex = 8;
             this.lastbxnetwtpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxnetwtpanel_Paint);
             // 
@@ -1934,22 +2617,22 @@ namespace PackingApplication
             this.netwttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.netwttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.netwttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.netwttxtbox.Location = new System.Drawing.Point(7, 23);
-            this.netwttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.netwttxtbox.Location = new System.Drawing.Point(10, 35);
+            this.netwttxtbox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.netwttxtbox.Name = "netwttxtbox";
             this.netwttxtbox.ReadOnly = true;
-            this.netwttxtbox.Size = new System.Drawing.Size(57, 13);
+            this.netwttxtbox.Size = new System.Drawing.Size(86, 19);
             this.netwttxtbox.TabIndex = 95;
+            this.netwttxtbox.TabStop = false;
             this.netwttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // netweight
             // 
             this.netweight.AutoSize = true;
             this.netweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.netweight.Location = new System.Drawing.Point(20, 7);
-            this.netweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.netweight.Location = new System.Drawing.Point(30, 11);
             this.netweight.Name = "netweight";
-            this.netweight.Size = new System.Drawing.Size(24, 13);
+            this.netweight.Size = new System.Drawing.Size(34, 20);
             this.netweight.TabIndex = 8;
             this.netweight.Text = "Net";
             // 
@@ -1959,10 +2642,10 @@ namespace PackingApplication
             this.lastbxgrosswtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxgrosswtpanel.Controls.Add(this.grosswttxtbox);
             this.lastbxgrosswtpanel.Controls.Add(this.grossweight);
-            this.lastbxgrosswtpanel.Location = new System.Drawing.Point(161, 2);
-            this.lastbxgrosswtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxgrosswtpanel.Location = new System.Drawing.Point(242, 3);
+            this.lastbxgrosswtpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastbxgrosswtpanel.Name = "lastbxgrosswtpanel";
-            this.lastbxgrosswtpanel.Size = new System.Drawing.Size(74, 45);
+            this.lastbxgrosswtpanel.Size = new System.Drawing.Size(111, 69);
             this.lastbxgrosswtpanel.TabIndex = 6;
             this.lastbxgrosswtpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxgrosswtpanel_Paint);
             // 
@@ -1970,22 +2653,22 @@ namespace PackingApplication
             // 
             this.grosswttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.grosswttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.grosswttxtbox.Location = new System.Drawing.Point(7, 23);
-            this.grosswttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.grosswttxtbox.Location = new System.Drawing.Point(10, 35);
+            this.grosswttxtbox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grosswttxtbox.Name = "grosswttxtbox";
             this.grosswttxtbox.ReadOnly = true;
-            this.grosswttxtbox.Size = new System.Drawing.Size(57, 13);
+            this.grosswttxtbox.Size = new System.Drawing.Size(86, 19);
             this.grosswttxtbox.TabIndex = 7;
+            this.grosswttxtbox.TabStop = false;
             this.grosswttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // grossweight
             // 
             this.grossweight.AutoSize = true;
             this.grossweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.grossweight.Location = new System.Drawing.Point(15, 7);
-            this.grossweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.grossweight.Location = new System.Drawing.Point(22, 11);
             this.grossweight.Name = "grossweight";
-            this.grossweight.Size = new System.Drawing.Size(34, 13);
+            this.grossweight.Size = new System.Drawing.Size(52, 20);
             this.grossweight.TabIndex = 6;
             this.grossweight.Text = "Gross";
             // 
@@ -1995,10 +2678,10 @@ namespace PackingApplication
             this.lastbxtarepanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxtarepanel.Controls.Add(this.tarewghttxtbox);
             this.lastbxtarepanel.Controls.Add(this.tareweight);
-            this.lastbxtarepanel.Location = new System.Drawing.Point(80, 2);
-            this.lastbxtarepanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxtarepanel.Location = new System.Drawing.Point(120, 3);
+            this.lastbxtarepanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastbxtarepanel.Name = "lastbxtarepanel";
-            this.lastbxtarepanel.Size = new System.Drawing.Size(74, 45);
+            this.lastbxtarepanel.Size = new System.Drawing.Size(111, 69);
             this.lastbxtarepanel.TabIndex = 5;
             this.lastbxtarepanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxtarepanel_Paint);
             // 
@@ -2006,22 +2689,22 @@ namespace PackingApplication
             // 
             this.tarewghttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.tarewghttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tarewghttxtbox.Location = new System.Drawing.Point(7, 23);
-            this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tarewghttxtbox.Location = new System.Drawing.Point(10, 35);
+            this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tarewghttxtbox.Name = "tarewghttxtbox";
             this.tarewghttxtbox.ReadOnly = true;
-            this.tarewghttxtbox.Size = new System.Drawing.Size(57, 13);
+            this.tarewghttxtbox.Size = new System.Drawing.Size(86, 19);
             this.tarewghttxtbox.TabIndex = 5;
+            this.tarewghttxtbox.TabStop = false;
             this.tarewghttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tareweight
             // 
             this.tareweight.AutoSize = true;
             this.tareweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tareweight.Location = new System.Drawing.Point(17, 7);
-            this.tareweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.tareweight.Location = new System.Drawing.Point(26, 11);
             this.tareweight.Name = "tareweight";
-            this.tareweight.Size = new System.Drawing.Size(29, 13);
+            this.tareweight.Size = new System.Drawing.Size(41, 20);
             this.tareweight.TabIndex = 4;
             this.tareweight.Text = "Tare";
             // 
@@ -2031,10 +2714,10 @@ namespace PackingApplication
             this.lastbxcopspanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxcopspanel.Controls.Add(this.cops);
             this.lastbxcopspanel.Controls.Add(this.copstxtbox);
-            this.lastbxcopspanel.Location = new System.Drawing.Point(-3, 2);
-            this.lastbxcopspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxcopspanel.Location = new System.Drawing.Point(-4, 3);
+            this.lastbxcopspanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.lastbxcopspanel.Name = "lastbxcopspanel";
-            this.lastbxcopspanel.Size = new System.Drawing.Size(76, 45);
+            this.lastbxcopspanel.Size = new System.Drawing.Size(114, 69);
             this.lastbxcopspanel.TabIndex = 4;
             this.lastbxcopspanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxcopspanel_Paint);
             // 
@@ -2042,10 +2725,9 @@ namespace PackingApplication
             // 
             this.cops.AutoSize = true;
             this.cops.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.cops.Location = new System.Drawing.Point(17, 7);
-            this.cops.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.cops.Location = new System.Drawing.Point(26, 11);
             this.cops.Name = "cops";
-            this.cops.Size = new System.Drawing.Size(31, 13);
+            this.cops.Size = new System.Drawing.Size(46, 20);
             this.cops.TabIndex = 2;
             this.cops.Text = "Cops";
             // 
@@ -2053,12 +2735,13 @@ namespace PackingApplication
             // 
             this.copstxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.copstxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.copstxtbox.Location = new System.Drawing.Point(7, 23);
-            this.copstxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copstxtbox.Location = new System.Drawing.Point(10, 35);
+            this.copstxtbox.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.copstxtbox.Name = "copstxtbox";
             this.copstxtbox.ReadOnly = true;
-            this.copstxtbox.Size = new System.Drawing.Size(45, 13);
+            this.copstxtbox.Size = new System.Drawing.Size(68, 19);
             this.copstxtbox.TabIndex = 3;
+            this.copstxtbox.TabStop = false;
             this.copstxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lastboxheader
@@ -2067,11 +2750,11 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lastboxheader.Controls.Add(this.Lastboxlbl);
-            this.lastboxheader.Location = new System.Drawing.Point(2, 2);
+            this.lastboxheader.Location = new System.Drawing.Point(3, 3);
             this.lastboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.lastboxheader.Name = "lastboxheader";
-            this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.lastboxheader.Size = new System.Drawing.Size(324, 21);
+            this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.lastboxheader.Size = new System.Drawing.Size(487, 32);
             this.lastboxheader.TabIndex = 107;
             this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
             this.lastboxheader.Resize += new System.EventHandler(this.lastboxheader_Resize);
@@ -2079,10 +2762,9 @@ namespace PackingApplication
             // Lastboxlbl
             // 
             this.Lastboxlbl.AutoSize = true;
-            this.Lastboxlbl.Location = new System.Drawing.Point(4, 4);
-            this.Lastboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Lastboxlbl.Location = new System.Drawing.Point(6, 6);
             this.Lastboxlbl.Name = "Lastboxlbl";
-            this.Lastboxlbl.Size = new System.Drawing.Size(80, 13);
+            this.Lastboxlbl.Size = new System.Drawing.Size(119, 20);
             this.Lastboxlbl.TabIndex = 107;
             this.Lastboxlbl.Text = "Last box details";
             // 
@@ -2092,9 +2774,10 @@ namespace PackingApplication
             this.tblpnl2.Controls.Add(this.remark);
             this.tblpnl2.Controls.Add(this.remarks);
             this.tblpnl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblpnl2.Location = new System.Drawing.Point(337, 207);
+            this.tblpnl2.Location = new System.Drawing.Point(505, 319);
+            this.tblpnl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tblpnl2.Name = "tblpnl2";
-            this.tblpnl2.Size = new System.Drawing.Size(328, 216);
+            this.tblpnl2.Size = new System.Drawing.Size(493, 331);
             this.tblpnl2.TabIndex = 5;
             // 
             // weighboxlayout
@@ -2106,13 +2789,13 @@ namespace PackingApplication
             this.weighboxlayout.Controls.Add(this.weighboxpanel, 0, 1);
             this.weighboxlayout.Dock = System.Windows.Forms.DockStyle.Top;
             this.weighboxlayout.Location = new System.Drawing.Point(0, 0);
-            this.weighboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.weighboxlayout.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.weighboxlayout.Name = "weighboxlayout";
-            this.weighboxlayout.Padding = new System.Windows.Forms.Padding(2);
+            this.weighboxlayout.Padding = new System.Windows.Forms.Padding(3);
             this.weighboxlayout.RowCount = 2;
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86F));
-            this.weighboxlayout.Size = new System.Drawing.Size(328, 147);
+            this.weighboxlayout.Size = new System.Drawing.Size(493, 226);
             this.weighboxlayout.TabIndex = 5;
             this.weighboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxlayout_Paint);
             // 
@@ -2121,10 +2804,10 @@ namespace PackingApplication
             this.weighboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.weighboxheader.Controls.Add(this.Weighboxlbl);
             this.weighboxheader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.weighboxheader.Location = new System.Drawing.Point(2, 2);
+            this.weighboxheader.Location = new System.Drawing.Point(3, 3);
             this.weighboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.weighboxheader.Name = "weighboxheader";
-            this.weighboxheader.Size = new System.Drawing.Size(324, 20);
+            this.weighboxheader.Size = new System.Drawing.Size(487, 30);
             this.weighboxheader.TabIndex = 107;
             this.weighboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxheader_Paint);
             this.weighboxheader.Resize += new System.EventHandler(this.weighboxheader_Resize);
@@ -2132,159 +2815,32 @@ namespace PackingApplication
             // Weighboxlbl
             // 
             this.Weighboxlbl.AutoSize = true;
-            this.Weighboxlbl.Location = new System.Drawing.Point(2, 4);
-            this.Weighboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Weighboxlbl.Location = new System.Drawing.Point(3, 6);
             this.Weighboxlbl.Name = "Weighboxlbl";
-            this.Weighboxlbl.Size = new System.Drawing.Size(88, 13);
+            this.Weighboxlbl.Size = new System.Drawing.Size(128, 20);
             this.Weighboxlbl.TabIndex = 107;
             this.Weighboxlbl.Text = "Weigh and Label";
             // 
             // weighboxpanel
             // 
-            this.weighboxpanel.Controls.Add(this.spoolweight);
-            this.weighboxpanel.Controls.Add(this.WeighingList);
-            this.weighboxpanel.Controls.Add(this.req10);
-            this.weighboxpanel.Controls.Add(this.req9);
-            this.weighboxpanel.Controls.Add(this.req8);
-            this.weighboxpanel.Controls.Add(this.req7);
-            this.weighboxpanel.Controls.Add(this.grosswterror);
-            this.weighboxpanel.Controls.Add(this.palletwterror);
+            this.weighboxpanel.Controls.Add(this.tableLayoutPanel6);
             this.weighboxpanel.Controls.Add(this.spoolwterror);
-            this.weighboxpanel.Controls.Add(this.spoolnoerror);
-            this.weighboxpanel.Controls.Add(this.scalemodel);
-            this.weighboxpanel.Controls.Add(this.comport);
-            this.weighboxpanel.Controls.Add(this.ComPortList);
-            this.weighboxpanel.Controls.Add(this.WindingTypeList);
-            this.weighboxpanel.Controls.Add(this.windingtype);
-            this.weighboxpanel.Controls.Add(this.wtpercop);
-            this.weighboxpanel.Controls.Add(this.spool);
-            this.weighboxpanel.Controls.Add(this.label5);
-            this.weighboxpanel.Controls.Add(this.spoolno);
-            this.weighboxpanel.Controls.Add(this.netwt);
-            this.weighboxpanel.Controls.Add(this.spoolwt);
-            this.weighboxpanel.Controls.Add(this.label4);
-            this.weighboxpanel.Controls.Add(this.palletwt);
-            this.weighboxpanel.Controls.Add(this.tarewt);
-            this.weighboxpanel.Controls.Add(this.palletwtno);
-            this.weighboxpanel.Controls.Add(this.label3);
-            this.weighboxpanel.Controls.Add(this.label2);
-            this.weighboxpanel.Controls.Add(this.grosswtno);
-            this.weighboxpanel.Controls.Add(this.windingerror);
             this.weighboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.weighboxpanel.Location = new System.Drawing.Point(4, 25);
-            this.weighboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.weighboxpanel.Location = new System.Drawing.Point(6, 38);
+            this.weighboxpanel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.weighboxpanel.Name = "weighboxpanel";
-            this.weighboxpanel.Size = new System.Drawing.Size(320, 117);
+            this.weighboxpanel.Size = new System.Drawing.Size(481, 180);
             this.weighboxpanel.TabIndex = 107;
-            // 
-            // spoolweight
-            // 
-            this.spoolweight.AutoSize = true;
-            this.spoolweight.Location = new System.Drawing.Point(58, 44);
-            this.spoolweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.spoolweight.Name = "spoolweight";
-            this.spoolweight.Size = new System.Drawing.Size(24, 13);
-            this.spoolweight.TabIndex = 116;
-            this.spoolweight.Text = "Wt:";
-            // 
-            // req10
-            // 
-            this.req10.AutoSize = true;
-            this.req10.ForeColor = System.Drawing.Color.Red;
-            this.req10.Location = new System.Drawing.Point(300, 2);
-            this.req10.Name = "req10";
-            this.req10.Size = new System.Drawing.Size(11, 13);
-            this.req10.TabIndex = 114;
-            this.req10.Text = "*";
-            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req9
-            // 
-            this.req9.AutoSize = true;
-            this.req9.ForeColor = System.Drawing.Color.Red;
-            this.req9.Location = new System.Drawing.Point(305, 44);
-            this.req9.Name = "req9";
-            this.req9.Size = new System.Drawing.Size(11, 13);
-            this.req9.TabIndex = 113;
-            this.req9.Text = "*";
-            this.req9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req8
-            // 
-            this.req8.AutoSize = true;
-            this.req8.ForeColor = System.Drawing.Color.Red;
-            this.req8.Location = new System.Drawing.Point(220, 41);
-            this.req8.Name = "req8";
-            this.req8.Size = new System.Drawing.Size(11, 13);
-            this.req8.TabIndex = 112;
-            this.req8.Text = "*";
-            this.req8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // req7
-            // 
-            this.req7.AutoSize = true;
-            this.req7.ForeColor = System.Drawing.Color.Red;
-            this.req7.Location = new System.Drawing.Point(40, 44);
-            this.req7.Name = "req7";
-            this.req7.Size = new System.Drawing.Size(11, 13);
-            this.req7.TabIndex = 111;
-            this.req7.Text = "*";
-            this.req7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // grosswterror
-            // 
-            this.grosswterror.AutoSize = true;
-            this.grosswterror.ForeColor = System.Drawing.Color.Red;
-            this.grosswterror.Location = new System.Drawing.Point(255, 76);
-            this.grosswterror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.grosswterror.Name = "grosswterror";
-            this.grosswterror.Size = new System.Drawing.Size(0, 13);
-            this.grosswterror.TabIndex = 89;
-            this.grosswterror.Visible = false;
-            // 
-            // palletwterror
-            // 
-            this.palletwterror.AutoSize = true;
-            this.palletwterror.ForeColor = System.Drawing.Color.Red;
-            this.palletwterror.Location = new System.Drawing.Point(125, 76);
-            this.palletwterror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.palletwterror.Name = "palletwterror";
-            this.palletwterror.Size = new System.Drawing.Size(0, 13);
-            this.palletwterror.TabIndex = 88;
-            this.palletwterror.Visible = false;
             // 
             // spoolwterror
             // 
             this.spoolwterror.AutoSize = true;
             this.spoolwterror.ForeColor = System.Drawing.Color.Red;
-            this.spoolwterror.Location = new System.Drawing.Point(2, 76);
-            this.spoolwterror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.spoolwterror.Location = new System.Drawing.Point(3, 117);
             this.spoolwterror.Name = "spoolwterror";
-            this.spoolwterror.Size = new System.Drawing.Size(0, 13);
+            this.spoolwterror.Size = new System.Drawing.Size(0, 20);
             this.spoolwterror.TabIndex = 87;
             this.spoolwterror.Visible = false;
-            // 
-            // spoolnoerror
-            // 
-            this.spoolnoerror.AutoSize = true;
-            this.spoolnoerror.ForeColor = System.Drawing.Color.Red;
-            this.spoolnoerror.Location = new System.Drawing.Point(2, 76);
-            this.spoolnoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.spoolnoerror.Name = "spoolnoerror";
-            this.spoolnoerror.Size = new System.Drawing.Size(0, 13);
-            this.spoolnoerror.TabIndex = 86;
-            this.spoolnoerror.Visible = false;
-            // 
-            // windingerror
-            // 
-            this.windingerror.AutoSize = true;
-            this.windingerror.ForeColor = System.Drawing.Color.Red;
-            this.windingerror.Location = new System.Drawing.Point(255, 35);
-            this.windingerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.windingerror.Name = "windingerror";
-            this.windingerror.Size = new System.Drawing.Size(0, 13);
-            this.windingerror.TabIndex = 104;
-            this.windingerror.Visible = false;
             // 
             // saveprint
             // 
@@ -2292,10 +2848,10 @@ namespace PackingApplication
             this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(576, 542);
-            this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.saveprint.Location = new System.Drawing.Point(864, 834);
+            this.saveprint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.saveprint.Name = "saveprint";
-            this.saveprint.Size = new System.Drawing.Size(81, 24);
+            this.saveprint.Size = new System.Drawing.Size(122, 37);
             this.saveprint.TabIndex = 12;
             this.saveprint.Text = "Save && Print";
             this.saveprint.UseVisualStyleBackColor = false;
@@ -2307,10 +2863,10 @@ namespace PackingApplication
             this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(404, 542);
-            this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cancelbtn.Location = new System.Drawing.Point(606, 834);
+            this.cancelbtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cancelbtn.Name = "cancelbtn";
-            this.cancelbtn.Size = new System.Drawing.Size(65, 24);
+            this.cancelbtn.Size = new System.Drawing.Size(98, 37);
             this.cancelbtn.TabIndex = 13;
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = false;
@@ -2383,7 +2939,7 @@ namespace PackingApplication
             this.menu.ForeColor = System.Drawing.Color.Black;
             this.menu.Location = new System.Drawing.Point(48, 20);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(34, 13);
+            this.menu.Size = new System.Drawing.Size(49, 20);
             this.menu.TabIndex = 1;
             this.menu.Text = "Menu";
             // 
@@ -2401,136 +2957,38 @@ namespace PackingApplication
             // 
             this.sidebarTimer.Interval = 10;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lineno);
-            this.panel1.Controls.Add(this.req1);
-            this.panel1.Controls.Add(this.LineNoList);
-            this.panel1.Controls.Add(this.linenoerror);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(100, 35);
-            this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.lastboxno);
-            this.panel2.Controls.Add(this.lastbox);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(109, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(100, 35);
-            this.panel2.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.req2);
-            this.panel4.Controls.Add(this.boxno);
-            this.panel4.Controls.Add(this.PrefixList);
-            this.panel4.Controls.Add(this.boxnoerror);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(215, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(102, 35);
-            this.panel4.TabIndex = 2;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.department);
-            this.panel8.Controls.Add(this.departmentname);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(3, 44);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(100, 35);
-            this.panel8.TabIndex = 3;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.req3);
-            this.panel9.Controls.Add(this.mergeno);
-            this.panel9.Controls.Add(this.MergeNoList);
-            this.panel9.Controls.Add(this.mergenoerror);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(109, 44);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(100, 35);
-            this.panel9.TabIndex = 4;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.packingdate);
-            this.panel10.Controls.Add(this.dateTimePicker1);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(215, 44);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(102, 35);
-            this.panel10.TabIndex = 5;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.item);
-            this.panel11.Controls.Add(this.itemname);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(3, 85);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(100, 35);
-            this.panel11.TabIndex = 6;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.shade);
-            this.panel12.Controls.Add(this.shadename);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(109, 85);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(100, 35);
-            this.panel12.TabIndex = 7;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.shadecode);
-            this.panel13.Controls.Add(this.shadecd);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(215, 85);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(102, 35);
-            this.panel13.TabIndex = 8;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.denier);
-            this.panel14.Controls.Add(this.deniervalue);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(3, 126);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(100, 38);
-            this.panel14.TabIndex = 9;
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.productiontype);
-            this.panel15.Controls.Add(this.prodtype);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel15.Location = new System.Drawing.Point(109, 126);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(100, 38);
-            this.panel15.TabIndex = 10;
-            // 
             // POYPackingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1075, 569);
+            this.ClientSize = new System.Drawing.Size(1612, 875);
             this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "POYPackingForm";
             this.Text = "POYPackingForm";
             this.Load += new System.EventHandler(this.POYPackingForm_Load);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.panel28.ResumeLayout(false);
+            this.panel28.PerformLayout();
+            this.panel29.ResumeLayout(false);
+            this.panel29.PerformLayout();
+            this.panel30.ResumeLayout(false);
+            this.panel30.PerformLayout();
+            this.panel31.ResumeLayout(false);
+            this.panel31.PerformLayout();
+            this.panel32.ResumeLayout(false);
+            this.panel32.PerformLayout();
+            this.panel33.ResumeLayout(false);
+            this.panel33.PerformLayout();
+            this.panel34.ResumeLayout(false);
+            this.panel34.PerformLayout();
+            this.panel35.ResumeLayout(false);
+            this.panel35.PerformLayout();
+            this.panel36.ResumeLayout(false);
+            this.panel36.PerformLayout();
             this.rightpanel.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.rowMaterialBox.ResumeLayout(false);
             this.rowMaterialPanel.ResumeLayout(false);
@@ -2552,19 +3010,80 @@ namespace PackingApplication
             this.tableLayoutPanel1.ResumeLayout(false);
             this.machineboxlayout.ResumeLayout(false);
             this.machineboxpanel.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.machineboxheader.ResumeLayout(false);
             this.machineboxheader.PerformLayout();
             this.packagingboxlayout.ResumeLayout(false);
             this.packagingboxheader.ResumeLayout(false);
             this.packagingboxheader.PerformLayout();
             this.packagingboxpanel.ResumeLayout(false);
-            this.packagingboxpanel.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.panel19.ResumeLayout(false);
+            this.panel19.PerformLayout();
+            this.panel20.ResumeLayout(false);
+            this.panel20.PerformLayout();
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
+            this.panel22.ResumeLayout(false);
+            this.panel22.PerformLayout();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
+            this.panel24.ResumeLayout(false);
+            this.panel24.PerformLayout();
+            this.panel25.ResumeLayout(false);
+            this.panel25.PerformLayout();
+            this.panel26.ResumeLayout(false);
+            this.panel26.PerformLayout();
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
             this.tblpanl1.ResumeLayout(false);
             this.printingdetailslayout.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.panel37.ResumeLayout(false);
+            this.panel37.PerformLayout();
+            this.panel38.ResumeLayout(false);
+            this.panel38.PerformLayout();
+            this.panel39.ResumeLayout(false);
+            this.panel39.PerformLayout();
+            this.panel40.ResumeLayout(false);
+            this.panel40.PerformLayout();
+            this.panel41.ResumeLayout(false);
+            this.panel41.PerformLayout();
+            this.panel42.ResumeLayout(false);
+            this.panel42.PerformLayout();
+            this.panel43.ResumeLayout(false);
+            this.panel43.PerformLayout();
             this.printingdetailsheader.ResumeLayout(false);
             this.printingdetailsheader.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.lastboxlayout.ResumeLayout(false);
             this.lastboxpanel.ResumeLayout(false);
             this.lastbxnetwtpanel.ResumeLayout(false);
@@ -2588,28 +3107,6 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2811,6 +3308,37 @@ namespace PackingApplication
         private Panel panel13;
         private Panel panel14;
         private Panel panel15;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Panel panel16;
+        private Panel panel17;
+        private Panel panel18;
+        private Panel panel19;
+        private Panel panel20;
+        private Panel panel21;
+        private Panel panel22;
+        private Panel panel23;
+        private Panel panel24;
+        private Panel panel25;
+        private Panel panel26;
+        private Panel panel27;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Panel panel28;
+        private Panel panel29;
+        private Panel panel30;
+        private Panel panel31;
+        private Panel panel32;
+        private Panel panel33;
+        private Panel panel34;
+        private Panel panel35;
+        private Panel panel36;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Panel panel37;
+        private Panel panel38;
+        private Panel panel39;
+        private Panel panel40;
+        private Panel panel41;
+        private Panel panel42;
+        private Panel panel43;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
