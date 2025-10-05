@@ -42,5 +42,12 @@ namespace PackingApplication.Services
             var getLot = JsonConvert.DeserializeObject<LotsResponse>(getLotsResponse);
             return getLot;
         }
+
+        public List<LotsProductionDetailsResponse> getWinderTypeList(int lotId)
+        {
+            var getWinderTypeResponse = method.GetCallApi(productionURL + "LotsProductionDetails/GetAllByLotsId?lotsId=" + lotId);
+            var getWinderType = JsonConvert.DeserializeObject<List<LotsProductionDetailsResponse>>(getWinderTypeResponse);
+            return getWinderType;
+        }
     }
 }
