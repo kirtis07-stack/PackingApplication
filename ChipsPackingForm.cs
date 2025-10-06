@@ -937,7 +937,7 @@ namespace PackingApplication
             if (selectedSOId == 0)
             {
                 soerror.Visible = true;
-                soerror.Text = "Please select Sale Order";
+                soerror.Text = "Please select sale order";
                 return;
             }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))

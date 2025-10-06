@@ -137,7 +137,6 @@ namespace PackingApplication
             this.printingdetailslayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.prtwist = new System.Windows.Forms.CheckBox();
             this.panel38 = new System.Windows.Forms.Panel();
             this.prcompany = new System.Windows.Forms.CheckBox();
             this.panel39 = new System.Windows.Forms.Panel();
@@ -152,6 +151,8 @@ namespace PackingApplication
             this.prwtps = new System.Windows.Forms.CheckBox();
             this.panel44 = new System.Windows.Forms.Panel();
             this.prqrcode = new System.Windows.Forms.CheckBox();
+            this.panel45 = new System.Windows.Forms.Panel();
+            this.prtwist = new System.Windows.Forms.CheckBox();
             this.printingdetailsheader = new System.Windows.Forms.Panel();
             this.Printinglbl = new System.Windows.Forms.Label();
             this.lastboxlayout = new System.Windows.Forms.TableLayoutPanel();
@@ -224,7 +225,6 @@ namespace PackingApplication
             this.lastboxdetails = new System.Windows.Forms.GroupBox();
             this.lastboxldetailist = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel45 = new System.Windows.Forms.Panel();
             this.rightpanel.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
@@ -275,6 +275,7 @@ namespace PackingApplication
             this.panel42.SuspendLayout();
             this.panel43.SuspendLayout();
             this.panel44.SuspendLayout();
+            this.panel45.SuspendLayout();
             this.printingdetailsheader.SuspendLayout();
             this.lastboxlayout.SuspendLayout();
             this.lastboxpanel.SuspendLayout();
@@ -297,7 +298,6 @@ namespace PackingApplication
             this.panel36.SuspendLayout();
             this.panel37.SuspendLayout();
             this.weighboxheader.SuspendLayout();
-            this.panel45.SuspendLayout();
             this.SuspendLayout();
             // 
             // rightpanel
@@ -330,7 +330,7 @@ namespace PackingApplication
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(879, 100);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(901, 100);
             this.tableLayoutPanel5.TabIndex = 48;
             // 
             // rowMaterialBox
@@ -342,7 +342,7 @@ namespace PackingApplication
             this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterialBox.Name = "rowMaterialBox";
             this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterialBox.Size = new System.Drawing.Size(875, 94);
+            this.rowMaterialBox.Size = new System.Drawing.Size(897, 94);
             this.rowMaterialBox.TabIndex = 10;
             this.rowMaterialBox.TabStop = false;
             this.rowMaterialBox.Text = "Key Raw Material Stock Status";
@@ -354,7 +354,7 @@ namespace PackingApplication
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(13, 19);
             this.rowMaterialPanel.Name = "rowMaterialPanel";
-            this.rowMaterialPanel.Size = new System.Drawing.Size(859, 69);
+            this.rowMaterialPanel.Size = new System.Drawing.Size(881, 69);
             this.rowMaterialPanel.TabIndex = 115;
             // 
             // rowMaterial
@@ -387,7 +387,7 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rowMaterial.Size = new System.Drawing.Size(855, 69);
+            this.rowMaterial.Size = new System.Drawing.Size(877, 69);
             this.rowMaterial.TabIndex = 2;
             this.rowMaterial.TabStop = false;
             // 
@@ -1063,6 +1063,7 @@ namespace PackingApplication
             this.QualityList.Name = "QualityList";
             this.QualityList.Size = new System.Drawing.Size(135, 21);
             this.QualityList.TabIndex = 1;
+            this.QualityList.TabStop = false;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
             // qualityerror
@@ -1572,18 +1573,6 @@ namespace PackingApplication
             this.tableLayoutPanel6.Size = new System.Drawing.Size(436, 67);
             this.tableLayoutPanel6.TabIndex = 49;
             // 
-            // prtwist
-            // 
-            this.prtwist.AutoSize = true;
-            this.prtwist.Location = new System.Drawing.Point(0, 3);
-            this.prtwist.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.prtwist.Name = "prtwist";
-            this.prtwist.Size = new System.Drawing.Size(75, 17);
-            this.prtwist.TabIndex = 7;
-            this.prtwist.Text = "Print Twist";
-            this.prtwist.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.prtwist.UseVisualStyleBackColor = true;
-            // 
             // panel38
             // 
             this.panel38.Controls.Add(this.prcompany);
@@ -1741,6 +1730,28 @@ namespace PackingApplication
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
             this.prqrcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
+            // 
+            // panel45
+            // 
+            this.panel45.Controls.Add(this.prtwist);
+            this.panel45.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel45.Location = new System.Drawing.Point(145, 44);
+            this.panel45.Margin = new System.Windows.Forms.Padding(0);
+            this.panel45.Name = "panel45";
+            this.panel45.Size = new System.Drawing.Size(145, 23);
+            this.panel45.TabIndex = 7;
+            // 
+            // prtwist
+            // 
+            this.prtwist.AutoSize = true;
+            this.prtwist.Location = new System.Drawing.Point(0, 3);
+            this.prtwist.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.prtwist.Name = "prtwist";
+            this.prtwist.Size = new System.Drawing.Size(75, 17);
+            this.prtwist.TabIndex = 7;
+            this.prtwist.Text = "Print Twist";
+            this.prtwist.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.prtwist.UseVisualStyleBackColor = true;
             // 
             // printingdetailsheader
             // 
@@ -2586,16 +2597,6 @@ namespace PackingApplication
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // panel45
-            // 
-            this.panel45.Controls.Add(this.prtwist);
-            this.panel45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel45.Location = new System.Drawing.Point(145, 44);
-            this.panel45.Margin = new System.Windows.Forms.Padding(0);
-            this.panel45.Name = "panel45";
-            this.panel45.Size = new System.Drawing.Size(145, 23);
-            this.panel45.TabIndex = 7;
-            // 
             // DTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2690,6 +2691,8 @@ namespace PackingApplication
             this.panel43.PerformLayout();
             this.panel44.ResumeLayout(false);
             this.panel44.PerformLayout();
+            this.panel45.ResumeLayout(false);
+            this.panel45.PerformLayout();
             this.printingdetailsheader.ResumeLayout(false);
             this.printingdetailsheader.PerformLayout();
             this.lastboxlayout.ResumeLayout(false);
@@ -2730,8 +2733,6 @@ namespace PackingApplication
             this.panel37.PerformLayout();
             this.weighboxheader.ResumeLayout(false);
             this.weighboxheader.PerformLayout();
-            this.panel45.ResumeLayout(false);
-            this.panel45.PerformLayout();
             this.ResumeLayout(false);
 
         }

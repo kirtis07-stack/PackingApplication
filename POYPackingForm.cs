@@ -1642,7 +1642,7 @@ namespace PackingApplication
         {
             if (selectedSOId == 0) {
                 soerror.Visible = true;
-                soerror.Text = "Please select Sale Order";
+                soerror.Text = "Please select sale order";
                 return;
             }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
@@ -1879,8 +1879,8 @@ namespace PackingApplication
 
                         //set params
                         string productionId = result.ProductionId.ToString();
-                        string startDate = "2025-09-01";
-                        string endDate = "2025-09-30";
+                        string startDate = "";
+                        string endDate = "";
                         string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
 
                         WebClient client = new WebClient();
@@ -2352,6 +2352,8 @@ namespace PackingApplication
             }
             copyno.Text = "1";
             spoolno.Text = "0";
+            this.spoolnoerror.Text = "";
+            this.spoolnoerror.Visible = false;
             spoolwt.Text = "0";
             palletwtno.Text = "0";
             grosswtno.Text = "0";

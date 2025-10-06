@@ -317,7 +317,7 @@ namespace PackingApplication
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(878, 100);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(901, 100);
             this.tableLayoutPanel5.TabIndex = 48;
             // 
             // rowMaterialBox
@@ -329,7 +329,7 @@ namespace PackingApplication
             this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterialBox.Name = "rowMaterialBox";
             this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterialBox.Size = new System.Drawing.Size(874, 94);
+            this.rowMaterialBox.Size = new System.Drawing.Size(897, 94);
             this.rowMaterialBox.TabIndex = 10;
             this.rowMaterialBox.TabStop = false;
             this.rowMaterialBox.Text = "Key Raw Material Stock Status";
@@ -341,7 +341,7 @@ namespace PackingApplication
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(13, 19);
             this.rowMaterialPanel.Name = "rowMaterialPanel";
-            this.rowMaterialPanel.Size = new System.Drawing.Size(856, 69);
+            this.rowMaterialPanel.Size = new System.Drawing.Size(879, 69);
             this.rowMaterialPanel.TabIndex = 115;
             // 
             // rowMaterial
@@ -374,7 +374,7 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rowMaterial.Size = new System.Drawing.Size(854, 69);
+            this.rowMaterial.Size = new System.Drawing.Size(877, 69);
             this.rowMaterial.TabIndex = 2;
             this.rowMaterial.TabStop = false;
             // 
@@ -1047,6 +1047,7 @@ namespace PackingApplication
             this.QualityList.Name = "QualityList";
             this.QualityList.Size = new System.Drawing.Size(135, 21);
             this.QualityList.TabIndex = 1;
+            this.QualityList.TabStop = false;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
             // qualityerror

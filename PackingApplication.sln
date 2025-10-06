@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackingApplication", "PackingApplication.csproj", "{86BFB830-9645-456B-9B7C-12BEB8D2C87F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PackingInstaller", "..\PackingInstaller\PackingInstaller.vdproj", "{8D52C3BA-2C0E-6B70-86E5-6AB2A0690565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{86BFB830-9645-456B-9B7C-12BEB8D2C87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86BFB830-9645-456B-9B7C-12BEB8D2C87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86BFB830-9645-456B-9B7C-12BEB8D2C87F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D52C3BA-2C0E-6B70-86E5-6AB2A0690565}.Debug|Any CPU.ActiveCfg = Debug
+		{8D52C3BA-2C0E-6B70-86E5-6AB2A0690565}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

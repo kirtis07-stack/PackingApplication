@@ -1605,7 +1605,7 @@ namespace PackingApplication
             if (selectedSOId == 0)
             {
                 soerror.Visible = true;
-                soerror.Text = "Please select Sale Order";
+                soerror.Text = "Please select sale order";
                 return;
             }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
@@ -2226,6 +2226,8 @@ namespace PackingApplication
             }
             copyno.Text = "2";
             spoolno.Text = "0";
+            this.spoolnoerror.Text = "";
+            this.spoolnoerror.Visible = false;
             spoolwt.Text = "0";
             palletwtno.Text = "0";
             grosswtno.Text = "0";
