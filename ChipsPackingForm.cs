@@ -192,14 +192,14 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             //this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.bagstockvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -209,6 +209,8 @@ namespace PackingApplication
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
@@ -384,7 +386,7 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
-                twistvalue.Text = "";
+                //twistvalue.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
@@ -412,7 +414,7 @@ namespace PackingApplication
                     shadename.Text = lotResponse.ShadeName;
                     shadecd.Text = lotResponse.ShadeCode;
                     deniervalue.Text = lotResponse.Denier.ToString();
-                    twistvalue.Text = lotResponse.TwistName;
+                    //twistvalue.Text = lotResponse.TwistName;
                     productionRequest.SaleLot = lotResponse.SaleLot;
                     productionRequest.MachineId = lotResponse.MachineId;
                     productionRequest.ItemId = lotResponse.ItemId;
@@ -703,6 +705,7 @@ namespace PackingApplication
             if (CopsItemList.SelectedIndex <= 0)
             {
                 copsitemwt.Text = "0";
+                palletwtno.Text = "0";
                 return;
             }
 
@@ -719,6 +722,7 @@ namespace PackingApplication
                     if (itemResponse != null)
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
+                        palletwtno.Text = itemResponse.Weight.ToString();
                         SpoolNo_TextChanged(sender, e);
                         GrossWeight_TextChanged(sender, e);
                     }

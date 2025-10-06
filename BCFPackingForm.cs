@@ -142,11 +142,11 @@ namespace PackingApplication
             this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox1.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.textBox3.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -203,6 +203,7 @@ namespace PackingApplication
             this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.grossweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -230,14 +231,14 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             //this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -245,8 +246,6 @@ namespace PackingApplication
             this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
         }
 
