@@ -510,6 +510,7 @@ namespace PackingApplication
             this.MergeNoList.Size = new System.Drawing.Size(135, 21);
             this.MergeNoList.TabIndex = 5;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
+            this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
             // 
             // mergeno
             // 
@@ -567,6 +568,7 @@ namespace PackingApplication
             this.PrefixList.Size = new System.Drawing.Size(138, 21);
             this.PrefixList.TabIndex = 3;
             this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
             // 
             // boxnoerror
             // 
@@ -634,6 +636,7 @@ namespace PackingApplication
             this.LineNoList.Size = new System.Drawing.Size(135, 21);
             this.LineNoList.TabIndex = 0;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
+            this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
             // 
             // lineno
             // 
@@ -1065,6 +1068,7 @@ namespace PackingApplication
             this.QualityList.TabIndex = 1;
             this.QualityList.TabStop = false;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
+            this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
             // 
             // qualityerror
             // 
@@ -1121,6 +1125,7 @@ namespace PackingApplication
             this.SaleOrderList.Size = new System.Drawing.Size(134, 21);
             this.SaleOrderList.TabIndex = 2;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
+            this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SaleOrderList_KeyDown);
             // 
             // soerror
             // 
@@ -1222,6 +1227,7 @@ namespace PackingApplication
             this.PackSizeList.Size = new System.Drawing.Size(135, 21);
             this.PackSizeList.TabIndex = 4;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
+            this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             // 
             // packsizeerror
             // 
@@ -1331,6 +1337,7 @@ namespace PackingApplication
             this.CopsItemList.Size = new System.Drawing.Size(136, 21);
             this.CopsItemList.TabIndex = 10;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
+            this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
             // 
             // copssize
             // 
@@ -1426,6 +1433,7 @@ namespace PackingApplication
             this.BoxItemList.Size = new System.Drawing.Size(135, 21);
             this.BoxItemList.TabIndex = 7;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             // 
             // label7
             // 
@@ -1571,7 +1579,7 @@ namespace PackingApplication
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(436, 67);
-            this.tableLayoutPanel6.TabIndex = 49;
+            this.tableLayoutPanel6.TabIndex = 0;
             // 
             // panel38
             // 
@@ -1657,7 +1665,7 @@ namespace PackingApplication
             this.prhindi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prhindi.Name = "prhindi";
             this.prhindi.Size = new System.Drawing.Size(108, 17);
-            this.prhindi.TabIndex = 6;
+            this.prhindi.TabIndex = 4;
             this.prhindi.Text = "Print Hindi Words";
             this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prhindi.UseVisualStyleBackColor = true;
@@ -1703,7 +1711,7 @@ namespace PackingApplication
             this.prwtps.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prwtps.Name = "prwtps";
             this.prwtps.Size = new System.Drawing.Size(87, 17);
-            this.prwtps.TabIndex = 7;
+            this.prwtps.TabIndex = 6;
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
@@ -1725,7 +1733,7 @@ namespace PackingApplication
             this.prqrcode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prqrcode.Name = "prqrcode";
             this.prqrcode.Size = new System.Drawing.Size(94, 17);
-            this.prqrcode.TabIndex = 4;
+            this.prqrcode.TabIndex = 7;
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
@@ -1748,7 +1756,7 @@ namespace PackingApplication
             this.prtwist.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prtwist.Name = "prtwist";
             this.prtwist.Size = new System.Drawing.Size(75, 17);
-            this.prtwist.TabIndex = 7;
+            this.prtwist.TabIndex = 8;
             this.prtwist.Text = "Print Twist";
             this.prtwist.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prtwist.UseVisualStyleBackColor = true;
@@ -2084,6 +2092,7 @@ namespace PackingApplication
             this.ComPortList.Size = new System.Drawing.Size(136, 21);
             this.ComPortList.TabIndex = 1;
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
+            this.ComPortList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComPortList_KeyDown);
             // 
             // panel30
             // 
@@ -2114,8 +2123,9 @@ namespace PackingApplication
             this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(136, 21);
-            this.WeighingList.TabIndex = 2;
+            this.WeighingList.TabIndex = 3;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
+            this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
             // 
             // panel31
             // 
@@ -2158,8 +2168,9 @@ namespace PackingApplication
             this.WindingTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.WindingTypeList.Name = "WindingTypeList";
             this.WindingTypeList.Size = new System.Drawing.Size(136, 21);
-            this.WindingTypeList.TabIndex = 3;
+            this.WindingTypeList.TabIndex = 2;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
+            this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
             // 
             // panel32
             // 
@@ -2213,7 +2224,7 @@ namespace PackingApplication
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.spoolno.Name = "spoolno";
             this.spoolno.Size = new System.Drawing.Size(67, 20);
-            this.spoolno.TabIndex = 4;
+            this.spoolno.TabIndex = 5;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -2225,7 +2236,8 @@ namespace PackingApplication
             this.spoolwt.Name = "spoolwt";
             this.spoolwt.ReadOnly = true;
             this.spoolwt.Size = new System.Drawing.Size(65, 20);
-            this.spoolwt.TabIndex = 5;
+            this.spoolwt.TabIndex = 6;
+            this.spoolwt.TabStop = false;
             this.spoolwt.TextChanged += new System.EventHandler(this.SpoolWeight_TextChanged);
             this.spoolwt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -2292,7 +2304,7 @@ namespace PackingApplication
             this.palletwtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletwtno.Name = "palletwtno";
             this.palletwtno.Size = new System.Drawing.Size(136, 20);
-            this.palletwtno.TabIndex = 6;
+            this.palletwtno.TabIndex = 7;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
             // 
             // panel34
@@ -2346,7 +2358,7 @@ namespace PackingApplication
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.grosswtno.Name = "grosswtno";
             this.grosswtno.Size = new System.Drawing.Size(136, 20);
-            this.grosswtno.TabIndex = 7;
+            this.grosswtno.TabIndex = 4;
             this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -2523,7 +2535,7 @@ namespace PackingApplication
             this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.saveprint.Name = "saveprint";
             this.saveprint.Size = new System.Drawing.Size(81, 24);
-            this.saveprint.TabIndex = 12;
+            this.saveprint.TabIndex = 122;
             this.saveprint.Text = "Save && Print";
             this.saveprint.UseVisualStyleBackColor = false;
             this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
@@ -2538,7 +2550,7 @@ namespace PackingApplication
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(65, 24);
-            this.cancelbtn.TabIndex = 13;
+            this.cancelbtn.TabIndex = 121;
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = false;
             this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
@@ -2553,7 +2565,7 @@ namespace PackingApplication
             this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(71, 24);
-            this.submit.TabIndex = 11;
+            this.submit.TabIndex = 120;
             this.submit.Text = "Save";
             this.submit.UseVisualStyleBackColor = false;
             this.submit.Click += new System.EventHandler(this.submit_Click);

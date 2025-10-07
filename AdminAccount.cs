@@ -19,6 +19,7 @@ namespace PackingApplication
         protected Panel headerPanel;
         protected Panel footerPanel;
         protected Panel contentPanel;
+        int currentIndex = 0;
 
         MenuStrip menuStrip = new MenuStrip();
         public AdminAccount()
@@ -184,22 +185,12 @@ namespace PackingApplication
                 Margin = new Padding(15, 5, 0, 0),
                 Cursor = Cursors.Hand
             };
-            int currentIndex = 0;
-
+           
             menuStrip.TabStop = true;
             menuStrip.TabIndex = 0;
             logoutBtn.TabIndex = 1;
 
-            // When MenuStrip gets focus, highlight first item
-            menuStrip.Enter += (s, e) =>
-            {
-                if (menuStrip.Items.Count > 0)
-                {
-                    currentIndex = 0;
-                    ((ToolStripMenuItem)menuStrip.Items[currentIndex]).Select();
-                }
-            };
-
+            menuStrip.Enter += MenuStrip_EnterHandler;
             // Handle Tab/Shift+Tab inside MenuStrip
             menuStrip.PreviewKeyDown += (s, e) =>
             {
@@ -303,6 +294,16 @@ namespace PackingApplication
             //LoadFormInContent(new Dashboard());
         }
 
+        private void MenuStrip_EnterHandler(object sender, EventArgs e)
+        {
+            // When MenuStrip gets focus, highlight first item
+            if (menuStrip.Items.Count > 0)
+            {
+                currentIndex = 0;
+                ((ToolStripMenuItem)menuStrip.Items[currentIndex]).Select();
+            }
+        }
+
         private void SetHandCursorForMenuItems(params ToolStripMenuItem[] menuItems)
         {
             foreach (var item in menuItems)
@@ -323,6 +324,9 @@ namespace PackingApplication
 
         public void LoadFormInContent(Form form)
         {
+            // Temporarily remove Enter event
+            menuStrip.Enter -= MenuStrip_EnterHandler;
+
             contentPanel.Controls.Clear();
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
@@ -331,6 +335,13 @@ namespace PackingApplication
 
             contentPanel.Controls.Add(form);
             form.Show();
+
+            // Set focus explicitly to first control
+            if (form.Controls.Count > 0)
+                form.Controls[0].Focus();
+
+            // Re-attach Enter event
+            menuStrip.Enter += MenuStrip_EnterHandler;
         }
 
         private void POYPacking_Click(object sender, EventArgs e)
