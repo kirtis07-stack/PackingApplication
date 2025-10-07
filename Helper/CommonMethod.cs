@@ -11,6 +11,30 @@ namespace PackingApplication.Helper
 {
     public class CommonMethod
     {
+        public static Label InitializeLoadingLabel(Form form, string text = "Loading, please wait...")
+        {
+            Label lblLoading = new Label
+            {
+                Text = text,
+                AutoSize = true,
+                Font = FontManager.GetFont(8F, FontStyle.Italic),
+                ForeColor = Color.Red,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Visible = false
+            };
+
+            // Center in the form
+            lblLoading.Location = new Point(
+                form.ClientSize.Width / 2 - lblLoading.Width / 2,
+                form.ClientSize.Height / 2 - lblLoading.Height / 2
+            );
+
+            lblLoading.BringToFront();
+            form.Controls.Add(lblLoading);
+
+            return lblLoading;
+        }
+
         public GraphicsPath GetRoundedRect(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();

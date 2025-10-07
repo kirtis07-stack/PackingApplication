@@ -59,7 +59,7 @@ namespace PackingApplication.Services
 
         public List<PrefixResponse> getPrefixList()         //passed hardcoded transactionTypeId for now
         {
-            var getPrefixResponse = method.GetCallApi(masterURL + "Prefix/GetByTransactionTypeId?transactionTypeId=" + 7);
+            var getPrefixResponse = method.GetCallApi(masterURL + "Prefix/GetByTransactionTypeId?transactionTypeId=" + 5);
             var getPrefix = JsonConvert.DeserializeObject<List<PrefixResponse>>(getPrefixResponse);
             return getPrefix;
         }

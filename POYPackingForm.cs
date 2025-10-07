@@ -66,6 +66,7 @@ namespace PackingApplication
         int selectLotId = 0;
         decimal balanceQty = 0;
         string selectedSONumber = "";
+        private System.Windows.Forms.Label lblLoading;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -73,7 +74,7 @@ namespace PackingApplication
             _productionId = productionId;
             this.Shown += POYPackingForm_Shown;
             this.AutoScroll = true;
-         //   this.sidebarContainer.BringToFront();
+            lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.submit, 8);
@@ -282,149 +283,175 @@ namespace PackingApplication
 
         private async void POYPackingForm_Shown(object sender, EventArgs e)
         {
-            var machineList = await Task.Run(() => getMachineList());
-            //machine
-            machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-            LineNoList.DataSource = machineList;
-            LineNoList.DisplayMember = "MachineName";
-            LineNoList.ValueMember = "MachineId";
-            LineNoList.SelectedIndex = 0;
-            LineNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            LineNoList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var lotList = await Task.Run(() => getAllLotList());
-            //lot
-            lotList.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            MergeNoList.DataSource = lotList;
-            MergeNoList.DisplayMember = "LotNo";
-            MergeNoList.ValueMember = "LotId";
-            MergeNoList.SelectedIndex = 0;
-            MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var prefixList = await Task.Run(() => getPrefixList());
-            //prefix
-            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-            PrefixList.DataSource = prefixList;
-            PrefixList.DisplayMember = "Prefix";
-            PrefixList.ValueMember = "PrefixCode";
-            PrefixList.SelectedIndex = 0;
-            PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            PrefixList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var packsizeList = await Task.Run(() => getPackSizeList());
-            //packsize
-            packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
-            PackSizeList.DataSource = packsizeList;
-            PackSizeList.DisplayMember = "PackSizeName";
-            PackSizeList.ValueMember = "PackSizeId";
-            PackSizeList.SelectedIndex = 0;
-            PackSizeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            PackSizeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            PackSizeList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var comportList = await Task.Run(() => getComPortList());
-            //comport
-            ComPortList.DataSource = comportList;
-            ComPortList.SelectedIndex = 0;
-            ComPortList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            ComPortList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            ComPortList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var weightingList = await Task.Run(() => getWeighingList());
-            //weighting
-            WeighingList.DataSource = weightingList;
-            WeighingList.DisplayMember = "Name"; 
-            WeighingList.ValueMember = "Id";
-            WeighingList.SelectedIndex = 0;
-            WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            WeighingList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var copsitemList = await Task.Run(() => getCopeItemList());
-            //copsitem
-            copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
-            CopsItemList.DataSource = copsitemList;
-            CopsItemList.DisplayMember = "Name";
-            CopsItemList.ValueMember = "ItemId";
-            CopsItemList.SelectedIndex = 0;
-            CopsItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            CopsItemList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var boxitemList = await Task.Run(() => getBoxItemList());
-            //boxitem
-            boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            BoxItemList.DataSource = boxitemList;
-            BoxItemList.DisplayMember = "Name";
-            BoxItemList.ValueMember = "ItemId";
-            BoxItemList.SelectedIndex = 0;
-            BoxItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            BoxItemList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            var palletitemList = await Task.Run(() => getPalletItemList());
-            //palletitem
-            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            PalletTypeList.DataSource = palletitemList;
-            PalletTypeList.DisplayMember = "Name";
-            PalletTypeList.ValueMember = "ItemId";
-            PalletTypeList.SelectedIndex = 0;
-            PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            PalletTypeList.DropDownStyle = ComboBoxStyle.DropDown;
-
-            RefreshLastBoxDetails();
-
-            if (Convert.ToInt64(_productionId) > 0)
+            try
             {
-                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+                var machineTask = getMachineList();
+                var lotTask = getAllLotList();
+                var prefixTask = getPrefixList();
+                var packsizeTask = getPackSizeList();
+                var copsitemTask = getCopeItemList();
+                var boxitemTask = getBoxItemList();
+                var palletitemTask = getPalletItemList();
 
-                if (productionResponse != null)
+                // 2. Wait for all to complete
+                await Task.WhenAll(machineTask, lotTask, prefixTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask);
+
+                // 3. Get the results
+                var machineList = machineTask.Result;
+                var lotList = lotTask.Result;
+                var prefixList = prefixTask.Result;
+                var packsizeList = packsizeTask.Result;
+                var copsitemList = copsitemTask.Result;
+                var boxitemList = boxitemTask.Result;
+                var palletitemList = palletitemTask.Result;
+
+                //machine
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                LineNoList.DataSource = machineList;
+                LineNoList.DisplayMember = "MachineName";
+                LineNoList.ValueMember = "MachineId";
+                LineNoList.SelectedIndex = 0;
+                LineNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //LineNoList.DropDownStyle = ComboBoxStyle.DropDown;
+
+
+                //lot
+                lotList.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+                MergeNoList.DataSource = lotList;
+                MergeNoList.DisplayMember = "LotNo";
+                MergeNoList.ValueMember = "LotId";
+                MergeNoList.SelectedIndex = 0;
+                MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
+
+
+                //prefix
+                prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                PrefixList.DataSource = prefixList;
+                PrefixList.DisplayMember = "Prefix";
+                PrefixList.ValueMember = "PrefixCode";
+                PrefixList.SelectedIndex = 0;
+                PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //PrefixList.DropDownStyle = ComboBoxStyle.DropDown;
+
+
+                //packsize
+                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+                PackSizeList.DataSource = packsizeList;
+                PackSizeList.DisplayMember = "PackSizeName";
+                PackSizeList.ValueMember = "PackSizeId";
+                PackSizeList.SelectedIndex = 0;
+                PackSizeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                PackSizeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //PackSizeList.DropDownStyle = ComboBoxStyle.DropDown;
+
+                var comportList = await Task.Run(() => getComPortList());
+                //comport
+                ComPortList.DataSource = comportList;
+                ComPortList.SelectedIndex = 0;
+                ComPortList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                ComPortList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //ComPortList.DropDownStyle = ComboBoxStyle.DropDown;
+
+                var weightingList = await Task.Run(() => getWeighingList());
+                //weighting
+                WeighingList.DataSource = weightingList;
+                WeighingList.DisplayMember = "Name";
+                WeighingList.ValueMember = "Id";
+                WeighingList.SelectedIndex = 0;
+                WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //WeighingList.DropDownStyle = ComboBoxStyle.DropDown;
+
+
+                //copsitem
+                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+                CopsItemList.DataSource = copsitemList;
+                CopsItemList.DisplayMember = "Name";
+                CopsItemList.ValueMember = "ItemId";
+                CopsItemList.SelectedIndex = 0;
+                CopsItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //CopsItemList.DropDownStyle = ComboBoxStyle.DropDown;
+
+
+                //boxitem
+                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                BoxItemList.DataSource = boxitemList;
+                BoxItemList.DisplayMember = "Name";
+                BoxItemList.ValueMember = "ItemId";
+                BoxItemList.SelectedIndex = 0;
+                BoxItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //BoxItemList.DropDownStyle = ComboBoxStyle.DropDown;
+
+
+                //palletitem
+                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                PalletTypeList.DataSource = palletitemList;
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.SelectedIndex = 0;
+                PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //PalletTypeList.DropDownStyle = ComboBoxStyle.DropDown;
+
+                RefreshLastBoxDetails();
+
+                if (Convert.ToInt64(_productionId) > 0)
                 {
-                    LineNoList.SelectedValue = productionResponse.MachineId;
-                    departmentname.Text = productionResponse.DepartmentName;
-                    PrefixList.SelectedValue = 316;         //added hardcoded for now
-                    MergeNoList.SelectedValue = productionResponse.LotId;
-                    dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                    dateTimePicker1.Value = productionResponse.ProductionDate;
-                    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
-                    QualityList.SelectedValue = productionResponse.QualityId;
-                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                    CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                    BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                    prodtype.Text = productionResponse.ProductionType;
-                    remarks.Text = productionResponse.Remarks;
-                    prcompany.Checked = productionResponse.PrintCompany;
-                    prowner.Checked = productionResponse.PrintOwner;
-                    prdate.Checked = productionResponse.PrintDate;
-                    pruser.Checked = productionResponse.PrintUser;
-                    prhindi.Checked = productionResponse.PrintHindiWords;
-                    prwtps.Checked = productionResponse.PrintWTPS;
-                    prqrcode.Checked = productionResponse.PrintQRCode;
-                    spoolno.Text = productionResponse.Spools.ToString();
-                    spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                    palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                    grosswtno.Text = productionResponse.GrossWt.ToString();
-                    tarewt.Text = productionResponse.TareWt.ToString();
-                    netwt.Text = productionResponse.NetWt.ToString();
-                    submit.Text = "Update";
-                    saveprint.Enabled = false;
+                    var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
 
-                    if (productionResponse.PalletDetailsResponse.Count > 0 )
+                    if (productionResponse != null)
                     {
-                        if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                        LineNoList.SelectedValue = productionResponse.MachineId;
+                        departmentname.Text = productionResponse.DepartmentName;
+                        PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
+                        MergeNoList.SelectedValue = productionResponse.LotId;
+                        dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                        dateTimePicker1.Value = productionResponse.ProductionDate;
+                        SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                        QualityList.SelectedValue = productionResponse.QualityId;
+                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                        PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                        CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                        BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                        prodtype.Text = productionResponse.ProductionType;
+                        remarks.Text = productionResponse.Remarks;
+                        prcompany.Checked = productionResponse.PrintCompany;
+                        prowner.Checked = productionResponse.PrintOwner;
+                        prdate.Checked = productionResponse.PrintDate;
+                        pruser.Checked = productionResponse.PrintUser;
+                        prhindi.Checked = productionResponse.PrintHindiWords;
+                        prwtps.Checked = productionResponse.PrintWTPS;
+                        prqrcode.Checked = productionResponse.PrintQRCode;
+                        spoolno.Text = productionResponse.Spools.ToString();
+                        spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                        palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                        grosswtno.Text = productionResponse.GrossWt.ToString();
+                        tarewt.Text = productionResponse.TareWt.ToString();
+                        netwt.Text = productionResponse.NetWt.ToString();
+                        submit.Text = "Update";
+                        saveprint.Enabled = false;
+
+                        if (productionResponse.PalletDetailsResponse.Count > 0)
                         {
-                            BindPalletDetails(productionResponse.PalletDetailsResponse);
+                            if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                            {
+                                BindPalletDetails(productionResponse.PalletDetailsResponse);
+                            }
                         }
                     }
                 }
+                isFormReady = true;
             }
-            isFormReady = true;
+            finally
+            {
+                lblLoading.Visible = false;
+            }
         }
 
         private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
@@ -571,7 +598,7 @@ namespace PackingApplication
 
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        private void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
 
@@ -587,24 +614,34 @@ namespace PackingApplication
                 linenoerror.Text = "";
                 linenoerror.Visible = false;
             }
-            if (LineNoList.SelectedValue != null)
+            lblLoading.Visible = true;
+            try
             {
-                linenoerror.Visible = false;
-                MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
-                int selectedMachineId = selectedMachine.MachineId;
-                if (selectedMachineId > 0) {
-                    productionRequest.MachineId = selectedMachineId;
-                    // Call API to get department info by MachineId
-                    var department = _masterService.getMachineById(selectedMachineId);
-                    departmentname.Text = department.DepartmentName;
-                    productionRequest.DepartmentId = department.DepartmentId;
+                if (LineNoList.SelectedValue != null)
+                {
+                    linenoerror.Visible = false;
+                    MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
+                    int selectedMachineId = selectedMachine.MachineId;
+                    if (selectedMachineId > 0)
+                    {
+                        productionRequest.MachineId = selectedMachineId;
+                        // Call API to get department info by MachineId
+                        var department = await Task.Run(() => _masterService.getMachineById(selectedMachineId));
+                        departmentname.Text = department.DepartmentName;
+                        productionRequest.DepartmentId = department.DepartmentId;
 
-                    getLotList(selectedMachineId);
+                        await getLotList(selectedMachineId);
+                    }
+
                 }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
             }
         }
 
-        private void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -648,7 +685,7 @@ namespace PackingApplication
                 if (selectedLotId > 0) {
                     selectLotId = selectedLotId;
 
-                    lotResponse = _productionService.getLotById(selectedLotId);
+                    lotResponse = await Task.Run(() => _productionService.getLotById(selectedLotId));
                     itemname.Text = lotResponse.ItemName;
                     shadename.Text = lotResponse.ShadeName;
                     shadecd.Text = lotResponse.ShadeCode;
@@ -661,9 +698,9 @@ namespace PackingApplication
 
                     if(lotResponse.ItemId > 0)
                     {
-                        var itemResponse = _masterService.getItemById(lotResponse.ItemId);
+                        var itemResponse = await Task.Run(() => _masterService.getItemById(lotResponse.ItemId));
 
-                        var qualityList = getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                        var qualityList = await getQualityListByItemTypeId(itemResponse.ItemTypeId);
                         qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                         QualityList.DataSource = qualityList;
                         QualityList.DisplayMember = "Name";
@@ -671,7 +708,7 @@ namespace PackingApplication
                         QualityList.SelectedIndex = 0;
                         QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                        QualityList.DropDownStyle = ComboBoxStyle.DropDown;
+                        //QualityList.DropDownStyle = ComboBoxStyle.DropDown;
                         if (QualityList.Items.Count > 1)
                         {
                             QualityList.SelectedIndex = 1;
@@ -732,7 +769,7 @@ namespace PackingApplication
             }
         }
 
-        private void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -759,7 +796,7 @@ namespace PackingApplication
                 productionRequest.PackSizeId = selectedPacksizeId;
                 if(selectedPacksizeId > 0)
                 {
-                    var packsize = _masterService.getPackSizeById(selectedPacksizeId);
+                    var packsize = await Task.Run(() => _masterService.getPackSizeById(selectedPacksizeId));
                     frdenier.Text = packsize.FromDenier.ToString();
                     updenier.Text = packsize.UpToDenier.ToString();
                 }
@@ -840,59 +877,19 @@ namespace PackingApplication
                     selectedSONumber = selectedSaleOrder.SaleOrderNumber;
                     totalSOQty = 0;
                     grdsoqty.Text = "";
-                    var saleOrderItemResponse = _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId);
+                    var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId));
                     if (saleOrderItemResponse != null)
                     {
                         productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
 
-                    var saleResponse = getSaleOrderById(selectedSaleOrderId);
+                    var saleResponse = await getSaleOrderById(selectedSaleOrderId);
 
                     foreach (var soitem in saleResponse.saleOrderItemsResponses)
                     {
                         totalSOQty += soitem.Quantity;
                     }
-                    //decimal soQty = 0;
-                    //var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
-                    //if(getProductionByQuality != null)
-                    //{
-                    //    if(getProductionByQuality.Count > 0)
-                    //    {
-                    //        List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-                    //        foreach (var quality in getProductionByQuality)
-                    //        {
-                    //            var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
-
-                    //            if (existing == null)
-                    //            {
-                    //                QualityGridResponse grid = new QualityGridResponse();
-                    //                grid.QualityId = quality.QualityId;
-                    //                grid.SaleOrderId = quality.SaleOrderId;
-                    //                grid.QualityName = quality.QualityName;
-                    //                grid.SaleOrderQty = totalSOQty;
-                    //                grid.GrossWt = quality.GrossWt;
-
-                    //                gridList.Add(grid);
-                    //            }
-                    //            else
-                    //            {
-                    //                existing.GrossWt += quality.GrossWt;
-                    //            }
-
-                    //        }
-                    //        foreach (var proditem in gridList)
-                    //        {
-                    //            soQty += proditem.GrossWt;
-                    //        }
-                    //        totalSOQty = totalSOQty - soQty;
-                    //        grdsoqty.Text = totalSOQty.ToString("F2");
-                    //    }
-                    //    else
-                    //    {           
-                    //        grdsoqty.Text = totalSOQty.ToString("F2");
-                    //    }
-                    //}
                     grdsoqty.Text = totalSOQty.ToString("F2");
 
                     RefreshGradewiseGrid();
@@ -908,7 +905,7 @@ namespace PackingApplication
                 int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
                 if (selectedWindingTypeId > 0)
                 {
-                    var getProductionByWindingType = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                    var getProductionByWindingType = await getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
@@ -949,7 +946,7 @@ namespace PackingApplication
                 totalProdQty = 0;
                 prodnbalqty.Text = "";
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-                var getProductionByQuality = getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                var getProductionByQuality = await getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
@@ -1047,7 +1044,7 @@ namespace PackingApplication
             }
         }
 
-        private void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1067,7 +1064,7 @@ namespace PackingApplication
                 if (selectedItemId > 0) {
                     productionRequest.SpoolItemId = selectedItemId;
 
-                    var itemResponse = _masterService.getItemById(selectedItemId);
+                    var itemResponse = await Task.Run(() => _masterService.getItemById(selectedItemId));
                     if (itemResponse != null)
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
@@ -1078,7 +1075,7 @@ namespace PackingApplication
             }
         }
 
-        private void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1098,7 +1095,7 @@ namespace PackingApplication
 
                 if (selectedBoxItemId > 0) {
                     productionRequest.BoxItemId = selectedBoxItemId;
-                    var itemResponse = _masterService.getItemById(selectedBoxItemId);
+                    var itemResponse = await Task.Run(() => _masterService.getItemById(selectedBoxItemId));
                     if (itemResponse != null)
                     {
                         boxpalletitemwt.Text = itemResponse.Weight.ToString();
@@ -1136,20 +1133,23 @@ namespace PackingApplication
 
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                prodtype.Text = selectedPrefix.ProductionType.ToString();
-                productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
+                if(selectedPrefix.ProductionType.ToString() != null)
+                {
+                    prodtype.Text = selectedPrefix.ProductionType.ToString();
+                    productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
+                }
+
             }
         }
 
-        private List<MachineResponse> getMachineList()
+        private Task<List<MachineResponse>> getMachineList()
         {
-            var getMachine = _masterService.getMachineList();                     
-            return getMachine;
+            return Task.Run(() => _masterService.getMachineList());
         }
 
-        private void getLotList(int machineId) 
+        private async Task getLotList(int machineId) 
         {
-            var getLots = _productionService.getLotList(machineId);
+            var getLots = await Task.Run(() => _productionService.getLotList(machineId));
             getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
             MergeNoList.DataSource = getLots;
             MergeNoList.DisplayMember = "LotNo";
@@ -1157,30 +1157,27 @@ namespace PackingApplication
             MergeNoList.SelectedIndex = 0;
             MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
+            //MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
-        private List<LotsResponse> getAllLotList()
+        private Task<List<LotsResponse>> getAllLotList()
         {
-            var getLots = _productionService.getAllLotList();
-            return getLots;
+            return Task.Run(() => _productionService.getAllLotList());
         }
 
-        private List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
+        private Task<List<QualityResponse>> getQualityListByItemTypeId(int itemTypeId)
         {
-            var getQuality = _masterService.getQualityListByItemTypeId(itemTypeId);
-            return getQuality;
+            return Task.Run(() => _masterService.getQualityListByItemTypeId(itemTypeId));
         }
 
-        private List<PackSizeResponse> getPackSizeList()
+        private Task<List<PackSizeResponse>> getPackSizeList()
         {
-            var getPackSize = _masterService.getPackSizeList();          
-            return getPackSize;
+            return Task.Run(() => _masterService.getPackSizeList());
         }
 
-        private void getWindingTypeList(int lotId)
+        private async Task getWindingTypeList(int lotId)
         {
-            var getWindingType = _productionService.getWinderTypeList(lotId);
+            var getWindingType = await Task.Run(() => _productionService.getWinderTypeList(lotId));
             getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
             WindingTypeList.DataSource = getWindingType;
             WindingTypeList.DisplayMember = "WindingTypeName";
@@ -1188,12 +1185,12 @@ namespace PackingApplication
             WindingTypeList.SelectedIndex = 0;
             WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
+            //WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
-        private void getSaleOrderList(int lotId)
+        private async Task getSaleOrderList(int lotId)
         {
-            var getSaleOrder = _productionService.getSaleOrderList(lotId);
+            var getSaleOrder = await Task.Run(() => _productionService.getSaleOrderList(lotId));
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
             SaleOrderList.DataSource = getSaleOrder;
             SaleOrderList.DisplayMember = "SaleOrderNumber";
@@ -1201,7 +1198,7 @@ namespace PackingApplication
             SaleOrderList.SelectedIndex = 0;
             SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
+            //SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<string> getComPortList()
@@ -1231,64 +1228,54 @@ namespace PackingApplication
             return getWeighingScale;
         }
 
-        private List<ItemResponse> getCopeItemList()
+        private Task<List<ItemResponse>> getCopeItemList()
         {
-            var getCopeItem = _masterService.getCopeItemList();
-            return getCopeItem;
+            return Task.Run(() => _masterService.getCopeItemList());
         }
 
-        private List<ItemResponse> getBoxItemList()
+        private Task<List<ItemResponse>> getBoxItemList()
         {
-            var getBox = _masterService.getBoxItemList();
-            return getBox;
+            return Task.Run(() => _masterService.getBoxItemList());
         }
 
-        private List<ItemResponse> getPalletItemList()
+        private Task<List<ItemResponse>> getPalletItemList()
         {
-            var getBox = _masterService.getBoxItemList();
-            return getBox;
+            return Task.Run(() => _masterService.getBoxItemList());
         }
 
-        private List<PrefixResponse> getPrefixList()
+        private Task<List<PrefixResponse>> getPrefixList()
         {
-            var getPrefix = _masterService.getPrefixList();
-            return getPrefix;
+            return Task.Run(() => _masterService.getPrefixList());
         }
 
-        private SaleOrderResponse getSaleOrderById(int saleOrderId)
+        private Task<SaleOrderResponse> getSaleOrderById(int saleOrderId)
         {
-            var getSaleOrder = _saleService.getSaleOrderById(saleOrderId);
-            return getSaleOrder;
+            return Task.Run(() => _saleService.getSaleOrderById(saleOrderId));
         }
 
-        private ProductionResponse getProductionById(long productionId)
+        private Task<ProductionResponse> getProductionById(long productionId)
         {
-            var getProduction = _packingService.getProductionById(productionId);
-            return getProduction;
+            return Task.Run(() => _packingService.getProductionById(productionId));
         }
 
-        private List<ProductionResponse> getProductionByQualityIdAndSaleOrderId(int qualityId, int saleOrderId)
+        private Task<List<ProductionResponse>> getProductionByQualityIdAndSaleOrderId(int qualityId, int saleOrderId)
         {
-            var getProduction = _packingService.getAllProductionByQualityandSaleOrder(qualityId, saleOrderId);
-            return getProduction;
+            return Task.Run(() => _packingService.getAllProductionByQualityandSaleOrder(qualityId, saleOrderId));
         }
 
-        private List<ProductionResponse> getProductionByWindingTypeAndSaleOrderId(int windingTypeId, int saleOrderId)
+        private Task<List<ProductionResponse>> getProductionByWindingTypeAndSaleOrderId(int windingTypeId, int saleOrderId)
         {
-            var getProduction = _packingService.getAllProductionByWindingTypeandSaleOrder(windingTypeId, saleOrderId);
-            return getProduction;
+            return Task.Run(() => _packingService.getAllProductionByWindingTypeandSaleOrder(windingTypeId, saleOrderId));
         }
 
-        private List<ProductionResponse> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
+        private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
         {
-            var getProduction = _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId);
-            return getProduction;
+            return Task.Run(() => _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId));
         }
 
-        private ProductionResponse getLastBoxDetails()
+        private Task<ProductionResponse> getLastBoxDetails()
         {
-            var getPacking = _packingService.getLastBoxDetails("poypacking");
-            return getPacking;
+            return Task.Run(() => _packingService.getLastBoxDetails("poypacking"));
         }
 
         private int rowCount = 0; // Keeps track of SrNo
@@ -2479,6 +2466,19 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 BoxItemList.DroppedDown = false;
+            }
+        }
+
+        private void PalletTypeList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                PalletTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                PalletTypeList.DroppedDown = false;
             }
         }
 
