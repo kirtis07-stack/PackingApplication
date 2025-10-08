@@ -2124,9 +2124,22 @@ namespace PackingApplication
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow control keys (backspace, delete, etc.)
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (sender is System.Windows.Forms.TextBox txt)
             {
-                e.Handled = true; // Reject the input
+                // Allow control keys (backspace, delete, etc.)
+                if (char.IsControl(e.KeyChar))
+                    return;
+
+                // Allow digits
+                if (char.IsDigit(e.KeyChar))
+                    return;
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && !txt.Text.Contains('.'))
+                    return;
+
+                // Block everything else
+                e.Handled = true;
             }
         }
 
