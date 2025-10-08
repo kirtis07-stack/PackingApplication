@@ -992,6 +992,8 @@ namespace PackingApplication
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
         {
+            if (!isFormReady) return;
+
             if (selectedSOId == 0)
             {
                 soerror.Visible = true;
