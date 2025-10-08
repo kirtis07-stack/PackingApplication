@@ -30,12 +30,36 @@ namespace PackingApplication
         {
             InitializeComponent();
             getYearList();
+            ApplyFonts();
 
             SetButtonBorderRadius(this.signin, 8);
 
             YearList.SelectedIndexChanged += YearList_SelectedIndexChanged;
             email.TextChanged += Email_TextChanged;
             passwrd.TextChanged += Passwrd_TextChanged;
+        }
+
+        private void ApplyFonts()
+        {
+            this.emailid.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.email.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.password.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.passwrd.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.year.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.YearList.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.rememberme.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.signin.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.welcome.Font = FontManager.GetFont(14F, FontStyle.Bold);
+            this.subtitle.Font = FontManager.GetFont(10F, FontStyle.Regular);
+            this.subtitle1.Font = FontManager.GetFont(10F, FontStyle.Regular);
+            this.req1.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.req2.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.req3.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.label2.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.label1.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.yearerror.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.passworderror.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.emailerror.Font = FontManager.GetFont(9F, FontStyle.Regular);
         }
 
         private static Logger Log = Logger.GetLogger();
