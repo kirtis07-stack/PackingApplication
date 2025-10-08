@@ -1258,16 +1258,6 @@ namespace PackingApplication
             return Task.Run(() => _packingService.getProductionById(productionId));
         }
 
-        private Task<List<ProductionResponse>> getProductionByQualityIdAndSaleOrderId(int qualityId, int saleOrderId)
-        {
-            return Task.Run(() => _packingService.getAllProductionByQualityandSaleOrder(qualityId, saleOrderId));
-        }
-
-        private Task<List<ProductionResponse>> getProductionByWindingTypeAndSaleOrderId(int windingTypeId, int saleOrderId)
-        {
-            return Task.Run(() => _packingService.getAllProductionByWindingTypeandSaleOrder(windingTypeId, saleOrderId));
-        }
-
         private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
         {
             return Task.Run(() => _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId));
