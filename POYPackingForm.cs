@@ -95,6 +95,8 @@ namespace PackingApplication
             grosswtno.TextChanged += GrossWeight_TextChanged;
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
+            windinggrid.AutoGenerateColumns = false;
+            qualityqty.AutoGenerateColumns = false;
             //sidebarContainer.Width = sidebarContainer.MinimumSize.Width;
             //panel10.Width = panel10.MinimumSize.Width;
             //panel12.Width = panel12.MinimumSize.Width;

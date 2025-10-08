@@ -141,12 +141,10 @@ namespace PackingApplication
             this.tblpnl3 = new System.Windows.Forms.Panel();
             this.wgroupbox = new System.Windows.Forms.GroupBox();
             this.windinggrid = new System.Windows.Forms.DataGridView();
-            this.windingqty = new System.Data.DataTable();
             this.gradewiseprodn = new System.Windows.Forms.GroupBox();
             this.prodnbalqty = new System.Windows.Forms.Label();
             this.grdsoqty = new System.Windows.Forms.Label();
             this.qualityqty = new System.Windows.Forms.DataGridView();
-            this.qualityandqty = new System.Data.DataTable();
             this.totalprodbalqty = new System.Windows.Forms.Label();
             this.saleordrqty = new System.Windows.Forms.Label();
             this.palletdetailslayout = new System.Windows.Forms.TableLayoutPanel();
@@ -270,10 +268,8 @@ namespace PackingApplication
             this.tblpnl3.SuspendLayout();
             this.wgroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windingqty)).BeginInit();
             this.gradewiseprodn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).BeginInit();
             this.palletdetailslayout.SuspendLayout();
             this.palletdetailsheader.SuspendLayout();
             this.palletdetailspanel.SuspendLayout();
@@ -1605,8 +1601,9 @@ namespace PackingApplication
             this.windinggrid.AllowUserToResizeRows = false;
             this.windinggrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.windinggrid.AutoGenerateColumns = false;
-            this.windinggrid.BackgroundColor = System.Drawing.Color.White;
+            this.windinggrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
@@ -1618,7 +1615,6 @@ namespace PackingApplication
             this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.windinggrid.DataSource = this.windingqty;
             this.windinggrid.EnableHeadersVisualStyles = false;
             this.windinggrid.Location = new System.Drawing.Point(4, 19);
             this.windinggrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1631,7 +1627,6 @@ namespace PackingApplication
             this.windinggrid.Size = new System.Drawing.Size(390, 82);
             this.windinggrid.TabIndex = 92;
             this.windinggrid.TabStop = false;
-            this.windinggrid.Paint += new System.Windows.Forms.PaintEventHandler(this.windinggrid_Paint);
             // 
             // gradewiseprodn
             // 
@@ -1676,9 +1671,9 @@ namespace PackingApplication
             this.qualityqty.AllowUserToResizeRows = false;
             this.qualityqty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.qualityqty.AutoGenerateColumns = false;
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.qualityqty.BackgroundColor = System.Drawing.Color.White;
+            this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
@@ -1690,7 +1685,6 @@ namespace PackingApplication
             this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.qualityqty.DataSource = this.qualityandqty;
             this.qualityqty.EnableHeadersVisualStyles = false;
             this.qualityqty.GridColor = System.Drawing.SystemColors.Control;
             this.qualityqty.Location = new System.Drawing.Point(2, 30);
@@ -1704,7 +1698,6 @@ namespace PackingApplication
             this.qualityqty.Size = new System.Drawing.Size(388, 82);
             this.qualityqty.TabIndex = 92;
             this.qualityqty.TabStop = false;
-            this.qualityqty.Paint += new System.Windows.Forms.PaintEventHandler(this.qualityqty_Paint);
             // 
             // totalprodbalqty
             // 
@@ -3037,11 +3030,9 @@ namespace PackingApplication
             this.tblpnl3.ResumeLayout(false);
             this.wgroupbox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windingqty)).EndInit();
             this.gradewiseprodn.ResumeLayout(false);
             this.gradewiseprodn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qualityandqty)).EndInit();
             this.palletdetailslayout.ResumeLayout(false);
             this.palletdetailsheader.ResumeLayout(false);
             this.palletdetailsheader.PerformLayout();
@@ -3235,8 +3226,8 @@ namespace PackingApplication
         private DataGridView qualityqty;
         private DataGridViewTextBoxColumn qualityDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn prodQtyDataGridViewTextBoxColumn;
-        private DataTable windingqty;
-        private DataTable qualityandqty;
+        //private DataTable windingqty;
+        //private DataTable qualityandqty;
         private DataGridViewTextBoxColumn windingtypeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn soqtyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn windingprodqtyDataGridViewTextBoxColumn;
