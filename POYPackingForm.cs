@@ -67,6 +67,9 @@ namespace PackingApplication
         decimal balanceQty = 0;
         string selectedSONumber = "";
         private System.Windows.Forms.Label lblLoading;
+        ProductionResponse productionResponse = new ProductionResponse();
+        private ProductionRequest productionRequest = new ProductionRequest();
+        private bool isFormReady = false;
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -405,54 +408,61 @@ namespace PackingApplication
 
                 if (Convert.ToInt64(_productionId) > 0)
                 {
-                    var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
-
-                    if (productionResponse != null)
-                    {
-                        LineNoList.SelectedValue = productionResponse.MachineId;
-                        departmentname.Text = productionResponse.DepartmentName;
-                        PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
-                        MergeNoList.SelectedValue = productionResponse.LotId;
-                        dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                        dateTimePicker1.Value = productionResponse.ProductionDate;
-                        SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
-                        QualityList.SelectedValue = productionResponse.QualityId;
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                        PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                        CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                        BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                        prodtype.Text = productionResponse.ProductionType;
-                        remarks.Text = productionResponse.Remarks;
-                        prcompany.Checked = productionResponse.PrintCompany;
-                        prowner.Checked = productionResponse.PrintOwner;
-                        prdate.Checked = productionResponse.PrintDate;
-                        pruser.Checked = productionResponse.PrintUser;
-                        prhindi.Checked = productionResponse.PrintHindiWords;
-                        prwtps.Checked = productionResponse.PrintWTPS;
-                        prqrcode.Checked = productionResponse.PrintQRCode;
-                        spoolno.Text = productionResponse.Spools.ToString();
-                        spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                        palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                        grosswtno.Text = productionResponse.GrossWt.ToString();
-                        tarewt.Text = productionResponse.TareWt.ToString();
-                        netwt.Text = productionResponse.NetWt.ToString();
-                        submit.Text = "Update";
-                        saveprint.Enabled = false;
-
-                        if (productionResponse.PalletDetailsResponse.Count > 0)
-                        {
-                            if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
-                            {
-                                BindPalletDetails(productionResponse.PalletDetailsResponse);
-                            }
-                        }
-                    }
+                    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
                 }
                 isFormReady = true;
             }
             finally
             {
                 lblLoading.Visible = false;
+            }
+        }
+
+        private async Task LoadProductionDetailsAsync(long productionId)
+        {
+            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+
+            if (productionResponse != null)
+            {
+                LineNoList.SelectedValue = productionResponse.MachineId;
+                departmentname.Text = productionResponse.DepartmentName;
+                PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
+                MergeNoList.SelectedValue = productionResponse.LotId;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
+                SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                QualityList.SelectedValue = productionResponse.QualityId;
+                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                prodtype.Text = productionResponse.ProductionType;
+                remarks.Text = productionResponse.Remarks;
+                prcompany.Checked = productionResponse.PrintCompany;
+                prowner.Checked = productionResponse.PrintOwner;
+                prdate.Checked = productionResponse.PrintDate;
+                pruser.Checked = productionResponse.PrintUser;
+                prhindi.Checked = productionResponse.PrintHindiWords;
+                prwtps.Checked = productionResponse.PrintWTPS;
+                prqrcode.Checked = productionResponse.PrintQRCode;
+                spoolno.Text = productionResponse.Spools.ToString();
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                tarewt.Text = productionResponse.TareWt.ToString();
+                netwt.Text = productionResponse.NetWt.ToString();
+                submit.Text = "Update";
+                saveprint.Enabled = false;
+
+                if (productionResponse.PalletDetailsResponse.Count > 0)
+                {
+                    if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                    {
+                        this.BeginInvoke((Action)(() =>
+                            BindPalletDetails(productionResponse.PalletDetailsResponse)
+                        ));
+                    }
+                }
             }
         }
 
@@ -598,8 +608,6 @@ namespace PackingApplication
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
         }
 
-        private ProductionRequest productionRequest = new ProductionRequest();
-        private bool isFormReady = false;
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
@@ -632,7 +640,19 @@ namespace PackingApplication
                         departmentname.Text = department.DepartmentName;
                         productionRequest.DepartmentId = department.DepartmentId;
 
-                        await getLotList(selectedMachineId);
+                        var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
+                        getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+                        MergeNoList.DataSource = getLots;
+                        MergeNoList.DisplayMember = "LotNo";
+                        MergeNoList.ValueMember = "LotId";
+                        MergeNoList.SelectedIndex = 0;
+                        MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            MergeNoList.SelectedValue = productionResponse.LotId;
+                        }
                     }
 
                 }
@@ -725,8 +745,24 @@ namespace PackingApplication
                         }
                     }
                     
-                    getWindingTypeList(productionRequest.LotId);
-                    getSaleOrderList(productionRequest.LotId);
+                    var getWindingType = await Task.Run(() => _productionService.getWinderTypeList(selectedLotId));
+                    getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                    WindingTypeList.DataSource = getWindingType;
+                    WindingTypeList.DisplayMember = "WindingTypeName";
+                    WindingTypeList.ValueMember = "WindingTypeId";
+                    WindingTypeList.SelectedIndex = 0;
+                    WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                    var getSaleOrder = await Task.Run(() => _productionService.getSaleOrderList(selectedLotId));
+                    getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+                    SaleOrderList.DataSource = getSaleOrder;
+                    SaleOrderList.DisplayMember = "SaleOrderNumber";
+                    SaleOrderList.ValueMember = "SaleOrderDetailsId";
+                    SaleOrderList.SelectedIndex = 0;
+                    SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
                     lotsDetailsList = new List<LotsDetailsResponse>();
                     if(lotResponse.LotsDetailsResponses != null)
                     {
@@ -765,7 +801,11 @@ namespace PackingApplication
                         rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
                         rowMaterial.DataSource = lotsDetailsList;
                     }
-                    
+
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                    }
                 }
                 
             }
@@ -850,6 +890,11 @@ namespace PackingApplication
                 {
                     productionRequest.WindingTypeId = selectedWindingTypeId;
                     RefreshWindingGrid();
+                }
+
+                if (_productionId > 0 && productionResponse != null)
+                {
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 }
             }
         }
@@ -1149,19 +1194,6 @@ namespace PackingApplication
             return Task.Run(() => _masterService.getMachineList());
         }
 
-        private async Task getLotList(int machineId) 
-        {
-            var getLots = await Task.Run(() => _productionService.getLotList(machineId));
-            getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            MergeNoList.DataSource = getLots;
-            MergeNoList.DisplayMember = "LotNo";
-            MergeNoList.ValueMember = "LotId";
-            MergeNoList.SelectedIndex = 0;
-            MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
-        }
-
         private Task<List<LotsResponse>> getAllLotList()
         {
             return Task.Run(() => _productionService.getAllLotList());
@@ -1175,32 +1207,6 @@ namespace PackingApplication
         private Task<List<PackSizeResponse>> getPackSizeList()
         {
             return Task.Run(() => _masterService.getPackSizeList());
-        }
-
-        private async Task getWindingTypeList(int lotId)
-        {
-            var getWindingType = await Task.Run(() => _productionService.getWinderTypeList(lotId));
-            getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-            WindingTypeList.DataSource = getWindingType;
-            WindingTypeList.DisplayMember = "WindingTypeName";
-            WindingTypeList.ValueMember = "WindingTypeId";
-            WindingTypeList.SelectedIndex = 0;
-            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
-        }
-
-        private async Task getSaleOrderList(int lotId)
-        {
-            var getSaleOrder = await Task.Run(() => _productionService.getSaleOrderList(lotId));
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
-            SaleOrderList.DataSource = getSaleOrder;
-            SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "SaleOrderDetailsId";
-            SaleOrderList.SelectedIndex = 0;
-            SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //SaleOrderList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         private List<string> getComPortList()
@@ -1717,6 +1723,7 @@ namespace PackingApplication
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
+            if (!isFormReady) return;
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 spoolnoerror.Text = "Please enter spool no";

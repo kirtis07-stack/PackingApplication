@@ -37,6 +37,9 @@ namespace PackingApplication
         //decimal totalProdQty = 0;
         //decimal balanceQty = 0;
         //string selectedSONumber = "";
+        ProductionResponse productionResponse = new ProductionResponse();
+        private ProductionRequest productionRequest = new ProductionRequest();
+        private bool isFormReady = false;
         public ChipsPackingForm(long productionId)
         {
             InitializeComponent();
@@ -300,60 +303,52 @@ namespace PackingApplication
             CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
             //CopsItemList.DropDownStyle = ComboBoxStyle.DropDown;
 
-            var getLastBox = await Task.Run(() => getLastBoxDetails());
-            //lastboxdetails
-            if (getLastBox.ProductionId > 0)
-            {
-                this.copstxtbox.Text = getLastBox.Spools.ToString();
-                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
-            }
-
-            copyno.Text = "1";
+            RefreshLastBoxDetails();
 
             if (Convert.ToInt64(_productionId) > 0)
             {
-                var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
-
-                if (productionResponse != null)
-                {
-                    LineNoList.SelectedValue = productionResponse.MachineId;
-                    departmentname.Text = productionResponse.DepartmentName;
-                    PrefixList.SelectedValue = 316;         //added hardcoded for now
-                    MergeNoList.SelectedValue = productionResponse.LotId;
-                    dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                    dateTimePicker1.Value = productionResponse.ProductionDate;
-                    QualityList.SelectedValue = productionResponse.QualityId;
-                    //SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
-                    PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                    prodtype.Text = productionResponse.ProductionType;
-                    remarks.Text = productionResponse.Remarks;
-                    prcompany.Checked = productionResponse.PrintCompany;
-                    prowner.Checked = productionResponse.PrintOwner;
-                    prdate.Checked = productionResponse.PrintDate;
-                    pruser.Checked = productionResponse.PrintUser;
-                    prhindi.Checked = productionResponse.PrintHindiWords;
-                    prwtps.Checked = productionResponse.PrintWTPS;
-                    prqrcode.Checked = productionResponse.PrintQRCode;
-                    prtwist.Checked = productionResponse.PrintTwist;
-                    palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                    grosswtno.Text = productionResponse.GrossWt.ToString();
-                    tarewt.Text = productionResponse.TareWt.ToString();
-                    netwt.Text = productionResponse.NetWt.ToString();
-                    submit.Text = "Update";
-                    saveprint.Enabled = false;
-                }
+                await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
             }
 
             isFormReady = true;
         }
 
-        private ProductionRequest productionRequest = new ProductionRequest();
-        private bool isFormReady = false;
+        private async Task LoadProductionDetailsAsync(long productionId)
+        {
+            var productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+
+            if (productionResponse != null)
+            {
+                LineNoList.SelectedValue = productionResponse.MachineId;
+                departmentname.Text = productionResponse.DepartmentName;
+                PrefixList.SelectedValue = 316;         //added hardcoded for now
+                MergeNoList.SelectedValue = productionResponse.LotId;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
+                QualityList.SelectedValue = productionResponse.QualityId;
+                //SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                prodtype.Text = productionResponse.ProductionType;
+                remarks.Text = productionResponse.Remarks;
+                prcompany.Checked = productionResponse.PrintCompany;
+                prowner.Checked = productionResponse.PrintOwner;
+                prdate.Checked = productionResponse.PrintDate;
+                pruser.Checked = productionResponse.PrintUser;
+                prhindi.Checked = productionResponse.PrintHindiWords;
+                prwtps.Checked = productionResponse.PrintWTPS;
+                prqrcode.Checked = productionResponse.PrintQRCode;
+                prtwist.Checked = productionResponse.PrintTwist;
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                tarewt.Text = productionResponse.TareWt.ToString();
+                netwt.Text = productionResponse.NetWt.ToString();
+                submit.Text = "Update";
+                saveprint.Enabled = false;
+            }
+        }
+
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
@@ -382,7 +377,19 @@ namespace PackingApplication
                     departmentname.Text = department.DepartmentName;
                     productionRequest.DepartmentId = department.DepartmentId;
 
-                    getLotList(selectedMachineId);
+                    var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
+                    getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+                    MergeNoList.DataSource = getLots;
+                    MergeNoList.DisplayMember = "LotNo";
+                    MergeNoList.ValueMember = "LotId";
+                    MergeNoList.SelectedIndex = 0;
+                    MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        MergeNoList.SelectedValue = productionResponse.LotId;
+                    }
                 }
             }
         }
@@ -457,45 +464,61 @@ namespace PackingApplication
                             QualityList.SelectedIndex = -1; // no selection possible
                         }
                     }
-                    
-                    getWindingTypeList(productionRequest.LotId);
+
+                    var getWindingType = await Task.Run(() => _productionService.getWinderTypeList(selectedLotId));
+                    getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                    WindingTypeList.DataSource = getWindingType;
+                    WindingTypeList.DisplayMember = "WindingTypeName";
+                    WindingTypeList.ValueMember = "WindingTypeId";
+                    WindingTypeList.SelectedIndex = 0;
+                    WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
                     //getSaleOrderList(productionRequest.LotId);
 
                     List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
-                    foreach (var lot in lotResponse.LotsDetailsResponses)
+                    if (lotResponse.LotsDetailsResponses != null)
                     {
-                        LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
-                        lotsDetails.LotId = lot.LotId;
-                        lotsDetails.UpdatedOn = lot.UpdatedOn;
-                        lotsDetails.UpdatedBy = lot.UpdatedBy;
-                        lotsDetails.CreatedBy = lot.CreatedBy;
-                        lotsDetails.CreatedOn = lot.CreatedOn;
-                        lotsDetails.EffectiveFrom = lot.EffectiveFrom;
-                        lotsDetails.EffectiveUpto = lot.EffectiveUpto;
-                        lotsDetails.GainLossPerc = lot.GainLossPerc;
-                        lotsDetails.InputPerc = lot.InputPerc;
-                        lotsDetails.ProductionPerc = lot.ProductionPerc;
-                        lotsDetails.Extruder = lot.Extruder;
-                        lotsDetails.LotType = lot.LotType;
-                        lotsDetails.PrevLotId = lot.PrevLotId;
-                        lotsDetails.PrevLotNo = lot.PrevLotNo;
-                        lotsDetails.PrevLotType = lot.PrevLotType;
-                        lotsDetails.PrevLotQuality = lot.PrevLotQuality;
-                        lotsDetails.PrevLotItemName = lot.PrevLotItemName;
-                        lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
-                        lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
-                        lotsDetailsList.Add(lot);
+                        foreach (var lot in lotResponse.LotsDetailsResponses)
+                        {
+                            LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
+                            lotsDetails.LotId = lot.LotId;
+                            lotsDetails.UpdatedOn = lot.UpdatedOn;
+                            lotsDetails.UpdatedBy = lot.UpdatedBy;
+                            lotsDetails.CreatedBy = lot.CreatedBy;
+                            lotsDetails.CreatedOn = lot.CreatedOn;
+                            lotsDetails.EffectiveFrom = lot.EffectiveFrom;
+                            lotsDetails.EffectiveUpto = lot.EffectiveUpto;
+                            lotsDetails.GainLossPerc = lot.GainLossPerc;
+                            lotsDetails.InputPerc = lot.InputPerc;
+                            lotsDetails.ProductionPerc = lot.ProductionPerc;
+                            lotsDetails.Extruder = lot.Extruder;
+                            lotsDetails.LotType = lot.LotType;
+                            lotsDetails.PrevLotId = lot.PrevLotId;
+                            lotsDetails.PrevLotNo = lot.PrevLotNo;
+                            lotsDetails.PrevLotType = lot.PrevLotType;
+                            lotsDetails.PrevLotQuality = lot.PrevLotQuality;
+                            lotsDetails.PrevLotItemName = lot.PrevLotItemName;
+                            lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
+                            lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
+                            lotsDetailsList.Add(lot);
+                        }
+                        rowMaterial.Columns.Clear();
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150 });
+                        rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
+                        rowMaterial.DataSource = lotsDetailsList;
                     }
-                    rowMaterial.Columns.Clear();
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150 });
-                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
-                    rowMaterial.DataSource = lotsDetailsList;
+
+                    //if (_productionId > 0 && productionResponse != null)
+                    //{
+                    //    SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                    //}
                 }
             }
         }
@@ -569,6 +592,11 @@ namespace PackingApplication
                 if (selectedWindingTypeId > 0)
                 {
                     productionRequest.WindingTypeId = selectedWindingTypeId;
+                }
+
+                if (_productionId > 0 && productionResponse != null)
+                {
+                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 }
             }
         }
@@ -777,19 +805,6 @@ namespace PackingApplication
             return Task.Run(() => _masterService.getMachineList());
         }
 
-        private async Task getLotList(int machineId)
-        {
-            var getLots = await Task.Run(() => _productionService.getLotList(machineId));
-            getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
-            MergeNoList.DataSource = getLots;
-            MergeNoList.DisplayMember = "LotNo";
-            MergeNoList.ValueMember = "LotId";
-            MergeNoList.SelectedIndex = 0;
-            MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
-        }
-
         private Task<List<LotsResponse>> getAllLotList()
         {
             return Task.Run(() => _productionService.getAllLotList());
@@ -803,19 +818,6 @@ namespace PackingApplication
         private Task<List<PackSizeResponse>> getPackSizeList()
         {
             return Task.Run(() => _masterService.getPackSizeList());
-        }
-
-        private async Task getWindingTypeList(int lotId)
-        {
-            var getWindingType = await Task.Run(() => _productionService.getWinderTypeList(lotId));
-            getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-            WindingTypeList.DataSource = getWindingType;
-            WindingTypeList.DisplayMember = "WindingTypeName";
-            WindingTypeList.ValueMember = "WindingTypeId";
-            WindingTypeList.SelectedIndex = 0;
-            WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //WindingTypeList.DropDownStyle = ComboBoxStyle.DropDown;
         }
 
         //private async Task getSaleOrderList(int lotId)
@@ -861,11 +863,6 @@ namespace PackingApplication
         private Task<List<ItemResponse>> getCopeItemList()
         {
             return Task.Run(() => _masterService.getCopeItemList());
-        }
-
-        private Task<List<ItemResponse>> getBoxItemList()
-        {
-            return Task.Run(() => _masterService.getBoxItemList());
         }
 
         private Task<List<PrefixResponse>> getPrefixList()
@@ -943,6 +940,8 @@ namespace PackingApplication
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
         {
+            if (!isFormReady) return;
+
             //if (selectedSOId == 0)
             //{
             //    soerror.Visible = true;
