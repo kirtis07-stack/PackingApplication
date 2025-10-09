@@ -870,19 +870,9 @@ namespace PackingApplication
             return Task.Run(() => _masterService.getPrefixList());
         }
 
-        private Task<SaleOrderResponse> getSaleOrderById(int saleOrderId)
-        {
-            return Task.Run(() => _saleService.getSaleOrderById(saleOrderId));
-        }
-
         private Task<ProductionResponse> getProductionById(long productionId)
         {
             return Task.Run(() => _packingService.getProductionById(productionId));
-        }
-
-        private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
-        {
-            return Task.Run(() => _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId));
         }
 
         private Task<ProductionResponse> getLastBoxDetails()

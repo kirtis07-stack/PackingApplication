@@ -22,12 +22,18 @@ namespace PackingApplication.Services
             return getSaleOrder;
         }
 
-        public SaleOrderItemsResponse getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(int itemId, int shadeId, int saleOrderId)
+        public SaleOrderItemsResponse getSaleOrderItemByItemIdAndShadeIdAndSaleOrderItemId(int itemId, int shadeId, int saleOrderItemId)
         {
-            var getSaleOrderItemResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderId=" + saleOrderId);
+            var getSaleOrderItemResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderItemId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderItemId=" + saleOrderItemId);
             var getSaleOrderItem = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderItemResponse);
             return getSaleOrderItem;
         }
 
+        public SaleOrderItemsResponse getSaleOrderItemById(int saleOrderItemsId)
+        {
+            var getSaleOrderResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetById?saleOrderItemsId=" + saleOrderItemsId);
+            var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderResponse);
+            return getSaleOrder;
+        }
     }
 }

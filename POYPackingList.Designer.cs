@@ -79,7 +79,7 @@ namespace PackingApplication
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(491, 264);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 10;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // nextbtn
@@ -88,7 +88,7 @@ namespace PackingApplication
             this.nextbtn.Location = new System.Drawing.Point(423, 236);
             this.nextbtn.Name = "nextbtn";
             this.nextbtn.Size = new System.Drawing.Size(47, 22);
-            this.nextbtn.TabIndex = 2;
+            this.nextbtn.TabIndex = 4;
             this.nextbtn.Text = "Next";
             this.nextbtn.UseVisualStyleBackColor = true;
             this.nextbtn.Click += new System.EventHandler(this.btnNext_Click);

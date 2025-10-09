@@ -134,10 +134,10 @@ namespace PackingApplication
         private void getLotRelatedDetails()
         {
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
             SaleOrderList.DataSource = getSaleOrder;
-            SaleOrderList.DisplayMember = "SaleOrderNumber";
-            SaleOrderList.ValueMember = "SaleOrderDetailsId";
+            SaleOrderList.DisplayMember = "ItemName";
+            SaleOrderList.ValueMember = "SaleOrderItemsId";
             SaleOrderList.SelectedIndex = 0;
 
             var windingtypeList = new List<LotsProductionDetailsResponse>();
@@ -755,10 +755,10 @@ namespace PackingApplication
                     WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                     var getSaleOrder = await Task.Run(() => _productionService.getSaleOrderList(selectedLotId));
-                    getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderDetailsId = 0, SaleOrderNumber = "Select Sale Order" });
+                    getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                     SaleOrderList.DataSource = getSaleOrder;
-                    SaleOrderList.DisplayMember = "SaleOrderNumber";
-                    SaleOrderList.ValueMember = "SaleOrderDetailsId";
+                    SaleOrderList.DisplayMember = "ItemName";
+                    SaleOrderList.ValueMember = "SaleOrderItemsId";
                     SaleOrderList.SelectedIndex = 0;
                     SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -915,28 +915,27 @@ namespace PackingApplication
                 soerror.Visible = false;
 
                 LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
-                int selectedSaleOrderId = selectedSaleOrder.SaleOrderDetailsId;
+                int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                 string soNumber = selectedSaleOrder.SaleOrderNumber;
-                productionRequest.SaleOrderId = selectedSaleOrderId;
+                productionRequest.SaleOrderItemId = selectedSaleOrderId;
                 if(selectedSaleOrderId > 0)
                 {
                     selectedSOId = selectedSaleOrderId;
                     selectedSONumber = selectedSaleOrder.SaleOrderNumber;
                     totalSOQty = 0;
                     grdsoqty.Text = "";
-                    var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemByItemIdAndShadeIdAndSaleOrderId(lotResponse.ItemId, lotResponse.ShadeId, selectedSaleOrderId));
+                    var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
                     if (saleOrderItemResponse != null)
                     {
-                        productionRequest.SaleOrderItemId = saleOrderItemResponse.SaleOrderItemsId;
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
 
-                    var saleResponse = await getSaleOrderById(selectedSaleOrderId);
+                    var saleItemResponse = await getSaleOrderItemById(selectedSaleOrderId);
 
-                    foreach (var soitem in saleResponse.saleOrderItemsResponses)
-                    {
-                        totalSOQty += soitem.Quantity;
-                    }
+                    //foreach (var soitem in saleResponse.saleOrderItemsResponses)
+                    //{
+                        totalSOQty += selectedSaleOrder.Quantity;
+                    //}
                     grdsoqty.Text = totalSOQty.ToString("F2");
 
                     RefreshGradewiseGrid();
@@ -952,7 +951,7 @@ namespace PackingApplication
                 int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
                 if (selectedWindingTypeId > 0)
                 {
-                    var getProductionByWindingType = await getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                    var getProductionByWindingType = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
@@ -993,7 +992,7 @@ namespace PackingApplication
                 totalProdQty = 0;
                 prodnbalqty.Text = "";
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-                var getProductionByQuality = await getProductionLotIdandSaleOrderIdandPackingType(selectLotId, selectedSOId);
+                var getProductionByQuality = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
@@ -1256,9 +1255,9 @@ namespace PackingApplication
             return Task.Run(() => _masterService.getPrefixList());
         }
 
-        private Task<SaleOrderResponse> getSaleOrderById(int saleOrderId)
+        private Task<SaleOrderItemsResponse> getSaleOrderItemById(int saleOrderItemId)
         {
-            return Task.Run(() => _saleService.getSaleOrderById(saleOrderId));
+            return Task.Run(() => _saleService.getSaleOrderItemById(saleOrderItemId));
         }
 
         private Task<ProductionResponse> getProductionById(long productionId)
@@ -1266,9 +1265,9 @@ namespace PackingApplication
             return Task.Run(() => _packingService.getProductionById(productionId));
         }
 
-        private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderIdandPackingType(int lotId, int saleOrderId)
+        private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
         {
-            return Task.Run(() => _packingService.getAllByLotIdandSaleOrderIdandPackingType(lotId, saleOrderId));
+            return Task.Run(() => _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(lotId, saleOrderItemId));
         }
 
         private Task<ProductionResponse> getLastBoxDetails()
@@ -2328,6 +2327,15 @@ namespace PackingApplication
 
                 // Block everything else
                 e.Handled = true;
+            }
+        }
+
+        private void palletQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control keys (backspace, delete, etc.)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Reject the input
             }
         }
 
