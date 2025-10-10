@@ -120,10 +120,10 @@ namespace PackingApplication
             tarewt.Text = "0";
             netwt.Text = "0";
             wtpercop.Text = "0";
-            boxpalletitemwt.Text = "0";
+            //boxpalletitemwt.Text = "0";
             boxpalletstock.Text = "0";
             copsitemwt.Text = "0";
-            copsstock.Text = "0";
+            //boxpalletitemwt.Text = "0";
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
@@ -179,10 +179,10 @@ namespace PackingApplication
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);         
+            //this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);         
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);           
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -280,7 +280,7 @@ namespace PackingApplication
             this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             //this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            //this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
@@ -1873,7 +1873,7 @@ namespace PackingApplication
                 this.netwt.Text = "";
                 this.wtpercop.Text = "";
                 this.boxpalletstock.Text = "";
-                this.copsstock.Text = "";
+                this.boxpalletitemwt.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("POY Packing added successfully!",
@@ -2545,7 +2545,7 @@ namespace PackingApplication
             boxpalletitemwt.Text = "0";
             boxpalletstock.Text = "0";
             copsitemwt.Text = "0";
-            copsstock.Text = "0";
+            boxpalletitemwt.Text = "0";
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";

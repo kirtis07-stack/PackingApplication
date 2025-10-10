@@ -75,39 +75,138 @@ namespace PackingApplication
             menuStrip.TabIndex = 0;
 
             // POY Menu
-            ToolStripMenuItem poy = new ToolStripMenuItem("POYPacking", null, POYPacking_Click)
+            ToolStripMenuItem poy = new ToolStripMenuItem("POYPacking")
             {
                 Font = FontManager.GetFont(9, FontStyle.Bold),
                 BackColor = Color.White,
             };
             poy.Click += (s, e) => HighlightMenuItem(s);
-            //ToolStripMenuItem poysubItem = new ToolStripMenuItem("POYPacking", null, POYPacking_Click)
-            //{
-            //    Font = FontManager.GetFont(8, FontStyle.Regular)
-            //};
-            //poy.DropDownItems.Add(poysubItem);
+            ToolStripMenuItem addpoy = new ToolStripMenuItem("Add POY Packing", null, POYPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem modifypoy = new ToolStripMenuItem("Modify POY Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem deletepoy = new ToolStripMenuItem("Delete POY Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem viewpoy = new ToolStripMenuItem("View POY Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem printpoy = new ToolStripMenuItem("Print POY Packing Slip")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            poy.DropDownItems.Add(addpoy);
+            poy.DropDownItems.Add(modifypoy);
+            poy.DropDownItems.Add(deletepoy);
+            poy.DropDownItems.Add(viewpoy);
+            poy.DropDownItems.Add(printpoy);
 
             // DTY Menu
-            ToolStripMenuItem dty = new ToolStripMenuItem("DTYPacking", null, DTYPacking_Click)
+            ToolStripMenuItem dty = new ToolStripMenuItem("DTYPacking")
             {
                 Font = FontManager.GetFont(9, FontStyle.Bold),
                 BackColor = Color.White
             };
             dty.Click += (s, e) => HighlightMenuItem(s);
+            ToolStripMenuItem adddty = new ToolStripMenuItem("Add DTY Packing", null, DTYPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem modifydty = new ToolStripMenuItem("Modify DTY Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem deletedty = new ToolStripMenuItem("Delete DTY Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem viewdty = new ToolStripMenuItem("View DTY Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem printdty = new ToolStripMenuItem("Print DTY Packing Slip")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            dty.DropDownItems.Add(adddty);
+            dty.DropDownItems.Add(modifydty);
+            dty.DropDownItems.Add(deletedty);
+            dty.DropDownItems.Add(viewdty);
+            dty.DropDownItems.Add(printdty);
+
             // BCF Menu
-            ToolStripMenuItem bcf = new ToolStripMenuItem("BCFPacking", null, BCFPacking_Click)
+            ToolStripMenuItem bcf = new ToolStripMenuItem("BCFPacking")
             {
                 Font = FontManager.GetFont(9, FontStyle.Bold),
                 BackColor = Color.White
             };
             bcf.Click += (s, e) => HighlightMenuItem(s);
+            ToolStripMenuItem addbcf = new ToolStripMenuItem("Add BCF Packing", null, BCFPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem modifybcf = new ToolStripMenuItem("Modify BCF Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem deletebcf = new ToolStripMenuItem("Delete BCF Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem viewbcf = new ToolStripMenuItem("View BCF Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem printbcf = new ToolStripMenuItem("Print BCF Packing Slip")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            bcf.DropDownItems.Add(addbcf);
+            bcf.DropDownItems.Add(modifybcf);
+            bcf.DropDownItems.Add(deletebcf);
+            bcf.DropDownItems.Add(viewbcf);
+            bcf.DropDownItems.Add(printbcf);
+
             // Chips Menu
-            ToolStripMenuItem chips = new ToolStripMenuItem("ChipsPacking", null, ChipsPacking_Click)
+            ToolStripMenuItem chips = new ToolStripMenuItem("ChipsPacking")
             {
                 Font = FontManager.GetFont(9, FontStyle.Bold),
                 BackColor = Color.White
             };
             chips.Click += (s, e) => HighlightMenuItem(s);
+
+            ToolStripMenuItem addchips = new ToolStripMenuItem("Add Chips Packing", null, ChipsPacking_Click)
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem modifychips = new ToolStripMenuItem("Modify Chips Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem deletechips = new ToolStripMenuItem("Delete Chips Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem viewchips = new ToolStripMenuItem("View Chips Packing")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            ToolStripMenuItem printchips = new ToolStripMenuItem("Print Chips Packing Slip")
+            {
+                Font = FontManager.GetFont(8, FontStyle.Regular)
+            };
+            chips.DropDownItems.Add(addchips);
+            chips.DropDownItems.Add(modifychips);
+            chips.DropDownItems.Add(deletechips);
+            chips.DropDownItems.Add(viewchips);
+            chips.DropDownItems.Add(printchips);
+
             // Add to menuStrip
             menuStrip.Items.Add(poy);
             menuStrip.Items.Add(dty);
@@ -115,7 +214,7 @@ namespace PackingApplication
             menuStrip.Items.Add(chips);     
 
             leftPanel.Controls.Add(menuStrip);
-            SetHandCursorForMenuItems(poy, dty, bcf, chips);
+            SetHandCursorForMenuItems(menuStrip.Items);
             // right panel for profile and logout
             FlowLayoutPanel rightPanel = new FlowLayoutPanel
             {
@@ -304,13 +403,38 @@ namespace PackingApplication
             }
         }
 
-        private void SetHandCursorForMenuItems(params ToolStripMenuItem[] menuItems)
+        private void SetHandCursorForMenuItems(ToolStripItemCollection menuItems)
         {
-            foreach (var item in menuItems)
+            foreach (ToolStripItem item in menuItems)
             {
-                item.MouseEnter += (s, e) => this.Cursor = Cursors.Hand;
-                item.MouseLeave += (s, e) => this.Cursor = Cursors.Default;
+                //item.MouseEnter += (s, e) => this.Cursor = Cursors.Hand;
+                //item.MouseLeave += (s, e) => this.Cursor = Cursors.Default;
+                item.MouseMove += ToolStripMenuItem_MouseMove;
+                item.MouseLeave += ToolStripMenuItem_MouseLeave;
+
+                // If this item has sub-items, apply recursively
+                if (item is ToolStripMenuItem mi)
+                {
+                    mi.DropDownOpened += (s, e) =>
+                    {
+                        foreach (ToolStripItem sub in mi.DropDownItems)
+                        {
+                            sub.MouseMove += ToolStripMenuItem_MouseMove;
+                            sub.MouseLeave += ToolStripMenuItem_MouseLeave;
+                        }
+                    };
+                }
             }
+        }
+
+        private void ToolStripMenuItem_MouseMove(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void ToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Default;
         }
 
         private void Logout_Click(object sender, EventArgs e)
@@ -354,7 +478,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new POYPackingList());
+                dashboard.LoadFormInContent(new POYPackingForm(0));
             }
         }
 
@@ -363,7 +487,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new DTYPackingList());
+                dashboard.LoadFormInContent(new DTYPackingForm(0));
             }
         }
 
@@ -372,7 +496,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new BCFPackingList());
+                dashboard.LoadFormInContent(new BCFPackingForm(0));
             }
         }
 
@@ -381,7 +505,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ChipsPackingList());
+                dashboard.LoadFormInContent(new ChipsPackingForm(0));
             }
         }
 
