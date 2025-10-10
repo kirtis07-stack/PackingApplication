@@ -866,11 +866,11 @@ namespace PackingApplication
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
                     }
 
-                    var saleItemResponse = await getSaleOrderItemById(selectedSaleOrderId);
+                    //var saleItemResponse = await getSaleOrderItemById(selectedSaleOrderId);
 
                     //foreach (var soitem in saleResponse.saleOrderItemsResponses)
                     //{
-                        totalSOQty += selectedSaleOrder.Quantity;
+                        totalSOQty = selectedSaleOrder.Quantity;
                     //}
 
                     grdsoqty.Text = totalSOQty.ToString("F2");
@@ -925,8 +925,8 @@ namespace PackingApplication
         {
             if (QualityList.SelectedValue != null)
             {
-                totalProdQty = 0;
                 prodnbalqty.Text = "";
+                balanceQty = 0;
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
@@ -956,6 +956,7 @@ namespace PackingApplication
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
                 qualityqty.DataSource = gridList;
 
+                totalProdQty = 0;
                 foreach (var proditem in gridList)
                 {
                     totalProdQty += proditem.GrossWt;
