@@ -123,7 +123,7 @@ namespace PackingApplication
             //boxpalletitemwt.Text = "0";
             boxpalletstock.Text = "0";
             copsitemwt.Text = "0";
-            //boxpalletitemwt.Text = "0";
+            boxpalletitemwt.Text = "0";
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
@@ -179,7 +179,7 @@ namespace PackingApplication
             this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            //this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             //this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);         
@@ -2549,6 +2549,11 @@ namespace PackingApplication
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
+        }
+
+        private void panel44_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
