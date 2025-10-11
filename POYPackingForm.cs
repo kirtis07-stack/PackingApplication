@@ -708,7 +708,7 @@ namespace PackingApplication
                     selectLotId = selectedLotId;
 
                     lotResponse = await Task.Run(() => _productionService.getLotById(selectedLotId));
-                    itemname.Text = lotResponse.ItemName;
+                    itemname.Text = "DTY 600/576/1 SZ POLY DD CIR SD NA NA MN"; //lotResponse.ItemName;
                     shadename.Text = lotResponse.ShadeName;
                     shadecd.Text = lotResponse.ShadeCode;
                     deniervalue.Text = lotResponse.Denier.ToString();
@@ -1100,6 +1100,7 @@ namespace PackingApplication
             if (CopsItemList.SelectedIndex <= 0)
             {
                 copsitemwt.Text = "0";
+                spoolwt.Text = "0";
                 return;
             }
 
@@ -1115,6 +1116,7 @@ namespace PackingApplication
                     if (itemResponse != null)
                     {
                         copsitemwt.Text = itemResponse.Weight.ToString();
+                        spoolwt.Text = itemResponse.Weight.ToString();
                         SpoolNo_TextChanged(sender, e);
                         GrossWeight_TextChanged(sender, e);
                     }
