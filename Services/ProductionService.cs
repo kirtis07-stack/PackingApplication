@@ -43,11 +43,19 @@ namespace PackingApplication.Services
             return getLot;
         }
 
-        public List<LotsProductionDetailsResponse> getWinderTypeList(int lotId)
+        public List<WindingTypeResponse> getWinderTypeList(int lotId)
         {
+            List<WindingTypeResponse> getWindingList = new List<WindingTypeResponse>();
             var getWinderTypeResponse = method.GetCallApi(productionURL + "LotsProductionDetails/GetAllByLotsId?lotsId=" + lotId);
             var getWinderType = JsonConvert.DeserializeObject<List<LotsProductionDetailsResponse>>(getWinderTypeResponse);
-            return getWinderType;
+            foreach (var item in getWinderType)
+            {
+                WindingTypeResponse type = new WindingTypeResponse();
+                type.WindingTypeId = item.WindingTypeId;
+                type.WindingTypeName = item.WindingTypeName;
+                getWindingList.Add(type);
+            }
+            return getWindingList;
         }
     }
 }

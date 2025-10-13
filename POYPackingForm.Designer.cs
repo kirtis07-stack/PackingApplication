@@ -35,9 +35,9 @@ namespace PackingApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.packingdate = new System.Windows.Forms.Label();
@@ -406,12 +406,13 @@ namespace PackingApplication
             // updenier
             // 
             this.updenier.AutoSize = true;
+            this.updenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.updenier.Location = new System.Drawing.Point(120, 5);
             this.updenier.Name = "updenier";
-            this.updenier.Size = new System.Drawing.Size(23, 17);
+            this.updenier.Size = new System.Drawing.Size(0, 16);
             this.updenier.TabIndex = 6;
-            this.updenier.Text = "550";
             this.updenier.UseCompatibleTextRendering = true;
+            this.updenier.TextAlign = ContentAlignment.MiddleRight;
             // 
             // windingtype
             // 
@@ -650,6 +651,7 @@ namespace PackingApplication
             this.prcompany.TabIndex = 1;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
+            this.prcompany.CheckedChanged += new System.EventHandler(this.prcompany_CheckedChanged);
             this.prcompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prowner
@@ -662,11 +664,14 @@ namespace PackingApplication
             this.prowner.TabIndex = 2;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
+            this.prowner.CheckedChanged += new System.EventHandler(this.prowner_CheckedChanged);
             this.prowner.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // prdate
             // 
             this.prdate.AutoSize = true;
+            this.prdate.Checked = true;
+            this.prdate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prdate.Location = new System.Drawing.Point(1, 1);
             this.prdate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prdate.Name = "prdate";
@@ -680,6 +685,8 @@ namespace PackingApplication
             // pruser
             // 
             this.pruser.AutoSize = true;
+            this.pruser.Checked = true;
+            this.pruser.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pruser.Location = new System.Drawing.Point(2, 1);
             this.pruser.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pruser.Name = "pruser";
@@ -693,6 +700,8 @@ namespace PackingApplication
             // prhindi
             // 
             this.prhindi.AutoSize = true;
+            this.prhindi.Checked = true;
+            this.prhindi.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prhindi.Location = new System.Drawing.Point(1, 1);
             this.prhindi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prhindi.Name = "prhindi";
@@ -706,6 +715,8 @@ namespace PackingApplication
             // prwtps
             // 
             this.prwtps.AutoSize = true;
+            this.prwtps.Checked = true;
+            this.prwtps.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prwtps.Location = new System.Drawing.Point(1, 1);
             this.prwtps.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prwtps.Name = "prwtps";
@@ -719,6 +730,8 @@ namespace PackingApplication
             // prqrcode
             // 
             this.prqrcode.AutoSize = true;
+            this.prqrcode.Checked = true;
+            this.prqrcode.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prqrcode.Location = new System.Drawing.Point(1, 1);
             this.prqrcode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prqrcode.Name = "prqrcode";
@@ -751,6 +764,7 @@ namespace PackingApplication
             this.copyno.Size = new System.Drawing.Size(17, 20);
             this.copyno.TabIndex = 3;
             this.copyno.TabStop = false;
+            this.copyno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
             // 
             // label5
@@ -775,6 +789,7 @@ namespace PackingApplication
             this.netwt.Size = new System.Drawing.Size(18, 20);
             this.netwt.TabIndex = 9;
             this.netwt.TabStop = false;
+            this.netwt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.netwt.TextChanged += new System.EventHandler(this.NetWeight_TextChanged);
             // 
             // label4
@@ -806,6 +821,7 @@ namespace PackingApplication
             this.grosswtno.Name = "grosswtno";
             this.grosswtno.Size = new System.Drawing.Size(31, 20);
             this.grosswtno.TabIndex = 4;
+            this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -829,6 +845,7 @@ namespace PackingApplication
             this.palletwtno.Name = "palletwtno";
             this.palletwtno.Size = new System.Drawing.Size(20, 20);
             this.palletwtno.TabIndex = 7;
+            this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
             // 
             // palletwt
@@ -850,6 +867,7 @@ namespace PackingApplication
             this.spoolno.Name = "spoolno";
             this.spoolno.Size = new System.Drawing.Size(17, 20);
             this.spoolno.TabIndex = 5;
+            this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -991,10 +1009,12 @@ namespace PackingApplication
             // spoolwt
             // 
             this.spoolwt.AutoSize = true;
+            this.spoolwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.spoolwt.Location = new System.Drawing.Point(45, 17);
             this.spoolwt.Name = "spoolwt";
             this.spoolwt.Size = new System.Drawing.Size(0, 13);
             this.spoolwt.TabIndex = 112;
+            this.spoolwt.TextAlign = ContentAlignment.MiddleRight;
             // 
             // req7
             // 
@@ -1170,10 +1190,12 @@ namespace PackingApplication
             // tarewt
             // 
             this.tarewt.AutoSize = true;
+            this.tarewt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.tarewt.Location = new System.Drawing.Point(45, 5);
             this.tarewt.Name = "tarewt";
             this.tarewt.Size = new System.Drawing.Size(0, 13);
             this.tarewt.TabIndex = 81;
+            this.tarewt.TextAlign = ContentAlignment.MiddleRight;
             // 
             // panel36
             // 
@@ -1189,10 +1211,12 @@ namespace PackingApplication
             // wtpercop
             // 
             this.wtpercop.AutoSize = true;
+            this.wtpercop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.wtpercop.Location = new System.Drawing.Point(55, 5);
             this.wtpercop.Name = "wtpercop";
             this.wtpercop.Size = new System.Drawing.Size(0, 13);
             this.wtpercop.TabIndex = 85;
+            this.wtpercop.TextAlign = ContentAlignment.MiddleRight;
             // 
             // panel45
             // 
@@ -1258,12 +1282,12 @@ namespace PackingApplication
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.rowMaterialBox, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 291);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(1, 286);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(498, 106);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(498, 108);
             this.tableLayoutPanel3.TabIndex = 15;
             // 
             // rowMaterialBox
@@ -1276,7 +1300,7 @@ namespace PackingApplication
             this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterialBox.Name = "rowMaterialBox";
             this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterialBox.Size = new System.Drawing.Size(494, 99);
+            this.rowMaterialBox.Size = new System.Drawing.Size(494, 97);
             this.rowMaterialBox.TabIndex = 10;
             this.rowMaterialBox.TabStop = false;
             this.rowMaterialBox.Text = "Key Raw Material Stock Status";
@@ -1288,7 +1312,7 @@ namespace PackingApplication
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(7, 19);
             this.rowMaterialPanel.Name = "rowMaterialPanel";
-            this.rowMaterialPanel.Size = new System.Drawing.Size(489, 76);
+            this.rowMaterialPanel.Size = new System.Drawing.Size(460, 67);
             this.rowMaterialPanel.TabIndex = 115;
             // 
             // rowMaterial
@@ -1302,14 +1326,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.White;
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1321,7 +1345,7 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rowMaterial.Size = new System.Drawing.Size(485, 74);
+            this.rowMaterial.Size = new System.Drawing.Size(478, 69);
             this.rowMaterial.TabIndex = 2;
             this.rowMaterial.TabStop = false;
             // 
@@ -1347,7 +1371,7 @@ namespace PackingApplication
             this.tblpnl3.Controls.Add(this.palletdetailslayout);
             this.tblpnl3.Location = new System.Drawing.Point(3, 3);
             this.tblpnl3.Name = "tblpnl3";
-            this.tblpnl3.Size = new System.Drawing.Size(398, 385);
+            this.tblpnl3.Size = new System.Drawing.Size(398, 390);
             this.tblpnl3.TabIndex = 0;
             // 
             // wgroupbox
@@ -1374,14 +1398,14 @@ namespace PackingApplication
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.EnableHeadersVisualStyles = false;
@@ -1419,6 +1443,7 @@ namespace PackingApplication
             // prodnbalqty
             // 
             this.prodnbalqty.AutoSize = true;
+            this.prodnbalqty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.prodnbalqty.Location = new System.Drawing.Point(109, 80);
             this.prodnbalqty.Name = "prodnbalqty";
             this.prodnbalqty.Size = new System.Drawing.Size(0, 13);
@@ -1427,6 +1452,7 @@ namespace PackingApplication
             // grdsoqty
             // 
             this.grdsoqty.AutoSize = true;
+            this.grdsoqty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.grdsoqty.Location = new System.Drawing.Point(95, 13);
             this.grdsoqty.Name = "grdsoqty";
             this.grdsoqty.Size = new System.Drawing.Size(0, 13);
@@ -1442,14 +1468,14 @@ namespace PackingApplication
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -1504,7 +1530,7 @@ namespace PackingApplication
             this.palletdetailslayout.RowCount = 2;
             this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.palletdetailslayout.Size = new System.Drawing.Size(396, 205);
+            this.palletdetailslayout.Size = new System.Drawing.Size(396, 210);
             this.palletdetailslayout.TabIndex = 9;
             this.palletdetailslayout.TabStop = true;
             this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
@@ -1534,7 +1560,7 @@ namespace PackingApplication
             this.palletdetailspanel.Location = new System.Drawing.Point(4, 25);
             this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletdetailspanel.Name = "palletdetailspanel";
-            this.palletdetailspanel.Size = new System.Drawing.Size(388, 172);
+            this.palletdetailspanel.Size = new System.Drawing.Size(388, 180);
             this.palletdetailspanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -1550,8 +1576,8 @@ namespace PackingApplication
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 287F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(502, 287);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 284F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(502, 284);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel44
@@ -1563,9 +1589,8 @@ namespace PackingApplication
             this.panel44.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel44.Location = new System.Drawing.Point(3, 3);
             this.panel44.Name = "panel44";
-            this.panel44.Size = new System.Drawing.Size(245, 281);
+            this.panel44.Size = new System.Drawing.Size(245, 278);
             this.panel44.TabIndex = 47;
-            this.panel44.Paint += new System.Windows.Forms.PaintEventHandler(this.panel44_Paint);
             // 
             // packagingboxlayout
             // 
@@ -1768,12 +1793,13 @@ namespace PackingApplication
             // frdenier
             // 
             this.frdenier.AutoSize = true;
+            this.frdenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.frdenier.Location = new System.Drawing.Point(50, 5);
             this.frdenier.Name = "frdenier";
-            this.frdenier.Size = new System.Drawing.Size(23, 17);
+            this.frdenier.Size = new System.Drawing.Size(0, 16);
             this.frdenier.TabIndex = 5;
-            this.frdenier.Text = "250";
             this.frdenier.UseCompatibleTextRendering = true;
+            this.frdenier.TextAlign = ContentAlignment.MiddleRight;
             // 
             // uptodenier
             // 
@@ -1840,16 +1866,18 @@ namespace PackingApplication
             this.copsstock.Name = "copsstock";
             this.copsstock.Size = new System.Drawing.Size(4, 20);
             this.copsstock.TabIndex = 12;
+            this.copsstock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.copsstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // copsitemwt
             // 
             this.copsitemwt.AutoSize = true;
+            this.copsitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.copsitemwt.Location = new System.Drawing.Point(22, 5);
             this.copsitemwt.Name = "copsitemwt";
-            this.copsitemwt.Size = new System.Drawing.Size(25, 13);
+            this.copsitemwt.Size = new System.Drawing.Size(0, 13);
             this.copsitemwt.TabIndex = 5;
-            this.copsitemwt.Text = "500";
+            this.copsitemwt.TextAlign = ContentAlignment.MiddleRight;
             // 
             // panel25
             // 
@@ -1896,16 +1924,18 @@ namespace PackingApplication
             this.boxpalletstock.Name = "boxpalletstock";
             this.boxpalletstock.Size = new System.Drawing.Size(4, 20);
             this.boxpalletstock.TabIndex = 9;
+            this.boxpalletstock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.boxpalletstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // boxpalletitemwt
             // 
             this.boxpalletitemwt.AutoSize = true;
+            this.boxpalletitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.boxpalletitemwt.Location = new System.Drawing.Point(19, 5);
             this.boxpalletitemwt.Name = "boxpalletitemwt";
-            this.boxpalletitemwt.Size = new System.Drawing.Size(25, 13);
+            this.boxpalletitemwt.Size = new System.Drawing.Size(0, 13);
             this.boxpalletitemwt.TabIndex = 5;
-            this.boxpalletitemwt.Text = "200";
+            this.boxpalletitemwt.TextAlign = ContentAlignment.MiddleRight;
             // 
             // machineboxlayout
             // 
@@ -2042,6 +2072,7 @@ namespace PackingApplication
             // lastbox
             // 
             this.lastbox.AutoSize = true;
+            this.lastbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.lastbox.Location = new System.Drawing.Point(50, 4);
             this.lastbox.Name = "lastbox";
             this.lastbox.Size = new System.Drawing.Size(0, 13);
@@ -2227,6 +2258,7 @@ namespace PackingApplication
             this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoEllipsis = true;
+            this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.itemname.Location = new System.Drawing.Point(28, 0);
             this.itemname.MaximumSize = new System.Drawing.Size(250, 30);
             this.itemname.Name = "itemname";
@@ -2260,6 +2292,7 @@ namespace PackingApplication
             // shadecd
             // 
             this.shadecd.AutoSize = true;
+            this.shadecd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.shadecd.Location = new System.Drawing.Point(38, 14);
             this.shadecd.Name = "shadecd";
             this.shadecd.Size = new System.Drawing.Size(0, 13);
@@ -2268,6 +2301,7 @@ namespace PackingApplication
             // shadename
             // 
             this.shadename.AutoSize = true;
+            this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.shadename.Location = new System.Drawing.Point(38, 2);
             this.shadename.Name = "shadename";
             this.shadename.Size = new System.Drawing.Size(0, 13);
@@ -2326,6 +2360,7 @@ namespace PackingApplication
             // deniervalue
             // 
             this.deniervalue.AutoSize = true;
+            this.deniervalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.deniervalue.Location = new System.Drawing.Point(38, 1);
             this.deniervalue.Name = "deniervalue";
             this.deniervalue.Size = new System.Drawing.Size(0, 13);
@@ -2382,7 +2417,7 @@ namespace PackingApplication
             this.tblpanl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblpanl1.Location = new System.Drawing.Point(254, 3);
             this.tblpanl1.Name = "tblpanl1";
-            this.tblpanl1.Size = new System.Drawing.Size(245, 281);
+            this.tblpanl1.Size = new System.Drawing.Size(245, 278);
             this.tblpanl1.TabIndex = 4;
             // 
             // weighboxlayout
@@ -2653,7 +2688,7 @@ namespace PackingApplication
             // 
             this.netwttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.netwttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.netwttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.netwttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.netwttxtbox.Location = new System.Drawing.Point(7, 23);
             this.netwttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.netwttxtbox.Name = "netwttxtbox";
@@ -2691,6 +2726,7 @@ namespace PackingApplication
             // 
             this.grosswttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.grosswttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grosswttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.grosswttxtbox.Location = new System.Drawing.Point(7, 23);
             this.grosswttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.grosswttxtbox.Name = "grosswttxtbox";
@@ -2728,6 +2764,7 @@ namespace PackingApplication
             // 
             this.tarewghttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.tarewghttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tarewghttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.tarewghttxtbox.Location = new System.Drawing.Point(7, 23);
             this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tarewghttxtbox.Name = "tarewghttxtbox";
@@ -2776,6 +2813,7 @@ namespace PackingApplication
             // 
             this.copstxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.copstxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.copstxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.copstxtbox.Location = new System.Drawing.Point(7, 23);
             this.copstxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copstxtbox.Name = "copstxtbox";

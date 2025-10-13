@@ -43,18 +43,11 @@ namespace PackingApplication.Services
             return getWindingType;
         }
 
-        public List<ItemResponse> getCopeItemList()
+        public List<ItemResponse> getItemList(int categoryId)
         {
-            var getCopeItemResponse = method.GetCallApi(masterURL + "Items/GetAll?IsDropDown=" + false);
-            var getCopeItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getCopeItemResponse);
-            return getCopeItem;
-        }
-
-        public List<ItemResponse> getBoxItemList()
-        {
-            var getBoxItemResponse = method.GetCallApi(masterURL + "Items/GetAll?IsDropDown=" + false);
-            var getBox = JsonConvert.DeserializeObject<List<ItemResponse>>(getBoxItemResponse);
-            return getBox;
+            var getItemResponse = method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
+            var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse);
+            return getItem;
         }
 
         public List<PrefixResponse> getPrefixList()         //passed hardcoded transactionTypeId for now

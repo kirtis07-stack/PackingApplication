@@ -14,7 +14,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int BPId { get; set; }
         public string BusinessPartner { get; set; }
         public string BPPrintName { get; set; }
-        public string LotNo { get; set; }
+        public string LotNoFrmt { get; set; }
         public int PrefixId { get; set; }
         public string Prefix { get; set; }
         public int FinYearId { get; set; }

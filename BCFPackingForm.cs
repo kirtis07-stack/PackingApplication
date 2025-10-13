@@ -41,6 +41,9 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
+        int itemBoxCategoryId = 2;
+        int itemCopsCategoryId = 3;
+        int itemPalletCategoryId = 5;
         public BCFPackingForm(long productionId)
         {
             InitializeComponent();
@@ -109,8 +112,8 @@ namespace PackingApplication
             SaleOrderList.ValueMember = "SaleOrderItemsId";
             SaleOrderList.SelectedIndex = 0;
 
-            var windingtypeList = new List<LotsProductionDetailsResponse>();
-            windingtypeList.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+            var windingtypeList = new List<WindingTypeResponse>();
+            windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
             WindingTypeList.DataSource = windingtypeList;
             WindingTypeList.DisplayMember = "WindingTypeName";
             WindingTypeList.ValueMember = "WindingTypeId";
@@ -260,9 +263,9 @@ namespace PackingApplication
             var lotTask = getAllLotList();
             var prefixTask = getPrefixList();
             var packsizeTask = getPackSizeList();
-            var copsitemTask = getCopeItemList();
-            var boxitemTask = getBoxItemList();
-            var palletitemTask = getPalletItemList();
+            var copsitemTask = getCopeItemList(itemCopsCategoryId);
+            var boxitemTask = getBoxItemList(itemBoxCategoryId);
+            var palletitemTask = getPalletItemList(itemPalletCategoryId);
 
             // 2. Wait for all to complete
             await Task.WhenAll(machineTask, lotTask, prefixTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask);
@@ -287,9 +290,9 @@ namespace PackingApplication
             //LineNoList.DropDownStyle = ComboBoxStyle.DropDown;
 
             //lot
-            lotList.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+            lotList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
             MergeNoList.DataSource = lotList;
-            MergeNoList.DisplayMember = "LotNo";
+            MergeNoList.DisplayMember = "LotNoFrmt";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
             MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -432,7 +435,7 @@ namespace PackingApplication
 
             foreach (var palletDetail in palletDetailsResponse)
             {
-                var palletItemList = Task.Run(() => getPalletItemList()).Result;
+                var palletItemList = Task.Run(() => getPalletItemList(itemPalletCategoryId)).Result;
                 var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
 
                 if (selectedItem == null)
@@ -593,9 +596,9 @@ namespace PackingApplication
                     productionRequest.DepartmentId = department.DepartmentId;
 
                     var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
-                    getLots.Insert(0, new LotsResponse { LotId = 0, LotNo = "Select MergeNo" });
+                    getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                     MergeNoList.DataSource = getLots;
-                    MergeNoList.DisplayMember = "LotNo";
+                    MergeNoList.DisplayMember = "LotNoFrmt";
                     MergeNoList.ValueMember = "LotId";
                     MergeNoList.SelectedIndex = 0;
                     MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -692,8 +695,15 @@ namespace PackingApplication
                         }
                     }
 
-                    var getWindingType = await Task.Run(() => _productionService.getWinderTypeList(selectedLotId));
-                    getWindingType.Insert(0, new LotsProductionDetailsResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                    var getWindingType = new List<WindingTypeResponse>();
+                    getWindingType = await Task.Run(() => _productionService.getWinderTypeList(selectedLotId));
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                    if (getWindingType.Count <= 1)
+                    {
+                        getWindingType = await Task.Run(() => _masterService.getWindingTypeList());
+                        getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+
+                    }
                     WindingTypeList.DataSource = getWindingType;
                     WindingTypeList.DisplayMember = "WindingTypeName";
                     WindingTypeList.ValueMember = "WindingTypeId";
@@ -821,7 +831,7 @@ namespace PackingApplication
             if (WindingTypeList.SelectedValue != null)
             {
                 windingerror.Visible = false;
-                LotsProductionDetailsResponse selectedWindingType = (LotsProductionDetailsResponse)WindingTypeList.SelectedItem;
+                WindingTypeResponse selectedWindingType = (WindingTypeResponse)WindingTypeList.SelectedItem;
                 int selectedWindingTypeId = selectedWindingType.WindingTypeId;
 
                 if (selectedWindingTypeId > 0)
@@ -1150,19 +1160,19 @@ namespace PackingApplication
             return getWeighingScale;
         }
 
-        private Task<List<ItemResponse>> getCopeItemList()
+        private Task<List<ItemResponse>> getCopeItemList(int categoryId)
         {
-            return Task.Run(() => _masterService.getCopeItemList());
+            return Task.Run(() => _masterService.getItemList(categoryId));
         }
 
-        private Task<List<ItemResponse>> getBoxItemList()
+        private Task<List<ItemResponse>> getBoxItemList(int categoryId)
         {
-            return Task.Run(() => _masterService.getBoxItemList());
+            return Task.Run(() => _masterService.getItemList(categoryId));
         }
 
-        private Task<List<ItemResponse>> getPalletItemList()
+        private Task<List<ItemResponse>> getPalletItemList(int categoryId)
         {
-            return Task.Run(() => _masterService.getBoxItemList());
+            return Task.Run(() => _masterService.getItemList(categoryId));
         }
 
         private Task<List<PrefixResponse>> getPrefixList()
