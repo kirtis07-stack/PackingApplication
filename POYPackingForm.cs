@@ -73,6 +73,7 @@ namespace PackingApplication
         int itemBoxCategoryId = 2;
         int itemCopsCategoryId = 3;
         int itemPalletCategoryId = 5;
+        List<MachineResponse> o_machineList = new List<MachineResponse>();
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -237,6 +238,7 @@ namespace PackingApplication
             this.addqty.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.flowLayoutPanel1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.submit.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.saveprint.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.wgroupbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -287,6 +289,10 @@ namespace PackingApplication
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.bppartyname.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private async void POYPackingForm_Shown(object sender, EventArgs e)
@@ -313,6 +319,7 @@ namespace PackingApplication
                 var boxitemList = boxitemTask.Result;
                 var palletitemList = palletitemTask.Result;
 
+                o_machineList = machineList;
                 //machine
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 LineNoList.DataSource = machineList;
@@ -321,8 +328,6 @@ namespace PackingApplication
                 LineNoList.SelectedIndex = 0;
                 LineNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                //LineNoList.DropDownStyle = ComboBoxStyle.DropDown;
-
 
                 //lot
                 lotList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -711,7 +716,7 @@ namespace PackingApplication
                     selectLotId = selectedLotId;
 
                     lotResponse = await Task.Run(() => _productionService.getLotById(selectedLotId));
-                    itemname.Text = "DTY 600/576/1 SZ POLY DD CIR SD NA NA MN"; //lotResponse.ItemName;
+                    itemname.Text = lotResponse.ItemName;
                     shadename.Text = lotResponse.ShadeName;
                     shadecd.Text = lotResponse.ShadeCode;
                     deniervalue.Text = lotResponse.Denier.ToString();
@@ -772,6 +777,16 @@ namespace PackingApplication
                     SaleOrderList.SelectedIndex = 0;
                     SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    if (SaleOrderList.Items.Count == 2)
+                    {
+                        SaleOrderList.SelectedIndex = 1;   // Select the single record
+                        SaleOrderList.Enabled = false;     // Disable user selection
+                    }
+                    else
+                    {
+                        SaleOrderList.Enabled = true;      // Allow user selection
+                        SaleOrderList.SelectedIndex = 0;  // Optional: no default selection
+                    }
 
                     lotsDetailsList = new List<LotsDetailsResponse>();
                     if(lotResponse.LotsDetailsResponses != null)
@@ -938,6 +953,8 @@ namespace PackingApplication
                     if (saleOrderItemResponse != null)
                     {
                         productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
+                        partyn.Text = saleOrderItemResponse.ItemDescription;
+                        partyshade.Text = saleOrderItemResponse.ShadeNameDescription + "-" + saleOrderItemResponse.ShadeCodeDescription;
                     }
 
                     //var saleItemResponse = await getSaleOrderItemById(selectedSaleOrderId);
@@ -2590,5 +2607,76 @@ namespace PackingApplication
                 prcompany.Enabled = true;     
             }
         }
+
+        private void txtNumeric_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
+
+            // Allow control keys (Backspace, Delete, etc.)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && txt.Text.Contains('.'))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Allow only digits and one decimal point
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Check for 3 digits after decimal
+            if (txt.Text.Contains('.'))
+            {
+                int decimalIndex = txt.Text.IndexOf('.');
+                string afterDecimal = txt.Text.Substring(decimalIndex + 1);
+                if (afterDecimal.Length >= 3 && txt.SelectionStart > decimalIndex)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+
+                Control current = (Control)sender;
+
+                // If current is the last field, move focus to the button
+                if (current == grosswtno) // replace with your last field
+                {
+                    saveprint.Focus(); // replace with your button name
+                }
+                else
+                {
+                    // Move to next control in tab order
+                    this.SelectNextControl(current, true, true, true, true);
+                }
+            }
+        }
+
+        //private void LineNo_TextUpdate(object sender, EventArgs e)
+        //{
+        //    string typedText = LineNoList.Text.ToLower();
+
+        //    var filtered = o_machineList.Where(m => !string.IsNullOrEmpty(m.CName) && m.CName.Contains(typedText.ToUpper())).ToList();
+
+        //    if (filtered.Count == 0) return;
+
+        //    LineNoList.DataSource = null; // Reset binding
+        //    LineNoList.DataSource = filtered;
+        //    LineNoList.DisplayMember = "MachineName";
+        //    LineNoList.ValueMember = "MachineId";
+        //    LineNoList.SelectionStart = typedText.Length;
+        //    LineNoList.DroppedDown = true;
+        //}
     }
 }
