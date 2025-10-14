@@ -33,6 +33,10 @@ namespace PackingApplication.Services
         {
             var getSaleOrderResponse = method.GetCallApi(productionURL + "LotSaleOrderDetails/GetAllByLotsId?lotsId=" + lotId);
             var getSaleOrder = JsonConvert.DeserializeObject<List<LotSaleOrderDetailsResponse>>(getSaleOrderResponse);
+            foreach (var item in getSaleOrder)
+            {
+                item.ItemName = item.SaleOrderNumber + "--" + item.ItemName + "--" + item.ShadeName + "--" + item.Quantity;
+            }
             return getSaleOrder;
         }
 

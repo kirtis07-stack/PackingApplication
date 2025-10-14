@@ -131,6 +131,8 @@ namespace PackingApplication
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
+            partyn.Text = "";
+            partyshade.Text = "";
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
         }
@@ -683,6 +685,8 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                partyn.Text = "";
+                partyshade.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
@@ -2580,6 +2584,8 @@ namespace PackingApplication
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
+            partyn.Text = "";
+            partyshade.Text = "";
         }
 
         private void prcompany_CheckedChanged(object sender, EventArgs e)
