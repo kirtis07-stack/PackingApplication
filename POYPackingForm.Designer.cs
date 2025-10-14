@@ -116,6 +116,10 @@ namespace PackingApplication
             this.copynoerror = new System.Windows.Forms.Label();
             this.submit = new System.Windows.Forms.Button();
             this.rightpanel = new System.Windows.Forms.Panel();
+            this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.cancelbtn = new System.Windows.Forms.Button();
+            this.saveprint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
             this.rowMaterialPanel = new System.Windows.Forms.Panel();
@@ -186,7 +190,6 @@ namespace PackingApplication
             this.boxnoerror = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.department = new System.Windows.Forms.Label();
-            this.departmentname = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.req3 = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
@@ -242,8 +245,6 @@ namespace PackingApplication
             this.copstxtbox = new System.Windows.Forms.TextBox();
             this.lastboxheader = new System.Windows.Forms.Panel();
             this.Lastboxlbl = new System.Windows.Forms.Label();
-            this.saveprint = new System.Windows.Forms.Button();
-            this.cancelbtn = new System.Windows.Forms.Button();
             this.windingtypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.windingbalqtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -254,8 +255,8 @@ namespace PackingApplication
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
-            this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
-            this.panel21 = new System.Windows.Forms.Panel();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.DeptList = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -268,6 +269,8 @@ namespace PackingApplication
             this.panel36.SuspendLayout();
             this.panel45.SuspendLayout();
             this.rightpanel.SuspendLayout();
+            this.buttontablelayout.SuspendLayout();
+            this.panel21.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
             this.rowMaterialPanel.SuspendLayout();
@@ -336,8 +339,7 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.buttontablelayout.SuspendLayout();
-            this.panel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1288,6 +1290,65 @@ namespace PackingApplication
             this.rightpanel.Size = new System.Drawing.Size(909, 487);
             this.rightpanel.TabIndex = 89;
             // 
+            // buttontablelayout
+            // 
+            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttontablelayout.ColumnCount = 3;
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.Controls.Add(this.panel21, 1, 0);
+            this.buttontablelayout.Location = new System.Drawing.Point(2, 399);
+            this.buttontablelayout.Name = "buttontablelayout";
+            this.buttontablelayout.RowCount = 1;
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.buttontablelayout.Size = new System.Drawing.Size(907, 31);
+            this.buttontablelayout.TabIndex = 123;
+            // 
+            // panel21
+            // 
+            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel21.Controls.Add(this.submit);
+            this.panel21.Controls.Add(this.cancelbtn);
+            this.panel21.Controls.Add(this.saveprint);
+            this.panel21.Location = new System.Drawing.Point(305, 3);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(296, 25);
+            this.panel21.TabIndex = 0;
+            // 
+            // cancelbtn
+            // 
+            this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.cancelbtn.Location = new System.Drawing.Point(106, 1);
+            this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(81, 24);
+            this.cancelbtn.TabIndex = 121;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = false;
+            this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // saveprint
+            // 
+            this.saveprint.BackColor = System.Drawing.SystemColors.Highlight;
+            this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.saveprint.Location = new System.Drawing.Point(0, 1);
+            this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.saveprint.Name = "saveprint";
+            this.saveprint.Size = new System.Drawing.Size(81, 24);
+            this.saveprint.TabIndex = 122;
+            this.saveprint.Text = "Save && Print";
+            this.saveprint.UseVisualStyleBackColor = false;
+            this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1703,10 +1764,11 @@ namespace PackingApplication
             this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyshade.AutoEllipsis = true;
-            this.partyshade.Location = new System.Drawing.Point(75, 0);
+            this.partyshade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.partyshade.Location = new System.Drawing.Point(43, 0);
             this.partyshade.MaximumSize = new System.Drawing.Size(250, 30);
             this.partyshade.Name = "partyshade";
-            this.partyshade.Size = new System.Drawing.Size(62, 23);
+            this.partyshade.Size = new System.Drawing.Size(94, 30);
             this.partyshade.TabIndex = 123;
             this.partyshade.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1715,9 +1777,9 @@ namespace PackingApplication
             this.partyshd.AutoSize = true;
             this.partyshd.Location = new System.Drawing.Point(0, 0);
             this.partyshd.Name = "partyshd";
-            this.partyshd.Size = new System.Drawing.Size(68, 13);
+            this.partyshd.Size = new System.Drawing.Size(41, 26);
             this.partyshd.TabIndex = 123;
-            this.partyshd.Text = "Party Shade:";
+            this.partyshd.Text = "Party\nShade:";
             // 
             // panel16
             // 
@@ -2000,10 +2062,11 @@ namespace PackingApplication
             this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyn.AutoEllipsis = true;
-            this.partyn.Location = new System.Drawing.Point(65, 0);
+            this.partyn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.partyn.Location = new System.Drawing.Point(35, 0);
             this.partyn.MaximumSize = new System.Drawing.Size(250, 30);
             this.partyn.Name = "partyn";
-            this.partyn.Size = new System.Drawing.Size(34, 23);
+            this.partyn.Size = new System.Drawing.Size(64, 30);
             this.partyn.TabIndex = 123;
             this.partyn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -2012,9 +2075,9 @@ namespace PackingApplication
             this.bppartyname.AutoSize = true;
             this.bppartyname.Location = new System.Drawing.Point(-3, 0);
             this.bppartyname.Name = "bppartyname";
-            this.bppartyname.Size = new System.Drawing.Size(65, 13);
+            this.bppartyname.Size = new System.Drawing.Size(38, 26);
             this.bppartyname.TabIndex = 123;
-            this.bppartyname.Text = "Party Name:";
+            this.bppartyname.Text = "Party\nName:";
             // 
             // machineboxlayout
             // 
@@ -2217,8 +2280,8 @@ namespace PackingApplication
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.DeptList);
             this.panel8.Controls.Add(this.department);
-            this.panel8.Controls.Add(this.departmentname);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 27);
             this.panel8.Margin = new System.Windows.Forms.Padding(0);
@@ -2235,19 +2298,6 @@ namespace PackingApplication
             this.department.Size = new System.Drawing.Size(33, 13);
             this.department.TabIndex = 2;
             this.department.Text = "Dept:";
-            // 
-            // departmentname
-            // 
-            this.departmentname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.departmentname.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.departmentname.Location = new System.Drawing.Point(36, 3);
-            this.departmentname.Margin = new System.Windows.Forms.Padding(2);
-            this.departmentname.Name = "departmentname";
-            this.departmentname.ReadOnly = true;
-            this.departmentname.Size = new System.Drawing.Size(42, 20);
-            this.departmentname.TabIndex = 4;
-            this.departmentname.TabStop = false;
             // 
             // panel9
             // 
@@ -2919,36 +2969,6 @@ namespace PackingApplication
             this.Lastboxlbl.TabIndex = 107;
             this.Lastboxlbl.Text = "Last box details";
             // 
-            // saveprint
-            // 
-            this.saveprint.BackColor = System.Drawing.SystemColors.Highlight;
-            this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(0, 1);
-            this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.saveprint.Name = "saveprint";
-            this.saveprint.Size = new System.Drawing.Size(81, 24);
-            this.saveprint.TabIndex = 122;
-            this.saveprint.Text = "Save && Print";
-            this.saveprint.UseVisualStyleBackColor = false;
-            this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
-            // 
-            // cancelbtn
-            // 
-            this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(106, 1);
-            this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cancelbtn.Name = "cancelbtn";
-            this.cancelbtn.Size = new System.Drawing.Size(81, 24);
-            this.cancelbtn.TabIndex = 121;
-            this.cancelbtn.Text = "Cancel";
-            this.cancelbtn.UseVisualStyleBackColor = false;
-            this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // windingtypeDataGridViewTextBoxColumn
             // 
             this.windingtypeDataGridViewTextBoxColumn.DataPropertyName = "Winding Type";
@@ -3034,34 +3054,18 @@ namespace PackingApplication
             // 
             this.sidebarTimer.Interval = 10;
             // 
-            // buttontablelayout
+            // errorProvider1
             // 
-            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttontablelayout.ColumnCount = 3;
-            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttontablelayout.Controls.Add(this.panel21, 1, 0);
-            this.buttontablelayout.Location = new System.Drawing.Point(2, 399);
-            this.buttontablelayout.Name = "buttontablelayout";
-            this.buttontablelayout.RowCount = 1;
-            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.buttontablelayout.Size = new System.Drawing.Size(907, 31);
-            this.buttontablelayout.TabIndex = 123;
+            this.errorProvider1.ContainerControl = this;
             // 
-            // panel21
+            // DeptList
             // 
-            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel21.Controls.Add(this.submit);
-            this.panel21.Controls.Add(this.cancelbtn);
-            this.panel21.Controls.Add(this.saveprint);
-            this.panel21.Location = new System.Drawing.Point(305, 3);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(296, 25);
-            this.panel21.TabIndex = 0;
+            this.DeptList.FormattingEnabled = true;
+            this.DeptList.Location = new System.Drawing.Point(35, 3);
+            this.DeptList.Name = "DeptList";
+            this.DeptList.Size = new System.Drawing.Size(43, 21);
+            this.DeptList.TabIndex = 124;
+            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
             // 
             // POYPackingForm
             // 
@@ -3097,6 +3101,8 @@ namespace PackingApplication
             this.panel45.ResumeLayout(false);
             this.panel45.PerformLayout();
             this.rightpanel.ResumeLayout(false);
+            this.buttontablelayout.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.rowMaterialBox.ResumeLayout(false);
             this.rowMaterialPanel.ResumeLayout(false);
@@ -3207,8 +3213,7 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.buttontablelayout.ResumeLayout(false);
-            this.panel21.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3404,7 +3409,6 @@ namespace PackingApplication
         private System.Windows.Forms.Label lastboxno;
         private Panel panel8;
         private System.Windows.Forms.Label department;
-        private TextBox departmentname;
         private Panel panel9;
         private System.Windows.Forms.Label req3;
         private System.Windows.Forms.Label mergeno;
@@ -3442,6 +3446,8 @@ namespace PackingApplication
         private System.Windows.Forms.Label partyn;
         private TableLayoutPanel buttontablelayout;
         private Panel panel21;
+        private ErrorProvider errorProvider1;
+        private ComboBox DeptList;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

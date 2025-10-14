@@ -170,6 +170,7 @@
     <Compile Include="Helper\WeighingScaleReader.cs" />
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
+    <Compile Include="Models\ResponseEntities\DepartmentResponse.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
     <Compile Include="Models\ResponseEntities\SaleOrderResponse.cs" />
     <Compile Include="Models\ResponseEntities\WindingTypeGridResponse.cs" />
@@ -284,6 +285,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Images\logo.png" />
+    <None Include="Resources\icons8-loader-48.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -17,11 +17,14 @@ namespace PackingApplication.Helper
             {
                 Text = text,
                 AutoSize = true,
-                Font = FontManager.GetFont(8F, FontStyle.Italic),
+                Font = FontManager.GetFont(12F, FontStyle.Italic),
                 ForeColor = Color.Red,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Visible = false
+                Visible = false,
+                BackColor = Color.Transparent
             };
+
+            form.Controls.Add(lblLoading);
 
             // Center in the form
             lblLoading.Location = new Point(
@@ -30,7 +33,6 @@ namespace PackingApplication.Helper
             );
 
             lblLoading.BringToFront();
-            form.Controls.Add(lblLoading);
 
             return lblLoading;
         }
@@ -177,5 +179,29 @@ namespace PackingApplication.Helper
                 e.Graphics.DrawLine(pen, x, 0, x, control.ClientRectangle.Height);
             }
         }
+
+        //public void ComboBox_Paint(object sender, PaintEventArgs e)
+        //{
+        //    ComboBox combo = sender as ComboBox;
+        //    if (combo.Tag?.ToString() == "error")
+        //    {
+        //        // Draw red border
+        //        ControlPaint.DrawBorder(e.Graphics, combo.ClientRectangle,
+        //            Color.Red, 2, ButtonBorderStyle.Solid,
+        //            Color.Red, 2, ButtonBorderStyle.Solid,
+        //            Color.Red, 2, ButtonBorderStyle.Solid,
+        //            Color.Red, 2, ButtonBorderStyle.Solid);
+        //    }
+        //    else
+        //    {
+        //        // Draw normal border
+        //        ControlPaint.DrawBorder(e.Graphics, combo.ClientRectangle,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid);
+        //    }
+        //}
+
     }
 }

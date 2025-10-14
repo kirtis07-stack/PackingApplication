@@ -84,5 +84,12 @@ namespace PackingApplication.Services
             var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse);
             return getItem;
         }
+
+        public List<DepartmentResponse> getDepartmentList()
+        {
+            var getDepartmentResponse = method.GetCallApi(masterURL + "Department/GetAll?IsDropDown=" + false);
+            var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse);
+            return getDepartment;
+        }
     }
 }
