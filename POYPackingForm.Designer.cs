@@ -254,6 +254,8 @@ namespace PackingApplication
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
             this.sidebarTimer = new System.Windows.Forms.Timer(this.components);
+            this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel21 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -334,6 +336,8 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.buttontablelayout.SuspendLayout();
+            this.panel21.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1259,10 +1263,10 @@ namespace PackingApplication
             this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(467, 422);
+            this.submit.Location = new System.Drawing.Point(212, 1);
             this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(71, 24);
+            this.submit.Size = new System.Drawing.Size(81, 24);
             this.submit.TabIndex = 120;
             this.submit.Text = "Save";
             this.submit.UseVisualStyleBackColor = false;
@@ -1272,16 +1276,14 @@ namespace PackingApplication
             // 
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.rightpanel.Controls.Add(this.buttontablelayout);
             this.rightpanel.Controls.Add(this.tableLayoutPanel3);
             this.rightpanel.Controls.Add(this.tableLayoutPanel2);
             this.rightpanel.Controls.Add(this.tableLayoutPanel1);
-            this.rightpanel.Controls.Add(this.saveprint);
-            this.rightpanel.Controls.Add(this.cancelbtn);
-            this.rightpanel.Controls.Add(this.submit);
             this.rightpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightpanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rightpanel.Location = new System.Drawing.Point(0, 0);
-            this.rightpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.rightpanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightpanel.Name = "rightpanel";
             this.rightpanel.Size = new System.Drawing.Size(909, 487);
             this.rightpanel.TabIndex = 89;
@@ -2923,7 +2925,7 @@ namespace PackingApplication
             this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(287, 422);
+            this.saveprint.Location = new System.Drawing.Point(0, 1);
             this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.saveprint.Name = "saveprint";
             this.saveprint.Size = new System.Drawing.Size(81, 24);
@@ -2938,10 +2940,10 @@ namespace PackingApplication
             this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(385, 422);
+            this.cancelbtn.Location = new System.Drawing.Point(106, 1);
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
-            this.cancelbtn.Size = new System.Drawing.Size(65, 24);
+            this.cancelbtn.Size = new System.Drawing.Size(81, 24);
             this.cancelbtn.TabIndex = 121;
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = false;
@@ -3031,6 +3033,35 @@ namespace PackingApplication
             // sidebarTimer
             // 
             this.sidebarTimer.Interval = 10;
+            // 
+            // buttontablelayout
+            // 
+            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttontablelayout.ColumnCount = 3;
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.Controls.Add(this.panel21, 1, 0);
+            this.buttontablelayout.Location = new System.Drawing.Point(2, 399);
+            this.buttontablelayout.Name = "buttontablelayout";
+            this.buttontablelayout.RowCount = 1;
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.buttontablelayout.Size = new System.Drawing.Size(907, 31);
+            this.buttontablelayout.TabIndex = 123;
+            // 
+            // panel21
+            // 
+            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel21.Controls.Add(this.submit);
+            this.panel21.Controls.Add(this.cancelbtn);
+            this.panel21.Controls.Add(this.saveprint);
+            this.panel21.Location = new System.Drawing.Point(305, 3);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(296, 25);
+            this.panel21.TabIndex = 0;
             // 
             // POYPackingForm
             // 
@@ -3176,6 +3207,8 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.buttontablelayout.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3407,6 +3440,8 @@ namespace PackingApplication
         private System.Windows.Forms.Label partyshade;
         private System.Windows.Forms.Label partyshd;
         private System.Windows.Forms.Label partyn;
+        private TableLayoutPanel buttontablelayout;
+        private Panel panel21;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
