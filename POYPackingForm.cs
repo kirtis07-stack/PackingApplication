@@ -664,7 +664,7 @@ namespace PackingApplication
                         {
                             DeptList.SelectedValue = selectedMachine.DepartmentId;
                             var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
-
+                            filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                             DeptList.DataSource = filteredDepts;
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
@@ -1316,13 +1316,15 @@ namespace PackingApplication
                     DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
                     int selectedDepartmentId = selectedDepartment.DepartmentId;
 
-                    //if (selectedDepartment != null && productionRequest.MachineId > 0)
-                    //{
-                    //    LineNoList.SelectedValue = selectedDepartment.ma;
-                    //    var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
+                    if (selectedDepartment != null && productionRequest.MachineId == 0)
+                    {
+                        var machineList = await Task.Run(() => _masterService.getMachineByDepartmentId(selectedDepartmentId));
 
-                    //    DeptList.DataSource = filteredDepts;
-                    //}
+                        //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
+                        //LineNoList.SelectedValue = selectedDepartment;
+                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                        LineNoList.DataSource = machineList;
+                    }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
 
@@ -2267,11 +2269,12 @@ namespace PackingApplication
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            var dashboard = this.ParentForm as AdminAccount;
-            if (dashboard != null)
-            {
-                dashboard.LoadFormInContent(new POYPackingList());
-            }
+            //var dashboard = this.ParentForm as AdminAccount;
+            //if (dashboard != null)
+            //{
+            //    dashboard.LoadFormInContent(new POYPackingList());
+            //}
+            ResetForm(this);
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)

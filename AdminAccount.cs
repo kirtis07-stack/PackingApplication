@@ -462,10 +462,17 @@ namespace PackingApplication
 
             // Set focus explicitly to first control
             if (form.Controls.Count > 0)
+            {
+                Control firstControl = form.Controls[0];
+                //if (firstControl.CanSelect)
+                //    firstControl.Focus();
                 form.Controls[0].Focus();
+            }
 
             // Re-attach Enter event
             menuStrip.Enter += MenuStrip_EnterHandler;
+
+            this.ActiveControl = form;
         }
 
         private void POYPacking_Click(object sender, EventArgs e)
@@ -479,6 +486,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new POYPackingForm(0));
+
             }
         }
 
