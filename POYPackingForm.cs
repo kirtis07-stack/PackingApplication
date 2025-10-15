@@ -2136,7 +2136,7 @@ namespace PackingApplication
                     if (dashboard != null)
                     {
                         // Open the List form instead of Add form
-                        dashboard.LoadFormInContent(new POYPackingList());
+                        dashboard.LoadFormInContent(new POYPackingForm(0));
                     }
                 }
             }
@@ -2684,6 +2684,19 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 PalletTypeList.DroppedDown = false;
+            }
+        }
+
+        private void DeptList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                DeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                DeptList.DroppedDown = false;
             }
         }
 
