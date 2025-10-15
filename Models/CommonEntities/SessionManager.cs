@@ -11,12 +11,14 @@ namespace PackingApplication.Models.CommonEntities
         public static string AuthToken { get; set; }
         public static string UserName { get; set; }
         public static string Role { get; set; }
+        public static int FinYearId { get; set; }
 
         public static void Clear()
         {
             AuthToken = null;
             UserName = null;
             Role = null;
+            FinYearId = 0;
         }
     }
 }

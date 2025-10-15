@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PackingApplication.Helper;
+using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using System;
 using System.Collections.Generic;
@@ -50,12 +51,12 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public List<PrefixResponse> getPrefixList()         //passed hardcoded transactionTypeId for now
+        public async Task<List<PrefixResponse>> getPrefixList(TransactionTypePrefixRequest prefixRequest)
         {
-            var getPrefixResponse = method.GetCallApi(masterURL + "Prefix/GetByTransactionTypeId?transactionTypeId=" + 5);
-            var getPrefix = JsonConvert.DeserializeObject<List<PrefixResponse>>(getPrefixResponse);
-            return getPrefix;
+            List<PrefixResponse> getPrefixResponse = await method.PostAsync<PrefixResponse>(masterURL + "Prefix/GetPrefixByTransactionTypeFlags", prefixRequest);
+            return getPrefixResponse;
         }
+
 
         public MachineResponse getMachineById(int machineId)
         {

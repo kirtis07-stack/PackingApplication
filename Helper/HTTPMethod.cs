@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PackingApplication.Helper
 {
@@ -79,6 +81,36 @@ namespace PackingApplication.Helper
                 }
             }
 
+        }
+
+        public async Task<List<T>> PostAsync<T>(string path, object data)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(path);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SessionManager.AuthToken);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(path, content);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Deserialize JSON into List<T>
+                var result = JsonSerializer.Deserialize<List<T>>(responseBody,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                return result ?? new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error calling API: {ex.Message}");
+                return new List<T>();
+            }
         }
     }
 }

@@ -26,6 +26,7 @@ namespace PackingApplication
         string userURL = ConfigurationManager.AppSettings["userURL"];
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
         private bool isPasswordVisible = false;
+        private int finYearId = 0;
         public Login()
         {
             InitializeComponent();
@@ -100,6 +101,7 @@ namespace PackingApplication
             YearList.ValueMember = "FinYearId";
             var currentYear = getYear.Where(x => x.FinYear == DateTime.Now.Year.ToString()).ToList();
             YearList.SelectedValue = currentYear[0].FinYearId;
+            finYearId = currentYear[0].FinYearId;
         }
 
         private void signin_Click(object sender, EventArgs e)
@@ -132,6 +134,7 @@ namespace PackingApplication
                             SessionManager.AuthToken = userResponse.AccessToken;
                             SessionManager.UserName = userResponse.FullName;
                             SessionManager.Role = userResponse.Role;
+                            SessionManager.FinYearId = finYearId;
 
                             AdminAccount dashboard = new AdminAccount();
                             dashboard.Show();

@@ -76,6 +76,7 @@ namespace PackingApplication
         int itemPalletCategoryId = 5;
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
+        TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         public POYPackingForm(long productionId)
         {
             InitializeComponent();
@@ -165,6 +166,15 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
+
+            var prefixList = new List<PrefixResponse>();
+            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+            PrefixList.DataSource = prefixList;
+            PrefixList.DisplayMember = "Prefix";
+            PrefixList.ValueMember = "PrefixCode";
+            PrefixList.SelectedIndex = 0;
+            PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void ApplyFonts()
@@ -309,7 +319,7 @@ namespace PackingApplication
             {
                 var machineTask = getMachineList();
                 var lotTask = getAllLotList();
-                var prefixTask = getPrefixList();
+                //var prefixTask = getPrefixList();
                 var packsizeTask = getPackSizeList();
                 var copsitemTask = getCopeItemList(itemCopsCategoryId);
                 var boxitemTask = getBoxItemList(itemBoxCategoryId);
@@ -317,12 +327,12 @@ namespace PackingApplication
                 var deptTask = getDepartmentList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, prefixTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask);
+                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
                 var lotList = lotTask.Result;
-                var prefixList = prefixTask.Result;
+                //var prefixList = prefixTask.Result;
                 var packsizeList = packsizeTask.Result;
                 var copsitemList = copsitemTask.Result;
                 var boxitemList = boxitemTask.Result;
@@ -351,13 +361,13 @@ namespace PackingApplication
 
 
                 //prefix
-                prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-                PrefixList.DataSource = prefixList;
-                PrefixList.DisplayMember = "Prefix";
-                PrefixList.ValueMember = "PrefixCode";
-                PrefixList.SelectedIndex = 0;
-                PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                //PrefixList.DataSource = prefixList;
+                //PrefixList.DisplayMember = "Prefix";
+                //PrefixList.ValueMember = "PrefixCode";
+                //PrefixList.SelectedIndex = 0;
+                //PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                //PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 //PrefixList.DropDownStyle = ComboBoxStyle.DropDown;
 
 
@@ -1332,6 +1342,22 @@ namespace PackingApplication
 
                     productionRequest.DepartmentId = selectedDepartmentId;
 
+                    prefixRequest.DepartmentId = selectedDepartmentId;
+                    prefixRequest.TxnFlag = "POY";
+                    prefixRequest.TransactionTypeId = 5;
+                    prefixRequest.ProductionTypeId = 1;
+                    prefixRequest.Prefix = "";
+                    prefixRequest.FinYearId = SessionManager.FinYearId;
+
+                    List<PrefixResponse> prefixList = await Task.Run(() => _masterService.getPrefixList(prefixRequest));
+                    prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                    PrefixList.DataSource = prefixList;
+                    PrefixList.DisplayMember = "Prefix";
+                    PrefixList.ValueMember = "PrefixCode";
+                    PrefixList.SelectedIndex = 0;
+                    PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
                 }
             }
             finally
@@ -1403,9 +1429,9 @@ namespace PackingApplication
             return Task.Run(() => _masterService.getItemList(categoryId));
         }
 
-        private Task<List<PrefixResponse>> getPrefixList()
+        private Task<List<PrefixResponse>> getPrefixList(TransactionTypePrefixRequest prefix)
         {
-            return Task.Run(() => _masterService.getPrefixList());
+            return Task.Run(() => _masterService.getPrefixList(prefixRequest));
         }
 
         private Task<ProductionResponse> getProductionById(long productionId)
