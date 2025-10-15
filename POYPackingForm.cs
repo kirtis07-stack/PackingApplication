@@ -102,6 +102,8 @@ namespace PackingApplication
             spoolwt.TextChanged += SpoolWeight_TextChanged;
             palletwtno.TextChanged += PalletWeight_TextChanged;
             grosswtno.TextChanged += GrossWeight_TextChanged;
+            prcompany.KeyDown += prcompany_CheckedChanged;
+            prowner.KeyDown += prowner_CheckedChanged;
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
             windinggrid.AutoGenerateColumns = false;
@@ -137,6 +139,8 @@ namespace PackingApplication
             partyshade.Text = "";
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
+
+            this.prcompany.Enabled = true;
         }
 
         private void getLotRelatedDetails()
@@ -2461,10 +2465,10 @@ namespace PackingApplication
         //    sidebarContainer.Invalidate();
         //}
 
-        private void menuBtn_Click(object sender, EventArgs e)
-        {
-            sidebarTimer.Start();
-        }
+        //private void menuBtn_Click(object sender, EventArgs e)
+        //{
+        //    sidebarTimer.Start();
+        //}
 
         private void sidebarContainer_Paint(object sender, PaintEventArgs e)
         {
@@ -2519,6 +2523,11 @@ namespace PackingApplication
                     cb.Checked = !cb.Checked; // toggle the checkbox
                     e.Handled = true;          // prevent beep
                 }
+            }
+            else
+            {
+                // For Tab (and other keys), don't mark as handled
+                e.Handled = false;
             }
         }
 
@@ -2724,27 +2733,33 @@ namespace PackingApplication
 
         private void prcompany_CheckedChanged(object sender, EventArgs e)
         {
+            if (!isFormReady) return;
+
             if (prcompany.Checked)
             {
-                prowner.Checked = false;     
-                prowner.Enabled = false;     
+                prowner.Checked = false;
+                prowner.Enabled = false; // disable the other
+                prcompany.Focus();       // keep focus on the current one
             }
             else
             {
-                prowner.Enabled = true;      
+                prowner.Enabled = true;  // re-enable when unchecked
             }
         }
 
         private void prowner_CheckedChanged(object sender, EventArgs e)
         {
+            if (!isFormReady) return;
+
             if (prowner.Checked)
             {
-                prcompany.Checked = false;     
-                prcompany.Enabled = false;     
+                prcompany.Checked = false;
+                prcompany.Enabled = false; // disable the other
+                prowner.Focus();           // keep focus
             }
             else
             {
-                prcompany.Enabled = true;     
+                prcompany.Enabled = true;  // re-enable when unchecked
             }
         }
 

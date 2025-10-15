@@ -463,7 +463,7 @@ namespace PackingApplication
             // Set focus explicitly to first control
             if (form.Controls.Count > 0)
             {
-                Control firstControl = form.Controls[0];
+                //Control firstControl = form.Controls[0];
                 //if (firstControl.CanSelect)
                 //    firstControl.Focus();
                 form.Controls[0].Focus();
