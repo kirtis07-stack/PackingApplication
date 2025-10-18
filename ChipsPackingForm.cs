@@ -11,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO.Ports;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -65,17 +66,17 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
-            LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
-            MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
-            PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
-            QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
-            WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
-            copyno.TextChanged += CopyNos_TextChanged;
-            palletwtno.TextChanged += PalletWeight_TextChanged;
-            grosswtno.TextChanged += GrossWeight_TextChanged;
-            prcompany.KeyDown += prcompany_CheckedChanged;
-            prowner.KeyDown += prowner_CheckedChanged;
+            //LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
+            //MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
+            //PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
+            //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
+            //WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
+            //PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
+            //copyno.TextChanged += CopyNos_TextChanged;
+            //palletwtno.TextChanged += PalletWeight_TextChanged;
+            //grosswtno.TextChanged += GrossWeight_TextChanged;
+            //prcompany.KeyDown += prcompany_CheckedChanged;
+            //prowner.KeyDown += prowner_CheckedChanged;
         }
 
         private void ChipsPackingForm_Load(object sender, EventArgs e)
@@ -409,6 +410,11 @@ namespace PackingApplication
                             var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
                             filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                             DeptList.DataSource = filteredDepts;
+                            DeptList.DisplayMember = "DepartmentName";
+                            DeptList.ValueMember = "DepartmentId";
+                            DeptList.SelectedIndex = 0;
+                            DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                            DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -1045,6 +1051,7 @@ namespace PackingApplication
                         MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         netwt.Text = "0";
                         wtpercop.Text = "0";
+                        return;
                     }
                 }
             }
@@ -1064,8 +1071,9 @@ namespace PackingApplication
             }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
-                grosswterror.Visible = true;
+                //grosswterror.Visible = true;
                 //grosswterror.Text = "Please enter gross weight";
+                MessageBox.Show("Please enter gross weight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -1756,39 +1764,74 @@ namespace PackingApplication
 
         private void ResetForm(Control parent)
         {
-            foreach (Control c in parent.Controls)
+            lblLoading.Visible = true;
+            try
             {
-                if (c is System.Windows.Forms.TextBox)
-                    ((System.Windows.Forms.TextBox)c).Clear();
+                foreach (Control c in parent.Controls)
+                {
+                    if (c is System.Windows.Forms.TextBox)
+                        ((System.Windows.Forms.TextBox)c).Clear();
 
-                else if (c is System.Windows.Forms.ComboBox)
-                    ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
+                    else if (c is System.Windows.Forms.ComboBox)
+                        ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
 
-                else if (c is DateTimePicker)
-                    ((DateTimePicker)c).Value = DateTime.Now;
+                    else if (c is DateTimePicker)
+                        ((DateTimePicker)c).Value = DateTime.Now;
 
-                else if (c is System.Windows.Forms.CheckBox)
-                    ((System.Windows.Forms.CheckBox)c).Checked = false;
+                    //else if (c is System.Windows.Forms.CheckBox)
+                    //    ((System.Windows.Forms.CheckBox)c).Checked = false;
 
-                else if (c is System.Windows.Forms.RadioButton)
-                    ((System.Windows.Forms.RadioButton)c).Checked = false;
+                    //else if (c is System.Windows.Forms.RadioButton)
+                    //    ((System.Windows.Forms.RadioButton)c).Checked = false;
 
-                // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
-                if (c.HasChildren)
-                    ResetForm(c);
+                    // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
+                    if (c.HasChildren)
+                        ResetForm(c);
+                }
+                copyno.Text = "1";
+                palletwtno.Text = "0";
+                grosswtno.Text = "0";
+                tarewt.Text = "0";
+                netwt.Text = "0";
+                wtpercop.Text = "0";
+                boxpalletitemwt.Text = "0";
+                boxpalletstock.Text = "0";
+                boxpalletitemwt.Text = "0";
+                frdenier.Text = "0";
+                updenier.Text = "0";
+                deniervalue.Text = "0";
+                itemname.Text = "";
+                shadename.Text = "";
+                shadecd.Text = "";
+                prodtype.Text = "";
+                lotResponse = new LotsResponse();
+                lotsDetailsList = new List<LotsDetailsResponse>();
+                getLotRelatedDetails();
+                rowMaterial.Columns.Clear();
+                totalProdQty = 0;
+                selectedSOId = 0;
+                totalSOQty = 0;
+                balanceQty = 0;
+                prcompany.Checked = false;
+                prowner.Checked = false;
+
+                DeptList.DataSource = null;
+                DeptList.Items.Clear();
+                DeptList.Items.Add("Select Dept");
+                DeptList.SelectedIndex = 0;
+
+                MergeNoList.DataSource = null;
+                MergeNoList.Items.Clear();
+                MergeNoList.Items.Add("Select MergeNo");
+                MergeNoList.SelectedIndex = 0;
+
+                isFormReady = false;
             }
-            copyno.Text = "1";
-            palletwtno.Text = "0";
-            grosswtno.Text = "0";
-            tarewt.Text = "0";
-            netwt.Text = "0";
-            wtpercop.Text = "0";
-            boxpalletitemwt.Text = "0";
-            boxpalletstock.Text = "0";
-            boxpalletitemwt.Text = "0";
-            frdenier.Text = "0";
-            updenier.Text = "0";
-            deniervalue.Text = "0";
+            finally
+            {
+                lblLoading.Visible = false;
+                isFormReady = true;
+            }
         }
 
         private void prcompany_CheckedChanged(object sender, EventArgs e)
