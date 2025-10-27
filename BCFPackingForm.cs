@@ -439,7 +439,7 @@ namespace PackingApplication
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                 QualityList.SelectedValue = productionResponse.QualityId;
                 WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 PackSizeList.SelectedValue = productionResponse.PackSizeId;
@@ -845,7 +845,7 @@ namespace PackingApplication
 
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                         }
                     }
 
@@ -1027,13 +1027,13 @@ namespace PackingApplication
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
+                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemId == winding.SaleOrderItemId);
 
                         if (existing == null)
                         {
                             WindingTypeGridResponse grid = new WindingTypeGridResponse();
                             grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderId = winding.SaleOrderId;
+                            grid.SaleOrderItemId = winding.SaleOrderItemId;
                             grid.WindingTypeName = winding.WindingTypeName;
                             grid.SaleOrderQty = totalSOQty;
                             grid.GrossWt = winding.GrossWt;
@@ -1068,13 +1068,13 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemId == quality.SaleOrderItemId);
 
                     if (existing == null)
                     {
                         QualityGridResponse grid = new QualityGridResponse();
                         grid.QualityId = quality.QualityId;
-                        grid.SaleOrderId = quality.SaleOrderId;
+                        grid.SaleOrderItemId = quality.SaleOrderItemId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
                         grid.GrossWt = quality.GrossWt;
@@ -1422,7 +1422,7 @@ namespace PackingApplication
 
         private Task<ProductionResponse> getLastBoxDetails()
         {
-            return Task.Run(() => _packingService.getLastBoxDetails("poypacking"));
+            return Task.Run(() => _packingService.getLastBoxDetails("bcfpacking"));
         }
 
         private Task<List<DepartmentResponse>> getDepartmentList()

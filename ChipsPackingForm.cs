@@ -696,13 +696,13 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemId == quality.SaleOrderItemId);
 
                     if (existing == null)
                     {
                         QualityGridResponse grid = new QualityGridResponse();
                         grid.QualityId = quality.QualityId;
-                        grid.SaleOrderId = quality.SaleOrderId;
+                        grid.SaleOrderItemId = quality.SaleOrderItemId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
                         grid.GrossWt = quality.GrossWt;
@@ -1003,7 +1003,7 @@ namespace PackingApplication
 
         private Task<ProductionResponse> getLastBoxDetails()
         {
-            return Task.Run(() => _packingService.getLastBoxDetails("dtypacking"));
+            return Task.Run(() => _packingService.getLastBoxDetails("chipspacking"));
         }
 
         private Task<List<DepartmentResponse>> getDepartmentList()

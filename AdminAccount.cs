@@ -73,6 +73,7 @@ namespace PackingApplication
             menuStrip.BackColor = Color.White;
             menuStrip.Padding = new Padding(10, 18, 0, 0);
             menuStrip.TabIndex = 0;
+            this.MainMenuStrip = menuStrip;
 
             // POY Menu
             ToolStripMenuItem poy = new ToolStripMenuItem("POYPacking")
@@ -81,7 +82,7 @@ namespace PackingApplication
                 BackColor = Color.White,
             };
             poy.Click += (s, e) => HighlightMenuItem(s);
-            ToolStripMenuItem addpoy = new ToolStripMenuItem("Add POY Packing", null, POYPacking_Click)
+            ToolStripMenuItem addpoy = new ToolStripMenuItem("Add POY Packing", null, AddPOYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -93,7 +94,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem viewpoy = new ToolStripMenuItem("View POY Packing")
+            ToolStripMenuItem viewpoy = new ToolStripMenuItem("View POY Packing", null, ViewPOYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -475,7 +476,7 @@ namespace PackingApplication
             this.ActiveControl = form;
         }
 
-        private void POYPacking_Click(object sender, EventArgs e)
+        private void AddPOYPacking_Click(object sender, EventArgs e)
         {
             //var parent = this.ParentForm as Dashboard;
             //if (parent != null)
@@ -486,6 +487,16 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new POYPackingForm(0));
+
+            }
+        }
+
+        private void ViewPOYPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ViewPOYPackingForm());
 
             }
         }

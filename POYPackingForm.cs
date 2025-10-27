@@ -469,7 +469,7 @@ namespace PackingApplication
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                 QualityList.SelectedValue = productionResponse.QualityId;
                 WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 PackSizeList.SelectedValue = productionResponse.PackSizeId;
@@ -876,7 +876,7 @@ namespace PackingApplication
 
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderId;
+                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                         }
                     }
 
@@ -1058,13 +1058,13 @@ namespace PackingApplication
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderId == winding.SaleOrderId);
+                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemId == winding.SaleOrderItemId);
 
                         if (existing == null)
                         {
                             WindingTypeGridResponse grid = new WindingTypeGridResponse();
                             grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderId = winding.SaleOrderId;
+                            grid.SaleOrderItemId = winding.SaleOrderItemId;
                             grid.WindingTypeName = winding.WindingTypeName;
                             grid.SaleOrderQty = totalSOQty;
                             grid.GrossWt = winding.GrossWt;
@@ -1099,13 +1099,13 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderId == quality.SaleOrderId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemId == quality.SaleOrderItemId);
 
                     if (existing == null)
                     {
                         QualityGridResponse grid = new QualityGridResponse();
                         grid.QualityId = quality.QualityId;
-                        grid.SaleOrderId = quality.SaleOrderId;
+                        grid.SaleOrderItemId = quality.SaleOrderItemId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
                         grid.GrossWt = quality.GrossWt;
@@ -2783,8 +2783,8 @@ namespace PackingApplication
                     //    ((System.Windows.Forms.RadioButton)c).Checked = false;
 
                     // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
-                    if (c.HasChildren)
-                        ResetForm(c);
+                    //if (c.HasChildren)
+                    //    ResetForm(c);
                 }
                 copyno.Text = "1";
                 spoolwt.Text = "0";
@@ -2833,6 +2833,31 @@ namespace PackingApplication
                 MergeNoList.Items.Add("Select MergeNo");
                 MergeNoList.SelectedIndex = 0;
 
+                LineNoList.DataSource = o_machinesResponse;
+                LineNoList.Items.Clear();
+                LineNoList.Items.Add("Select Line No.");
+                LineNoList.SelectedIndex = 0;
+
+                PackSizeList.Items.Clear();
+                PackSizeList.Items.Add("Select Pack Size");
+                PackSizeList.SelectedIndex = 0;
+
+                CopsItemList.Items.Clear();
+                CopsItemList.Items.Add("Select Cops Item");
+                CopsItemList.SelectedIndex = 0;
+
+                BoxItemList.Items.Clear();
+                BoxItemList.Items.Add("Select Box Item");
+                BoxItemList.SelectedIndex = 0;
+
+                ComPortList.Items.Clear();
+                ComPortList.Items.Add("Select Com Port");
+                ComPortList.SelectedIndex = 0;
+
+                WeighingList.Items.Clear();
+                WeighingList.Items.Add("Select Weigh Scale");
+                WeighingList.SelectedIndex = 0;
+
                 isFormReady = false;
                 spoolno.Text = "";
             }
@@ -2840,6 +2865,15 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
                 isFormReady = true;
+                if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
+                {
+                    if (parentForm.MainMenuStrip != null)
+                    {
+                        parentForm.MainMenuStrip.Focus();
+                        if (parentForm.MainMenuStrip.Items.Count > 0)
+                            ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
+                    }
+                }
             }
         }
 

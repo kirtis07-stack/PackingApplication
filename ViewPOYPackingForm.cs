@@ -6,20 +6,17 @@ using PackingApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PackingApplication
 {
-    public partial class DTYPackingForm: Form
+    public partial class ViewPOYPackingForm : Form
     {
         private static Logger Log = Logger.GetLogger();
 
@@ -52,61 +49,25 @@ namespace PackingApplication
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
-        public DTYPackingForm(long productionId)
+        public ViewPOYPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
-            _productionId = productionId;
-            this.Shown += DTYPackingForm_Shown;
+            this.Shown += ViewPOYPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
-            _cmethod.SetButtonBorderRadius(this.submit, 8);
-            _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
-            _cmethod.SetButtonBorderRadius(this.saveprint, 8);
-
-            //LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
-            //MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
-            //PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
-            //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
-            //WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
-            //PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
-            //copyno.TextChanged += CopyNos_TextChanged;
-            //spoolno.TextChanged += SpoolNo_TextChanged;
-            //spoolwt.TextChanged += SpoolWeight_TextChanged;
-            //palletwtno.TextChanged += PalletWeight_TextChanged;
-            //grosswtno.TextChanged += GrossWeight_TextChanged;
-            //prcompany.KeyDown += prcompany_CheckedChanged;
-            //prowner.KeyDown += prowner_CheckedChanged;
+            width = flowLayoutPanel1.ClientSize.Width;
+            rowMaterial.AutoGenerateColumns = false;
+            windinggrid.AutoGenerateColumns = false;
+            qualityqty.AutoGenerateColumns = false;
         }
 
-        private void DTYPackingForm_Load(object sender, EventArgs e)
+        private void POYPackingForm_Load(object sender, EventArgs e)
         {
+            AddHeader();
+
             getLotRelatedDetails();
-
-            copyno.Text = "1";
-            spoolno.Text = "0";
-            spoolwt.Text = "0";
-            palletwtno.Text = "0";
-            grosswtno.Text = "0";
-            tarewt.Text = "0";
-            netwt.Text = "0";
-            wtpercop.Text = "0";
-            copsstock.Text = "0";
-            boxpalletstock.Text = "0";
-            copsitemwt.Text = "0";
-            boxpalletitemwt.Text = "0";
-            frdenier.Text = "0";
-            updenier.Text = "0";
-            deniervalue.Text = "0";
-            twistvalue.Text = "0";
-            partyn.Text = "";
-            partyshade.Text = "";
-            isFormReady = true;
-            //this.reportViewer1.RefreshReport();
-
-            this.prcompany.Enabled = true;
         }
 
         private void getLotRelatedDetails()
@@ -131,15 +92,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-
-            var prefixList = new List<PrefixResponse>();
-            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-            PrefixList.DataSource = prefixList;
-            PrefixList.DisplayMember = "Prefix";
-            PrefixList.ValueMember = "PrefixCode";
-            PrefixList.SelectedIndex = 0;
-            PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void ApplyFonts()
@@ -152,7 +104,6 @@ namespace PackingApplication
             this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -197,7 +148,6 @@ namespace PackingApplication
             this.prhindi.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prtwist.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -214,9 +164,14 @@ namespace PackingApplication
             this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.submit.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.saveprint.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.label6.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.qnty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.flowLayoutPanel1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.wgroupbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -225,10 +180,12 @@ namespace PackingApplication
             this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.gradewiseprodn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.totalprodbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.saleordrqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.PrefixList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
@@ -237,8 +194,6 @@ namespace PackingApplication
             this.spoolnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.soerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
@@ -246,6 +201,8 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -254,24 +211,24 @@ namespace PackingApplication
             this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.twistvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.twist.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
-        private async void DTYPackingForm_Shown(object sender, EventArgs e)
+        private async void ViewPOYPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
+
                 var machineTask = getMachineList();
                 var lotTask = getAllLotList();
                 //var prefixTask = getPrefixList();
                 var packsizeTask = getPackSizeList();
                 var copsitemTask = getCopeItemList(itemCopsCategoryId);
                 var boxitemTask = getBoxItemList(itemBoxCategoryId);
+                var palletitemTask = getPalletItemList(itemPalletCategoryId);
                 var deptTask = getDepartmentList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask);
+                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
@@ -280,6 +237,7 @@ namespace PackingApplication
                 var packsizeList = packsizeTask.Result;
                 var copsitemList = copsitemTask.Result;
                 var boxitemList = boxitemTask.Result;
+                var palletitemList = palletitemTask.Result;
                 var deptList = deptTask.Result;
 
                 //machine
@@ -364,6 +322,17 @@ namespace PackingApplication
                 BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 //BoxItemList.DropDownStyle = ComboBoxStyle.DropDown;
 
+
+                //palletitem
+                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                PalletTypeList.DataSource = palletitemList;
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.SelectedIndex = 0;
+                PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //PalletTypeList.DropDownStyle = ComboBoxStyle.DropDown;
+
                 o_departmentResponses = deptList;
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                 DeptList.DataSource = deptList;
@@ -375,11 +344,12 @@ namespace PackingApplication
 
                 RefreshLastBoxDetails();
 
-                if (Convert.ToInt64(_productionId) > 0)
-                {
-                    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
-                }
+                //if (Convert.ToInt64(_productionId) > 0)
+                //{
+                //    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
+                //}
                 isFormReady = true;
+
             }
             finally
             {
@@ -389,41 +359,112 @@ namespace PackingApplication
 
         private async Task LoadProductionDetailsAsync(long productionId)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
 
             if (productionResponse != null)
             {
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
-                PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
                 SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                 QualityList.SelectedValue = productionResponse.QualityId;
-                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 PackSizeList.SelectedValue = productionResponse.PackSizeId;
                 CopsItemList.SelectedValue = productionResponse.SpoolItemId;
                 BoxItemList.SelectedValue = productionResponse.BoxItemId;
                 prodtype.Text = productionResponse.ProductionType;
                 remarks.Text = productionResponse.Remarks;
                 prcompany.Checked = productionResponse.PrintCompany;
+                prcompany.Enabled = productionResponse.PrintCompany ? true : false;
                 prowner.Checked = productionResponse.PrintOwner;
+                prowner.Enabled = productionResponse.PrintOwner ? true : false;
                 prdate.Checked = productionResponse.PrintDate;
                 pruser.Checked = productionResponse.PrintUser;
                 prhindi.Checked = productionResponse.PrintHindiWords;
                 prwtps.Checked = productionResponse.PrintWTPS;
                 prqrcode.Checked = productionResponse.PrintQRCode;
-                prtwist.Checked = productionResponse.PrintTwist;
                 spoolno.Text = productionResponse.Spools.ToString();
                 spoolwt.Text = productionResponse.SpoolsWt.ToString();
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 grosswtno.Text = productionResponse.GrossWt.ToString();
                 tarewt.Text = productionResponse.TareWt.ToString();
                 netwt.Text = productionResponse.NetWt.ToString();
-                submit.Text = "Update";
-                saveprint.Enabled = false;
+                copyno.Text = productionResponse.NoOfCopies.ToString();
+                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
+                CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
+                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
+                if (productionResponse.PalletDetailsResponse.Count > 0)
+                {
+                    if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                    {
+                        this.BeginInvoke((Action)(() =>
+                            BindPalletDetails(productionResponse.PalletDetailsResponse)
+                        ));
+                    }
+                }
             }
+        }
+
+        private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            rowCount = 0;
+            headerAdded = false;
+
+            // add header first
+            AddHeader();
+
+            foreach (var palletDetail in palletDetailsResponse)
+            {
+                var palletItemList = Task.Run(() => getPalletItemList(itemPalletCategoryId)).Result;
+                var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
+
+                if (selectedItem == null)
+                {
+                    selectedItem = new ItemResponse { ItemId = palletDetail.PalletId, Name = $"Pallet {palletDetail.PalletId}" };
+                }
+
+                rowCount++;
+
+                Panel rowPanel = new Panel();
+                rowPanel.Size = new Size(width, 35);
+                rowPanel.BorderStyle = BorderStyle.None;
+
+                rowPanel.Paint += (s, pe) =>
+                {
+                    using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                    {
+                        // dashed border example: pen.DashStyle = DashStyle.Dash;
+                        pe.Graphics.DrawLine(
+                            pen,
+                            0, rowPanel.Height - 1,
+                            rowPanel.Width, rowPanel.Height - 1
+                        );
+                    }
+                };
+
+                // SrNo
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+
+                // Item Name
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
+
+                // Qty
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+
+                rowPanel.Controls.Add(lblSrNo);
+                rowPanel.Controls.Add(lblItem);
+                rowPanel.Controls.Add(lblQty);
+                rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+
+                flowLayoutPanel1.Controls.Add(rowPanel);
+            }
+
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.WrapContents = false;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
         }
 
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
@@ -503,17 +544,23 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
-                twistvalue.Text = "";
                 partyn.Text = "";
                 partyshade.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
                 rowMaterial.Columns.Clear();
+                windinggrid.Columns.Clear();
+                qualityqty.Columns.Clear();
                 totalProdQty = 0;
+                prodnbalqty.Text = "";
                 selectedSOId = 0;
                 totalSOQty = 0;
+                grdsoqty.Text = "";
                 balanceQty = 0;
+                flowLayoutPanel1.Controls.Clear();
+                rowCount = 0;
+                AddHeader();
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -540,7 +587,6 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        twistvalue.Text = lotResponse.TwistName.ToString();
                         productionRequest.SaleLot = lotResponse.SaleLot;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
@@ -651,6 +697,7 @@ namespace PackingApplication
                         if (_productionId > 0 && productionResponse != null)
                         {
                             SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                     }
 
@@ -751,6 +798,7 @@ namespace PackingApplication
                     if (selectedWindingTypeId > 0)
                     {
                         productionRequest.WindingTypeId = selectedWindingTypeId;
+                        RefreshWindingGrid();
                     }
 
                     if (_productionId > 0 && productionResponse != null)
@@ -792,6 +840,7 @@ namespace PackingApplication
                         selectedSOId = selectedSaleOrderId;
                         selectedSONumber = selectedSaleOrder.SaleOrderNumber;
                         totalSOQty = 0;
+                        grdsoqty.Text = "";
                         var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
                         if (saleOrderItemResponse != null)
                         {
@@ -806,9 +855,15 @@ namespace PackingApplication
                         //{
                         totalSOQty = selectedSaleOrder.Quantity;
                         //}
+                        grdsoqty.Text = totalSOQty.ToString("F2");
 
                         RefreshGradewiseGrid();
-                        RefreshLastBoxDetails();
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        }
+                        //RefreshLastBoxDetails();
                     }
 
                 }
@@ -818,11 +873,52 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
         }
+        private async void RefreshWindingGrid()
+        {
+            if (WindingTypeList.SelectedValue != null)
+            {
+                int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
+                if (selectedWindingTypeId > 0)
+                {
+                    var getProductionByWindingType = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
+                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+                    foreach (var winding in getProductionByWindingType)
+                    {
+                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemId == winding.SaleOrderItemId);
+
+                        if (existing == null)
+                        {
+                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                            grid.WindingTypeId = winding.WindingTypeId;
+                            grid.SaleOrderItemId = winding.SaleOrderItemId;
+                            grid.WindingTypeName = winding.WindingTypeName;
+                            grid.SaleOrderQty = totalSOQty;
+                            grid.GrossWt = winding.GrossWt;
+
+                            gridList.Add(grid);
+                        }
+                        else
+                        {
+                            existing.GrossWt += winding.GrossWt;
+                        }
+
+                    }
+                    windinggrid.Columns.Clear();
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                    windinggrid.DataSource = gridList;
+                }
+            }
+
+        }
 
         private async void RefreshGradewiseGrid()
         {
             if (QualityList.SelectedValue != null)
             {
+                prodnbalqty.Text = "";
                 balanceQty = 0;
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
@@ -848,6 +944,10 @@ namespace PackingApplication
                     }
 
                 }
+                qualityqty.Columns.Clear();
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                qualityqty.DataSource = gridList;
 
                 totalProdQty = 0;
                 foreach (var proditem in gridList)
@@ -857,16 +957,12 @@ namespace PackingApplication
                 balanceQty = (totalSOQty - totalProdQty);
                 if (balanceQty <= 0)
                 {
-                    submit.Enabled = false;
-                    saveprint.Enabled = false;
                     MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                    ResetForm(this);
                 }
                 else
                 {
-                    submit.Enabled = true;
-                    saveprint.Enabled = true;
                 }
+                prodnbalqty.Text = balanceQty.ToString("F2");
             }
         }
 
@@ -877,6 +973,9 @@ namespace PackingApplication
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
             {
+                _productionId = getLastBox.ProductionId;
+                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
@@ -1001,42 +1100,6 @@ namespace PackingApplication
             }
         }
 
-        private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (PrefixList.DroppedDown) return;
-
-            if (PrefixList.SelectedIndex <= 0)
-            {
-                prodtype.Text = "";
-                return;
-            }
-
-            if (PrefixList.SelectedIndex > 0)
-            {
-                //boxnoerror.Text = "";
-                //boxnoerror.Visible = false;
-            }
-
-            if (PrefixList.SelectedValue != null)
-            {
-                //boxnoerror.Visible = false;
-
-                PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
-                int selectedPrefixId = selectedPrefix.PrefixCode;
-
-                productionRequest.PrefixCode = selectedPrefixId;
-
-                if (selectedPrefix.ProductionType.ToString() != null)
-                {
-                    prodtype.Text = selectedPrefix.ProductionType.ToString();
-                    productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
-                }
-
-            }
-        }
-
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
@@ -1074,21 +1137,21 @@ namespace PackingApplication
 
                     productionRequest.DepartmentId = selectedDepartmentId;
 
-                    prefixRequest.DepartmentId = selectedDepartmentId;
-                    prefixRequest.TxnFlag = "DTY";
-                    prefixRequest.TransactionTypeId = 5;
-                    prefixRequest.ProductionTypeId = 1;
-                    prefixRequest.Prefix = "";
-                    prefixRequest.FinYearId = SessionManager.FinYearId;
+                    //prefixRequest.DepartmentId = selectedDepartmentId;
+                    //prefixRequest.TxnFlag = "POY";
+                    //prefixRequest.TransactionTypeId = 5;
+                    //prefixRequest.ProductionTypeId = 1;
+                    //prefixRequest.Prefix = "";
+                    //prefixRequest.FinYearId = SessionManager.FinYearId;
 
-                    List<PrefixResponse> prefixList = await Task.Run(() => _masterService.getPrefixList(prefixRequest));
-                    prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-                    PrefixList.DataSource = prefixList;
-                    PrefixList.DisplayMember = "Prefix";
-                    PrefixList.ValueMember = "PrefixCode";
-                    PrefixList.SelectedIndex = 0;
-                    PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    //List<PrefixResponse> prefixList = await Task.Run(() => _masterService.getPrefixList(prefixRequest));
+                    //prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                    //PrefixList.DataSource = prefixList;
+                    //PrefixList.DisplayMember = "Prefix";
+                    //PrefixList.ValueMember = "PrefixCode";
+                    //PrefixList.SelectedIndex = 0;
+                    //PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    //PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 }
             }
@@ -1178,12 +1241,318 @@ namespace PackingApplication
 
         private Task<ProductionResponse> getLastBoxDetails()
         {
-            return Task.Run(() => _packingService.getLastBoxDetails("dtypacking"));
+            return Task.Run(() => _packingService.getLastBoxDetails("poypacking"));
         }
 
         private Task<List<DepartmentResponse>> getDepartmentList()
         {
             return Task.Run(() => _masterService.getDepartmentList());
+        }
+
+        private int rowCount = 0; // Keeps track of SrNo
+        private bool headerAdded = false; // To ensure header is added only once
+        private int currentY = 35; // Start below header height
+        private void addqty_Click(object sender, EventArgs e)
+        {
+            var selectedItem = (ItemResponse)PalletTypeList.SelectedItem;
+            if (selectedItem != null)
+            {
+                if (selectedItem.ItemId == 0)
+                {
+                    MessageBox.Show("Please select an item.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if (string.IsNullOrEmpty(qnty.Text))
+            {
+                MessageBox.Show("Please enter quantity.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error); return;
+            }
+            int qty = Convert.ToInt32(qnty.Text);
+
+            if (selectedItem.ItemId > 0)
+            {
+                //if (!headerAdded)
+                //{
+                //    AddHeader();
+                //}
+                // Check duplicate value
+                bool alreadyExists = flowLayoutPanel1.Controls
+                    .OfType<Panel>().Skip(1) // Skip header
+                    .Any(ctrl => {
+                        if (ctrl.Tag is Tuple<ItemResponse, int> tagData)
+                        {
+                            return tagData.Item1.ItemId == selectedItem.ItemId && tagData.Item2 == qty;
+                        }
+                        return false;
+                    });
+
+                var existingPanel = flowLayoutPanel1.Controls
+                    .OfType<Panel>()
+                    .Skip(1) // Skip header
+                    .FirstOrDefault(ctrl =>
+                        ctrl.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tag &&
+                        tag.Item1.ItemId == selectedItem.ItemId);
+
+                if (existingPanel != null)
+                {
+                    var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
+                    tag.Item2.Text = qty.ToString();
+                    //MessageBox.Show("Item quantity updated.");
+                    foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
+                    {
+                        if (control.Text == "Remove")
+                        {
+                            control.Enabled = true;
+                        }
+                    }
+
+                    qnty.Text = "";
+                    PalletTypeList.SelectedIndex = 0;
+                    return;
+                }
+
+                if (!alreadyExists)
+                {
+                    rowCount++;
+
+                    Panel rowPanel = new Panel();
+                    rowPanel.Size = new Size(width, 35);
+                    rowPanel.BorderStyle = BorderStyle.None;
+
+                    rowPanel.Paint += (s, pe) =>
+                    {
+                        using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                        {
+                            // dashed border example: pen.DashStyle = DashStyle.Dash;
+                            pe.Graphics.DrawLine(
+                                pen,
+                                0, rowPanel.Height - 1,
+                                rowPanel.Width, rowPanel.Height - 1
+                            );
+                        }
+                    };
+
+                    // SrNo
+                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+
+                    // Item Name
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
+
+                    // Qty
+                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+
+                    // Edit Button
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                    btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
+                    btnEdit.FlatAppearance.BorderSize = 1;
+                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
+                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
+                    btnEdit.FlatAppearance.BorderSize = 0;
+                    btnEdit.TabIndex = 4;
+                    btnEdit.TabStop = true;
+                    btnEdit.Cursor = Cursors.Hand;
+                    btnEdit.Paint += (s, f) =>
+                    {
+                        var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
+
+                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
+                        using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
+                        {
+                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                            f.Graphics.FillPath(brush, path);
+
+                            f.Graphics.DrawPath(borderPen, path);
+
+                            if (btnEdit.Focused)
+                            {
+                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                            }
+
+                            TextRenderer.DrawText(
+                                f.Graphics,
+                                btnEdit.Text,
+                                btnEdit.Font,
+                                rect,
+                                btnEdit.ForeColor,
+                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            );
+                        }
+                    };
+                    btnEdit.Click += editPallet_Click;
+
+                    // Delete Button
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
+                    btnDelete.FlatAppearance.BorderSize = 1;
+                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
+                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
+                    btnDelete.FlatAppearance.BorderSize = 0;
+                    btnDelete.TabIndex = 5;
+                    btnDelete.TabStop = true;
+                    btnDelete.Cursor = Cursors.Hand;
+                    btnDelete.Paint += (s, f) =>
+                    {
+                        var button = (System.Windows.Forms.Button)s;
+                        var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
+
+                        // button color change for enabled/disabled
+                        Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
+                        Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
+                        Color foreColor = button.Enabled ? button.ForeColor : Color.DarkGray;
+
+                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
+                        using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
+                        using (SolidBrush brush = new SolidBrush(backColor))
+                        {
+                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                            f.Graphics.FillPath(brush, path);
+                            f.Graphics.DrawPath(borderPen, path);
+
+                            if (btnDelete.Focused)
+                            {
+                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                            }
+
+                            TextRenderer.DrawText(
+                                f.Graphics,
+                                button.Text,
+                                button.Font,
+                                rect,
+                                foreColor,
+                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            );
+                        }
+                    };
+                    // Remove Row
+                    btnDelete.Click += (s, args) =>
+                    {
+                        flowLayoutPanel1.Controls.Remove(rowPanel);
+                        ReorderSrNo();
+                    };
+
+                    rowPanel.Controls.Add(lblSrNo);
+                    rowPanel.Controls.Add(lblItem);
+                    rowPanel.Controls.Add(lblQty);
+                    rowPanel.Controls.Add(btnEdit);
+                    rowPanel.Controls.Add(btnDelete);
+                    rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+
+                    flowLayoutPanel1.Controls.Add(rowPanel);
+                    flowLayoutPanel1.AutoScroll = true;
+                    flowLayoutPanel1.WrapContents = false;
+                    flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+
+                    qnty.Text = "";
+                    PalletTypeList.SelectedIndex = 0;
+                    PalletTypeList.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Item already added.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an item.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void ReorderSrNo()
+        {
+            int srNo = 1;
+            int y = 35;
+
+            foreach (Panel row in flowLayoutPanel1.Controls.OfType<Panel>().Skip(1))
+            {
+                row.Location = new System.Drawing.Point(0, y);
+                var lbl = row.Controls.OfType<System.Windows.Forms.Label>().FirstOrDefault();
+                if (lbl != null)
+                    lbl.Text = srNo.ToString();
+
+                y += row.Height;
+                srNo++;
+            }
+
+            currentY = y; // Reset currentY for next added row
+            rowCount = srNo - 1;
+            PalletTypeList.Focus();
+        }
+
+        private void AddHeader()
+        {
+            Panel headerPanel = new Panel();
+            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
+            headerPanel.BackColor = Color.White;
+            headerPanel.Paint += (s, pe) =>
+            {
+                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1))
+                {
+                    pe.Graphics.DrawLine(
+                        pen,
+                        0, headerPanel.Height - 1,
+                        headerPanel.Width, headerPanel.Height - 1
+                    );
+                }
+            };
+
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            //headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new System.Drawing.Point(250, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+
+            flowLayoutPanel1.Controls.Add(headerPanel);
+            headerAdded = true;
+        }
+
+        private void editPallet_Click(object sender, EventArgs e)
+        {
+            var btn = sender as System.Windows.Forms.Button;
+            var data = btn.Tag as Tuple<ItemResponse, System.Windows.Forms.Label>;
+
+            if (data != null)
+            {
+                ItemResponse item = data.Item1;
+                int quantity = Convert.ToInt32(data.Item2.Text);
+
+                foreach (ItemResponse entry in PalletTypeList.Items)
+                {
+                    if (entry.ItemId == item.ItemId)
+                    {
+                        PalletTypeList.SelectedItem = entry;
+                        break;
+                    }
+                }
+
+                qnty.Text = quantity.ToString();
+
+                //disable remove button when edit row
+                var rowPanel = btn.Parent as Panel;
+                if (rowPanel != null)
+                {
+                    foreach (var control in rowPanel.Controls.OfType<System.Windows.Forms.Button>())
+                    {
+                        if (control.Text == "Remove")
+                        {
+                            control.Enabled = false;
+                        }
+                    }
+                }
+                PalletTypeList.Focus();
+            }
         }
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
@@ -1238,13 +1607,13 @@ namespace PackingApplication
                     else
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
-                        //grosswterror.Visible = true;
                         if (grosswterror.Visible)
                         {
                             MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             netwt.Text = "0";
                             wtpercop.Text = "0";
                         }
+
                     }
                 }
             }
@@ -1255,19 +1624,13 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            if (selectedSOId == 0)
-            {
-                //if (soerror.Visible)
-                //{
-                    //soerror.Text = "Please select sale order";
-                    MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-            }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
-                //grosswterror.Visible = true;
+                //if(grosswterror.Visible)
+                //{
                 //grosswterror.Text = "Please enter gross weight";
                 MessageBox.Show("Please enter gross weight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
             else
             {
@@ -1278,23 +1641,6 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
-                        {
-                            //grosswterror.Text = "No Prod Bal Qty remaining";
-                            //grosswterror.Visible = true;
-                            MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            submit.Enabled = false;
-                            saveprint.Enabled = false;
-                            return;
-                        }
-                        else
-                        {
-                            //grosswterror.Text = "";
-                            //grosswterror.Visible = false;
-                            submit.Enabled = true;
-                            saveprint.Enabled = true;
-                        }
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -1304,10 +1650,13 @@ namespace PackingApplication
                         else
                         {
                             //grosswterror.Text = "Gross Wt > Tare Wt";
-                            //grosswterror.Visible = true;
+                            //if(grosswterror.Visible)
+                            //{
                             MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             netwt.Text = "0";
                             wtpercop.Text = "0";
+                            //}
+
                         }
                     }
                 }
@@ -1339,11 +1688,14 @@ namespace PackingApplication
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
                 //spoolnoerror.Text = "Please enter spool no";
-                //spoolnoerror.Visible = true;
+                //if(spoolnoerror.Visible)
+                //{
                 MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tarewt.Text = "0";
                 spoolwt.Text = "0";
                 return;
+                //}
+
             }
             else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
@@ -1367,11 +1719,14 @@ namespace PackingApplication
                 else if (spoolnum == 0)
                 {
                     //spoolnoerror.Text = "Spool no > 0";
-                    //spoolnoerror.Visible = true;
+                    //if(spoolnoerror.Visible)
+                    //{
                     MessageBox.Show("Spool no > 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     tarewt.Text = "0";
                     spoolwt.Text = "0";
                     return;
+                    //}
+
                 }
             }
         }
@@ -1402,331 +1757,6 @@ namespace PackingApplication
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
-        }
-
-        private async void submit_Click(object sender, EventArgs e)
-        {
-            submitForm(false);
-        }
-
-        private async void saveprint_Click(object sender, EventArgs e)
-        {
-            submitForm(true);
-        }
-
-        public async void submitForm(bool isPrint)
-        {
-            if (ValidateForm())
-            {
-                productionRequest.PackingType = "POYPacking";
-                productionRequest.Remarks = remarks.Text.Trim();
-                productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
-                productionRequest.SpoolsWt = Convert.ToDecimal(spoolwt.Text.Trim());
-                productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
-                productionRequest.GrossWt = Convert.ToDecimal(grosswtno.Text.Trim());
-                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
-                productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
-                productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
-                productionRequest.ProductionDate = dateTimePicker1.Value;
-
-                productionRequest.PrintCompany = prcompany.Checked;
-                productionRequest.PrintOwner = prowner.Checked;
-                productionRequest.PrintDate = prdate.Checked;
-                productionRequest.PrintUser = pruser.Checked;
-                productionRequest.PrintHindiWords = prhindi.Checked;
-                productionRequest.PrintQRCode = prqrcode.Checked;
-                productionRequest.PrintWTPS = prwtps.Checked;
-                productionRequest.PrintTwist = prtwist.Checked;
-
-                productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
-
-                productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
-                foreach (var lot in lotsDetailsList)
-                {
-                    ProductionConsumptionDetailsRequest consumptionDetailsRequest = new ProductionConsumptionDetailsRequest();
-                    consumptionDetailsRequest.Extruder = lot.Extruder;
-                    consumptionDetailsRequest.InputPerc = lot.InputPerc;
-                    consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
-                    consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
-                    consumptionDetailsRequest.ProductionLotId = lot.LotId;
-                    consumptionDetailsRequest.InputLotId = lot.LotId;
-                    consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
-                    consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
-                    consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
-                    //consumptionDetailsRequest.StockTrfDetailsId = 0;
-                    productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
-                }
-
-                ProductionResponse result = SubmitPacking(productionRequest, isPrint);
-            }
-        }
-
-        public ProductionResponse SubmitPacking(ProductionRequest productionRequest, bool isPrint)
-        {
-            submit.Enabled = false;
-            saveprint.Enabled = false;
-            ProductionResponse result = new ProductionResponse();
-            result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
-            if (result != null && result.ProductionId > 0)
-            {
-                submit.Enabled = true;
-                saveprint.Enabled = true;
-                RefreshGradewiseGrid();
-                RefreshLastBoxDetails();
-                this.spoolno.Text = "";
-                this.spoolnoerror.Text = "";
-                this.spoolnoerror.Visible = false;
-                this.spoolwt.Text = "";
-                this.grosswtno.Text = "";
-                this.grosswterror.Text = "";
-                this.grosswterror.Visible = false;
-                this.tarewt.Text = "";
-                this.netwt.Text = "";
-                this.wtpercop.Text = "";
-                this.boxpalletstock.Text = "0";
-                this.copsstock.Text = "0";
-                this.boxpalletitemwt.Text = "";
-                if (_productionId == 0)
-                {
-                    MessageBox.Show("DTY Packing added successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    //if (isPrint)
-                    //{
-                    //    //call ssrs report to print
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
-
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "";
-                    //    string endDate = "";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
-
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                    //    byte[] bytes = client.DownloadData(url);
-
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
-
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
-
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            var printerSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            // Set custom 4x4 label size
-                    //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                    //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-
-                    //            printDoc.PrinterSettings = printerSettings;
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
-
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-                    //}
-                }
-                else
-                {
-                    MessageBox.Show("DTY Packing updated successfully!", "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    //if (isPrint)
-                    //{
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
-
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "2025-09-01";
-                    //    string endDate = "2025-09-30";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
-
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                    //    byte[] bytes = client.DownloadData(url);
-
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
-
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
-
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            printDoc.PrinterSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
-
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-
-                    //}
-                    var dashboard = this.ParentForm as AdminAccount;
-                    if (dashboard != null)
-                    {
-                        // Open the List form instead of Add form
-                        dashboard.LoadFormInContent(new DTYPackingForm(0));
-                    }
-                }
-            }
-            else
-            {
-                submit.Enabled = true;
-                saveprint.Enabled = true;
-                MessageBox.Show("Something went wrong.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            return result;
-        }
-
-        private bool ValidateForm()
-        {
-            bool isValid = true;
-
-            if (LineNoList.SelectedIndex <= 0)
-            {
-                //linenoerror.Text = "Please select a line no";
-                //linenoerror.Visible = true;
-                MessageBox.Show("Please select a line no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-            if (string.IsNullOrWhiteSpace(copyno.Text))
-            {
-                //copynoerror.Text = "Please enter no of copies";
-                //copynoerror.Visible = true;
-                MessageBox.Show("Please enter no of copies", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (MergeNoList.SelectedIndex <= 0)
-            {
-                //mergenoerror.Text = "Please select merge no";
-                //mergenoerror.Visible = true;
-                MessageBox.Show("Please select merge no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (QualityList.SelectedIndex <= 0)
-            {
-                //qualityerror.Text = "Please select quality";
-                //qualityerror.Visible = true;
-                MessageBox.Show("Please select quality", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (SaleOrderList.SelectedIndex <= 0)
-            {
-                //soerror.Text = "Please select sale order";
-                //soerror.Visible = true;
-                MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (PackSizeList.SelectedIndex <= 0)
-            {
-                //packsizeerror.Text = "Please select pack size";
-                //packsizeerror.Visible = true;
-                MessageBox.Show("Please select pack size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (WindingTypeList.SelectedIndex <= 0)
-            {
-                //windingerror.Text = "Please select winding type";
-                //windingerror.Visible = true;
-                MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (PrefixList.SelectedIndex <= 0)
-            {
-                //boxnoerror.Text = "Please select prefix";
-                //boxnoerror.Visible = true;
-                MessageBox.Show("Please select prefix", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (BoxItemList.SelectedIndex <= 0)
-            {
-                MessageBox.Show("Please select box item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (CopsItemList.SelectedIndex <= 0)
-            {
-                MessageBox.Show("Please select cops item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) == 0)
-            {
-                //spoolnoerror.Text = "Please enter spool no";
-                //spoolnoerror.Visible = true;
-                MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToDecimal(spoolwt.Text) == 0)
-            {
-                //spoolwterror.Text = "Please enter spool wt";
-                //spoolwterror.Visible = true;
-                MessageBox.Show("Please enter spool wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
-            {
-                //palletwterror.Text = "Please enter pallet wt";
-                //palletwterror.Visible = true;
-                MessageBox.Show("Please enter pallet wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
-            {
-                //grosswterror.Text = "Please enter gross wt";
-                //grosswterror.Visible = true;
-                MessageBox.Show("Please enter gross wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            //var dashboard = this.ParentForm as AdminAccount;
-            //if (dashboard != null)
-            //{
-            //    dashboard.LoadFormInContent(new POYPackingList());
-            //}
-            ResetForm(this);
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)
@@ -1864,368 +1894,9 @@ namespace PackingApplication
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void palletdetailsheader_Resize(object sender, EventArgs e)
         {
-            // Allow control keys (backspace, delete, etc.)
-            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            //{
-            //    e.Handled = true; // Reject the input
-            //}
-            if (sender is System.Windows.Forms.TextBox txt)
-            {
-                // Allow control keys (backspace, delete, etc.)
-                if (char.IsControl(e.KeyChar))
-                    return;
-
-                // Allow digits
-                if (char.IsDigit(e.KeyChar))
-                    return;
-
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && !txt.Text.Contains('.'))
-                    return;
-
-                // Block everything else
-                e.Handled = true;
-            }
-        }
-
-        private void checkBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
-                if (cb != null)
-                {
-                    cb.Checked = !cb.Checked; // toggle the checkbox
-                    e.Handled = true;          // prevent beep
-                }
-            }
-            else
-            {
-                // For Tab (and other keys), don't mark as handled
-                e.Handled = false;
-            }
-        }
-
-        private void LineNoList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                LineNoList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                LineNoList.DroppedDown = false;
-            }
-        }
-
-        private void MergeNoList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                MergeNoList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                MergeNoList.DroppedDown = false;
-            }
-        }
-
-        private void PackSizeList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                PackSizeList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                PackSizeList.DroppedDown = false;
-            }
-        }
-
-        private void QualityList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                QualityList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                QualityList.DroppedDown = false;
-            }
-        }
-
-        private void SaleOrderList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                SaleOrderList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                SaleOrderList.DroppedDown = false;
-            }
-        }
-
-        private void PrefixList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                PrefixList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                PrefixList.DroppedDown = false;
-            }
-        }
-
-        private void WindingTypeList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                WindingTypeList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                WindingTypeList.DroppedDown = false;
-            }
-        }
-
-        private void ComPortList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                ComPortList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                ComPortList.DroppedDown = false;
-            }
-        }
-
-        private void WeighingList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                WeighingList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                WeighingList.DroppedDown = false;
-            }
-        }
-
-        private void CopsItemList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                CopsItemList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                CopsItemList.DroppedDown = false;
-            }
-        }
-
-        private void BoxItemList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                BoxItemList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                BoxItemList.DroppedDown = false;
-            }
-        }
-
-        private void DeptList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                DeptList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                DeptList.DroppedDown = false;
-            }
-        }
-
-        private void ResetForm(Control parent)
-        {
-            lblLoading.Visible = true;
-            try
-            {
-                foreach (Control c in parent.Controls)
-                {
-                    if (c is System.Windows.Forms.TextBox)
-                        ((System.Windows.Forms.TextBox)c).Clear();
-
-                    else if (c is System.Windows.Forms.ComboBox)
-                        ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
-
-                    else if (c is DateTimePicker)
-                        ((DateTimePicker)c).Value = DateTime.Now;
-
-                    //else if (c is System.Windows.Forms.CheckBox)
-                    //    ((System.Windows.Forms.CheckBox)c).Checked = false;
-
-                    //else if (c is System.Windows.Forms.RadioButton)
-                    //    ((System.Windows.Forms.RadioButton)c).Checked = false;
-
-                    // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
-                    if (c.HasChildren)
-                        ResetForm(c);
-                }
-                copyno.Text = "1";
-                spoolwt.Text = "0";
-                palletwtno.Text = "0";
-                grosswtno.Text = "0";
-                tarewt.Text = "0";
-                netwt.Text = "0";
-                wtpercop.Text = "0";
-                boxpalletitemwt.Text = "0";
-                boxpalletstock.Text = "0";
-                copsitemwt.Text = "0";
-                boxpalletitemwt.Text = "0";
-                frdenier.Text = "0";
-                updenier.Text = "0";
-                deniervalue.Text = "0";
-                partyn.Text = "";
-                partyshade.Text = "";
-                itemname.Text = "";
-                shadename.Text = "";
-                shadecd.Text = "";
-                prodtype.Text = "";
-                lotResponse = new LotsResponse();
-                lotsDetailsList = new List<LotsDetailsResponse>();
-                getLotRelatedDetails();
-                rowMaterial.Columns.Clear();
-                totalProdQty = 0;
-                selectedSOId = 0;
-                totalSOQty = 0;
-                balanceQty = 0;
-                prcompany.Checked = false;
-                prowner.Checked = false;
-
-                DeptList.DataSource = null;
-                DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
-                DeptList.SelectedIndex = 0;
-
-                MergeNoList.DataSource = null;
-                MergeNoList.Items.Clear();
-                MergeNoList.Items.Add("Select MergeNo");
-                MergeNoList.SelectedIndex = 0;
-
-                isFormReady = false;
-                spoolno.Text = "";
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-                isFormReady = true;
-            }
-        }
-
-        private void prcompany_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            if (prcompany.Checked)
-            {
-                prowner.Checked = false;
-                prowner.Enabled = false; // disable the other
-                prcompany.Focus();       // keep focus on the current one
-            }
-            else
-            {
-                prowner.Enabled = true;  // re-enable when unchecked
-            }
-        }
-
-        private void prowner_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            if (prowner.Checked)
-            {
-                prcompany.Checked = false;
-                prcompany.Enabled = false; // disable the other
-                prowner.Focus();           // keep focus
-            }
-            else
-            {
-                prcompany.Enabled = true;  // re-enable when unchecked
-            }
-        }
-
-        private void txtNumeric_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
-
-            // Allow control keys (Backspace, Delete, etc.)
-            if (char.IsControl(e.KeyChar))
-                return;
-
-            // Allow only one decimal point
-            if (e.KeyChar == '.' && txt.Text.Contains('.'))
-            {
-                e.Handled = true;
-                return;
-            }
-
-            // Allow only digits and one decimal point
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-                return;
-            }
-
-            // Check for 3 digits after decimal
-            if (txt.Text.Contains('.'))
-            {
-                int decimalIndex = txt.Text.IndexOf('.');
-                string afterDecimal = txt.Text.Substring(decimalIndex + 1);
-                if (afterDecimal.Length >= 3 && txt.SelectionStart > decimalIndex)
-                {
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // Prevent the "ding" sound
-
-                Control current = (Control)sender;
-
-                // If current is the last field, move focus to the button
-                if (current == grosswtno) // replace with your last field
-                {
-                    saveprint.Focus(); // replace with your button name
-                }
-                else
-                {
-                    // Move to next control in tab order
-                    this.SelectNextControl(current, true, true, true, true);
-                }
-            }
+            _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
         }
     }
 }
