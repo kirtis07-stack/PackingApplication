@@ -1421,6 +1421,7 @@ namespace PackingApplication
 
             if (BoxItemList.SelectedIndex <= 0)
             {
+                MessageBox.Show("Please select box item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 

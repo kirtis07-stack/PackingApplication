@@ -39,8 +39,8 @@ namespace PackingApplication
             email.TextChanged += Email_TextChanged;
             passwrd.TextChanged += Passwrd_TextChanged;
 
-            email.Text = "kirti.shinde@cyberscriptit.com";
-            passwrd.Text = "Kirti@123";
+            //email.Text = "kirti.shinde@cyberscriptit.com";
+            //passwrd.Text = "Kirti@123";
         }
 
         private void ApplyFonts()
@@ -179,7 +179,7 @@ namespace PackingApplication
             Log.writeMessage("SetButtonBorderRadius start");
             try
             {
-                button.FlatStyle = FlatStyle.Flat;
+                button.FlatStyle = FlatStyle.Standard;
                 button.FlatAppearance.BorderSize = 0;
                 button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
                 button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
@@ -274,6 +274,26 @@ namespace PackingApplication
                 this.passwrd.UseSystemPasswordChar = false;
                 this.eyeicon.Image = Properties.Resources.icons8_eye_24;    // set open-eye icon
                 isPasswordVisible = true;
+            }
+        }
+
+        private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;           // Mark as handled
+                e.SuppressKeyPress = true;
+
+                Control current = (Control)sender;
+
+                if (current == rememberme)
+                {
+                    signin.Focus();
+                }
+                else
+                {
+                    this.SelectNextControl(current, true, true, true, true);
+                }
             }
         }
     }

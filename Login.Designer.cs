@@ -81,6 +81,7 @@ namespace PackingApplication
             this.email.TabIndex = 1;
             this.email.Tag = "";
             this.email.TextChanged += new System.EventHandler(this.Email_TextChanged);
+            this.email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             // 
             // password
             // 
@@ -101,6 +102,7 @@ namespace PackingApplication
             this.passwrd.UseSystemPasswordChar = true;
             this.passwrd.WordWrap = false;
             this.passwrd.TextChanged += new System.EventHandler(this.Passwrd_TextChanged);
+            this.passwrd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             // 
             // year
             // 
@@ -119,6 +121,7 @@ namespace PackingApplication
             this.YearList.Size = new System.Drawing.Size(257, 21);
             this.YearList.TabIndex = 5;
             this.YearList.SelectedIndexChanged += new System.EventHandler(this.YearList_SelectedIndexChanged);
+            this.YearList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             // 
             // rememberme
             // 
@@ -131,12 +134,13 @@ namespace PackingApplication
             this.rememberme.TabIndex = 7;
             this.rememberme.Text = "Remember me";
             this.rememberme.UseVisualStyleBackColor = true;
+            this.rememberme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             // 
             // signin
             // 
             this.signin.BackColor = System.Drawing.SystemColors.Highlight;
             this.signin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.signin.Location = new System.Drawing.Point(55, 330);
             this.signin.Name = "signin";

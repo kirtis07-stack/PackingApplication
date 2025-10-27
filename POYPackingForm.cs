@@ -2280,6 +2280,7 @@ namespace PackingApplication
 
             if (BoxItemList.SelectedIndex <= 0)
             {
+                MessageBox.Show("Please select box item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
@@ -2912,18 +2913,16 @@ namespace PackingApplication
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                e.SuppressKeyPress = true; 
 
                 Control current = (Control)sender;
 
-                // If current is the last field, move focus to the button
-                if (current == grosswtno) // replace with your last field
+                if (current == grosswtno) 
                 {
-                    saveprint.Focus(); // replace with your button name
+                    saveprint.Focus(); 
                 }
                 else
                 {
-                    // Move to next control in tab order
                     this.SelectNextControl(current, true, true, true, true);
                 }
             }
