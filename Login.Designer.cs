@@ -140,7 +140,6 @@ namespace PackingApplication
             // 
             this.signin.BackColor = System.Drawing.SystemColors.Highlight;
             this.signin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.signin.Location = new System.Drawing.Point(55, 330);
             this.signin.Name = "signin";
@@ -291,10 +290,10 @@ namespace PackingApplication
             this.eyeicon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.eyeicon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.eyeicon.Image = global::PackingApplication.Properties.Resources.icons8_hide_24;
-            this.eyeicon.Location = new System.Drawing.Point(292, 187);
+            this.eyeicon.Location = new System.Drawing.Point(290, 190);
             this.eyeicon.Margin = new System.Windows.Forms.Padding(2);
             this.eyeicon.Name = "eyeicon";
-            this.eyeicon.Size = new System.Drawing.Size(20, 21);
+            this.eyeicon.Size = new System.Drawing.Size(19, 19);
             this.eyeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.eyeicon.TabIndex = 17;
             this.eyeicon.TabStop = false;

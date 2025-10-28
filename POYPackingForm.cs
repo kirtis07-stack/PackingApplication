@@ -647,7 +647,7 @@ namespace PackingApplication
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
         }
 
-        private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void LineNoList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
 
@@ -712,7 +712,7 @@ namespace PackingApplication
             }
         }
 
-        private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void MergeNoList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -888,7 +888,7 @@ namespace PackingApplication
             }
         }
 
-        private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void PackSizeList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -931,7 +931,7 @@ namespace PackingApplication
             }
         }
 
-        private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
+        private void QualityList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -953,7 +953,7 @@ namespace PackingApplication
             }
         }
 
-        private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
+        private void WindingTypeList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -992,7 +992,7 @@ namespace PackingApplication
             }
         }
 
-        private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void SaleOrderList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1160,7 +1160,7 @@ namespace PackingApplication
             }
         }
 
-        private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComPortList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1173,7 +1173,7 @@ namespace PackingApplication
             }
         }
 
-        private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
+        private void WeighingList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1194,7 +1194,7 @@ namespace PackingApplication
             }
         }
 
-        private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void CopsItemList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1225,7 +1225,7 @@ namespace PackingApplication
                             copsitemwt.Text = itemResponse.Weight.ToString();
                             //spoolwt.Text = itemResponse.Weight.ToString();
                             SpoolNo_TextChanged(sender, e);
-                            GrossWeight_TextChanged(sender, e);
+                            //GrossWeight_TextChanged(sender, e);
                         }
                     }
                 }
@@ -1236,7 +1236,7 @@ namespace PackingApplication
             }
         }
 
-        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void BoxItemList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1276,7 +1276,7 @@ namespace PackingApplication
             }
         }
 
-        private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
+        private void PrefixList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1312,7 +1312,7 @@ namespace PackingApplication
             }
         }
 
-        private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void DeptList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1484,6 +1484,27 @@ namespace PackingApplication
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error); return;
             }
+            if (!int.TryParse(qnty.Text, out int quty))
+            {
+                MessageBox.Show("Please enter a valid number for quantity.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                qnty.Focus();
+                return;
+            }
+
+            // Check range
+            if (quty < 0)
+            {
+                MessageBox.Show("Quantity cannot be negative.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                qnty.Focus();
+                return;
+            }
+            else if (quty > int.MaxValue)
+            {
+                MessageBox.Show("Quantity cannot exceed 2,147,483,647.", "Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                qnty.Text = int.MaxValue.ToString();
+                qnty.Focus();
+                return;
+            }
             int qty = Convert.ToInt32(qnty.Text);
 
             if (selectedItem.ItemId > 0)
@@ -1554,13 +1575,13 @@ namespace PackingApplication
                     System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
 
                     // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 60, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(350, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;  
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255); 
@@ -1601,7 +1622,7 @@ namespace PackingApplication
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(390, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                     btnDelete.FlatAppearance.BorderSize = 1;   
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -1708,7 +1729,7 @@ namespace PackingApplication
         private void AddHeader()
         {
             Panel headerPanel = new Panel();
-            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
+            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 35);
             headerPanel.BackColor = Color.White;
             headerPanel.Paint += (s, pe) =>
             {
@@ -1723,9 +1744,9 @@ namespace PackingApplication
             };
 
             headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new System.Drawing.Point(250, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 70, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new System.Drawing.Point(350, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
 
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
@@ -2079,25 +2100,20 @@ namespace PackingApplication
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
-                this.spoolno.Text = "";
-                this.spoolnoerror.Text = "";
-                this.spoolnoerror.Visible = false;
-                this.spoolwt.Text = "";
-                this.grosswtno.Text = "";
-                this.grosswterror.Text = "";
-                this.grosswterror.Visible = false;
-                this.tarewt.Text = "";
-                this.netwt.Text = "";
-                this.wtpercop.Text = "";
-                this.boxpalletstock.Text = "0";
-                this.copsstock.Text = "0";
-                this.boxpalletitemwt.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("POY Packing added successfully!",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                    isFormReady = false;
+                    this.spoolno.Text = "0";
+                    this.spoolwt.Text = "0";
+                    this.grosswtno.Text = "";
+                    this.tarewt.Text = "";
+                    this.netwt.Text = "";
+                    this.wtpercop.Text = "";
+                    isFormReady = true;
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print
@@ -2833,29 +2849,16 @@ namespace PackingApplication
                 MergeNoList.Items.Add("Select MergeNo");
                 MergeNoList.SelectedIndex = 0;
 
-                LineNoList.DataSource = o_machinesResponse;
-                LineNoList.Items.Clear();
-                LineNoList.Items.Add("Select Line No.");
                 LineNoList.SelectedIndex = 0;
 
-                PackSizeList.Items.Clear();
-                PackSizeList.Items.Add("Select Pack Size");
                 PackSizeList.SelectedIndex = 0;
 
-                CopsItemList.Items.Clear();
-                CopsItemList.Items.Add("Select Cops Item");
                 CopsItemList.SelectedIndex = 0;
 
-                BoxItemList.Items.Clear();
-                BoxItemList.Items.Add("Select Box Item");
                 BoxItemList.SelectedIndex = 0;
 
-                ComPortList.Items.Clear();
-                ComPortList.Items.Add("Select Com Port");
                 ComPortList.SelectedIndex = 0;
 
-                WeighingList.Items.Clear();
-                WeighingList.Items.Add("Select Weigh Scale");
                 WeighingList.SelectedIndex = 0;
 
                 isFormReady = false;

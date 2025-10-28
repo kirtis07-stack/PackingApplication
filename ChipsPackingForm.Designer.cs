@@ -444,7 +444,7 @@ namespace PackingApplication
             this.QualityList.Name = "QualityList";
             this.QualityList.Size = new System.Drawing.Size(37, 21);
             this.QualityList.TabIndex = 1;
-            this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
+            this.QualityList.SelectionChangeCommitted += new System.EventHandler(this.QualityList_SelectionChangeCommitted);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
             // 
             // PackSizeList
@@ -458,7 +458,7 @@ namespace PackingApplication
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(37, 21);
             this.PackSizeList.TabIndex = 3;
-            this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
+            this.PackSizeList.SelectionChangeCommitted += new System.EventHandler(this.PackSizeList_SelectionChangeCommitted);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             // 
             // WindingTypeList
@@ -472,7 +472,7 @@ namespace PackingApplication
             this.WindingTypeList.Name = "WindingTypeList";
             this.WindingTypeList.Size = new System.Drawing.Size(33, 21);
             this.WindingTypeList.TabIndex = 3;
-            this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
+            this.WindingTypeList.SelectionChangeCommitted += new System.EventHandler(this.WindingTypeList_SelectionChangeCommitted);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
             // 
             // ComPortList
@@ -486,7 +486,7 @@ namespace PackingApplication
             this.ComPortList.Name = "ComPortList";
             this.ComPortList.Size = new System.Drawing.Size(32, 21);
             this.ComPortList.TabIndex = 1;
-            this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
+            this.ComPortList.SelectionChangeCommitted += new System.EventHandler(this.ComPortList_SelectionChangeCommitted);
             this.ComPortList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComPortList_KeyDown);
             // 
             // WeighingList
@@ -500,7 +500,7 @@ namespace PackingApplication
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(38, 21);
             this.WeighingList.TabIndex = 4;
-            this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
+            this.WeighingList.SelectionChangeCommitted += new System.EventHandler(this.WeighingList_SelectionChangeCommitted);
             this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
             // 
             // BoxItemList
@@ -514,7 +514,7 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(37, 21);
             this.BoxItemList.TabIndex = 6;
-            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.SelectionChangeCommitted += new System.EventHandler(this.BoxItemList_SelectionChangeCommitted);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             // 
             // prcompany
@@ -1514,7 +1514,7 @@ namespace PackingApplication
             this.LineNoList.Name = "LineNoList";
             this.LineNoList.Size = new System.Drawing.Size(42, 21);
             this.LineNoList.TabIndex = 1;
-            this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
+            this.LineNoList.SelectionChangeCommitted += new System.EventHandler(this.LineNoList_SelectionChangeCommitted);
             this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
             // 
             // linenoerror
@@ -1594,7 +1594,7 @@ namespace PackingApplication
             this.PrefixList.Name = "PrefixList";
             this.PrefixList.Size = new System.Drawing.Size(31, 21);
             this.PrefixList.TabIndex = 2;
-            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            this.PrefixList.SelectionChangeCommitted += new System.EventHandler(this.PrefixList_SelectionChangeCommitted);
             this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
             // 
             // boxnoerror
@@ -1628,7 +1628,7 @@ namespace PackingApplication
             this.DeptList.Name = "DeptList";
             this.DeptList.Size = new System.Drawing.Size(43, 21);
             this.DeptList.TabIndex = 3;
-            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
+            this.DeptList.SelectionChangeCommitted += new System.EventHandler(this.DeptList_SelectionChangeCommitted);
             this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
             // 
             // department
@@ -1686,7 +1686,7 @@ namespace PackingApplication
             this.MergeNoList.Name = "MergeNoList";
             this.MergeNoList.Size = new System.Drawing.Size(39, 21);
             this.MergeNoList.TabIndex = 4;
-            this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
+            this.MergeNoList.SelectionChangeCommitted += new System.EventHandler(this.MergeNoList_SelectionChangeCommitted);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
             // 
             // mergenoerror

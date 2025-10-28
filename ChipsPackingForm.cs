@@ -375,7 +375,7 @@ namespace PackingApplication
             }
         }
 
-        private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void LineNoList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
 
@@ -440,7 +440,7 @@ namespace PackingApplication
             }
         }
 
-        private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void MergeNoList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -583,7 +583,7 @@ namespace PackingApplication
             }
         }
 
-        private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void PackSizeList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -626,7 +626,7 @@ namespace PackingApplication
             }
         }
 
-        private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
+        private void QualityList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -648,7 +648,7 @@ namespace PackingApplication
             }
         }
 
-        private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
+        private void WindingTypeList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -752,7 +752,7 @@ namespace PackingApplication
             }
         }
 
-        private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComPortList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -765,7 +765,7 @@ namespace PackingApplication
             }
         }
 
-        private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
+        private void WeighingList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -786,7 +786,7 @@ namespace PackingApplication
             }
         }
 
-        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void BoxItemList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -826,7 +826,7 @@ namespace PackingApplication
             }
         }
 
-        private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
+        private void PrefixList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -862,7 +862,7 @@ namespace PackingApplication
             }
         }
 
-        private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void DeptList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (!isFormReady) return;
 
@@ -1233,20 +1233,18 @@ namespace PackingApplication
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
-                this.grosswtno.Text = "";
-                this.grosswterror.Text = "";
-                this.grosswterror.Visible = false;
-                this.tarewt.Text = "";
-                this.netwt.Text = "";
-                this.wtpercop.Text = "";
-                this.boxpalletstock.Text = "0";
-                this.boxpalletitemwt.Text = "";
                 if (_productionId == 0)
                 {
                     MessageBox.Show("Chips Packing added successfully!",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                    isFormReady = false;
+                    this.grosswtno.Text = "";
+                    this.tarewt.Text = "";
+                    this.netwt.Text = "";
+                    this.wtpercop.Text = "";
+                    isFormReady = true;
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print
@@ -1786,8 +1784,8 @@ namespace PackingApplication
                     //    ((System.Windows.Forms.RadioButton)c).Checked = false;
 
                     // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
-                    if (c.HasChildren)
-                        ResetForm(c);
+                    //if (c.HasChildren)
+                    //    ResetForm(c);
                 }
                 copyno.Text = "1";
                 palletwtno.Text = "0";
@@ -1826,12 +1824,31 @@ namespace PackingApplication
                 MergeNoList.Items.Add("Select MergeNo");
                 MergeNoList.SelectedIndex = 0;
 
+                LineNoList.SelectedIndex = 0;
+
+                PackSizeList.SelectedIndex = 0;
+
+                BoxItemList.SelectedIndex = 0;
+
+                ComPortList.SelectedIndex = 0;
+
+                WeighingList.SelectedIndex = 0;
+
                 isFormReady = false;
             }
             finally
             {
                 lblLoading.Visible = false;
                 isFormReady = true;
+                if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
+                {
+                    if (parentForm.MainMenuStrip != null)
+                    {
+                        parentForm.MainMenuStrip.Focus();
+                        if (parentForm.MainMenuStrip.Items.Count > 0)
+                            ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
+                    }
+                }
             }
         }
 
