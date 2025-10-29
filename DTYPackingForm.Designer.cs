@@ -2171,11 +2171,11 @@ namespace PackingApplication
             // prodtype
             // 
             this.prodtype.AutoSize = true;
+            this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.prodtype.Location = new System.Drawing.Point(46, 5);
             this.prodtype.Name = "prodtype";
             this.prodtype.Size = new System.Drawing.Size(0, 13);
             this.prodtype.TabIndex = 5;
-            this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             // 
             // productiontype
             // 

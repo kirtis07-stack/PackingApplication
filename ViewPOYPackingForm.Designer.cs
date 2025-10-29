@@ -2751,6 +2751,7 @@
             this.Controls.Add(this.rightpanel);
             this.Name = "ViewPOYPackingForm";
             this.Text = "ViewPOYPackingForm";
+            this.Load += new System.EventHandler(this.ViewPOYPackingForm_Load);
             this.rightpanel.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.rowMaterialBox.ResumeLayout(false);

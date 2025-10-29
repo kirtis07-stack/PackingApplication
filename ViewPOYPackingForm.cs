@@ -63,7 +63,7 @@ namespace PackingApplication
             qualityqty.AutoGenerateColumns = false;
         }
 
-        private void POYPackingForm_Load(object sender, EventArgs e)
+        private void ViewPOYPackingForm_Load(object sender, EventArgs e)
         {
             AddHeader();
 

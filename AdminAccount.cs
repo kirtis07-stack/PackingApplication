@@ -127,7 +127,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem viewdty = new ToolStripMenuItem("View DTY Packing")
+            ToolStripMenuItem viewdty = new ToolStripMenuItem("View DTY Packing", null, ViewDTYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -507,6 +507,16 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new DTYPackingForm(0));
+            }
+        }
+
+        private void ViewDTYPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ViewDTYPackingForm());
+
             }
         }
 
