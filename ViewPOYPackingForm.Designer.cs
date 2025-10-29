@@ -599,6 +599,7 @@
             this.palletdetailslayout.Size = new System.Drawing.Size(396, 210);
             this.palletdetailslayout.TabIndex = 6;
             this.palletdetailslayout.TabStop = true;
+            this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
             // 
             // palletdetailsheader
             // 
@@ -611,6 +612,8 @@
             this.palletdetailsheader.Size = new System.Drawing.Size(392, 20);
             this.palletdetailsheader.TabIndex = 9;
             this.palletdetailsheader.TabStop = true;
+            this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
+            this.palletdetailsheader.Resize += new System.EventHandler(this.palletdetailsheader_Resize);
             // 
             // palletdetails
             // 
@@ -732,6 +735,7 @@
             this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89F));
             this.packagingboxlayout.Size = new System.Drawing.Size(190, 169);
             this.packagingboxlayout.TabIndex = 2;
+            this.packagingboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxlayout_Paint);
             // 
             // packagingboxheader
             // 
@@ -744,6 +748,8 @@
             this.packagingboxheader.Name = "packagingboxheader";
             this.packagingboxheader.Size = new System.Drawing.Size(186, 16);
             this.packagingboxheader.TabIndex = 107;
+            this.packagingboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxheader_Paint);
+            this.packagingboxheader.Resize += new System.EventHandler(this.packagingboxheader_Resize);
             // 
             // Packagingboxlbl
             // 
@@ -1302,6 +1308,7 @@
             this.machineboxlayout.Size = new System.Drawing.Size(190, 124);
             this.machineboxlayout.TabIndex = 1;
             this.machineboxlayout.TabStop = true;
+            this.machineboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxlayout_Paint);
             // 
             // machineboxpanel
             // 
@@ -1710,6 +1717,8 @@
             this.machineboxheader.Name = "machineboxheader";
             this.machineboxheader.Size = new System.Drawing.Size(186, 13);
             this.machineboxheader.TabIndex = 1;
+            this.machineboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxheader_Paint);
+            this.machineboxheader.Resize += new System.EventHandler(this.machineboxheader_Resize);
             // 
             // Machinelbl
             // 
@@ -1752,6 +1761,7 @@
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86F));
             this.weighboxlayout.Size = new System.Drawing.Size(189, 114);
             this.weighboxlayout.TabIndex = 3;
+            this.weighboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxlayout_Paint);
             // 
             // weighboxheader
             // 
@@ -1763,6 +1773,8 @@
             this.weighboxheader.Name = "weighboxheader";
             this.weighboxheader.Size = new System.Drawing.Size(185, 15);
             this.weighboxheader.TabIndex = 107;
+            this.weighboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxheader_Paint);
+            this.weighboxheader.Resize += new System.EventHandler(this.weighboxheader_Resize);
             // 
             // Weighboxlbl
             // 
@@ -2290,6 +2302,7 @@
             this.printingdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78F));
             this.printingdetailslayout.Size = new System.Drawing.Size(189, 66);
             this.printingdetailslayout.TabIndex = 1;
+            this.printingdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailslayout_Paint);
             // 
             // panel3
             // 
@@ -2502,6 +2515,8 @@
             this.printingdetailsheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
             this.printingdetailsheader.Size = new System.Drawing.Size(185, 13);
             this.printingdetailsheader.TabIndex = 107;
+            this.printingdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailsheader_Paint);
+            this.printingdetailsheader.Resize += new System.EventHandler(this.printingdetailsheader_Resize);
             // 
             // Printinglbl
             // 
@@ -2554,6 +2569,7 @@
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.lastboxlayout.Size = new System.Drawing.Size(189, 76);
             this.lastboxlayout.TabIndex = 1;
+            this.lastboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxlayout_Paint);
             // 
             // lastboxpanel
             // 
@@ -2732,6 +2748,8 @@
             this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
             this.lastboxheader.Size = new System.Drawing.Size(185, 17);
             this.lastboxheader.TabIndex = 107;
+            this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
+            this.lastboxheader.Resize += new System.EventHandler(this.lastboxheader_Resize);
             // 
             // Lastboxlbl
             // 

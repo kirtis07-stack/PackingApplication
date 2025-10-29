@@ -1,5 +1,4 @@
-﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
-using PackingApplication.Helper;
+﻿using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
@@ -8,18 +7,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace PackingApplication
 {
-    public partial class ViewDTYPackingForm : Form
+    public partial class ViewChipsPackingForm : Form
     {
         private static Logger Log = Logger.GetLogger();
 
@@ -48,40 +44,34 @@ namespace PackingApplication
         private bool isFormReady = false;
         int itemBoxCategoryId = 2;
         int itemCopsCategoryId = 3;
+        int itemPalletCategoryId = 5;
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
-        public ViewDTYPackingForm()
+        public ViewChipsPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
-            this.Shown += ViewDTYPackingForm_Shown;
+            this.Shown += ViewChipsPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
         }
 
-        private void ViewDTYPackingForm_Load(object sender, EventArgs e)
+        private void ViewChipsPackingForm_Load(object sender, EventArgs e)
         {
             getLotRelatedDetails();
 
             copyno.Text = "1";
-            spoolno.Text = "0";
-            spoolwt.Text = "0";
             palletwtno.Text = "0";
             grosswtno.Text = "0";
             tarewt.Text = "0";
             netwt.Text = "0";
             wtpercop.Text = "0";
-            copsstock.Text = "0";
             boxpalletstock.Text = "0";
-            copsitemwt.Text = "0";
             boxpalletitemwt.Text = "0";
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
-            twistvalue.Text = "0";
-            partyn.Text = "";
-            partyshade.Text = "";
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
 
@@ -90,13 +80,6 @@ namespace PackingApplication
 
         private void getLotRelatedDetails()
         {
-            var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
-            getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
-            SaleOrderList.DataSource = getSaleOrder;
-            SaleOrderList.DisplayMember = "ItemName";
-            SaleOrderList.ValueMember = "SaleOrderItemsId";
-            SaleOrderList.SelectedIndex = 0;
-
             var windingtypeList = new List<WindingTypeResponse>();
             windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
             WindingTypeList.DataSource = windingtypeList;
@@ -110,6 +93,15 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
+
+            var prefixList = new List<PrefixResponse>();
+            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+            PrefixList.DataSource = prefixList;
+            PrefixList.DisplayMember = "Prefix";
+            PrefixList.ValueMember = "PrefixCode";
+            PrefixList.SelectedIndex = 0;
+            PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void ApplyFonts()
@@ -122,23 +114,18 @@ namespace PackingApplication
             this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -156,9 +143,7 @@ namespace PackingApplication
             this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.ComPortList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.WeighingList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.CopsItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.BoxItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.SaleOrderList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prcompany.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -179,9 +164,6 @@ namespace PackingApplication
             this.label2.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.palletwtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.palletwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.spoolwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -195,18 +177,17 @@ namespace PackingApplication
             this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.PrefixList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.palletwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.spoolwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.spoolnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.boxnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.soerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.qualityerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
@@ -215,15 +196,9 @@ namespace PackingApplication
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.bppartyname.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.twistvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.twist.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
-        private async void ViewDTYPackingForm_Shown(object sender, EventArgs e)
+        private async void ViewChipsPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
@@ -307,18 +282,6 @@ namespace PackingApplication
                 WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 //WeighingList.DropDownStyle = ComboBoxStyle.DropDown;
 
-
-                //copsitem
-                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
-                CopsItemList.DataSource = copsitemList;
-                CopsItemList.DisplayMember = "Name";
-                CopsItemList.ValueMember = "ItemId";
-                CopsItemList.SelectedIndex = 0;
-                CopsItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                //CopsItemList.DropDownStyle = ComboBoxStyle.DropDown;
-
-
                 //boxitem
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
                 BoxItemList.DataSource = boxitemList;
@@ -360,14 +323,13 @@ namespace PackingApplication
             {
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
+                PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                 QualityList.SelectedValue = productionResponse.QualityId;
                 WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
                 BoxItemList.SelectedValue = productionResponse.BoxItemId;
                 prodtype.Text = productionResponse.ProductionType;
                 remarks.Text = productionResponse.Remarks;
@@ -381,34 +343,10 @@ namespace PackingApplication
                 prwtps.Checked = productionResponse.PrintWTPS;
                 prqrcode.Checked = productionResponse.PrintQRCode;
                 prtwist.Checked = productionResponse.PrintTwist;
-                spoolno.Text = productionResponse.Spools.ToString();
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 grosswtno.Text = productionResponse.GrossWt.ToString();
                 tarewt.Text = productionResponse.TareWt.ToString();
                 netwt.Text = productionResponse.NetWt.ToString();
-                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
-                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
-                CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
-                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
-            }
-        }
-
-        private async void RefreshLastBoxDetails()
-        {
-            var getLastBox = await Task.Run(() => getLastBoxDetails());
-
-            //lastboxdetails
-            if (getLastBox.ProductionId > 0)
-            {
-                _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
-
-                this.copstxtbox.Text = getLastBox.Spools.ToString();
-                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
         }
 
@@ -489,9 +427,6 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
-                twistvalue.Text = "";
-                partyn.Text = "";
-                partyshade.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
@@ -526,7 +461,6 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        twistvalue.Text = lotResponse.TwistName.ToString();
                         productionRequest.SaleLot = lotResponse.SaleLot;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
@@ -576,25 +510,6 @@ namespace PackingApplication
                         WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        var getSaleOrder = await Task.Run(() => _productionService.getSaleOrderList(selectedLotId));
-                        getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
-                        SaleOrderList.DataSource = getSaleOrder;
-                        SaleOrderList.DisplayMember = "ItemName";
-                        SaleOrderList.ValueMember = "SaleOrderItemsId";
-                        SaleOrderList.SelectedIndex = 0;
-                        SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                        if (SaleOrderList.Items.Count == 2)
-                        {
-                            SaleOrderList.SelectedIndex = 1;   // Select the single record
-                            SaleOrderList.Enabled = false;     // Disable user selection
-                        }
-                        else
-                        {
-                            SaleOrderList.Enabled = true;      // Allow user selection
-                            SaleOrderList.SelectedIndex = 0;  // Optional: no default selection
-                        }
-
                         lotsDetailsList = new List<LotsDetailsResponse>();
                         if (lotResponse.LotsDetailsResponses != null)
                         {
@@ -632,11 +547,6 @@ namespace PackingApplication
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150 });
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
                             rowMaterial.DataSource = lotsDetailsList;
-                        }
-
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
                         }
                     }
 
@@ -751,221 +661,6 @@ namespace PackingApplication
             }
         }
 
-        private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (SaleOrderList.DroppedDown) return;
-
-            if (SaleOrderList.SelectedIndex > 0)
-            {
-                //soerror.Text = "";
-                //soerror.Visible = false;
-            }
-            lblLoading.Visible = true;
-            try
-            {
-                if (SaleOrderList.SelectedValue != null)
-                {
-                    //soerror.Visible = false;
-
-                    LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
-                    int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
-                    string soNumber = selectedSaleOrder.SaleOrderNumber;
-                    productionRequest.SaleOrderItemId = selectedSaleOrderId;
-                    if (selectedSaleOrderId > 0)
-                    {
-                        selectedSOId = selectedSaleOrderId;
-                        selectedSONumber = selectedSaleOrder.SaleOrderNumber;
-                        totalSOQty = 0;
-                        var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
-                        if (saleOrderItemResponse != null)
-                        {
-                            productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
-                            partyn.Text = saleOrderItemResponse.ItemDescription;
-                            partyshade.Text = saleOrderItemResponse.ShadeNameDescription + "-" + saleOrderItemResponse.ShadeCodeDescription;
-                        }
-
-                        //var saleItemResponse = await getSaleOrderItemById(selectedSaleOrderId);
-
-                        //foreach (var soitem in saleResponse.saleOrderItemsResponses)
-                        //{
-                        totalSOQty = selectedSaleOrder.Quantity;
-                        //}
-
-                        RefreshGradewiseGrid();
-                        RefreshLastBoxDetails();
-                    }
-
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
-
-        private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (ComPortList.DroppedDown) return;
-
-            if (ComPortList.SelectedValue != null)
-            {
-                var ComPort = ComPortList.SelectedValue.ToString();
-                comPort = ComPortList.SelectedValue.ToString();
-            }
-        }
-
-        private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (WeighingList.DroppedDown) return;
-
-            if (WeighingList.SelectedValue != null)
-            {
-                WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
-                int selectedScaleId = selectedWeighingScale.Id;
-
-                //if (selectedScaleId >= 0)
-                //{
-                //    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
-                //    grosswtno.Text = readWeight.ToString();
-                //    grosswtno.ReadOnly = true;
-                //}
-
-            }
-        }
-
-        private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (CopsItemList.DroppedDown) return;
-
-            if (CopsItemList.SelectedIndex <= 0)
-            {
-                copsitemwt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-            }
-
-            lblLoading.Visible = true;
-            try
-            {
-                if (CopsItemList.SelectedValue != null)
-                {
-                    ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
-                    int selectedItemId = selectedCopsItem.ItemId;
-
-                    if (selectedItemId > 0)
-                    {
-                        productionRequest.SpoolItemId = selectedItemId;
-
-                        var itemResponse = await Task.Run(() => _masterService.getItemById(selectedItemId));
-                        if (itemResponse != null)
-                        {
-                            copsitemwt.Text = itemResponse.Weight.ToString();
-                            //spoolwt.Text = itemResponse.Weight.ToString();
-                            SpoolNo_TextChanged(sender, e);
-                            //GrossWeight_TextChanged(sender, e);
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
-
-        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (BoxItemList.DroppedDown) return;
-
-            if (BoxItemList.SelectedIndex <= 0)
-            {
-                boxpalletitemwt.Text = "0";
-                palletwtno.Text = "0";
-                return;
-            }
-
-            lblLoading.Visible = true;
-            try
-            {
-                if (BoxItemList.SelectedValue != null)
-                {
-                    ItemResponse selectedBoxItem = (ItemResponse)BoxItemList.SelectedItem;
-                    int selectedBoxItemId = selectedBoxItem.ItemId;
-
-                    if (selectedBoxItemId > 0)
-                    {
-                        productionRequest.BoxItemId = selectedBoxItemId;
-                        var itemResponse = await Task.Run(() => _masterService.getItemById(selectedBoxItemId));
-                        if (itemResponse != null)
-                        {
-                            boxpalletitemwt.Text = itemResponse.Weight.ToString();
-                            palletwtno.Text = itemResponse.Weight.ToString();
-                            GrossWeight_TextChanged(sender, e);
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
-
-        private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-
-            //if (DeptList.DroppedDown) return;
-
-            if (DeptList.SelectedIndex <= 0)
-            {
-                return;
-            }
-            if (DeptList.SelectedIndex > 0)
-            {
-                //packsizeerror.Text = "";
-                //packsizeerror.Visible = false;
-            }
-            lblLoading.Visible = true;
-            try
-            {
-                if (DeptList.SelectedValue != null)
-                {
-                    //packsizeerror.Visible = false;
-
-                    DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
-                    int selectedDepartmentId = selectedDepartment.DepartmentId;
-
-                    if (selectedDepartment != null && productionRequest.MachineId == 0)
-                    {
-                        var machineList = await Task.Run(() => _masterService.getMachineByDepartmentId(selectedDepartmentId));
-
-                        //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
-                        //LineNoList.SelectedValue = selectedDepartment;
-                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                        LineNoList.DataSource = machineList;
-                    }
-
-                    productionRequest.DepartmentId = selectedDepartmentId;
-
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
-
         private async void RefreshGradewiseGrid()
         {
             if (QualityList.SelectedValue != null)
@@ -1009,6 +704,195 @@ namespace PackingApplication
                 else
                 {
                 }
+            }
+        }
+
+        private async void RefreshLastBoxDetails()
+        {
+            var getLastBox = await Task.Run(() => getLastBoxDetails());
+
+            //lastboxdetails
+            if (getLastBox.ProductionId > 0)
+            {
+                _productionId = getLastBox.ProductionId;
+                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+
+                this.copstxtbox.Text = getLastBox.Spools.ToString();
+                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+            }
+        }
+
+        private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            //if (ComPortList.DroppedDown) return;
+
+            if (ComPortList.SelectedValue != null)
+            {
+                var ComPort = ComPortList.SelectedValue.ToString();
+                comPort = ComPortList.SelectedValue.ToString();
+            }
+        }
+
+        private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            //if (WeighingList.DroppedDown) return;
+
+            if (WeighingList.SelectedValue != null)
+            {
+                WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
+                int selectedScaleId = selectedWeighingScale.Id;
+
+                //if (selectedScaleId >= 0)
+                //{
+                //    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
+                //    grosswtno.Text = readWeight.ToString();
+                //    grosswtno.ReadOnly = true;
+                //}
+
+            }
+        }
+
+        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            //if (BoxItemList.DroppedDown) return;
+
+            if (BoxItemList.SelectedIndex <= 0)
+            {
+                boxpalletitemwt.Text = "0";
+                palletwtno.Text = "0";
+                return;
+            }
+
+            lblLoading.Visible = true;
+            try
+            {
+                if (BoxItemList.SelectedValue != null)
+                {
+                    ItemResponse selectedBoxItem = (ItemResponse)BoxItemList.SelectedItem;
+                    int selectedBoxItemId = selectedBoxItem.ItemId;
+
+                    if (selectedBoxItemId > 0)
+                    {
+                        productionRequest.BoxItemId = selectedBoxItemId;
+                        var itemResponse = await Task.Run(() => _masterService.getItemById(selectedBoxItemId));
+                        if (itemResponse != null)
+                        {
+                            boxpalletitemwt.Text = itemResponse.Weight.ToString();
+                            palletwtno.Text = itemResponse.Weight.ToString();
+                            GrossWeight_TextChanged(sender, e);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+            }
+        }
+
+        private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            //if (PrefixList.DroppedDown) return;
+
+            if (PrefixList.SelectedIndex <= 0)
+            {
+                prodtype.Text = "";
+                return;
+            }
+
+            if (PrefixList.SelectedIndex > 0)
+            {
+                //boxnoerror.Text = "";
+                //boxnoerror.Visible = false;
+            }
+
+            if (PrefixList.SelectedValue != null)
+            {
+                //boxnoerror.Visible = false;
+
+                PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
+                int selectedPrefixId = selectedPrefix.PrefixCode;
+
+                productionRequest.PrefixCode = selectedPrefixId;
+
+                if (selectedPrefix.ProductionType.ToString() != null)
+                {
+                    prodtype.Text = selectedPrefix.ProductionType.ToString();
+                    productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
+                }
+
+            }
+        }
+
+        private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            //if (DeptList.DroppedDown) return;
+
+            if (DeptList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            if (DeptList.SelectedIndex > 0)
+            {
+                //packsizeerror.Text = "";
+                //packsizeerror.Visible = false;
+            }
+            lblLoading.Visible = true;
+            try
+            {
+                if (DeptList.SelectedValue != null)
+                {
+                    //packsizeerror.Visible = false;
+
+                    DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
+                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+
+                    if (selectedDepartment != null && productionRequest.MachineId == 0)
+                    {
+                        var machineList = await Task.Run(() => _masterService.getMachineByDepartmentId(selectedDepartmentId));
+
+                        //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
+                        //LineNoList.SelectedValue = selectedDepartment;
+                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                        LineNoList.DataSource = machineList;
+                    }
+
+                    productionRequest.DepartmentId = selectedDepartmentId;
+
+                    prefixRequest.DepartmentId = selectedDepartmentId;
+                    prefixRequest.TxnFlag = "Chips";
+                    prefixRequest.TransactionTypeId = 5;
+                    prefixRequest.ProductionTypeId = 1;
+                    prefixRequest.Prefix = "";
+                    prefixRequest.FinYearId = SessionManager.FinYearId;
+
+                    List<PrefixResponse> prefixList = await Task.Run(() => _masterService.getPrefixList(prefixRequest));
+                    prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                    PrefixList.DataSource = prefixList;
+                    PrefixList.DisplayMember = "Prefix";
+                    PrefixList.ValueMember = "PrefixCode";
+                    PrefixList.SelectedIndex = 0;
+                    PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
             }
         }
 
@@ -1092,27 +976,12 @@ namespace PackingApplication
 
         private Task<ProductionResponse> getLastBoxDetails()
         {
-            return Task.Run(() => _packingService.getLastBoxDetails("dtypacking"));
+            return Task.Run(() => _packingService.getLastBoxDetails("chipspacking"));
         }
 
         private Task<List<DepartmentResponse>> getDepartmentList()
         {
             return Task.Run(() => _masterService.getDepartmentList());
-        }
-
-        private void SpoolWeight_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(spoolwt.Text))
-            {
-                //spoolwterror.Visible = true;
-                CalculateTareWeight();
-            }
-            else
-            {
-                CalculateTareWeight();
-                //spoolwterror.Text = "";
-                //spoolwterror.Visible = false;
-            }
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
@@ -1132,12 +1001,11 @@ namespace PackingApplication
 
         private void CalculateTareWeight()
         {
-            decimal num1 = 0, num2 = 0;
+            decimal num2 = 0;
 
-            decimal.TryParse(spoolwt.Text, out num1);
             decimal.TryParse(palletwtno.Text, out num2);
 
-            tarewt.Text = (num1 + num2).ToString("F3");
+            tarewt.Text = (num2).ToString("F3");
             if (!string.IsNullOrWhiteSpace(grosswtno.Text) && !string.IsNullOrWhiteSpace(tarewt.Text))
             {
                 decimal gross, tare;
@@ -1147,18 +1015,16 @@ namespace PackingApplication
                     {
                         CalculateNetWeight();
                         //grosswterror.Text = "";
-                        grosswterror.Visible = false;
+                        //grosswterror.Visible = false;
                     }
                     else
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        if (grosswterror.Visible)
-                        {
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                        }
+                        MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        netwt.Text = "0";
+                        wtpercop.Text = "0";
+                        return;
                     }
                 }
             }
@@ -1171,11 +1037,10 @@ namespace PackingApplication
 
             if (selectedSOId == 0)
             {
-                //if (soerror.Visible)
-                //{
+                //soerror.Visible = true;
                 //soerror.Text = "Please select sale order";
                 MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                return;
             }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
@@ -1185,7 +1050,7 @@ namespace PackingApplication
             }
             else
             {
-                soerror.Visible = false;
+                //soerror.Visible = false;
                 //soerror.Text = "";
                 if (!string.IsNullOrWhiteSpace(tarewt.Text))
                 {
@@ -1243,60 +1108,16 @@ namespace PackingApplication
             CalculateWeightPerCop();
         }
 
-        private void SpoolNo_TextChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                //spoolnoerror.Text = "Please enter spool no";
-                //spoolnoerror.Visible = true;
-                MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tarewt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
-            {
-                spoolwt.Text = "0";
-                return;
-            }
-            else
-            {
-                decimal spoolnum = 0, copswt = 0;
-                decimal.TryParse(spoolno.Text, out spoolnum);
-                decimal.TryParse(copsitemwt.Text, out copswt);
-                if (spoolnum > 0)
-                {
-                    spoolwt.Text = (spoolnum * copswt).ToString();
-                    CalculateWeightPerCop();
-                    CalculateTareWeight();
-                    GrossWeight_TextChanged(sender, e);
-                    spoolnoerror.Text = "";
-                    spoolnoerror.Visible = false;
-                }
-                else if (spoolnum == 0)
-                {
-                    //spoolnoerror.Text = "Spool no > 0";
-                    //spoolnoerror.Visible = true;
-                    MessageBox.Show("Spool no > 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tarewt.Text = "0";
-                    spoolwt.Text = "0";
-                    return;
-                }
-            }
-        }
-
         private void CalculateWeightPerCop()
         {
-            decimal num1 = 0, num2 = 0;
+            decimal num1 = 0;
 
             decimal.TryParse(netwt.Text, out num1);
-            decimal.TryParse(spoolno.Text, out num2);
-            if (num1 > 0 && num2 > 0)
+            if (num1 > 0)
             {
                 //if (num1 >= num2)
                 //{
-                wtpercop.Text = (num1 / num2).ToString("F3");
+                wtpercop.Text = (num1).ToString("F3");
                 //}
             }
         }
@@ -1447,6 +1268,246 @@ namespace PackingApplication
         private void printingdetailsheader_Resize(object sender, EventArgs e)
         {
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control keys (backspace, delete, etc.)
+            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            //{
+            //    e.Handled = true; // Reject the input
+            //}
+            if (sender is System.Windows.Forms.TextBox txt)
+            {
+                // Allow control keys (backspace, delete, etc.)
+                if (char.IsControl(e.KeyChar))
+                    return;
+
+                // Allow digits
+                if (char.IsDigit(e.KeyChar))
+                    return;
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && !txt.Text.Contains('.'))
+                    return;
+
+                // Block everything else
+                e.Handled = true;
+            }
+        }
+
+        private void checkBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+                if (cb != null)
+                {
+                    cb.Checked = !cb.Checked; // toggle the checkbox
+                    e.Handled = true;          // prevent beep
+                }
+            }
+            else
+            {
+                // For Tab (and other keys), don't mark as handled
+                e.Handled = false;
+            }
+        }
+
+        private void LineNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                LineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                LineNoList.DroppedDown = false;
+            }
+        }
+
+        private void MergeNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                MergeNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                MergeNoList.DroppedDown = false;
+            }
+        }
+
+        private void PackSizeList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                PackSizeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                PackSizeList.DroppedDown = false;
+            }
+        }
+
+        private void QualityList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                QualityList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                QualityList.DroppedDown = false;
+            }
+        }
+
+        private void PrefixList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                PrefixList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                PrefixList.DroppedDown = false;
+            }
+        }
+
+        private void WindingTypeList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                WindingTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                WindingTypeList.DroppedDown = false;
+            }
+        }
+
+        private void ComPortList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                ComPortList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                ComPortList.DroppedDown = false;
+            }
+        }
+
+        private void WeighingList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                WeighingList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                WeighingList.DroppedDown = false;
+            }
+        }
+
+        private void BoxItemList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                BoxItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                BoxItemList.DroppedDown = false;
+            }
+        }
+
+        private void DeptList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                DeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                DeptList.DroppedDown = false;
+            }
+        }
+
+        private void prcompany_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            if (prcompany.Checked)
+            {
+                prowner.Checked = false;
+                prowner.Enabled = false; // disable the other
+                prcompany.Focus();       // keep focus on the current one
+            }
+            else
+            {
+                prowner.Enabled = true;  // re-enable when unchecked
+            }
+        }
+
+        private void prowner_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            if (prowner.Checked)
+            {
+                prcompany.Checked = false;
+                prcompany.Enabled = false; // disable the other
+                prowner.Focus();           // keep focus
+            }
+            else
+            {
+                prcompany.Enabled = true;  // re-enable when unchecked
+            }
+        }
+
+        private void txtNumeric_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
+
+            // Allow control keys (Backspace, Delete, etc.)
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && txt.Text.Contains('.'))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Allow only digits and one decimal point
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Check for 3 digits after decimal
+            if (txt.Text.Contains('.'))
+            {
+                int decimalIndex = txt.Text.IndexOf('.');
+                string afterDecimal = txt.Text.Substring(decimalIndex + 1);
+                if (afterDecimal.Length >= 3 && txt.SelectionStart > decimalIndex)
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

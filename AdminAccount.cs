@@ -160,7 +160,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem viewbcf = new ToolStripMenuItem("View BCF Packing")
+            ToolStripMenuItem viewbcf = new ToolStripMenuItem("View BCF Packing", null, ViewBCFPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -194,7 +194,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem viewchips = new ToolStripMenuItem("View Chips Packing")
+            ToolStripMenuItem viewchips = new ToolStripMenuItem("View Chips Packing", null, ViewChipsPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -529,12 +529,32 @@ namespace PackingApplication
             }
         }
 
+        private void ViewBCFPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ViewBCFPackingForm());
+
+            }
+        }
+
         private void ChipsPacking_Click(object sender, EventArgs e)
         {
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ChipsPackingForm(0));
+            }
+        }
+
+        private void ViewChipsPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ViewChipsPackingForm());
+
             }
         }
 

@@ -251,6 +251,18 @@
       <DependentUpon>Sidebar.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ViewBCFPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewBCFPackingForm.Designer.cs">
+      <DependentUpon>ViewBCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewChipsPackingForm.Designer.cs">
+      <DependentUpon>ViewChipsPackingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewDTYPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +311,9 @@
     </Compile>
     <EmbeddedResource Include="Sidebar.resx">
       <DependentUpon>Sidebar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewChipsPackingForm.resx">
+      <DependentUpon>ViewChipsPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewDTYPackingForm.resx">
       <DependentUpon>ViewDTYPackingForm.cs</DependentUpon>
