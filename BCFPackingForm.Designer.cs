@@ -2673,10 +2673,11 @@ namespace PackingApplication
             // panel39
             // 
             this.panel39.Controls.Add(this.prdate);
+            this.panel39.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel39.Location = new System.Drawing.Point(123, 0);
             this.panel39.Margin = new System.Windows.Forms.Padding(0);
             this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(57, 17);
+            this.panel39.Size = new System.Drawing.Size(63, 21);
             this.panel39.TabIndex = 2;
             // 
             // panel41

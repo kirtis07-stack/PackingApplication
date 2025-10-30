@@ -97,7 +97,7 @@ namespace PackingApplication
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
 
-            this.prcompany.Enabled = true;
+            prcompany.FlatStyle = FlatStyle.System;
         }
 
         private void getLotRelatedDetails()
