@@ -312,6 +312,9 @@
     <EmbeddedResource Include="Sidebar.resx">
       <DependentUpon>Sidebar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewBCFPackingForm.resx">
+      <DependentUpon>ViewBCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewChipsPackingForm.resx">
       <DependentUpon>ViewChipsPackingForm.cs</DependentUpon>
     </EmbeddedResource>

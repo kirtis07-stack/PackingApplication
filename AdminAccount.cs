@@ -82,6 +82,7 @@ namespace PackingApplication
                 BackColor = Color.White,
             };
             poy.Click += (s, e) => HighlightMenuItem(s);
+            poy.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             ToolStripMenuItem addpoy = new ToolStripMenuItem("Add POY Packing", null, AddPOYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
@@ -115,6 +116,7 @@ namespace PackingApplication
                 BackColor = Color.White
             };
             dty.Click += (s, e) => HighlightMenuItem(s);
+            dty.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             ToolStripMenuItem adddty = new ToolStripMenuItem("Add DTY Packing", null, DTYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
@@ -148,6 +150,7 @@ namespace PackingApplication
                 BackColor = Color.White
             };
             bcf.Click += (s, e) => HighlightMenuItem(s);
+            bcf.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             ToolStripMenuItem addbcf = new ToolStripMenuItem("Add BCF Packing", null, BCFPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
@@ -181,7 +184,7 @@ namespace PackingApplication
                 BackColor = Color.White
             };
             chips.Click += (s, e) => HighlightMenuItem(s);
-
+            chips.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             ToolStripMenuItem addchips = new ToolStripMenuItem("Add Chips Packing", null, ChipsPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
@@ -291,7 +294,7 @@ namespace PackingApplication
             logoutBtn.TabIndex = 1;
 
             menuStrip.Enter += MenuStrip_EnterHandler;
-            // Handle Tab/Shift+Tab inside MenuStrip
+            // Navigate Shift+Tab inside MenuStrip
             menuStrip.PreviewKeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Tab)
@@ -396,11 +399,26 @@ namespace PackingApplication
 
         private void MenuStrip_EnterHandler(object sender, EventArgs e)
         {
-            // When MenuStrip gets focus, highlight first item
-            if (menuStrip.Items.Count > 0)
+            if (sender is MenuStrip menuStrip && menuStrip.Items.Count > 0)
             {
-                currentIndex = 0;
+                // Find highlighted item (if any)
+                int highlightedIndex = -1;
+                for (int i = 0; i < menuStrip.Items.Count; i++)
+                {
+                    if (menuStrip.Items[i] is ToolStripMenuItem item &&
+                        item.BackColor == Color.FromArgb(230, 240, 255))
+                    {
+                        highlightedIndex = i;
+                        break;
+                    }
+                }
+
+                // If highlighted found, select it; else select first
+                currentIndex = highlightedIndex >= 0 ? highlightedIndex : 0;
                 ((ToolStripMenuItem)menuStrip.Items[currentIndex]).Select();
+
+                // Give keyboard focus to menuStrip
+                menuStrip.Focus();
             }
         }
 
@@ -563,14 +581,25 @@ namespace PackingApplication
         {
             foreach (ToolStripMenuItem item in menuStrip.Items)
             {
-                item.BackColor = Color.White; // reset all
+                item.BackColor = Color.White;
             }
 
             ToolStripMenuItem clickedItem = sender as ToolStripMenuItem;
-            if (clickedItem != null)
+            if (clickedItem == null)
+                return;
+
+            ToolStripMenuItem topMenu;
+
+            if (clickedItem.OwnerItem is ToolStripMenuItem parentMenu)
             {
-                clickedItem.BackColor = Color.FromArgb(230,240,255); // highlight selected
+                topMenu = parentMenu;
             }
+            else
+            {
+                topMenu = clickedItem;
+            }
+            topMenu.BackColor = Color.FromArgb(230, 240, 255);
         }
+
     }
 }

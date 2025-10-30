@@ -1509,5 +1509,34 @@ namespace PackingApplication
                 }
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
+            {
+                if (parentForm.MainMenuStrip != null)
+                {
+                    parentForm.MainMenuStrip.Focus();
+                    bool highlightedFound = false;
+
+                    foreach (ToolStripMenuItem item in parentForm.MainMenuStrip.Items)
+                    {
+                        if (item.BackColor == Color.FromArgb(230, 240, 255))
+                        {
+                            item.Select();
+                            parentForm.MainMenuStrip.Focus();
+
+                            // select the current active item
+                            parentForm.MainMenuStrip.Items[0].Owner.Focus();
+                            highlightedFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!highlightedFound && parentForm.MainMenuStrip.Items.Count > 0)
+                        ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
+                }
+            }
+        }
     }
 }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
@@ -230,6 +230,9 @@
             this.copstxtbox = new System.Windows.Forms.TextBox();
             this.lastboxheader = new System.Windows.Forms.Panel();
             this.Lastboxlbl = new System.Windows.Forms.Label();
+            this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.cancelbtn = new System.Windows.Forms.Button();
             this.rightpanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
@@ -306,12 +309,15 @@
             this.lastbxtarepanel.SuspendLayout();
             this.lastbxcopspanel.SuspendLayout();
             this.lastboxheader.SuspendLayout();
+            this.buttontablelayout.SuspendLayout();
+            this.panel21.SuspendLayout();
             this.SuspendLayout();
             // 
             // rightpanel
             // 
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.rightpanel.Controls.Add(this.buttontablelayout);
             this.rightpanel.Controls.Add(this.tableLayoutPanel3);
             this.rightpanel.Controls.Add(this.tableLayoutPanel2);
             this.rightpanel.Controls.Add(this.tableLayoutPanel1);
@@ -325,7 +331,7 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -341,7 +347,7 @@
             // 
             // rowMaterialBox
             // 
-            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterialBox.Controls.Add(this.rowMaterialPanel);
@@ -357,7 +363,7 @@
             // 
             // rowMaterialPanel
             // 
-            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(7, 16);
@@ -371,43 +377,43 @@
             this.rowMaterial.AllowUserToDeleteRows = false;
             this.rowMaterial.AllowUserToResizeColumns = false;
             this.rowMaterial.AllowUserToResizeRows = false;
-            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.rowMaterial.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.rowMaterial.DefaultCellStyle = dataGridViewCellStyle12;
             this.rowMaterial.EnableHeadersVisualStyles = false;
             this.rowMaterial.Location = new System.Drawing.Point(4, 0);
             this.rowMaterial.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterial.MultiSelect = false;
             this.rowMaterial.Name = "rowMaterial";
             this.rowMaterial.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -442,7 +448,7 @@
             // 
             // wgroupbox
             // 
-            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wgroupbox.Controls.Add(this.windinggrid);
             this.wgroupbox.Location = new System.Drawing.Point(2, 0);
@@ -464,14 +470,14 @@
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.EnableHeadersVisualStyles = false;
@@ -489,7 +495,7 @@
             // 
             // gradewiseprodn
             // 
-            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gradewiseprodn.Controls.Add(this.prodnbalqty);
             this.gradewiseprodn.Controls.Add(this.grdsoqty);
@@ -534,14 +540,14 @@
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -582,7 +588,7 @@
             // 
             // palletdetailslayout
             // 
-            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.palletdetailslayout.BackColor = System.Drawing.Color.White;
             this.palletdetailslayout.ColumnCount = 1;
@@ -691,7 +697,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -718,7 +724,7 @@
             // 
             // packagingboxlayout
             // 
-            this.packagingboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.packagingboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxlayout.BackColor = System.Drawing.Color.White;
             this.packagingboxlayout.ColumnCount = 1;
@@ -738,7 +744,7 @@
             // 
             // packagingboxheader
             // 
-            this.packagingboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.packagingboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.packagingboxheader.Controls.Add(this.Packagingboxlbl);
@@ -811,7 +817,7 @@
             // 
             // partyshade
             // 
-            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyshade.AutoEllipsis = true;
             this.partyshade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -868,7 +874,7 @@
             // QualityList
             // 
             this.QualityList.AllowDrop = true;
-            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.QualityList.FormattingEnabled = true;
             this.QualityList.Location = new System.Drawing.Point(62, 2);
@@ -925,7 +931,7 @@
             // SaleOrderList
             // 
             this.SaleOrderList.AllowDrop = true;
-            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SaleOrderList.FormattingEnabled = true;
             this.SaleOrderList.Location = new System.Drawing.Point(46, 2);
@@ -982,7 +988,7 @@
             // PackSizeList
             // 
             this.PackSizeList.AllowDrop = true;
-            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackSizeList.FormattingEnabled = true;
             this.PackSizeList.Location = new System.Drawing.Point(62, 2);
@@ -1083,7 +1089,7 @@
             // CopsItemList
             // 
             this.CopsItemList.AllowDrop = true;
-            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CopsItemList.FormattingEnabled = true;
             this.CopsItemList.Location = new System.Drawing.Point(62, 2);
@@ -1117,7 +1123,7 @@
             // 
             // copsstock
             // 
-            this.copsstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.copsstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.copsstock.Location = new System.Drawing.Point(125, 5);
             this.copsstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1171,7 +1177,7 @@
             // BoxItemList
             // 
             this.BoxItemList.AllowDrop = true;
-            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BoxItemList.FormattingEnabled = true;
             this.BoxItemList.Location = new System.Drawing.Point(62, 2);
@@ -1216,7 +1222,7 @@
             // 
             // boxpalletstock
             // 
-            this.boxpalletstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.boxpalletstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxpalletstock.Location = new System.Drawing.Point(125, 5);
             this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1268,7 +1274,7 @@
             // 
             // partyn
             // 
-            this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyn.AutoEllipsis = true;
             this.partyn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -1290,7 +1296,7 @@
             // 
             // machineboxlayout
             // 
-            this.machineboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.machineboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.machineboxlayout.BackColor = System.Drawing.Color.White;
             this.machineboxlayout.ColumnCount = 1;
@@ -1385,7 +1391,7 @@
             // LineNoList
             // 
             this.LineNoList.AllowDrop = true;
-            this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LineNoList.FormattingEnabled = true;
             this.LineNoList.Location = new System.Drawing.Point(36, 3);
@@ -1449,7 +1455,7 @@
             // 
             // DeptList
             // 
-            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DeptList.FormattingEnabled = true;
             this.DeptList.Location = new System.Drawing.Point(35, 3);
@@ -1504,7 +1510,7 @@
             // MergeNoList
             // 
             this.MergeNoList.AllowDrop = true;
-            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MergeNoList.FormattingEnabled = true;
             this.MergeNoList.Location = new System.Drawing.Point(42, 2);
@@ -1548,7 +1554,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Enabled = false;
@@ -1573,7 +1579,7 @@
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoEllipsis = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -1707,7 +1713,7 @@
             // 
             // machineboxheader
             // 
-            this.machineboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.machineboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.machineboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.machineboxheader.Controls.Add(this.Machinelbl);
@@ -1744,7 +1750,7 @@
             // 
             // weighboxlayout
             // 
-            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.weighboxlayout.BackColor = System.Drawing.Color.White;
             this.weighboxlayout.ColumnCount = 1;
@@ -1860,7 +1866,7 @@
             // 
             // spoolno
             // 
-            this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spoolno.Location = new System.Drawing.Point(45, 0);
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1914,7 +1920,7 @@
             // 
             // netwt
             // 
-            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.netwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.netwt.Location = new System.Drawing.Point(62, 2);
@@ -1973,7 +1979,7 @@
             // 
             // palletwtno
             // 
-            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.palletwtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.palletwtno.Location = new System.Drawing.Point(60, 2);
@@ -2008,7 +2014,7 @@
             // ComPortList
             // 
             this.ComPortList.AllowDrop = true;
-            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComPortList.FormattingEnabled = true;
             this.ComPortList.Location = new System.Drawing.Point(30, 2);
@@ -2041,7 +2047,7 @@
             // WeighingList
             // 
             this.WeighingList.AllowDrop = true;
-            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WeighingList.FormattingEnabled = true;
             this.WeighingList.Location = new System.Drawing.Point(42, 3);
@@ -2087,7 +2093,7 @@
             // WindingTypeList
             // 
             this.WindingTypeList.AllowDrop = true;
-            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WindingTypeList.FormattingEnabled = true;
             this.WindingTypeList.Location = new System.Drawing.Point(53, 2);
@@ -2154,7 +2160,7 @@
             // 
             // grosswtno
             // 
-            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grosswtno.Location = new System.Drawing.Point(57, 2);
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -2239,7 +2245,7 @@
             // 
             // copyno
             // 
-            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.copyno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.copyno.Location = new System.Drawing.Point(45, 3);
@@ -2285,7 +2291,7 @@
             // 
             // printingdetailslayout
             // 
-            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailslayout.BackColor = System.Drawing.Color.White;
             this.printingdetailslayout.ColumnCount = 1;
@@ -2405,7 +2411,7 @@
             // 
             // panel40
             // 
-            this.panel40.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel40.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel40.Controls.Add(this.prhindi);
             this.panel40.Location = new System.Drawing.Point(0, 21);
@@ -2430,7 +2436,7 @@
             // 
             // panel42
             // 
-            this.panel42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel42.Controls.Add(this.prwtps);
             this.panel42.Location = new System.Drawing.Point(95, 21);
@@ -2455,7 +2461,7 @@
             // 
             // panel41
             // 
-            this.panel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel41.Controls.Add(this.pruser);
             this.panel41.Location = new System.Drawing.Point(143, 0);
@@ -2504,7 +2510,7 @@
             // 
             // printingdetailsheader
             // 
-            this.printingdetailsheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.printingdetailsheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printingdetailsheader.Controls.Add(this.Printinglbl);
@@ -2529,7 +2535,7 @@
             // 
             // remark
             // 
-            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
             this.remark.Location = new System.Drawing.Point(-2, 155);
@@ -2541,7 +2547,7 @@
             // 
             // remarks
             // 
-            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(50, 145);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -2552,7 +2558,7 @@
             // 
             // lastboxlayout
             // 
-            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxlayout.BackColor = System.Drawing.Color.White;
             this.lastboxlayout.ColumnCount = 1;
@@ -2737,7 +2743,7 @@
             // 
             // lastboxheader
             // 
-            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lastboxheader.Controls.Add(this.Lastboxlbl);
@@ -2759,6 +2765,48 @@
             this.Lastboxlbl.Size = new System.Drawing.Size(80, 13);
             this.Lastboxlbl.TabIndex = 107;
             this.Lastboxlbl.Text = "Last box details";
+            // 
+            // buttontablelayout
+            // 
+            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttontablelayout.ColumnCount = 3;
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.Controls.Add(this.panel21, 1, 0);
+            this.buttontablelayout.Location = new System.Drawing.Point(2, 394);
+            this.buttontablelayout.Name = "buttontablelayout";
+            this.buttontablelayout.RowCount = 1;
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.buttontablelayout.Size = new System.Drawing.Size(795, 31);
+            this.buttontablelayout.TabIndex = 126;
+            // 
+            // panel21
+            // 
+            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel21.Controls.Add(this.cancelbtn);
+            this.panel21.Location = new System.Drawing.Point(268, 3);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(259, 25);
+            this.panel21.TabIndex = 0;
+            // 
+            // cancelbtn
+            // 
+            this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.cancelbtn.Location = new System.Drawing.Point(106, 1);
+            this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(81, 24);
+            this.cancelbtn.TabIndex = 121;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = false;
+            this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ViewBCFPackingForm
             // 
@@ -2895,6 +2943,8 @@
             this.lastbxcopspanel.PerformLayout();
             this.lastboxheader.ResumeLayout(false);
             this.lastboxheader.PerformLayout();
+            this.buttontablelayout.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3098,5 +3148,8 @@
         private System.Windows.Forms.TextBox copstxtbox;
         private System.Windows.Forms.Panel lastboxheader;
         private System.Windows.Forms.Label Lastboxlbl;
+        private System.Windows.Forms.TableLayoutPanel buttontablelayout;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Button cancelbtn;
     }
 }

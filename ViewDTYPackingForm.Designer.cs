@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
@@ -216,6 +216,9 @@
             this.copstxtbox = new System.Windows.Forms.TextBox();
             this.lastboxheader = new System.Windows.Forms.Panel();
             this.Lastboxlbl = new System.Windows.Forms.Label();
+            this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.cancelbtn = new System.Windows.Forms.Button();
             this.rightpanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.rowMaterialBox.SuspendLayout();
@@ -286,12 +289,15 @@
             this.lastbxtarepanel.SuspendLayout();
             this.lastbxcopspanel.SuspendLayout();
             this.lastboxheader.SuspendLayout();
+            this.buttontablelayout.SuspendLayout();
+            this.panel21.SuspendLayout();
             this.SuspendLayout();
             // 
             // rightpanel
             // 
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.rightpanel.Controls.Add(this.buttontablelayout);
             this.rightpanel.Controls.Add(this.tableLayoutPanel3);
             this.rightpanel.Controls.Add(this.tableLayoutPanel1);
             this.rightpanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -355,38 +361,38 @@
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.rowMaterial.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.rowMaterial.DefaultCellStyle = dataGridViewCellStyle5;
             this.rowMaterial.EnableHeadersVisualStyles = false;
             this.rowMaterial.Location = new System.Drawing.Point(4, 0);
             this.rowMaterial.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterial.MultiSelect = false;
             this.rowMaterial.Name = "rowMaterial";
             this.rowMaterial.ReadOnly = true;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -2541,6 +2547,48 @@
             this.Lastboxlbl.TabIndex = 107;
             this.Lastboxlbl.Text = "Last box details";
             // 
+            // buttontablelayout
+            // 
+            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttontablelayout.ColumnCount = 3;
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttontablelayout.Controls.Add(this.panel21, 1, 0);
+            this.buttontablelayout.Location = new System.Drawing.Point(4, 392);
+            this.buttontablelayout.Name = "buttontablelayout";
+            this.buttontablelayout.RowCount = 1;
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.buttontablelayout.Size = new System.Drawing.Size(795, 31);
+            this.buttontablelayout.TabIndex = 125;
+            // 
+            // panel21
+            // 
+            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel21.Controls.Add(this.cancelbtn);
+            this.panel21.Location = new System.Drawing.Point(268, 3);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(259, 25);
+            this.panel21.TabIndex = 0;
+            // 
+            // cancelbtn
+            // 
+            this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.cancelbtn.Location = new System.Drawing.Point(106, 1);
+            this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cancelbtn.Name = "cancelbtn";
+            this.cancelbtn.Size = new System.Drawing.Size(81, 24);
+            this.cancelbtn.TabIndex = 121;
+            this.cancelbtn.Text = "Cancel";
+            this.cancelbtn.UseVisualStyleBackColor = false;
+            this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // ViewDTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2670,6 +2718,8 @@
             this.lastbxcopspanel.PerformLayout();
             this.lastboxheader.ResumeLayout(false);
             this.lastboxheader.PerformLayout();
+            this.buttontablelayout.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2861,5 +2911,8 @@
         private System.Windows.Forms.TextBox copstxtbox;
         private System.Windows.Forms.Panel lastboxheader;
         private System.Windows.Forms.Label Lastboxlbl;
+        private System.Windows.Forms.TableLayoutPanel buttontablelayout;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Button cancelbtn;
     }
 }
