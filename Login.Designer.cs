@@ -130,16 +130,19 @@ namespace PackingApplication
             this.rememberme.CheckState = System.Windows.Forms.CheckState.Checked;
             this.rememberme.Location = new System.Drawing.Point(55, 298);
             this.rememberme.Name = "rememberme";
-            this.rememberme.Size = new System.Drawing.Size(94, 17);
+            this.rememberme.Padding = new System.Windows.Forms.Padding(3, 2, 0, 0);
+            this.rememberme.Size = new System.Drawing.Size(97, 19);
             this.rememberme.TabIndex = 7;
             this.rememberme.Text = "Remember me";
             this.rememberme.UseVisualStyleBackColor = true;
+            this.rememberme.Paint += new System.Windows.Forms.PaintEventHandler(this.CheckBox_DrawFocusBorder);
             this.rememberme.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             // 
             // signin
             // 
             this.signin.BackColor = System.Drawing.SystemColors.Highlight;
             this.signin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.signin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.signin.Location = new System.Drawing.Point(55, 330);
             this.signin.Name = "signin";

@@ -27,13 +27,14 @@ namespace PackingApplication
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
         private bool isPasswordVisible = false;
         private int finYearId = 0;
+        CommonMethod _cmethod = new CommonMethod();
         public Login()
         {
             InitializeComponent();
             getYearList();
             ApplyFonts();
 
-            SetButtonBorderRadius(this.signin, 8);
+            _cmethod.SetButtonBorderRadius(this.signin, 8);
 
             YearList.SelectedIndexChanged += YearList_SelectedIndexChanged;
             email.TextChanged += Email_TextChanged;
@@ -174,36 +175,6 @@ namespace PackingApplication
             }
         }
 
-        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
-        {
-            Log.writeMessage("SetButtonBorderRadius start");
-            try
-            {
-                button.FlatStyle = FlatStyle.Standard;
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
-                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-                button.BackColor = Color.FromArgb(0, 92, 232);
-
-                // Set the border radius
-                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                int diameter = radius * 2;
-                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
-                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
-                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"An error occurred: {ex.Message}");
-                Log.writeMessage($"An error occurred: {ex.Message}");
-            }
-            Log.writeMessage("SetButtonBorderRadius end");
-        }
-
         private bool ValidateForm()
         {
             bool isValid = true;
@@ -294,7 +265,28 @@ namespace PackingApplication
                 {
                     this.SelectNextControl(current, true, true, true, true);
                 }
+                if (this.ActiveControl is CheckBox cb)
+                {
+                    cb.Invalidate(); // triggers paint to show focus border
+                }
+                if (this.ActiveControl is Button btn)
+                {
+                    // This makes Windows draw the dotted focus rectangle
+                    btn.Focus();
+                    btn.FlatStyle = FlatStyle.Standard; // ensures focus rectangle is visible
+                }
             }
         }
+
+        private void CheckBox_DrawFocusBorder(object sender, PaintEventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            if (cb.Focused)
+            {
+                _cmethod.DrawRoundedDashedBorder((CheckBox)sender, e, 1, Color.Black, 1);
+            }
+        }
+
     }
 }
