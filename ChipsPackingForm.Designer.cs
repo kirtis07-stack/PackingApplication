@@ -122,7 +122,6 @@ namespace PackingApplication
             this.panel25 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.boxpalletstock = new System.Windows.Forms.TextBox();
             this.boxpalletitemwt = new System.Windows.Forms.Label();
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
@@ -204,6 +203,7 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.boxpalletstock = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -444,7 +444,7 @@ namespace PackingApplication
             this.QualityList.Name = "QualityList";
             this.QualityList.Size = new System.Drawing.Size(37, 21);
             this.QualityList.TabIndex = 1;
-            this.QualityList.SelectionChangeCommitted += new System.EventHandler(this.QualityList_SelectionChangeCommitted);
+            this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
             // 
             // PackSizeList
@@ -458,7 +458,7 @@ namespace PackingApplication
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(37, 21);
             this.PackSizeList.TabIndex = 3;
-            this.PackSizeList.SelectionChangeCommitted += new System.EventHandler(this.PackSizeList_SelectionChangeCommitted);
+            this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             // 
             // WindingTypeList
@@ -472,7 +472,7 @@ namespace PackingApplication
             this.WindingTypeList.Name = "WindingTypeList";
             this.WindingTypeList.Size = new System.Drawing.Size(33, 21);
             this.WindingTypeList.TabIndex = 3;
-            this.WindingTypeList.SelectionChangeCommitted += new System.EventHandler(this.WindingTypeList_SelectionChangeCommitted);
+            this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
             // 
             // ComPortList
@@ -486,7 +486,7 @@ namespace PackingApplication
             this.ComPortList.Name = "ComPortList";
             this.ComPortList.Size = new System.Drawing.Size(32, 21);
             this.ComPortList.TabIndex = 1;
-            this.ComPortList.SelectionChangeCommitted += new System.EventHandler(this.ComPortList_SelectionChangeCommitted);
+            this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             this.ComPortList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComPortList_KeyDown);
             // 
             // WeighingList
@@ -500,7 +500,7 @@ namespace PackingApplication
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(38, 21);
             this.WeighingList.TabIndex = 4;
-            this.WeighingList.SelectionChangeCommitted += new System.EventHandler(this.WeighingList_SelectionChangeCommitted);
+            this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
             // 
             // BoxItemList
@@ -514,7 +514,7 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(37, 21);
             this.BoxItemList.TabIndex = 6;
-            this.BoxItemList.SelectionChangeCommitted += new System.EventHandler(this.BoxItemList_SelectionChangeCommitted);
+            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             // 
             // prcompany
@@ -698,7 +698,7 @@ namespace PackingApplication
             this.grosswtno.Size = new System.Drawing.Size(23, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grosswtno.TextChanged += new System.EventHandler(this.GrossWeight_TextChanged);
+            this.grosswtno.Validating += (this.GrossWeight_Validating);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             // 
@@ -1386,18 +1386,6 @@ namespace PackingApplication
             this.panel26.Size = new System.Drawing.Size(138, 32);
             this.panel26.TabIndex = 10;
             // 
-            // boxpalletstock
-            // 
-            this.boxpalletstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.boxpalletstock.Location = new System.Drawing.Point(125, 5);
-            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.boxpalletstock.Name = "boxpalletstock";
-            this.boxpalletstock.Size = new System.Drawing.Size(13, 20);
-            this.boxpalletstock.TabIndex = 7;
-            this.boxpalletstock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.boxpalletstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
             // boxpalletitemwt
             // 
             this.boxpalletitemwt.AutoSize = true;
@@ -1514,7 +1502,7 @@ namespace PackingApplication
             this.LineNoList.Name = "LineNoList";
             this.LineNoList.Size = new System.Drawing.Size(42, 21);
             this.LineNoList.TabIndex = 1;
-            this.LineNoList.SelectionChangeCommitted += new System.EventHandler(this.LineNoList_SelectionChangeCommitted);
+            this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
             // 
             // linenoerror
@@ -1594,7 +1582,7 @@ namespace PackingApplication
             this.PrefixList.Name = "PrefixList";
             this.PrefixList.Size = new System.Drawing.Size(43, 21);
             this.PrefixList.TabIndex = 3;
-            this.PrefixList.SelectionChangeCommitted += new System.EventHandler(this.PrefixList_SelectionChangeCommitted);
+            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
             this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
             // 
             // boxnoerror
@@ -1653,7 +1641,7 @@ namespace PackingApplication
             this.MergeNoList.Name = "MergeNoList";
             this.MergeNoList.Size = new System.Drawing.Size(39, 21);
             this.MergeNoList.TabIndex = 4;
-            this.MergeNoList.SelectionChangeCommitted += new System.EventHandler(this.MergeNoList_SelectionChangeCommitted);
+            this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
             // 
             // mergenoerror
@@ -1834,7 +1822,7 @@ namespace PackingApplication
             this.DeptList.Name = "DeptList";
             this.DeptList.Size = new System.Drawing.Size(41, 21);
             this.DeptList.TabIndex = 2;
-            this.DeptList.SelectionChangeCommitted += new System.EventHandler(this.DeptList_SelectionChangeCommitted);
+            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
             this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
             // 
             // department
@@ -2379,6 +2367,17 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
+            // boxpalletstock
+            // 
+            this.boxpalletstock.AutoSize = true;
+            this.boxpalletstock.Location = new System.Drawing.Point(125, 5);
+            this.boxpalletstock.Name = "boxpalletstock";
+            this.boxpalletstock.Size = new System.Drawing.Size(0, 13);
+            this.boxpalletstock.TabIndex = 124;
+            this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxpalletstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boxpalletstock.UseCompatibleTextRendering = true;
+            // 
             // ChipsPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2668,7 +2667,6 @@ namespace PackingApplication
         private System.Windows.Forms.Label prodtype;
         private System.Windows.Forms.Label fromdenier;
         private System.Windows.Forms.Label frdenier;
-        private TextBox boxpalletstock;
         private System.Windows.Forms.Label boxpalletitemwt;
         private Panel panel44;
         private Panel panel45;
@@ -2680,6 +2678,7 @@ namespace PackingApplication
         private ComboBox DeptList;
         private Panel panel24;
         private CheckBox prtwist;
+        private System.Windows.Forms.Label boxpalletstock;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

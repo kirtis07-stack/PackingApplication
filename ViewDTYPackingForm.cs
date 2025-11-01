@@ -449,7 +449,7 @@ namespace PackingApplication
                             DeptList.DataSource = filteredDepts;
                             DeptList.DisplayMember = "DepartmentName";
                             DeptList.ValueMember = "DepartmentId";
-                            DeptList.SelectedIndex = 0;
+                            DeptList.SelectedIndex = 1;
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                         }
@@ -596,32 +596,34 @@ namespace PackingApplication
                         }
 
                         lotsDetailsList = new List<LotsDetailsResponse>();
-                        if (lotResponse.LotsDetailsResponses != null)
+                        productionRequest.ProductionDate = dateTimePicker1.Value;
+                        lotsDetailsList = await Task.Run(() => _productionService.getLotsDetailsByLotsIdAndProdyctionDate(selectedLotId, productionRequest.ProductionDate));
+                        if (lotsDetailsList.Count > 0)
                         {
-                            foreach (var lot in lotResponse.LotsDetailsResponses)
-                            {
-                                LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
-                                lotsDetails.LotId = lot.LotId;
-                                lotsDetails.UpdatedOn = lot.UpdatedOn;
-                                lotsDetails.UpdatedBy = lot.UpdatedBy;
-                                lotsDetails.CreatedBy = lot.CreatedBy;
-                                lotsDetails.CreatedOn = lot.CreatedOn;
-                                lotsDetails.EffectiveFrom = lot.EffectiveFrom;
-                                lotsDetails.EffectiveUpto = lot.EffectiveUpto;
-                                lotsDetails.GainLossPerc = lot.GainLossPerc;
-                                lotsDetails.InputPerc = lot.InputPerc;
-                                lotsDetails.ProductionPerc = lot.ProductionPerc;
-                                lotsDetails.Extruder = lot.Extruder;
-                                lotsDetails.LotType = lot.LotType;
-                                lotsDetails.PrevLotId = lot.PrevLotId;
-                                lotsDetails.PrevLotNo = lot.PrevLotNo;
-                                lotsDetails.PrevLotType = lot.PrevLotType;
-                                lotsDetails.PrevLotQuality = lot.PrevLotQuality;
-                                lotsDetails.PrevLotItemName = lot.PrevLotItemName;
-                                lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
-                                lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
-                                lotsDetailsList.Add(lot);
-                            }
+                            //foreach (var lot in lotResponse.LotsDetailsResponses)
+                            //{
+                            //    LotsDetailsResponse lotsDetails = new LotsDetailsResponse();
+                            //    lotsDetails.LotId = lot.LotId;
+                            //    lotsDetails.UpdatedOn = lot.UpdatedOn;
+                            //    lotsDetails.UpdatedBy = lot.UpdatedBy;
+                            //    lotsDetails.CreatedBy = lot.CreatedBy;
+                            //    lotsDetails.CreatedOn = lot.CreatedOn;
+                            //    lotsDetails.EffectiveFrom = lot.EffectiveFrom;
+                            //    lotsDetails.EffectiveUpto = lot.EffectiveUpto;
+                            //    lotsDetails.GainLossPerc = lot.GainLossPerc;
+                            //    lotsDetails.InputPerc = lot.InputPerc;
+                            //    lotsDetails.ProductionPerc = lot.ProductionPerc;
+                            //    lotsDetails.Extruder = lot.Extruder;
+                            //    lotsDetails.LotType = lot.LotType;
+                            //    lotsDetails.PrevLotId = lot.PrevLotId;
+                            //    lotsDetails.PrevLotNo = lot.PrevLotNo;
+                            //    lotsDetails.PrevLotType = lot.PrevLotType;
+                            //    lotsDetails.PrevLotQuality = lot.PrevLotQuality;
+                            //    lotsDetails.PrevLotItemName = lot.PrevLotItemName;
+                            //    lotsDetails.PrevLotShadeName = lot.PrevLotShadeName;
+                            //    lotsDetails.PrevLotShadeCode = lot.PrevLotShadeCode;
+                            //    lotsDetailsList.Add(lot);
+                            //}
                             rowMaterial.Columns.Clear();
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
@@ -1014,7 +1016,7 @@ namespace PackingApplication
 
         private Task<List<MachineResponse>> getMachineList()
         {
-            return Task.Run(() => _masterService.getMachineList());
+            return Task.Run(() => _masterService.getMachineList("TexturisingLot"));
         }
 
         private Task<List<LotsResponse>> getAllLotList()

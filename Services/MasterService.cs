@@ -16,9 +16,9 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
 
-        public List<MachineResponse> getMachineList()
+        public List<MachineResponse> getMachineList(string lotType)
         {
-            var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAll?IsDropDown=" + false);
+            var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType);
             var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse);
             return getMachine;
         }

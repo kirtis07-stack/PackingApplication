@@ -63,7 +63,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.boxtype = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.boxpalletstock = new System.Windows.Forms.TextBox();
+            this.boxpalletstock = new System.Windows.Forms.Label();
             this.boxpalletitemwt = new System.Windows.Forms.Label();
             this.boxstock = new System.Windows.Forms.Label();
             this.boxweight = new System.Windows.Forms.Label();
@@ -700,14 +700,14 @@
             // 
             // boxpalletstock
             // 
-            this.boxpalletstock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxpalletstock.AutoSize = true;
             this.boxpalletstock.Location = new System.Drawing.Point(125, 5);
-            this.boxpalletstock.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.boxpalletstock.Name = "boxpalletstock";
-            this.boxpalletstock.Size = new System.Drawing.Size(0, 20);
-            this.boxpalletstock.TabIndex = 7;
-            this.boxpalletstock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.boxpalletstock.Size = new System.Drawing.Size(0, 13);
+            this.boxpalletstock.TabIndex = 124;
+            this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxpalletstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boxpalletstock.UseCompatibleTextRendering = true;
             // 
             // boxpalletitemwt
             // 
@@ -2421,7 +2421,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label boxtype;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.TextBox boxpalletstock;
+        private System.Windows.Forms.Label boxpalletstock;
         private System.Windows.Forms.Label boxpalletitemwt;
         private System.Windows.Forms.Label boxstock;
         private System.Windows.Forms.Label boxweight;

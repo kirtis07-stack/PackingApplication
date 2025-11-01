@@ -47,6 +47,13 @@ namespace PackingApplication.Services
             return getLot;
         }
 
+        public List<LotsDetailsResponse> getLotsDetailsByLotsIdAndProdyctionDate(int lotsId, DateTime ProductionDate)
+        {
+            var getLotsDetailsResponse = method.GetCallApi(productionURL + "LotsDetails/GetAllByLotsIdAndProductionDate?lotsId=" + lotsId + "&ProductionDate=" + ProductionDate);
+            var getLotDetails = JsonConvert.DeserializeObject<List<LotsDetailsResponse>>(getLotsDetailsResponse);
+            return getLotDetails;
+        }
+
         public List<WindingTypeResponse> getWinderTypeList(int lotId)
         {
             List<WindingTypeResponse> getWindingList = new List<WindingTypeResponse>();
