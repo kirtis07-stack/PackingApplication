@@ -65,20 +65,7 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
-            //LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
-            //MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
-            //PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
-            //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
-            //WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
-            //PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
-            //copyno.TextChanged += CopyNos_TextChanged;
-            //spoolno.TextChanged += SpoolNo_TextChanged;
-            //spoolwt.TextChanged += SpoolWeight_TextChanged;
-            //palletwtno.TextChanged += PalletWeight_TextChanged;
-            //grosswtno.TextChanged += GrossWeight_TextChanged;
-            //prcompany.KeyDown += prcompany_CheckedChanged;
-            //prowner.KeyDown += prowner_CheckedChanged;
+            rowMaterial.AutoGenerateColumns = false;
         }
 
         private void DTYPackingForm_Load(object sender, EventArgs e)
@@ -540,7 +527,7 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        twistvalue.Text = lotResponse.TwistName.ToString();
+                        twistvalue.Text = (!string.IsNullOrEmpty(lotResponse.TwistName)) ? lotResponse.TwistName.ToString() : "";
                         productionRequest.SaleLot = lotResponse.SaleLot;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
@@ -607,6 +594,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
+                            SaleOrderList_SelectionChangeCommitted(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {

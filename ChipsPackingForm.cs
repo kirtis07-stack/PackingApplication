@@ -66,17 +66,7 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
-            //LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
-            //MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
-            //PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
-            //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
-            //WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            //PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
-            //copyno.TextChanged += CopyNos_TextChanged;
-            //palletwtno.TextChanged += PalletWeight_TextChanged;
-            //grosswtno.TextChanged += GrossWeight_TextChanged;
-            //prcompany.KeyDown += prcompany_CheckedChanged;
-            //prowner.KeyDown += prowner_CheckedChanged;
+            rowMaterial.AutoGenerateColumns = false;
         }
 
         private void ChipsPackingForm_Load(object sender, EventArgs e)

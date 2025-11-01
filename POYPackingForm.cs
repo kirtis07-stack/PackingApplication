@@ -91,28 +91,10 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
-            //LineNoList.SelectedIndexChanged += LineNoList_SelectedIndexChanged;
-            //MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;
-            //PackSizeList.SelectedIndexChanged += PackSizeList_SelectedIndexChanged;
-            //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
-            //WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
-            //SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
-            //PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
-            //copyno.TextChanged += CopyNos_TextChanged;
-            //spoolno.TextChanged += SpoolNo_TextChanged;
-            //spoolwt.TextChanged += SpoolWeight_TextChanged;
-            //palletwtno.TextChanged += PalletWeight_TextChanged;
-            //grosswtno.TextChanged += GrossWeight_TextChanged;
-            //prcompany.KeyDown += prcompany_CheckedChanged;
-            //prowner.KeyDown += prowner_CheckedChanged;
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
             windinggrid.AutoGenerateColumns = false;
             qualityqty.AutoGenerateColumns = false;
-            //sidebarContainer.Width = sidebarContainer.MinimumSize.Width;
-            //panel10.Width = panel10.MinimumSize.Width;
-            //panel12.Width = panel12.MinimumSize.Width;
-            //leftpanel.Width = leftpanel.MinimumSize.Width;
         }
 
         private void POYPackingForm_Load(object sender, EventArgs e)
@@ -833,6 +815,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
+                            SaleOrderList_SelectionChangeCommitted(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
