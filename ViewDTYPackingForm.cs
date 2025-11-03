@@ -770,7 +770,7 @@ namespace PackingApplication
                 if (SaleOrderList.SelectedValue != null)
                 {
                     //soerror.Visible = false;
-
+                    totalSOQty = 0;
                     LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                     int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                     string soNumber = selectedSaleOrder.SaleOrderNumber;
@@ -779,7 +779,7 @@ namespace PackingApplication
                     {
                         selectedSOId = selectedSaleOrderId;
                         selectedSONumber = selectedSaleOrder.SaleOrderNumber;
-                        totalSOQty = 0;
+                        totalSOQty = selectedSaleOrder.Quantity;
                         var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
                         if (saleOrderItemResponse != null)
                         {
@@ -792,11 +792,15 @@ namespace PackingApplication
 
                         //foreach (var soitem in saleResponse.saleOrderItemsResponses)
                         //{
-                        totalSOQty = selectedSaleOrder.Quantity;
                         //}
 
                         RefreshGradewiseGrid();
-                        RefreshLastBoxDetails();
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        }
+                        //RefreshLastBoxDetails();
                     }
 
                 }

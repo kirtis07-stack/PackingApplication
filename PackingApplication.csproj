@@ -206,6 +206,30 @@
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
     <Compile Include="Models\ResponseEntities\SaleOrderResponse.cs" />
     <Compile Include="Models\ResponseEntities\WindingTypeGridResponse.cs" />
+    <Compile Include="ModifyBCFPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyBCFPackingForm.Designer.cs">
+      <DependentUpon>ModifyBCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyChipsPackingForm.Designer.cs">
+      <DependentUpon>ModifyChipsPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyDTYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyDTYPackingForm.Designer.cs">
+      <DependentUpon>ModifyDTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyPOYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyPOYPackingForm.Designer.cs">
+      <DependentUpon>ModifyPOYPackingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="POYPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +313,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DTYPackingForm.resx">
       <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyBCFPackingForm.resx">
+      <DependentUpon>ModifyBCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyChipsPackingForm.resx">
+      <DependentUpon>ModifyChipsPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyDTYPackingForm.resx">
+      <DependentUpon>ModifyDTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyPOYPackingForm.resx">
+      <DependentUpon>ModifyPOYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POYPackingForm.resx">
       <DependentUpon>POYPackingForm.cs</DependentUpon>

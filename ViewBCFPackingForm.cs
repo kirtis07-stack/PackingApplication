@@ -832,7 +832,8 @@ namespace PackingApplication
                 if (SaleOrderList.SelectedValue != null)
                 {
                     //soerror.Visible = false;
-
+                    totalSOQty = 0;
+                    grdsoqty.Text = "";
                     LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                     int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                     string soNumber = selectedSaleOrder.SaleOrderNumber;
@@ -841,8 +842,8 @@ namespace PackingApplication
                     {
                         selectedSOId = selectedSaleOrderId;
                         selectedSONumber = selectedSaleOrder.SaleOrderNumber;
-                        totalSOQty = 0;
-                        grdsoqty.Text = "";
+                        totalSOQty = selectedSaleOrder.Quantity;
+                        grdsoqty.Text = totalSOQty.ToString("F2");
                         var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
                         if (saleOrderItemResponse != null)
                         {
@@ -855,9 +856,7 @@ namespace PackingApplication
 
                         //foreach (var soitem in saleResponse.saleOrderItemsResponses)
                         //{
-                        totalSOQty = selectedSaleOrder.Quantity;
                         //}
-                        grdsoqty.Text = totalSOQty.ToString("F2");
 
                         RefreshGradewiseGrid();
                         if (_productionId > 0 && productionResponse != null)

@@ -87,7 +87,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem modifypoy = new ToolStripMenuItem("Modify POY Packing")
+            ToolStripMenuItem modifypoy = new ToolStripMenuItem("Modify POY Packing", null, ModifyPOYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -121,7 +121,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem modifydty = new ToolStripMenuItem("Modify DTY Packing")
+            ToolStripMenuItem modifydty = new ToolStripMenuItem("Modify DTY Packing", null, ModifyDTYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -155,7 +155,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem modifybcf = new ToolStripMenuItem("Modify BCF Packing")
+            ToolStripMenuItem modifybcf = new ToolStripMenuItem("Modify BCF Packing", null, ModifyBCFPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -189,7 +189,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem modifychips = new ToolStripMenuItem("Modify Chips Packing")
+            ToolStripMenuItem modifychips = new ToolStripMenuItem("Modify Chips Packing", null, ModifyChipsPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -519,6 +519,16 @@ namespace PackingApplication
             }
         }
 
+        private void ModifyPOYPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ModifyPOYPackingForm());
+
+            }
+        }
+
         private void DTYPacking_Click(object sender, EventArgs e)
         {
             var dashboard = this.FindForm() as AdminAccount;
@@ -534,6 +544,16 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ViewDTYPackingForm());
+
+            }
+        }
+
+        private void ModifyDTYPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ModifyDTYPackingForm());
 
             }
         }
@@ -557,6 +577,16 @@ namespace PackingApplication
             }
         }
 
+        private void ModifyBCFPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ModifyBCFPackingForm());
+
+            }
+        }
+
         private void ChipsPacking_Click(object sender, EventArgs e)
         {
             var dashboard = this.FindForm() as AdminAccount;
@@ -572,6 +602,16 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ViewChipsPackingForm());
+
+            }
+        }
+
+        private void ModifyChipsPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                dashboard.LoadFormInContent(new ModifyChipsPackingForm());
 
             }
         }
