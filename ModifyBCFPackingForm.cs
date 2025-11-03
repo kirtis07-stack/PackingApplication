@@ -242,6 +242,8 @@ namespace PackingApplication
             this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
         private async void ModifyBCFPackingForm_Shown(object sender, EventArgs e)

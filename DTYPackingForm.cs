@@ -27,7 +27,6 @@ namespace PackingApplication
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
         SaleService _saleService = new SaleService();
-        private long _productionId;
         private int width = 0;
         CommonMethod _cmethod = new CommonMethod();
         bool sidebarExpand = false;
@@ -52,11 +51,10 @@ namespace PackingApplication
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
-        public DTYPackingForm(long productionId)
+        public DTYPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
-            _productionId = productionId;
             this.Shown += DTYPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
@@ -243,6 +241,8 @@ namespace PackingApplication
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.twistvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.twist.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
         private async void DTYPackingForm_Shown(object sender, EventArgs e)
@@ -362,54 +362,11 @@ namespace PackingApplication
 
                 RefreshLastBoxDetails();
 
-                if (Convert.ToInt64(_productionId) > 0)
-                {
-                    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
-                }
                 isFormReady = true;
             }
             finally
             {
                 lblLoading.Visible = false;
-            }
-        }
-
-        private async Task LoadProductionDetailsAsync(long productionId)
-        {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
-
-            if (productionResponse != null)
-            {
-                LineNoList.SelectedValue = productionResponse.MachineId;
-                DeptList.SelectedValue = productionResponse.DepartmentId;
-                PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
-                MergeNoList.SelectedValue = productionResponse.LotId;
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
-                QualityList.SelectedValue = productionResponse.QualityId;
-                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                prodtype.Text = productionResponse.ProductionType;
-                remarks.Text = productionResponse.Remarks;
-                prcompany.Checked = productionResponse.PrintCompany;
-                prowner.Checked = productionResponse.PrintOwner;
-                prdate.Checked = productionResponse.PrintDate;
-                pruser.Checked = productionResponse.PrintUser;
-                prhindi.Checked = productionResponse.PrintHindiWords;
-                prwtps.Checked = productionResponse.PrintWTPS;
-                prqrcode.Checked = productionResponse.PrintQRCode;
-                prtwist.Checked = productionResponse.PrintTwist;
-                spoolno.Text = productionResponse.Spools.ToString();
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                grosswtno.Text = productionResponse.GrossWt.ToString();
-                tarewt.Text = productionResponse.TareWt.ToString();
-                netwt.Text = productionResponse.NetWt.ToString();
-                submit.Text = "Update";
-                saveprint.Enabled = false;
             }
         }
 
@@ -463,12 +420,6 @@ namespace PackingApplication
                         MergeNoList.SelectedIndex = 0;
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
-                        }
                     }
 
                 }
@@ -646,11 +597,6 @@ namespace PackingApplication
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
                             rowMaterial.DataSource = lotsDetailsList;
                         }
-
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
-                        }
                     }
 
                 }
@@ -750,11 +696,6 @@ namespace PackingApplication
                     if (selectedWindingTypeId > 0)
                     {
                         productionRequest.WindingTypeId = selectedWindingTypeId;
-                    }
-
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                     }
                 }
             }
@@ -1464,128 +1405,73 @@ namespace PackingApplication
             submit.Enabled = false;
             saveprint.Enabled = false;
             ProductionResponse result = new ProductionResponse();
-            result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
+            result = _packingService.AddUpdatePOYPacking(0, productionRequest);
             if (result != null && result.ProductionId > 0)
             {
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
-                if (_productionId == 0)
-                {
-                    MessageBox.Show("DTY Packing added successfully for BoxNo " + result.BoxNo + ".",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    isFormReady = false;
-                    this.spoolno.Text = "0";
-                    this.spoolwt.Text = "0";
-                    this.grosswtno.Text = "";
-                    this.tarewt.Text = "";
-                    this.netwt.Text = "";
-                    this.wtpercop.Text = "";
-                    isFormReady = true;
-                    this.spoolno.Focus();
-                    //if (isPrint)
-                    //{
-                    //    //call ssrs report to print
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "";
-                    //    string endDate = "";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                MessageBox.Show("DTY Packing added successfully for BoxNo " + result.BoxNo + ".",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+                isFormReady = false;
+                this.spoolno.Text = "0";
+                this.spoolwt.Text = "0";
+                this.grosswtno.Text = "";
+                this.tarewt.Text = "";
+                this.netwt.Text = "";
+                this.wtpercop.Text = "";
+                isFormReady = true;
+                this.spoolno.Focus();
+                //if (isPrint)
+                //{
+                //    //call ssrs report to print
+                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                //    string format = "PDF";
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                //    //set params
+                //    string productionId = result.ProductionId.ToString();
+                //    string startDate = "";
+                //    string endDate = "";
+                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
 
-                    //    byte[] bytes = client.DownloadData(url);
+                //    WebClient client = new WebClient();
+                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
+                //    byte[] bytes = client.DownloadData(url);
 
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
+                //    // Save to file
+                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                //    File.WriteAllBytes(tempFile, bytes);
 
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            var printerSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            // Set custom 4x4 label size
-                    //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                    //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+                //    //// Open with default PDF reader
+                //    //System.Diagnostics.Process.Start("Report.pdf");
 
-                    //            printDoc.PrinterSettings = printerSettings;
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
+                //    using (var pdfDoc = PdfDocument.Load(tempFile))
+                //    {
+                //        using (var printDoc = pdfDoc.CreatePrintDocument())
+                //        {
+                //            var printerSettings = new PrinterSettings()
+                //            {
+                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                //                Copies = 1
+                //            };
+                //            // Set custom 4x4 label size
+                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-                    //}
-                }
-                else
-                {
-                    MessageBox.Show("DTY Packing updated successfully!", "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    //if (isPrint)
-                    //{
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
+                //            printDoc.PrinterSettings = printerSettings;
+                //            printDoc.Print(); // sends PDF to printer
+                //        }
+                //    }
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "2025-09-01";
-                    //    string endDate = "2025-09-30";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
-
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                    //    byte[] bytes = client.DownloadData(url);
-
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
-
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
-
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            printDoc.PrinterSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
-
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-
-                    //}
-                    var dashboard = this.ParentForm as AdminAccount;
-                    if (dashboard != null)
-                    {
-                        // Open the List form instead of Add form
-                        dashboard.LoadFormInContent(new DTYPackingForm(0));
-                    }
-                }
+                //    // 5️⃣ Clean up temp file
+                //    File.Delete(tempFile);
+                //}
             }
             else
             {

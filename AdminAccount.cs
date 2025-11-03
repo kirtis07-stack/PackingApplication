@@ -25,6 +25,7 @@ namespace PackingApplication
         public AdminAccount()
         {
             InitializeComponent();
+            this.Text = "Packing";
 
             headerPanel = new Panel
             {
@@ -504,8 +505,8 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new POYPackingForm(0));
-
+                dashboard.LoadFormInContent(new POYPackingForm());
+                this.Text = "Packing - Add POYPacking";
             }
         }
 
@@ -515,7 +516,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ViewPOYPackingForm());
-
+                this.Text = "Packing - View POYPacking";
             }
         }
 
@@ -525,7 +526,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ModifyPOYPackingForm());
-
+                this.Text = "Packing - Modify POYPacking";
             }
         }
 
@@ -534,7 +535,8 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new DTYPackingForm(0));
+                dashboard.LoadFormInContent(new DTYPackingForm());
+                this.Text = "Packing - Add DTYPacking";
             }
         }
 
@@ -544,7 +546,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ViewDTYPackingForm());
-
+                this.Text = "Packing - View DTYPacking";
             }
         }
 
@@ -554,7 +556,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ModifyDTYPackingForm());
-
+                this.Text = "Packing - Modify DTYPacking";
             }
         }
 
@@ -563,7 +565,8 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new BCFPackingForm(0));
+                dashboard.LoadFormInContent(new BCFPackingForm());
+                this.Text = "Packing - Add BCFPacking";
             }
         }
 
@@ -573,7 +576,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ViewBCFPackingForm());
-
+                this.Text = "Packing - View BCFPacking";
             }
         }
 
@@ -583,7 +586,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ModifyBCFPackingForm());
-
+                this.Text = "Packing - Modify BCFPacking";
             }
         }
 
@@ -592,7 +595,8 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ChipsPackingForm(0));
+                dashboard.LoadFormInContent(new ChipsPackingForm());
+                this.Text = "Packing - Add ChipsPacking";
             }
         }
 
@@ -602,7 +606,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ViewChipsPackingForm());
-
+                this.Text = "Packing - View ChipsPacking";
             }
         }
 
@@ -612,7 +616,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 dashboard.LoadFormInContent(new ModifyChipsPackingForm());
-
+                this.Text = "Packing - Modify ChipsPacking";
             }
         }
 

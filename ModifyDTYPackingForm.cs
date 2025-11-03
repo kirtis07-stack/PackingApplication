@@ -231,6 +231,8 @@ namespace PackingApplication
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.twistvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.twist.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
         private async void ModifyDTYPackingForm_Shown(object sender, EventArgs e)

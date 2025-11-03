@@ -196,6 +196,8 @@ namespace PackingApplication
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
         private async void ViewChipsPackingForm_Shown(object sender, EventArgs e)

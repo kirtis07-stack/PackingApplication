@@ -870,6 +870,8 @@ namespace PackingApplication
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.spoolno.Enter += new System.EventHandler(this.spoolNo_Enter);
+            this.spoolno.Leave += new System.EventHandler(this.spoolNo_Leave);
             // 
             // spool
             // 

@@ -25,7 +25,6 @@ namespace PackingApplication
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
         SaleService _saleService = new SaleService();
-        private long _productionId;
         private int width = 0;
         CommonMethod _cmethod = new CommonMethod();
         bool sidebarExpand = false;
@@ -50,11 +49,10 @@ namespace PackingApplication
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
-        public BCFPackingForm(long productionId)
+        public BCFPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
-            _productionId = productionId;
             this.Shown += BCFPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
@@ -245,19 +243,9 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            //this.reviewlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            //this.reviewsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            //this.weighlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            //this.weighsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            //this.packaginglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            //this.packagingsubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            //this.orderlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            //this.orderdetailssubtitle.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            //this.rowMaterial.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            //this.spoolweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
@@ -265,6 +253,8 @@ namespace PackingApplication
             this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
         private async void BCFPackingForm_Shown(object sender, EventArgs e)
@@ -397,205 +387,12 @@ namespace PackingApplication
 
                 RefreshLastBoxDetails();
 
-                if (Convert.ToInt64(_productionId) > 0)
-                {
-                    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
-                }
                 isFormReady = true;
             }
             finally
             {
                 lblLoading.Visible = false;
             }
-        }
-
-        private async Task LoadProductionDetailsAsync(long productionId)
-        {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
-
-            if (productionResponse != null)
-            {
-                LineNoList.SelectedValue = productionResponse.MachineId;
-                DeptList.SelectedValue = productionResponse.DepartmentId;
-                PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
-                MergeNoList.SelectedValue = productionResponse.LotId;
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
-                QualityList.SelectedValue = productionResponse.QualityId;
-                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                prodtype.Text = productionResponse.ProductionType;
-                remarks.Text = productionResponse.Remarks;
-                prcompany.Checked = productionResponse.PrintCompany;
-                prowner.Checked = productionResponse.PrintOwner;
-                prdate.Checked = productionResponse.PrintDate;
-                pruser.Checked = productionResponse.PrintUser;
-                prwtps.Checked = productionResponse.PrintWTPS;
-                prqrcode.Checked = productionResponse.PrintQRCode;
-                spoolno.Text = productionResponse.Spools.ToString();
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                grosswtno.Text = productionResponse.GrossWt.ToString();
-                tarewt.Text = productionResponse.TareWt.ToString();
-                netwt.Text = productionResponse.NetWt.ToString();
-                submit.Text = "Update";
-                saveprint.Enabled = false;
-
-                if (productionResponse.PalletDetailsResponse.Count > 0)
-                {
-                    if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
-                    {
-                        this.BeginInvoke((Action)(() =>
-                            BindPalletDetails(productionResponse.PalletDetailsResponse)
-                        ));
-                    }
-                }
-            }
-        }
-
-        private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
-        {
-            flowLayoutPanel1.Controls.Clear();
-            rowCount = 0;
-            headerAdded = false;
-
-            // add header first
-            AddHeader();
-
-            foreach (var palletDetail in palletDetailsResponse)
-            {
-                var palletItemList = Task.Run(() => getPalletItemList(itemPalletCategoryId)).Result;
-                var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
-
-                if (selectedItem == null)
-                {
-                    selectedItem = new ItemResponse { ItemId = palletDetail.PalletId, Name = $"Pallet {palletDetail.PalletId}" };
-                }
-
-                rowCount++;
-
-                Panel rowPanel = new Panel();
-                rowPanel.Size = new Size(width, 35);
-                rowPanel.BorderStyle = BorderStyle.None;
-
-                rowPanel.Paint += (s, pe) =>
-                {
-                    using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
-                    {
-                        // dashed border example: pen.DashStyle = DashStyle.Dash;
-                        pe.Graphics.DrawLine(
-                            pen,
-                            0, rowPanel.Height - 1,
-                            rowPanel.Width, rowPanel.Height - 1
-                        );
-                    }
-                };
-
-                // SrNo
-                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
-
-                // Item Name
-                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
-
-                // Qty
-                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
-                // Edit Button
-                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
-                btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
-                btnEdit.FlatAppearance.BorderSize = 1;
-                btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
-                btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
-                btnEdit.FlatAppearance.BorderSize = 0;
-                btnEdit.TabIndex = 4;
-                btnEdit.TabStop = true;
-                btnEdit.Cursor = Cursors.Hand;
-                btnEdit.Paint += (s, f) =>
-                {
-                    var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
-
-                    using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
-                    using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
-                    using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
-                    {
-                        f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-                        f.Graphics.FillPath(brush, path);
-
-                        f.Graphics.DrawPath(borderPen, path);
-
-                        if (btnEdit.Focused)
-                        {
-                            ControlPaint.DrawFocusRectangle(f.Graphics, rect);
-                        }
-
-                        TextRenderer.DrawText(
-                            f.Graphics,
-                            btnEdit.Text,
-                            btnEdit.Font,
-                            rect,
-                            btnEdit.ForeColor,
-                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                        );
-                    }
-                };
-                btnEdit.Click += editPallet_Click;
-
-                // Delete Button
-                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
-                btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
-                btnDelete.FlatAppearance.BorderSize = 1;
-                btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
-                btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
-                btnDelete.FlatAppearance.BorderSize = 0;
-                btnDelete.TabIndex = 5;
-                btnDelete.TabStop = true;
-                btnDelete.Cursor = Cursors.Hand;
-                btnDelete.Paint += (s, f) =>
-                {
-                    var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
-
-                    using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
-                    using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
-                    using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
-                    {
-                        f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-                        f.Graphics.FillPath(brush, path);
-                        f.Graphics.DrawPath(borderPen, path);
-
-                        TextRenderer.DrawText(
-                            f.Graphics,
-                            btnDelete.Text,
-                            btnDelete.Font,
-                            rect,
-                            btnDelete.ForeColor,
-                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                        );
-                    }
-                };
-                // Remove Row
-                btnDelete.Click += (s, args) =>
-                {
-                    flowLayoutPanel1.Controls.Remove(rowPanel);
-                    ReorderSrNo();
-                };
-
-                rowPanel.Controls.Add(lblSrNo);
-                rowPanel.Controls.Add(lblItem);
-                rowPanel.Controls.Add(lblQty);
-                rowPanel.Controls.Add(btnEdit);
-                rowPanel.Controls.Add(btnDelete);
-                rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
-
-                flowLayoutPanel1.Controls.Add(rowPanel);
-            }
-
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.WrapContents = false;
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
         }
 
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
@@ -648,12 +445,6 @@ namespace PackingApplication
                         MergeNoList.SelectedIndex = 0;
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
-                        }
                     }
 
                 }
@@ -835,11 +626,6 @@ namespace PackingApplication
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150 });
                             rowMaterial.DataSource = lotsDetailsList;
                         }
-
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
-                        }
                     }
 
                 }
@@ -941,11 +727,6 @@ namespace PackingApplication
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                         RefreshWindingGrid();
                     }
-
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    }
                 }
             }
             finally
@@ -971,7 +752,8 @@ namespace PackingApplication
                 if (SaleOrderList.SelectedValue != null)
                 {
                     //soerror.Visible = false;
-
+                    totalSOQty = 0;
+                    grdsoqty.Text = "";
                     LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                     int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                     string soNumber = selectedSaleOrder.SaleOrderNumber;
@@ -980,8 +762,8 @@ namespace PackingApplication
                     {
                         selectedSOId = selectedSaleOrderId;
                         selectedSONumber = selectedSaleOrder.SaleOrderNumber;
-                        totalSOQty = 0;
-                        grdsoqty.Text = "";
+                        totalSOQty = selectedSaleOrder.Quantity;
+                        grdsoqty.Text = totalSOQty.ToString("F2");
                         var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
                         if (saleOrderItemResponse != null)
                         {
@@ -994,9 +776,8 @@ namespace PackingApplication
 
                         //foreach (var soitem in saleResponse.saleOrderItemsResponses)
                         //{
-                        totalSOQty = selectedSaleOrder.Quantity;
                         //}
-                        grdsoqty.Text = totalSOQty.ToString("F2");
+
 
                         RefreshGradewiseGrid();
                         RefreshLastBoxDetails();
@@ -2040,7 +1821,7 @@ namespace PackingApplication
             submit.Enabled = false;
             saveprint.Enabled = false;
             ProductionResponse result = new ProductionResponse();
-            result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
+            result = _packingService.AddUpdatePOYPacking(0, productionRequest);
             if (result != null && result.ProductionId > 0)
             {
                 submit.Enabled = true;
@@ -2048,121 +1829,67 @@ namespace PackingApplication
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
-                if (_productionId == 0)
-                {
-                    MessageBox.Show("BCF Packing added successfully for BoxNo " + result.BoxNo + ".",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    isFormReady = false;
-                    this.spoolno.Text = "0";
-                    this.spoolwt.Text = "0";
-                    this.grosswtno.Text = "";
-                    this.tarewt.Text = "";
-                    this.netwt.Text = "";
-                    this.wtpercop.Text = "";
-                    isFormReady = true;
-                    this.spoolno.Focus();
-                    //if (isPrint)
-                    //{
-                    //    //call ssrs report to print
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "";
-                    //    string endDate = "";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                MessageBox.Show("BCF Packing added successfully for BoxNo " + result.BoxNo + ".",
+                "Success",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+                isFormReady = false;
+                this.spoolno.Text = "0";
+                this.spoolwt.Text = "0";
+                this.grosswtno.Text = "";
+                this.tarewt.Text = "";
+                this.netwt.Text = "";
+                this.wtpercop.Text = "";
+                isFormReady = true;
+                this.spoolno.Focus();
+                //if (isPrint)
+                //{
+                //    //call ssrs report to print
+                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                //    string format = "PDF";
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                //    //set params
+                //    string productionId = result.ProductionId.ToString();
+                //    string startDate = "";
+                //    string endDate = "";
+                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
 
-                    //    byte[] bytes = client.DownloadData(url);
+                //    WebClient client = new WebClient();
+                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
+                //    byte[] bytes = client.DownloadData(url);
 
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
+                //    // Save to file
+                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                //    File.WriteAllBytes(tempFile, bytes);
 
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            var printerSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            // Set custom 4x4 label size
-                    //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                    //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+                //    //// Open with default PDF reader
+                //    //System.Diagnostics.Process.Start("Report.pdf");
 
-                    //            printDoc.PrinterSettings = printerSettings;
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
+                //    using (var pdfDoc = PdfDocument.Load(tempFile))
+                //    {
+                //        using (var printDoc = pdfDoc.CreatePrintDocument())
+                //        {
+                //            var printerSettings = new PrinterSettings()
+                //            {
+                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                //                Copies = 1
+                //            };
+                //            // Set custom 4x4 label size
+                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-                    //}
-                }
-                else
-                {
-                    MessageBox.Show("BCF Packing updated successfully!", "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    //if (isPrint)
-                    //{
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
+                //            printDoc.PrinterSettings = printerSettings;
+                //            printDoc.Print(); // sends PDF to printer
+                //        }
+                //    }
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "2025-09-01";
-                    //    string endDate = "2025-09-30";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                //    // 5️⃣ Clean up temp file
+                //    File.Delete(tempFile);
+                //}
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                    //    byte[] bytes = client.DownloadData(url);
-
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
-
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
-
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            printDoc.PrinterSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
-
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-
-                    //}
-                    var dashboard = this.ParentForm as AdminAccount;
-                    if (dashboard != null)
-                    {
-                        // Open the List form instead of Add form
-                        dashboard.LoadFormInContent(new BCFPackingForm(0));
-                    }
-                }
             }
             else
             {
@@ -2883,6 +2610,24 @@ namespace PackingApplication
                     // Move to next control in tab order
                     this.SelectNextControl(current, true, true, true, true);
                 }
+            }
+        }
+
+        private void spoolNo_Enter(object sender, EventArgs e)
+        {
+            // When control gets focus
+            if (spoolno.Text == "0")
+            {
+                spoolno.Clear(); // remove the default value
+            }
+        }
+
+        private void spoolNo_Leave(object sender, EventArgs e)
+        {
+            // When control loses focus
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
+            {
+                spoolno.Text = "0"; // restore default
             }
         }
 

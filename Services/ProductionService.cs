@@ -4,6 +4,7 @@ using PackingApplication.Models.ResponseEntities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,9 @@ namespace PackingApplication.Services
 
         public List<LotsDetailsResponse> getLotsDetailsByLotsIdAndProdyctionDate(int lotsId, DateTime ProductionDate)
         {
-            var getLotsDetailsResponse = method.GetCallApi(productionURL + "LotsDetails/GetAllByLotsIdAndProductionDate?lotsId=" + lotsId + "&ProductionDate=" + ProductionDate);
+            String date = ProductionDate.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime productionDate = Convert.ToDateTime(date);
+            var getLotsDetailsResponse = method.GetCallApi(productionURL + "LotsDetails/GetAllByLotsIdAndProductionDate?lotsId=" + lotsId + "&ProductionDate=" + productionDate);
             var getLotDetails = JsonConvert.DeserializeObject<List<LotsDetailsResponse>>(getLotsDetailsResponse);
             return getLotDetails;
         }

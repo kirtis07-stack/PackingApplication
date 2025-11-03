@@ -40,7 +40,6 @@ namespace PackingApplication
             this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AdminAccount";
-            this.Text = "AdminDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
