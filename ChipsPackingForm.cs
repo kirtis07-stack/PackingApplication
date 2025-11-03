@@ -405,6 +405,7 @@ namespace PackingApplication
                             DeptList.SelectedIndex = 1;
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -442,6 +443,7 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                salelotvalue.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
@@ -476,7 +478,8 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        productionRequest.SaleLot = lotResponse.SaleLot;
+                        salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+                        productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
                         productionRequest.ShadeId = lotResponse.ShadeId;
@@ -1238,7 +1241,7 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("Chips Packing added successfully!",
+                    MessageBox.Show("Chips Packing added successfully for BoxNo " + result.BoxNo + ".",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

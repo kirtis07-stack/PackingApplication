@@ -453,6 +453,7 @@ namespace PackingApplication
                             DeptList.SelectedIndex = 1;
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -491,6 +492,7 @@ namespace PackingApplication
                 shadecd.Text = "";
                 deniervalue.Text = "";
                 twistvalue.Text = "";
+                salelotvalue.Text = "";
                 partyn.Text = "";
                 partyshade.Text = "";
                 lotResponse = new LotsResponse();
@@ -528,7 +530,9 @@ namespace PackingApplication
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
                         twistvalue.Text = (!string.IsNullOrEmpty(lotResponse.TwistName)) ? lotResponse.TwistName.ToString() : "";
-                        productionRequest.SaleLot = lotResponse.SaleLot;
+                        salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+                        productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
+                        productionRequest.TwistId = lotResponse.TwistId;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
                         productionRequest.ShadeId = lotResponse.ShadeId;
@@ -1338,16 +1342,17 @@ namespace PackingApplication
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                //spoolnoerror.Text = "Please enter spool no";
-                //spoolnoerror.Visible = true;
-                MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tarewt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+            //if (string.IsNullOrWhiteSpace(spoolno.Text))
+            //{
+            //    //spoolnoerror.Text = "Please enter spool no";
+            //    //spoolnoerror.Visible = true;
+            //    MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    tarewt.Text = "0";
+            //    spoolwt.Text = "0";
+            //    return;
+            //}
+            //else
+            if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
                 return;
@@ -1468,7 +1473,7 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("DTY Packing added successfully!",
+                    MessageBox.Show("DTY Packing added successfully for BoxNo " + result.BoxNo + ".",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -1480,6 +1485,7 @@ namespace PackingApplication
                     this.netwt.Text = "";
                     this.wtpercop.Text = "";
                     isFormReady = true;
+                    this.spoolno.Focus();
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print
@@ -2259,6 +2265,24 @@ namespace PackingApplication
                     // Move to next control in tab order
                     this.SelectNextControl(current, true, true, true, true);
                 }
+            }
+        }
+
+        private void spoolNo_Enter(object sender, EventArgs e)
+        {
+            // When control gets focus
+            if (spoolno.Text == "0")
+            {
+                spoolno.Clear(); // remove the default value
+            }
+        }
+
+        private void spoolNo_Leave(object sender, EventArgs e)
+        {
+            // When control loses focus
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
+            {
+                spoolno.Text = "0"; // restore default
             }
         }
     }

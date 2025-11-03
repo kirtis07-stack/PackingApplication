@@ -122,6 +122,7 @@ namespace PackingApplication
             this.panel25 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
+            this.boxpalletstock = new System.Windows.Forms.Label();
             this.boxpalletitemwt = new System.Windows.Forms.Label();
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
@@ -203,7 +204,9 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.boxpalletstock = new System.Windows.Forms.Label();
+            this.panel46 = new System.Windows.Forms.Panel();
+            this.salelotvalue = new System.Windows.Forms.Label();
+            this.salelot = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -272,6 +275,7 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.panel46.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -520,6 +524,8 @@ namespace PackingApplication
             // prcompany
             // 
             this.prcompany.AutoSize = true;
+            this.prcompany.Checked = true;
+            this.prcompany.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prcompany.Location = new System.Drawing.Point(1, 1);
             this.prcompany.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prcompany.Name = "prcompany";
@@ -698,9 +704,9 @@ namespace PackingApplication
             this.grosswtno.Size = new System.Drawing.Size(23, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grosswtno.Validating += (this.GrossWeight_Validating);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.grosswtno.Validating += new System.ComponentModel.CancelEventHandler(this.GrossWeight_Validating);
             // 
             // label2
             // 
@@ -1386,6 +1392,17 @@ namespace PackingApplication
             this.panel26.Size = new System.Drawing.Size(138, 32);
             this.panel26.TabIndex = 10;
             // 
+            // boxpalletstock
+            // 
+            this.boxpalletstock.AutoSize = true;
+            this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxpalletstock.Location = new System.Drawing.Point(125, 5);
+            this.boxpalletstock.Name = "boxpalletstock";
+            this.boxpalletstock.Size = new System.Drawing.Size(0, 16);
+            this.boxpalletstock.TabIndex = 124;
+            this.boxpalletstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boxpalletstock.UseCompatibleTextRendering = true;
+            // 
             // boxpalletitemwt
             // 
             this.boxpalletitemwt.AutoSize = true;
@@ -1434,6 +1451,7 @@ namespace PackingApplication
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33555F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.33229F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.33216F));
+            this.tableLayoutPanel4.Controls.Add(this.panel46, 1, 3);
             this.tableLayoutPanel4.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel4, 0, 1);
@@ -2367,16 +2385,34 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // boxpalletstock
+            // panel46
             // 
-            this.boxpalletstock.AutoSize = true;
-            this.boxpalletstock.Location = new System.Drawing.Point(125, 5);
-            this.boxpalletstock.Name = "boxpalletstock";
-            this.boxpalletstock.Size = new System.Drawing.Size(0, 13);
-            this.boxpalletstock.TabIndex = 124;
-            this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxpalletstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.boxpalletstock.UseCompatibleTextRendering = true;
+            this.panel46.Controls.Add(this.salelotvalue);
+            this.panel46.Controls.Add(this.salelot);
+            this.panel46.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel46.Location = new System.Drawing.Point(79, 84);
+            this.panel46.Margin = new System.Windows.Forms.Padding(0);
+            this.panel46.Name = "panel46";
+            this.panel46.Size = new System.Drawing.Size(81, 15);
+            this.panel46.TabIndex = 127;
+            // 
+            // salelotvalue
+            // 
+            this.salelotvalue.AutoSize = true;
+            this.salelotvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.salelotvalue.Location = new System.Drawing.Point(38, 1);
+            this.salelotvalue.Name = "salelotvalue";
+            this.salelotvalue.Size = new System.Drawing.Size(0, 13);
+            this.salelotvalue.TabIndex = 124;
+            // 
+            // salelot
+            // 
+            this.salelot.AutoSize = true;
+            this.salelot.Location = new System.Drawing.Point(1, 1);
+            this.salelot.Name = "salelot";
+            this.salelot.Size = new System.Drawing.Size(46, 13);
+            this.salelot.TabIndex = 124;
+            this.salelot.Text = "SaleLot:";
             // 
             // ChipsPackingForm
             // 
@@ -2502,6 +2538,8 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.panel46.ResumeLayout(false);
+            this.panel46.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2679,6 +2717,9 @@ namespace PackingApplication
         private Panel panel24;
         private CheckBox prtwist;
         private System.Windows.Forms.Label boxpalletstock;
+        private Panel panel46;
+        private System.Windows.Forms.Label salelotvalue;
+        private System.Windows.Forms.Label salelot;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

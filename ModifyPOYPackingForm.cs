@@ -679,6 +679,7 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                salelotvalue.Text = "";
                 partyn.Text = "";
                 partyshade.Text = "";
                 lotResponse = new LotsResponse();
@@ -722,7 +723,8 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        productionRequest.SaleLot = lotResponse.SaleLot;
+                        salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+                        productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
                         productionRequest.ShadeId = lotResponse.ShadeId;

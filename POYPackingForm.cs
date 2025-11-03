@@ -669,6 +669,7 @@ namespace PackingApplication
                             DeptList.SelectedIndex = 1;
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -706,6 +707,7 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                salelotvalue.Text = "";
                 partyn.Text = "";
                 partyshade.Text = "";
                 lotResponse = new LotsResponse();
@@ -749,7 +751,8 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        productionRequest.SaleLot = lotResponse.SaleLot;
+                        salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+                        productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
                         productionRequest.ShadeId = lotResponse.ShadeId;
@@ -1937,19 +1940,20 @@ namespace PackingApplication
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                //spoolnoerror.Text = "Please enter spool no";
-                //if(spoolnoerror.Visible)
-                //{
-                    MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tarewt.Text = "0";
-                    spoolwt.Text = "0";
-                    return;
-                //}
+            //if (string.IsNullOrWhiteSpace(spoolno.Text))
+            //{
+            //    //spoolnoerror.Text = "Please enter spool no";
+            //    //if(spoolnoerror.Visible)
+            //    //{
+            //        MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        tarewt.Text = "0";
+            //        spoolwt.Text = "0";
+            //        return;
+            //    //}
 
-            }
-            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+            //}
+            //else 
+            if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
                 return;
@@ -2080,10 +2084,11 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("POY Packing added successfully!",
+                    MessageBox.Show("POY Packing added successfully for BoxNo " + result.BoxNo + ".",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                    //ShowCustomMessage(result.BoxNo);
                     isFormReady = false;
                     this.spoolno.Text = "0";
                     this.spoolwt.Text = "0";
@@ -2092,6 +2097,7 @@ namespace PackingApplication
                     this.netwt.Text = "";
                     this.wtpercop.Text = "";
                     isFormReady = true;
+                    this.spoolno.Focus();
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print
@@ -3016,5 +3022,50 @@ namespace PackingApplication
 
         //    _isFiltering = false;
         //}
+
+        private void ShowCustomMessage(string boxNo)
+        {
+            Form msgForm = new Form()
+            {
+                Width = 400,
+                Height = 200,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Success",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
+            {
+                Text = "POY Packing added successfully for BoxNo:",
+                Dock = DockStyle.Top,
+                Font = FontManager.GetFont(12F, FontStyle.Regular),
+                Padding = new Padding(10)
+            };
+
+            System.Windows.Forms.Label lblBoxNo = new System.Windows.Forms.Label()
+            {
+                Text = boxNo,
+                Dock = DockStyle.Fill,
+                Font = FontManager.GetFont(12F, FontStyle.Bold),
+                ForeColor = Color.Green,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button()
+            {
+                Text = "OK",
+                DialogResult = DialogResult.OK,
+                Dock = DockStyle.Bottom,
+                Height = 40
+            };
+
+            msgForm.Controls.Add(lblBoxNo);
+            msgForm.Controls.Add(lblMessage);
+            msgForm.Controls.Add(btnOk);
+
+            msgForm.AcceptButton = btnOk;
+            msgForm.ShowDialog();
+        }
+
     }
 }

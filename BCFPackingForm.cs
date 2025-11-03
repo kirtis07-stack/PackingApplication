@@ -638,6 +638,7 @@ namespace PackingApplication
                             DeptList.SelectedIndex = 1;
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -675,6 +676,7 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                salelotvalue.Text = "";
                 partyn.Text = "";
                 partyshade.Text = "";
                 lotResponse = new LotsResponse();
@@ -718,7 +720,8 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
-                        productionRequest.SaleLot = lotResponse.SaleLot;
+                        salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+                        productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
                         productionRequest.ShadeId = lotResponse.ShadeId;
@@ -1907,16 +1910,17 @@ namespace PackingApplication
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                //spoolnoerror.Text = "Please enter spool no";
-                //spoolnoerror.Visible = true;
-                MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tarewt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+            //if (string.IsNullOrWhiteSpace(spoolno.Text))
+            //{
+            //    //spoolnoerror.Text = "Please enter spool no";
+            //    //spoolnoerror.Visible = true;
+            //    MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    tarewt.Text = "0";
+            //    spoolwt.Text = "0";
+            //    return;
+            //}
+            //else 
+            if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
                 return;
@@ -2046,7 +2050,7 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("BCF Packing added successfully!",
+                    MessageBox.Show("BCF Packing added successfully for BoxNo " + result.BoxNo + ".",
                     "Success",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -2058,6 +2062,7 @@ namespace PackingApplication
                     this.netwt.Text = "";
                     this.wtpercop.Text = "";
                     isFormReady = true;
+                    this.spoolno.Focus();
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print

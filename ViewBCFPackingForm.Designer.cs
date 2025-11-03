@@ -233,6 +233,9 @@
             this.copstxtbox = new System.Windows.Forms.TextBox();
             this.lastboxheader = new System.Windows.Forms.Panel();
             this.Lastboxlbl = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.salelotvalue = new System.Windows.Forms.Label();
+            this.salelot = new System.Windows.Forms.Label();
             this.rightpanel.SuspendLayout();
             this.buttontablelayout.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -311,6 +314,7 @@
             this.lastbxtarepanel.SuspendLayout();
             this.lastbxcopspanel.SuspendLayout();
             this.lastboxheader.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // rightpanel
@@ -1383,6 +1387,7 @@
             this.tableLayoutPanel4.Controls.Add(this.panel12, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.panel13, 2, 2);
             this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.panel5, 1, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -2808,6 +2813,35 @@
             this.Lastboxlbl.TabIndex = 107;
             this.Lastboxlbl.Text = "Last box details";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.salelotvalue);
+            this.panel5.Controls.Add(this.salelot);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(60, 84);
+            this.panel5.Margin = new System.Windows.Forms.Padding(0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(62, 15);
+            this.panel5.TabIndex = 128;
+            // 
+            // salelotvalue
+            // 
+            this.salelotvalue.AutoSize = true;
+            this.salelotvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.salelotvalue.Location = new System.Drawing.Point(38, 1);
+            this.salelotvalue.Name = "salelotvalue";
+            this.salelotvalue.Size = new System.Drawing.Size(0, 13);
+            this.salelotvalue.TabIndex = 124;
+            // 
+            // salelot
+            // 
+            this.salelot.AutoSize = true;
+            this.salelot.Location = new System.Drawing.Point(1, 1);
+            this.salelot.Name = "salelot";
+            this.salelot.Size = new System.Drawing.Size(46, 13);
+            this.salelot.TabIndex = 124;
+            this.salelot.Text = "SaleLot:";
+            // 
             // ViewBCFPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2945,6 +2979,8 @@
             this.lastbxcopspanel.PerformLayout();
             this.lastboxheader.ResumeLayout(false);
             this.lastboxheader.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3151,5 +3187,8 @@
         private System.Windows.Forms.TableLayoutPanel buttontablelayout;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Button cancelbtn;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label salelotvalue;
+        private System.Windows.Forms.Label salelot;
     }
 }
