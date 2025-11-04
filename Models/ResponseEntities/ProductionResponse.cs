@@ -26,7 +26,7 @@ namespace PackingApplication.Models.ResponseEntities
         public DateTime ProductionDate { get; set; }
         public int QualityId { get; set; }
         public string QualityName { get; set; }
-        public int SaleOrderItemId { get; set; }
+        public int SaleOrderItemsId { get; set; }
         public string SalesOrderNumber { get; set; }
         public int PackSizeId { get; set; }
         public string PackSizeName { get; set; }

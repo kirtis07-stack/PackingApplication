@@ -336,9 +336,7 @@ namespace PackingApplication
                 prodtype.Text = productionResponse.ProductionType;
                 remarks.Text = productionResponse.Remarks;
                 prcompany.Checked = productionResponse.PrintCompany;
-                prcompany.Enabled = productionResponse.PrintCompany ? true : false;
                 prowner.Checked = productionResponse.PrintOwner;
-                prowner.Enabled = productionResponse.PrintOwner ? true : false;
                 prdate.Checked = productionResponse.PrintDate;
                 pruser.Checked = productionResponse.PrintUser;
                 prhindi.Checked = productionResponse.PrintHindiWords;
@@ -677,13 +675,13 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemId == quality.SaleOrderItemId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
 
                     if (existing == null)
                     {
                         QualityGridResponse grid = new QualityGridResponse();
                         grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemId = quality.SaleOrderItemId;
+                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
                         grid.GrossWt = quality.GrossWt;
@@ -794,7 +792,7 @@ namespace PackingApplication
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
                             palletwtno.Text = itemResponse.Weight.ToString();
-                            GrossWeight_TextChanged(sender, e);
+                            //GrossWeight_TextChanged(sender, e);
                         }
                     }
                 }
@@ -1041,13 +1039,6 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            if (selectedSOId == 0)
-            {
-                //soerror.Visible = true;
-                //soerror.Text = "Please select sale order";
-                MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 //grosswterror.Visible = true;
@@ -1063,19 +1054,6 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
-                        {
-                            //grosswterror.Text = "No Prod Bal Qty remaining";
-                            //grosswterror.Visible = true;
-                            MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                        else
-                        {
-                            //grosswterror.Text = "";
-                            //grosswterror.Visible = false;
-                        }
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -1085,10 +1063,13 @@ namespace PackingApplication
                         else
                         {
                             //grosswterror.Text = "Gross Wt > Tare Wt";
-                            //grosswterror.Visible = true;
+                            //if(grosswterror.Visible)
+                            //{
                             MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             netwt.Text = "0";
                             wtpercop.Text = "0";
+                            //}
+
                         }
                     }
                 }

@@ -411,7 +411,7 @@ namespace PackingApplication
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
+                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
                 QualityList.SelectedValue = productionResponse.QualityId;
                 WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 PackSizeList.SelectedValue = productionResponse.PackSizeId;
@@ -833,7 +833,7 @@ namespace PackingApplication
 
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemId;
+                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
                             SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                     }
@@ -972,7 +972,7 @@ namespace PackingApplication
                     LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                     int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                     string soNumber = selectedSaleOrder.SaleOrderNumber;
-                    productionRequest.SaleOrderItemId = selectedSaleOrderId;
+                    productionRequest.SaleOrderItemsId = selectedSaleOrderId;
                     if (selectedSaleOrderId > 0)
                     {
                         selectedSOId = selectedSaleOrderId;
@@ -1021,13 +1021,13 @@ namespace PackingApplication
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemId == winding.SaleOrderItemId);
+                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemsId == winding.SaleOrderItemsId);
 
                         if (existing == null)
                         {
                             WindingTypeGridResponse grid = new WindingTypeGridResponse();
                             grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderItemId = winding.SaleOrderItemId;
+                            grid.SaleOrderItemsId = winding.SaleOrderItemsId;
                             grid.WindingTypeName = winding.WindingTypeName;
                             grid.SaleOrderQty = totalSOQty;
                             grid.GrossWt = winding.GrossWt;
@@ -1062,13 +1062,13 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemId == quality.SaleOrderItemId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
 
                     if (existing == null)
                     {
                         QualityGridResponse grid = new QualityGridResponse();
                         grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemId = quality.SaleOrderItemId;
+                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
                         grid.GrossWt = quality.GrossWt;
@@ -1231,7 +1231,7 @@ namespace PackingApplication
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
                             palletwtno.Text = itemResponse.Weight.ToString();
-                            GrossWeight_Validating(sender, new CancelEventArgs());
+                            //GrossWeight_Validating(sender, new CancelEventArgs());
                         }
                     }
                 }

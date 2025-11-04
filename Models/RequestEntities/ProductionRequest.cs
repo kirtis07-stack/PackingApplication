@@ -44,7 +44,7 @@ namespace PackingApplication.Models.RequestEntities
         public List<ProductionConsumptionDetailsRequest> ConsumptionDetailsRequest { get; set; }
         public int DispatchChallanId { get; set; }
         public DateTime? DispatchDate { get; set; }
-        public int SaleOrderItemId { get; set; }
+        public int SaleOrderItemsId { get; set; }
         public int PalletId { get; set; }
         public string SaleLot { get; set; }
         public int DispatchReserveId { get; set; }

@@ -688,13 +688,13 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemId == quality.SaleOrderItemId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
 
                     if (existing == null)
                     {
                         QualityGridResponse grid = new QualityGridResponse();
                         grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemId = quality.SaleOrderItemId;
+                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
                         grid.GrossWt = quality.GrossWt;
@@ -810,7 +810,7 @@ namespace PackingApplication
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
                             palletwtno.Text = itemResponse.Weight.ToString();
-                            GrossWeight_Validating(sender, new CancelEventArgs());
+                            //GrossWeight_Validating(sender, new CancelEventArgs());
                         }
                     }
                 }
