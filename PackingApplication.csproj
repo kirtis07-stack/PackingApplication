@@ -202,6 +202,7 @@
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
     <Compile Include="Models\RequestEntities\Prefix.cs" />
+    <Compile Include="Models\ResponseEntities\BusinessPartnerResponse.cs" />
     <Compile Include="Models\ResponseEntities\DepartmentResponse.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
     <Compile Include="Models\ResponseEntities\SaleOrderResponse.cs" />

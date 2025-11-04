@@ -100,5 +100,11 @@ namespace PackingApplication.Services
             return getMachine;
         }
 
+        public List<BusinessPartnerResponse> getOwnerList()
+        {
+            var getBusinessPartnerResponse = method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + false);
+            var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse);
+            return getBusinessPartner;
+        }
     }
 }

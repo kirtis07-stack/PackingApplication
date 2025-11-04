@@ -49,6 +49,8 @@ namespace PackingApplication
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
+        decimal startWeight = 0;
+        decimal endWeight = 0;
         public BCFPackingForm()
         {
             InitializeComponent();
@@ -255,6 +257,8 @@ namespace PackingApplication
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private async void BCFPackingForm_Shown(object sender, EventArgs e)
@@ -269,9 +273,10 @@ namespace PackingApplication
                 var boxitemTask = getBoxItemList(itemBoxCategoryId);
                 var palletitemTask = getPalletItemList(itemPalletCategoryId);
                 var deptTask = getDepartmentList();
+                var ownerTask = getOwnerList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask);
+                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
@@ -282,6 +287,7 @@ namespace PackingApplication
                 var boxitemList = boxitemTask.Result;
                 var palletitemList = palletitemTask.Result;
                 var deptList = deptTask.Result;
+                var ownerList = ownerTask.Result;
 
                 //machine
                 o_machinesResponse = machineList;
@@ -384,6 +390,14 @@ namespace PackingApplication
                 DeptList.SelectedIndex = 0;
                 DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DataSource = ownerList;
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.SelectedIndex = 0;
+                OwnerList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                OwnerList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 RefreshLastBoxDetails();
 
@@ -669,6 +683,8 @@ namespace PackingApplication
                         var packsize = await Task.Run(() => _masterService.getPackSizeById(selectedPacksizeId));
                         frdenier.Text = packsize.FromDenier.ToString();
                         updenier.Text = packsize.UpToDenier.ToString();
+                        startWeight = packsize.StartWeight;
+                        endWeight = packsize.EndWeight;
                     }
 
                 }
@@ -1116,6 +1132,35 @@ namespace PackingApplication
             }
         }
 
+        private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            if (OwnerList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            if (OwnerList.SelectedIndex > 0)
+            {
+            }
+            lblLoading.Visible = true;
+            try
+            {
+                if (OwnerList.SelectedValue != null)
+                {
+
+                    BusinessPartnerResponse selectedOwner = (BusinessPartnerResponse)OwnerList.SelectedItem;
+                    int selectedOwnerId = selectedOwner.BusinessPartnerId;
+
+                    productionRequest.OwnerId = selectedOwnerId;
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+            }
+        }
+
         private Task<List<MachineResponse>> getMachineList()
         {
             return Task.Run(() => _masterService.getMachineList("BCFLot"));
@@ -1187,6 +1232,11 @@ namespace PackingApplication
         private Task<ProductionResponse> getProductionById(long productionId)
         {
             return Task.Run(() => _packingService.getProductionById(productionId));
+        }
+
+        private Task<List<BusinessPartnerResponse>> getOwnerList()
+        {
+            return Task.Run(() => _masterService.getOwnerList());
         }
 
         private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
@@ -2031,6 +2081,17 @@ namespace PackingApplication
                 isValid = false;
 
             }
+            decimal whtpercop = 0;
+            decimal.TryParse(wtpercop.Text, out whtpercop);
+            if (whtpercop >= startWeight && whtpercop <= endWeight)
+            {
+                isValid = true;
+            }
+            else
+            {
+                MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
             return isValid;
         }
 
@@ -2406,6 +2467,19 @@ namespace PackingApplication
             }
         }
 
+        private void OwnerList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                OwnerList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                OwnerList.DroppedDown = false;
+            }
+        }
+
         private void ResetForm(Control parent)
         {
             lblLoading.Visible = true;
@@ -2490,6 +2564,8 @@ namespace PackingApplication
                 ComPortList.SelectedIndex = 0;
 
                 WeighingList.SelectedIndex = 0;
+
+                OwnerList.SelectedIndex = 0;
 
                 isFormReady = false;
                 spoolno.Text = "";
