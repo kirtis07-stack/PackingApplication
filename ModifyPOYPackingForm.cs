@@ -2880,6 +2880,8 @@ namespace PackingApplication
 
                 WeighingList.SelectedIndex = 0;
 
+                OwnerList.SelectedIndex = 0;
+
                 isFormReady = false;
                 spoolno.Text = "";
             }

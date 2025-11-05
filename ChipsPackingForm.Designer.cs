@@ -1499,6 +1499,8 @@ namespace PackingApplication
             this.OwnerList.Name = "OwnerList";
             this.OwnerList.Size = new System.Drawing.Size(41, 21);
             this.OwnerList.TabIndex = 124;
+            this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
+            this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
             // 
             // owner
             // 

@@ -152,6 +152,9 @@ namespace PackingApplication
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.OwnerList = new System.Windows.Forms.ComboBox();
+            this.owner = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.twistvalue = new System.Windows.Forms.Label();
             this.twist = new System.Windows.Forms.Label();
@@ -185,6 +188,9 @@ namespace PackingApplication
             this.MergeNoList = new System.Windows.Forms.ComboBox();
             this.mergenoerror = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.panel46 = new System.Windows.Forms.Panel();
+            this.salelotvalue = new System.Windows.Forms.Label();
+            this.salelot = new System.Windows.Forms.Label();
             this.machineboxheader = new System.Windows.Forms.Panel();
             this.Machinelbl = new System.Windows.Forms.Label();
             this.tblpanl1 = new System.Windows.Forms.Panel();
@@ -228,9 +234,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.panel46 = new System.Windows.Forms.Panel();
-            this.salelotvalue = new System.Windows.Forms.Label();
-            this.salelot = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -268,6 +271,7 @@ namespace PackingApplication
             this.machineboxlayout.SuspendLayout();
             this.machineboxpanel.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel27.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -278,6 +282,7 @@ namespace PackingApplication
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel46.SuspendLayout();
             this.machineboxheader.SuspendLayout();
             this.tblpanl1.SuspendLayout();
             this.weighboxlayout.SuspendLayout();
@@ -305,7 +310,6 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.panel46.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1771,6 +1775,7 @@ namespace PackingApplication
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33555F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.33229F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.33216F));
+            this.tableLayoutPanel4.Controls.Add(this.panel4, 2, 1);
             this.tableLayoutPanel4.Controls.Add(this.panel27, 1, 3);
             this.tableLayoutPanel4.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel2, 1, 0);
@@ -1793,6 +1798,38 @@ namespace PackingApplication
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(237, 99);
             this.tableLayoutPanel4.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.OwnerList);
+            this.panel4.Controls.Add(this.owner);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(160, 27);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(77, 28);
+            this.panel4.TabIndex = 127;
+            // 
+            // OwnerList
+            // 
+            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OwnerList.FormattingEnabled = true;
+            this.OwnerList.Location = new System.Drawing.Point(36, 5);
+            this.OwnerList.Name = "OwnerList";
+            this.OwnerList.Size = new System.Drawing.Size(41, 21);
+            this.OwnerList.TabIndex = 124;
+            this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
+            this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
+            // 
+            // owner
+            // 
+            this.owner.AutoSize = true;
+            this.owner.Location = new System.Drawing.Point(-1, 5);
+            this.owner.Name = "owner";
+            this.owner.Size = new System.Drawing.Size(41, 13);
+            this.owner.TabIndex = 124;
+            this.owner.Text = "Owner:";
             // 
             // panel27
             // 
@@ -1900,7 +1937,7 @@ namespace PackingApplication
             // 
             this.lastbox.AutoSize = true;
             this.lastbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.lastbox.Location = new System.Drawing.Point(50, 4);
+            this.lastbox.Location = new System.Drawing.Point(50, 5);
             this.lastbox.Name = "lastbox";
             this.lastbox.Size = new System.Drawing.Size(0, 13);
             this.lastbox.TabIndex = 5;
@@ -1942,7 +1979,7 @@ namespace PackingApplication
             // item
             // 
             this.item.AutoSize = true;
-            this.item.Location = new System.Drawing.Point(-3, 2);
+            this.item.Location = new System.Drawing.Point(-3, 5);
             this.item.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.item.Name = "item";
             this.item.Size = new System.Drawing.Size(30, 13);
@@ -2005,7 +2042,7 @@ namespace PackingApplication
             // 
             this.prodtype.AutoSize = true;
             this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.prodtype.Location = new System.Drawing.Point(46, 5);
+            this.prodtype.Location = new System.Drawing.Point(34, 5);
             this.prodtype.Name = "prodtype";
             this.prodtype.Size = new System.Drawing.Size(0, 13);
             this.prodtype.TabIndex = 5;
@@ -2076,7 +2113,7 @@ namespace PackingApplication
             // department
             // 
             this.department.AutoSize = true;
-            this.department.Location = new System.Drawing.Point(-3, 5);
+            this.department.Location = new System.Drawing.Point(0, 5);
             this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.department.Name = "department";
             this.department.Size = new System.Drawing.Size(33, 13);
@@ -2153,6 +2190,35 @@ namespace PackingApplication
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(81, 28);
             this.panel10.TabIndex = 5;
+            // 
+            // panel46
+            // 
+            this.panel46.Controls.Add(this.salelotvalue);
+            this.panel46.Controls.Add(this.salelot);
+            this.panel46.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel46.Location = new System.Drawing.Point(160, 84);
+            this.panel46.Margin = new System.Windows.Forms.Padding(0);
+            this.panel46.Name = "panel46";
+            this.panel46.Size = new System.Drawing.Size(77, 15);
+            this.panel46.TabIndex = 126;
+            // 
+            // salelotvalue
+            // 
+            this.salelotvalue.AutoSize = true;
+            this.salelotvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.salelotvalue.Location = new System.Drawing.Point(40, 1);
+            this.salelotvalue.Name = "salelotvalue";
+            this.salelotvalue.Size = new System.Drawing.Size(0, 13);
+            this.salelotvalue.TabIndex = 124;
+            // 
+            // salelot
+            // 
+            this.salelot.AutoSize = true;
+            this.salelot.Location = new System.Drawing.Point(1, 1);
+            this.salelot.Name = "salelot";
+            this.salelot.Size = new System.Drawing.Size(46, 13);
+            this.salelot.TabIndex = 124;
+            this.salelot.Text = "SaleLot:";
             // 
             // machineboxheader
             // 
@@ -2686,35 +2752,6 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // panel46
-            // 
-            this.panel46.Controls.Add(this.salelotvalue);
-            this.panel46.Controls.Add(this.salelot);
-            this.panel46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel46.Location = new System.Drawing.Point(160, 84);
-            this.panel46.Margin = new System.Windows.Forms.Padding(0);
-            this.panel46.Name = "panel46";
-            this.panel46.Size = new System.Drawing.Size(77, 15);
-            this.panel46.TabIndex = 126;
-            // 
-            // salelotvalue
-            // 
-            this.salelotvalue.AutoSize = true;
-            this.salelotvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.salelotvalue.Location = new System.Drawing.Point(38, 1);
-            this.salelotvalue.Name = "salelotvalue";
-            this.salelotvalue.Size = new System.Drawing.Size(0, 13);
-            this.salelotvalue.TabIndex = 124;
-            // 
-            // salelot
-            // 
-            this.salelot.AutoSize = true;
-            this.salelot.Location = new System.Drawing.Point(1, 1);
-            this.salelot.Name = "salelot";
-            this.salelot.Size = new System.Drawing.Size(46, 13);
-            this.salelot.TabIndex = 124;
-            this.salelot.Text = "SaleLot:";
-            // 
             // ModifyDTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2785,6 +2822,8 @@ namespace PackingApplication
             this.machineboxlayout.ResumeLayout(false);
             this.machineboxpanel.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -2805,6 +2844,8 @@ namespace PackingApplication
             this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.panel46.ResumeLayout(false);
+            this.panel46.PerformLayout();
             this.machineboxheader.ResumeLayout(false);
             this.machineboxheader.PerformLayout();
             this.tblpanl1.ResumeLayout(false);
@@ -2851,8 +2892,6 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.panel46.ResumeLayout(false);
-            this.panel46.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3057,6 +3096,9 @@ namespace PackingApplication
         private Panel panel46;
         private System.Windows.Forms.Label salelotvalue;
         private System.Windows.Forms.Label salelot;
+        private Panel panel4;
+        private ComboBox OwnerList;
+        private System.Windows.Forms.Label owner;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
