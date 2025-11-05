@@ -1389,6 +1389,16 @@ namespace PackingApplication
                 MessageBox.Show("Please enter gross wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
+            decimal gross, tare;
+            decimal.TryParse(grosswtno.Text, out gross);
+            decimal.TryParse(tarewt.Text, out tare);
+            if (gross < tare)
+            {
+                MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                netwt.Text = "0";
+                wtpercop.Text = "0";
+                isValid = false;
+            }
             decimal whtpercop = 0;
             decimal.TryParse(wtpercop.Text, out whtpercop);
             if (whtpercop >= startWeight && whtpercop <= endWeight)

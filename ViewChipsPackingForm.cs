@@ -93,15 +93,6 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
-
-            var prefixList = new List<PrefixResponse>();
-            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-            PrefixList.DataSource = prefixList;
-            PrefixList.DisplayMember = "Prefix";
-            PrefixList.ValueMember = "PrefixCode";
-            PrefixList.SelectedIndex = 0;
-            PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void ApplyFonts()
@@ -114,7 +105,6 @@ namespace PackingApplication
             this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -177,7 +167,6 @@ namespace PackingApplication
             this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.PrefixList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
@@ -185,7 +174,6 @@ namespace PackingApplication
             this.spoolwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.boxnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.qualityerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
@@ -198,6 +186,8 @@ namespace PackingApplication
             this.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private async void ViewChipsPackingForm_Shown(object sender, EventArgs e)
@@ -211,9 +201,10 @@ namespace PackingApplication
                 var copsitemTask = getCopeItemList(itemCopsCategoryId);
                 var boxitemTask = getBoxItemList(itemBoxCategoryId);
                 var deptTask = getDepartmentList();
+                var ownerTask = getOwnerList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask);
+                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
@@ -223,6 +214,7 @@ namespace PackingApplication
                 var copsitemList = copsitemTask.Result;
                 var boxitemList = boxitemTask.Result;
                 var deptList = deptTask.Result;
+                var ownerList = ownerTask.Result;
 
                 //machine
                 o_machinesResponse = machineList;
@@ -303,6 +295,14 @@ namespace PackingApplication
                 DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DataSource = ownerList;
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.SelectedIndex = 0;
+                OwnerList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                OwnerList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
                 RefreshLastBoxDetails();
 
                 if (Convert.ToInt64(_productionId) > 0)
@@ -325,7 +325,7 @@ namespace PackingApplication
             {
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
-                PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
+                //PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
@@ -803,41 +803,41 @@ namespace PackingApplication
             }
         }
 
-        private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            //if (PrefixList.DroppedDown) return;
+        //    //if (PrefixList.DroppedDown) return;
 
-            if (PrefixList.SelectedIndex <= 0)
-            {
-                prodtype.Text = "";
-                return;
-            }
+        //    if (PrefixList.SelectedIndex <= 0)
+        //    {
+        //        prodtype.Text = "";
+        //        return;
+        //    }
 
-            if (PrefixList.SelectedIndex > 0)
-            {
-                //boxnoerror.Text = "";
-                //boxnoerror.Visible = false;
-            }
+        //    if (PrefixList.SelectedIndex > 0)
+        //    {
+        //        //boxnoerror.Text = "";
+        //        //boxnoerror.Visible = false;
+        //    }
 
-            if (PrefixList.SelectedValue != null)
-            {
-                //boxnoerror.Visible = false;
+        //    if (PrefixList.SelectedValue != null)
+        //    {
+        //        //boxnoerror.Visible = false;
 
-                PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
-                int selectedPrefixId = selectedPrefix.PrefixCode;
+        //        PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
+        //        int selectedPrefixId = selectedPrefix.PrefixCode;
 
-                productionRequest.PrefixCode = selectedPrefixId;
+        //        productionRequest.PrefixCode = selectedPrefixId;
 
-                if (selectedPrefix.ProductionType.ToString() != null)
-                {
-                    prodtype.Text = selectedPrefix.ProductionType.ToString();
-                    productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
-                }
+        //        if (selectedPrefix.ProductionType.ToString() != null)
+        //        {
+        //            prodtype.Text = selectedPrefix.ProductionType.ToString();
+        //            productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -875,23 +875,35 @@ namespace PackingApplication
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+            }
+        }
 
-                    prefixRequest.DepartmentId = selectedDepartmentId;
-                    prefixRequest.TxnFlag = "Chips";
-                    prefixRequest.TransactionTypeId = 5;
-                    prefixRequest.ProductionTypeId = 1;
-                    prefixRequest.Prefix = "";
-                    prefixRequest.FinYearId = SessionManager.FinYearId;
+        private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
 
-                    List<PrefixResponse> prefixList = await Task.Run(() => _masterService.getPrefixList(prefixRequest));
-                    prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
-                    PrefixList.DataSource = prefixList;
-                    PrefixList.DisplayMember = "Prefix";
-                    PrefixList.ValueMember = "PrefixCode";
-                    PrefixList.SelectedIndex = 0;
-                    PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
+            if (OwnerList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            if (OwnerList.SelectedIndex > 0)
+            {
+            }
+            lblLoading.Visible = true;
+            try
+            {
+                if (OwnerList.SelectedValue != null)
+                {
 
+                    BusinessPartnerResponse selectedOwner = (BusinessPartnerResponse)OwnerList.SelectedItem;
+                    int selectedOwnerId = selectedOwner.BusinessPartnerId;
+
+                    productionRequest.OwnerId = selectedOwnerId;
                 }
             }
             finally
@@ -971,6 +983,11 @@ namespace PackingApplication
         private Task<ProductionResponse> getProductionById(long productionId)
         {
             return Task.Run(() => _packingService.getProductionById(productionId));
+        }
+
+        private Task<List<BusinessPartnerResponse>> getOwnerList()
+        {
+            return Task.Run(() => _masterService.getOwnerList());
         }
 
         private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)

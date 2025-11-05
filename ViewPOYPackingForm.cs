@@ -213,6 +213,8 @@ namespace PackingApplication
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private async void ViewPOYPackingForm_Shown(object sender, EventArgs e)
@@ -228,9 +230,10 @@ namespace PackingApplication
                 var boxitemTask = getBoxItemList(itemBoxCategoryId);
                 var palletitemTask = getPalletItemList(itemPalletCategoryId);
                 var deptTask = getDepartmentList();
+                var ownerTask = getOwnerList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask);
+                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
@@ -241,6 +244,7 @@ namespace PackingApplication
                 var boxitemList = boxitemTask.Result;
                 var palletitemList = palletitemTask.Result;
                 var deptList = deptTask.Result;
+                var ownerList = ownerTask.Result;
 
                 //machine
                 o_machinesResponse = machineList;
@@ -344,6 +348,14 @@ namespace PackingApplication
                 DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DataSource = ownerList;
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.SelectedIndex = 0;
+                OwnerList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                OwnerList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
                 RefreshLastBoxDetails();
 
                 //if (Convert.ToInt64(_productionId) > 0)
@@ -390,6 +402,7 @@ namespace PackingApplication
                 grosswtno.Text = productionResponse.GrossWt.ToString();
                 tarewt.Text = productionResponse.TareWt.ToString();
                 netwt.Text = productionResponse.NetWt.ToString();
+                OwnerList.SelectedValue = productionResponse.OwnerId;
                 MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
                 CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
@@ -1163,6 +1176,35 @@ namespace PackingApplication
             }
         }
 
+        private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isFormReady) return;
+
+            if (OwnerList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            if (OwnerList.SelectedIndex > 0)
+            {
+            }
+            lblLoading.Visible = true;
+            try
+            {
+                if (OwnerList.SelectedValue != null)
+                {
+
+                    BusinessPartnerResponse selectedOwner = (BusinessPartnerResponse)OwnerList.SelectedItem;
+                    int selectedOwnerId = selectedOwner.BusinessPartnerId;
+
+                    productionRequest.OwnerId = selectedOwnerId;
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+            }
+        }
+
         private Task<List<MachineResponse>> getMachineList()
         {
             return Task.Run(() => _masterService.getMachineList("SpinningLot"));
@@ -1234,6 +1276,11 @@ namespace PackingApplication
         private Task<ProductionResponse> getProductionById(long productionId)
         {
             return Task.Run(() => _packingService.getProductionById(productionId));
+        }
+
+        private Task<List<BusinessPartnerResponse>> getOwnerList()
+        {
+            return Task.Run(() => _masterService.getOwnerList());
         }
 
         private Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
