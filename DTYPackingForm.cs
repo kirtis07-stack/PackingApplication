@@ -1417,6 +1417,7 @@ namespace PackingApplication
                 productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
                 productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
                 productionRequest.ProductionDate = dateTimePicker1.Value;
+                productionRequest.ContainerTypeId = 0;
 
                 productionRequest.PrintCompany = prcompany.Checked;
                 productionRequest.PrintOwner = prowner.Checked;
