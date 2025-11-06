@@ -49,7 +49,7 @@ namespace PackingApplication.Services
             return getLot;
         }
 
-        public List<LotsDetailsResponse> getLotsDetailsByLotsIdAndProdyctionDate(int lotsId, DateTime ProductionDate)
+        public List<LotsDetailsResponse> getLotsDetailsByLotsIdAndProductionDate(int lotsId, DateTime ProductionDate)
         {
             String date = ProductionDate.ToString("yyyy-MM-dd HH:mm:ss");
             var getLotsDetailsResponse = method.GetCallApi(productionURL + "LotsDetails/GetAllByLotsIdAndProductionDate?lotsId=" + lotsId + "&ProductionDate=" + date);

@@ -573,7 +573,7 @@ namespace PackingApplication
 
                         lotsDetailsList = new List<LotsDetailsResponse>();
                         productionRequest.ProductionDate = dateTimePicker1.Value;
-                        lotsDetailsList = await Task.Run(() => _productionService.getLotsDetailsByLotsIdAndProdyctionDate(selectedLotId, productionRequest.ProductionDate));
+                        lotsDetailsList = await Task.Run(() => _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate));
                         if (lotsDetailsList.Count > 0)
                         {
                             //foreach (var lot in lotResponse.LotsDetailsResponses)

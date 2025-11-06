@@ -212,11 +212,20 @@ namespace PackingApplication
             chips.DropDownItems.Add(viewchips);
             chips.DropDownItems.Add(printchips);
 
+            // Windows menu
+            ToolStripMenuItem windows = new ToolStripMenuItem("Windows")
+            {
+                Font = FontManager.GetFont(9, FontStyle.Bold),
+                BackColor = Color.White
+            };
+            windows.Click += (s, e) => HighlightMenuItem(s);
+            windows.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             // Add to menuStrip
             menuStrip.Items.Add(poy);
             menuStrip.Items.Add(dty);
             menuStrip.Items.Add(bcf);
-            menuStrip.Items.Add(chips);     
+            menuStrip.Items.Add(chips);
+            menuStrip.Items.Add(windows);
 
             leftPanel.Controls.Add(menuStrip);
             SetHandCursorForMenuItems(menuStrip.Items);
