@@ -20,7 +20,7 @@ using System.Windows.Forms;
 
 namespace PackingApplication
 {
-    public partial class ChipsPackingForm : Form
+    public partial class AddChipsPackingForm : Form
     {
         private static Logger Log = Logger.GetLogger();
 
@@ -54,7 +54,7 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
-        public ChipsPackingForm()
+        public AddChipsPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
@@ -781,7 +781,6 @@ namespace PackingApplication
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
                             palletwtno.Text = itemResponse.Weight.ToString();
-                            //GrossWeight_Validating(sender, new CancelEventArgs());
                         }
                     }
                 }
@@ -1041,16 +1040,19 @@ namespace PackingApplication
                     {
                         CalculateNetWeight();
                         //grosswterror.Text = "";
-                        //grosswterror.Visible = false;
+                        grosswterror.Visible = false;
                     }
                     else
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        netwt.Text = "0";
-                        wtpercop.Text = "0";
-                        return;
+                        if (grosswterror.Visible)
+                        {
+                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            netwt.Text = "0";
+                            wtpercop.Text = "0";
+                            return;
+                        }
                     }
                 }
             }
@@ -1061,14 +1063,14 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            if (selectedSOId == 0)
-            {
-                //soerror.Visible = true;
-                //soerror.Text = "Please select sale order";
-                MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                e.Cancel = true;
-                return;
-            }
+            //if (selectedSOId == 0)
+            //{
+            //    //soerror.Visible = true;
+            //    //soerror.Text = "Please select sale order";
+            //    MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    e.Cancel = true;
+            //    return;
+            //}
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 //grosswterror.Visible = true;
@@ -1193,6 +1195,7 @@ namespace PackingApplication
                 productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
                 productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
                 productionRequest.ProductionDate = dateTimePicker1.Value;
+                productionRequest.ContainerTypeId = 0;
 
                 productionRequest.PrintCompany = prcompany.Checked;
                 productionRequest.PrintOwner = prowner.Checked;
@@ -1403,7 +1406,7 @@ namespace PackingApplication
             decimal.TryParse(wtpercop.Text, out whtpercop);
             if (whtpercop >= startWeight && whtpercop <= endWeight)
             {
-                isValid = true;
+                //isValid = true;
             }
             else
             {
@@ -1584,6 +1587,13 @@ namespace PackingApplication
             }
         }
 
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
+            {
+                ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
+            }
+        }
         private void checkBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

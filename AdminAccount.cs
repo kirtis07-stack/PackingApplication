@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PackingApplication
 {
@@ -20,8 +21,17 @@ namespace PackingApplication
         protected Panel footerPanel;
         protected Panel contentPanel;
         int currentIndex = 0;
-
+        private Form activeForm = null;
+        private List<Form> minimizedForms = new List<Form>();
+        private Dictionary<string, Form> openForms = new Dictionary<string, Form>();
         MenuStrip menuStrip = new MenuStrip();
+
+        // Windows menu
+        ToolStripMenuItem windows = new ToolStripMenuItem("Windows")
+        {
+            Font = FontManager.GetFont(9, FontStyle.Bold),
+            BackColor = Color.White
+        };
         public AdminAccount()
         {
             InitializeComponent();
@@ -212,12 +222,7 @@ namespace PackingApplication
             chips.DropDownItems.Add(viewchips);
             chips.DropDownItems.Add(printchips);
 
-            // Windows menu
-            ToolStripMenuItem windows = new ToolStripMenuItem("Windows")
-            {
-                Font = FontManager.GetFont(9, FontStyle.Bold),
-                BackColor = Color.White
-            };
+            
             windows.Click += (s, e) => HighlightMenuItem(s);
             windows.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             // Add to menuStrip
@@ -286,7 +291,7 @@ namespace PackingApplication
             profileWithInfo.Controls.Add(profilePictureBox);
             profileWithInfo.Controls.Add(userInfoPanel);
             // Logout Button
-            Button logoutBtn = new Button
+            System.Windows.Forms.Button logoutBtn = new System.Windows.Forms.Button
             {
                 Text = "Logout",
                 BackColor = Color.FromArgb(242, 242, 242),
@@ -475,10 +480,32 @@ namespace PackingApplication
             this.Close();
         }
 
-        public void LoadFormInContent(Form form)
+        public void LoadFormInContent(Form form, string formKey)
         {
             // Temporarily remove Enter event
             menuStrip.Enter -= MenuStrip_EnterHandler;
+
+            // Hide currently active form (minimize behavior)
+            // Hide (minimize) the active form
+            if (activeForm != null)
+            {
+                activeForm.Hide();
+
+                if (!minimizedForms.Contains(activeForm))
+                {
+                    minimizedForms.Add(activeForm);
+                    AddMinimizedFormToMenu(activeForm);
+                }
+            }
+            // Check if form already exists
+            //if (openForms.ContainsKey(formKey))
+            //{
+            //    RestoreForm(openForms[formKey]);
+            //    return;
+            //}
+
+            // New form
+            openForms[formKey] = form;
 
             contentPanel.Controls.Clear();
             form.TopLevel = false;
@@ -498,10 +525,11 @@ namespace PackingApplication
                 form.Controls[0].Focus();
             }
 
+            activeForm = form;
+
             // Re-attach Enter event
             menuStrip.Enter += MenuStrip_EnterHandler;
-
-            this.ActiveControl = form;
+            FocusFirstField(form);
         }
 
         private void AddPOYPacking_Click(object sender, EventArgs e)
@@ -514,8 +542,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new POYPackingForm());
-                this.Text = "Packing - Add POYPacking";
+                //var form = new AddPOYPackingForm();
+                //var formKey = "AddPOYPackingForm";
+                //form.Tag = "Packing - Add POYPacking";
+                //dashboard.LoadFormInContent(form, formKey);
+                //this.Text = form.Tag.ToString();
+                dashboard.OpenForm<AddPOYPackingForm>("Packing - Add POY Packing");
             }
         }
 
@@ -524,8 +556,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ViewPOYPackingForm());
-                this.Text = "Packing - View POYPacking";
+                dashboard.OpenForm<ViewPOYPackingForm>("Packing - View POYPacking");
             }
         }
 
@@ -534,8 +565,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ModifyPOYPackingForm());
-                this.Text = "Packing - Modify POYPacking";
+                dashboard.OpenForm<ModifyPOYPackingForm>("Packing - Modify POYPacking");
             }
         }
 
@@ -544,8 +574,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new DTYPackingForm());
-                this.Text = "Packing - Add DTYPacking";
+                dashboard.OpenForm<AddDTYPackingForm>("Packing - Add DTYPacking");
             }
         }
 
@@ -554,8 +583,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ViewDTYPackingForm());
-                this.Text = "Packing - View DTYPacking";
+                dashboard.OpenForm<ViewDTYPackingForm>("Packing - View DTYPacking");
             }
         }
 
@@ -564,8 +592,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ModifyDTYPackingForm());
-                this.Text = "Packing - Modify DTYPacking";
+                dashboard.OpenForm<ModifyDTYPackingForm>("Packing - Modify DTYPacking");
             }
         }
 
@@ -574,8 +601,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new BCFPackingForm());
-                this.Text = "Packing - Add BCFPacking";
+                dashboard.OpenForm<AddBCFPackingForm>("Packing - Add BCFPacking");
             }
         }
 
@@ -584,8 +610,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ViewBCFPackingForm());
-                this.Text = "Packing - View BCFPacking";
+                dashboard.OpenForm<ViewBCFPackingForm>("Packing - View BCFPacking");
             }
         }
 
@@ -594,8 +619,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ModifyBCFPackingForm());
-                this.Text = "Packing - Modify BCFPacking";
+                dashboard.OpenForm<ModifyBCFPackingForm>("Packing - Modify BCFPacking");
             }
         }
 
@@ -604,8 +628,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ChipsPackingForm());
-                this.Text = "Packing - Add ChipsPacking";
+                dashboard.OpenForm<AddChipsPackingForm>("Packing - Add ChipsPacking");
             }
         }
 
@@ -614,8 +637,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ViewChipsPackingForm());
-                this.Text = "Packing - View ChipsPacking";
+                dashboard.OpenForm<ViewChipsPackingForm>("Packing - View ChipsPacking");
             }
         }
 
@@ -624,8 +646,7 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ModifyChipsPackingForm());
-                this.Text = "Packing - Modify ChipsPacking";
+                dashboard.OpenForm<ModifyChipsPackingForm>("Packing - Modify ChipsPacking");
             }
         }
 
@@ -654,5 +675,82 @@ namespace PackingApplication
             topMenu.BackColor = Color.FromArgb(230, 240, 255);
         }
 
+        private void AddMinimizedFormToMenu(Form form)
+        {
+            if (form == null) return;
+
+            form.Hide();
+            minimizedForms.Add(form);
+            var item = new ToolStripMenuItem(form.Text);
+            item.Tag = form; // store reference to the form
+            item.Click += MinimizedFormMenu_Click;
+            item.Font = FontManager.GetFont(8, FontStyle.Regular);
+            windows.DropDownItems.Add(item);
+        }
+
+        private void MinimizedFormMenu_Click(object sender, EventArgs e)
+        {
+            var menuItem = sender as ToolStripMenuItem;
+            var form = menuItem?.Tag as Form;
+            if (form != null)
+            {
+                RestoreForm(form);
+            }
+        }
+
+        private void RestoreForm(Form form)
+        {
+            // Hide currently active form
+            if (activeForm != null && activeForm != form)
+                activeForm.Hide();
+
+            if (!contentPanel.Controls.Contains(form))
+            {
+                form.TopLevel = false;
+                form.FormBorderStyle = FormBorderStyle.None;
+                form.Dock = DockStyle.Fill;
+                contentPanel.Controls.Add(form);
+            }
+
+            // Show the selected one
+            form.Show();
+            form.BringToFront();
+            form.Focus();
+            if (form.Tag != null)
+                this.Text = form.Tag.ToString();
+            activeForm = form;
+
+            FocusFirstField(form);
+            // Remove from minimized list and menu
+            //minimizedForms.Remove(form);
+            //var toRemove = windows.DropDownItems
+            //    .Cast<ToolStripMenuItem>()
+            //    .FirstOrDefault(x => x.Tag == form);
+            //if (toRemove != null)
+            //    windows.DropDownItems.Remove(toRemove);
+        }
+
+        private void OpenForm<T>(string title) where T : Form, new()
+        {
+            string formKey = typeof(T).Name;
+
+            // Create or restore form
+            var form = openForms.ContainsKey(formKey)
+                ? openForms[formKey]
+                : new T();
+
+            form.Tag = title; // Store title for restore
+
+            LoadFormInContent(form, formKey);
+            this.Text = title;
+        }
+
+        private void FocusFirstField(Form form)
+        {
+            form.BeginInvoke(new Action(() =>
+            {
+                form.SelectNextControl(null, true, true, true, true);
+            }));
+        }
     }
 }

@@ -6,18 +6,20 @@ using PackingApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO.Ports;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PackingApplication
 {
-    public partial class BCFPackingForm : Form
+    public partial class AddDTYPackingForm: Form
     {
         private static Logger Log = Logger.GetLogger();
 
@@ -51,32 +53,26 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
-        public BCFPackingForm()
+        public AddDTYPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
-            this.Shown += BCFPackingForm_Shown;
+            this.Shown += DTYPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
-            _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
-            width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
-            windinggrid.AutoGenerateColumns = false;
-            qualityqty.AutoGenerateColumns = false;
         }
 
-        private void BCFPackingForm_Load(object sender, EventArgs e)
+        private void DTYPackingForm_Load(object sender, EventArgs e)
         {
-            AddHeader();
-
             getLotRelatedDetails();
 
-            copyno.Text = "2";
+            copyno.Text = "1";
             spoolno.Text = "0";
             spoolwt.Text = "0";
             palletwtno.Text = "0";
@@ -91,6 +87,7 @@ namespace PackingApplication
             frdenier.Text = "0";
             updenier.Text = "0";
             deniervalue.Text = "0";
+            twistvalue.Text = "0";
             partyn.Text = "";
             partyshade.Text = "";
             isFormReady = true;
@@ -184,8 +181,10 @@ namespace PackingApplication
             this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.pruser.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prhindi.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prtwist.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -202,17 +201,9 @@ namespace PackingApplication
             this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.label6.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.qnty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.addqty.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.flowLayoutPanel1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.submit.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.saveprint.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.wgroupbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -221,9 +212,6 @@ namespace PackingApplication
             this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.gradewiseprodn.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.totalprodbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.saleordrqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -245,8 +233,6 @@ namespace PackingApplication
             this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
             this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -255,13 +241,15 @@ namespace PackingApplication
             this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.twistvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.twist.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
-        private async void BCFPackingForm_Shown(object sender, EventArgs e)
+        private async void DTYPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
@@ -271,12 +259,11 @@ namespace PackingApplication
                 var packsizeTask = getPackSizeList();
                 var copsitemTask = getCopeItemList(itemCopsCategoryId);
                 var boxitemTask = getBoxItemList(itemBoxCategoryId);
-                var palletitemTask = getPalletItemList(itemPalletCategoryId);
                 var deptTask = getDepartmentList();
                 var ownerTask = getOwnerList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
+                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
@@ -285,7 +272,6 @@ namespace PackingApplication
                 var packsizeList = packsizeTask.Result;
                 var copsitemList = copsitemTask.Result;
                 var boxitemList = boxitemTask.Result;
-                var palletitemList = palletitemTask.Result;
                 var deptList = deptTask.Result;
                 var ownerList = ownerTask.Result;
 
@@ -370,17 +356,6 @@ namespace PackingApplication
                 BoxItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 //BoxItemList.DropDownStyle = ComboBoxStyle.DropDown;
-
-
-                //palletitem
-                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-                PalletTypeList.DataSource = palletitemList;
-                PalletTypeList.DisplayMember = "Name";
-                PalletTypeList.ValueMember = "ItemId";
-                PalletTypeList.SelectedIndex = 0;
-                PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                //PalletTypeList.DropDownStyle = ComboBoxStyle.DropDown;
 
                 o_departmentResponses = deptList;
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
@@ -481,6 +456,7 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 deniervalue.Text = "";
+                twistvalue.Text = "";
                 salelotvalue.Text = "";
                 partyn.Text = "";
                 partyshade.Text = "";
@@ -488,17 +464,10 @@ namespace PackingApplication
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
                 rowMaterial.Columns.Clear();
-                windinggrid.Columns.Clear();
-                qualityqty.Columns.Clear();
                 totalProdQty = 0;
-                prodnbalqty.Text = "";
                 selectedSOId = 0;
                 totalSOQty = 0;
-                grdsoqty.Text = "";
                 balanceQty = 0;
-                flowLayoutPanel1.Controls.Clear();
-                rowCount = 0;
-                AddHeader();
                 return;
             }
             if (MergeNoList.SelectedIndex > 0)
@@ -525,8 +494,10 @@ namespace PackingApplication
                         shadename.Text = lotResponse.ShadeName;
                         shadecd.Text = lotResponse.ShadeCode;
                         deniervalue.Text = lotResponse.Denier.ToString();
+                        twistvalue.Text = (!string.IsNullOrEmpty(lotResponse.TwistName)) ? lotResponse.TwistName.ToString() : "";
                         salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
                         productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
+                        productionRequest.TwistId = lotResponse.TwistId;
                         productionRequest.MachineId = lotResponse.MachineId;
                         productionRequest.ItemId = lotResponse.ItemId;
                         productionRequest.ShadeId = lotResponse.ShadeId;
@@ -741,7 +712,6 @@ namespace PackingApplication
                     if (selectedWindingTypeId > 0)
                     {
                         productionRequest.WindingTypeId = selectedWindingTypeId;
-                        RefreshWindingGrid();
                     }
                 }
             }
@@ -768,8 +738,7 @@ namespace PackingApplication
                 if (SaleOrderList.SelectedValue != null)
                 {
                     //soerror.Visible = false;
-                    totalSOQty = 0;
-                    grdsoqty.Text = "";
+
                     LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
                     int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                     string soNumber = selectedSaleOrder.SaleOrderNumber;
@@ -778,8 +747,7 @@ namespace PackingApplication
                     {
                         selectedSOId = selectedSaleOrderId;
                         selectedSONumber = selectedSaleOrder.SaleOrderNumber;
-                        totalSOQty = selectedSaleOrder.Quantity;
-                        grdsoqty.Text = totalSOQty.ToString("F2");
+                        totalSOQty = 0;
                         var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
                         if (saleOrderItemResponse != null)
                         {
@@ -792,8 +760,8 @@ namespace PackingApplication
 
                         //foreach (var soitem in saleResponse.saleOrderItemsResponses)
                         //{
+                        totalSOQty = selectedSaleOrder.Quantity;
                         //}
-
 
                         RefreshGradewiseGrid();
                         RefreshLastBoxDetails();
@@ -806,52 +774,11 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
         }
-        private async void RefreshWindingGrid()
-        {
-            if (WindingTypeList.SelectedValue != null)
-            {
-                int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-                if (selectedWindingTypeId > 0)
-                {
-                    var getProductionByWindingType = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
-                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
-                    foreach (var winding in getProductionByWindingType)
-                    {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemsId == winding.SaleOrderItemsId);
-
-                        if (existing == null)
-                        {
-                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                            grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                            grid.WindingTypeName = winding.WindingTypeName;
-                            grid.SaleOrderQty = totalSOQty;
-                            grid.GrossWt = winding.GrossWt;
-
-                            gridList.Add(grid);
-                        }
-                        else
-                        {
-                            existing.GrossWt += winding.GrossWt;
-                        }
-
-                    }
-                    windinggrid.Columns.Clear();
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                    windinggrid.DataSource = gridList;
-                }
-            }
-
-        }
 
         private async void RefreshGradewiseGrid()
         {
             if (QualityList.SelectedValue != null)
             {
-                prodnbalqty.Text = "";
                 balanceQty = 0;
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
@@ -877,10 +804,6 @@ namespace PackingApplication
                     }
 
                 }
-                qualityqty.Columns.Clear();
-                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
-                qualityqty.DataSource = gridList;
 
                 totalProdQty = 0;
                 foreach (var proditem in gridList)
@@ -900,7 +823,6 @@ namespace PackingApplication
                     submit.Enabled = true;
                     saveprint.Enabled = true;
                 }
-                prodnbalqty.Text = balanceQty.ToString("F2");
             }
         }
 
@@ -1109,7 +1031,7 @@ namespace PackingApplication
                     productionRequest.DepartmentId = selectedDepartmentId;
 
                     prefixRequest.DepartmentId = selectedDepartmentId;
-                    prefixRequest.TxnFlag = "BCF";
+                    prefixRequest.TxnFlag = "DTY";
                     prefixRequest.TransactionTypeId = 5;
                     prefixRequest.ProductionTypeId = 1;
                     prefixRequest.Prefix = "";
@@ -1163,7 +1085,7 @@ namespace PackingApplication
 
         private Task<List<MachineResponse>> getMachineList()
         {
-            return Task.Run(() => _masterService.getMachineList("BCFLot"));
+            return Task.Run(() => _masterService.getMachineList("TexturisingLot"));
         }
 
         private Task<List<LotsResponse>> getAllLotList()
@@ -1246,342 +1168,12 @@ namespace PackingApplication
 
         private Task<ProductionResponse> getLastBoxDetails()
         {
-            return Task.Run(() => _packingService.getLastBoxDetails("bcfpacking"));
+            return Task.Run(() => _packingService.getLastBoxDetails("dtypacking"));
         }
 
         private Task<List<DepartmentResponse>> getDepartmentList()
         {
             return Task.Run(() => _masterService.getDepartmentList());
-        }
-
-        private int rowCount = 0; // Keeps track of SrNo
-        private bool headerAdded = false; // To ensure header is added only once
-        private int currentY = 35; // Start below header height
-        private void addqty_Click(object sender, EventArgs e)
-        {
-            var selectedItem = (ItemResponse)PalletTypeList.SelectedItem;
-            if (selectedItem != null)
-            {
-                if (selectedItem.ItemId == 0)
-                {
-                    MessageBox.Show("Please select an item.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            if (string.IsNullOrEmpty(qnty.Text))
-            {
-                MessageBox.Show("Please enter quantity.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error); return;
-            }
-            if (!int.TryParse(qnty.Text, out int quty))
-            {
-                MessageBox.Show("Please enter a valid number for quantity.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                qnty.Focus();
-                return;
-            }
-
-            // Check range
-            if (quty < 0)
-            {
-                MessageBox.Show("Quantity cannot be negative.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                qnty.Focus();
-                return;
-            }
-            else if (quty > int.MaxValue)
-            {
-                MessageBox.Show("Quantity cannot exceed 2,147,483,647.", "Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                qnty.Text = int.MaxValue.ToString();
-                qnty.Focus();
-                return;
-            }
-            int qty = Convert.ToInt32(qnty.Text);
-
-            if (selectedItem.ItemId > 0)
-            {
-                //if (!headerAdded)
-                //{
-                //    AddHeader();
-                //}
-                // Check duplicate value
-                bool alreadyExists = flowLayoutPanel1.Controls
-                    .OfType<Panel>().Skip(1) // Skip header
-                    .Any(ctrl => {
-                        if (ctrl.Tag is Tuple<ItemResponse, int> tagData)
-                        {
-                            return tagData.Item1.ItemId == selectedItem.ItemId && tagData.Item2 == qty;
-                        }
-                        return false;
-                    });
-
-                var existingPanel = flowLayoutPanel1.Controls
-                    .OfType<Panel>()
-                    .Skip(1) // Skip header
-                    .FirstOrDefault(ctrl =>
-                        ctrl.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tag &&
-                        tag.Item1.ItemId == selectedItem.ItemId);
-
-                if (existingPanel != null)
-                {
-                    var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
-                    tag.Item2.Text = qty.ToString();
-                    //MessageBox.Show("Item quantity updated.");
-                    foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
-                    {
-                        if (control.Text == "Remove")
-                        {
-                            control.Enabled = true;
-                        }
-                    }
-
-                    addqty.Text = "Add"; // reset button text back to Add
-                    qnty.Text = "";
-                    PalletTypeList.SelectedIndex = 0;
-                    return;
-                }
-
-                if (!alreadyExists)
-                {
-                    rowCount++;
-
-                    Panel rowPanel = new Panel();
-                    rowPanel.Size = new Size(width, 35);
-                    rowPanel.BorderStyle = BorderStyle.None;
-
-                    rowPanel.Paint += (s, pe) =>
-                    {
-                        using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
-                        {
-                            // dashed border example: pen.DashStyle = DashStyle.Dash;
-                            pe.Graphics.DrawLine(
-                                pen,
-                                0, rowPanel.Height - 1,
-                                rowPanel.Width, rowPanel.Height - 1
-                            );
-                        }
-                    };
-
-                    // SrNo
-                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
-
-                    // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
-
-                    // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 60, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
-
-                    // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(350, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
-                    btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
-                    btnEdit.FlatAppearance.BorderSize = 1;
-                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
-                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
-                    btnEdit.FlatAppearance.BorderSize = 0;
-                    btnEdit.TabIndex = 4;
-                    btnEdit.TabStop = true;
-                    btnEdit.Cursor = Cursors.Hand;
-                    btnEdit.Paint += (s, f) =>
-                    {
-                        var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
-
-                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
-                        using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
-                        using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
-                        {
-                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-                            f.Graphics.FillPath(brush, path);
-
-                            f.Graphics.DrawPath(borderPen, path);
-
-                            if (btnEdit.Focused)
-                            {
-                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
-                            }
-
-                            TextRenderer.DrawText(
-                                f.Graphics,
-                                btnEdit.Text,
-                                btnEdit.Font,
-                                rect,
-                                btnEdit.ForeColor,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                            );
-                        }
-                    };
-                    btnEdit.Click += editPallet_Click;
-
-                    // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(390, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
-                    btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
-                    btnDelete.FlatAppearance.BorderSize = 1;
-                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
-                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
-                    btnDelete.FlatAppearance.BorderSize = 0;
-                    btnDelete.TabIndex = 5;
-                    btnDelete.TabStop = true;
-                    btnDelete.Cursor = Cursors.Hand;
-                    btnDelete.Paint += (s, f) =>
-                    {
-                        var button = (System.Windows.Forms.Button)s;
-                        var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
-
-                        // button color change for enabled/disabled
-                        Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
-                        Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
-                        Color foreColor = button.Enabled ? button.ForeColor : Color.DarkGray;
-
-                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
-                        using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
-                        using (SolidBrush brush = new SolidBrush(backColor))
-                        {
-                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                            f.Graphics.FillPath(brush, path);
-                            f.Graphics.DrawPath(borderPen, path);
-
-                            if (btnDelete.Focused)
-                            {
-                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
-                            }
-
-                            TextRenderer.DrawText(
-                                f.Graphics,
-                                button.Text,
-                                button.Font,
-                                rect,
-                                foreColor,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                            );
-                        }
-                    };
-                    // Remove Row
-                    btnDelete.Click += (s, args) =>
-                    {
-                        flowLayoutPanel1.Controls.Remove(rowPanel);
-                        ReorderSrNo();
-                    };
-
-                    rowPanel.Controls.Add(lblSrNo);
-                    rowPanel.Controls.Add(lblItem);
-                    rowPanel.Controls.Add(lblQty);
-                    rowPanel.Controls.Add(btnEdit);
-                    rowPanel.Controls.Add(btnDelete);
-                    rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
-
-                    flowLayoutPanel1.Controls.Add(rowPanel);
-                    flowLayoutPanel1.AutoScroll = true;
-                    flowLayoutPanel1.WrapContents = false;
-                    flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-                    addqty.Text = "Add";
-
-                    qnty.Text = "";
-                    PalletTypeList.SelectedIndex = 0;
-                    PalletTypeList.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("Item already added.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select an item.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void ReorderSrNo()
-        {
-            int srNo = 1;
-            int y = 35;
-
-            foreach (Panel row in flowLayoutPanel1.Controls.OfType<Panel>().Skip(1))
-            {
-                row.Location = new System.Drawing.Point(0, y);
-                var lbl = row.Controls.OfType<System.Windows.Forms.Label>().FirstOrDefault();
-                if (lbl != null)
-                    lbl.Text = srNo.ToString();
-
-                y += row.Height;
-                srNo++;
-            }
-
-            currentY = y; // Reset currentY for next added row
-            rowCount = srNo - 1;
-            PalletTypeList.Focus();
-        }
-
-        private void AddHeader()
-        {
-            Panel headerPanel = new Panel();
-            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 35);
-            headerPanel.BackColor = Color.White;
-            headerPanel.Paint += (s, pe) =>
-            {
-                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1))
-                {
-                    pe.Graphics.DrawLine(
-                        pen,
-                        0, headerPanel.Height - 1,
-                        headerPanel.Width, headerPanel.Height - 1
-                    );
-                }
-            };
-
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 70, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new System.Drawing.Point(350, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-
-            flowLayoutPanel1.Controls.Add(headerPanel);
-            headerAdded = true;
-        }
-
-        private void editPallet_Click(object sender, EventArgs e)
-        {
-            var btn = sender as System.Windows.Forms.Button;
-            var data = btn.Tag as Tuple<ItemResponse, System.Windows.Forms.Label>;
-
-            if (data != null)
-            {
-                ItemResponse item = data.Item1;
-                int quantity = Convert.ToInt32(data.Item2.Text);
-
-                foreach (ItemResponse entry in PalletTypeList.Items)
-                {
-                    if (entry.ItemId == item.ItemId)
-                    {
-                        PalletTypeList.SelectedItem = entry;
-                        break;
-                    }
-                }
-
-                qnty.Text = quantity.ToString();
-                addqty.Text = "Update";
-
-                //disable remove button when edit row
-                var rowPanel = btn.Parent as Panel;
-                if (rowPanel != null)
-                {
-                    foreach (var control in rowPanel.Controls.OfType<System.Windows.Forms.Button>())
-                    {
-                        if (control.Text == "Remove")
-                        {
-                            control.Enabled = false;
-                        }
-                    }
-                }
-                PalletTypeList.Focus();
-            }
         }
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
@@ -1631,7 +1223,7 @@ namespace PackingApplication
                     {
                         CalculateNetWeight();
                         //grosswterror.Text = "";
-                        //grosswterror.Visible = false;
+                        grosswterror.Visible = false;
                     }
                     else
                     {
@@ -1653,16 +1245,16 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            if (selectedSOId == 0)
-            {
-                //if (soerror.Visible)
-                //{
-                //soerror.Text = "Please select sale order";
-                MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                e.Cancel = true;
-                return;
-            }
+            //if (selectedSOId == 0)
+            //{
+            //    //if (soerror.Visible)
+            //    //{
+            //        //soerror.Text = "Please select sale order";
+            //        MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    //}
+            //    e.Cancel = true;
+            //    return;
+            //}
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 //grosswterror.Visible = true;
@@ -1689,7 +1281,7 @@ namespace PackingApplication
                             submit.Enabled = false;
                             saveprint.Enabled = false;
                             e.Cancel = true;
-                            return;
+                            return; 
                         }
                         else
                         {
@@ -1750,7 +1342,7 @@ namespace PackingApplication
             //    spoolwt.Text = "0";
             //    return;
             //}
-            //else 
+            //else
             if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
@@ -1766,7 +1358,7 @@ namespace PackingApplication
                     spoolwt.Text = (spoolnum * copswt).ToString();
                     CalculateWeightPerCop();
                     CalculateTareWeight();
-                    //GrossWeight_TextChanged(sender, e);
+                    //GrossWeight_Validating(sender, new CancelEventArgs());
                     spoolnoerror.Text = "";
                     spoolnoerror.Visible = false;
                 }
@@ -1815,7 +1407,7 @@ namespace PackingApplication
         {
             if (ValidateForm())
             {
-                productionRequest.PackingType = "BCFPacking";
+                productionRequest.PackingType = "DTYPacking";
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
                 productionRequest.SpoolsWt = Convert.ToDecimal(spoolwt.Text.Trim());
@@ -1825,26 +1417,19 @@ namespace PackingApplication
                 productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
                 productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
                 productionRequest.ProductionDate = dateTimePicker1.Value;
+                productionRequest.ContainerTypeId = 0;
 
                 productionRequest.PrintCompany = prcompany.Checked;
                 productionRequest.PrintOwner = prowner.Checked;
                 productionRequest.PrintDate = prdate.Checked;
                 productionRequest.PrintUser = pruser.Checked;
+                productionRequest.PrintHindiWords = prhindi.Checked;
                 productionRequest.PrintQRCode = prqrcode.Checked;
                 productionRequest.PrintWTPS = prwtps.Checked;
+                productionRequest.PrintTwist = prtwist.Checked;
 
                 productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
-                foreach (Control ctrl in flowLayoutPanel1.Controls)
-                {
-                    ProductionPalletDetailsRequest pallet = new ProductionPalletDetailsRequest();
-                    if (ctrl is Panel panel && panel.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tagData)
-                    {
-                        pallet.PalletId = tagData.Item1.ItemId;
-                        pallet.Quantity = Convert.ToInt32(tagData.Item2.Text);
-                        productionRequest.PalletDetailsRequest.Add(pallet);
-                    }
 
-                }
                 productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
                 foreach (var lot in lotsDetailsList)
                 {
@@ -1876,11 +1461,10 @@ namespace PackingApplication
             {
                 submit.Enabled = true;
                 saveprint.Enabled = true;
-                RefreshWindingGrid();
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
 
-                MessageBox.Show("BCF Packing added successfully for BoxNo " + result.BoxNo + ".",
+                MessageBox.Show("DTY Packing added successfully for BoxNo " + result.BoxNo + ".",
                 "Success",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -1939,7 +1523,6 @@ namespace PackingApplication
                 //    // 5️⃣ Clean up temp file
                 //    File.Delete(tempFile);
                 //}
-
             }
             else
             {
@@ -2063,14 +1646,6 @@ namespace PackingApplication
                 MessageBox.Show("Please enter gross wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
-
-            if (flowLayoutPanel1.Controls.Count == 1)
-            {
-                //MessageBox.Show("Please add atleast one record in Pallet details");
-                MessageBox.Show("Please add atleast one record in Pallet details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
             decimal spoolnum = 0;
             decimal.TryParse(spoolno.Text, out spoolnum);
             if (spoolnum == 0)
@@ -2095,7 +1670,7 @@ namespace PackingApplication
             decimal.TryParse(wtpercop.Text, out whtpercop);
             if (whtpercop >= startWeight && whtpercop <= endWeight)
             {
-                isValid = true;
+                //isValid = true;
             }
             else
             {
@@ -2250,11 +1825,6 @@ namespace PackingApplication
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
         }
 
-        private void palletdetailsheader_Resize(object sender, EventArgs e)
-        {
-            _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
-        }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow control keys (backspace, delete, etc.)
@@ -2281,12 +1851,11 @@ namespace PackingApplication
             }
         }
 
-        private void palletQty_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            // Allow control keys (backspace, delete, etc.)
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
             {
-                e.Handled = true; // Reject the input
+                ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
         }
 
@@ -2451,19 +2020,6 @@ namespace PackingApplication
             }
         }
 
-        private void PalletTypeList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                PalletTypeList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                PalletTypeList.DroppedDown = false;
-            }
-        }
-
         private void DeptList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
@@ -2540,16 +2096,10 @@ namespace PackingApplication
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 getLotRelatedDetails();
                 rowMaterial.Columns.Clear();
-                windinggrid.Columns.Clear();
-                qualityqty.Columns.Clear();
                 totalProdQty = 0;
-                prodnbalqty.Text = "";
                 selectedSOId = 0;
                 totalSOQty = 0;
-                grdsoqty.Text = "";
                 balanceQty = 0;
-                flowLayoutPanel1.Controls.Clear();
-                rowCount = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
 
@@ -2716,21 +2266,5 @@ namespace PackingApplication
                 spoolno.Text = "0"; // restore default
             }
         }
-
-        //private void LineNo_TextUpdate(object sender, EventArgs e)
-        //{
-        //    string typedText = LineNoList.Text.ToLower();
-
-        //    var filtered = o_machineList.Where(m => !string.IsNullOrEmpty(m.CName) && m.CName.Contains(typedText.ToUpper())).ToList();
-
-        //    if (filtered.Count == 0) return;
-
-        //    LineNoList.DataSource = null; // Reset binding
-        //    LineNoList.DataSource = filtered;
-        //    LineNoList.DisplayMember = "MachineName";
-        //    LineNoList.ValueMember = "MachineId";
-        //    LineNoList.SelectionStart = typedText.Length;
-        //    LineNoList.DroppedDown = true;
-        //}
     }
 }

@@ -2586,6 +2586,14 @@ namespace PackingApplication
             }
         }
 
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
+            {
+                ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
+            }
+        }
+
         private void palletQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow control keys (backspace, delete, etc.)

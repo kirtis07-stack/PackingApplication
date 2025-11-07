@@ -116,7 +116,7 @@ namespace PackingApplication
             var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new ChipsPackingForm()); // open Add form
+                //dashboard.LoadFormInContent(new ChipsPackingForm()); // open Add form
             }
         }
 
@@ -137,7 +137,7 @@ namespace PackingApplication
                 var dashboard = this.ParentForm as AdminAccount;
                 if (dashboard != null)
                 {
-                    dashboard.LoadFormInContent(new ChipsPackingForm()); // open edit form
+                    //dashboard.LoadFormInContent(new ChipsPackingForm()); // open edit form
                 }
             }
         }

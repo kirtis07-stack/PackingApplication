@@ -152,11 +152,11 @@
     <Compile Include="AdminAccount.Designer.cs">
       <DependentUpon>AdminAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCFPackingForm.cs">
+    <Compile Include="AddBCFPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BCFPackingForm.Designer.cs">
-      <DependentUpon>BCFPackingForm.cs</DependentUpon>
+    <Compile Include="AddBCFPackingForm.Designer.cs">
+      <DependentUpon>AddBCFPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BCFPackingList.cs">
       <SubType>Form</SubType>
@@ -164,11 +164,11 @@
     <Compile Include="BCFPackingList.Designer.cs">
       <DependentUpon>BCFPackingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChipsPackingForm.cs">
+    <Compile Include="AddChipsPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChipsPackingForm.Designer.cs">
-      <DependentUpon>ChipsPackingForm.cs</DependentUpon>
+    <Compile Include="AddChipsPackingForm.Designer.cs">
+      <DependentUpon>AddChipsPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ChipsPackingList.cs">
       <SubType>Form</SubType>
@@ -183,11 +183,11 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="DTYPackingForm.cs">
+    <Compile Include="AddDTYPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DTYPackingForm.Designer.cs">
-      <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    <Compile Include="AddDTYPackingForm.Designer.cs">
+      <DependentUpon>AddDTYPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DTYPackingList.cs">
       <SubType>Form</SubType>
@@ -231,11 +231,11 @@
     <Compile Include="ModifyPOYPackingForm.Designer.cs">
       <DependentUpon>ModifyPOYPackingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="POYPackingForm.cs">
+    <Compile Include="AddPOYPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POYPackingForm.Designer.cs">
-      <DependentUpon>POYPackingForm.cs</DependentUpon>
+    <Compile Include="AddPOYPackingForm.Designer.cs">
+      <DependentUpon>AddPOYPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Login.cs">
@@ -303,17 +303,17 @@
     <EmbeddedResource Include="AdminAccount.resx">
       <DependentUpon>AdminAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCFPackingForm.resx">
-      <DependentUpon>BCFPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddBCFPackingForm.resx">
+      <DependentUpon>AddBCFPackingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChipsPackingForm.resx">
-      <DependentUpon>ChipsPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddChipsPackingForm.resx">
+      <DependentUpon>AddChipsPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DTYPackingForm.resx">
-      <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddDTYPackingForm.resx">
+      <DependentUpon>AddDTYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyBCFPackingForm.resx">
       <DependentUpon>ModifyBCFPackingForm.cs</DependentUpon>
@@ -327,8 +327,8 @@
     <EmbeddedResource Include="ModifyPOYPackingForm.resx">
       <DependentUpon>ModifyPOYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POYPackingForm.resx">
-      <DependentUpon>POYPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddPOYPackingForm.resx">
+      <DependentUpon>AddPOYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -117,7 +117,7 @@ namespace PackingApplication
             var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new POYPackingForm()); // open Add form
+                //dashboard.LoadFormInContent(new POYPackingForm()); // open Add form
             }
         }
 
@@ -138,7 +138,7 @@ namespace PackingApplication
                 var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
-                        dashboard.LoadFormInContent(new POYPackingForm()); // open edit form
+                        //dashboard.LoadFormInContent(new POYPackingForm()); // open edit form
                     }
             }
         }

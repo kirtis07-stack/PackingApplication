@@ -1883,6 +1883,14 @@ namespace PackingApplication
             }
         }
 
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
+            {
+                ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
+            }
+        }
+
         private void checkBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

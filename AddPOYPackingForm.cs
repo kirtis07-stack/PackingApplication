@@ -44,7 +44,7 @@ using File = System.IO.File;
 
 namespace PackingApplication
 {
-    public partial class POYPackingForm: Form
+    public partial class AddPOYPackingForm: Form
     {          
         private static Logger Log = Logger.GetLogger();
 
@@ -79,7 +79,7 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
-        public POYPackingForm()
+        public AddPOYPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
@@ -1677,16 +1677,16 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            if (selectedSOId == 0)
-            {
-                //if (soerror.Visible)
-                //{
-                //soerror.Text = "Please select sale order";
-                MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                e.Cancel = true;
-                return;
-            }
+            //if (selectedSOId == 0)
+            //{
+            //    //if (soerror.Visible)
+            //    //{
+            //    //soerror.Text = "Please select sale order";
+            //    MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    //}
+            //    e.Cancel = true;
+            //    return;
+            //}
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 //grosswterror.Visible = true;
@@ -1852,6 +1852,7 @@ namespace PackingApplication
                 productionRequest.TareWt = Convert.ToDecimal(tarewt.Text.Trim());
                 productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
                 productionRequest.ProductionDate = dateTimePicker1.Value;
+                productionRequest.ContainerTypeId = 0;
 
                 productionRequest.PrintCompany = prcompany.Checked;
                 productionRequest.PrintOwner = prowner.Checked;
@@ -2122,7 +2123,7 @@ namespace PackingApplication
             decimal.TryParse(wtpercop.Text, out whtpercop);
             if (whtpercop >= startWeight && whtpercop <= endWeight)
             {              
-                isValid = true;
+                //isValid = true;
             }
             else
             {
@@ -2313,6 +2314,14 @@ namespace PackingApplication
 
                 // Block everything else
                 e.Handled = true;
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
+            {
+                ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
         }
 
