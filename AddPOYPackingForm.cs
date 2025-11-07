@@ -1909,11 +1909,11 @@ namespace PackingApplication
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
 
-                MessageBox.Show("POY Packing added successfully for BoxNo " + result.BoxNo + ".",
-                "Success",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-                //ShowCustomMessage(result.BoxNo);
+                //MessageBox.Show("POY Packing added successfully for BoxNo " + result.BoxNo + ".",
+                //"Success",
+                //MessageBoxButtons.OK,
+                //MessageBoxIcon.Information);
+                ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
                 this.spoolno.Text = "0";
                 this.spoolwt.Text = "0";
@@ -2809,46 +2809,48 @@ namespace PackingApplication
 
         private void ShowCustomMessage(string boxNo)
         {
-            Form msgForm = new Form()
+            using (Form msgForm = new Form())
             {
-                Width = 400,
-                Height = 200,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = "Success",
-                StartPosition = FormStartPosition.CenterScreen
-            };
+                msgForm.Width = 420;
+                msgForm.Height = 200;
+                msgForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                msgForm.Text = "Success";
+                msgForm.StartPosition = FormStartPosition.CenterScreen;
+                msgForm.MaximizeBox = false;
+                msgForm.MinimizeBox = false;
+                msgForm.ShowIcon = false;
+                msgForm.ShowInTaskbar = false;
+                msgForm.BackColor = Color.White;
 
-            System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
-            {
-                Text = "POY Packing added successfully for BoxNo:",
-                Dock = DockStyle.Top,
-                Font = FontManager.GetFont(12F, FontStyle.Regular),
-                Padding = new Padding(10)
-            };
+                System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
+                {
+                    AutoSize = false,
+                    Text = $"POY Packing added successfully for BoxNo {boxNo}.",
+                    Font = FontManager.GetFont(12F, FontStyle.Regular),
+                    ForeColor = Color.Black,
+                    Location = new System.Drawing.Point(85, 40),
+                    Size = new Size(300, 60)
+                };
 
-            System.Windows.Forms.Label lblBoxNo = new System.Windows.Forms.Label()
-            {
-                Text = boxNo,
-                Dock = DockStyle.Fill,
-                Font = FontManager.GetFont(12F, FontStyle.Bold),
-                ForeColor = Color.Green,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
+                System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button()
+                {
+                    Text = "OK",
+                    DialogResult = DialogResult.OK,
+                    Font = FontManager.GetFont(10F, FontStyle.Bold),
+                    BackColor = Color.FromArgb(230, 240, 255),
+                    FlatStyle = FlatStyle.Flat,
+                    Size = new Size(80, 32),
+                    Location = new System.Drawing.Point(msgForm.Width / 2 - 40, 100),
+                    Cursor = Cursors.Hand
+                };
+                btnOk.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 230);
 
-            System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button()
-            {
-                Text = "OK",
-                DialogResult = DialogResult.OK,
-                Dock = DockStyle.Bottom,
-                Height = 40
-            };
+                msgForm.Controls.Add(lblMessage);
+                msgForm.Controls.Add(btnOk);
 
-            msgForm.Controls.Add(lblBoxNo);
-            msgForm.Controls.Add(lblMessage);
-            msgForm.Controls.Add(btnOk);
-
-            msgForm.AcceptButton = btnOk;
-            msgForm.ShowDialog();
+                msgForm.AcceptButton = btnOk;
+                msgForm.ShowDialog();
+            }
         }
 
     }

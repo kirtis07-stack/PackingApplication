@@ -1242,10 +1242,11 @@ namespace PackingApplication
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
 
-                MessageBox.Show("Chips Packing added successfully for BoxNo " + result.BoxNo + ".",
-                "Success",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+                //MessageBox.Show("Chips Packing added successfully for BoxNo " + result.BoxNo + ".",
+                //"Success",
+                //MessageBoxButtons.OK,
+                //MessageBoxIcon.Information);
+                ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
                 this.grosswtno.Text = "";
                 this.tarewt.Text = "";
@@ -1948,6 +1949,52 @@ namespace PackingApplication
                     // Move to next control in tab order
                     this.SelectNextControl(current, true, true, true, true);
                 }
+            }
+        }
+
+        private void ShowCustomMessage(string boxNo)
+        {
+            using (Form msgForm = new Form())
+            {
+                msgForm.Width = 420;
+                msgForm.Height = 200;
+                msgForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                msgForm.Text = "Success";
+                msgForm.StartPosition = FormStartPosition.CenterScreen;
+                msgForm.MaximizeBox = false;
+                msgForm.MinimizeBox = false;
+                msgForm.ShowIcon = false;
+                msgForm.ShowInTaskbar = false;
+                msgForm.BackColor = Color.White;
+
+                System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
+                {
+                    AutoSize = false,
+                    Text = $"Chips Packing added successfully for BoxNo {boxNo}.",
+                    Font = FontManager.GetFont(12F, FontStyle.Regular),
+                    ForeColor = Color.Black,
+                    Location = new System.Drawing.Point(85, 40),
+                    Size = new Size(300, 60)
+                };
+
+                System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button()
+                {
+                    Text = "OK",
+                    DialogResult = DialogResult.OK,
+                    Font = FontManager.GetFont(10F, FontStyle.Bold),
+                    BackColor = Color.FromArgb(230, 240, 255),
+                    FlatStyle = FlatStyle.Flat,
+                    Size = new Size(80, 32),
+                    Location = new System.Drawing.Point(msgForm.Width / 2 - 40, 100),
+                    Cursor = Cursors.Hand
+                };
+                btnOk.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 230);
+
+                msgForm.Controls.Add(lblMessage);
+                msgForm.Controls.Add(btnOk);
+
+                msgForm.AcceptButton = btnOk;
+                msgForm.ShowDialog();
             }
         }
     }
