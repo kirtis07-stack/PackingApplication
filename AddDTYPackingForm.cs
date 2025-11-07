@@ -389,6 +389,7 @@ namespace PackingApplication
             if (!isFormReady) return; // skip during load
 
             //if (LineNoList.DroppedDown) return;
+            if (LineNoList.Items.Count == 0) return;
 
             if (LineNoList.SelectedIndex <= 0)
             {
@@ -449,6 +450,7 @@ namespace PackingApplication
             if (!isFormReady) return;
 
             //if (MergeNoList.DroppedDown) return;
+            if (MergeNoList.Items.Count == 0) return;
 
             if (MergeNoList.SelectedIndex <= 0)
             {
