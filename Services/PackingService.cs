@@ -68,7 +68,10 @@ namespace PackingApplication.Services
         public List<ProductionResponse> getAllByLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
         {
             var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllByLotIdandSaleOrderItemId?lotId=" + lotId + "&saleOrderItemId=" + saleOrderItemId);
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new List<ProductionResponse>();              // handle empty response
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
+                     ?? new List<ProductionResponse>();             // handle null JSON
             return getPacking;
         }
     }
