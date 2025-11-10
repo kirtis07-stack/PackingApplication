@@ -1032,10 +1032,10 @@ namespace PackingApplication
                 if (selectedWindingTypeId > 0)
                 {
                     var getProductionByWindingType = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
-                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+                    List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemsId == winding.SaleOrderItemsId);
+                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemsId == winding.SaleOrderItemsId);
 
                         if (existing == null)
                         {
@@ -1046,7 +1046,7 @@ namespace PackingApplication
                             grid.SaleOrderQty = totalSOQty;
                             grid.GrossWt = winding.GrossWt;
 
-                            gridList.Add(grid);
+                            windinggridList.Add(grid);
                         }
                         else
                         {
@@ -1059,7 +1059,7 @@ namespace PackingApplication
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                    windinggrid.DataSource = gridList;
+                    windinggrid.DataSource = windinggridList;
                 }
             }
 
@@ -1108,17 +1108,18 @@ namespace PackingApplication
                 balanceQty = (totalSOQty - totalProdQty);
                 if (balanceQty <= 0)
                 {
-                    submit.Enabled = false;
-                    saveprint.Enabled = false;
-                    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                    ResetForm(this);
+                    //submit.Enabled = false;
+                    //saveprint.Enabled = false;
+                    //MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                    //ResetForm(this);
+                    prodnbalqty.Text = "0";
                 }
                 else
                 {
-                    submit.Enabled = true;
-                    saveprint.Enabled = true;
+                    //submit.Enabled = true;
+                    //saveprint.Enabled = true;
+                    prodnbalqty.Text = balanceQty.ToString("F2");
                 }
-                prodnbalqty.Text = balanceQty.ToString("F2");
             }
         }
 
@@ -1901,24 +1902,24 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
-                        {
-                            //grosswterror.Text = "No Prod Bal Qty remaining";
-                            //grosswterror.Visible = true;
-                            MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            submit.Enabled = false;
-                            saveprint.Enabled = false;
-                            e.Cancel = true;
-                            return;
-                        }
-                        else
-                        {
-                            //grosswterror.Text = "";
-                            //grosswterror.Visible = false;
-                            submit.Enabled = true;
-                            saveprint.Enabled = true;
-                        }
+                        //decimal newBalanceQty = balanceQty - gross;
+                        //if (newBalanceQty < 0)
+                        //{
+                        //    //grosswterror.Text = "No Prod Bal Qty remaining";
+                        //    //grosswterror.Visible = true;
+                        //    MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    submit.Enabled = false;
+                        //    saveprint.Enabled = false;
+                        //    e.Cancel = true;
+                        //    return;
+                        //}
+                        //else
+                        //{
+                        //    //grosswterror.Text = "";
+                        //    //grosswterror.Visible = false;
+                        //    submit.Enabled = true;
+                        //    saveprint.Enabled = true;
+                        //}
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -2323,6 +2324,23 @@ namespace PackingApplication
             else
             {
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
+            //totalProdQty = 0;
+            //foreach (var proditem in gridList)
+            //{
+            //    totalProdQty += proditem.GrossWt;
+            //}
+            //balanceQty = (totalSOQty - totalProdQty);
+            if (balanceQty <= 0)
+            {
+                MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                isValid = false;
+            }
+            decimal newBalanceQty = balanceQty - gross;
+            if (newBalanceQty < 0)
+            {
+                MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
             return isValid;

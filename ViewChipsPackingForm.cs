@@ -695,19 +695,19 @@ namespace PackingApplication
 
                 }
 
-                totalProdQty = 0;
-                foreach (var proditem in gridList)
-                {
-                    totalProdQty += proditem.GrossWt;
-                }
-                balanceQty = (totalSOQty - totalProdQty);
-                if (balanceQty <= 0)
-                {
-                    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                }
-                else
-                {
-                }
+                //totalProdQty = 0;
+                //foreach (var proditem in gridList)
+                //{
+                //    totalProdQty += proditem.GrossWt;
+                //}
+                //balanceQty = (totalSOQty - totalProdQty);
+                //if (balanceQty <= 0)
+                //{
+                //    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                //}
+                //else
+                //{
+                //}
             }
         }
 
@@ -1042,10 +1042,10 @@ namespace PackingApplication
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        netwt.Text = "0";
-                        wtpercop.Text = "0";
-                        return;
+                        //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //netwt.Text = "0";
+                        //wtpercop.Text = "0";
+                        //return;
                     }
                 }
             }
@@ -1082,9 +1082,9 @@ namespace PackingApplication
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //if(grosswterror.Visible)
                             //{
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
                             //}
 
                         }

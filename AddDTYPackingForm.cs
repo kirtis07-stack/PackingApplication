@@ -54,7 +54,6 @@ namespace PackingApplication
         decimal startWeight = 0;
         decimal endWeight = 0;
         private long _productionId;
-        List<QualityGridResponse> gridList = new List<QualityGridResponse>();
         public AddDTYPackingForm()
         {
             InitializeComponent();
@@ -851,6 +850,7 @@ namespace PackingApplication
                 balanceQty = 0;
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
+                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
                     var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
@@ -1749,16 +1749,14 @@ namespace PackingApplication
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
-            totalProdQty = 0;
-            foreach (var proditem in gridList)
-            {
-                totalProdQty += proditem.GrossWt;
-            }
-            balanceQty = (totalSOQty - totalProdQty);
+            //totalProdQty = 0;
+            //foreach (var proditem in gridList)
+            //{
+            //    totalProdQty += proditem.GrossWt;
+            //}
+            //balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
-                submit.Enabled = false;
-                saveprint.Enabled = false;
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
                 isValid = false;
             }

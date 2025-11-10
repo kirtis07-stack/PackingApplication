@@ -1049,15 +1049,15 @@ namespace PackingApplication
 
                 }
 
-                totalProdQty = 0;
-                foreach (var proditem in gridList)
-                {
-                    totalProdQty += proditem.GrossWt;
-                }
-                balanceQty = (totalSOQty - totalProdQty);
+                //totalProdQty = 0;
+                //foreach (var proditem in gridList)
+                //{
+                //    totalProdQty += proditem.GrossWt;
+                //}
+                //balanceQty = (totalSOQty - totalProdQty);
                 //if (balanceQty <= 0)
                 //{
-                //    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                //    MessageBox.Show(MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
                 //}
                 //else
                 //{
@@ -1211,12 +1211,12 @@ namespace PackingApplication
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        if (grosswterror.Visible)
-                        {
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                        }
+                        //if (grosswterror.Visible)
+                        //{
+                        //    MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    netwt.Text = "0";
+                        //    wtpercop.Text = "0";
+                        //}
                     }
                 }
             }
@@ -1253,9 +1253,9 @@ namespace PackingApplication
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //if(grosswterror.Visible)
                             //{
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
                             //}
 
                         }
@@ -1314,15 +1314,15 @@ namespace PackingApplication
                     spoolnoerror.Text = "";
                     spoolnoerror.Visible = false;
                 }
-                else if (spoolnum == 0)
-                {
-                    //spoolnoerror.Text = "Spool no > 0";
-                    //spoolnoerror.Visible = true;
-                    MessageBox.Show("Spool no > 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tarewt.Text = "0";
-                    spoolwt.Text = "0";
-                    return;
-                }
+                //else if (spoolnum == 0)
+                //{
+                //    //spoolnoerror.Text = "Spool no > 0";
+                //    //spoolnoerror.Visible = true;
+                //    MessageBox.Show("Spool no > 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    tarewt.Text = "0";
+                //    spoolwt.Text = "0";
+                //    return;
+                //}
             }
         }
 

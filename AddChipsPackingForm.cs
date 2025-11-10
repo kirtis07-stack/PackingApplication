@@ -730,24 +730,24 @@ namespace PackingApplication
 
                 }
 
-                totalProdQty = 0;
-                foreach (var proditem in gridList)
-                {
-                    totalProdQty += proditem.GrossWt;
-                }
-                balanceQty = (totalSOQty - totalProdQty);
-                if (balanceQty <= 0)
-                {
-                    submit.Enabled = false;
-                    saveprint.Enabled = false;
-                    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                    ResetForm(this);
-                }
-                else
-                {
-                    submit.Enabled = true;
-                    saveprint.Enabled = true;
-                }
+                //totalProdQty = 0;
+                //foreach (var proditem in gridList)
+                //{
+                //    totalProdQty += proditem.GrossWt;
+                //}
+                //balanceQty = (totalSOQty - totalProdQty);
+                //if (balanceQty <= 0)
+                //{
+                //    submit.Enabled = false;
+                //    saveprint.Enabled = false;
+                //    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                //    ResetForm(this);
+                //}
+                //else
+                //{
+                //    submit.Enabled = true;
+                //    saveprint.Enabled = true;
+                //}
             }
         }
 
@@ -1139,24 +1139,24 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
-                        {
-                            //grosswterror.Text = "No Prod Bal Qty remaining";
-                            //grosswterror.Visible = true;
-                            MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            submit.Enabled = false;
-                            saveprint.Enabled = false;
-                            e.Cancel = true;
-                            return; 
-                        }
-                        else
-                        {
-                            //grosswterror.Text = "";
-                            //grosswterror.Visible = false;
-                            submit.Enabled = true;
-                            saveprint.Enabled = true;
-                        }
+                        //decimal newBalanceQty = balanceQty - gross;
+                        //if (newBalanceQty < 0)
+                        //{
+                        //    //grosswterror.Text = "No Prod Bal Qty remaining";
+                        //    //grosswterror.Visible = true;
+                        //    MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    submit.Enabled = false;
+                        //    saveprint.Enabled = false;
+                        //    e.Cancel = true;
+                        //    return; 
+                        //}
+                        //else
+                        //{
+                        //    //grosswterror.Text = "";
+                        //    //grosswterror.Visible = false;
+                        //    submit.Enabled = true;
+                        //    saveprint.Enabled = true;
+                        //}
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -1463,6 +1463,23 @@ namespace PackingApplication
             else
             {
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
+            //totalProdQty = 0;
+            //foreach (var proditem in gridList)
+            //{
+            //    totalProdQty += proditem.GrossWt;
+            //}
+            //balanceQty = (totalSOQty - totalProdQty);
+            if (balanceQty <= 0)
+            {
+                MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                isValid = false;
+            }
+            decimal newBalanceQty = balanceQty - gross;
+            if (newBalanceQty < 0)
+            {
+                MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
             return isValid;
