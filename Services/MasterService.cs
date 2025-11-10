@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Reporting.Map.WebForms.BingMaps;
+using Newtonsoft.Json;
 using PackingApplication.Helper;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
@@ -47,7 +48,11 @@ namespace PackingApplication.Services
         public List<ItemResponse> getItemList(int categoryId)
         {
             var getItemResponse = method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
-            var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse);
+            //var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse);
+            if (string.IsNullOrWhiteSpace(getItemResponse))
+                return new List<ItemResponse>();              // handle empty response
+            var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse)
+                     ?? new List<ItemResponse>();
             return getItem;
         }
 
@@ -102,9 +107,12 @@ namespace PackingApplication.Services
 
         public List<BusinessPartnerResponse> getOwnerList()
         {
-            var getBusinessPartnerResponse = method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + false);
-            var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse);
-            return getBusinessPartner;
+            var getBusinessPartnerResponse = method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + true);
+            if (string.IsNullOrWhiteSpace(getBusinessPartnerResponse))
+                return new List<BusinessPartnerResponse>();              // handle empty response
+            var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse)
+                     ?? new List<BusinessPartnerResponse>();             // handle null JSON
+            return getBusinessPartner;          
         }
     }
 }

@@ -542,12 +542,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                //var form = new AddPOYPackingForm();
-                //var formKey = "AddPOYPackingForm";
-                //form.Tag = "Packing - Add POYPacking";
-                //dashboard.LoadFormInContent(form, formKey);
-                //this.Text = form.Tag.ToString();
-                dashboard.OpenForm<AddPOYPackingForm>("Packing - Add POY Packing");
+                var form = new AddPOYPackingForm();
+                var formKey = "AddPOYPackingForm";
+                form.Tag = "Packing - Add POYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<AddPOYPackingForm>("Packing - Add POY Packing");
             }
         }
 
@@ -556,7 +556,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ViewPOYPackingForm>("Packing - View POYPacking");
+                var form = new ViewPOYPackingForm();
+                var formKey = "ViewPOYPackingForm";
+                form.Tag = "Packing - View POYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ViewPOYPackingForm>("Packing - View POYPacking");
             }
         }
 
@@ -565,7 +570,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ModifyPOYPackingForm>("Packing - Modify POYPacking");
+                var form = new ModifyPOYPackingForm();
+                var formKey = "ViewPOYPackingForm";
+                form.Tag = "Packing - Modify POYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ModifyPOYPackingForm>("Packing - Modify POYPacking");
             }
         }
 
@@ -574,7 +584,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<AddDTYPackingForm>("Packing - Add DTYPacking");
+                var form = new AddDTYPackingForm();
+                var formKey = "AddDTYPackingForm";
+                form.Tag = "Packing - Add DTYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<AddDTYPackingForm>("Packing - Add DTYPacking");
             }
         }
 
@@ -583,7 +598,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ViewDTYPackingForm>("Packing - View DTYPacking");
+                var form = new ViewDTYPackingForm();
+                var formKey = "ViewDTYPackingForm";
+                form.Tag = "Packing - View DTYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ViewDTYPackingForm>("Packing - View DTYPacking");
             }
         }
 
@@ -592,7 +612,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ModifyDTYPackingForm>("Packing - Modify DTYPacking");
+                var form = new ModifyDTYPackingForm();
+                var formKey = "ModifyDTYPackingForm";
+                form.Tag = "Packing - Modify DTYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ModifyDTYPackingForm>("Packing - Modify DTYPacking");
             }
         }
 
@@ -601,7 +626,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<AddBCFPackingForm>("Packing - Add BCFPacking");
+                var form = new AddBCFPackingForm();
+                var formKey = "AddBCFPackingForm";
+                form.Tag = "Packing - Add BCFPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<AddBCFPackingForm>("Packing - Add BCFPacking");
             }
         }
 
@@ -610,7 +640,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ViewBCFPackingForm>("Packing - View BCFPacking");
+                var form = new ViewBCFPackingForm();
+                var formKey = "ViewBCFPackingForm";
+                form.Tag = "Packing - View BCFPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ViewBCFPackingForm>("Packing - View BCFPacking");
             }
         }
 
@@ -619,7 +654,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ModifyBCFPackingForm>("Packing - Modify BCFPacking");
+                var form = new ModifyBCFPackingForm();
+                var formKey = "ModifyBCFPackingForm";
+                form.Tag = "Packing - Modify BCFPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ModifyBCFPackingForm>("Packing - Modify BCFPacking");
             }
         }
 
@@ -628,7 +668,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<AddChipsPackingForm>("Packing - Add ChipsPacking");
+                var form = new AddChipsPackingForm();
+                var formKey = "AddChipsPackingForm";
+                form.Tag = "Packing - Add ChipsPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<AddChipsPackingForm>("Packing - Add ChipsPacking");
             }
         }
 
@@ -637,7 +682,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ViewChipsPackingForm>("Packing - View ChipsPacking");
+                var form = new ViewChipsPackingForm();
+                var formKey = "ViewChipsPackingForm";
+                form.Tag = "Packing - View ChipsPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ViewChipsPackingForm>("Packing - View ChipsPacking");
             }
         }
 
@@ -646,7 +696,12 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.OpenForm<ModifyChipsPackingForm>("Packing - Modify ChipsPacking");
+                var form = new ModifyChipsPackingForm();
+                var formKey = "ModifyChipsPackingForm";
+                form.Tag = "Packing - Modify ChipsPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+                //dashboard.OpenForm<ModifyChipsPackingForm>("Packing - Modify ChipsPacking");
             }
         }
 

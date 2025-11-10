@@ -449,7 +449,6 @@ namespace PackingApplication
                 OwnerList.SelectedValue = productionResponse.OwnerId;
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
-                copyno.Text = productionResponse.NoOfCopies.ToString();
                 MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
                 CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
@@ -1860,12 +1859,12 @@ namespace PackingApplication
                     else
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
-                        if (grosswterror.Visible)
-                        {
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                        }
+                        //if (grosswterror.Visible)
+                        //{
+                        //    MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    netwt.Text = "0";
+                        //    wtpercop.Text = "0";
+                        //}
 
                     }
                 }
@@ -1905,9 +1904,9 @@ namespace PackingApplication
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //if(grosswterror.Visible)
                             //{
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
                             //}
 
                         }

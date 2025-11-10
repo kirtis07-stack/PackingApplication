@@ -28,6 +28,7 @@ namespace PackingApplication
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
         SaleService _saleService = new SaleService();
+        private long _productionId;
         private int width = 0;
         CommonMethod _cmethod = new CommonMethod();
         bool sidebarExpand = false;
@@ -58,7 +59,7 @@ namespace PackingApplication
         {
             InitializeComponent();
             ApplyFonts();
-            this.Shown += ChipsPackingForm_Shown;
+            this.Shown += AddChipsPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
@@ -69,7 +70,7 @@ namespace PackingApplication
             rowMaterial.AutoGenerateColumns = false;
         }
 
-        private void ChipsPackingForm_Load(object sender, EventArgs e)
+        private void AddChipsPackingForm_Load(object sender, EventArgs e)
         {
             getLotRelatedDetails();
 
@@ -217,7 +218,7 @@ namespace PackingApplication
             this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
-        private async void ChipsPackingForm_Shown(object sender, EventArgs e)
+        private async void AddChipsPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
@@ -340,6 +341,42 @@ namespace PackingApplication
             }
         }
 
+        private async Task LoadProductionDetailsAsync(long productionId)
+        {
+            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
+
+            if (productionResponse != null)
+            {
+                LineNoList.SelectedValue = productionResponse.MachineId;
+                DeptList.SelectedValue = productionResponse.DepartmentId;
+                MergeNoList.SelectedValue = productionResponse.LotId;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
+                QualityList.SelectedValue = productionResponse.QualityId;
+                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                prodtype.Text = productionResponse.ProductionType;
+                remarks.Text = productionResponse.Remarks;
+                prcompany.Checked = productionResponse.PrintCompany;
+                prowner.Checked = productionResponse.PrintOwner;
+                prdate.Checked = productionResponse.PrintDate;
+                pruser.Checked = productionResponse.PrintUser;
+                prhindi.Checked = productionResponse.PrintHindiWords;
+                prwtps.Checked = productionResponse.PrintWTPS;
+                prqrcode.Checked = productionResponse.PrintQRCode;
+                prtwist.Checked = productionResponse.PrintTwist;
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                tarewt.Text = productionResponse.TareWt.ToString();
+                netwt.Text = productionResponse.NetWt.ToString();
+                OwnerList.SelectedValue = productionResponse.OwnerId;
+                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
+                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
+            }
+        }
+
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
@@ -390,6 +427,12 @@ namespace PackingApplication
                         MergeNoList.SelectedIndex = 0;
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            MergeNoList.SelectedValue = productionResponse.LotId;
+                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                        }
                     }
 
                 }
@@ -644,6 +687,11 @@ namespace PackingApplication
                     {
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                     }
+
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    }
                 }
             }
             finally
@@ -710,6 +758,9 @@ namespace PackingApplication
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
             {
+                _productionId = getLastBox.ProductionId;
+                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
@@ -1046,13 +1097,13 @@ namespace PackingApplication
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        if (grosswterror.Visible)
-                        {
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                            return;
-                        }
+                        //if (grosswterror.Visible)
+                        //{
+                        //    MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    netwt.Text = "0";
+                        //    wtpercop.Text = "0";
+                        //    return;
+                        //}
                     }
                 }
             }
@@ -1116,11 +1167,11 @@ namespace PackingApplication
                         {
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //grosswterror.Visible = true;
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                            e.Cancel = true;
-                            return;
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
+                            //e.Cancel = true;
+                            //return;
                         }
                     }
                 }

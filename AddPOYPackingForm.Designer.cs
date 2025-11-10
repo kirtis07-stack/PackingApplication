@@ -3134,7 +3134,7 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // POYPackingForm
+            // AddPOYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -3143,9 +3143,9 @@ namespace PackingApplication
             this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "POYPackingForm";
-            this.Text = "POYPackingForm";
-            this.Load += new System.EventHandler(this.POYPackingForm_Load);
+            this.Name = "AddPOYPackingForm";
+            this.Text = "AddPOYPackingForm";
+            this.Load += new System.EventHandler(this.AddPOYPackingForm_Load);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.panel31.ResumeLayout(false);
             this.panel31.PerformLayout();

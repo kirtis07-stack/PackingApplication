@@ -24,6 +24,8 @@ namespace PackingApplication.Helper
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
+            request.Timeout = 30000; // 30 seconds total timeout
+            request.ReadWriteTimeout = 30000;
             var content = string.Empty;
 
             using (var response = (HttpWebResponse)request.GetResponse())

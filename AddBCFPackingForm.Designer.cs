@@ -3104,7 +3104,7 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // BCFPackingForm
+            // AddBCFPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -3113,9 +3113,9 @@ namespace PackingApplication
             this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "BCFPackingForm";
-            this.Text = "BCFPackingForm";
-            this.Load += new System.EventHandler(this.BCFPackingForm_Load);
+            this.Name = "AddBCFPackingForm";
+            this.Text = "AddBCFPackingForm";
+            this.Load += new System.EventHandler(this.AddBCFPackingForm_Load);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.panel31.ResumeLayout(false);
             this.panel31.PerformLayout();

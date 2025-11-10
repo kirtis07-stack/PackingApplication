@@ -53,11 +53,13 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
+        private long _productionId;
+        List<QualityGridResponse> gridList = new List<QualityGridResponse>();
         public AddDTYPackingForm()
         {
             InitializeComponent();
             ApplyFonts();
-            this.Shown += DTYPackingForm_Shown;
+            this.Shown += AddDTYPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
@@ -68,7 +70,7 @@ namespace PackingApplication
             rowMaterial.AutoGenerateColumns = false;
         }
 
-        private void DTYPackingForm_Load(object sender, EventArgs e)
+        private void AddDTYPackingForm_Load(object sender, EventArgs e)
         {
             getLotRelatedDetails();
 
@@ -249,7 +251,7 @@ namespace PackingApplication
             this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
-        private async void DTYPackingForm_Shown(object sender, EventArgs e)
+        private async void AddDTYPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
@@ -374,13 +376,55 @@ namespace PackingApplication
                 OwnerList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 OwnerList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                RefreshLastBoxDetails();
-
                 isFormReady = true;
+
+                RefreshLastBoxDetails();
             }
             finally
             {
                 lblLoading.Visible = false;
+            }
+        }
+
+        private async Task LoadProductionDetailsAsync(long productionId)
+        {
+            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+
+            if (productionResponse != null)
+            {
+                LineNoList.SelectedValue = productionResponse.MachineId;
+                DeptList.SelectedValue = productionResponse.DepartmentId;
+                MergeNoList.SelectedValue = productionResponse.LotId;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
+                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                QualityList.SelectedValue = productionResponse.QualityId;
+                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                prodtype.Text = productionResponse.ProductionType;
+                remarks.Text = productionResponse.Remarks;
+                prcompany.Checked = productionResponse.PrintCompany;
+                prowner.Checked = productionResponse.PrintOwner;
+                prdate.Checked = productionResponse.PrintDate;
+                pruser.Checked = productionResponse.PrintUser;
+                prhindi.Checked = productionResponse.PrintHindiWords;
+                prwtps.Checked = productionResponse.PrintWTPS;
+                prqrcode.Checked = productionResponse.PrintQRCode;
+                prtwist.Checked = productionResponse.PrintTwist;
+                spoolno.Text = productionResponse.Spools.ToString();
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                tarewt.Text = productionResponse.TareWt.ToString();
+                netwt.Text = productionResponse.NetWt.ToString();
+                OwnerList.SelectedValue = productionResponse.OwnerId;
+                LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
+                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
+                CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
+                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
             }
         }
 
@@ -435,6 +479,12 @@ namespace PackingApplication
                         MergeNoList.SelectedIndex = 0;
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            MergeNoList.SelectedValue = productionResponse.LotId;
+                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                        }
                     }
 
                 }
@@ -613,6 +663,12 @@ namespace PackingApplication
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
                             rowMaterial.DataSource = lotsDetailsList;
                         }
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                        }
                     }
 
                 }
@@ -715,6 +771,11 @@ namespace PackingApplication
                     {
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                     }
+
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    }
                 }
             }
             finally
@@ -766,7 +827,13 @@ namespace PackingApplication
                         //}
 
                         RefreshGradewiseGrid();
-                        RefreshLastBoxDetails();
+                        //RefreshLastBoxDetails();
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        }
                     }
 
                 }
@@ -784,7 +851,6 @@ namespace PackingApplication
                 balanceQty = 0;
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = await getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId);
-                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
                     var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
@@ -807,24 +873,24 @@ namespace PackingApplication
 
                 }
 
-                totalProdQty = 0;
-                foreach (var proditem in gridList)
-                {
-                    totalProdQty += proditem.GrossWt;
-                }
-                balanceQty = (totalSOQty - totalProdQty);
-                if (balanceQty <= 0)
-                {
-                    submit.Enabled = false;
-                    saveprint.Enabled = false;
-                    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                    ResetForm(this);
-                }
-                else
-                {
-                    submit.Enabled = true;
-                    saveprint.Enabled = true;
-                }
+                //totalProdQty = 0;
+                //foreach (var proditem in gridList)
+                //{
+                //    totalProdQty += proditem.GrossWt;
+                //}
+                //balanceQty = (totalSOQty - totalProdQty);
+                //if (balanceQty <= 0)
+                //{
+                //    submit.Enabled = false;
+                //    saveprint.Enabled = false;
+                //    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                //    ResetForm(this);
+                //}
+                //else
+                //{
+                //    submit.Enabled = true;
+                //    saveprint.Enabled = true;
+                //}
             }
         }
 
@@ -835,6 +901,9 @@ namespace PackingApplication
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
             {
+                _productionId = getLastBox.ProductionId;
+                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
@@ -1231,12 +1300,12 @@ namespace PackingApplication
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        if (grosswterror.Visible)
-                        {
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                        }
+                        //if (grosswterror.Visible)
+                        //{
+                        //    MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    netwt.Text = "0";
+                        //    wtpercop.Text = "0";
+                        //}
                     }
                 }
             }
@@ -1274,24 +1343,24 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        decimal newBalanceQty = balanceQty - gross;
-                        if (newBalanceQty < 0)
-                        {
-                            //grosswterror.Text = "No Prod Bal Qty remaining";
-                            //grosswterror.Visible = true;
-                            MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            submit.Enabled = false;
-                            saveprint.Enabled = false;
-                            e.Cancel = true;
-                            return; 
-                        }
-                        else
-                        {
-                            //grosswterror.Text = "";
-                            //grosswterror.Visible = false;
-                            submit.Enabled = true;
-                            saveprint.Enabled = true;
-                        }
+                        //decimal newBalanceQty = balanceQty - gross;
+                        //if (newBalanceQty < 0)
+                        //{
+                        //    //grosswterror.Text = "No Prod Bal Qty remaining";
+                        //    //grosswterror.Visible = true;
+                        //    MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    submit.Enabled = false;
+                        //    saveprint.Enabled = false;
+                        //    e.Cancel = true;
+                        //    return; 
+                        //}
+                        //else
+                        //{
+                        //    //grosswterror.Text = "";
+                        //    //grosswterror.Visible = false;
+                        //    submit.Enabled = true;
+                        //    saveprint.Enabled = true;
+                        //}
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
@@ -1302,11 +1371,11 @@ namespace PackingApplication
                         {
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //grosswterror.Visible = true;
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                            e.Cancel = true;
-                            return;
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
+                            //e.Cancel = true;
+                            //return;
                         }
                     }
                 }
@@ -1680,6 +1749,26 @@ namespace PackingApplication
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
+            totalProdQty = 0;
+            foreach (var proditem in gridList)
+            {
+                totalProdQty += proditem.GrossWt;
+            }
+            balanceQty = (totalSOQty - totalProdQty);
+            if (balanceQty <= 0)
+            {
+                submit.Enabled = false;
+                saveprint.Enabled = false;
+                MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+                isValid = false;
+            }
+            decimal newBalanceQty = balanceQty - gross;
+            if (newBalanceQty < 0)
+            {
+                MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
+
             return isValid;
         }
 

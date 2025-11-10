@@ -2835,9 +2835,9 @@ namespace PackingApplication
             this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "DTYPackingForm";
-            this.Text = "DTYPackingForm";
-            this.Load += new System.EventHandler(this.DTYPackingForm_Load);
+            this.Name = "AddDTYPackingForm";
+            this.Text = "AddDTYPackingForm";
+            this.Load += new System.EventHandler(this.AddDTYPackingForm_Load);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.panel31.ResumeLayout(false);
             this.panel31.PerformLayout();

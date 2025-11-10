@@ -361,7 +361,6 @@ namespace PackingApplication
                 netwt.Text = productionResponse.NetWt.ToString();
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
-                copyno.Text = productionResponse.NoOfCopies.ToString();
                 OwnerList.SelectedValue = productionResponse.OwnerId;
                 MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
@@ -1038,10 +1037,10 @@ namespace PackingApplication
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        netwt.Text = "0";
-                        wtpercop.Text = "0";
-                        return;
+                        //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //netwt.Text = "0";
+                        //wtpercop.Text = "0";
+                        //return;
                     }
                 }
             }
@@ -1080,9 +1079,9 @@ namespace PackingApplication
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //if(grosswterror.Visible)
                             //{
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
                             //}
 
                         }

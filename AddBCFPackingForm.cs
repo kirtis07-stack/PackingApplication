@@ -25,6 +25,7 @@ namespace PackingApplication
         ProductionService _productionService = new ProductionService();
         PackingService _packingService = new PackingService();
         SaleService _saleService = new SaleService();
+        private long _productionId;
         private int width = 0;
         CommonMethod _cmethod = new CommonMethod();
         bool sidebarExpand = false;
@@ -55,7 +56,7 @@ namespace PackingApplication
         {
             InitializeComponent();
             ApplyFonts();
-            this.Shown += BCFPackingForm_Shown;
+            this.Shown += AddBCFPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
@@ -70,7 +71,7 @@ namespace PackingApplication
             qualityqty.AutoGenerateColumns = false;
         }
 
-        private void BCFPackingForm_Load(object sender, EventArgs e)
+        private void AddBCFPackingForm_Load(object sender, EventArgs e)
         {
             AddHeader();
 
@@ -261,7 +262,7 @@ namespace PackingApplication
             this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
-        private async void BCFPackingForm_Shown(object sender, EventArgs e)
+        private async void AddBCFPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
@@ -409,6 +410,200 @@ namespace PackingApplication
             }
         }
 
+        private async Task LoadProductionDetailsAsync(long productionId)
+        {
+            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
+
+            if (productionResponse != null)
+            {
+                LineNoList.SelectedValue = productionResponse.MachineId;
+                DeptList.SelectedValue = productionResponse.DepartmentId;
+                MergeNoList.SelectedValue = productionResponse.LotId;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
+                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                QualityList.SelectedValue = productionResponse.QualityId;
+                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                PackSizeList.SelectedValue = productionResponse.PackSizeId;
+                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
+                BoxItemList.SelectedValue = productionResponse.BoxItemId;
+                prodtype.Text = productionResponse.ProductionType;
+                remarks.Text = productionResponse.Remarks;
+                prcompany.Checked = productionResponse.PrintCompany;
+                prowner.Checked = productionResponse.PrintOwner;
+                prdate.Checked = productionResponse.PrintDate;
+                pruser.Checked = productionResponse.PrintUser;
+                prwtps.Checked = productionResponse.PrintWTPS;
+                prqrcode.Checked = productionResponse.PrintQRCode;
+                spoolno.Text = productionResponse.Spools.ToString();
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                tarewt.Text = productionResponse.TareWt.ToString();
+                netwt.Text = productionResponse.NetWt.ToString();
+                submit.Text = "Update";
+                saveprint.Text = "Update && Print";
+                copyno.Text = productionResponse.NoOfCopies.ToString();
+                OwnerList.SelectedValue = productionResponse.OwnerId;
+                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
+                CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
+                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
+
+                if (productionResponse.PalletDetailsResponse.Count > 0)
+                {
+                    if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
+                    {
+                        this.BeginInvoke((Action)(() =>
+                            BindPalletDetails(productionResponse.PalletDetailsResponse)
+                        ));
+                    }
+                }
+            }
+        }
+
+        private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            rowCount = 0;
+            headerAdded = false;
+
+            // add header first
+            AddHeader();
+
+            foreach (var palletDetail in palletDetailsResponse)
+            {
+                var palletItemList = Task.Run(() => getPalletItemList(itemPalletCategoryId)).Result;
+                var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
+
+                if (selectedItem == null)
+                {
+                    selectedItem = new ItemResponse { ItemId = palletDetail.PalletId, Name = $"Pallet {palletDetail.PalletId}" };
+                }
+
+                rowCount++;
+
+                Panel rowPanel = new Panel();
+                rowPanel.Size = new Size(width, 35);
+                rowPanel.BorderStyle = BorderStyle.None;
+
+                rowPanel.Paint += (s, pe) =>
+                {
+                    using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+                    {
+                        // dashed border example: pen.DashStyle = DashStyle.Dash;
+                        pe.Graphics.DrawLine(
+                            pen,
+                            0, rowPanel.Height - 1,
+                            rowPanel.Width, rowPanel.Height - 1
+                        );
+                    }
+                };
+
+                // SrNo
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+
+                // Item Name
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
+
+                // Qty
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                // Edit Button
+                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
+                btnEdit.FlatAppearance.BorderSize = 1;
+                btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
+                btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
+                btnEdit.FlatAppearance.BorderSize = 0;
+                btnEdit.TabIndex = 4;
+                btnEdit.TabStop = true;
+                btnEdit.Cursor = Cursors.Hand;
+                btnEdit.Paint += (s, f) =>
+                {
+                    var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
+
+                    using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
+                    using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
+                    using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
+                    {
+                        f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        f.Graphics.FillPath(brush, path);
+
+                        f.Graphics.DrawPath(borderPen, path);
+
+                        if (btnEdit.Focused)
+                        {
+                            ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                        }
+
+                        TextRenderer.DrawText(
+                            f.Graphics,
+                            btnEdit.Text,
+                            btnEdit.Font,
+                            rect,
+                            btnEdit.ForeColor,
+                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                        );
+                    }
+                };
+                btnEdit.Click += editPallet_Click;
+
+                // Delete Button
+                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
+                btnDelete.FlatAppearance.BorderSize = 1;
+                btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
+                btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
+                btnDelete.FlatAppearance.BorderSize = 0;
+                btnDelete.TabIndex = 5;
+                btnDelete.TabStop = true;
+                btnDelete.Cursor = Cursors.Hand;
+                btnDelete.Paint += (s, f) =>
+                {
+                    var rect = new Rectangle(0, 0, btnDelete.Width - 1, btnDelete.Height - 1);
+
+                    using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
+                    using (Pen borderPen = new Pen(btnDelete.FlatAppearance.BorderColor, btnDelete.FlatAppearance.BorderSize))
+                    using (SolidBrush brush = new SolidBrush(btnDelete.BackColor))
+                    {
+                        f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        f.Graphics.FillPath(brush, path);
+                        f.Graphics.DrawPath(borderPen, path);
+
+                        TextRenderer.DrawText(
+                            f.Graphics,
+                            btnDelete.Text,
+                            btnDelete.Font,
+                            rect,
+                            btnDelete.ForeColor,
+                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                        );
+                    }
+                };
+                // Remove Row
+                btnDelete.Click += (s, args) =>
+                {
+                    flowLayoutPanel1.Controls.Remove(rowPanel);
+                    ReorderSrNo();
+                };
+
+                rowPanel.Controls.Add(lblSrNo);
+                rowPanel.Controls.Add(lblItem);
+                rowPanel.Controls.Add(lblQty);
+                rowPanel.Controls.Add(btnEdit);
+                rowPanel.Controls.Add(btnDelete);
+                rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+
+                flowLayoutPanel1.Controls.Add(rowPanel);
+            }
+
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.WrapContents = false;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+        }
+
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return; // skip during load
@@ -459,6 +654,12 @@ namespace PackingApplication
                         MergeNoList.SelectedIndex = 0;
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            MergeNoList.SelectedValue = productionResponse.LotId;
+                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                        }
                     }
 
                 }
@@ -640,6 +841,12 @@ namespace PackingApplication
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
                             rowMaterial.DataSource = lotsDetailsList;
                         }
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                        }
                     }
 
                 }
@@ -743,6 +950,11 @@ namespace PackingApplication
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                         RefreshWindingGrid();
                     }
+
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    }
                 }
             }
             finally
@@ -796,7 +1008,13 @@ namespace PackingApplication
 
 
                         RefreshGradewiseGrid();
-                        RefreshLastBoxDetails();
+                        //RefreshLastBoxDetails();
+
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        }
                     }
 
                 }
@@ -911,6 +1129,9 @@ namespace PackingApplication
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
             {
+                _productionId = getLastBox.ProductionId;
+                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
@@ -1637,12 +1858,12 @@ namespace PackingApplication
                     {
                         //grosswterror.Text = "Gross Wt > Tare Wt";
                         //grosswterror.Visible = true;
-                        if (grosswterror.Visible)
-                        {
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                        }
+                        //if (grosswterror.Visible)
+                        //{
+                        //    MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    netwt.Text = "0";
+                        //    wtpercop.Text = "0";
+                        //}
                     }
                 }
             }
@@ -1708,11 +1929,11 @@ namespace PackingApplication
                         {
                             //grosswterror.Text = "Gross Wt > Tare Wt";
                             //grosswterror.Visible = true;
-                            MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            netwt.Text = "0";
-                            wtpercop.Text = "0";
-                            e.Cancel = true;
-                            return;
+                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //netwt.Text = "0";
+                            //wtpercop.Text = "0";
+                            //e.Cancel = true;
+                            //return;
                         }
                     }
                 }

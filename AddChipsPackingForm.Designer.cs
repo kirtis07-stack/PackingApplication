@@ -2453,7 +2453,7 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // ChipsPackingForm
+            // AddChipsPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2462,9 +2462,9 @@ namespace PackingApplication
             this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.Name = "ChipsPackingForm";
-            this.Text = "ChipsPackingForm";
-            this.Load += new System.EventHandler(this.ChipsPackingForm_Load);
+            this.Name = "AddChipsPackingForm";
+            this.Text = "AddChipsPackingForm";
+            this.Load += new System.EventHandler(this.AddChipsPackingForm_Load);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.panel35.ResumeLayout(false);
             this.panel35.PerformLayout();
