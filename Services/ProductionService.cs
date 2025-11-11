@@ -51,7 +51,7 @@ namespace PackingApplication.Services
 
         public List<LotsDetailsResponse> getLotsDetailsByLotsIdAndProductionDate(int lotsId, DateTime ProductionDate)
         {
-            String date = ProductionDate.ToString("yyyy-MM-dd HH:mm:ss");
+            String date = ProductionDate.ToString("yyyy-MM-dd");
             var getLotsDetailsResponse = method.GetCallApi(productionURL + "LotsDetails/GetAllByLotsIdAndProductionDate?lotsId=" + lotsId + "&ProductionDate=" + date);
             var getLotDetails = JsonConvert.DeserializeObject<List<LotsDetailsResponse>>(getLotsDetailsResponse);
             return getLotDetails;
