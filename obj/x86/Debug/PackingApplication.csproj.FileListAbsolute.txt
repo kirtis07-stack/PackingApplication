@@ -102,7 +102,6 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\Packin
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.pdb
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe.config
 D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
 D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\msvcr120.dll
