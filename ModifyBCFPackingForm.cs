@@ -2924,6 +2924,30 @@ namespace PackingApplication
             }
         }
 
+        private void ComboBox_Leave(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ComboBox cmb = sender as System.Windows.Forms.ComboBox;
+            string typedText = cmb.Text.Trim();
+
+            if (string.IsNullOrEmpty(typedText))
+            {
+                cmb.SelectedIndex = -1;
+                return;
+            }
+            int index = cmb.FindStringExact(typedText);
+
+            if (index >= 0)
+            {
+                cmb.SelectedIndex = index;
+            }
+            else
+            {
+                // Optionally clear or handle custom entry
+                cmb.SelectedIndex = 0;
+                // cmb.Text = ""; // clear invalid entry
+            }
+        }
+
         //private void LineNo_TextUpdate(object sender, EventArgs e)
         //{
         //    string typedText = LineNoList.Text.ToLower();

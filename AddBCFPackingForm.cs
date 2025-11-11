@@ -435,15 +435,12 @@ namespace PackingApplication
                 pruser.Checked = productionResponse.PrintUser;
                 prwtps.Checked = productionResponse.PrintWTPS;
                 prqrcode.Checked = productionResponse.PrintQRCode;
-                spoolno.Text = productionResponse.Spools.ToString();
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                grosswtno.Text = productionResponse.GrossWt.ToString();
-                tarewt.Text = productionResponse.TareWt.ToString();
-                netwt.Text = productionResponse.NetWt.ToString();
-                submit.Text = "Update";
-                saveprint.Text = "Update && Print";
-                copyno.Text = productionResponse.NoOfCopies.ToString();
+                //spoolno.Text = productionResponse.Spools.ToString();
+                //spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                //palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                //grosswtno.Text = productionResponse.GrossWt.ToString();
+                //tarewt.Text = productionResponse.TareWt.ToString();
+                //netwt.Text = productionResponse.NetWt.ToString();
                 OwnerList.SelectedValue = productionResponse.OwnerId;
                 MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
@@ -3009,6 +3006,30 @@ namespace PackingApplication
 
                 msgForm.AcceptButton = btnOk;
                 msgForm.ShowDialog();
+            }
+        }
+
+        private void ComboBox_Leave(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ComboBox cmb = sender as System.Windows.Forms.ComboBox;
+            string typedText = cmb.Text.Trim();
+
+            if (string.IsNullOrEmpty(typedText))
+            {
+                cmb.SelectedIndex = -1;
+                return;
+            }
+            int index = cmb.FindStringExact(typedText);
+
+            if (index >= 0)
+            {
+                cmb.SelectedIndex = index;
+            }
+            else
+            {
+                // Optionally clear or handle custom entry
+                cmb.SelectedIndex = 0;
+                // cmb.Text = ""; // clear invalid entry
             }
         }
 

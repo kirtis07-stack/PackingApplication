@@ -524,6 +524,7 @@
             this.QualityList.TabIndex = 1;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
+            this.QualityList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // PackSizeList
             // 
@@ -538,6 +539,7 @@
             this.PackSizeList.TabIndex = 3;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
+            this.PackSizeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // WindingTypeList
             // 
@@ -552,6 +554,7 @@
             this.WindingTypeList.TabIndex = 3;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
+            this.WindingTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // ComPortList
             // 
@@ -566,6 +569,7 @@
             this.ComPortList.TabIndex = 1;
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             this.ComPortList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComPortList_KeyDown);
+            this.ComPortList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // WeighingList
             // 
@@ -580,6 +584,7 @@
             this.WeighingList.TabIndex = 4;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
+            this.WeighingList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // CopsItemList
             // 
@@ -594,6 +599,7 @@
             this.CopsItemList.TabIndex = 4;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
+            this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // BoxItemList
             // 
@@ -608,6 +614,7 @@
             this.BoxItemList.TabIndex = 6;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
+            this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // SaleOrderList
             // 
@@ -622,6 +629,7 @@
             this.SaleOrderList.TabIndex = 2;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SaleOrderList_KeyDown);
+            this.SaleOrderList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // prcompany
             // 
@@ -804,7 +812,6 @@
             this.grosswtno.Size = new System.Drawing.Size(9, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             this.grosswtno.Validating += new System.ComponentModel.CancelEventHandler(this.GrossWeight_Validating);
@@ -831,7 +838,6 @@
             this.palletwtno.TabIndex = 5;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
-            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             // 
@@ -856,7 +862,6 @@
             this.spoolno.TabIndex = 2;
             this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
-            this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -902,6 +907,7 @@
             this.PalletTypeList.Size = new System.Drawing.Size(116, 21);
             this.PalletTypeList.TabIndex = 1;
             this.PalletTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PalletTypeList_KeyDown);
+            this.PalletTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // pquantity
             // 
@@ -2158,6 +2164,7 @@
             this.LineNoList.TabIndex = 1;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
+            this.LineNoList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // linenoerror
             // 
@@ -2358,6 +2365,7 @@
             this.DeptList.TabIndex = 2;
             this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
             this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
+            this.DeptList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // department
             // 
@@ -2416,6 +2424,7 @@
             this.MergeNoList.TabIndex = 4;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
+            this.MergeNoList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // mergenoerror
             // 
@@ -2491,6 +2500,7 @@
             this.OwnerList.TabIndex = 124;
             this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
             this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
+            this.OwnerList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // owner
             // 
