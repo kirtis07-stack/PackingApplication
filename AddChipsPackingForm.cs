@@ -341,15 +341,18 @@ namespace PackingApplication
             }
         }
 
-        private async Task LoadProductionDetailsAsync(long productionId)
+        private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
+            //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
 
-            if (productionResponse != null)
+            if (prodResponse != null)
             {
+                productionResponse = prodResponse;
+
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
                 MergeNoList.SelectedValue = productionResponse.LotId;
+                PrefixList.SelectedValue = productionResponse.PrefixCode;
                 //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 //dateTimePicker1.Value = productionResponse.ProductionDate;
                 QualityList.SelectedValue = productionResponse.QualityId;
@@ -759,7 +762,7 @@ namespace PackingApplication
             if (getLastBox.ProductionId > 0)
             {
                 _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+                await LoadProductionDetailsAsync(getLastBox);
 
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
@@ -916,7 +919,7 @@ namespace PackingApplication
                     productionRequest.DepartmentId = selectedDepartmentId;
 
                     prefixRequest.DepartmentId = selectedDepartmentId;
-                    prefixRequest.TxnFlag = "Chips";
+                    prefixRequest.TxnFlag = "Chp";
                     prefixRequest.TransactionTypeId = 5;
                     prefixRequest.ProductionTypeId = 1;
                     prefixRequest.Prefix = "";
@@ -930,7 +933,16 @@ namespace PackingApplication
                     PrefixList.SelectedIndex = 0;
                     PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
-
+                    if (PrefixList.Items.Count == 2)
+                    {
+                        PrefixList.SelectedIndex = 1;   // Select the single record
+                        PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        PrefixList.Enabled = true;      // Allow user selection
+                        PrefixList.SelectedIndex = 0;  // Optional: no default selection
+                    }
                 }
             }
             finally

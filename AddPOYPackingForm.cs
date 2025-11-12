@@ -441,15 +441,17 @@ namespace PackingApplication
             }
         }
 
-        private async Task LoadProductionDetailsAsync(long productionId)
+        private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+            //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
 
-            if (productionResponse != null)
+            if (prodResponse != null)
             {
+                productionResponse = prodResponse;
+
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
-                //PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
+                PrefixList.SelectedValue = productionResponse.PrefixCode;
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 //dateTimePicker1.Value = productionResponse.ProductionDate;
@@ -1161,7 +1163,7 @@ namespace PackingApplication
             if (getLastBox.ProductionId > 0)
             {
                 _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+                await LoadProductionDetailsAsync(getLastBox);
 
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
@@ -1375,7 +1377,16 @@ namespace PackingApplication
                     PrefixList.SelectedIndex = 0;
                     PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
-
+                    if (PrefixList.Items.Count == 2)
+                    {
+                        PrefixList.SelectedIndex = 1;   // Select the single record
+                        PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        PrefixList.Enabled = true;      // Allow user selection
+                        PrefixList.SelectedIndex = 0;  // Optional: no default selection
+                    }
                 }
             }
             finally

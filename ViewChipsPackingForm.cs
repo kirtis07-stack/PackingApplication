@@ -305,10 +305,10 @@ namespace PackingApplication
 
                 RefreshLastBoxDetails();
 
-                if (Convert.ToInt64(_productionId) > 0)
-                {
-                    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
-                }
+                //if (Convert.ToInt64(_productionId) > 0)
+                //{
+                //    await LoadProductionDetailsAsync(Convert.ToInt64(_productionId));
+                //}
                 isFormReady = true;
             }
             finally
@@ -317,12 +317,14 @@ namespace PackingApplication
             }
         }
 
-        private async Task LoadProductionDetailsAsync(long productionId)
+        private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
+            //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
 
-            if (productionResponse != null)
+            if (prodResponse != null)
             {
+                productionResponse = prodResponse;
+
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
                 //PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
@@ -719,7 +721,7 @@ namespace PackingApplication
             if (getLastBox.ProductionId > 0)
             {
                 _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+                await LoadProductionDetailsAsync(getLastBox);
 
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
