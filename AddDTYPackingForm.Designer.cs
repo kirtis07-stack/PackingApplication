@@ -34,7 +34,7 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.packingdate = new System.Windows.Forms.Label();
@@ -820,8 +820,10 @@ namespace PackingApplication
             this.grosswtno.Size = new System.Drawing.Size(29, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.grosswtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
             this.grosswtno.Validating += new System.ComponentModel.CancelEventHandler(this.GrossWeight_Validating);
             // 
             // label2
@@ -846,8 +848,10 @@ namespace PackingApplication
             this.palletwtno.TabIndex = 5;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
+            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.palletwtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
             // 
             // palletwt
             // 
@@ -871,6 +875,7 @@ namespace PackingApplication
             this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.Enter += new System.EventHandler(this.spoolNo_Enter);
+            this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             this.spoolno.Leave += new System.EventHandler(this.spoolNo_Leave);
@@ -1304,14 +1309,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;

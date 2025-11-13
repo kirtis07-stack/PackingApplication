@@ -75,11 +75,11 @@ namespace PackingApplication
             getLotRelatedDetails();
 
             copyno.Text = "1";
-            palletwtno.Text = "0";
-            grosswtno.Text = "0";
-            tarewt.Text = "0";
-            netwt.Text = "0";
-            wtpercop.Text = "0";
+            palletwtno.Text = "0.000";
+            grosswtno.Text = "0.000";
+            tarewt.Text = "0.000";
+            netwt.Text = "0.000";
+            wtpercop.Text = "0.000";
             boxpalletstock.Text = "0";
             boxpalletitemwt.Text = "0";
             frdenier.Text = "0";
@@ -330,12 +330,14 @@ namespace PackingApplication
             }
         }
 
-        private async Task LoadProductionDetailsAsync(long productionId)
+        private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
+            //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
 
-            if (productionResponse != null)
+            if (prodResponse != null)
             {
+                productionResponse = prodResponse;
+
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
                 MergeNoList.SelectedValue = productionResponse.LotId;
@@ -749,7 +751,7 @@ namespace PackingApplication
             if (getLastBox.ProductionId > 0)
             {
                 _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+                await LoadProductionDetailsAsync(getLastBox);
 
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
@@ -2027,6 +2029,18 @@ namespace PackingApplication
                 cmb.SelectedIndex = 0;
                 // cmb.Text = ""; // clear invalid entry
             }
+        }
+
+        private void txtNumeric_Leave(object sender, EventArgs e)
+        {
+            FormatToThreeDecimalPlaces(sender as TextBox);
+        }
+        private void FormatToThreeDecimalPlaces(TextBox textBox)
+        {
+            if (decimal.TryParse(textBox.Text, out decimal value))
+                textBox.Text = value.ToString("0.000");
+            else
+                textBox.Text = "0.000"; // optional fallback
         }
     }
 }

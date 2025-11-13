@@ -812,8 +812,10 @@
             this.grosswtno.Size = new System.Drawing.Size(9, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.grosswtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
             this.grosswtno.Validating += new System.ComponentModel.CancelEventHandler(this.GrossWeight_Validating);
             // 
             // label2
@@ -838,8 +840,10 @@
             this.palletwtno.TabIndex = 5;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
+            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.palletwtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
             // 
             // palletwt
             // 
@@ -862,8 +866,11 @@
             this.spoolno.TabIndex = 2;
             this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
+            this.spoolno.Enter += new System.EventHandler(this.spoolNo_Enter);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.spoolno.Leave += new System.EventHandler(this.spoolNo_Leave);
             // 
             // spool
             // 

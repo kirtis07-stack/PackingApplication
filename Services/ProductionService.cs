@@ -20,7 +20,11 @@ namespace PackingApplication.Services
         public List<LotsResponse> getLotList(int machineId)
         {
             var getLotsResponse = method.GetCallApi(productionURL + "Lots/GetAllByMachineId?machineId=" + machineId);
-            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse);
+
+            if (string.IsNullOrWhiteSpace(getLotsResponse))
+                return new List<LotsResponse>(); 
+            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
+                ?? new List<LotsResponse>();
             return getItem;
         }
 

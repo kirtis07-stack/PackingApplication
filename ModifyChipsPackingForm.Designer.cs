@@ -696,8 +696,10 @@ namespace PackingApplication
             this.grosswtno.Size = new System.Drawing.Size(23, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.grosswtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
             this.grosswtno.Validating += new System.ComponentModel.CancelEventHandler(this.GrossWeight_Validating);
             // 
             // label2
@@ -722,8 +724,10 @@ namespace PackingApplication
             this.palletwtno.TabIndex = 5;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
+            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
+            this.palletwtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
             // 
             // palletwt
             // 

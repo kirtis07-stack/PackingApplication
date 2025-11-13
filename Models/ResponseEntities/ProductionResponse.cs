@@ -15,6 +15,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string DepartmentName { get; set; }
         public int MachineId { get; set; }
         public string MachineName { get; set; }
+        public int PrefixCode { get; set; }
         public int LotId { get; set; }
         public string LotNo { get; set; }
         public string BoxPrefix { get; set; }

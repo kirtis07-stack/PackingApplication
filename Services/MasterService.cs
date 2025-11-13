@@ -20,28 +20,40 @@ namespace PackingApplication.Services
         public List<MachineResponse> getMachineList(string lotType)
         {
             var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType);
-            var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse);
+            if (string.IsNullOrWhiteSpace(getMachineResponse))
+                return new List<MachineResponse>();
+            var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse)
+                ?? new List<MachineResponse>();
             return getMachine;
         }
 
         public List<QualityResponse> getQualityList()
         {
-            var getQualityResponse = method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + false);
-            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse);
+            var getQualityResponse = method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + true);
+            if (string.IsNullOrWhiteSpace(getQualityResponse))
+                return new List<QualityResponse>();
+            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse)
+                ?? new List<QualityResponse>();
             return getQuality;
         }
 
         public List<PackSizeResponse> getPackSizeList()
         {
-            var getPackSizeResponse = method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + false);
-            var getPackSize = JsonConvert.DeserializeObject<List<PackSizeResponse>>(getPackSizeResponse);
+            var getPackSizeResponse = method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true);
+            if (string.IsNullOrWhiteSpace(getPackSizeResponse))
+                return new List<PackSizeResponse>();
+            var getPackSize = JsonConvert.DeserializeObject<List<PackSizeResponse>>(getPackSizeResponse)
+                ?? new List<PackSizeResponse>();
             return getPackSize;
         }
 
         public List<WindingTypeResponse> getWindingTypeList()
         {
-            var getWindingTypeResponse = method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + false);
-            var getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse);
+            var getWindingTypeResponse = method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true);
+            if (string.IsNullOrWhiteSpace(getWindingTypeResponse))
+                return new List<WindingTypeResponse>();
+            var getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse)
+                ?? new List<WindingTypeResponse>();
             return getWindingType;
         }
 
@@ -66,42 +78,60 @@ namespace PackingApplication.Services
         public MachineResponse getMachineById(int machineId)
         {
             var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetById?machineId=" + machineId);
-            var getMachine = JsonConvert.DeserializeObject<MachineResponse>(getMachineResponse);
+            if (string.IsNullOrWhiteSpace(getMachineResponse))
+                return new MachineResponse();
+            var getMachine = JsonConvert.DeserializeObject<MachineResponse>(getMachineResponse)
+                ?? new MachineResponse();
             return getMachine;
         }
 
         public PackSizeResponse getPackSizeById(int packSizeId)
         {
             var getPacksizeResponse = method.GetCallApi(masterURL + "PackSize/GetById?PackSizeId=" + packSizeId);
-            var getPacksize = JsonConvert.DeserializeObject<PackSizeResponse>(getPacksizeResponse);
+            if (string.IsNullOrWhiteSpace(getPacksizeResponse))
+                return new PackSizeResponse();
+            var getPacksize = JsonConvert.DeserializeObject<PackSizeResponse>(getPacksizeResponse)
+                ?? new PackSizeResponse();
             return getPacksize;
         }
 
         public List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
         {
             var getQualityResponse = method.GetCallApi(masterURL + "Quality/GetByItemTypeId?itemTypeId=" + itemTypeId);
-            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse);
+            if (string.IsNullOrWhiteSpace(getQualityResponse))
+                return new List<QualityResponse>();
+            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse)
+                ?? new List<QualityResponse>();
             return getQuality;
         }
 
         public ItemResponse getItemById(int itemId)
         {
             var getItemResponse = method.GetCallApi(masterURL + "Items/GetById?itemsId=" + itemId);
-            var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse);
+            if (string.IsNullOrWhiteSpace(getItemResponse))
+                return new ItemResponse();
+            var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse)
+                ?? new ItemResponse();
             return getItem;
         }
 
         public List<DepartmentResponse> getDepartmentList()
         {
             var getDepartmentResponse = method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false);
-            var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse);
+            if (string.IsNullOrWhiteSpace(getDepartmentResponse))
+                return new List<DepartmentResponse>();
+            var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse)
+                ?? new List<DepartmentResponse>();
             return getDepartment;
         }
 
         public List<MachineResponse> getMachineByDepartmentId(int departmentId)
         {
             var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAllByDepartmentId?departmentId=" + departmentId);
-            var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse);
+            if (string.IsNullOrWhiteSpace(getMachineResponse))
+                return new List<MachineResponse>();
+            var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse)
+                ?? new List<MachineResponse>();
             return getMachine;
         }
 
@@ -112,7 +142,7 @@ namespace PackingApplication.Services
                 return new List<BusinessPartnerResponse>();              // handle empty response
             var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse)
                      ?? new List<BusinessPartnerResponse>();             // handle null JSON
-            return getBusinessPartner;          
+            return getBusinessPartner;
         }
     }
 }

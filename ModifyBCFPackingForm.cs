@@ -80,11 +80,11 @@ namespace PackingApplication
             copyno.Text = "2";
             spoolno.Text = "0";
             spoolwt.Text = "0";
-            palletwtno.Text = "0";
-            grosswtno.Text = "0";
-            tarewt.Text = "0";
-            netwt.Text = "0";
-            wtpercop.Text = "0";
+            palletwtno.Text = "0.000";
+            grosswtno.Text = "0.000";
+            tarewt.Text = "0.000";
+            netwt.Text = "0.000";
+            wtpercop.Text = "0.000";
             copsstock.Text = "0";
             boxpalletstock.Text = "0";
             copsitemwt.Text = "0";
@@ -398,12 +398,14 @@ namespace PackingApplication
             }
         }
 
-        private async Task LoadProductionDetailsAsync(long productionId)
+        private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
+            //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
 
-            if (productionResponse != null)
+            if (prodResponse != null)
             {
+                productionResponse = prodResponse;
+
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
                 MergeNoList.SelectedValue = productionResponse.LotId;
@@ -1117,7 +1119,7 @@ namespace PackingApplication
             if (getLastBox.ProductionId > 0)
             {
                 _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+                await LoadProductionDetailsAsync(getLastBox);
 
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
@@ -2878,6 +2880,24 @@ namespace PackingApplication
             }
         }
 
+        private void spoolNo_Enter(object sender, EventArgs e)
+        {
+            // When control gets focus
+            if (spoolno.Text == "0")
+            {
+                spoolno.Clear(); // remove the default value
+            }
+        }
+
+        private void spoolNo_Leave(object sender, EventArgs e)
+        {
+            // When control loses focus
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
+            {
+                spoolno.Text = "0"; // restore default
+            }
+        }
+
         private void ShowCustomMessage(string boxNo)
         {
             using (Form msgForm = new Form())
@@ -2946,6 +2966,18 @@ namespace PackingApplication
                 cmb.SelectedIndex = 0;
                 // cmb.Text = ""; // clear invalid entry
             }
+        }
+
+        private void txtNumeric_Leave(object sender, EventArgs e)
+        {
+            FormatToThreeDecimalPlaces(sender as TextBox);
+        }
+        private void FormatToThreeDecimalPlaces(TextBox textBox)
+        {
+            if (decimal.TryParse(textBox.Text, out decimal value))
+                textBox.Text = value.ToString("0.000");
+            else
+                textBox.Text = "0.000"; // optional fallback
         }
 
         //private void LineNo_TextUpdate(object sender, EventArgs e)

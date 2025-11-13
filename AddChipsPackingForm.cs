@@ -75,11 +75,11 @@ namespace PackingApplication
             getLotRelatedDetails();
 
             copyno.Text = "1";
-            palletwtno.Text = "0";
-            grosswtno.Text = "0";
-            tarewt.Text = "0";
-            netwt.Text = "0";
-            wtpercop.Text = "0";
+            palletwtno.Text = "0.000";
+            grosswtno.Text = "0.000";
+            tarewt.Text = "0.000";
+            netwt.Text = "0.000";
+            wtpercop.Text = "0.000";
             boxpalletstock.Text = "0";
             boxpalletitemwt.Text = "0";
             frdenier.Text = "0";
@@ -341,17 +341,20 @@ namespace PackingApplication
             }
         }
 
-        private async Task LoadProductionDetailsAsync(long productionId)
+        private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
+            //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(productionId))).Result;
 
-            if (productionResponse != null)
+            if (prodResponse != null)
             {
+                productionResponse = prodResponse;
+
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
                 MergeNoList.SelectedValue = productionResponse.LotId;
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
+                PrefixList.SelectedValue = productionResponse.PrefixCode;
+                //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                //dateTimePicker1.Value = productionResponse.ProductionDate;
                 QualityList.SelectedValue = productionResponse.QualityId;
                 WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 PackSizeList.SelectedValue = productionResponse.PackSizeId;
@@ -414,7 +417,10 @@ namespace PackingApplication
                             DeptList.DataSource = filteredDepts;
                             DeptList.DisplayMember = "DepartmentName";
                             DeptList.ValueMember = "DepartmentId";
-                            DeptList.SelectedIndex = 1;
+                            if (DeptList.Items.Count > 1)
+                            {
+                                DeptList.SelectedIndex = 1;
+                            }
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                             DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
@@ -759,7 +765,7 @@ namespace PackingApplication
             if (getLastBox.ProductionId > 0)
             {
                 _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(Convert.ToInt64(getLastBox.ProductionId));
+                await LoadProductionDetailsAsync(getLastBox);
 
                 this.copstxtbox.Text = getLastBox.Spools.ToString();
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
@@ -916,7 +922,7 @@ namespace PackingApplication
                     productionRequest.DepartmentId = selectedDepartmentId;
 
                     prefixRequest.DepartmentId = selectedDepartmentId;
-                    prefixRequest.TxnFlag = "Chips";
+                    prefixRequest.TxnFlag = "Chp";
                     prefixRequest.TransactionTypeId = 5;
                     prefixRequest.ProductionTypeId = 1;
                     prefixRequest.Prefix = "";
@@ -930,7 +936,16 @@ namespace PackingApplication
                     PrefixList.SelectedIndex = 0;
                     PrefixList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     PrefixList.AutoCompleteSource = AutoCompleteSource.ListItems;
-
+                    if (PrefixList.Items.Count == 2)
+                    {
+                        PrefixList.SelectedIndex = 1;   // Select the single record
+                        PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        PrefixList.Enabled = true;      // Allow user selection
+                        PrefixList.SelectedIndex = 0;  // Optional: no default selection
+                    }
                 }
             }
             finally
@@ -2088,6 +2103,18 @@ namespace PackingApplication
                 cmb.SelectedIndex = 0;
                 // cmb.Text = ""; // clear invalid entry
             }
+        }
+
+        private void txtNumeric_Leave(object sender, EventArgs e)
+        {
+            FormatToThreeDecimalPlaces(sender as TextBox);
+        }
+        private void FormatToThreeDecimalPlaces(TextBox textBox)
+        {
+            if (decimal.TryParse(textBox.Text, out decimal value))
+                textBox.Text = value.ToString("0.000");
+            else
+                textBox.Text = "0.000"; // optional fallback
         }
     }
 }
