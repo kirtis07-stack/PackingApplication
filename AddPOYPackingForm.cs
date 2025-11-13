@@ -673,7 +673,10 @@ namespace PackingApplication
                             DeptList.DataSource = filteredDepts;
                             DeptList.DisplayMember = "DepartmentName";
                             DeptList.ValueMember = "DepartmentId";
-                            DeptList.SelectedIndex = 1;
+                            if (DeptList.Items.Count > 1)
+                            {
+                                DeptList.SelectedIndex = 1;
+                            }
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                             DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);

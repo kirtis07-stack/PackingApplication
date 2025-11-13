@@ -24,19 +24,30 @@ namespace PackingApplication.Helper
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
-            request.Timeout = 30000; // 30 seconds total timeout
-            request.ReadWriteTimeout = 30000;
+            //request.Timeout = 30000; // 30 seconds total timeout
+            //request.ReadWriteTimeout = 30000;
             var content = string.Empty;
 
-            using (var response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                using (var stream = response.GetResponseStream())
+                using (var response = (HttpWebResponse)request.GetResponse())
                 {
-                    using (var sr = new StreamReader(stream))
+                    using (var stream = response.GetResponseStream())
                     {
-                        content = sr.ReadToEnd();
+                        using (var sr = new StreamReader(stream))
+                        {
+                            content = sr.ReadToEnd();
+                        }
                     }
                 }
+            }
+            catch (WebException ex)
+            {
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
             }
 
             return content;
