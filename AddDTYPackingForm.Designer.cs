@@ -34,7 +34,7 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.packingdate = new System.Windows.Forms.Label();
@@ -92,9 +92,6 @@ namespace PackingApplication
             this.palletwterror = new System.Windows.Forms.Label();
             this.panel28 = new System.Windows.Forms.Panel();
             this.panel29 = new System.Windows.Forms.Panel();
-            this.panel30 = new System.Windows.Forms.Panel();
-            this.req10 = new System.Windows.Forms.Label();
-            this.windingerror = new System.Windows.Forms.Label();
             this.panel33 = new System.Windows.Forms.Panel();
             this.grosswterror = new System.Windows.Forms.Label();
             this.req9 = new System.Windows.Forms.Label();
@@ -104,6 +101,9 @@ namespace PackingApplication
             this.wtpercop = new System.Windows.Forms.Label();
             this.panel45 = new System.Windows.Forms.Panel();
             this.copynoerror = new System.Windows.Forms.Label();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.req10 = new System.Windows.Forms.Label();
+            this.windingerror = new System.Windows.Forms.Label();
             this.submit = new System.Windows.Forms.Button();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
@@ -121,18 +121,12 @@ namespace PackingApplication
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.partyshade = new System.Windows.Forms.Label();
-            this.partyshd = new System.Windows.Forms.Label();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.req4 = new System.Windows.Forms.Label();
-            this.qualityerror = new System.Windows.Forms.Label();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.req5 = new System.Windows.Forms.Label();
-            this.soerror = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
             this.req6 = new System.Windows.Forms.Label();
             this.packsizeerror = new System.Windows.Forms.Label();
+            this.panel47 = new System.Windows.Forms.Panel();
+            this.OwnerList = new System.Windows.Forms.ComboBox();
+            this.owner = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
             this.frdenier = new System.Windows.Forms.Label();
             this.uptodenier = new System.Windows.Forms.Label();
@@ -150,36 +144,37 @@ namespace PackingApplication
             this.panel15 = new System.Windows.Forms.Panel();
             this.partyn = new System.Windows.Forms.Label();
             this.bppartyname = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.partyshade = new System.Windows.Forms.Label();
+            this.partyshd = new System.Windows.Forms.Label();
+            this.panel49 = new System.Windows.Forms.Panel();
             this.machineboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.machineboxpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel47 = new System.Windows.Forms.Panel();
-            this.OwnerList = new System.Windows.Forms.ComboBox();
-            this.owner = new System.Windows.Forms.Label();
-            this.panel46 = new System.Windows.Forms.Panel();
-            this.salelotvalue = new System.Windows.Forms.Label();
-            this.salelot = new System.Windows.Forms.Label();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.twistvalue = new System.Windows.Forms.Label();
-            this.twist = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lineno = new System.Windows.Forms.Label();
             this.req1 = new System.Windows.Forms.Label();
             this.LineNoList = new System.Windows.Forms.ComboBox();
             this.linenoerror = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lastbox = new System.Windows.Forms.Label();
-            this.lastboxno = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.req4 = new System.Windows.Forms.Label();
+            this.qualityerror = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.DeptList = new System.Windows.Forms.ComboBox();
+            this.department = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.req2 = new System.Windows.Forms.Label();
             this.PrefixList = new System.Windows.Forms.ComboBox();
             this.boxnoerror = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.req3 = new System.Windows.Forms.Label();
             this.mergeno = new System.Windows.Forms.Label();
             this.MergeNoList = new System.Windows.Forms.ComboBox();
             this.mergenoerror = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel46 = new System.Windows.Forms.Panel();
+            this.salelotvalue = new System.Windows.Forms.Label();
+            this.salelot = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.itemname = new System.Windows.Forms.Label();
             this.item = new System.Windows.Forms.Label();
@@ -187,17 +182,24 @@ namespace PackingApplication
             this.shadecd = new System.Windows.Forms.Label();
             this.shadename = new System.Windows.Forms.Label();
             this.shade = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.prodtype = new System.Windows.Forms.Label();
-            this.productiontype = new System.Windows.Forms.Label();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.req5 = new System.Windows.Forms.Label();
+            this.soerror = new System.Windows.Forms.Label();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.twistvalue = new System.Windows.Forms.Label();
+            this.twist = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.deniervalue = new System.Windows.Forms.Label();
             this.denier = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.DeptList = new System.Windows.Forms.ComboBox();
-            this.department = new System.Windows.Forms.Label();
+            this.panel48 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.prodtype = new System.Windows.Forms.Label();
+            this.productiontype = new System.Windows.Forms.Label();
             this.machineboxheader = new System.Windows.Forms.Panel();
             this.Machinelbl = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lastbox = new System.Windows.Forms.Label();
+            this.lastboxno = new System.Windows.Forms.Label();
             this.tblpanl1 = new System.Windows.Forms.Panel();
             this.weighboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.weighboxheader = new System.Windows.Forms.Panel();
@@ -245,11 +247,11 @@ namespace PackingApplication
             this.panel32.SuspendLayout();
             this.panel28.SuspendLayout();
             this.panel29.SuspendLayout();
-            this.panel30.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
             this.panel36.SuspendLayout();
             this.panel45.SuspendLayout();
+            this.panel30.SuspendLayout();
             this.rightpanel.SuspendLayout();
             this.buttontablelayout.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -263,33 +265,35 @@ namespace PackingApplication
             this.packagingboxheader.SuspendLayout();
             this.packagingboxpanel.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.panel18.SuspendLayout();
-            this.panel16.SuspendLayout();
-            this.panel17.SuspendLayout();
             this.panel19.SuspendLayout();
+            this.panel47.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel23.SuspendLayout();
             this.panel25.SuspendLayout();
             this.panel26.SuspendLayout();
             this.panel15.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel49.SuspendLayout();
             this.machineboxlayout.SuspendLayout();
             this.machineboxpanel.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.panel47.SuspendLayout();
-            this.panel46.SuspendLayout();
-            this.panel27.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel46.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
-            this.panel13.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel27.SuspendLayout();
             this.panel14.SuspendLayout();
-            this.panel8.SuspendLayout();
+            this.panel48.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.machineboxheader.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.tblpanl1.SuspendLayout();
             this.weighboxlayout.SuspendLayout();
             this.weighboxheader.SuspendLayout();
@@ -321,7 +325,7 @@ namespace PackingApplication
             // shadecode
             // 
             this.shadecode.AutoSize = true;
-            this.shadecode.Location = new System.Drawing.Point(-1, 14);
+            this.shadecode.Location = new System.Drawing.Point(2, 5);
             this.shadecode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.shadecode.Name = "shadecode";
             this.shadecode.Size = new System.Drawing.Size(35, 13);
@@ -358,7 +362,7 @@ namespace PackingApplication
             this.dateTimePicker1.Location = new System.Drawing.Point(34, 3);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(41, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(50, 20);
             this.dateTimePicker1.TabIndex = 6;
             this.dateTimePicker1.TabStop = false;
             // 
@@ -489,7 +493,7 @@ namespace PackingApplication
             this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
-            this.remark.Location = new System.Drawing.Point(-2, 155);
+            this.remark.Location = new System.Drawing.Point(1, 5);
             this.remark.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.remark.Name = "remark";
             this.remark.Size = new System.Drawing.Size(52, 13);
@@ -500,11 +504,11 @@ namespace PackingApplication
             // 
             this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.remarks.Location = new System.Drawing.Point(50, 145);
+            this.remarks.Location = new System.Drawing.Point(50, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
-            this.remarks.Size = new System.Drawing.Size(194, 34);
+            this.remarks.Size = new System.Drawing.Size(147, 19);
             this.remarks.TabIndex = 2;
             // 
             // scalemodel
@@ -523,10 +527,10 @@ namespace PackingApplication
             this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.QualityList.FormattingEnabled = true;
-            this.QualityList.Location = new System.Drawing.Point(62, 2);
+            this.QualityList.Location = new System.Drawing.Point(41, 2);
             this.QualityList.Margin = new System.Windows.Forms.Padding(2);
             this.QualityList.Name = "QualityList";
-            this.QualityList.Size = new System.Drawing.Size(37, 21);
+            this.QualityList.Size = new System.Drawing.Size(43, 21);
             this.QualityList.TabIndex = 1;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
@@ -541,7 +545,7 @@ namespace PackingApplication
             this.PackSizeList.Location = new System.Drawing.Point(62, 2);
             this.PackSizeList.Margin = new System.Windows.Forms.Padding(2);
             this.PackSizeList.Name = "PackSizeList";
-            this.PackSizeList.Size = new System.Drawing.Size(37, 21);
+            this.PackSizeList.Size = new System.Drawing.Size(79, 21);
             this.PackSizeList.TabIndex = 3;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
@@ -556,7 +560,7 @@ namespace PackingApplication
             this.WindingTypeList.Location = new System.Drawing.Point(53, 2);
             this.WindingTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.WindingTypeList.Name = "WindingTypeList";
-            this.WindingTypeList.Size = new System.Drawing.Size(33, 21);
+            this.WindingTypeList.Size = new System.Drawing.Size(112, 21);
             this.WindingTypeList.TabIndex = 3;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
@@ -571,7 +575,7 @@ namespace PackingApplication
             this.ComPortList.Location = new System.Drawing.Point(30, 2);
             this.ComPortList.Margin = new System.Windows.Forms.Padding(2);
             this.ComPortList.Name = "ComPortList";
-            this.ComPortList.Size = new System.Drawing.Size(32, 21);
+            this.ComPortList.Size = new System.Drawing.Size(28, 21);
             this.ComPortList.TabIndex = 1;
             this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             this.ComPortList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ComPortList_KeyDown);
@@ -586,7 +590,7 @@ namespace PackingApplication
             this.WeighingList.Location = new System.Drawing.Point(42, 3);
             this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
             this.WeighingList.Name = "WeighingList";
-            this.WeighingList.Size = new System.Drawing.Size(38, 21);
+            this.WeighingList.Size = new System.Drawing.Size(32, 21);
             this.WeighingList.TabIndex = 4;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
@@ -601,7 +605,7 @@ namespace PackingApplication
             this.CopsItemList.Location = new System.Drawing.Point(62, 2);
             this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
             this.CopsItemList.Name = "CopsItemList";
-            this.CopsItemList.Size = new System.Drawing.Size(37, 21);
+            this.CopsItemList.Size = new System.Drawing.Size(79, 21);
             this.CopsItemList.TabIndex = 4;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
@@ -616,7 +620,7 @@ namespace PackingApplication
             this.BoxItemList.Location = new System.Drawing.Point(62, 2);
             this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
             this.BoxItemList.Name = "BoxItemList";
-            this.BoxItemList.Size = new System.Drawing.Size(37, 21);
+            this.BoxItemList.Size = new System.Drawing.Size(79, 21);
             this.BoxItemList.TabIndex = 6;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
@@ -631,7 +635,7 @@ namespace PackingApplication
             this.SaleOrderList.Location = new System.Drawing.Point(46, 2);
             this.SaleOrderList.Margin = new System.Windows.Forms.Padding(2);
             this.SaleOrderList.Name = "SaleOrderList";
-            this.SaleOrderList.Size = new System.Drawing.Size(92, 21);
+            this.SaleOrderList.Size = new System.Drawing.Size(122, 21);
             this.SaleOrderList.TabIndex = 2;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SaleOrderList_KeyDown);
@@ -759,7 +763,7 @@ namespace PackingApplication
             this.copyno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copyno.Name = "copyno";
             this.copyno.ReadOnly = true;
-            this.copyno.Size = new System.Drawing.Size(17, 20);
+            this.copyno.Size = new System.Drawing.Size(13, 20);
             this.copyno.TabIndex = 3;
             this.copyno.TabStop = false;
             this.copyno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -784,7 +788,7 @@ namespace PackingApplication
             this.netwt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.netwt.Name = "netwt";
             this.netwt.ReadOnly = true;
-            this.netwt.Size = new System.Drawing.Size(18, 20);
+            this.netwt.Size = new System.Drawing.Size(12, 20);
             this.netwt.TabIndex = 9;
             this.netwt.TabStop = false;
             this.netwt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -817,10 +821,9 @@ namespace PackingApplication
             this.grosswtno.Location = new System.Drawing.Point(57, 2);
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.grosswtno.Name = "grosswtno";
-            this.grosswtno.Size = new System.Drawing.Size(29, 20);
+            this.grosswtno.Size = new System.Drawing.Size(23, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             this.grosswtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
@@ -844,11 +847,10 @@ namespace PackingApplication
             this.palletwtno.Location = new System.Drawing.Point(60, 2);
             this.palletwtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletwtno.Name = "palletwtno";
-            this.palletwtno.Size = new System.Drawing.Size(20, 20);
+            this.palletwtno.Size = new System.Drawing.Size(14, 20);
             this.palletwtno.TabIndex = 5;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
-            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             this.palletwtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
@@ -870,12 +872,11 @@ namespace PackingApplication
             this.spoolno.Location = new System.Drawing.Point(45, 0);
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.spoolno.Name = "spoolno";
-            this.spoolno.Size = new System.Drawing.Size(17, 20);
+            this.spoolno.Size = new System.Drawing.Size(13, 20);
             this.spoolno.TabIndex = 2;
             this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.Enter += new System.EventHandler(this.spoolNo_Enter);
-            this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             this.spoolno.Leave += new System.EventHandler(this.spoolNo_Leave);
@@ -901,7 +902,6 @@ namespace PackingApplication
             this.tableLayoutPanel6.Controls.Add(this.panel32, 1, 1);
             this.tableLayoutPanel6.Controls.Add(this.panel28, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.panel29, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.panel30, 2, 0);
             this.tableLayoutPanel6.Controls.Add(this.panel33, 2, 1);
             this.tableLayoutPanel6.Controls.Add(this.panel34, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.panel36, 2, 2);
@@ -915,7 +915,7 @@ namespace PackingApplication
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.35038F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.46027F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.36975F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(235, 89);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(219, 112);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // panel31
@@ -926,10 +926,10 @@ namespace PackingApplication
             this.panel31.Controls.Add(this.req7);
             this.panel31.Controls.Add(this.spoolnoerror);
             this.panel31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel31.Location = new System.Drawing.Point(0, 23);
+            this.panel31.Location = new System.Drawing.Point(0, 30);
             this.panel31.Margin = new System.Windows.Forms.Padding(0);
             this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(65, 27);
+            this.panel31.Size = new System.Drawing.Size(61, 33);
             this.panel31.TabIndex = 3;
             // 
             // spoolwt
@@ -969,10 +969,10 @@ namespace PackingApplication
             this.panel35.Controls.Add(this.label4);
             this.panel35.Controls.Add(this.netwt);
             this.panel35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel35.Location = new System.Drawing.Point(65, 50);
+            this.panel35.Location = new System.Drawing.Point(61, 63);
             this.panel35.Margin = new System.Windows.Forms.Padding(0);
             this.panel35.Name = "panel35";
-            this.panel35.Size = new System.Drawing.Size(82, 19);
+            this.panel35.Size = new System.Drawing.Size(76, 24);
             this.panel35.TabIndex = 7;
             // 
             // panel32
@@ -982,10 +982,10 @@ namespace PackingApplication
             this.panel32.Controls.Add(this.palletwterror);
             this.panel32.Controls.Add(this.palletwtno);
             this.panel32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel32.Location = new System.Drawing.Point(65, 23);
+            this.panel32.Location = new System.Drawing.Point(61, 30);
             this.panel32.Margin = new System.Windows.Forms.Padding(0);
             this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(82, 27);
+            this.panel32.Size = new System.Drawing.Size(76, 33);
             this.panel32.TabIndex = 4;
             // 
             // req8
@@ -1018,7 +1018,7 @@ namespace PackingApplication
             this.panel28.Location = new System.Drawing.Point(0, 0);
             this.panel28.Margin = new System.Windows.Forms.Padding(0);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(65, 23);
+            this.panel28.Size = new System.Drawing.Size(61, 30);
             this.panel28.TabIndex = 0;
             // 
             // panel29
@@ -1026,46 +1026,11 @@ namespace PackingApplication
             this.panel29.Controls.Add(this.scalemodel);
             this.panel29.Controls.Add(this.WeighingList);
             this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel29.Location = new System.Drawing.Point(65, 0);
+            this.panel29.Location = new System.Drawing.Point(61, 0);
             this.panel29.Margin = new System.Windows.Forms.Padding(0);
             this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(82, 23);
+            this.panel29.Size = new System.Drawing.Size(76, 30);
             this.panel29.TabIndex = 1;
-            // 
-            // panel30
-            // 
-            this.panel30.Controls.Add(this.windingtype);
-            this.panel30.Controls.Add(this.req10);
-            this.panel30.Controls.Add(this.WindingTypeList);
-            this.panel30.Controls.Add(this.windingerror);
-            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel30.Location = new System.Drawing.Point(147, 0);
-            this.panel30.Margin = new System.Windows.Forms.Padding(0);
-            this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(88, 23);
-            this.panel30.TabIndex = 2;
-            // 
-            // req10
-            // 
-            this.req10.AutoSize = true;
-            this.req10.ForeColor = System.Drawing.Color.Red;
-            this.req10.Location = new System.Drawing.Point(42, 5);
-            this.req10.Name = "req10";
-            this.req10.Size = new System.Drawing.Size(11, 13);
-            this.req10.TabIndex = 114;
-            this.req10.Text = "*";
-            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // windingerror
-            // 
-            this.windingerror.AutoSize = true;
-            this.windingerror.ForeColor = System.Drawing.Color.Red;
-            this.windingerror.Location = new System.Drawing.Point(2, 31);
-            this.windingerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.windingerror.Name = "windingerror";
-            this.windingerror.Size = new System.Drawing.Size(0, 13);
-            this.windingerror.TabIndex = 104;
-            this.windingerror.Visible = false;
             // 
             // panel33
             // 
@@ -1074,10 +1039,10 @@ namespace PackingApplication
             this.panel33.Controls.Add(this.label2);
             this.panel33.Controls.Add(this.grosswtno);
             this.panel33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel33.Location = new System.Drawing.Point(147, 23);
+            this.panel33.Location = new System.Drawing.Point(137, 30);
             this.panel33.Margin = new System.Windows.Forms.Padding(0);
             this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(88, 27);
+            this.panel33.Size = new System.Drawing.Size(82, 33);
             this.panel33.TabIndex = 5;
             // 
             // grosswterror
@@ -1107,10 +1072,10 @@ namespace PackingApplication
             this.panel34.Controls.Add(this.tarewt);
             this.panel34.Controls.Add(this.label3);
             this.panel34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel34.Location = new System.Drawing.Point(0, 50);
+            this.panel34.Location = new System.Drawing.Point(0, 63);
             this.panel34.Margin = new System.Windows.Forms.Padding(0);
             this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(65, 19);
+            this.panel34.Size = new System.Drawing.Size(61, 24);
             this.panel34.TabIndex = 6;
             // 
             // tarewt
@@ -1128,10 +1093,10 @@ namespace PackingApplication
             this.panel36.Controls.Add(this.wtpercop);
             this.panel36.Controls.Add(this.label5);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel36.Location = new System.Drawing.Point(147, 50);
+            this.panel36.Location = new System.Drawing.Point(137, 63);
             this.panel36.Margin = new System.Windows.Forms.Padding(0);
             this.panel36.Name = "panel36";
-            this.panel36.Size = new System.Drawing.Size(88, 19);
+            this.panel36.Size = new System.Drawing.Size(82, 24);
             this.panel36.TabIndex = 8;
             // 
             // wtpercop
@@ -1150,10 +1115,10 @@ namespace PackingApplication
             this.panel45.Controls.Add(this.copynoerror);
             this.panel45.Controls.Add(this.label1);
             this.panel45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel45.Location = new System.Drawing.Point(0, 69);
+            this.panel45.Location = new System.Drawing.Point(0, 87);
             this.panel45.Margin = new System.Windows.Forms.Padding(0);
             this.panel45.Name = "panel45";
-            this.panel45.Size = new System.Drawing.Size(65, 20);
+            this.panel45.Size = new System.Drawing.Size(61, 25);
             this.panel45.TabIndex = 9;
             // 
             // copynoerror
@@ -1166,6 +1131,42 @@ namespace PackingApplication
             this.copynoerror.Size = new System.Drawing.Size(0, 13);
             this.copynoerror.TabIndex = 99;
             this.copynoerror.Visible = false;
+            // 
+            // panel30
+            // 
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.panel30.Controls.Add(this.windingtype);
+            this.panel30.Controls.Add(this.req10);
+            this.panel30.Controls.Add(this.WindingTypeList);
+            this.panel30.Controls.Add(this.windingerror);
+            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel30.Location = new System.Drawing.Point(84, 101);
+            this.panel30.Margin = new System.Windows.Forms.Padding(0);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(168, 26);
+            this.panel30.TabIndex = 2;
+            // 
+            // req10
+            // 
+            this.req10.AutoSize = true;
+            this.req10.ForeColor = System.Drawing.Color.Red;
+            this.req10.Location = new System.Drawing.Point(42, 5);
+            this.req10.Name = "req10";
+            this.req10.Size = new System.Drawing.Size(11, 13);
+            this.req10.TabIndex = 114;
+            this.req10.Text = "*";
+            this.req10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // windingerror
+            // 
+            this.windingerror.AutoSize = true;
+            this.windingerror.ForeColor = System.Drawing.Color.Red;
+            this.windingerror.Location = new System.Drawing.Point(2, 31);
+            this.windingerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.windingerror.Name = "windingerror";
+            this.windingerror.Size = new System.Drawing.Size(0, 13);
+            this.windingerror.TabIndex = 104;
+            this.windingerror.Visible = false;
             // 
             // submit
             // 
@@ -1206,7 +1207,7 @@ namespace PackingApplication
             this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.buttontablelayout.Controls.Add(this.panel21, 1, 0);
-            this.buttontablelayout.Location = new System.Drawing.Point(2, 399);
+            this.buttontablelayout.Location = new System.Drawing.Point(0, 432);
             this.buttontablelayout.Name = "buttontablelayout";
             this.buttontablelayout.RowCount = 1;
             this.buttontablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1264,12 +1265,12 @@ namespace PackingApplication
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.rowMaterialBox, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 299);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(1, 336);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(498, 94);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(587, 94);
             this.tableLayoutPanel3.TabIndex = 15;
             // 
             // rowMaterialBox
@@ -1283,7 +1284,7 @@ namespace PackingApplication
             this.rowMaterialBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rowMaterialBox.Name = "rowMaterialBox";
             this.rowMaterialBox.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.rowMaterialBox.Size = new System.Drawing.Size(494, 88);
+            this.rowMaterialBox.Size = new System.Drawing.Size(583, 88);
             this.rowMaterialBox.TabIndex = 10;
             this.rowMaterialBox.TabStop = false;
             this.rowMaterialBox.Text = "Key Raw Material Stock Status";
@@ -1295,7 +1296,7 @@ namespace PackingApplication
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(7, 16);
             this.rowMaterialPanel.Name = "rowMaterialPanel";
-            this.rowMaterialPanel.Size = new System.Drawing.Size(482, 68);
+            this.rowMaterialPanel.Size = new System.Drawing.Size(571, 68);
             this.rowMaterialPanel.TabIndex = 115;
             // 
             // rowMaterial
@@ -1309,14 +1310,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1328,7 +1329,7 @@ namespace PackingApplication
             this.rowMaterial.RowHeadersVisible = false;
             this.rowMaterial.RowHeadersWidth = 62;
             this.rowMaterial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rowMaterial.Size = new System.Drawing.Size(476, 68);
+            this.rowMaterial.Size = new System.Drawing.Size(565, 68);
             this.rowMaterial.TabIndex = 2;
             this.rowMaterial.TabStop = false;
             // 
@@ -1337,16 +1338,15 @@ namespace PackingApplication
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Controls.Add(this.panel44, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tblpanl1, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 301F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(502, 301);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(587, 338);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel44
@@ -1356,7 +1356,7 @@ namespace PackingApplication
             this.panel44.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel44.Location = new System.Drawing.Point(3, 3);
             this.panel44.Name = "panel44";
-            this.panel44.Size = new System.Drawing.Size(245, 295);
+            this.panel44.Size = new System.Drawing.Size(346, 332);
             this.panel44.TabIndex = 1;
             // 
             // packagingboxlayout
@@ -1368,14 +1368,14 @@ namespace PackingApplication
             this.packagingboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.packagingboxlayout.Controls.Add(this.packagingboxheader, 0, 0);
             this.packagingboxlayout.Controls.Add(this.packagingboxpanel, 0, 1);
-            this.packagingboxlayout.Location = new System.Drawing.Point(1, 125);
+            this.packagingboxlayout.Location = new System.Drawing.Point(0, 157);
             this.packagingboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.packagingboxlayout.Name = "packagingboxlayout";
             this.packagingboxlayout.Padding = new System.Windows.Forms.Padding(2);
             this.packagingboxlayout.RowCount = 2;
             this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11F));
             this.packagingboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89F));
-            this.packagingboxlayout.Size = new System.Drawing.Size(245, 169);
+            this.packagingboxlayout.Size = new System.Drawing.Size(346, 169);
             this.packagingboxlayout.TabIndex = 2;
             this.packagingboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxlayout_Paint);
             // 
@@ -1388,7 +1388,7 @@ namespace PackingApplication
             this.packagingboxheader.Location = new System.Drawing.Point(2, 2);
             this.packagingboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.packagingboxheader.Name = "packagingboxheader";
-            this.packagingboxheader.Size = new System.Drawing.Size(241, 16);
+            this.packagingboxheader.Size = new System.Drawing.Size(342, 16);
             this.packagingboxheader.TabIndex = 107;
             this.packagingboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.packagingboxheader_Paint);
             this.packagingboxheader.Resize += new System.EventHandler(this.packagingboxheader_Resize);
@@ -1410,7 +1410,7 @@ namespace PackingApplication
             this.packagingboxpanel.Location = new System.Drawing.Point(4, 23);
             this.packagingboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.packagingboxpanel.Name = "packagingboxpanel";
-            this.packagingboxpanel.Size = new System.Drawing.Size(237, 141);
+            this.packagingboxpanel.Size = new System.Drawing.Size(338, 141);
             this.packagingboxpanel.TabIndex = 107;
             // 
             // tableLayoutPanel5
@@ -1418,16 +1418,16 @@ namespace PackingApplication
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58F));
-            this.tableLayoutPanel5.Controls.Add(this.panel18, 1, 4);
-            this.tableLayoutPanel5.Controls.Add(this.panel16, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.panel17, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.panel19, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel20, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel22, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel23, 1, 2);
-            this.tableLayoutPanel5.Controls.Add(this.panel25, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel26, 1, 3);
-            this.tableLayoutPanel5.Controls.Add(this.panel15, 0, 4);
+            this.tableLayoutPanel5.Controls.Add(this.panel19, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel47, 0, 4);
+            this.tableLayoutPanel5.Controls.Add(this.panel20, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.panel22, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.panel23, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.panel25, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.panel26, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.panel15, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.panel18, 1, 3);
+            this.tableLayoutPanel5.Controls.Add(this.panel49, 1, 4);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
@@ -1438,111 +1438,8 @@ namespace PackingApplication
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(237, 141);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(338, 141);
             this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // panel18
-            // 
-            this.panel18.Controls.Add(this.partyshade);
-            this.panel18.Controls.Add(this.partyshd);
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel18.Location = new System.Drawing.Point(99, 119);
-            this.panel18.Margin = new System.Windows.Forms.Padding(0);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(138, 22);
-            this.panel18.TabIndex = 124;
-            // 
-            // partyshade
-            // 
-            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.partyshade.AutoEllipsis = true;
-            this.partyshade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.partyshade.Location = new System.Drawing.Point(43, 0);
-            this.partyshade.MaximumSize = new System.Drawing.Size(250, 30);
-            this.partyshade.Name = "partyshade";
-            this.partyshade.Size = new System.Drawing.Size(94, 30);
-            this.partyshade.TabIndex = 123;
-            this.partyshade.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // partyshd
-            // 
-            this.partyshd.AutoSize = true;
-            this.partyshd.Location = new System.Drawing.Point(0, 0);
-            this.partyshd.Name = "partyshd";
-            this.partyshd.Size = new System.Drawing.Size(41, 26);
-            this.partyshd.TabIndex = 123;
-            this.partyshd.Text = "Party\nShade:";
-            // 
-            // panel16
-            // 
-            this.panel16.Controls.Add(this.quality);
-            this.panel16.Controls.Add(this.req4);
-            this.panel16.Controls.Add(this.QualityList);
-            this.panel16.Controls.Add(this.qualityerror);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel16.Location = new System.Drawing.Point(0, 0);
-            this.panel16.Margin = new System.Windows.Forms.Padding(0);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(99, 28);
-            this.panel16.TabIndex = 0;
-            // 
-            // req4
-            // 
-            this.req4.AutoSize = true;
-            this.req4.ForeColor = System.Drawing.Color.Red;
-            this.req4.Location = new System.Drawing.Point(35, 5);
-            this.req4.Name = "req4";
-            this.req4.Size = new System.Drawing.Size(11, 13);
-            this.req4.TabIndex = 108;
-            this.req4.Text = "*";
-            this.req4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // qualityerror
-            // 
-            this.qualityerror.AutoSize = true;
-            this.qualityerror.ForeColor = System.Drawing.Color.Red;
-            this.qualityerror.Location = new System.Drawing.Point(2, 31);
-            this.qualityerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.qualityerror.Name = "qualityerror";
-            this.qualityerror.Size = new System.Drawing.Size(0, 13);
-            this.qualityerror.TabIndex = 101;
-            this.qualityerror.Visible = false;
-            // 
-            // panel17
-            // 
-            this.panel17.Controls.Add(this.saleorderno);
-            this.panel17.Controls.Add(this.req5);
-            this.panel17.Controls.Add(this.SaleOrderList);
-            this.panel17.Controls.Add(this.soerror);
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel17.Location = new System.Drawing.Point(99, 0);
-            this.panel17.Margin = new System.Windows.Forms.Padding(0);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(138, 28);
-            this.panel17.TabIndex = 1;
-            // 
-            // req5
-            // 
-            this.req5.AutoSize = true;
-            this.req5.ForeColor = System.Drawing.Color.Red;
-            this.req5.Location = new System.Drawing.Point(33, 5);
-            this.req5.Name = "req5";
-            this.req5.Size = new System.Drawing.Size(11, 13);
-            this.req5.TabIndex = 109;
-            this.req5.Text = "*";
-            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // soerror
-            // 
-            this.soerror.AutoSize = true;
-            this.soerror.ForeColor = System.Drawing.Color.Red;
-            this.soerror.Location = new System.Drawing.Point(2, 31);
-            this.soerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.soerror.Name = "soerror";
-            this.soerror.Size = new System.Drawing.Size(0, 13);
-            this.soerror.TabIndex = 102;
-            this.soerror.Visible = false;
             // 
             // panel19
             // 
@@ -1551,10 +1448,10 @@ namespace PackingApplication
             this.panel19.Controls.Add(this.PackSizeList);
             this.panel19.Controls.Add(this.packsizeerror);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel19.Location = new System.Drawing.Point(0, 28);
+            this.panel19.Location = new System.Drawing.Point(0, 0);
             this.panel19.Margin = new System.Windows.Forms.Padding(0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(99, 28);
+            this.panel19.Size = new System.Drawing.Size(141, 28);
             this.panel19.TabIndex = 3;
             // 
             // req6
@@ -1579,6 +1476,39 @@ namespace PackingApplication
             this.packsizeerror.TabIndex = 103;
             this.packsizeerror.Visible = false;
             // 
+            // panel47
+            // 
+            this.panel47.Controls.Add(this.OwnerList);
+            this.panel47.Controls.Add(this.owner);
+            this.panel47.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel47.Location = new System.Drawing.Point(0, 119);
+            this.panel47.Margin = new System.Windows.Forms.Padding(0);
+            this.panel47.Name = "panel47";
+            this.panel47.Size = new System.Drawing.Size(141, 22);
+            this.panel47.TabIndex = 124;
+            // 
+            // OwnerList
+            // 
+            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OwnerList.FormattingEnabled = true;
+            this.OwnerList.Location = new System.Drawing.Point(62, 0);
+            this.OwnerList.Name = "OwnerList";
+            this.OwnerList.Size = new System.Drawing.Size(79, 21);
+            this.OwnerList.TabIndex = 124;
+            this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
+            this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
+            this.OwnerList.Leave += new System.EventHandler(this.ComboBox_Leave);
+            // 
+            // owner
+            // 
+            this.owner.AutoSize = true;
+            this.owner.Location = new System.Drawing.Point(-2, 3);
+            this.owner.Name = "owner";
+            this.owner.Size = new System.Drawing.Size(41, 13);
+            this.owner.TabIndex = 124;
+            this.owner.Text = "Owner:";
+            // 
             // panel20
             // 
             this.panel20.Controls.Add(this.updenier);
@@ -1586,10 +1516,10 @@ namespace PackingApplication
             this.panel20.Controls.Add(this.uptodenier);
             this.panel20.Controls.Add(this.fromdenier);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel20.Location = new System.Drawing.Point(99, 28);
+            this.panel20.Location = new System.Drawing.Point(141, 0);
             this.panel20.Margin = new System.Windows.Forms.Padding(0);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(138, 28);
+            this.panel20.Size = new System.Drawing.Size(197, 28);
             this.panel20.TabIndex = 4;
             // 
             // frdenier
@@ -1629,10 +1559,10 @@ namespace PackingApplication
             this.panel22.Controls.Add(this.CopsItemList);
             this.panel22.Controls.Add(this.copssize);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel22.Location = new System.Drawing.Point(0, 56);
+            this.panel22.Location = new System.Drawing.Point(0, 28);
             this.panel22.Margin = new System.Windows.Forms.Padding(0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(99, 28);
+            this.panel22.Size = new System.Drawing.Size(141, 28);
             this.panel22.TabIndex = 6;
             // 
             // label8
@@ -1653,10 +1583,10 @@ namespace PackingApplication
             this.panel23.Controls.Add(this.copsitemwt);
             this.panel23.Controls.Add(this.copweight);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel23.Location = new System.Drawing.Point(99, 56);
+            this.panel23.Location = new System.Drawing.Point(141, 28);
             this.panel23.Margin = new System.Windows.Forms.Padding(0);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(138, 28);
+            this.panel23.Size = new System.Drawing.Size(197, 28);
             this.panel23.TabIndex = 7;
             // 
             // copsstock
@@ -1686,10 +1616,10 @@ namespace PackingApplication
             this.panel25.Controls.Add(this.label7);
             this.panel25.Controls.Add(this.boxtype);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel25.Location = new System.Drawing.Point(0, 84);
+            this.panel25.Location = new System.Drawing.Point(0, 56);
             this.panel25.Margin = new System.Windows.Forms.Padding(0);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(99, 35);
+            this.panel25.Size = new System.Drawing.Size(141, 28);
             this.panel25.TabIndex = 9;
             // 
             // label7
@@ -1710,10 +1640,10 @@ namespace PackingApplication
             this.panel26.Controls.Add(this.boxstock);
             this.panel26.Controls.Add(this.boxweight);
             this.panel26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel26.Location = new System.Drawing.Point(99, 84);
+            this.panel26.Location = new System.Drawing.Point(141, 56);
             this.panel26.Margin = new System.Windows.Forms.Padding(0);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(138, 35);
+            this.panel26.Size = new System.Drawing.Size(197, 28);
             this.panel26.TabIndex = 10;
             // 
             // boxpalletstock
@@ -1742,10 +1672,10 @@ namespace PackingApplication
             this.panel15.Controls.Add(this.partyn);
             this.panel15.Controls.Add(this.bppartyname);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel15.Location = new System.Drawing.Point(0, 119);
+            this.panel15.Location = new System.Drawing.Point(0, 84);
             this.panel15.Margin = new System.Windows.Forms.Padding(0);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(99, 22);
+            this.panel15.Size = new System.Drawing.Size(141, 35);
             this.panel15.TabIndex = 10;
             // 
             // partyn
@@ -1754,21 +1684,65 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyn.AutoEllipsis = true;
             this.partyn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.partyn.Location = new System.Drawing.Point(35, 0);
+            this.partyn.Location = new System.Drawing.Point(46, -4);
             this.partyn.MaximumSize = new System.Drawing.Size(250, 30);
             this.partyn.Name = "partyn";
-            this.partyn.Size = new System.Drawing.Size(64, 30);
+            this.partyn.Size = new System.Drawing.Size(106, 30);
             this.partyn.TabIndex = 123;
             this.partyn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bppartyname
             // 
             this.bppartyname.AutoSize = true;
-            this.bppartyname.Location = new System.Drawing.Point(-3, 0);
+            this.bppartyname.Location = new System.Drawing.Point(2, 5);
             this.bppartyname.Name = "bppartyname";
             this.bppartyname.Size = new System.Drawing.Size(31, 26);
             this.bppartyname.TabIndex = 123;
             this.bppartyname.Text = "Party\nItem:";
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.partyshade);
+            this.panel18.Controls.Add(this.partyshd);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel18.Location = new System.Drawing.Point(141, 84);
+            this.panel18.Margin = new System.Windows.Forms.Padding(0);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(197, 35);
+            this.panel18.TabIndex = 124;
+            // 
+            // partyshade
+            // 
+            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.partyshade.AutoEllipsis = true;
+            this.partyshade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.partyshade.Location = new System.Drawing.Point(43, 0);
+            this.partyshade.MaximumSize = new System.Drawing.Size(250, 30);
+            this.partyshade.Name = "partyshade";
+            this.partyshade.Size = new System.Drawing.Size(153, 30);
+            this.partyshade.TabIndex = 123;
+            this.partyshade.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // partyshd
+            // 
+            this.partyshd.AutoSize = true;
+            this.partyshd.Location = new System.Drawing.Point(4, 3);
+            this.partyshd.Name = "partyshd";
+            this.partyshd.Size = new System.Drawing.Size(41, 26);
+            this.partyshd.TabIndex = 123;
+            this.partyshd.Text = "Party\nShade:";
+            // 
+            // panel49
+            // 
+            this.panel49.Controls.Add(this.remark);
+            this.panel49.Controls.Add(this.remarks);
+            this.panel49.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel49.Location = new System.Drawing.Point(141, 119);
+            this.panel49.Margin = new System.Windows.Forms.Padding(0);
+            this.panel49.Name = "panel49";
+            this.panel49.Size = new System.Drawing.Size(197, 22);
+            this.panel49.TabIndex = 125;
             // 
             // machineboxlayout
             // 
@@ -1786,7 +1760,7 @@ namespace PackingApplication
             this.machineboxlayout.RowCount = 2;
             this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
             this.machineboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87F));
-            this.machineboxlayout.Size = new System.Drawing.Size(245, 124);
+            this.machineboxlayout.Size = new System.Drawing.Size(346, 156);
             this.machineboxlayout.TabIndex = 1;
             this.machineboxlayout.TabStop = true;
             this.machineboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxlayout_Paint);
@@ -1796,31 +1770,34 @@ namespace PackingApplication
             this.machineboxpanel.BackColor = System.Drawing.Color.White;
             this.machineboxpanel.Controls.Add(this.tableLayoutPanel4);
             this.machineboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.machineboxpanel.Location = new System.Drawing.Point(4, 20);
+            this.machineboxpanel.Location = new System.Drawing.Point(4, 24);
             this.machineboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.machineboxpanel.Name = "machineboxpanel";
-            this.machineboxpanel.Size = new System.Drawing.Size(237, 99);
+            this.machineboxpanel.Size = new System.Drawing.Size(338, 127);
             this.machineboxpanel.TabIndex = 107;
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33555F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.33229F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.33216F));
-            this.tableLayoutPanel4.Controls.Add(this.panel47, 3, 3);
-            this.tableLayoutPanel4.Controls.Add(this.panel46, 2, 3);
-            this.tableLayoutPanel4.Controls.Add(this.panel27, 1, 3);
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.panel2, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.panel4, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.panel9, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.panel10, 2, 1);
-            this.tableLayoutPanel4.Controls.Add(this.panel11, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.panel12, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.panel13, 2, 2);
-            this.tableLayoutPanel4.Controls.Add(this.panel14, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.panel8, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel16, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.panel8, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel4, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel10, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel9, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.panel46, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.panel11, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.panel12, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.panel17, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.panel27, 3, 3);
+            this.tableLayoutPanel4.Controls.Add(this.panel14, 3, 2);
+            this.tableLayoutPanel4.Controls.Add(this.panel48, 2, 2);
+            this.tableLayoutPanel4.Controls.Add(this.panel30, 1, 4);
+            this.tableLayoutPanel4.Controls.Add(this.panel13, 3, 4);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -1828,103 +1805,11 @@ namespace PackingApplication
             this.tableLayoutPanel4.RowCount = 4;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(237, 99);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(338, 127);
             this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // panel47
-            // 
-            this.panel47.Controls.Add(this.OwnerList);
-            this.panel47.Controls.Add(this.owner);
-            this.panel47.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel47.Location = new System.Drawing.Point(0, 78);
-            this.panel47.Margin = new System.Windows.Forms.Padding(0);
-            this.panel47.Name = "panel47";
-            this.panel47.Size = new System.Drawing.Size(79, 21);
-            this.panel47.TabIndex = 124;
-            // 
-            // OwnerList
-            // 
-            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.OwnerList.FormattingEnabled = true;
-            this.OwnerList.Location = new System.Drawing.Point(36, 0);
-            this.OwnerList.Name = "OwnerList";
-            this.OwnerList.Size = new System.Drawing.Size(43, 21);
-            this.OwnerList.TabIndex = 124;
-            this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
-            this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
-            this.OwnerList.Leave += new System.EventHandler(this.ComboBox_Leave);
-            // 
-            // owner
-            // 
-            this.owner.AutoSize = true;
-            this.owner.Location = new System.Drawing.Point(-2, 3);
-            this.owner.Name = "owner";
-            this.owner.Size = new System.Drawing.Size(41, 13);
-            this.owner.TabIndex = 124;
-            this.owner.Text = "Owner:";
-            // 
-            // panel46
-            // 
-            this.panel46.Controls.Add(this.salelotvalue);
-            this.panel46.Controls.Add(this.salelot);
-            this.panel46.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel46.Location = new System.Drawing.Point(160, 65);
-            this.panel46.Margin = new System.Windows.Forms.Padding(0);
-            this.panel46.Name = "panel46";
-            this.panel46.Size = new System.Drawing.Size(77, 13);
-            this.panel46.TabIndex = 125;
-            // 
-            // salelotvalue
-            // 
-            this.salelotvalue.AutoSize = true;
-            this.salelotvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.salelotvalue.Location = new System.Drawing.Point(40, 1);
-            this.salelotvalue.Name = "salelotvalue";
-            this.salelotvalue.Size = new System.Drawing.Size(0, 13);
-            this.salelotvalue.TabIndex = 124;
-            // 
-            // salelot
-            // 
-            this.salelot.AutoSize = true;
-            this.salelot.Location = new System.Drawing.Point(0, 1);
-            this.salelot.Name = "salelot";
-            this.salelot.Size = new System.Drawing.Size(46, 13);
-            this.salelot.TabIndex = 124;
-            this.salelot.Text = "SaleLot:";
-            // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.twistvalue);
-            this.panel27.Controls.Add(this.twist);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel27.Location = new System.Drawing.Point(79, 65);
-            this.panel27.Margin = new System.Windows.Forms.Padding(0);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(81, 13);
-            this.panel27.TabIndex = 124;
-            // 
-            // twistvalue
-            // 
-            this.twistvalue.AutoSize = true;
-            this.twistvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.twistvalue.Location = new System.Drawing.Point(30, 0);
-            this.twistvalue.Name = "twistvalue";
-            this.twistvalue.Size = new System.Drawing.Size(0, 13);
-            this.twistvalue.TabIndex = 124;
-            // 
-            // twist
-            // 
-            this.twist.AutoSize = true;
-            this.twist.Location = new System.Drawing.Point(-3, 0);
-            this.twist.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.twist.Name = "twist";
-            this.twist.Size = new System.Drawing.Size(35, 13);
-            this.twist.TabIndex = 95;
-            this.twist.Text = "Twist:";
             // 
             // panel1
             // 
@@ -1936,7 +1821,7 @@ namespace PackingApplication
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(79, 20);
+            this.panel1.Size = new System.Drawing.Size(84, 26);
             this.panel1.TabIndex = 0;
             // 
             // lineno
@@ -1970,7 +1855,7 @@ namespace PackingApplication
             this.LineNoList.Location = new System.Drawing.Point(36, 0);
             this.LineNoList.Margin = new System.Windows.Forms.Padding(2);
             this.LineNoList.Name = "LineNoList";
-            this.LineNoList.Size = new System.Drawing.Size(42, 21);
+            this.LineNoList.Size = new System.Drawing.Size(47, 21);
             this.LineNoList.TabIndex = 1;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
@@ -1988,35 +1873,74 @@ namespace PackingApplication
             this.linenoerror.TabIndex = 98;
             this.linenoerror.Visible = false;
             // 
-            // panel2
+            // panel16
             // 
-            this.panel2.Controls.Add(this.lastbox);
-            this.panel2.Controls.Add(this.lastboxno);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(79, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(81, 20);
-            this.panel2.TabIndex = 1;
+            this.panel16.Controls.Add(this.quality);
+            this.panel16.Controls.Add(this.req4);
+            this.panel16.Controls.Add(this.QualityList);
+            this.panel16.Controls.Add(this.qualityerror);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel16.Location = new System.Drawing.Point(0, 101);
+            this.panel16.Margin = new System.Windows.Forms.Padding(0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(84, 26);
+            this.panel16.TabIndex = 0;
             // 
-            // lastbox
+            // req4
             // 
-            this.lastbox.AutoSize = true;
-            this.lastbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.lastbox.Location = new System.Drawing.Point(50, 4);
-            this.lastbox.Name = "lastbox";
-            this.lastbox.Size = new System.Drawing.Size(0, 13);
-            this.lastbox.TabIndex = 5;
+            this.req4.AutoSize = true;
+            this.req4.ForeColor = System.Drawing.Color.Red;
+            this.req4.Location = new System.Drawing.Point(35, 5);
+            this.req4.Name = "req4";
+            this.req4.Size = new System.Drawing.Size(11, 13);
+            this.req4.TabIndex = 108;
+            this.req4.Text = "*";
+            this.req4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lastboxno
+            // qualityerror
             // 
-            this.lastboxno.AutoSize = true;
-            this.lastboxno.Location = new System.Drawing.Point(0, 3);
-            this.lastboxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lastboxno.Name = "lastboxno";
-            this.lastboxno.Size = new System.Drawing.Size(51, 13);
-            this.lastboxno.TabIndex = 6;
-            this.lastboxno.Text = "Last Box:";
+            this.qualityerror.AutoSize = true;
+            this.qualityerror.ForeColor = System.Drawing.Color.Red;
+            this.qualityerror.Location = new System.Drawing.Point(2, 31);
+            this.qualityerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.qualityerror.Name = "qualityerror";
+            this.qualityerror.Size = new System.Drawing.Size(0, 13);
+            this.qualityerror.TabIndex = 101;
+            this.qualityerror.Visible = false;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.DeptList);
+            this.panel8.Controls.Add(this.department);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(84, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(84, 26);
+            this.panel8.TabIndex = 2;
+            // 
+            // DeptList
+            // 
+            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeptList.FormattingEnabled = true;
+            this.DeptList.Location = new System.Drawing.Point(34, 0);
+            this.DeptList.Name = "DeptList";
+            this.DeptList.Size = new System.Drawing.Size(49, 21);
+            this.DeptList.TabIndex = 2;
+            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
+            this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
+            this.DeptList.Leave += new System.EventHandler(this.ComboBox_Leave);
+            // 
+            // department
+            // 
+            this.department.AutoSize = true;
+            this.department.Location = new System.Drawing.Point(0, 3);
+            this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.department.Name = "department";
+            this.department.Size = new System.Drawing.Size(33, 13);
+            this.department.TabIndex = 2;
+            this.department.Text = "Dept:";
             // 
             // panel4
             // 
@@ -2025,10 +1949,10 @@ namespace PackingApplication
             this.panel4.Controls.Add(this.PrefixList);
             this.panel4.Controls.Add(this.boxnoerror);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 20);
+            this.panel4.Location = new System.Drawing.Point(168, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(79, 21);
+            this.panel4.Size = new System.Drawing.Size(84, 26);
             this.panel4.TabIndex = 3;
             // 
             // req2
@@ -2051,7 +1975,7 @@ namespace PackingApplication
             this.PrefixList.Location = new System.Drawing.Point(36, 3);
             this.PrefixList.Margin = new System.Windows.Forms.Padding(2);
             this.PrefixList.Name = "PrefixList";
-            this.PrefixList.Size = new System.Drawing.Size(42, 21);
+            this.PrefixList.Size = new System.Drawing.Size(47, 21);
             this.PrefixList.TabIndex = 3;
             this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
             this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
@@ -2068,6 +1992,17 @@ namespace PackingApplication
             this.boxnoerror.TabIndex = 105;
             this.boxnoerror.Visible = false;
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.packingdate);
+            this.panel10.Controls.Add(this.dateTimePicker1);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(252, 0);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(86, 26);
+            this.panel10.TabIndex = 5;
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.req3);
@@ -2075,10 +2010,10 @@ namespace PackingApplication
             this.panel9.Controls.Add(this.MergeNoList);
             this.panel9.Controls.Add(this.mergenoerror);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(79, 20);
+            this.panel9.Location = new System.Drawing.Point(0, 26);
             this.panel9.Margin = new System.Windows.Forms.Padding(0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(81, 21);
+            this.panel9.Size = new System.Drawing.Size(84, 27);
             this.panel9.TabIndex = 4;
             // 
             // req3
@@ -2111,7 +2046,7 @@ namespace PackingApplication
             this.MergeNoList.Location = new System.Drawing.Point(42, 0);
             this.MergeNoList.Margin = new System.Windows.Forms.Padding(2);
             this.MergeNoList.Name = "MergeNoList";
-            this.MergeNoList.Size = new System.Drawing.Size(39, 21);
+            this.MergeNoList.Size = new System.Drawing.Size(42, 21);
             this.MergeNoList.TabIndex = 4;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
@@ -2129,26 +2064,45 @@ namespace PackingApplication
             this.mergenoerror.TabIndex = 100;
             this.mergenoerror.Visible = false;
             // 
-            // panel10
+            // panel46
             // 
-            this.panel10.Controls.Add(this.packingdate);
-            this.panel10.Controls.Add(this.dateTimePicker1);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(160, 20);
-            this.panel10.Margin = new System.Windows.Forms.Padding(0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(77, 21);
-            this.panel10.TabIndex = 5;
+            this.panel46.Controls.Add(this.salelotvalue);
+            this.panel46.Controls.Add(this.salelot);
+            this.panel46.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel46.Location = new System.Drawing.Point(84, 26);
+            this.panel46.Margin = new System.Windows.Forms.Padding(0);
+            this.panel46.Name = "panel46";
+            this.panel46.Size = new System.Drawing.Size(84, 27);
+            this.panel46.TabIndex = 125;
+            // 
+            // salelotvalue
+            // 
+            this.salelotvalue.AutoSize = true;
+            this.salelotvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.salelotvalue.Location = new System.Drawing.Point(45, 2);
+            this.salelotvalue.Name = "salelotvalue";
+            this.salelotvalue.Size = new System.Drawing.Size(0, 13);
+            this.salelotvalue.TabIndex = 124;
+            // 
+            // salelot
+            // 
+            this.salelot.AutoSize = true;
+            this.salelot.Location = new System.Drawing.Point(2, 2);
+            this.salelot.Name = "salelot";
+            this.salelot.Size = new System.Drawing.Size(46, 13);
+            this.salelot.TabIndex = 124;
+            this.salelot.Text = "SaleLot:";
             // 
             // panel11
             // 
+            this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.panel11.Controls.Add(this.itemname);
             this.panel11.Controls.Add(this.item);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(0, 41);
+            this.panel11.Location = new System.Drawing.Point(168, 26);
             this.panel11.Margin = new System.Windows.Forms.Padding(0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(79, 24);
+            this.panel11.Size = new System.Drawing.Size(170, 27);
             this.panel11.TabIndex = 6;
             // 
             // itemname
@@ -2160,7 +2114,7 @@ namespace PackingApplication
             this.itemname.Location = new System.Drawing.Point(28, 0);
             this.itemname.MaximumSize = new System.Drawing.Size(250, 30);
             this.itemname.Name = "itemname";
-            this.itemname.Size = new System.Drawing.Size(50, 30);
+            this.itemname.Size = new System.Drawing.Size(141, 30);
             this.itemname.TabIndex = 5;
             this.itemname.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -2176,22 +2130,21 @@ namespace PackingApplication
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.shadecd);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.panel12.Controls.Add(this.shadename);
-            this.panel12.Controls.Add(this.shadecode);
             this.panel12.Controls.Add(this.shade);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(79, 41);
+            this.panel12.Location = new System.Drawing.Point(0, 53);
             this.panel12.Margin = new System.Windows.Forms.Padding(0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(81, 24);
+            this.panel12.Size = new System.Drawing.Size(168, 27);
             this.panel12.TabIndex = 7;
             // 
             // shadecd
             // 
             this.shadecd.AutoSize = true;
             this.shadecd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.shadecd.Location = new System.Drawing.Point(38, 14);
+            this.shadecd.Location = new System.Drawing.Point(38, 5);
             this.shadecd.Name = "shadecd";
             this.shadecd.Size = new System.Drawing.Size(0, 13);
             this.shadecd.TabIndex = 5;
@@ -2208,52 +2161,88 @@ namespace PackingApplication
             // shade
             // 
             this.shade.AutoSize = true;
-            this.shade.Location = new System.Drawing.Point(-1, 1);
+            this.shade.Location = new System.Drawing.Point(0, 5);
             this.shade.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.shade.Name = "shade";
             this.shade.Size = new System.Drawing.Size(41, 13);
             this.shade.TabIndex = 10;
             this.shade.Text = "Shade:";
             // 
-            // panel13
+            // panel17
             // 
-            this.panel13.Controls.Add(this.prodtype);
-            this.panel13.Controls.Add(this.productiontype);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(160, 41);
-            this.panel13.Margin = new System.Windows.Forms.Padding(0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(77, 24);
-            this.panel13.TabIndex = 8;
+            this.tableLayoutPanel4.SetColumnSpan(this.panel17, 2);
+            this.panel17.Controls.Add(this.saleorderno);
+            this.panel17.Controls.Add(this.req5);
+            this.panel17.Controls.Add(this.SaleOrderList);
+            this.panel17.Controls.Add(this.soerror);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel17.Location = new System.Drawing.Point(0, 80);
+            this.panel17.Margin = new System.Windows.Forms.Padding(0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(168, 21);
+            this.panel17.TabIndex = 1;
             // 
-            // prodtype
+            // req5
             // 
-            this.prodtype.AutoSize = true;
-            this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.prodtype.Location = new System.Drawing.Point(34, 5);
-            this.prodtype.Name = "prodtype";
-            this.prodtype.Size = new System.Drawing.Size(0, 13);
-            this.prodtype.TabIndex = 5;
+            this.req5.AutoSize = true;
+            this.req5.ForeColor = System.Drawing.Color.Red;
+            this.req5.Location = new System.Drawing.Point(33, 5);
+            this.req5.Name = "req5";
+            this.req5.Size = new System.Drawing.Size(11, 13);
+            this.req5.TabIndex = 109;
+            this.req5.Text = "*";
+            this.req5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // productiontype
+            // soerror
             // 
-            this.productiontype.AutoSize = true;
-            this.productiontype.Location = new System.Drawing.Point(0, 1);
-            this.productiontype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.productiontype.Name = "productiontype";
-            this.productiontype.Size = new System.Drawing.Size(34, 26);
-            this.productiontype.TabIndex = 44;
-            this.productiontype.Text = "Prod\nType:";
+            this.soerror.AutoSize = true;
+            this.soerror.ForeColor = System.Drawing.Color.Red;
+            this.soerror.Location = new System.Drawing.Point(2, 31);
+            this.soerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.soerror.Name = "soerror";
+            this.soerror.Size = new System.Drawing.Size(0, 13);
+            this.soerror.TabIndex = 102;
+            this.soerror.Visible = false;
+            // 
+            // panel27
+            // 
+            this.panel27.Controls.Add(this.twistvalue);
+            this.panel27.Controls.Add(this.twist);
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel27.Location = new System.Drawing.Point(252, 80);
+            this.panel27.Margin = new System.Windows.Forms.Padding(0);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(86, 21);
+            this.panel27.TabIndex = 124;
+            // 
+            // twistvalue
+            // 
+            this.twistvalue.AutoSize = true;
+            this.twistvalue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.twistvalue.Location = new System.Drawing.Point(30, 0);
+            this.twistvalue.Name = "twistvalue";
+            this.twistvalue.Size = new System.Drawing.Size(0, 13);
+            this.twistvalue.TabIndex = 124;
+            // 
+            // twist
+            // 
+            this.twist.AutoSize = true;
+            this.twist.Location = new System.Drawing.Point(-3, 0);
+            this.twist.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.twist.Name = "twist";
+            this.twist.Size = new System.Drawing.Size(35, 13);
+            this.twist.TabIndex = 95;
+            this.twist.Text = "Twist:";
             // 
             // panel14
             // 
             this.panel14.Controls.Add(this.deniervalue);
             this.panel14.Controls.Add(this.denier);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(0, 65);
+            this.panel14.Location = new System.Drawing.Point(252, 53);
             this.panel14.Margin = new System.Windows.Forms.Padding(0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(79, 13);
+            this.panel14.Size = new System.Drawing.Size(86, 27);
             this.panel14.TabIndex = 9;
             // 
             // deniervalue
@@ -2268,46 +2257,53 @@ namespace PackingApplication
             // denier
             // 
             this.denier.AutoSize = true;
-            this.denier.Location = new System.Drawing.Point(-3, 1);
+            this.denier.Location = new System.Drawing.Point(0, 9);
             this.denier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.denier.Name = "denier";
             this.denier.Size = new System.Drawing.Size(41, 13);
             this.denier.TabIndex = 94;
             this.denier.Text = "Denier:";
             // 
-            // panel8
+            // panel48
             // 
-            this.panel8.Controls.Add(this.DeptList);
-            this.panel8.Controls.Add(this.department);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(160, 0);
-            this.panel8.Margin = new System.Windows.Forms.Padding(0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(77, 20);
-            this.panel8.TabIndex = 2;
+            this.panel48.Controls.Add(this.shadecode);
+            this.panel48.Controls.Add(this.shadecd);
+            this.panel48.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel48.Location = new System.Drawing.Point(168, 53);
+            this.panel48.Margin = new System.Windows.Forms.Padding(0);
+            this.panel48.Name = "panel48";
+            this.panel48.Size = new System.Drawing.Size(84, 27);
+            this.panel48.TabIndex = 124;
             // 
-            // DeptList
+            // panel13
             // 
-            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeptList.FormattingEnabled = true;
-            this.DeptList.Location = new System.Drawing.Point(34, 0);
-            this.DeptList.Name = "DeptList";
-            this.DeptList.Size = new System.Drawing.Size(42, 21);
-            this.DeptList.TabIndex = 2;
-            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
-            this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
-            this.DeptList.Leave += new System.EventHandler(this.ComboBox_Leave);
+            this.panel13.Controls.Add(this.prodtype);
+            this.panel13.Controls.Add(this.productiontype);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(252, 101);
+            this.panel13.Margin = new System.Windows.Forms.Padding(0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(86, 26);
+            this.panel13.TabIndex = 8;
             // 
-            // department
+            // prodtype
             // 
-            this.department.AutoSize = true;
-            this.department.Location = new System.Drawing.Point(0, 3);
-            this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(33, 13);
-            this.department.TabIndex = 2;
-            this.department.Text = "Dept:";
+            this.prodtype.AutoSize = true;
+            this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.prodtype.Location = new System.Drawing.Point(34, 5);
+            this.prodtype.Name = "prodtype";
+            this.prodtype.Size = new System.Drawing.Size(0, 13);
+            this.prodtype.TabIndex = 5;
+            // 
+            // productiontype
+            // 
+            this.productiontype.AutoSize = true;
+            this.productiontype.Location = new System.Drawing.Point(-2, -4);
+            this.productiontype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.productiontype.Name = "productiontype";
+            this.productiontype.Size = new System.Drawing.Size(34, 26);
+            this.productiontype.TabIndex = 44;
+            this.productiontype.Text = "Prod\nType:";
             // 
             // machineboxheader
             // 
@@ -2315,10 +2311,11 @@ namespace PackingApplication
             | System.Windows.Forms.AnchorStyles.Right)));
             this.machineboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.machineboxheader.Controls.Add(this.Machinelbl);
+            this.machineboxheader.Controls.Add(this.panel2);
             this.machineboxheader.Location = new System.Drawing.Point(2, 2);
             this.machineboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.machineboxheader.Name = "machineboxheader";
-            this.machineboxheader.Size = new System.Drawing.Size(241, 13);
+            this.machineboxheader.Size = new System.Drawing.Size(342, 17);
             this.machineboxheader.TabIndex = 1;
             this.machineboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.machineboxheader_Paint);
             this.machineboxheader.Resize += new System.EventHandler(this.machineboxheader_Resize);
@@ -2326,24 +2323,51 @@ namespace PackingApplication
             // Machinelbl
             // 
             this.Machinelbl.AutoSize = true;
-            this.Machinelbl.Location = new System.Drawing.Point(2, -1);
+            this.Machinelbl.Location = new System.Drawing.Point(2, 2);
             this.Machinelbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Machinelbl.Name = "Machinelbl";
             this.Machinelbl.Size = new System.Drawing.Size(68, 13);
             this.Machinelbl.TabIndex = 107;
             this.Machinelbl.Text = "Order Details";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lastbox);
+            this.panel2.Controls.Add(this.lastboxno);
+            this.panel2.Location = new System.Drawing.Point(206, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(132, 13);
+            this.panel2.TabIndex = 1;
+            // 
+            // lastbox
+            // 
+            this.lastbox.AutoSize = true;
+            this.lastbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.lastbox.Location = new System.Drawing.Point(60, 1);
+            this.lastbox.Name = "lastbox";
+            this.lastbox.Size = new System.Drawing.Size(0, 13);
+            this.lastbox.TabIndex = 5;
+            // 
+            // lastboxno
+            // 
+            this.lastboxno.AutoSize = true;
+            this.lastboxno.Location = new System.Drawing.Point(0, 1);
+            this.lastboxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lastboxno.Name = "lastboxno";
+            this.lastboxno.Size = new System.Drawing.Size(51, 13);
+            this.lastboxno.TabIndex = 6;
+            this.lastboxno.Text = "Last Box:";
+            // 
             // tblpanl1
             // 
             this.tblpanl1.Controls.Add(this.weighboxlayout);
             this.tblpanl1.Controls.Add(this.printingdetailslayout);
-            this.tblpanl1.Controls.Add(this.remark);
-            this.tblpanl1.Controls.Add(this.remarks);
             this.tblpanl1.Controls.Add(this.lastboxlayout);
             this.tblpanl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblpanl1.Location = new System.Drawing.Point(254, 3);
+            this.tblpanl1.Location = new System.Drawing.Point(355, 3);
             this.tblpanl1.Name = "tblpanl1";
-            this.tblpanl1.Size = new System.Drawing.Size(245, 295);
+            this.tblpanl1.Size = new System.Drawing.Size(229, 332);
             this.tblpanl1.TabIndex = 2;
             // 
             // weighboxlayout
@@ -2355,14 +2379,14 @@ namespace PackingApplication
             this.weighboxlayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.weighboxlayout.Controls.Add(this.weighboxheader, 0, 0);
             this.weighboxlayout.Controls.Add(this.weighboxpanel, 0, 1);
-            this.weighboxlayout.Location = new System.Drawing.Point(2, 180);
+            this.weighboxlayout.Location = new System.Drawing.Point(0, 171);
             this.weighboxlayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.weighboxlayout.Name = "weighboxlayout";
             this.weighboxlayout.Padding = new System.Windows.Forms.Padding(2);
             this.weighboxlayout.RowCount = 2;
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86F));
-            this.weighboxlayout.Size = new System.Drawing.Size(243, 114);
+            this.weighboxlayout.Size = new System.Drawing.Size(227, 141);
             this.weighboxlayout.TabIndex = 3;
             this.weighboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxlayout_Paint);
             // 
@@ -2374,7 +2398,7 @@ namespace PackingApplication
             this.weighboxheader.Location = new System.Drawing.Point(2, 2);
             this.weighboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.weighboxheader.Name = "weighboxheader";
-            this.weighboxheader.Size = new System.Drawing.Size(239, 15);
+            this.weighboxheader.Size = new System.Drawing.Size(223, 19);
             this.weighboxheader.TabIndex = 107;
             this.weighboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxheader_Paint);
             this.weighboxheader.Resize += new System.EventHandler(this.weighboxheader_Resize);
@@ -2382,7 +2406,7 @@ namespace PackingApplication
             // Weighboxlbl
             // 
             this.Weighboxlbl.AutoSize = true;
-            this.Weighboxlbl.Location = new System.Drawing.Point(2, 1);
+            this.Weighboxlbl.Location = new System.Drawing.Point(2, 3);
             this.Weighboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Weighboxlbl.Name = "Weighboxlbl";
             this.Weighboxlbl.Size = new System.Drawing.Size(88, 13);
@@ -2394,10 +2418,10 @@ namespace PackingApplication
             this.weighboxpanel.Controls.Add(this.tableLayoutPanel6);
             this.weighboxpanel.Controls.Add(this.spoolwterror);
             this.weighboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.weighboxpanel.Location = new System.Drawing.Point(4, 20);
+            this.weighboxpanel.Location = new System.Drawing.Point(4, 24);
             this.weighboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.weighboxpanel.Name = "weighboxpanel";
-            this.weighboxpanel.Size = new System.Drawing.Size(235, 89);
+            this.weighboxpanel.Size = new System.Drawing.Size(219, 112);
             this.weighboxpanel.TabIndex = 107;
             // 
             // spoolwterror
@@ -2427,7 +2451,7 @@ namespace PackingApplication
             this.printingdetailslayout.RowCount = 2;
             this.printingdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
             this.printingdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78F));
-            this.printingdetailslayout.Size = new System.Drawing.Size(243, 66);
+            this.printingdetailslayout.Size = new System.Drawing.Size(227, 66);
             this.printingdetailslayout.TabIndex = 1;
             this.printingdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailslayout_Paint);
             // 
@@ -2438,7 +2462,7 @@ namespace PackingApplication
             this.panel3.Location = new System.Drawing.Point(4, 18);
             this.panel3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(235, 43);
+            this.panel3.Size = new System.Drawing.Size(219, 43);
             this.panel3.TabIndex = 1;
             // 
             // tableLayoutPanel7
@@ -2463,7 +2487,7 @@ namespace PackingApplication
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(235, 43);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(219, 43);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // panel37
@@ -2473,27 +2497,27 @@ namespace PackingApplication
             this.panel37.Location = new System.Drawing.Point(0, 0);
             this.panel37.Margin = new System.Windows.Forms.Padding(0);
             this.panel37.Name = "panel37";
-            this.panel37.Size = new System.Drawing.Size(69, 21);
+            this.panel37.Size = new System.Drawing.Size(64, 21);
             this.panel37.TabIndex = 0;
             // 
             // panel38
             // 
             this.panel38.Controls.Add(this.prowner);
             this.panel38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel38.Location = new System.Drawing.Point(69, 0);
+            this.panel38.Location = new System.Drawing.Point(64, 0);
             this.panel38.Margin = new System.Windows.Forms.Padding(0);
             this.panel38.Name = "panel38";
-            this.panel38.Size = new System.Drawing.Size(54, 21);
+            this.panel38.Size = new System.Drawing.Size(51, 21);
             this.panel38.TabIndex = 1;
             // 
             // panel39
             // 
             this.panel39.Controls.Add(this.prdate);
             this.panel39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel39.Location = new System.Drawing.Point(123, 0);
+            this.panel39.Location = new System.Drawing.Point(115, 0);
             this.panel39.Margin = new System.Windows.Forms.Padding(0);
             this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(63, 21);
+            this.panel39.Size = new System.Drawing.Size(59, 21);
             this.panel39.TabIndex = 2;
             // 
             // panel40
@@ -2504,7 +2528,7 @@ namespace PackingApplication
             this.panel40.Location = new System.Drawing.Point(0, 21);
             this.panel40.Margin = new System.Windows.Forms.Padding(0);
             this.panel40.Name = "panel40";
-            this.panel40.Size = new System.Drawing.Size(69, 17);
+            this.panel40.Size = new System.Drawing.Size(64, 17);
             this.panel40.TabIndex = 4;
             // 
             // panel42
@@ -2512,10 +2536,10 @@ namespace PackingApplication
             this.panel42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel42.Controls.Add(this.prwtps);
-            this.panel42.Location = new System.Drawing.Point(123, 21);
+            this.panel42.Location = new System.Drawing.Point(115, 21);
             this.panel42.Margin = new System.Windows.Forms.Padding(0);
             this.panel42.Name = "panel42";
-            this.panel42.Size = new System.Drawing.Size(63, 17);
+            this.panel42.Size = new System.Drawing.Size(59, 17);
             this.panel42.TabIndex = 6;
             // 
             // panel41
@@ -2523,30 +2547,30 @@ namespace PackingApplication
             this.panel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel41.Controls.Add(this.pruser);
-            this.panel41.Location = new System.Drawing.Point(186, 0);
+            this.panel41.Location = new System.Drawing.Point(174, 0);
             this.panel41.Margin = new System.Windows.Forms.Padding(0);
             this.panel41.Name = "panel41";
-            this.panel41.Size = new System.Drawing.Size(49, 17);
+            this.panel41.Size = new System.Drawing.Size(45, 17);
             this.panel41.TabIndex = 3;
             // 
             // panel43
             // 
             this.panel43.Controls.Add(this.prqrcode);
             this.panel43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel43.Location = new System.Drawing.Point(69, 21);
+            this.panel43.Location = new System.Drawing.Point(64, 21);
             this.panel43.Margin = new System.Windows.Forms.Padding(0);
             this.panel43.Name = "panel43";
-            this.panel43.Size = new System.Drawing.Size(54, 22);
+            this.panel43.Size = new System.Drawing.Size(51, 22);
             this.panel43.TabIndex = 5;
             // 
             // panel24
             // 
             this.panel24.Controls.Add(this.prtwist);
             this.panel24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel24.Location = new System.Drawing.Point(186, 21);
+            this.panel24.Location = new System.Drawing.Point(174, 21);
             this.panel24.Margin = new System.Windows.Forms.Padding(0);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(49, 22);
+            this.panel24.Size = new System.Drawing.Size(45, 22);
             this.panel24.TabIndex = 7;
             // 
             // prtwist
@@ -2571,7 +2595,7 @@ namespace PackingApplication
             this.printingdetailsheader.Margin = new System.Windows.Forms.Padding(0);
             this.printingdetailsheader.Name = "printingdetailsheader";
             this.printingdetailsheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.printingdetailsheader.Size = new System.Drawing.Size(239, 13);
+            this.printingdetailsheader.Size = new System.Drawing.Size(223, 13);
             this.printingdetailsheader.TabIndex = 107;
             this.printingdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.printingdetailsheader_Paint);
             this.printingdetailsheader.Resize += new System.EventHandler(this.printingdetailsheader_Resize);
@@ -2602,7 +2626,7 @@ namespace PackingApplication
             this.lastboxlayout.RowCount = 2;
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.lastboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.lastboxlayout.Size = new System.Drawing.Size(243, 76);
+            this.lastboxlayout.Size = new System.Drawing.Size(227, 76);
             this.lastboxlayout.TabIndex = 1;
             this.lastboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxlayout_Paint);
             // 
@@ -2616,7 +2640,7 @@ namespace PackingApplication
             this.lastboxpanel.Location = new System.Drawing.Point(4, 23);
             this.lastboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastboxpanel.Name = "lastboxpanel";
-            this.lastboxpanel.Size = new System.Drawing.Size(235, 48);
+            this.lastboxpanel.Size = new System.Drawing.Size(219, 48);
             this.lastboxpanel.TabIndex = 107;
             // 
             // lastbxnetwtpanel
@@ -2625,7 +2649,7 @@ namespace PackingApplication
             this.lastbxnetwtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxnetwtpanel.Controls.Add(this.netwttxtbox);
             this.lastbxnetwtpanel.Controls.Add(this.netweight);
-            this.lastbxnetwtpanel.Location = new System.Drawing.Point(199, 2);
+            this.lastbxnetwtpanel.Location = new System.Drawing.Point(191, 2);
             this.lastbxnetwtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastbxnetwtpanel.Name = "lastbxnetwtpanel";
             this.lastbxnetwtpanel.Size = new System.Drawing.Size(74, 45);
@@ -2663,7 +2687,7 @@ namespace PackingApplication
             this.lastbxgrosswtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxgrosswtpanel.Controls.Add(this.grosswttxtbox);
             this.lastbxgrosswtpanel.Controls.Add(this.grossweight);
-            this.lastbxgrosswtpanel.Location = new System.Drawing.Point(118, 2);
+            this.lastbxgrosswtpanel.Location = new System.Drawing.Point(110, 2);
             this.lastbxgrosswtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastbxgrosswtpanel.Name = "lastbxgrosswtpanel";
             this.lastbxgrosswtpanel.Size = new System.Drawing.Size(74, 45);
@@ -2701,7 +2725,7 @@ namespace PackingApplication
             this.lastbxtarepanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxtarepanel.Controls.Add(this.tarewghttxtbox);
             this.lastbxtarepanel.Controls.Add(this.tareweight);
-            this.lastbxtarepanel.Location = new System.Drawing.Point(37, 2);
+            this.lastbxtarepanel.Location = new System.Drawing.Point(29, 2);
             this.lastbxtarepanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastbxtarepanel.Name = "lastbxtarepanel";
             this.lastbxtarepanel.Size = new System.Drawing.Size(74, 45);
@@ -2739,7 +2763,7 @@ namespace PackingApplication
             this.lastbxcopspanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
             this.lastbxcopspanel.Controls.Add(this.cops);
             this.lastbxcopspanel.Controls.Add(this.copstxtbox);
-            this.lastbxcopspanel.Location = new System.Drawing.Point(-46, 2);
+            this.lastbxcopspanel.Location = new System.Drawing.Point(-54, 2);
             this.lastbxcopspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastbxcopspanel.Name = "lastbxcopspanel";
             this.lastbxcopspanel.Size = new System.Drawing.Size(76, 45);
@@ -2781,7 +2805,7 @@ namespace PackingApplication
             this.lastboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.lastboxheader.Name = "lastboxheader";
             this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.lastboxheader.Size = new System.Drawing.Size(239, 17);
+            this.lastboxheader.Size = new System.Drawing.Size(223, 17);
             this.lastboxheader.TabIndex = 107;
             this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
             this.lastboxheader.Resize += new System.EventHandler(this.lastboxheader_Resize);
@@ -2864,8 +2888,6 @@ namespace PackingApplication
             this.panel28.PerformLayout();
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
-            this.panel30.ResumeLayout(false);
-            this.panel30.PerformLayout();
             this.panel33.ResumeLayout(false);
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
@@ -2874,6 +2896,8 @@ namespace PackingApplication
             this.panel36.PerformLayout();
             this.panel45.ResumeLayout(false);
             this.panel45.PerformLayout();
+            this.panel30.ResumeLayout(false);
+            this.panel30.PerformLayout();
             this.rightpanel.ResumeLayout(false);
             this.buttontablelayout.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
@@ -2888,14 +2912,10 @@ namespace PackingApplication
             this.packagingboxheader.PerformLayout();
             this.packagingboxpanel.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
-            this.panel16.ResumeLayout(false);
-            this.panel16.PerformLayout();
-            this.panel17.ResumeLayout(false);
-            this.panel17.PerformLayout();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
+            this.panel47.ResumeLayout(false);
+            this.panel47.PerformLayout();
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             this.panel22.ResumeLayout(false);
@@ -2908,39 +2928,46 @@ namespace PackingApplication
             this.panel26.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
+            this.panel49.ResumeLayout(false);
+            this.panel49.PerformLayout();
             this.machineboxlayout.ResumeLayout(false);
             this.machineboxpanel.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel47.ResumeLayout(false);
-            this.panel47.PerformLayout();
-            this.panel46.ResumeLayout(false);
-            this.panel46.PerformLayout();
-            this.panel27.ResumeLayout(false);
-            this.panel27.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel46.ResumeLayout(false);
+            this.panel46.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
+            this.panel48.ResumeLayout(false);
+            this.panel48.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.machineboxheader.ResumeLayout(false);
             this.machineboxheader.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.tblpanl1.ResumeLayout(false);
-            this.tblpanl1.PerformLayout();
             this.weighboxlayout.ResumeLayout(false);
             this.weighboxheader.ResumeLayout(false);
             this.weighboxheader.PerformLayout();
@@ -3195,6 +3222,8 @@ namespace PackingApplication
         private Panel panel47;
         private System.Windows.Forms.Label owner;
         private ComboBox OwnerList;
+        private Panel panel48;
+        private Panel panel49;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
