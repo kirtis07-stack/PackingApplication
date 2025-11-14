@@ -777,7 +777,7 @@ namespace PackingApplication
                     if (_productionId > 0 && productionResponse != null)
                     {
                         WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                        WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        //WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
                     }
                 }
             }
