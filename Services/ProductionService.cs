@@ -17,12 +17,11 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string productionURL = ConfigurationManager.AppSettings["productionURL"];
 
-        public List<LotsResponse> getLotList(int machineId)
+        public async Task<List<LotsResponse>> getLotList(int machineId)
         {
             var getLotsResponse = method.GetCallApi(productionURL + "Lots/GetAllByMachineId?machineId=" + machineId);
-
             if (string.IsNullOrWhiteSpace(getLotsResponse))
-                return new List<LotsResponse>(); 
+                return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
                 ?? new List<LotsResponse>();
             return getItem;
@@ -31,14 +30,20 @@ namespace PackingApplication.Services
         public List<LotsResponse> getAllLotList()
         {
             var getLotsResponse = method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + true);
-            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse);
+            if (string.IsNullOrWhiteSpace(getLotsResponse))
+                return new List<LotsResponse>();
+            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
+                ?? new List<LotsResponse>();
             return getItem;
         }
 
-        public List<LotSaleOrderDetailsResponse> getSaleOrderList(int lotId)
+        public async Task<List<LotSaleOrderDetailsResponse>> getSaleOrderList(int lotId)
         {
             var getSaleOrderResponse = method.GetCallApi(productionURL + "LotSaleOrderDetails/GetAllByLotsId?lotsId=" + lotId);
-            var getSaleOrder = JsonConvert.DeserializeObject<List<LotSaleOrderDetailsResponse>>(getSaleOrderResponse);
+            if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
+                return new List<LotSaleOrderDetailsResponse>();
+            var getSaleOrder = JsonConvert.DeserializeObject<List<LotSaleOrderDetailsResponse>>(getSaleOrderResponse)
+                ?? new List<LotSaleOrderDetailsResponse>();
             foreach (var item in getSaleOrder)
             {
                 item.ItemName = item.SaleOrderNumber + "--" + item.ItemName + "--" + item.ShadeName + "--" + item.Quantity;
@@ -46,26 +51,35 @@ namespace PackingApplication.Services
             return getSaleOrder;
         }
 
-        public LotsResponse getLotById(int lotId)
+        public async Task<LotsResponse> getLotById(int lotId)
         {
             var getLotsResponse = method.GetCallApi(productionURL + "Lots/GetById?LotsId=" + lotId);
-            var getLot = JsonConvert.DeserializeObject<LotsResponse>(getLotsResponse);
+            if (string.IsNullOrWhiteSpace(getLotsResponse))
+                return new LotsResponse();
+            var getLot = JsonConvert.DeserializeObject<LotsResponse>(getLotsResponse)
+                ?? new LotsResponse();
             return getLot;
         }
 
-        public List<LotsDetailsResponse> getLotsDetailsByLotsIdAndProductionDate(int lotsId, DateTime ProductionDate)
+        public async Task<List<LotsDetailsResponse>> getLotsDetailsByLotsIdAndProductionDate(int lotsId, DateTime ProductionDate)
         {
             String date = ProductionDate.ToString("yyyy-MM-dd");
             var getLotsDetailsResponse = method.GetCallApi(productionURL + "LotsDetails/GetAllByLotsIdAndProductionDate?lotsId=" + lotsId + "&ProductionDate=" + date);
-            var getLotDetails = JsonConvert.DeserializeObject<List<LotsDetailsResponse>>(getLotsDetailsResponse);
+            if (string.IsNullOrWhiteSpace(getLotsDetailsResponse))
+                return new List<LotsDetailsResponse>();
+            var getLotDetails = JsonConvert.DeserializeObject<List<LotsDetailsResponse>>(getLotsDetailsResponse) 
+                ?? new List<LotsDetailsResponse>();
             return getLotDetails;
         }
 
-        public List<WindingTypeResponse> getWinderTypeList(int lotId)
+        public async Task<List<WindingTypeResponse>> getWinderTypeList(int lotId)
         {
             List<WindingTypeResponse> getWindingList = new List<WindingTypeResponse>();
             var getWinderTypeResponse = method.GetCallApi(productionURL + "LotsProductionDetails/GetAllByLotsId?lotsId=" + lotId);
-            var getWinderType = JsonConvert.DeserializeObject<List<LotsProductionDetailsResponse>>(getWinderTypeResponse);
+            if (string.IsNullOrWhiteSpace(getWinderTypeResponse))
+                return new List<WindingTypeResponse>();
+            var getWinderType = JsonConvert.DeserializeObject<List<LotsProductionDetailsResponse>>(getWinderTypeResponse) 
+                ?? new List<LotsProductionDetailsResponse>();
             foreach (var item in getWinderType)
             {
                 WindingTypeResponse type = new WindingTypeResponse();

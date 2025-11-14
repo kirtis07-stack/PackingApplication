@@ -19,14 +19,20 @@ namespace PackingApplication.Services
         public List<ProductionResponse> getAllPackingListByPackingType(string packingType)
         {
             var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllProductionByPackingType?packingType=" + packingType);
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new List<ProductionResponse>();
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse) 
+                ?? new List<ProductionResponse>();
             return getPacking;
         }
 
         public ProductionResponse getLastBoxDetails(string packingType)
         {
             var getPackingResponse = method.GetCallApi(packingURL + "Production/GetLastBoxDetails?packingType=" + packingType);
-            var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new ProductionResponse();
+            var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse)
+                ?? new ProductionResponse();
             return getPacking;
         }
 
@@ -47,21 +53,30 @@ namespace PackingApplication.Services
         public ProductionResponse getProductionById(long productionId)
         {
             var getPackingResponse = method.GetCallApi(packingURL + "Production/GetById?PackingId=" + productionId);
-            var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new ProductionResponse();
+            var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse) 
+                ?? new ProductionResponse();
             return getPacking;
         }
 
         public List<ProductionResponse> getAllProductionByQualityandSaleOrder(int qualityId, int saleOrderId)
         {
             var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllProductionByQualityandSaleOrder?qualityId=" + qualityId + "&saleOrderId=" + saleOrderId);
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new List<ProductionResponse>();
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse) 
+                ?? new List<ProductionResponse>();
             return getPacking;
         }
 
         public List<ProductionResponse> getAllProductionByWindingTypeandSaleOrder(int windingTypeId, int saleOrderId)
         {
             var getPackingResponse = method.GetCallApi(packingURL + "Production/GetAllProductionByWindingTypeandSaleOrder?windingTypeId=" + windingTypeId + "&saleOrderId=" + saleOrderId);
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new List<ProductionResponse>();
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
+                ?? new List<ProductionResponse>();
             return getPacking;
         }
 

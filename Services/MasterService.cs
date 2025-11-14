@@ -47,7 +47,7 @@ namespace PackingApplication.Services
             return getPackSize;
         }
 
-        public List<WindingTypeResponse> getWindingTypeList()
+        public async Task<List<WindingTypeResponse>> getWindingTypeList()
         {
             var getWindingTypeResponse = method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true);
             if (string.IsNullOrWhiteSpace(getWindingTypeResponse))
@@ -85,7 +85,7 @@ namespace PackingApplication.Services
             return getMachine;
         }
 
-        public PackSizeResponse getPackSizeById(int packSizeId)
+        public async Task<PackSizeResponse> getPackSizeById(int packSizeId)
         {
             var getPacksizeResponse = method.GetCallApi(masterURL + "PackSize/GetById?PackSizeId=" + packSizeId);
             if (string.IsNullOrWhiteSpace(getPacksizeResponse))
@@ -105,7 +105,7 @@ namespace PackingApplication.Services
             return getQuality;
         }
 
-        public ItemResponse getItemById(int itemId)
+        public async Task<ItemResponse> getItemById(int itemId)
         {
             var getItemResponse = method.GetCallApi(masterURL + "Items/GetById?itemsId=" + itemId);
             if (string.IsNullOrWhiteSpace(getItemResponse))
@@ -125,7 +125,7 @@ namespace PackingApplication.Services
             return getDepartment;
         }
 
-        public List<MachineResponse> getMachineByDepartmentId(int departmentId)
+        public async Task<List<MachineResponse>> getMachineByDepartmentId(int departmentId)
         {
             var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAllByDepartmentId?departmentId=" + departmentId);
             if (string.IsNullOrWhiteSpace(getMachineResponse))
