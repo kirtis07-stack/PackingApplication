@@ -17,7 +17,7 @@ namespace PackingApplication.Services
         string saleURL = ConfigurationManager.AppSettings["saleURL"];
         public async Task<SaleOrderResponse> getSaleOrderById(int saleOrderId)
         {
-            var getSaleOrderResponse = method.GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + saleOrderId);
+            var getSaleOrderResponse = await method.GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + saleOrderId);
             if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
                 return new SaleOrderResponse();
             var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse)
@@ -27,7 +27,7 @@ namespace PackingApplication.Services
 
         public async Task<SaleOrderItemsResponse> getSaleOrderItemByItemIdAndShadeIdAndSaleOrderItemId(int itemId, int shadeId, int saleOrderItemId)
         {
-            var getSaleOrderItemResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderItemId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderItemId=" + saleOrderItemId);
+            var getSaleOrderItemResponse = await method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderItemId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderItemId=" + saleOrderItemId);
             if (string.IsNullOrWhiteSpace(getSaleOrderItemResponse))
                 return new SaleOrderItemsResponse();
             var getSaleOrderItem = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderItemResponse)
@@ -37,7 +37,7 @@ namespace PackingApplication.Services
 
         public async Task<SaleOrderItemsResponse> getSaleOrderItemById(int saleOrderItemsId)
         {
-            var getSaleOrderResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetById?saleOrderItemsId=" + saleOrderItemsId);
+            var getSaleOrderResponse = await method.GetCallApi(saleURL + "SaleOrderItems/GetById?saleOrderItemsId=" + saleOrderItemsId);
             if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
                 return new SaleOrderItemsResponse();
             var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderResponse)

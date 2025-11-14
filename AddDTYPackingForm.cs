@@ -375,7 +375,7 @@ namespace PackingApplication
 
                 isFormReady = true;
 
-                RefreshLastBoxDetails();
+                //RefreshLastBoxDetails();
             }
             finally
             {

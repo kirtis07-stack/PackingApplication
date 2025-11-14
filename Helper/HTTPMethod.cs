@@ -16,42 +16,65 @@ namespace PackingApplication.Helper
 {
     public class HTTPMethod
     {
-        public string GetCallApi(string WebApiurl)
+        //public async Task<string> GetCallApi(string WebApiurl)
+        //{
+        //    var request = (HttpWebRequest)WebRequest.Create(WebApiurl);
+
+        //    request.Method = "GET";
+        //    request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+        //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        //    request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
+        //    //request.Timeout = 30000; // 30 seconds total timeout
+        //    //request.ReadWriteTimeout = 30000;
+        //    var content = string.Empty;
+
+        //    try
+        //    {
+        //        using (var response = (HttpWebResponse)await request.GetResponseAsync())
+        //        {
+        //            using (var stream = response.GetResponseStream())
+        //            {
+        //                using (var sr = new StreamReader(stream))
+        //                {
+        //                    content = await sr.ReadToEndAsync();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        return string.Empty;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return string.Empty;
+        //    }
+
+        //    return content;
+        //}
+
+        public async Task<string> GetCallApi(string url)
         {
-            var request = (HttpWebRequest)WebRequest.Create(WebApiurl);
-
-            request.Method = "GET";
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
-            //request.Timeout = 30000; // 30 seconds total timeout
-            //request.ReadWriteTimeout = 30000;
-            var content = string.Empty;
-
-            try
+            using (HttpClient client = new HttpClient())
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
+                client.Timeout = TimeSpan.FromSeconds(30);
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", SessionManager.AuthToken);
+
+                try
                 {
-                    using (var stream = response.GetResponseStream())
-                    {
-                        using (var sr = new StreamReader(stream))
-                        {
-                            content = sr.ReadToEnd();
-                        }
-                    }
+                    var response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+                    return await response.Content.ReadAsStringAsync();
+                }
+                catch
+                {
+                    return string.Empty;
                 }
             }
-            catch (WebException ex)
-            {
-                return string.Empty;
-            }
-            catch (Exception ex)
-            {
-                return string.Empty;
-            }
-
-            return content;
         }
+
+
         public async Task<string> PostCallApi(string path, object data)
         {
             HttpClient client = new HttpClient();
