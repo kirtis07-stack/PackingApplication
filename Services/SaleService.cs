@@ -15,7 +15,7 @@ namespace PackingApplication.Services
     {
         HTTPMethod method = new HTTPMethod();
         string saleURL = ConfigurationManager.AppSettings["saleURL"];
-        public SaleOrderResponse getSaleOrderById(int saleOrderId)
+        public async Task<SaleOrderResponse> getSaleOrderById(int saleOrderId)
         {
             var getSaleOrderResponse = method.GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + saleOrderId);
             if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
@@ -25,7 +25,7 @@ namespace PackingApplication.Services
             return getSaleOrder;
         }
 
-        public SaleOrderItemsResponse getSaleOrderItemByItemIdAndShadeIdAndSaleOrderItemId(int itemId, int shadeId, int saleOrderItemId)
+        public async Task<SaleOrderItemsResponse> getSaleOrderItemByItemIdAndShadeIdAndSaleOrderItemId(int itemId, int shadeId, int saleOrderItemId)
         {
             var getSaleOrderItemResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderItemId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderItemId=" + saleOrderItemId);
             if (string.IsNullOrWhiteSpace(getSaleOrderItemResponse))

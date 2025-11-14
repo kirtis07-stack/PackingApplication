@@ -222,14 +222,14 @@ namespace PackingApplication
         {
             try
             {
-                var machineTask = getMachineList();
-                var lotTask = getAllLotList();
+                var machineTask = _masterService.getMachineList("ChipsLot");
+                var lotTask = _productionService.getAllLotList();
                 //var prefixTask = getPrefixList();
-                var packsizeTask = getPackSizeList();
-                var copsitemTask = getCopeItemList(itemCopsCategoryId);
-                var boxitemTask = getBoxItemList(itemBoxCategoryId);
-                var deptTask = getDepartmentList();
-                var ownerTask = getOwnerList();
+                var packsizeTask = _masterService.getPackSizeList();
+                var copsitemTask = _masterService.getItemList(itemCopsCategoryId);
+                var boxitemTask = _masterService.getItemList(itemBoxCategoryId);
+                var deptTask = _masterService.getDepartmentList();
+                var ownerTask = _masterService.getOwnerList();
 
                 // 2. Wait for all to complete
                 await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
@@ -510,7 +510,7 @@ namespace PackingApplication
                                 var itemResponse = _masterService.getItemById(lotResponse.ItemId).Result;
                                 if (itemResponse != null)
                                 {
-                                    var qualityList = await getQualityListByItemTypeId(itemResponse.ItemTypeId);
+                                    var qualityList = _masterService.getQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.DataSource = qualityList;
                                     QualityList.DisplayMember = "Name";
@@ -717,7 +717,7 @@ namespace PackingApplication
             {
                 balanceQty = 0;
                 int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-                var getProductionByQuality = getProductionLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
+                var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
@@ -764,7 +764,7 @@ namespace PackingApplication
 
         private async void RefreshLastBoxDetails()
         {
-            var getLastBox = getLastBoxDetails().Result;
+            var getLastBox = _packingService.getLastBoxDetails("chipspacking").Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -988,25 +988,25 @@ namespace PackingApplication
             }
         }
 
-        private async Task<List<MachineResponse>> getMachineList()
-        {
-            return _masterService.getMachineList("ChipsLot");
-        }
+        //private async Task<List<MachineResponse>> getMachineList()
+        //{
+        //    return _masterService.getMachineList("ChipsLot");
+        //}
 
-        private async Task<List<LotsResponse>> getAllLotList()
-        {
-            return _productionService.getAllLotList();
-        }
+        //private async Task<List<LotsResponse>> getAllLotList()
+        //{
+        //    return _productionService.getAllLotList();
+        //}
 
-        private async Task<List<QualityResponse>> getQualityListByItemTypeId(int itemTypeId)
-        {
-            return _masterService.getQualityListByItemTypeId(itemTypeId);
-        }
+        //private async Task<List<QualityResponse>> getQualityListByItemTypeId(int itemTypeId)
+        //{
+        //    return _masterService.getQualityListByItemTypeId(itemTypeId);
+        //}
 
-        private async Task<List<PackSizeResponse>> getPackSizeList()
-        {
-            return _masterService.getPackSizeList();
-        }
+        //private async Task<List<PackSizeResponse>> getPackSizeList()
+        //{
+        //    return _masterService.getPackSizeList();
+        //}
 
         private async Task<List<string>> getComPortList()
         {
@@ -1036,45 +1036,45 @@ namespace PackingApplication
             return getWeighingScale;
         }
 
-        private async Task<List<ItemResponse>> getCopeItemList(int categoryId)
-        {
-            return _masterService.getItemList(categoryId);
-        }
+        //private async Task<List<ItemResponse>> getCopeItemList(int categoryId)
+        //{
+        //    return _masterService.getItemList(categoryId);
+        //}
 
-        private async Task<List<ItemResponse>> getBoxItemList(int categoryId)
-        {
-            return _masterService.getItemList(categoryId);
-        }
+        //private async Task<List<ItemResponse>> getBoxItemList(int categoryId)
+        //{
+        //    return _masterService.getItemList(categoryId);
+        //}
 
-        private Task<List<PrefixResponse>> getPrefixList(TransactionTypePrefixRequest prefix)
-        {
-            return Task.Run(() => _masterService.getPrefixList(prefixRequest));
-        }
+        //private Task<List<PrefixResponse>> getPrefixList(TransactionTypePrefixRequest prefix)
+        //{
+        //    return Task.Run(() => _masterService.getPrefixList(prefixRequest));
+        //}
 
-        private Task<ProductionResponse> getProductionById(long productionId)
-        {
-            return Task.Run(() => _packingService.getProductionById(productionId));
-        }
+        //private Task<ProductionResponse> getProductionById(long productionId)
+        //{
+        //    return Task.Run(() => _packingService.getProductionById(productionId));
+        //}
 
-        private async Task<List<BusinessPartnerResponse>> getOwnerList()
-        {
-            return _masterService.getOwnerList();
-        }
+        //private async Task<List<BusinessPartnerResponse>> getOwnerList()
+        //{
+        //    return _masterService.getOwnerList();
+        //}
 
-        private async Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
-        {
-            return _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(lotId, saleOrderItemId);
-        }
+        //private async Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
+        //{
+        //    return _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(lotId, saleOrderItemId);
+        //}
 
-        private async Task<ProductionResponse> getLastBoxDetails()
-        {
-            return _packingService.getLastBoxDetails("chipspacking");
-        }
+        //private async Task<ProductionResponse> getLastBoxDetails()
+        //{
+        //    return _packingService.getLastBoxDetails("chipspacking");
+        //}
 
-        private async Task<List<DepartmentResponse>> getDepartmentList()
-        {
-            return _masterService.getDepartmentList();
-        }
+        //private async Task<List<DepartmentResponse>> getDepartmentList()
+        //{
+        //    return _masterService.getDepartmentList();
+        //}
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {

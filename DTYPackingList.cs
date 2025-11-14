@@ -108,8 +108,8 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllDTYPackingList()
         {
-            var getPacking = _packingService.getAllPackingListByPackingType("dtypacking");
-            return getPacking;
+            //var getPacking = _packingService.getAllPackingListByPackingType("dtypacking");
+            return new List<ProductionResponse>();
         }
 
         private void addNew_Click(object sender, EventArgs e)

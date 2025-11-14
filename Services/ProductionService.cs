@@ -27,7 +27,7 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public List<LotsResponse> getAllLotList()
+        public async Task<List<LotsResponse>> getAllLotList()
         {
             var getLotsResponse = method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + true);
             if (string.IsNullOrWhiteSpace(getLotsResponse))
