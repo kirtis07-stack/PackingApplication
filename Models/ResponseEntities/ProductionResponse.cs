@@ -58,10 +58,12 @@ namespace PackingApplication.Models.ResponseEntities
         public int NoOfCopies { get; set; }
         public int ChallanId { get; set; }
         public List<ProductionPalletDetailsResponse> PalletDetailsResponse { get; set; }
-        //public List<ProductionConsumptionDetailsResponse> ConsumptionDetailsResponse { get; set; }
+        public List<ProductionConsumptionDetailsResponse> ConsumptionDetailsResponse { get; set; }
         public int SrNo { get; set; }
         public int OwnerId { get; set; }
         public string OwnerName { get; set; }
+        public int ContainerTypeId { get; set; }
+        public string ContainerType { get; set; }
     }
 
     public class ProductionPalletDetailsResponse : BaseAuditEntity

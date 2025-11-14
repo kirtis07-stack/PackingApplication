@@ -107,6 +107,12 @@ namespace PackingApplication
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
 
+            var mergenoList = new List<LotsResponse>();
+            mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+            MergeNoList.DataSource = mergenoList;
+            MergeNoList.DisplayMember = "LotNoFrmt";
+            MergeNoList.ValueMember = "LotId";
+            MergeNoList.SelectedIndex = 0;
         }
 
         private void ApplyFonts()
@@ -212,7 +218,7 @@ namespace PackingApplication
             try
             {
                 var machineTask = _masterService.getMachineList("ChipsLot");
-                var lotTask = _productionService.getAllLotList();
+                //var lotTask = _productionService.getAllLotList();
                 //var prefixTask = getPrefixList();
                 var packsizeTask = _masterService.getPackSizeList();
                 var copsitemTask = _masterService.getItemList(itemCopsCategoryId);
@@ -221,11 +227,11 @@ namespace PackingApplication
                 var ownerTask = _masterService.getOwnerList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
+                await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
-                var lotList = lotTask.Result;
+                //var lotList = lotTask.Result;
                 //var prefixList = prefixTask.Result;
                 var packsizeList = packsizeTask.Result;
                 var copsitemList = copsitemTask.Result;
@@ -244,13 +250,13 @@ namespace PackingApplication
                 LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 //lot
-                lotList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
-                MergeNoList.DataSource = lotList;
-                MergeNoList.DisplayMember = "LotNoFrmt";
-                MergeNoList.ValueMember = "LotId";
-                MergeNoList.SelectedIndex = 0;
-                MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //lotList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                //MergeNoList.DataSource = lotList;
+                //MergeNoList.DisplayMember = "LotNoFrmt";
+                //MergeNoList.ValueMember = "LotId";
+                //MergeNoList.SelectedIndex = 0;
+                //MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                //MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 //MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
 
 
@@ -364,9 +370,9 @@ namespace PackingApplication
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
                 OwnerList.SelectedValue = productionResponse.OwnerId;
-                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
-                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
-                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
+                //MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                //PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
+                //BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
             }
         }
 

@@ -110,6 +110,13 @@ namespace PackingApplication
             QualityList.DisplayMember = "Name";
             QualityList.ValueMember = "QualityId";
             QualityList.SelectedIndex = 0;
+
+            var mergenoList = new List<LotsResponse>();
+            mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+            MergeNoList.DataSource = mergenoList;
+            MergeNoList.DisplayMember = "LotNoFrmt";
+            MergeNoList.ValueMember = "LotId";
+            MergeNoList.SelectedIndex = 0;
         }
 
         private void ApplyFonts()
@@ -232,7 +239,7 @@ namespace PackingApplication
             try
             {
                 var machineTask = _masterService.getMachineList("TexturisingLot");
-                var lotTask = _productionService.getAllLotList();
+                //var lotTask = _productionService.getAllLotList();
                 //var prefixTask = getPrefixList();
                 var packsizeTask = _masterService.getPackSizeList();
                 var copsitemTask = _masterService.getItemList(itemCopsCategoryId);
@@ -241,11 +248,11 @@ namespace PackingApplication
                 var ownerTask = _masterService.getOwnerList();
 
                 // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, lotTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
+                await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
 
                 // 3. Get the results
                 var machineList = machineTask.Result;
-                var lotList = lotTask.Result;
+                //var lotList = lotTask.Result;
                 //var prefixList = prefixTask.Result;
                 var packsizeList = packsizeTask.Result;
                 var copsitemList = copsitemTask.Result;
@@ -264,13 +271,13 @@ namespace PackingApplication
                 LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 //lot
-                lotList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
-                MergeNoList.DataSource = lotList;
-                MergeNoList.DisplayMember = "LotNoFrmt";
-                MergeNoList.ValueMember = "LotId";
-                MergeNoList.SelectedIndex = 0;
-                MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //lotList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                //MergeNoList.DataSource = lotList;
+                //MergeNoList.DisplayMember = "LotNoFrmt";
+                //MergeNoList.ValueMember = "LotId";
+                //MergeNoList.SelectedIndex = 0;
+                //MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                //MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
                 //MergeNoList.DropDownStyle = ComboBoxStyle.DropDown;
 
 
@@ -402,10 +409,11 @@ namespace PackingApplication
                 tarewt.Text = productionResponse.TareWt.ToString();
                 netwt.Text = productionResponse.NetWt.ToString();
                 OwnerList.SelectedValue = productionResponse.OwnerId;
-                MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
-                PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
-                CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
-                BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
+                LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
+                //MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                //PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
+                //CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
+                //BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
             }
         }
 
@@ -464,9 +472,13 @@ namespace PackingApplication
                             DeptList.DataSource = filteredDepts;
                             DeptList.DisplayMember = "DepartmentName";
                             DeptList.ValueMember = "DepartmentId";
-                            DeptList.SelectedIndex = 1;
+                            if (DeptList.Items.Count > 1)
+                            {
+                                DeptList.SelectedIndex = 1;
+                            }
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
                         }
                         var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -481,6 +493,7 @@ namespace PackingApplication
                         {
                             MergeNoList.SelectedValue = productionResponse.LotId;
                             DeptList.SelectedValue = productionResponse.DepartmentId;
+                            MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                         }
                     }
 
@@ -606,7 +619,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
-                            //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
@@ -764,6 +777,7 @@ namespace PackingApplication
                     if (_productionId > 0 && productionResponse != null)
                     {
                         WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                        WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
                     }
                 }
             }
