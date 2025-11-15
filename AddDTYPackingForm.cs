@@ -258,6 +258,10 @@ namespace PackingApplication
             this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.fromwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private async void AddDTYPackingForm_Shown(object sender, EventArgs e)
@@ -494,12 +498,12 @@ namespace PackingApplication
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
-                            MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
-                        }
+                        //if (_productionId > 0 && productionResponse != null)
+                        //{
+                        //    MergeNoList.SelectedValue = productionResponse.LotId;
+                        //    DeptList.SelectedValue = productionResponse.DepartmentId;
+                        //    MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+                        //}
                     }
 
                 }
@@ -686,11 +690,11 @@ namespace PackingApplication
                             rowMaterial.DataSource = lotsDetailsList;
                         }
 
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
-                        }
+                        //if (_productionId > 0 && productionResponse != null)
+                        //{
+                        //    SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                        //    SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                        //}
                     }
 
                 }
@@ -736,6 +740,8 @@ namespace PackingApplication
                         updenier.Text = packsize.UpToDenier.ToString();
                         startWeight = packsize.StartWeight;
                         endWeight = packsize.EndWeight;
+                        frwt.Text = packsize.StartWeight.ToString();
+                        upwt.Text = packsize.EndWeight.ToString();
                     }
 
                 }
@@ -794,10 +800,10 @@ namespace PackingApplication
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                     }
 
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    }
+                    //if (_productionId > 0 && productionResponse != null)
+                    //{
+                    //    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    //}
                 }
             }
             finally
@@ -851,11 +857,11 @@ namespace PackingApplication
                         RefreshGradewiseGrid();
                         //RefreshLastBoxDetails();
 
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
-                        }
+                        //if (_productionId > 0 && productionResponse != null)
+                        //{
+                        //    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                        //    WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        //}
                     }
 
                 }
@@ -1149,11 +1155,11 @@ namespace PackingApplication
                         PrefixList.SelectedIndex = 0;  // Optional: no default selection
                     }
 
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        PrefixList.SelectedValue = productionResponse.PrefixCode;
-                        PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
-                    }
+                    //if (_productionId > 0 && productionResponse != null)
+                    //{
+                    //    PrefixList.SelectedValue = productionResponse.PrefixCode;
+                    //    PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                    //}
                 }
             }
             finally

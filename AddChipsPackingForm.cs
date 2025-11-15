@@ -439,11 +439,11 @@ namespace PackingApplication
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
-                        }
+                        //if (_productionId > 0 && productionResponse != null)
+                        //{
+                        //    MergeNoList.SelectedValue = productionResponse.LotId;
+                        //    DeptList.SelectedValue = productionResponse.DepartmentId;
+                        //}
                     }
 
                 }
@@ -704,10 +704,10 @@ namespace PackingApplication
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                     }
 
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    }
+                    //if (_productionId > 0 && productionResponse != null)
+                    //{
+                    //    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                    //}
                 }
             }
             finally
