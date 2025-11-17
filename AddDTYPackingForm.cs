@@ -1587,10 +1587,10 @@ namespace PackingApplication
                 isFormReady = false;
                 this.spoolno.Text = "0";
                 this.spoolwt.Text = "0";
-                this.grosswtno.Text = "";
-                this.tarewt.Text = "";
-                this.netwt.Text = "";
-                this.wtpercop.Text = "";
+                this.grosswtno.Text = "0.000";
+                this.tarewt.Text = "0.000";
+                this.netwt.Text = "0.000";
+                this.wtpercop.Text = "0.000";
                 isFormReady = true;
                 this.spoolno.Focus();
                 //if (isPrint)

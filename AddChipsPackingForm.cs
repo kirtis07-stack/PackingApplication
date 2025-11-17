@@ -1343,10 +1343,10 @@ namespace PackingApplication
                 //MessageBoxIcon.Information);
                 ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
-                this.grosswtno.Text = "";
-                this.tarewt.Text = "";
-                this.netwt.Text = "";
-                this.wtpercop.Text = "";
+                this.grosswtno.Text = "0.000";
+                this.tarewt.Text = "0.000";
+                this.netwt.Text = "0.000";
+                this.wtpercop.Text = "0.000";
                 isFormReady = true;
                 //if (isPrint)
                 //{
