@@ -115,7 +115,9 @@ namespace PackingApplication
             this.rightpanel = new System.Windows.Forms.Panel();
             this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.submit = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
+            this.saveprint = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
             this.rowMaterialPanel = new System.Windows.Forms.Panel();
@@ -190,6 +192,11 @@ namespace PackingApplication
             this.panel8 = new System.Windows.Forms.Panel();
             this.DeptList = new System.Windows.Forms.ComboBox();
             this.department = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.boxnofrmt = new System.Windows.Forms.Label();
+            this.req2 = new System.Windows.Forms.Label();
+            this.boxno = new System.Windows.Forms.Label();
+            this.boxnoerror = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.req3 = new System.Windows.Forms.Label();
@@ -259,13 +266,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.submit = new System.Windows.Forms.Button();
-            this.saveprint = new System.Windows.Forms.Button();
-            this.boxnoerror = new System.Windows.Forms.Label();
-            this.boxno = new System.Windows.Forms.Label();
-            this.req2 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.boxnofrmt = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -317,6 +317,7 @@ namespace PackingApplication
             this.panel17.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel24.SuspendLayout();
@@ -351,7 +352,6 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1320,6 +1320,21 @@ namespace PackingApplication
             this.panel21.Size = new System.Drawing.Size(296, 25);
             this.panel21.TabIndex = 0;
             // 
+            // submit
+            // 
+            this.submit.BackColor = System.Drawing.SystemColors.Highlight;
+            this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.submit.Location = new System.Drawing.Point(212, 1);
+            this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.submit.Name = "submit";
+            this.submit.Size = new System.Drawing.Size(81, 24);
+            this.submit.TabIndex = 122;
+            this.submit.Text = "Save";
+            this.submit.UseVisualStyleBackColor = false;
+            this.submit.Click += new System.EventHandler(this.submit_Click);
+            // 
             // cancelbtn
             // 
             this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -1334,6 +1349,21 @@ namespace PackingApplication
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = false;
             this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // saveprint
+            // 
+            this.saveprint.BackColor = System.Drawing.SystemColors.Highlight;
+            this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.saveprint.Location = new System.Drawing.Point(0, 1);
+            this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.saveprint.Name = "saveprint";
+            this.saveprint.Size = new System.Drawing.Size(81, 24);
+            this.saveprint.TabIndex = 120;
+            this.saveprint.Text = "Save && Print";
+            this.saveprint.UseVisualStyleBackColor = false;
+            this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -2333,6 +2363,62 @@ namespace PackingApplication
             this.department.TabIndex = 2;
             this.department.Text = "Dept:";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.boxnofrmt);
+            this.panel4.Controls.Add(this.req2);
+            this.panel4.Controls.Add(this.boxno);
+            this.panel4.Controls.Add(this.boxnoerror);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(158, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(76, 23);
+            this.panel4.TabIndex = 3;
+            // 
+            // boxnofrmt
+            // 
+            this.boxnofrmt.AutoSize = true;
+            this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxnofrmt.Location = new System.Drawing.Point(34, 5);
+            this.boxnofrmt.Name = "boxnofrmt";
+            this.boxnofrmt.Size = new System.Drawing.Size(0, 16);
+            this.boxnofrmt.TabIndex = 124;
+            this.boxnofrmt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boxnofrmt.UseCompatibleTextRendering = true;
+            // 
+            // req2
+            // 
+            this.req2.AutoSize = true;
+            this.req2.ForeColor = System.Drawing.Color.Red;
+            this.req2.Location = new System.Drawing.Point(23, 2);
+            this.req2.Name = "req2";
+            this.req2.Size = new System.Drawing.Size(11, 13);
+            this.req2.TabIndex = 106;
+            this.req2.Text = "*";
+            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // boxno
+            // 
+            this.boxno.AutoSize = true;
+            this.boxno.Location = new System.Drawing.Point(0, 0);
+            this.boxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxno.Name = "boxno";
+            this.boxno.Size = new System.Drawing.Size(25, 26);
+            this.boxno.TabIndex = 14;
+            this.boxno.Text = "Box\nNo:";
+            // 
+            // boxnoerror
+            // 
+            this.boxnoerror.AutoSize = true;
+            this.boxnoerror.ForeColor = System.Drawing.Color.Red;
+            this.boxnoerror.Location = new System.Drawing.Point(2, 31);
+            this.boxnoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxnoerror.Name = "boxnoerror";
+            this.boxnoerror.Size = new System.Drawing.Size(0, 13);
+            this.boxnoerror.TabIndex = 105;
+            this.boxnoerror.Visible = false;
+            // 
             // panel10
             // 
             this.panel10.Controls.Add(this.packingdate);
@@ -3133,92 +3219,6 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // submit
-            // 
-            this.submit.BackColor = System.Drawing.SystemColors.Highlight;
-            this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(212, 1);
-            this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(81, 24);
-            this.submit.TabIndex = 122;
-            this.submit.Text = "Save";
-            this.submit.UseVisualStyleBackColor = false;
-            this.submit.Click += new System.EventHandler(this.submit_Click);
-            // 
-            // saveprint
-            // 
-            this.saveprint.BackColor = System.Drawing.SystemColors.Highlight;
-            this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(0, 1);
-            this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.saveprint.Name = "saveprint";
-            this.saveprint.Size = new System.Drawing.Size(81, 24);
-            this.saveprint.TabIndex = 120;
-            this.saveprint.Text = "Save && Print";
-            this.saveprint.UseVisualStyleBackColor = false;
-            this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
-            // 
-            // boxnoerror
-            // 
-            this.boxnoerror.AutoSize = true;
-            this.boxnoerror.ForeColor = System.Drawing.Color.Red;
-            this.boxnoerror.Location = new System.Drawing.Point(2, 31);
-            this.boxnoerror.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.boxnoerror.Name = "boxnoerror";
-            this.boxnoerror.Size = new System.Drawing.Size(0, 13);
-            this.boxnoerror.TabIndex = 105;
-            this.boxnoerror.Visible = false;
-            // 
-            // boxno
-            // 
-            this.boxno.AutoSize = true;
-            this.boxno.Location = new System.Drawing.Point(0, 1);
-            this.boxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.boxno.Name = "boxno";
-            this.boxno.Size = new System.Drawing.Size(25, 26);
-            this.boxno.TabIndex = 14;
-            this.boxno.Text = "Box\nNo:";
-            // 
-            // req2
-            // 
-            this.req2.AutoSize = true;
-            this.req2.ForeColor = System.Drawing.Color.Red;
-            this.req2.Location = new System.Drawing.Point(23, 2);
-            this.req2.Name = "req2";
-            this.req2.Size = new System.Drawing.Size(11, 13);
-            this.req2.TabIndex = 106;
-            this.req2.Text = "*";
-            this.req2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.boxnofrmt);
-            this.panel4.Controls.Add(this.req2);
-            this.panel4.Controls.Add(this.boxno);
-            this.panel4.Controls.Add(this.boxnoerror);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(158, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(76, 23);
-            this.panel4.TabIndex = 3;
-            // 
-            // boxnofrmt
-            // 
-            this.boxnofrmt.AutoSize = true;
-            this.boxnofrmt.Location = new System.Drawing.Point(34, 5);
-            this.boxnofrmt.Name = "boxnofrmt";
-            this.boxnofrmt.Size = new System.Drawing.Size(0, 13);
-            this.boxnofrmt.TabIndex = 124;
-            this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxnofrmt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.boxnofrmt.UseCompatibleTextRendering = true;
-            // 
             // ModifyPOYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3311,6 +3311,8 @@ namespace PackingApplication
             this.panel1.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -3370,8 +3372,6 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }

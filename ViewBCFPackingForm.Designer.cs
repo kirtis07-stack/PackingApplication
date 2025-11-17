@@ -362,7 +362,7 @@ namespace PackingApplication
             // boxno
             // 
             this.boxno.AutoSize = true;
-            this.boxno.Location = new System.Drawing.Point(0, 1);
+            this.boxno.Location = new System.Drawing.Point(0, 0);
             this.boxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxno.Name = "boxno";
             this.boxno.Size = new System.Drawing.Size(25, 26);
@@ -2293,13 +2293,13 @@ namespace PackingApplication
             // boxnofrmt
             // 
             this.boxnofrmt.AutoSize = true;
+            this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.boxnofrmt.Location = new System.Drawing.Point(36, 5);
             this.boxnofrmt.Name = "boxnofrmt";
             this.boxnofrmt.Size = new System.Drawing.Size(0, 16);
             this.boxnofrmt.TabIndex = 124;
             this.boxnofrmt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.boxnofrmt.UseCompatibleTextRendering = true;
-            this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             // 
             // req2
             // 

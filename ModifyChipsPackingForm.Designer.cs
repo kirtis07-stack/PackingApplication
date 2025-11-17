@@ -144,6 +144,7 @@ namespace PackingApplication
             this.req4 = new System.Windows.Forms.Label();
             this.qualityerror = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.boxnofrmt = new System.Windows.Forms.Label();
             this.req2 = new System.Windows.Forms.Label();
             this.boxnoerror = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -215,7 +216,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.boxnofrmt = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -303,7 +303,7 @@ namespace PackingApplication
             // boxno
             // 
             this.boxno.AutoSize = true;
-            this.boxno.Location = new System.Drawing.Point(0, 1);
+            this.boxno.Location = new System.Drawing.Point(0, 0);
             this.boxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxno.Name = "boxno";
             this.boxno.Size = new System.Drawing.Size(25, 26);
@@ -1694,6 +1694,17 @@ namespace PackingApplication
             this.panel4.Size = new System.Drawing.Size(84, 30);
             this.panel4.TabIndex = 3;
             // 
+            // boxnofrmt
+            // 
+            this.boxnofrmt.AutoSize = true;
+            this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxnofrmt.Location = new System.Drawing.Point(40, 5);
+            this.boxnofrmt.Name = "boxnofrmt";
+            this.boxnofrmt.Size = new System.Drawing.Size(0, 16);
+            this.boxnofrmt.TabIndex = 124;
+            this.boxnofrmt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boxnofrmt.UseCompatibleTextRendering = true;
+            // 
             // req2
             // 
             this.req2.AutoSize = true;
@@ -2522,17 +2533,6 @@ namespace PackingApplication
             this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
-            // 
-            // boxnofrmt
-            // 
-            this.boxnofrmt.AutoSize = true;
-            this.boxnofrmt.Location = new System.Drawing.Point(40, 5);
-            this.boxnofrmt.Name = "boxnofrmt";
-            this.boxnofrmt.Size = new System.Drawing.Size(0, 13);
-            this.boxnofrmt.TabIndex = 124;
-            this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxnofrmt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.boxnofrmt.UseCompatibleTextRendering = true;
             // 
             // ModifyChipsPackingForm
             // 

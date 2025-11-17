@@ -2322,7 +2322,7 @@ namespace PackingApplication
             // boxno
             // 
             this.boxno.AutoSize = true;
-            this.boxno.Location = new System.Drawing.Point(0, 1);
+            this.boxno.Location = new System.Drawing.Point(0, 0);
             this.boxno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxno.Name = "boxno";
             this.boxno.Size = new System.Drawing.Size(25, 26);

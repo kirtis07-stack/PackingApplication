@@ -89,6 +89,10 @@ namespace PackingApplication
             //this.reportViewer1.RefreshReport();
 
             prcompany.FlatStyle = FlatStyle.System;
+            this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
         }
 
         private void getLotRelatedDetails()

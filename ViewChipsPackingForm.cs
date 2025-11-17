@@ -75,7 +75,11 @@ namespace PackingApplication
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
 
-            this.prcompany.Enabled = true;
+            prcompany.FlatStyle = FlatStyle.System;
+            this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
         }
 
         private void getLotRelatedDetails()
@@ -200,6 +204,7 @@ namespace PackingApplication
             this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
         }
 
         private async void ViewChipsPackingForm_Shown(object sender, EventArgs e)
