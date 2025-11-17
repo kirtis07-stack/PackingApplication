@@ -541,7 +541,7 @@ namespace PackingApplication
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
             this.remarks.Size = new System.Drawing.Size(132, 28);
-            this.remarks.TabIndex = 2;
+            this.remarks.TabIndex = 5;
             // 
             // scalemodel
             // 
@@ -563,7 +563,7 @@ namespace PackingApplication
             this.QualityList.Margin = new System.Windows.Forms.Padding(2);
             this.QualityList.Name = "QualityList";
             this.QualityList.Size = new System.Drawing.Size(43, 21);
-            this.QualityList.TabIndex = 1;
+            this.QualityList.TabIndex = 6;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
             this.QualityList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -578,7 +578,7 @@ namespace PackingApplication
             this.PackSizeList.Margin = new System.Windows.Forms.Padding(2);
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(57, 21);
-            this.PackSizeList.TabIndex = 3;
+            this.PackSizeList.TabIndex = 1;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             this.PackSizeList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -593,7 +593,7 @@ namespace PackingApplication
             this.WindingTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.WindingTypeList.Name = "WindingTypeList";
             this.WindingTypeList.Size = new System.Drawing.Size(97, 21);
-            this.WindingTypeList.TabIndex = 3;
+            this.WindingTypeList.TabIndex = 7;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
             this.WindingTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -623,7 +623,7 @@ namespace PackingApplication
             this.WeighingList.Margin = new System.Windows.Forms.Padding(2);
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(24, 21);
-            this.WeighingList.TabIndex = 4;
+            this.WeighingList.TabIndex = 2;
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
             this.WeighingList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -638,7 +638,7 @@ namespace PackingApplication
             this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(57, 21);
-            this.CopsItemList.TabIndex = 4;
+            this.CopsItemList.TabIndex = 2;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
             this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -653,7 +653,7 @@ namespace PackingApplication
             this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(57, 21);
-            this.BoxItemList.TabIndex = 6;
+            this.BoxItemList.TabIndex = 3;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -668,7 +668,7 @@ namespace PackingApplication
             this.SaleOrderList.Margin = new System.Windows.Forms.Padding(2);
             this.SaleOrderList.Name = "SaleOrderList";
             this.SaleOrderList.Size = new System.Drawing.Size(118, 21);
-            this.SaleOrderList.TabIndex = 2;
+            this.SaleOrderList.TabIndex = 5;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SaleOrderList_KeyDown);
             this.SaleOrderList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -854,7 +854,7 @@ namespace PackingApplication
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.grosswtno.Name = "grosswtno";
             this.grosswtno.Size = new System.Drawing.Size(15, 20);
-            this.grosswtno.TabIndex = 6;
+            this.grosswtno.TabIndex = 5;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
@@ -880,7 +880,7 @@ namespace PackingApplication
             this.palletwtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletwtno.Name = "palletwtno";
             this.palletwtno.Size = new System.Drawing.Size(6, 20);
-            this.palletwtno.TabIndex = 5;
+            this.palletwtno.TabIndex = 4;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
@@ -905,7 +905,7 @@ namespace PackingApplication
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.spoolno.Name = "spoolno";
             this.spoolno.Size = new System.Drawing.Size(7, 20);
-            this.spoolno.TabIndex = 2;
+            this.spoolno.TabIndex = 3;
             this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.spoolno.TextChanged += new System.EventHandler(this.SpoolNo_TextChanged);
             this.spoolno.Enter += new System.EventHandler(this.spoolNo_Enter);
@@ -1261,7 +1261,7 @@ namespace PackingApplication
             this.panel30.Margin = new System.Windows.Forms.Padding(0);
             this.panel30.Name = "panel30";
             this.panel30.Size = new System.Drawing.Size(152, 23);
-            this.panel30.TabIndex = 2;
+            this.panel30.TabIndex = 7;
             // 
             // req10
             // 
@@ -1782,7 +1782,7 @@ namespace PackingApplication
             this.panel47.Margin = new System.Windows.Forms.Padding(0);
             this.panel47.Name = "panel47";
             this.panel47.Size = new System.Drawing.Size(190, 27);
-            this.panel47.TabIndex = 0;
+            this.panel47.TabIndex = 5;
             // 
             // panel19
             // 
@@ -1795,7 +1795,7 @@ namespace PackingApplication
             this.panel19.Margin = new System.Windows.Forms.Padding(0);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(115, 27);
-            this.panel19.TabIndex = 3;
+            this.panel19.TabIndex = 1;
             // 
             // req6
             // 
@@ -1916,7 +1916,7 @@ namespace PackingApplication
             this.panel27.Margin = new System.Windows.Forms.Padding(0);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(115, 27);
-            this.panel27.TabIndex = 124;
+            this.panel27.TabIndex = 4;
             // 
             // OwnerList
             // 
@@ -1926,7 +1926,7 @@ namespace PackingApplication
             this.OwnerList.Location = new System.Drawing.Point(58, 0);
             this.OwnerList.Name = "OwnerList";
             this.OwnerList.Size = new System.Drawing.Size(57, 21);
-            this.OwnerList.TabIndex = 124;
+            this.OwnerList.TabIndex = 4;
             this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
             this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
             this.OwnerList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -1950,7 +1950,7 @@ namespace PackingApplication
             this.panel22.Margin = new System.Windows.Forms.Padding(0);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(115, 27);
-            this.panel22.TabIndex = 6;
+            this.panel22.TabIndex = 2;
             // 
             // label8
             // 
@@ -2007,7 +2007,7 @@ namespace PackingApplication
             this.panel25.Margin = new System.Windows.Forms.Padding(0);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(115, 27);
-            this.panel25.TabIndex = 9;
+            this.panel25.TabIndex = 3;
             // 
             // label7
             // 
@@ -2217,7 +2217,7 @@ namespace PackingApplication
             this.panel16.Margin = new System.Windows.Forms.Padding(0);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(82, 23);
-            this.panel16.TabIndex = 0;
+            this.panel16.TabIndex = 6;
             // 
             // req4
             // 
@@ -2253,7 +2253,7 @@ namespace PackingApplication
             this.panel17.Margin = new System.Windows.Forms.Padding(0);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(158, 21);
-            this.panel17.TabIndex = 1;
+            this.panel17.TabIndex = 5;
             // 
             // req5
             // 

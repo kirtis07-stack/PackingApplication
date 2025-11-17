@@ -267,6 +267,11 @@ namespace PackingApplication
             this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.fromwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
         }
 
         private async void ModifyPOYPackingForm_Shown(object sender, EventArgs e)
@@ -429,6 +434,7 @@ namespace PackingApplication
 
                 LineNoList.SelectedValue = productionResponse.MachineId;
                 DeptList.SelectedValue = productionResponse.DepartmentId;
+                boxnofrmt.Text = productionResponse.BoxNoFmtd;
                 //PrefixList.SelectedValue = 316;  //19       //added hardcoded for now
                 MergeNoList.SelectedValue = productionResponse.LotId;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
@@ -657,7 +663,7 @@ namespace PackingApplication
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                         }
-                        var getLots = await Task.Run(() => _productionService.getLotList(selectedMachineId));
+                        var getLots = _productionService.getLotList(selectedMachineId).Result;
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                         MergeNoList.DataSource = getLots;
                         MergeNoList.DisplayMember = "LotNoFrmt";
@@ -732,56 +738,61 @@ namespace PackingApplication
                     {
                         selectLotId = selectedLotId;
 
-                        lotResponse = await Task.Run(() => _productionService.getLotById(selectedLotId));
-                        itemname.Text = lotResponse.ItemName;
-                        shadename.Text = lotResponse.ShadeName;
-                        shadecd.Text = lotResponse.ShadeCode;
-                        deniervalue.Text = lotResponse.Denier.ToString();
-                        salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
-                        productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
-                        productionRequest.MachineId = lotResponse.MachineId;
-                        productionRequest.ItemId = lotResponse.ItemId;
-                        productionRequest.ShadeId = lotResponse.ShadeId;
-                        LineNoList.SelectedValue = lotResponse.MachineId;
-
-                        if (lotResponse.ItemId > 0)
+                        lotResponse = _productionService.getLotById(selectedLotId).Result;
+                        if (lotResponse != null)
                         {
-                            var itemResponse = await Task.Run(() => _masterService.getItemById(lotResponse.ItemId));
+                            itemname.Text = (!string.IsNullOrEmpty(lotResponse.ItemName)) ? lotResponse.ItemName : "";
+                            shadename.Text = (!string.IsNullOrEmpty(lotResponse.ShadeName)) ? lotResponse.ShadeName : "";
+                            shadecd.Text = (!string.IsNullOrEmpty(lotResponse.ShadeCode)) ? lotResponse.ShadeCode : "";
+                            deniervalue.Text = lotResponse.Denier.ToString();
+                            salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+                            productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
+                            productionRequest.MachineId = lotResponse.MachineId;
+                            productionRequest.ItemId = lotResponse.ItemId;
+                            productionRequest.ShadeId = lotResponse.ShadeId;
+                            LineNoList.SelectedValue = lotResponse.MachineId;
 
-                            var qualityList = _masterService.getQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
-                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                            QualityList.DataSource = qualityList;
-                            QualityList.DisplayMember = "Name";
-                            QualityList.ValueMember = "QualityId";
-                            QualityList.SelectedIndex = 0;
-                            QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                            QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                            //QualityList.DropDownStyle = ComboBoxStyle.DropDown;
-                            if (QualityList.Items.Count > 1)
+                            if (lotResponse.ItemId > 0)
                             {
-                                QualityList.SelectedIndex = 1;
-                            }
-                            else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                            {
-                                QualityList.SelectedIndex = 0;
-                            }
-                            else
-                            {
-                                QualityList.SelectedIndex = -1; // no selection possible
-                            }
-                            if (QualityList.SelectedIndex >= 0)
-                            {
-                                int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
-                                productionRequest.QualityId = firstQualityId;
+                                var itemResponse = _masterService.getItemById(lotResponse.ItemId).Result;
+                                if (itemResponse != null)
+                                {
+                                    var qualityList = _masterService.getQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
+                                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                                    QualityList.DataSource = qualityList;
+                                    QualityList.DisplayMember = "Name";
+                                    QualityList.ValueMember = "QualityId";
+                                    QualityList.SelectedIndex = 0;
+                                    QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                                    QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                                    //QualityList.DropDownStyle = ComboBoxStyle.DropDown;
+                                    if (QualityList.Items.Count > 1)
+                                    {
+                                        QualityList.SelectedIndex = 1;
+                                    }
+                                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                                    {
+                                        QualityList.SelectedIndex = 0;
+                                    }
+                                    else
+                                    {
+                                        QualityList.SelectedIndex = -1; // no selection possible
+                                    }
+                                    if (QualityList.SelectedIndex >= 0)
+                                    {
+                                        int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
+                                        productionRequest.QualityId = firstQualityId;
+                                    }
+                                }
                             }
                         }
 
                         var getWindingType = new List<WindingTypeResponse>();
-                        getWindingType = await Task.Run(() => _productionService.getWinderTypeList(selectedLotId));
+                        getWindingType = _productionService.getWinderTypeList(selectedLotId).Result;
                         getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                         if (getWindingType.Count <= 1)
                         {
-                            getWindingType = await Task.Run(() => _masterService.getWindingTypeList());
+                            getWindingType = _masterService.getWindingTypeList().Result;
                             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                         }
@@ -792,7 +803,7 @@ namespace PackingApplication
                         WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        var getSaleOrder = await Task.Run(() => _productionService.getSaleOrderList(selectedLotId));
+                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId).Result;
                         getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                         SaleOrderList.DataSource = getSaleOrder;
                         SaleOrderList.DisplayMember = "ItemName";
@@ -814,7 +825,7 @@ namespace PackingApplication
 
                         lotsDetailsList = new List<LotsDetailsResponse>();
                         productionRequest.ProductionDate = dateTimePicker1.Value;
-                        lotsDetailsList = await Task.Run(() => _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate));
+                        lotsDetailsList = _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate).Result;
                         if (lotsDetailsList.Count > 0)
                         {
                             //    foreach (var lot in lotResponse.LotsDetailsResponses)
@@ -898,11 +909,13 @@ namespace PackingApplication
                     productionRequest.PackSizeId = selectedPacksizeId;
                     if (selectedPacksizeId > 0)
                     {
-                        var packsize = await Task.Run(() => _masterService.getPackSizeById(selectedPacksizeId));
+                        var packsize = _masterService.getPackSizeById(selectedPacksizeId).Result;
                         frdenier.Text = packsize.FromDenier.ToString();
                         updenier.Text = packsize.UpToDenier.ToString();
                         startWeight = packsize.StartWeight;
                         endWeight = packsize.EndWeight;
+                        frwt.Text = packsize.StartWeight.ToString();
+                        upwt.Text = packsize.EndWeight.ToString();
                     }
 
                 }
@@ -1003,7 +1016,7 @@ namespace PackingApplication
                         selectedSONumber = selectedSaleOrder.SaleOrderNumber;
                         totalSOQty = selectedSaleOrder.Quantity;
                         grdsoqty.Text = totalSOQty.ToString("F2");
-                        var saleOrderItemResponse = await Task.Run(() => _saleService.getSaleOrderItemById(selectedSaleOrderId));
+                        var saleOrderItemResponse = _saleService.getSaleOrderItemById(selectedSaleOrderId).Result;
                         if (saleOrderItemResponse != null)
                         {
                             productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
@@ -1211,7 +1224,7 @@ namespace PackingApplication
                     {
                         productionRequest.SpoolItemId = selectedItemId;
 
-                        var itemResponse = await Task.Run(() => _masterService.getItemById(selectedItemId));
+                        var itemResponse = _masterService.getItemById(selectedItemId).Result;
                         if (itemResponse != null)
                         {
                             copsitemwt.Text = itemResponse.Weight.ToString();
@@ -1252,7 +1265,7 @@ namespace PackingApplication
                     if (selectedBoxItemId > 0)
                     {
                         productionRequest.BoxItemId = selectedBoxItemId;
-                        var itemResponse = await Task.Run(() => _masterService.getItemById(selectedBoxItemId));
+                        var itemResponse = _masterService.getItemById(selectedBoxItemId).Result;
                         if (itemResponse != null)
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
@@ -1331,12 +1344,13 @@ namespace PackingApplication
 
                     if (selectedDepartment != null && productionRequest.MachineId == 0)
                     {
-                        var machineList = await Task.Run(() => _masterService.getMachineByDepartmentId(selectedDepartmentId));
+                        var machineList = _masterService.getMachineByDepartmentIdAndLotType(selectedDepartmentId, "SpinningLot").Result;
 
                         //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
                         //LineNoList.SelectedValue = selectedDepartment;
                         machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                         LineNoList.DataSource = machineList;
+                        LineNoList.SelectedValue = productionResponse.MachineId;
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
@@ -1608,7 +1622,7 @@ namespace PackingApplication
                     System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 60, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(350, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(320, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
@@ -1649,7 +1663,7 @@ namespace PackingApplication
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(390, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(360, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                     btnDelete.FlatAppearance.BorderSize = 1;
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -1947,19 +1961,20 @@ namespace PackingApplication
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                //spoolnoerror.Text = "Please enter spool no";
-                //if(spoolnoerror.Visible)
-                //{
-                MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tarewt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-                //}
+            //if (string.IsNullOrWhiteSpace(spoolno.Text))
+            //{
+            //    //spoolnoerror.Text = "Please enter spool no";
+            //    //if(spoolnoerror.Visible)
+            //    //{
+            //    MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    tarewt.Text = "0";
+            //    spoolwt.Text = "0";
+            //    return;
+            //    //}
 
-            }
-            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+            //}
+            //else 
+            if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
                 return;
@@ -2092,10 +2107,11 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("POY Packing added successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    //MessageBox.Show("POY Packing added successfully!",
+                    //"Success",
+                    //MessageBoxButtons.OK,
+                    //MessageBoxIcon.Information);
+                    ShowCustomMessage(result.BoxNoFmtd);
                     isFormReady = false;
                     this.spoolno.Text = "0";
                     this.spoolwt.Text = "0";
@@ -2104,6 +2120,7 @@ namespace PackingApplication
                     this.netwt.Text = "";
                     this.wtpercop.Text = "";
                     isFormReady = true;
+                    this.spoolno.Focus();
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print
@@ -2365,7 +2382,7 @@ namespace PackingApplication
             //{
             //    totalProdQty += proditem.GrossWt;
             //}
-            //balanceQty = (totalSOQty - totalProdQty);
+            balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);

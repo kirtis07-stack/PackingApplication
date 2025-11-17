@@ -383,6 +383,7 @@ namespace PackingApplication
                 //tarewt.Text = productionResponse.TareWt.ToString();
                 //netwt.Text = productionResponse.NetWt.ToString();
                 OwnerList.SelectedValue = productionResponse.OwnerId;
+                LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
                 //MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 //PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
                 //BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
@@ -443,11 +444,11 @@ namespace PackingApplication
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        //if (_productionId > 0 && productionResponse != null)
-                        //{
-                        //    MergeNoList.SelectedValue = productionResponse.LotId;
-                        //    DeptList.SelectedValue = productionResponse.DepartmentId;
-                        //}
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            MergeNoList.SelectedValue = productionResponse.LotId;
+                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                        }
                     }
 
                 }
@@ -927,12 +928,13 @@ namespace PackingApplication
 
                     if (selectedDepartment != null && productionRequest.MachineId == 0)
                     {
-                        var machineList = _masterService.getMachineByDepartmentId(selectedDepartmentId).Result;
+                        var machineList = _masterService.getMachineByDepartmentIdAndLotType(selectedDepartmentId, "ChipsLot").Result;
 
                         //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
                         //LineNoList.SelectedValue = selectedDepartment;
                         machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                         LineNoList.DataSource = machineList;
+                        LineNoList.SelectedValue = productionResponse.MachineId;
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;

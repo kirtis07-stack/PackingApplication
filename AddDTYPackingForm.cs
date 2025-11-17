@@ -435,7 +435,7 @@ namespace PackingApplication
                 //tarewt.Text = productionResponse.TareWt.ToString();
                 //netwt.Text = productionResponse.NetWt.ToString();
                 OwnerList.SelectedValue = productionResponse.OwnerId;
-                //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
+                LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
                 //MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 //PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
                 //CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
@@ -498,12 +498,11 @@ namespace PackingApplication
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        //if (_productionId > 0 && productionResponse != null)
-                        //{
-                        //    MergeNoList.SelectedValue = productionResponse.LotId;
-                        //    DeptList.SelectedValue = productionResponse.DepartmentId;
-                        //    MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
-                        //}
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            MergeNoList.SelectedValue = productionResponse.LotId;
+                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                        }
                     }
 
                 }
@@ -690,11 +689,11 @@ namespace PackingApplication
                             rowMaterial.DataSource = lotsDetailsList;
                         }
 
-                        //if (_productionId > 0 && productionResponse != null)
-                        //{
-                        //    SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                        //    SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
-                        //}
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                        }
                     }
 
                 }
@@ -857,11 +856,11 @@ namespace PackingApplication
                         RefreshGradewiseGrid();
                         //RefreshLastBoxDetails();
 
-                        //if (_productionId > 0 && productionResponse != null)
-                        //{
-                        //    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                        //    WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
-                        //}
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                        }
                     }
 
                 }
@@ -1120,12 +1119,13 @@ namespace PackingApplication
 
                     if (selectedDepartment != null && productionRequest.MachineId == 0)
                     {
-                        var machineList = _masterService.getMachineByDepartmentId(selectedDepartmentId).Result;
+                        var machineList = _masterService.getMachineByDepartmentIdAndLotType(selectedDepartmentId,"TexturisingLot").Result;
 
                         //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
                         //LineNoList.SelectedValue = selectedDepartment;
                         machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                         LineNoList.DataSource = machineList;
+                        //LineNoList.SelectedValue = productionResponse.MachineId;
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
@@ -1787,7 +1787,7 @@ namespace PackingApplication
             //{
             //    totalProdQty += proditem.GrossWt;
             //}
-            //balanceQty = (totalSOQty - totalProdQty);
+            balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
