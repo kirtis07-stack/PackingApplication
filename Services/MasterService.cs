@@ -17,9 +17,9 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
 
-        public List<MachineResponse> getMachineList(string lotType)
+        public async Task<List<MachineResponse>> getMachineList(string lotType)
         {
-            var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType);
+            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType);
             if (string.IsNullOrWhiteSpace(getMachineResponse))
                 return new List<MachineResponse>();
             var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse)
@@ -27,9 +27,9 @@ namespace PackingApplication.Services
             return getMachine;
         }
 
-        public List<QualityResponse> getQualityList()
+        public async Task<List<QualityResponse>> getQualityList()
         {
-            var getQualityResponse = method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + true);
+            var getQualityResponse = await method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + true);
             if (string.IsNullOrWhiteSpace(getQualityResponse))
                 return new List<QualityResponse>();
             var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse)
@@ -37,9 +37,9 @@ namespace PackingApplication.Services
             return getQuality;
         }
 
-        public List<PackSizeResponse> getPackSizeList()
+        public async Task<List<PackSizeResponse>> getPackSizeList()
         {
-            var getPackSizeResponse = method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true);
+            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true);
             if (string.IsNullOrWhiteSpace(getPackSizeResponse))
                 return new List<PackSizeResponse>();
             var getPackSize = JsonConvert.DeserializeObject<List<PackSizeResponse>>(getPackSizeResponse)
@@ -47,9 +47,9 @@ namespace PackingApplication.Services
             return getPackSize;
         }
 
-        public List<WindingTypeResponse> getWindingTypeList()
+        public async Task<List<WindingTypeResponse>> getWindingTypeList()
         {
-            var getWindingTypeResponse = method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true);
+            var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true);
             if (string.IsNullOrWhiteSpace(getWindingTypeResponse))
                 return new List<WindingTypeResponse>();
             var getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse)
@@ -57,9 +57,9 @@ namespace PackingApplication.Services
             return getWindingType;
         }
 
-        public List<ItemResponse> getItemList(int categoryId)
+        public async Task<List<ItemResponse>> getItemList(int categoryId)
         {
-            var getItemResponse = method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
+            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
             //var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse);
             if (string.IsNullOrWhiteSpace(getItemResponse))
                 return new List<ItemResponse>();              // handle empty response
@@ -75,9 +75,9 @@ namespace PackingApplication.Services
         }
 
 
-        public MachineResponse getMachineById(int machineId)
+        public async Task<MachineResponse> getMachineById(int machineId)
         {
-            var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetById?machineId=" + machineId);
+            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetById?machineId=" + machineId);
             if (string.IsNullOrWhiteSpace(getMachineResponse))
                 return new MachineResponse();
             var getMachine = JsonConvert.DeserializeObject<MachineResponse>(getMachineResponse)
@@ -85,9 +85,9 @@ namespace PackingApplication.Services
             return getMachine;
         }
 
-        public PackSizeResponse getPackSizeById(int packSizeId)
+        public async Task<PackSizeResponse> getPackSizeById(int packSizeId)
         {
-            var getPacksizeResponse = method.GetCallApi(masterURL + "PackSize/GetById?PackSizeId=" + packSizeId);
+            var getPacksizeResponse = await method.GetCallApi(masterURL + "PackSize/GetById?PackSizeId=" + packSizeId);
             if (string.IsNullOrWhiteSpace(getPacksizeResponse))
                 return new PackSizeResponse();
             var getPacksize = JsonConvert.DeserializeObject<PackSizeResponse>(getPacksizeResponse)
@@ -95,9 +95,9 @@ namespace PackingApplication.Services
             return getPacksize;
         }
 
-        public List<QualityResponse> getQualityListByItemTypeId(int itemTypeId)
+        public async Task<List<QualityResponse>> getQualityListByItemTypeId(int itemTypeId)
         {
-            var getQualityResponse = method.GetCallApi(masterURL + "Quality/GetByItemTypeId?itemTypeId=" + itemTypeId);
+            var getQualityResponse = await method.GetCallApi(masterURL + "Quality/GetByItemTypeId?itemTypeId=" + itemTypeId);
             if (string.IsNullOrWhiteSpace(getQualityResponse))
                 return new List<QualityResponse>();
             var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse)
@@ -105,9 +105,9 @@ namespace PackingApplication.Services
             return getQuality;
         }
 
-        public ItemResponse getItemById(int itemId)
+        public async Task<ItemResponse> getItemById(int itemId)
         {
-            var getItemResponse = method.GetCallApi(masterURL + "Items/GetById?itemsId=" + itemId);
+            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetById?itemsId=" + itemId);
             if (string.IsNullOrWhiteSpace(getItemResponse))
                 return new ItemResponse();
             var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse)
@@ -115,9 +115,9 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public List<DepartmentResponse> getDepartmentList()
+        public async Task<List<DepartmentResponse>> getDepartmentList()
         {
-            var getDepartmentResponse = method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false);
+            var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false);
             if (string.IsNullOrWhiteSpace(getDepartmentResponse))
                 return new List<DepartmentResponse>();
             var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse)
@@ -125,9 +125,9 @@ namespace PackingApplication.Services
             return getDepartment;
         }
 
-        public List<MachineResponse> getMachineByDepartmentId(int departmentId)
+        public async Task<List<MachineResponse>> getMachineByDepartmentId(int departmentId)
         {
-            var getMachineResponse = method.GetCallApi(masterURL + "Machine/GetAllByDepartmentId?departmentId=" + departmentId);
+            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByDepartmentId?departmentId=" + departmentId);
             if (string.IsNullOrWhiteSpace(getMachineResponse))
                 return new List<MachineResponse>();
             var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse)
@@ -135,9 +135,9 @@ namespace PackingApplication.Services
             return getMachine;
         }
 
-        public List<BusinessPartnerResponse> getOwnerList()
+        public async Task<List<BusinessPartnerResponse>> getOwnerList()
         {
-            var getBusinessPartnerResponse = method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + true);
+            var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + true);
             if (string.IsNullOrWhiteSpace(getBusinessPartnerResponse))
                 return new List<BusinessPartnerResponse>();              // handle empty response
             var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse)

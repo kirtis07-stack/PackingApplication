@@ -16,7 +16,7 @@ namespace PackingApplication.Helper
 {
     public class HTTPMethod
     {
-        public string GetCallApi(string WebApiurl)
+        public async Task<string> GetCallApi(string WebApiurl)
         {
             var request = (HttpWebRequest)WebRequest.Create(WebApiurl);
 
@@ -30,13 +30,13 @@ namespace PackingApplication.Helper
 
             try
             {
-                using (var response = (HttpWebResponse)request.GetResponse())
+                using (var response = (HttpWebResponse)request.GetResponseAsync().Result)
                 {
                     using (var stream = response.GetResponseStream())
                     {
                         using (var sr = new StreamReader(stream))
                         {
-                            content = sr.ReadToEnd();
+                            content = sr.ReadToEndAsync().Result;
                         }
                     }
                 }
@@ -52,6 +52,29 @@ namespace PackingApplication.Helper
 
             return content;
         }
+
+        //public async Task<string> GetCallApi(string url)
+        //{
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        //client.Timeout = TimeSpan.FromSeconds(30);
+        //        client.DefaultRequestHeaders.Authorization =
+        //            new AuthenticationHeaderValue("Bearer", SessionManager.AuthToken);
+
+        //        try
+        //        {
+        //            var response = await client.GetAsync(url);
+        //            response.EnsureSuccessStatusCode();
+        //            return await response.Content.ReadAsStringAsync();
+        //        }
+        //        catch(Exception ex)
+        //        {
+        //            return string.Empty;
+        //        }
+        //    }
+        //}
+
+
         public async Task<string> PostCallApi(string path, object data)
         {
             HttpClient client = new HttpClient();

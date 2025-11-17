@@ -107,8 +107,8 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllChipsPackingList()
         {
-            var getPacking = _packingService.getAllPackingListByPackingType("chipspacking");
-            return getPacking;
+            //var getPacking = _packingService.getAllPackingListByPackingType("chipspacking");
+            return new List<ProductionResponse>();
         }
 
         private void addNew_Click(object sender, EventArgs e)

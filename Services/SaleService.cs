@@ -15,24 +15,33 @@ namespace PackingApplication.Services
     {
         HTTPMethod method = new HTTPMethod();
         string saleURL = ConfigurationManager.AppSettings["saleURL"];
-        public SaleOrderResponse getSaleOrderById(int saleOrderId)
+        public async Task<SaleOrderResponse> getSaleOrderById(int saleOrderId)
         {
-            var getSaleOrderResponse = method.GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + saleOrderId);
-            var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse);
+            var getSaleOrderResponse = await method.GetCallApi(saleURL + "SaleOrder/GetById?saleOrderId=" + saleOrderId);
+            if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
+                return new SaleOrderResponse();
+            var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderResponse>(getSaleOrderResponse)
+                ?? new SaleOrderResponse();
             return getSaleOrder;
         }
 
-        public SaleOrderItemsResponse getSaleOrderItemByItemIdAndShadeIdAndSaleOrderItemId(int itemId, int shadeId, int saleOrderItemId)
+        public async Task<SaleOrderItemsResponse> getSaleOrderItemByItemIdAndShadeIdAndSaleOrderItemId(int itemId, int shadeId, int saleOrderItemId)
         {
-            var getSaleOrderItemResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderItemId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderItemId=" + saleOrderItemId);
-            var getSaleOrderItem = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderItemResponse);
+            var getSaleOrderItemResponse = await method.GetCallApi(saleURL + "SaleOrderItems/GetByItemIdAndShadeIdAndSaleOrderItemId?itemId=" + itemId + "&shadeId=" + shadeId + "&saleOrderItemId=" + saleOrderItemId);
+            if (string.IsNullOrWhiteSpace(getSaleOrderItemResponse))
+                return new SaleOrderItemsResponse();
+            var getSaleOrderItem = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderItemResponse)
+                ?? new SaleOrderItemsResponse();
             return getSaleOrderItem;
         }
 
-        public SaleOrderItemsResponse getSaleOrderItemById(int saleOrderItemsId)
+        public async Task<SaleOrderItemsResponse> getSaleOrderItemById(int saleOrderItemsId)
         {
-            var getSaleOrderResponse = method.GetCallApi(saleURL + "SaleOrderItems/GetById?saleOrderItemsId=" + saleOrderItemsId);
-            var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderResponse);
+            var getSaleOrderResponse = await method.GetCallApi(saleURL + "SaleOrderItems/GetById?saleOrderItemsId=" + saleOrderItemsId);
+            if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
+                return new SaleOrderItemsResponse();
+            var getSaleOrder = JsonConvert.DeserializeObject<SaleOrderItemsResponse>(getSaleOrderResponse)
+                ?? new SaleOrderItemsResponse();
             return getSaleOrder;
         }
     }

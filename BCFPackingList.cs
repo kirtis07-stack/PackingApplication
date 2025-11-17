@@ -108,8 +108,8 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllBCFPackingList()
         {
-            var getPacking = _packingService.getAllPackingListByPackingType("bcfpacking");
-            return getPacking;
+            //var getPacking = _packingService.getAllPackingListByPackingType("bcfpacking");
+            return new List<ProductionResponse>();
         }
 
         private void addNew_Click(object sender, EventArgs e)

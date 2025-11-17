@@ -108,8 +108,8 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllPOYPackingList()
         {
-            var getPacking = _packingService.getAllPackingListByPackingType("poypacking");
-            return getPacking;
+            //var getPacking = _packingService.getAllPackingListByPackingType("poypacking");
+            return new List<ProductionResponse>();
         }
 
         private void addNew_Click(object sender, EventArgs e)
