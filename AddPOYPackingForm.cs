@@ -707,8 +707,11 @@ namespace PackingApplication
 
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                            if (selectedMachineId == productionResponse.MachineId)
+                            {
+                                MergeNoList.SelectedValue = productionResponse.LotId;
+                                DeptList.SelectedValue = productionResponse.DepartmentId;
+                            }
                         }
                     }
 
@@ -899,8 +902,11 @@ namespace PackingApplication
 
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            if (selectLotId == productionResponse.LotId)
+                            {
+                                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+                                //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            }
                         }
                     }
 
@@ -1068,8 +1074,10 @@ namespace PackingApplication
                         //RefreshLastBoxDetails();
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+                            if (selectedSaleOrderId == productionResponse.SaleOrderItemsId && productionRequest.LotId == productionResponse.LotId)
+                            {
+                                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+                            }
                         }
                     }
 
@@ -1413,11 +1421,14 @@ namespace PackingApplication
                         PrefixList.SelectedIndex = 0;  // Optional: no default selection
                     }
 
-                    //if (_productionId > 0 && productionResponse != null)
-                    //{
-                    //    PrefixList.SelectedValue = productionResponse.PrefixCode;
-                    //    PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
-                    //}
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        if (selectedDepartmentId == productionResponse.DepartmentId && productionRequest.MachineId == productionResponse.MachineId)
+                        {
+                            PrefixList.SelectedValue = productionResponse.PrefixCode;
+                            //PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                        }
+                    }
                 }
             }
             finally

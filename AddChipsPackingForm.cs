@@ -446,8 +446,11 @@ namespace PackingApplication
 
                         if (_productionId > 0 && productionResponse != null)
                         {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
+                            if (selectedMachineId == productionResponse.MachineId)
+                            {
+                                MergeNoList.SelectedValue = productionResponse.LotId;
+                                DeptList.SelectedValue = productionResponse.DepartmentId;
+                            }
                         }
                     }
 
@@ -963,6 +966,14 @@ namespace PackingApplication
                     {
                         PrefixList.Enabled = true;      // Allow user selection
                         PrefixList.SelectedIndex = 0;  // Optional: no default selection
+                    }
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        if (selectedDepartmentId == productionResponse.DepartmentId && productionRequest.MachineId == productionResponse.MachineId)
+                        {
+                            PrefixList.SelectedValue = productionResponse.PrefixCode;
+                            //PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                        }
                     }
                 }
             }
