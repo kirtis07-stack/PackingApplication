@@ -2303,7 +2303,7 @@ namespace PackingApplication
             this.panel2.Location = new System.Drawing.Point(206, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(132, 13);
+            this.panel2.Size = new System.Drawing.Size(200, 13);
             this.panel2.TabIndex = 1;
             // 
             // lastbox
@@ -2312,7 +2312,7 @@ namespace PackingApplication
             this.lastbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.lastbox.Location = new System.Drawing.Point(60, 1);
             this.lastbox.Name = "lastbox";
-            this.lastbox.Size = new System.Drawing.Size(0, 13);
+            this.lastbox.Size = new System.Drawing.Size(150, 13);
             this.lastbox.TabIndex = 5;
             // 
             // lastboxno
