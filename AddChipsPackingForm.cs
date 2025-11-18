@@ -89,6 +89,10 @@ namespace PackingApplication
             //this.reportViewer1.RefreshReport();
 
             prcompany.FlatStyle = FlatStyle.System;
+            this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
         }
 
         private void getLotRelatedDetails()
@@ -383,6 +387,7 @@ namespace PackingApplication
                 //tarewt.Text = productionResponse.TareWt.ToString();
                 //netwt.Text = productionResponse.NetWt.ToString();
                 OwnerList.SelectedValue = productionResponse.OwnerId;
+                LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
                 //MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
                 //PackSizeList_SelectedIndexChanged(PackSizeList, EventArgs.Empty);
                 //BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
@@ -443,11 +448,14 @@ namespace PackingApplication
                         MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        //if (_productionId > 0 && productionResponse != null)
-                        //{
-                        //    MergeNoList.SelectedValue = productionResponse.LotId;
-                        //    DeptList.SelectedValue = productionResponse.DepartmentId;
-                        //}
+                        if (_productionId > 0 && productionResponse != null)
+                        {
+                            if (selectedMachineId == productionResponse.MachineId)
+                            {
+                                MergeNoList.SelectedValue = productionResponse.LotId;
+                                DeptList.SelectedValue = productionResponse.DepartmentId;
+                            }
+                        }
                     }
 
                 }
@@ -927,12 +935,13 @@ namespace PackingApplication
 
                     if (selectedDepartment != null && productionRequest.MachineId == 0)
                     {
-                        var machineList = _masterService.getMachineByDepartmentId(selectedDepartmentId).Result;
+                        var machineList = _masterService.getMachineByDepartmentIdAndLotType(selectedDepartmentId, "ChipsLot").Result;
 
                         //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
                         //LineNoList.SelectedValue = selectedDepartment;
                         machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                         LineNoList.DataSource = machineList;
+                        LineNoList.SelectedValue = productionResponse.MachineId;
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
@@ -961,6 +970,14 @@ namespace PackingApplication
                     {
                         PrefixList.Enabled = true;      // Allow user selection
                         PrefixList.SelectedIndex = 0;  // Optional: no default selection
+                    }
+                    if (_productionId > 0 && productionResponse != null)
+                    {
+                        if (selectedDepartmentId == productionResponse.DepartmentId && productionRequest.MachineId == productionResponse.MachineId)
+                        {
+                            PrefixList.SelectedValue = productionResponse.PrefixCode;
+                            //PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                        }
                     }
                 }
             }
@@ -1326,10 +1343,10 @@ namespace PackingApplication
                 //MessageBoxIcon.Information);
                 ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
-                this.grosswtno.Text = "";
-                this.tarewt.Text = "";
-                this.netwt.Text = "";
-                this.wtpercop.Text = "";
+                this.grosswtno.Text = "0.000";
+                this.tarewt.Text = "0.000";
+                this.netwt.Text = "0.000";
+                this.wtpercop.Text = "0.000";
                 isFormReady = true;
                 //if (isPrint)
                 //{

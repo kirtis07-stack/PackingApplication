@@ -125,9 +125,9 @@ namespace PackingApplication.Services
             return getDepartment;
         }
 
-        public async Task<List<MachineResponse>> getMachineByDepartmentId(int departmentId)
+        public async Task<List<MachineResponse>> getMachineByDepartmentIdAndLotType(int departmentId, string lotType)
         {
-            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByDepartmentId?departmentId=" + departmentId);
+            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByDepartmentIdAndLotType?departmentId=" + departmentId + "&lotType=" + lotType);
             if (string.IsNullOrWhiteSpace(getMachineResponse))
                 return new List<MachineResponse>();
             var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse)
