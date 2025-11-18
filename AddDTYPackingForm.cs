@@ -100,6 +100,10 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
         }
 
         private void getLotRelatedDetails()
@@ -1522,6 +1526,7 @@ namespace PackingApplication
         {
             if (ValidateForm())
             {
+                productionRequest.OwnerId = this.OwnerList.SelectedIndex <=0 ? 0 : productionRequest.OwnerId;
                 productionRequest.PackingType = "DTYPacking";
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
@@ -1591,6 +1596,7 @@ namespace PackingApplication
                 this.tarewt.Text = "0.000";
                 this.netwt.Text = "0.000";
                 this.wtpercop.Text = "0.000";
+                palletwtno.Text = boxpalletitemwt.Text;
                 isFormReady = true;
                 this.spoolno.Focus();
                 //if (isPrint)
@@ -1987,8 +1993,15 @@ namespace PackingApplication
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            // Select all text when the textbox receives focus via keyboard (Enter key)
+            if (e.KeyCode == Keys.Enter)
+            {
+                ((System.Windows.Forms.TextBox)sender).SelectAll();
+            }
+
             if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
             {
+                ((System.Windows.Forms.TextBox)sender).SelectAll();
                 ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
         }

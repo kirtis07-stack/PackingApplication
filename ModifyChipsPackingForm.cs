@@ -93,6 +93,9 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
+            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
         }
 
         private void getLotRelatedDetails()
@@ -1176,6 +1179,7 @@ namespace PackingApplication
         {
             if (ValidateForm())
             {
+                productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
                 productionRequest.PackingType = "ChipsPacking";
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
@@ -1237,10 +1241,11 @@ namespace PackingApplication
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                     isFormReady = false;
-                    this.grosswtno.Text = "";
-                    this.tarewt.Text = "";
-                    this.netwt.Text = "";
-                    this.wtpercop.Text = "";
+                    this.grosswtno.Text = "0.000";
+                    this.tarewt.Text = "0.000";
+                    this.netwt.Text = "0.000";
+                    this.wtpercop.Text = "0.000";
+                    palletwtno.Text = boxpalletitemwt.Text;
                     isFormReady = true;
                     //if (isPrint)
                     //{
@@ -1636,11 +1641,19 @@ namespace PackingApplication
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            // Select all text when the textbox receives focus via keyboard (Enter key)
+            if (e.KeyCode == Keys.Enter)
+            {
+                ((System.Windows.Forms.TextBox)sender).SelectAll();
+            }
+
             if (e.Control && e.KeyCode == Keys.V) // Ctrl+V paste
             {
+                ((System.Windows.Forms.TextBox)sender).SelectAll();
                 ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
         }
+
         private void checkBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

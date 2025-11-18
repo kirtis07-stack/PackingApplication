@@ -722,7 +722,6 @@ namespace PackingApplication
             this.grosswtno.Size = new System.Drawing.Size(17, 20);
             this.grosswtno.TabIndex = 6;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.grosswtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             this.grosswtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
@@ -750,7 +749,6 @@ namespace PackingApplication
             this.palletwtno.TabIndex = 5;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.palletwtno.TextChanged += new System.EventHandler(this.PalletWeight_TextChanged);
-            this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
             this.palletwtno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeric_KeyPress);
             this.palletwtno.Leave += new System.EventHandler(this.txtNumeric_Leave);
@@ -2012,7 +2010,7 @@ namespace PackingApplication
             this.panel2.Location = new System.Drawing.Point(206, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(132, 13);
+            this.panel2.Size = new System.Drawing.Size(200, 13);
             this.panel2.TabIndex = 1;
             // 
             // lastbox
@@ -2021,7 +2019,7 @@ namespace PackingApplication
             this.lastbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.lastbox.Location = new System.Drawing.Point(50, 4);
             this.lastbox.Name = "lastbox";
-            this.lastbox.Size = new System.Drawing.Size(0, 13);
+            this.lastbox.Size = new System.Drawing.Size(150, 13);
             this.lastbox.TabIndex = 5;
             // 
             // lastboxno
