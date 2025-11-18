@@ -438,6 +438,7 @@ namespace PackingApplication
             this.remarks.Name = "remarks";
             this.remarks.Size = new System.Drawing.Size(147, 36);
             this.remarks.TabIndex = 4;
+            this.remarks.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // scalemodel
             // 

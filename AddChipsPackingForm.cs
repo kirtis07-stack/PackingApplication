@@ -95,7 +95,7 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            //this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
         }
 
         private void getLotRelatedDetails()
@@ -1719,6 +1719,15 @@ namespace PackingApplication
                 ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
         }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TextBox tb = sender as System.Windows.Forms.TextBox;
+
+            if (!string.IsNullOrEmpty(tb.Text))
+                tb.SelectAll();
+        }
+
         private void checkBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

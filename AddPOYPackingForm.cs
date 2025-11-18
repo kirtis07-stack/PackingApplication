@@ -134,7 +134,7 @@ namespace PackingApplication
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            //this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
         }
 
         private void getLotRelatedDetails()
@@ -2633,6 +2633,14 @@ namespace PackingApplication
                 ((System.Windows.Forms.TextBox)sender).SelectAll();
                 ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TextBox tb = sender as System.Windows.Forms.TextBox;
+
+            if (!string.IsNullOrEmpty(tb.Text))
+                tb.SelectAll();
         }
 
         private void palletQty_KeyPress(object sender, KeyPressEventArgs e)
