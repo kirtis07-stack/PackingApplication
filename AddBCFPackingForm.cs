@@ -1232,12 +1232,16 @@ namespace PackingApplication
                 WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
                 int selectedScaleId = selectedWeighingScale.Id;
 
-                //if (selectedScaleId >= 0)
-                //{
-                //    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
-                //    grosswtno.Text = readWeight.ToString();
-                //    grosswtno.ReadOnly = true;
-                //}
+                if (selectedScaleId >= 0 && !string.IsNullOrEmpty(comPort))
+                {
+                    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
+                    if (readWeight != null && (!string.IsNullOrEmpty(readWeight)))
+                    {
+                        grosswtno.Text = readWeight.ToString();
+                        grosswtno.ReadOnly = true;
+                        grosswtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+                    }
+                }
 
             }
         }

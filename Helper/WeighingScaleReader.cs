@@ -19,44 +19,49 @@ namespace PackingApplication.Helper
         public string ReadWeight(string portName, int scaleType, int baudRate = 9600, int timeoutMs = 0)
         {
             string weight = string.Empty;
-            using (SerialPort serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One))
-            {
-                AutoResetEvent dataReceivedEvent = new AutoResetEvent(false);
-
-                serialPort.DataReceived += (sender, e) =>
+            try
+            {              
+                using (SerialPort serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One))
                 {
-                    try
+                    AutoResetEvent dataReceivedEvent = new AutoResetEvent(false);
+
+                    serialPort.DataReceived += (sender, e) =>
                     {
-                        string inputData = serialPort.ReadExisting();
-                        if (!string.IsNullOrEmpty(inputData))
+                        try
                         {
-                            string formattedWeight = ParseWeight(inputData, scaleType);
-                            if (!string.IsNullOrEmpty(formattedWeight))
+                            string inputData = serialPort.ReadExisting();
+                            if (!string.IsNullOrEmpty(inputData))
                             {
-                                weight = formattedWeight;
-                                dataReceivedEvent.Set(); // signal that data is ready
+                                string formattedWeight = ParseWeight(inputData, scaleType);
+                                if (!string.IsNullOrEmpty(formattedWeight))
+                                {
+                                    weight = formattedWeight;
+                                    dataReceivedEvent.Set(); // signal that data is ready
+                                }
                             }
                         }
-                    }
-                    catch
+                        catch
+                        {
+                            // Handle any parsing/reading error here
+                        }
+                    };
+
+                    serialPort.Open();
+
+                    // Wait until weight is read or timeout
+                    if (timeoutMs > 0)
                     {
-                        // Handle any parsing/reading error here
+                        dataReceivedEvent.WaitOne(timeoutMs);
                     }
-                };
+                    else
+                    {
+                        dataReceivedEvent.WaitOne(); // wait indefinitely
+                    }
 
-                serialPort.Open();
-
-                // Wait until weight is read or timeout
-                if (timeoutMs > 0)
-                {
-                    dataReceivedEvent.WaitOne(timeoutMs);
+                    serialPort.Close();
                 }
-                else
-                {
-                    dataReceivedEvent.WaitOne(); // wait indefinitely
-                }
-
-                serialPort.Close();
+            }
+            catch (Exception ex) { 
             }
 
             return weight;
