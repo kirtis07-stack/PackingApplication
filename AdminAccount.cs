@@ -364,6 +364,14 @@ namespace PackingApplication
             this.Controls.Add(headerPanel);
             headerPanel.Dock = DockStyle.Top;
             this.IsMdiContainer = true;
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl is MdiClient)
+                {
+                    ctl.BackColor = Color.White;
+                    break;
+                }
+            }
             // footer
             //footerPanel = new Panel
             //{
@@ -619,7 +627,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 var form = new ModifyPOYPackingForm();
-                var formKey = "ViewPOYPackingForm";
+                var formKey = "ModifyPOYPackingForm";
                 form.Tag = "Packing - Modify POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
