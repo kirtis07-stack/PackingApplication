@@ -808,6 +808,7 @@ namespace PackingApplication
 
                 activeChild = frm;
                 frm.WindowState = FormWindowState.Maximized;
+                this.Text = frm.Tag.ToString();
                 frm.Show();
                 frm.BringToFront();
             };
