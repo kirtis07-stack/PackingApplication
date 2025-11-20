@@ -33,6 +33,7 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.emailid = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
             this.password = new System.Windows.Forms.Label();
@@ -354,6 +355,7 @@ namespace PackingApplication
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.Text = "Login";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

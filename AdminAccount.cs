@@ -1,4 +1,5 @@
-﻿using PackingApplication.Helper;
+﻿using Microsoft.Reporting.Map.WebForms.BingMaps;
+using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace PackingApplication
         private List<Form> minimizedForms = new List<Form>();
         private Dictionary<string, Form> openForms = new Dictionary<string, Form>();
         MenuStrip menuStrip = new MenuStrip();
+        private Form activeChild = null;
 
         // Windows menu
         ToolStripMenuItem windows = new ToolStripMenuItem("Windows")
@@ -72,7 +75,7 @@ namespace PackingApplication
                     Image = Properties.Resources.logo,
                     SizeMode = PictureBoxSizeMode.Normal,
                     Size = new Size(170, 50),
-                    Location = new Point(10, 10)
+                    Location = new System.Drawing.Point(10, 10)
                 };
                 leftPanel.Controls.Add(logoPictureBox);
             //}
@@ -359,7 +362,16 @@ namespace PackingApplication
             headerPanel.Controls.Add(bottomBorder);
             // Add header to form
             this.Controls.Add(headerPanel);
-
+            headerPanel.Dock = DockStyle.Top;
+            this.IsMdiContainer = true;
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl is MdiClient)
+                {
+                    ctl.BackColor = Color.White;
+                    break;
+                }
+            }
             // footer
             //footerPanel = new Panel
             //{
@@ -401,13 +413,13 @@ namespace PackingApplication
             //this.Controls.Add(footerPanel);
 
             // content panel (sticky between header & footer)
-            contentPanel = new Panel
-            {
-                Dock = DockStyle.Fill,   
-                BackColor = Color.White,
-            };
-            this.Controls.Add(contentPanel);
-            this.Controls.SetChildIndex(contentPanel, 0);
+            //contentPanel = new Panel
+            //{
+            //    Dock = DockStyle.Fill,   
+            //    BackColor = Color.White,
+            //};
+            //this.Controls.Add(contentPanel);
+            //this.Controls.SetChildIndex(contentPanel, 0);
 
             //LoadFormInContent(new Dashboard());
         }
@@ -480,56 +492,100 @@ namespace PackingApplication
             this.Close();
         }
 
-        public void LoadFormInContent(Form form, string formKey)
+        public void LoadFormInContent(Form child, string formKey)
         {
             // Temporarily remove Enter event
-            menuStrip.Enter -= MenuStrip_EnterHandler;
+            //menuStrip.Enter -= MenuStrip_EnterHandler;
 
-            // Hide currently active form (minimize behavior)
-            // Hide (minimize) the active form
-            if (activeForm != null)
-            {
-                activeForm.Hide();
-
-                if (!minimizedForms.Contains(activeForm))
-                {
-                    minimizedForms.Add(activeForm);
-                    AddMinimizedFormToMenu(activeForm);
-                }
-            }
-            // Check if form already exists
-            //if (openForms.ContainsKey(formKey))
+            //// Hide currently active form (minimize behavior)
+            //// Hide (minimize) the active form
+            //if (activeForm != null)
             //{
-            //    RestoreForm(openForms[formKey]);
-            //    return;
+            //    activeForm.Hide();
+
+            //    if (!minimizedForms.Contains(activeForm))
+            //    {
+            //        minimizedForms.Add(activeForm);
+            //        AddMinimizedFormToMenu(activeForm);
+            //    }
+            //}
+            //// Check if form already exists
+            ////if (openForms.ContainsKey(formKey))
+            ////{
+            ////    RestoreForm(openForms[formKey]);
+            ////    return;
+            ////}
+
+            //// New form
+            //openForms[formKey] = form;
+
+            //contentPanel.Controls.Clear();
+            //form.TopLevel = false;
+            //form.FormBorderStyle = FormBorderStyle.None;
+            //form.Dock = DockStyle.Fill;
+            //form.BackColor = Color.White;
+
+            //contentPanel.Controls.Add(form);
+            //form.Show();
+
+            //// Set focus explicitly to first control
+            //if (form.Controls.Count > 0)
+            //{
+            //    //Control firstControl = form.Controls[0];
+            //    //if (firstControl.CanSelect)
+            //    //    firstControl.Focus();
+            //    form.Controls[0].Focus();
             //}
 
-            // New form
-            openForms[formKey] = form;
+            //activeForm = form;
 
-            contentPanel.Controls.Clear();
-            form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
-            form.BackColor = Color.White;
+            //// Re-attach Enter event
+            //menuStrip.Enter += MenuStrip_EnterHandler;
+            //FocusFirstField(form);
 
-            contentPanel.Controls.Add(form);
-            form.Show();
-
-            // Set focus explicitly to first control
-            if (form.Controls.Count > 0)
+            // If already opened → just show it
+            if (openForms.ContainsKey(formKey))
             {
-                //Control firstControl = form.Controls[0];
-                //if (firstControl.CanSelect)
-                //    firstControl.Focus();
-                form.Controls[0].Focus();
+                if (activeChild != null)
+                    activeChild.Hide();
+
+                activeChild = openForms[formKey];
+                activeChild.Show();
+                activeChild.WindowState = FormWindowState.Maximized;
+                activeChild.BringToFront();
+                return;
             }
 
-            activeForm = form;
+            // New child form
+            child.MdiParent = this;
 
-            // Re-attach Enter event
-            menuStrip.Enter += MenuStrip_EnterHandler;
-            FocusFirstField(form);
+            // Remove border/title bar
+            child.FormBorderStyle = FormBorderStyle.None;
+            child.ControlBox = false;
+            child.ShowIcon = false;
+            child.Text = "";
+
+            // Fullscreen inside MDI
+            child.StartPosition = FormStartPosition.Manual;
+            child.WindowState = FormWindowState.Maximized;
+
+            // Match parent’s client area
+            child.Dock = DockStyle.Fill;
+
+            // Save
+            openForms[formKey] = child;
+
+            // Hide previous
+            if (activeChild != null)
+                activeChild.Hide();
+
+            activeChild = child;
+
+            // Add to Windows Menu
+            AddMinimizedFormToMenu(formKey);
+
+            child.Show();
+            child.BringToFront();
         }
 
         private void AddPOYPacking_Click(object sender, EventArgs e)
@@ -571,7 +627,7 @@ namespace PackingApplication
             if (dashboard != null)
             {
                 var form = new ModifyPOYPackingForm();
-                var formKey = "ViewPOYPackingForm";
+                var formKey = "ModifyPOYPackingForm";
                 form.Tag = "Packing - Modify POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
@@ -730,15 +786,32 @@ namespace PackingApplication
             topMenu.BackColor = Color.FromArgb(230, 240, 255);
         }
 
-        private void AddMinimizedFormToMenu(Form form)
+        private void AddMinimizedFormToMenu(string formKey)
         {
-            if (form == null) return;
+            //if (form == null) return;
+            //if (windows.DropDownItems.Cast<ToolStripMenuItem>().Any(x => x.Tag == form))
+            //    return;
+            ////form.Hide();
+            ////minimizedForms.Add(form);
+            //var item = new ToolStripMenuItem(form.Text);
+            //item.Tag = form; // store reference to the form
+            //item.Click += MinimizedFormMenu_Click;
+            //item.Font = FontManager.GetFont(8, FontStyle.Regular);
+            //windows.DropDownItems.Add(item);
+            ToolStripMenuItem item = new ToolStripMenuItem(formKey);
+            item.Click += (s, e) =>
+            {
+                Form frm = openForms[formKey];
 
-            form.Hide();
-            minimizedForms.Add(form);
-            var item = new ToolStripMenuItem(form.Text);
-            item.Tag = form; // store reference to the form
-            item.Click += MinimizedFormMenu_Click;
+                if (activeChild != null && activeChild != frm)
+                    activeChild.Hide();
+
+                activeChild = frm;
+                frm.WindowState = FormWindowState.Maximized;
+                this.Text = frm.Tag.ToString();
+                frm.Show();
+                frm.BringToFront();
+            };
             item.Font = FontManager.GetFont(8, FontStyle.Regular);
             windows.DropDownItems.Add(item);
         }
@@ -757,25 +830,29 @@ namespace PackingApplication
         {
             // Hide currently active form
             if (activeForm != null && activeForm != form)
-                activeForm.Hide();
+                //activeForm.Hide();
+                activeForm.WindowState = FormWindowState.Minimized;
+            form.WindowState = FormWindowState.Normal;
+            form.Activate();
 
-            if (!contentPanel.Controls.Contains(form))
-            {
-                form.TopLevel = false;
-                form.FormBorderStyle = FormBorderStyle.None;
-                form.Dock = DockStyle.Fill;
-                contentPanel.Controls.Add(form);
-            }
-
-            // Show the selected one
-            form.Show();
-            form.BringToFront();
-            form.Focus();
-            if (form.Tag != null)
-                this.Text = form.Tag.ToString();
             activeForm = form;
+            //if (!contentPanel.Controls.Contains(form))
+            //{
+            //    form.TopLevel = false;
+            //    form.FormBorderStyle = FormBorderStyle.None;
+            //    form.Dock = DockStyle.Fill;
+            //    contentPanel.Controls.Add(form);
+            //}
 
-            FocusFirstField(form);
+            //// Show the selected one
+            //form.Show();
+            //form.BringToFront();
+            //form.Focus();
+            //if (form.Tag != null)
+            //    this.Text = form.Tag.ToString();
+            //activeForm = form;
+
+            //FocusFirstField(form);
             // Remove from minimized list and menu
             //minimizedForms.Remove(form);
             //var toRemove = windows.DropDownItems

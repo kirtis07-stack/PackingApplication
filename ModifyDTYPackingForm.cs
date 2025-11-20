@@ -2343,6 +2343,10 @@ namespace PackingApplication
             {
                 spoolno.Clear(); // remove the default value
             }
+            else
+            {
+                ((System.Windows.Forms.TextBox)sender).SelectAll();
+            }
         }
 
         private void spoolNo_Leave(object sender, EventArgs e)
