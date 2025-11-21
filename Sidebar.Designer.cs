@@ -1046,7 +1046,7 @@
             // uptodenier
             // 
             this.uptodenier.AutoSize = true;
-            this.uptodenier.Location = new System.Drawing.Point(120, 2);
+            this.uptodenier.Location = new System.Drawing.Point(100, 2);
             this.uptodenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uptodenier.Name = "uptodenier";
             this.uptodenier.Size = new System.Drawing.Size(41, 26);
@@ -1067,7 +1067,7 @@
             // 
             this.updenier.AutoSize = true;
             this.updenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.updenier.Location = new System.Drawing.Point(160, 5);
+            this.updenier.Location = new System.Drawing.Point(140, 5);
             this.updenier.Name = "updenier";
             this.updenier.Size = new System.Drawing.Size(0, 16);
             this.updenier.TabIndex = 6;
@@ -1099,7 +1099,7 @@
             // uptowt
             // 
             this.uptowt.AutoSize = true;
-            this.uptowt.Location = new System.Drawing.Point(100, 0);
+            this.uptowt.Location = new System.Drawing.Point(90, 0);
             this.uptowt.Name = "uptowt";
             this.uptowt.Size = new System.Drawing.Size(30, 26);
             this.uptowt.TabIndex = 124;
@@ -1109,7 +1109,7 @@
             // 
             this.upwt.AutoSize = true;
             this.upwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.upwt.Location = new System.Drawing.Point(130, 5);
+            this.upwt.Location = new System.Drawing.Point(120, 5);
             this.upwt.Name = "upwt";
             this.upwt.Size = new System.Drawing.Size(0, 16);
             this.upwt.TabIndex = 124;
@@ -1238,7 +1238,7 @@
             // copweight
             // 
             this.copweight.AutoSize = true;
-            this.copweight.Location = new System.Drawing.Point(0, 6);
+            this.copweight.Location = new System.Drawing.Point(4, 6);
             this.copweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copweight.Name = "copweight";
             this.copweight.Size = new System.Drawing.Size(24, 13);

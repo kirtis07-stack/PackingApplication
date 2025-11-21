@@ -34,7 +34,7 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.packingdate = new System.Windows.Forms.Label();
@@ -128,21 +128,24 @@ namespace PackingApplication
             this.OwnerList = new System.Windows.Forms.ComboBox();
             this.owner = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
-            this.upwt = new System.Windows.Forms.Label();
-            this.frwt = new System.Windows.Forms.Label();
-            this.uptowt = new System.Windows.Forms.Label();
-            this.fromwt = new System.Windows.Forms.Label();
-            this.frdenier = new System.Windows.Forms.Label();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.uptodenier = new System.Windows.Forms.Label();
             this.fromdenier = new System.Windows.Forms.Label();
+            this.frdenier = new System.Windows.Forms.Label();
+            this.fromwt = new System.Windows.Forms.Label();
+            this.uptowt = new System.Windows.Forms.Label();
+            this.upwt = new System.Windows.Forms.Label();
+            this.frwt = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label8 = new System.Windows.Forms.Label();
             this.copsstock = new System.Windows.Forms.Label();
             this.copsitemwt = new System.Windows.Forms.Label();
             this.panel25 = new System.Windows.Forms.Panel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.label7 = new System.Windows.Forms.Label();
             this.boxpalletstock = new System.Windows.Forms.Label();
             this.boxpalletitemwt = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.partyn = new System.Windows.Forms.Label();
             this.bppartyname = new System.Windows.Forms.Label();
@@ -270,8 +273,20 @@ namespace PackingApplication
             this.panel19.SuspendLayout();
             this.panel47.SuspendLayout();
             this.panel20.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.panel22.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.panel25.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel49.SuspendLayout();
@@ -400,7 +415,7 @@ namespace PackingApplication
             // 
             this.updenier.AutoSize = true;
             this.updenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.updenier.Location = new System.Drawing.Point(113, 5);
+            this.updenier.Location = new System.Drawing.Point(110, 5);
             this.updenier.Name = "updenier";
             this.updenier.Size = new System.Drawing.Size(0, 16);
             this.updenier.TabIndex = 6;
@@ -441,7 +456,7 @@ namespace PackingApplication
             // copweight
             // 
             this.copweight.AutoSize = true;
-            this.copweight.Location = new System.Drawing.Point(355, 5);
+            this.copweight.Location = new System.Drawing.Point(0, 5);
             this.copweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copweight.Name = "copweight";
             this.copweight.Size = new System.Drawing.Size(24, 13);
@@ -451,7 +466,7 @@ namespace PackingApplication
             // copstock
             // 
             this.copstock.AutoSize = true;
-            this.copstock.Location = new System.Drawing.Point(415, 2);
+            this.copstock.Location = new System.Drawing.Point(65, 2);
             this.copstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copstock.Name = "copstock";
             this.copstock.Size = new System.Drawing.Size(38, 26);
@@ -461,7 +476,7 @@ namespace PackingApplication
             // boxtype
             // 
             this.boxtype.AutoSize = true;
-            this.boxtype.Location = new System.Drawing.Point(-3, 2);
+            this.boxtype.Location = new System.Drawing.Point(-3, 0);
             this.boxtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxtype.Name = "boxtype";
             this.boxtype.Size = new System.Drawing.Size(56, 26);
@@ -471,7 +486,7 @@ namespace PackingApplication
             // boxweight
             // 
             this.boxweight.AutoSize = true;
-            this.boxweight.Location = new System.Drawing.Point(355, 5);
+            this.boxweight.Location = new System.Drawing.Point(0, 5);
             this.boxweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxweight.Name = "boxweight";
             this.boxweight.Size = new System.Drawing.Size(24, 13);
@@ -481,7 +496,7 @@ namespace PackingApplication
             // boxstock
             // 
             this.boxstock.AutoSize = true;
-            this.boxstock.Location = new System.Drawing.Point(412, 2);
+            this.boxstock.Location = new System.Drawing.Point(65, 2);
             this.boxstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.boxstock.Name = "boxstock";
             this.boxstock.Size = new System.Drawing.Size(56, 26);
@@ -606,7 +621,7 @@ namespace PackingApplication
             this.CopsItemList.Location = new System.Drawing.Point(62, 2);
             this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
             this.CopsItemList.Name = "CopsItemList";
-            this.CopsItemList.Size = new System.Drawing.Size(135, 21);
+            this.CopsItemList.Size = new System.Drawing.Size(178, 21);
             this.CopsItemList.TabIndex = 2;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
@@ -621,7 +636,7 @@ namespace PackingApplication
             this.BoxItemList.Location = new System.Drawing.Point(62, 2);
             this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
             this.BoxItemList.Name = "BoxItemList";
-            this.BoxItemList.Size = new System.Drawing.Size(135, 21);
+            this.BoxItemList.Size = new System.Drawing.Size(178, 21);
             this.BoxItemList.TabIndex = 3;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
@@ -1311,14 +1326,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1512,14 +1527,7 @@ namespace PackingApplication
             // 
             // panel20
             // 
-            this.panel20.Controls.Add(this.upwt);
-            this.panel20.Controls.Add(this.frwt);
-            this.panel20.Controls.Add(this.uptowt);
-            this.panel20.Controls.Add(this.fromwt);
-            this.panel20.Controls.Add(this.updenier);
-            this.panel20.Controls.Add(this.frdenier);
-            this.panel20.Controls.Add(this.uptodenier);
-            this.panel20.Controls.Add(this.fromdenier);
+            this.panel20.Controls.Add(this.splitContainer2);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel20.Location = new System.Drawing.Point(141, 0);
             this.panel20.Margin = new System.Windows.Forms.Padding(0);
@@ -1527,61 +1535,33 @@ namespace PackingApplication
             this.panel20.Size = new System.Drawing.Size(197, 28);
             this.panel20.TabIndex = 4;
             // 
-            // upwt
+            // splitContainer2
             // 
-            this.upwt.AutoSize = true;
-            this.upwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.upwt.Location = new System.Drawing.Point(238, 5);
-            this.upwt.Name = "upwt";
-            this.upwt.Size = new System.Drawing.Size(0, 16);
-            this.upwt.TabIndex = 124;
-            this.upwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.upwt.UseCompatibleTextRendering = true;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // frwt
+            // splitContainer2.Panel1
             // 
-            this.frwt.AutoSize = true;
-            this.frwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.frwt.Location = new System.Drawing.Point(178, 5);
-            this.frwt.Name = "frwt";
-            this.frwt.Size = new System.Drawing.Size(0, 16);
-            this.frwt.TabIndex = 124;
-            this.frwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.frwt.UseCompatibleTextRendering = true;
+            this.splitContainer2.Panel1.Controls.Add(this.uptodenier);
+            this.splitContainer2.Panel1.Controls.Add(this.fromdenier);
+            this.splitContainer2.Panel1.Controls.Add(this.updenier);
+            this.splitContainer2.Panel1.Controls.Add(this.frdenier);
             // 
-            // uptowt
+            // splitContainer2.Panel2
             // 
-            this.uptowt.AutoSize = true;
-            this.uptowt.Location = new System.Drawing.Point(212, 2);
-            this.uptowt.Name = "uptowt";
-            this.uptowt.Size = new System.Drawing.Size(30, 26);
-            this.uptowt.TabIndex = 124;
-            this.uptowt.Text = "Upto\nWt:";
-            // 
-            // fromwt
-            // 
-            this.fromwt.AutoSize = true;
-            this.fromwt.Location = new System.Drawing.Point(148, 1);
-            this.fromwt.Name = "fromwt";
-            this.fromwt.Size = new System.Drawing.Size(30, 26);
-            this.fromwt.TabIndex = 124;
-            this.fromwt.Text = "From\nWt:";
-            // 
-            // frdenier
-            // 
-            this.frdenier.AutoSize = true;
-            this.frdenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.frdenier.Location = new System.Drawing.Point(42, 5);
-            this.frdenier.Name = "frdenier";
-            this.frdenier.Size = new System.Drawing.Size(0, 16);
-            this.frdenier.TabIndex = 5;
-            this.frdenier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.frdenier.UseCompatibleTextRendering = true;
+            this.splitContainer2.Panel2.Controls.Add(this.fromwt);
+            this.splitContainer2.Panel2.Controls.Add(this.uptowt);
+            this.splitContainer2.Panel2.Controls.Add(this.upwt);
+            this.splitContainer2.Panel2.Controls.Add(this.frwt);
+            this.splitContainer2.Size = new System.Drawing.Size(197, 28);
+            this.splitContainer2.SplitterDistance = 100;
+            this.splitContainer2.TabIndex = 125;
             // 
             // uptodenier
             // 
             this.uptodenier.AutoSize = true;
-            this.uptodenier.Location = new System.Drawing.Point(73, 1);
+            this.uptodenier.Location = new System.Drawing.Point(70, 1);
             this.uptodenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uptodenier.Name = "uptodenier";
             this.uptodenier.Size = new System.Drawing.Size(41, 26);
@@ -1598,22 +1578,89 @@ namespace PackingApplication
             this.fromdenier.TabIndex = 116;
             this.fromdenier.Text = "From\nDenier:";
             // 
+            // frdenier
+            // 
+            this.frdenier.AutoSize = true;
+            this.frdenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.frdenier.Location = new System.Drawing.Point(37, 5);
+            this.frdenier.Name = "frdenier";
+            this.frdenier.Size = new System.Drawing.Size(0, 16);
+            this.frdenier.TabIndex = 5;
+            this.frdenier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.frdenier.UseCompatibleTextRendering = true;
+            // 
+            // fromwt
+            // 
+            this.fromwt.AutoSize = true;
+            this.fromwt.Location = new System.Drawing.Point(0, 1);
+            this.fromwt.Name = "fromwt";
+            this.fromwt.Size = new System.Drawing.Size(30, 26);
+            this.fromwt.TabIndex = 124;
+            this.fromwt.Text = "From\nWt:";
+            // 
+            // uptowt
+            // 
+            this.uptowt.AutoSize = true;
+            this.uptowt.Location = new System.Drawing.Point(65, 2);
+            this.uptowt.Name = "uptowt";
+            this.uptowt.Size = new System.Drawing.Size(30, 26);
+            this.uptowt.TabIndex = 124;
+            this.uptowt.Text = "Upto\nWt:";
+            // 
+            // upwt
+            // 
+            this.upwt.AutoSize = true;
+            this.upwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.upwt.Location = new System.Drawing.Point(95, 5);
+            this.upwt.Name = "upwt";
+            this.upwt.Size = new System.Drawing.Size(0, 16);
+            this.upwt.TabIndex = 124;
+            this.upwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.upwt.UseCompatibleTextRendering = true;
+            // 
+            // frwt
+            // 
+            this.frwt.AutoSize = true;
+            this.frwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.frwt.Location = new System.Drawing.Point(30, 5);
+            this.frwt.Name = "frwt";
+            this.frwt.Size = new System.Drawing.Size(0, 16);
+            this.frwt.TabIndex = 124;
+            this.frwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.frwt.UseCompatibleTextRendering = true;
+            // 
             // panel22
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.panel22, 2);
-            this.panel22.Controls.Add(this.label8);
-            this.panel22.Controls.Add(this.CopsItemList);
-            this.panel22.Controls.Add(this.copssize);
-            this.panel22.Controls.Add(this.copsstock);
-            this.panel22.Controls.Add(this.copstock);
-            this.panel22.Controls.Add(this.copsitemwt);
-            this.panel22.Controls.Add(this.copweight);
+            this.panel22.Controls.Add(this.splitContainer1);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel22.Location = new System.Drawing.Point(0, 28);
             this.panel22.Margin = new System.Windows.Forms.Padding(0);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(338, 28);
             this.panel22.TabIndex = 2;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.CopsItemList);
+            this.splitContainer1.Panel1.Controls.Add(this.copssize);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.copstock);
+            this.splitContainer1.Panel2.Controls.Add(this.copweight);
+            this.splitContainer1.Panel2.Controls.Add(this.copsstock);
+            this.splitContainer1.Panel2.Controls.Add(this.copsitemwt);
+            this.splitContainer1.Size = new System.Drawing.Size(338, 28);
+            this.splitContainer1.SplitterDistance = 242;
+            this.splitContainer1.TabIndex = 125;
             // 
             // label8
             // 
@@ -1630,7 +1677,7 @@ namespace PackingApplication
             // 
             this.copsstock.AutoSize = true;
             this.copsstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.copsstock.Location = new System.Drawing.Point(460, 5);
+            this.copsstock.Location = new System.Drawing.Point(120, 5);
             this.copsstock.Name = "copsstock";
             this.copsstock.Size = new System.Drawing.Size(0, 16);
             this.copsstock.TabIndex = 124;
@@ -1641,7 +1688,7 @@ namespace PackingApplication
             // 
             this.copsitemwt.AutoSize = true;
             this.copsitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.copsitemwt.Location = new System.Drawing.Point(377, 5);
+            this.copsitemwt.Location = new System.Drawing.Point(20, 5);
             this.copsitemwt.Name = "copsitemwt";
             this.copsitemwt.Size = new System.Drawing.Size(0, 13);
             this.copsitemwt.TabIndex = 5;
@@ -1650,13 +1697,7 @@ namespace PackingApplication
             // panel25
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.panel25, 2);
-            this.panel25.Controls.Add(this.boxpalletstock);
-            this.panel25.Controls.Add(this.boxpalletitemwt);
-            this.panel25.Controls.Add(this.boxstock);
-            this.panel25.Controls.Add(this.boxweight);
-            this.panel25.Controls.Add(this.BoxItemList);
-            this.panel25.Controls.Add(this.label7);
-            this.panel25.Controls.Add(this.boxtype);
+            this.panel25.Controls.Add(this.splitContainer3);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel25.Location = new System.Drawing.Point(0, 56);
             this.panel25.Margin = new System.Windows.Forms.Padding(0);
@@ -1664,11 +1705,44 @@ namespace PackingApplication
             this.panel25.Size = new System.Drawing.Size(338, 28);
             this.panel25.TabIndex = 3;
             // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.boxtype);
+            this.splitContainer3.Panel1.Controls.Add(this.label7);
+            this.splitContainer3.Panel1.Controls.Add(this.BoxItemList);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.boxpalletstock);
+            this.splitContainer3.Panel2.Controls.Add(this.boxpalletitemwt);
+            this.splitContainer3.Panel2.Controls.Add(this.boxstock);
+            this.splitContainer3.Panel2.Controls.Add(this.boxweight);
+            this.splitContainer3.Size = new System.Drawing.Size(338, 28);
+            this.splitContainer3.SplitterDistance = 242;
+            this.splitContainer3.TabIndex = 125;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(50, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 13);
+            this.label7.TabIndex = 118;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // boxpalletstock
             // 
             this.boxpalletstock.AutoSize = true;
             this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxpalletstock.Location = new System.Drawing.Point(460, 5);
+            this.boxpalletstock.Location = new System.Drawing.Point(120, 5);
             this.boxpalletstock.Name = "boxpalletstock";
             this.boxpalletstock.Size = new System.Drawing.Size(0, 16);
             this.boxpalletstock.TabIndex = 124;
@@ -1679,22 +1753,11 @@ namespace PackingApplication
             // 
             this.boxpalletitemwt.AutoSize = true;
             this.boxpalletitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxpalletitemwt.Location = new System.Drawing.Point(377, 5);
+            this.boxpalletitemwt.Location = new System.Drawing.Point(20, 5);
             this.boxpalletitemwt.Name = "boxpalletitemwt";
             this.boxpalletitemwt.Size = new System.Drawing.Size(0, 13);
             this.boxpalletitemwt.TabIndex = 5;
             this.boxpalletitemwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(46, 1);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 13);
-            this.label7.TabIndex = 118;
-            this.label7.Text = "*";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panel15
             // 
@@ -2946,11 +3009,26 @@ namespace PackingApplication
             this.panel47.ResumeLayout(false);
             this.panel47.PerformLayout();
             this.panel20.ResumeLayout(false);
-            this.panel20.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
-            this.panel22.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
-            this.panel25.PerformLayout();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            this.splitContainer3.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.panel18.ResumeLayout(false);
@@ -3251,6 +3329,9 @@ namespace PackingApplication
         private System.Windows.Forms.Label uptowt;
         private System.Windows.Forms.Label frwt;
         private System.Windows.Forms.Label upwt;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
