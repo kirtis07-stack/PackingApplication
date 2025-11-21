@@ -56,6 +56,8 @@ namespace PackingApplication
         decimal endWeight = 0;
         public ModifyDTYPackingForm()
         {
+            Log.writeMessage("ModifyDTYPackingForm - Start : "+ DateTime.Now);
+
             InitializeComponent();
             ApplyFonts();
             this.Shown += ModifyDTYPackingForm_Shown;
@@ -67,11 +69,15 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
             rowMaterial.AutoGenerateColumns = false;
+
+            Log.writeMessage("ModifyDTYPackingForm - End");
         }
 
         private void ModifyDTYPackingForm_Load(object sender, EventArgs e)
         {
-            getLotRelatedDetails();
+            Log.writeMessage("ModifyDTYPackingForm_Load - Start : " + DateTime.Now);
+
+            InitializeDropDowns();
 
             copyno.Text = "1";
             spoolno.Text = "0";
@@ -104,10 +110,14 @@ namespace PackingApplication
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             //this.remarks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+
+            Log.writeMessage("ModifyDTYPackingForm_Load - End : " + DateTime.Now);
         }
 
-        private void getLotRelatedDetails()
+        private void InitializeDropDowns()
         {
+            Log.writeMessage("InitializeDropDowns - Start : " + DateTime.Now);
+
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -135,10 +145,14 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNoFrmt";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+
+            Log.writeMessage("InitializeDropDowns - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
         {
+            Log.writeMessage("ApplyFonts - Start : " + DateTime.Now);
+
             this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -258,12 +272,16 @@ namespace PackingApplication
             this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+
+            Log.writeMessage("ApplyFonts - End : " + DateTime.Now);
         }
 
         private async void ModifyDTYPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
+                Log.writeMessage("ModifyDTYPackingForm_Shown - Start : " + DateTime.Now);
+
                 var machineTask = _masterService.getMachineList("TexturisingLot");
                 //var lotTask = _productionService.getAllLotList();
                 //var prefixTask = getPrefixList();
@@ -388,6 +406,8 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
 
                 isFormReady = true;
+
+                Log.writeMessage("ModifyDTYPackingForm_Shown - End : " + DateTime.Now);
             }
             finally
             {
@@ -524,7 +544,7 @@ namespace PackingApplication
                 partyshade.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
-                getLotRelatedDetails();
+                InitializeDropDowns();
                 rowMaterial.Columns.Clear();
                 totalProdQty = 0;
                 selectedSOId = 0;
@@ -2182,7 +2202,7 @@ namespace PackingApplication
                 prodtype.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
-                getLotRelatedDetails();
+                InitializeDropDowns();
                 rowMaterial.Columns.Clear();
                 totalProdQty = 0;
                 selectedSOId = 0;
