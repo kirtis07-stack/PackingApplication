@@ -261,15 +261,15 @@ namespace PackingApplication
             try
             {
 
-                var machineTask = _masterService.getMachineList("BCFLot");
+                var machineTask = _masterService.GetMachineList("BCFLot");
                 //var lotTask = _productionService.getAllLotList();
                 //var prefixTask = getPrefixList();
-                var packsizeTask = _masterService.getPackSizeList();
-                var copsitemTask = _masterService.getItemList(itemCopsCategoryId);
-                var boxitemTask = _masterService.getItemList(itemBoxCategoryId);
-                var palletitemTask = _masterService.getItemList(itemPalletCategoryId);
-                var deptTask = _masterService.getDepartmentList();
-                var ownerTask = _masterService.getOwnerList();
+                var packsizeTask = _masterService.GetPackSizeList();
+                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId);
+                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId);
+                var palletitemTask = _masterService.GetItemList(itemPalletCategoryId);
+                var deptTask = _masterService.GetDepartmentList();
+                var ownerTask = _masterService.GetOwnerList();
 
                 // 2. Wait for all to complete
                 await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
@@ -471,7 +471,7 @@ namespace PackingApplication
 
             foreach (var palletDetail in palletDetailsResponse)
             {
-                var palletItemList = _masterService.getItemList(itemPalletCategoryId).Result;
+                var palletItemList = _masterService.GetItemList(itemPalletCategoryId).Result;
                 var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
 
                 if (selectedItem == null)
@@ -653,10 +653,10 @@ namespace PackingApplication
 
                             if (lotResponse.ItemId > 0)
                             {
-                                var itemResponse = await Task.Run(() => _masterService.getItemById(lotResponse.ItemId));
+                                var itemResponse = await Task.Run(() => _masterService.GetItemById(lotResponse.ItemId));
                                 if (itemResponse != null)
                                 {
-                                    var qualityList = _masterService.getQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
+                                    var qualityList = _masterService.GetQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.DataSource = qualityList;
                                     QualityList.DisplayMember = "Name";
@@ -686,7 +686,7 @@ namespace PackingApplication
                         getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                         if (getWindingType.Count <= 1)
                         {
-                            getWindingType = _masterService.getWindingTypeList().Result;
+                            getWindingType = _masterService.GetWindingTypeList().Result;
                             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                         }
@@ -803,7 +803,7 @@ namespace PackingApplication
                     productionRequest.PackSizeId = selectedPacksizeId;
                     if (selectedPacksizeId > 0)
                     {
-                        var packsize = _masterService.getPackSizeById(selectedPacksizeId).Result;
+                        var packsize = _masterService.GetPackSizeById(selectedPacksizeId).Result;
                         frdenier.Text = packsize.FromDenier.ToString();
                         updenier.Text = packsize.UpToDenier.ToString();
                         frwt.Text = packsize.StartWeight.ToString();
@@ -1111,7 +1111,7 @@ namespace PackingApplication
                     {
                         productionRequest.SpoolItemId = selectedItemId;
 
-                        var itemResponse = _masterService.getItemById(selectedItemId).Result;
+                        var itemResponse = _masterService.GetItemById(selectedItemId).Result;
                         if (itemResponse != null)
                         {
                             copsitemwt.Text = itemResponse.Weight.ToString();
@@ -1152,7 +1152,7 @@ namespace PackingApplication
                     if (selectedBoxItemId > 0)
                     {
                         productionRequest.BoxItemId = selectedBoxItemId;
-                        var itemResponse = _masterService.getItemById(selectedBoxItemId).Result;
+                        var itemResponse = _masterService.GetItemById(selectedBoxItemId).Result;
                         if (itemResponse != null)
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
@@ -1195,7 +1195,7 @@ namespace PackingApplication
 
                     if (selectedDepartment != null && productionRequest.MachineId == 0)
                     {
-                        var machineList = _masterService.getMachineByDepartmentIdAndLotType(selectedDepartmentId, "BCFLot").Result;
+                        var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "BCFLot").Result;
 
                         //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
                         //LineNoList.SelectedValue = selectedDepartment;
