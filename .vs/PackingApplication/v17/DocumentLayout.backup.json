@@ -55,11 +55,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+<<<<<<< HEAD
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 0,
               "Title": "AddDTYPackingForm.cs",
               "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddDTYPackingForm.cs",
@@ -69,31 +69,11 @@
               "ViewState": "AgIAAPIIAAAAAAAAAAAMwLIIAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T06:11:15.305Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddPOYPackingForm.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs",
-              "RelativeDocumentMoniker": "AddPOYPackingForm.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs",
-              "RelativeToolTip": "AddPOYPackingForm.cs",
-              "ViewState": "AgIAABIGAAAAAAAAAAAAAIMFAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
-              "WhenOpened": "2025-11-21T05:46:54.862Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AddPOYPackingForm.cs [Design]",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs",
-              "RelativeDocumentMoniker": "AddPOYPackingForm.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs [Design]",
-              "RelativeToolTip": "AddPOYPackingForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
-              "WhenOpened": "2025-11-21T05:34:55.445Z"
 =======
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "AdminAccount.cs",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AdminAccount.cs",
@@ -103,22 +83,23 @@
               "ViewState": "AgIAADcCAAAAAAAAAAAqwFgCAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T06:49:13.496Z",
-              "EditorCaption": ""
 >>>>>>> 7a9beb4d5fd7ccb667c283531bb4311f307a10ad
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
 <<<<<<< HEAD
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\App.config",
-              "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\App.config",
-              "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-11-20T10:41:23.44Z",
+              "DocumentIndex": 2,
+              "Title": "AddPOYPackingForm.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs",
+              "RelativeDocumentMoniker": "AddPOYPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs",
+              "RelativeToolTip": "AddPOYPackingForm.cs",
+              "ViewState": "AgIAABIGAAAAAAAAAAAAAIMFAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
+              "WhenOpened": "2025-11-21T05:46:54.862Z"
 =======
+              "DocumentIndex": 1,
               "Title": "Sidebar.Designer.cs",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Sidebar.Designer.cs",
               "RelativeDocumentMoniker": "Sidebar.Designer.cs",
@@ -128,10 +109,33 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T06:44:49.009Z",
               "EditorCaption": ""
+>>>>>>> 7a9beb4d5fd7ccb667c283531bb4311f307a10ad
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+<<<<<<< HEAD
+              "Title": "AddPOYPackingForm.cs [Design]",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs",
+              "RelativeDocumentMoniker": "AddPOYPackingForm.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AddPOYPackingForm.cs [Design]",
+              "RelativeToolTip": "AddPOYPackingForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
+              "WhenOpened": "2025-11-21T05:34:55.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-11-20T10:41:23.44Z",
+              "EditorCaption": ""
+=======
               "Title": "Sidebar.cs [Design]",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Sidebar.cs",
               "RelativeDocumentMoniker": "Sidebar.cs",
@@ -165,7 +169,6 @@
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T06:14:05.152Z",
->>>>>>> 7a9beb4d5fd7ccb667c283531bb4311f307a10ad
               "EditorCaption": ""
             },
             {
@@ -192,6 +195,7 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T06:12:32.281Z",
               "EditorCaption": " [Design]"
+>>>>>>> 7a9beb4d5fd7ccb667c283531bb4311f307a10ad
             }
           ]
         }
