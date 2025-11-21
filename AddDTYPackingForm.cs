@@ -56,6 +56,8 @@ namespace PackingApplication
         private long _productionId;
         public AddDTYPackingForm()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             InitializeComponent();
             ApplyFonts();
             this.Shown += AddDTYPackingForm_Shown;
@@ -67,10 +69,14 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
 
             rowMaterial.AutoGenerateColumns = false;
+
+            Log.writeMessage("AddDTYPackingForm constructor - End : " + DateTime.Now);
         }
 
         private void AddDTYPackingForm_Load(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             getLotRelatedDetails();
 
             copyno.Text = "1";
@@ -103,10 +109,14 @@ namespace PackingApplication
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void getLotRelatedDetails()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -141,10 +151,14 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNoFrmt";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void ApplyFonts()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -265,12 +279,16 @@ namespace PackingApplication
             this.frwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void AddDTYPackingForm_Shown(object sender, EventArgs e)
         {
             try
             {
+                Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
                 var machineTask = _masterService.getMachineList("TexturisingLot");
                 //var lotTask = _productionService.getAllLotList();
                 //var prefixTask = getPrefixList();
@@ -395,15 +413,20 @@ namespace PackingApplication
                 isFormReady = true;
 
                 RefreshLastBoxDetails();
+
+               
             }
             finally
             {
                 lblLoading.Visible = false;
             }
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             //productionResponse = Task.Run(() => getProductionById(Convert.ToInt64(_productionId))).Result;
             if (prodResponse != null)
             {
@@ -444,10 +467,14 @@ namespace PackingApplication
                 //CopsItemList_SelectedIndexChanged(CopsItemList, EventArgs.Empty);
                 //BoxItemList_SelectedIndexChanged(BoxItemList, EventArgs.Empty);
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return; // skip during load
 
             //if (LineNoList.DroppedDown) return;
@@ -517,10 +544,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (MergeNoList.DroppedDown) return;
@@ -711,10 +742,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (PackSizeList.DroppedDown) return;
@@ -758,10 +793,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (QualityList.DroppedDown) return;
@@ -780,10 +819,14 @@ namespace PackingApplication
 
                 productionRequest.QualityId = selectedQualityId;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (WindingTypeList.DroppedDown) return;
@@ -818,10 +861,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (SaleOrderList.DroppedDown) return;
@@ -880,10 +927,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void RefreshGradewiseGrid()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (QualityList.SelectedValue != null)
             {
                 balanceQty = 0;
@@ -931,10 +982,14 @@ namespace PackingApplication
                 //    saveprint.Enabled = true;
                 //}
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void RefreshLastBoxDetails()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             var getLastBox = _packingService.getLastBoxDetails("dtypacking").Result;
 
             //lastboxdetails
@@ -949,10 +1004,14 @@ namespace PackingApplication
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (ComPortList.DroppedDown) return;
@@ -962,10 +1021,14 @@ namespace PackingApplication
                 var ComPort = ComPortList.SelectedValue.ToString();
                 comPort = ComPortList.SelectedValue.ToString();
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (WeighingList.DroppedDown) return;
@@ -985,12 +1048,15 @@ namespace PackingApplication
                         grosswtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
                     }
                 }
-
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (CopsItemList.DroppedDown) return;
@@ -1029,10 +1095,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (BoxItemList.DroppedDown) return;
@@ -1069,10 +1139,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (PrefixList.DroppedDown) return;
@@ -1103,12 +1177,15 @@ namespace PackingApplication
                     prodtype.Text = selectedPrefix.ProductionType.ToString();
                     productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
                 }
-
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             //if (DeptList.DroppedDown) return;
@@ -1184,10 +1261,14 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (OwnerList.SelectedIndex <= 0)
@@ -1213,6 +1294,8 @@ namespace PackingApplication
             {
                 lblLoading.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         //private async Task<List<MachineResponse>> getMachineList()
@@ -1237,6 +1320,8 @@ namespace PackingApplication
 
         private async Task<List<string>> getComPortList()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             var getComPortType = new List<string>
             {
                 "Select Com Port",
@@ -1246,11 +1331,15 @@ namespace PackingApplication
                 "COM4"
             };
 
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             return getComPortType;
         }
 
         private async Task<List<WeighingItem>> getWeighingList()
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             var getWeighingScale = new List<WeighingItem>
             {
                 new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
@@ -1259,6 +1348,8 @@ namespace PackingApplication
                 new WeighingItem { Id = 2, Name = "JISL (9600)" },
                 new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
 
             return getWeighingScale;
         }
@@ -1300,6 +1391,8 @@ namespace PackingApplication
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 //spoolwterror.Visible = true;
@@ -1311,6 +1404,8 @@ namespace PackingApplication
                 //spoolwterror.Text = "";
                 //spoolwterror.Visible = false;
             }
+
+            Log.writeMessage("AddDTYPackingForm constructor - Start : " + DateTime.Now);
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
