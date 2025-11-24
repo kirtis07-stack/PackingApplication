@@ -1686,6 +1686,7 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(150, 21);
             this.BoxItemList.TabIndex = 3;
+            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
             // panel53
             // 
@@ -1801,6 +1802,7 @@ namespace PackingApplication
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(150, 21);
             this.CopsItemList.TabIndex = 2;
+            this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             // 
             // copssize
             // 

@@ -1211,6 +1211,7 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(177, 21);
             this.BoxItemList.TabIndex = 3;
+            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
             // label7
             // 
