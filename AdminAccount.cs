@@ -93,7 +93,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem deletepoy = new ToolStripMenuItem("Delete POY Packing")
+            ToolStripMenuItem deletepoy = new ToolStripMenuItem("Delete POY Packing", null, DeletePOYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -127,7 +127,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem deletedty = new ToolStripMenuItem("Delete DTY Packing")
+            ToolStripMenuItem deletedty = new ToolStripMenuItem("Delete DTY Packing", null, DeleteDTYPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -161,7 +161,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem deletebcf = new ToolStripMenuItem("Delete BCF Packing")
+            ToolStripMenuItem deletebcf = new ToolStripMenuItem("Delete BCF Packing", null, DeleteBCFPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -195,7 +195,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem deletechips = new ToolStripMenuItem("Delete Chips Packing")
+            ToolStripMenuItem deletechips = new ToolStripMenuItem("Delete Chips Packing", null, DeleteChipsPacking_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -514,6 +514,19 @@ namespace PackingApplication
             }
         }
 
+        private void DeletePOYPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                var form = new DeletePOYPackingForm();
+                var formKey = "DeletePOYPackingForm";
+                form.Tag = "Packing - Delete POYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+            }
+        }
+
         private void DTYPacking_Click(object sender, EventArgs e)
         {
             var dashboard = this.FindForm() as AdminAccount;
@@ -548,6 +561,19 @@ namespace PackingApplication
                 var form = new ModifyDTYPackingForm();
                 var formKey = "ModifyDTYPackingForm";
                 form.Tag = "Packing - Modify DTYPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+            }
+        }
+
+        private void DeleteDTYPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                var form = new DeleteDTYPackingForm();
+                var formKey = "DeleteDTYPackingForm";
+                form.Tag = "Packing - Delete DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
             }
@@ -592,6 +618,19 @@ namespace PackingApplication
             }
         }
 
+        private void DeleteBCFPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                var form = new DeleteBCFPackingForm();
+                var formKey = "DeleteBCFPackingForm";
+                form.Tag = "Packing - Delete BCFPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+            }
+        }
+
         private void ChipsPacking_Click(object sender, EventArgs e)
         {
             var dashboard = this.FindForm() as AdminAccount;
@@ -626,6 +665,19 @@ namespace PackingApplication
                 var form = new ModifyChipsPackingForm();
                 var formKey = "ModifyChipsPackingForm";
                 form.Tag = "Packing - Modify ChipsPacking";
+                dashboard.LoadFormInContent(form, formKey);
+                this.Text = form.Tag.ToString();
+            }
+        }
+
+        private void DeleteChipsPacking_Click(object sender, EventArgs e)
+        {
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                var form = new DeleteChipsPackingForm();
+                var formKey = "DeleteChipsPackingForm";
+                form.Tag = "Packing - Delete ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
             }

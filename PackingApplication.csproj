@@ -189,6 +189,30 @@
     <Compile Include="AddDTYPackingForm.Designer.cs">
       <DependentUpon>AddDTYPackingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeleteBCFPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteBCFPackingForm.Designer.cs">
+      <DependentUpon>DeleteBCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteChipsPackingForm.Designer.cs">
+      <DependentUpon>DeleteChipsPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteDTYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteDTYPackingForm.Designer.cs">
+      <DependentUpon>DeleteDTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeletePOYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeletePOYPackingForm.Designer.cs">
+      <DependentUpon>DeletePOYPackingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DTYPackingList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +338,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddDTYPackingForm.resx">
       <DependentUpon>AddDTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteBCFPackingForm.resx">
+      <DependentUpon>DeleteBCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteChipsPackingForm.resx">
+      <DependentUpon>DeleteChipsPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteDTYPackingForm.resx">
+      <DependentUpon>DeleteDTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeletePOYPackingForm.resx">
+      <DependentUpon>DeletePOYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModifyBCFPackingForm.resx">
       <DependentUpon>ModifyBCFPackingForm.cs</DependentUpon>
