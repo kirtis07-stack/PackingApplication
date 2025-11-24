@@ -105,6 +105,7 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
