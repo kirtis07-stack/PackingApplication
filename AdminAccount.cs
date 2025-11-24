@@ -51,7 +51,7 @@ namespace PackingApplication
             {
                 Dock = DockStyle.Bottom,
                 Height = 1,
-                BackColor = Color.LightGray   
+                BackColor = Color.LightGray
             };
 
             FlowLayoutPanel leftPanel = new FlowLayoutPanel
@@ -63,26 +63,14 @@ namespace PackingApplication
                 BackColor = Color.White
             };
 
-            //leftpanel for logo and menustrip
-            //string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            //string projectRoot = Directory.GetParent(basePath).Parent.Parent.FullName;
-            //string imagePath = Path.Combine(projectRoot, "Images", "logo.png");
-
-            //if (File.Exists(imagePath))
-            //{
-                PictureBox logoPictureBox = new PictureBox
-                {
-                    Image = Properties.Resources.logo,
-                    SizeMode = PictureBoxSizeMode.Normal,
-                    Size = new Size(170, 50),
-                    Location = new System.Drawing.Point(10, 10)
-                };
-                leftPanel.Controls.Add(logoPictureBox);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Image not found: " + imagePath);
-            //}
+            PictureBox logoPictureBox = new PictureBox
+            {
+                Image = Properties.Resources.logo,
+                SizeMode = PictureBoxSizeMode.Normal,
+                Size = new Size(170, 50),
+                Location = new System.Drawing.Point(10, 10)
+            };
+            leftPanel.Controls.Add(logoPictureBox);
 
             menuStrip.BackColor = Color.White;
             menuStrip.Padding = new Padding(10, 18, 0, 0);
@@ -225,7 +213,7 @@ namespace PackingApplication
             chips.DropDownItems.Add(viewchips);
             chips.DropDownItems.Add(printchips);
 
-            
+
             windows.Click += (s, e) => HighlightMenuItem(s);
             windows.DropDownItemClicked += (s, ev) => HighlightMenuItem(ev.ClickedItem);
             // Add to menuStrip
@@ -249,9 +237,9 @@ namespace PackingApplication
 
             PictureBox profilePictureBox = new PictureBox
             {
-                Size = new Size(24, 24),                
-                SizeMode = PictureBoxSizeMode.StretchImage,     
-                Margin = new Padding(10, 5, 5, 5),       
+                Size = new Size(24, 24),
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Margin = new Padding(10, 5, 5, 5),
                 Image = Properties.Resources.default_profile
             };
 
@@ -306,7 +294,7 @@ namespace PackingApplication
                 Margin = new Padding(15, 5, 0, 0),
                 Cursor = Cursors.Hand
             };
-           
+
             menuStrip.TabStop = true;
             menuStrip.TabIndex = 0;
             logoutBtn.TabIndex = 1;
@@ -372,56 +360,6 @@ namespace PackingApplication
                     break;
                 }
             }
-            // footer
-            //footerPanel = new Panel
-            //{
-            //    Dock = DockStyle.Bottom,
-            //    Height = 40,
-            //    BackColor = Color.White
-            //};
-
-            //Panel topBorder = new Panel
-            //{
-            //    Dock = DockStyle.Top,
-            //    Height = 1,
-            //    BackColor = Color.LightGray   // border color
-            //};
-
-            //Label footerLabel = new Label
-            //{
-            //    Text = "YEAR: 2025 " + SessionManager.UserName,
-            //    Font = FontManager.GetFont(8, FontStyle.Bold),
-            //    AutoSize = true,
-            //    Anchor = AnchorStyles.Bottom | AnchorStyles.Right  
-            //};
-
-            //footerLabel.Location = new Point(
-            //    footerPanel.Width - footerLabel.Width - 10,
-            //    footerPanel.Height - footerLabel.Height - 10
-            //);
-
-            //footerPanel.Resize += (s, e) =>
-            //{
-            //    footerLabel.Location = new Point(
-            //        footerPanel.Width - footerLabel.Width - 10,
-            //        footerPanel.Height - footerLabel.Height - 10
-            //    );
-            //};
-
-            //footerPanel.Controls.Add(footerLabel);
-            //footerPanel.Controls.Add(topBorder);
-            //this.Controls.Add(footerPanel);
-
-            // content panel (sticky between header & footer)
-            //contentPanel = new Panel
-            //{
-            //    Dock = DockStyle.Fill,   
-            //    BackColor = Color.White,
-            //};
-            //this.Controls.Add(contentPanel);
-            //this.Controls.SetChildIndex(contentPanel, 0);
-
-            //LoadFormInContent(new Dashboard());
         }
 
         private void MenuStrip_EnterHandler(object sender, EventArgs e)
@@ -453,8 +391,6 @@ namespace PackingApplication
         {
             foreach (ToolStripItem item in menuItems)
             {
-                //item.MouseEnter += (s, e) => this.Cursor = Cursors.Hand;
-                //item.MouseLeave += (s, e) => this.Cursor = Cursors.Default;
                 item.MouseMove += ToolStripMenuItem_MouseMove;
                 item.MouseLeave += ToolStripMenuItem_MouseLeave;
 
@@ -494,55 +430,6 @@ namespace PackingApplication
 
         public void LoadFormInContent(Form child, string formKey)
         {
-            // Temporarily remove Enter event
-            //menuStrip.Enter -= MenuStrip_EnterHandler;
-
-            //// Hide currently active form (minimize behavior)
-            //// Hide (minimize) the active form
-            //if (activeForm != null)
-            //{
-            //    activeForm.Hide();
-
-            //    if (!minimizedForms.Contains(activeForm))
-            //    {
-            //        minimizedForms.Add(activeForm);
-            //        AddMinimizedFormToMenu(activeForm);
-            //    }
-            //}
-            //// Check if form already exists
-            ////if (openForms.ContainsKey(formKey))
-            ////{
-            ////    RestoreForm(openForms[formKey]);
-            ////    return;
-            ////}
-
-            //// New form
-            //openForms[formKey] = form;
-
-            //contentPanel.Controls.Clear();
-            //form.TopLevel = false;
-            //form.FormBorderStyle = FormBorderStyle.None;
-            //form.Dock = DockStyle.Fill;
-            //form.BackColor = Color.White;
-
-            //contentPanel.Controls.Add(form);
-            //form.Show();
-
-            //// Set focus explicitly to first control
-            //if (form.Controls.Count > 0)
-            //{
-            //    //Control firstControl = form.Controls[0];
-            //    //if (firstControl.CanSelect)
-            //    //    firstControl.Focus();
-            //    form.Controls[0].Focus();
-            //}
-
-            //activeForm = form;
-
-            //// Re-attach Enter event
-            //menuStrip.Enter += MenuStrip_EnterHandler;
-            //FocusFirstField(form);
-
             // If already opened → just show it
             if (openForms.ContainsKey(formKey))
             {
@@ -590,11 +477,6 @@ namespace PackingApplication
 
         private void AddPOYPacking_Click(object sender, EventArgs e)
         {
-            //var parent = this.ParentForm as Dashboard;
-            //if (parent != null)
-            //{
-            //    parent.LoadFormInContent(new POYPackingForm());
-            //}
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -603,7 +485,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Add POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<AddPOYPackingForm>("Packing - Add POY Packing");
             }
         }
 
@@ -617,7 +498,6 @@ namespace PackingApplication
                 form.Tag = "Packing - View POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ViewPOYPackingForm>("Packing - View POYPacking");
             }
         }
 
@@ -631,7 +511,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Modify POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ModifyPOYPackingForm>("Packing - Modify POYPacking");
             }
         }
 
@@ -645,7 +524,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Add DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<AddDTYPackingForm>("Packing - Add DTYPacking");
             }
         }
 
@@ -659,7 +537,6 @@ namespace PackingApplication
                 form.Tag = "Packing - View DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ViewDTYPackingForm>("Packing - View DTYPacking");
             }
         }
 
@@ -673,7 +550,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Modify DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ModifyDTYPackingForm>("Packing - Modify DTYPacking");
             }
         }
 
@@ -687,7 +563,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Add BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<AddBCFPackingForm>("Packing - Add BCFPacking");
             }
         }
 
@@ -701,7 +576,6 @@ namespace PackingApplication
                 form.Tag = "Packing - View BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ViewBCFPackingForm>("Packing - View BCFPacking");
             }
         }
 
@@ -715,7 +589,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Modify BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ModifyBCFPackingForm>("Packing - Modify BCFPacking");
             }
         }
 
@@ -729,7 +602,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Add ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<AddChipsPackingForm>("Packing - Add ChipsPacking");
             }
         }
 
@@ -743,7 +615,6 @@ namespace PackingApplication
                 form.Tag = "Packing - View ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ViewChipsPackingForm>("Packing - View ChipsPacking");
             }
         }
 
@@ -757,7 +628,6 @@ namespace PackingApplication
                 form.Tag = "Packing - Modify ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
                 this.Text = form.Tag.ToString();
-                //dashboard.OpenForm<ModifyChipsPackingForm>("Packing - Modify ChipsPacking");
             }
         }
 
@@ -788,16 +658,6 @@ namespace PackingApplication
 
         private void AddMinimizedFormToMenu(string formKey)
         {
-            //if (form == null) return;
-            //if (windows.DropDownItems.Cast<ToolStripMenuItem>().Any(x => x.Tag == form))
-            //    return;
-            ////form.Hide();
-            ////minimizedForms.Add(form);
-            //var item = new ToolStripMenuItem(form.Text);
-            //item.Tag = form; // store reference to the form
-            //item.Click += MinimizedFormMenu_Click;
-            //item.Font = FontManager.GetFont(8, FontStyle.Regular);
-            //windows.DropDownItems.Add(item);
             ToolStripMenuItem item = new ToolStripMenuItem(formKey);
             item.Click += (s, e) =>
             {
@@ -830,36 +690,11 @@ namespace PackingApplication
         {
             // Hide currently active form
             if (activeForm != null && activeForm != form)
-                //activeForm.Hide();
                 activeForm.WindowState = FormWindowState.Minimized;
             form.WindowState = FormWindowState.Normal;
             form.Activate();
 
-            activeForm = form;
-            //if (!contentPanel.Controls.Contains(form))
-            //{
-            //    form.TopLevel = false;
-            //    form.FormBorderStyle = FormBorderStyle.None;
-            //    form.Dock = DockStyle.Fill;
-            //    contentPanel.Controls.Add(form);
-            //}
-
-            //// Show the selected one
-            //form.Show();
-            //form.BringToFront();
-            //form.Focus();
-            //if (form.Tag != null)
-            //    this.Text = form.Tag.ToString();
-            //activeForm = form;
-
-            //FocusFirstField(form);
-            // Remove from minimized list and menu
-            //minimizedForms.Remove(form);
-            //var toRemove = windows.DropDownItems
-            //    .Cast<ToolStripMenuItem>()
-            //    .FirstOrDefault(x => x.Tag == form);
-            //if (toRemove != null)
-            //    windows.DropDownItems.Remove(toRemove);
+            activeForm = form;            
         }
 
         private void OpenForm<T>(string title) where T : Form, new()

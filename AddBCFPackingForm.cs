@@ -1107,8 +1107,6 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            //if (CopsItemList.DroppedDown) return;
-
             if (CopsItemList.SelectedIndex <= 0)
             {
                 copsitemwt.Text = "0";
@@ -1132,9 +1130,7 @@ namespace PackingApplication
                         if (itemResponse != null)
                         {
                             copsitemwt.Text = itemResponse.Weight.ToString();
-                            //spoolwt.Text = itemResponse.Weight.ToString();
                             SpoolNo_TextChanged(sender, e);
-                            //GrossWeight_TextChanged(sender, e);
                         }
                     }
                 }
@@ -1148,8 +1144,6 @@ namespace PackingApplication
         private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
-
-            //if (BoxItemList.DroppedDown) return;
 
             if (BoxItemList.SelectedIndex <= 0)
             {
@@ -1174,7 +1168,6 @@ namespace PackingApplication
                         {
                             boxpalletitemwt.Text = itemResponse.Weight.ToString();
                             palletwtno.Text = itemResponse.Weight.ToString();
-                            //GrossWeight_Validating(sender, new CancelEventArgs());
                         }
                     }
                 }
@@ -1189,24 +1182,14 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            //if (PrefixList.DroppedDown) return;
-
             if (PrefixList.SelectedIndex <= 0)
             {
                 prodtype.Text = "";
                 return;
             }
 
-            if (PrefixList.SelectedIndex > 0)
-            {
-                //boxnoerror.Text = "";
-                //boxnoerror.Visible = false;
-            }
-
             if (PrefixList.SelectedValue != null)
             {
-                //boxnoerror.Visible = false;
-
                 PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
                 int selectedPrefixId = selectedPrefix.PrefixCode;
 
@@ -1217,7 +1200,6 @@ namespace PackingApplication
                     prodtype.Text = selectedPrefix.ProductionType.ToString();
                     productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
                 }
-
             }
         }
 
@@ -1225,35 +1207,23 @@ namespace PackingApplication
         {
             if (!isFormReady) return;
 
-            //if (DeptList.DroppedDown) return;
-
             if (DeptList.SelectedIndex <= 0)
             {
                 return;
-            }
-            if (DeptList.SelectedIndex > 0)
-            {
-                //packsizeerror.Text = "";
-                //packsizeerror.Visible = false;
             }
             lblLoading.Visible = true;
             try
             {
                 if (DeptList.SelectedValue != null)
                 {
-                    //packsizeerror.Visible = false;
-
                     DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
                     int selectedDepartmentId = selectedDepartment.DepartmentId;
 
                     if (selectedDepartment != null && productionRequest.MachineId == 0)
                     {
                         var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "BCFLot").Result;
-                        //var filteredMachine = machineList.Where(m => m.DepartmentId == selectedDepartment.DepartmentId).ToList();
-                        //LineNoList.SelectedValue = selectedDepartment;
                         machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                         LineNoList.DataSource = machineList;
-                        //LineNoList.SelectedValue = productionResponse.MachineId;
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
@@ -1289,7 +1259,6 @@ namespace PackingApplication
                         if (selectedDepartmentId == productionResponse.DepartmentId && productionRequest.MachineId == productionResponse.MachineId)
                         {
                             PrefixList.SelectedValue = productionResponse.PrefixCode;
-                            //PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
                         }
                     }
                 }
@@ -1328,27 +1297,6 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
         }
-
-        //private async Task<List<MachineResponse>> getMachineList()
-        //{
-        //    return _masterService.getMachineList("SpinningLot");
-        //}
-
-        //private async Task<List<LotsResponse>> getAllLotList()
-        //{
-        //    return _productionService.getAllLotList();
-        //}
-
-        //private async Task<List<QualityResponse>> getQualityListByItemTypeId(int itemTypeId)
-        //{
-        //    return _masterService.getQualityListByItemTypeId(itemTypeId);
-        //}
-
-        //private async Task<List<PackSizeResponse>> getPackSizeList()
-        //{
-        //    return _masterService.getPackSizeList();
-        //}
-
         private async Task<List<string>> getComPortList()
         {
             var getComPortType = new List<string>
@@ -1376,51 +1324,6 @@ namespace PackingApplication
 
             return getWeighingScale;
         }
-
-        //private async Task<List<ItemResponse>> getCopeItemList(int categoryId)
-        //{
-        //    return _masterService.getItemList(categoryId);
-        //}
-
-        //private async Task<List<ItemResponse>> getBoxItemList(int categoryId)
-        //{
-        //    return _masterService.getItemList(categoryId);
-        //}
-
-        //private async Task<List<ItemResponse>> getPalletItemList(int categoryId)
-        //{
-        //    return _masterService.getItemList(categoryId);
-        //}
-
-        //private Task<List<PrefixResponse>> getPrefixList(TransactionTypePrefixRequest prefix)
-        //{
-        //    return Task.Run(() => _masterService.getPrefixList(prefixRequest));
-        //}
-
-        //private Task<ProductionResponse> getProductionById(long productionId)
-        //{
-        //    return Task.Run(() => _packingService.getProductionById(productionId));
-        //}
-
-        //private async Task<List<BusinessPartnerResponse>> getOwnerList()
-        //{
-        //    return _masterService.getOwnerList();
-        //}
-
-        //private async Task<List<ProductionResponse>> getProductionLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
-        //{
-        //    return _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(lotId, saleOrderItemId);
-        //}
-
-        //private async Task<ProductionResponse> getLastBoxDetails()
-        //{
-        //    return _packingService.getLastBoxDetails("poypacking");
-        //}
-
-        //private async Task<List<DepartmentResponse>> getDepartmentList()
-        //{
-        //    return _masterService.getDepartmentList();
-        //}
 
         private int rowCount = 0; // Keeps track of SrNo
         private bool headerAdded = false; // To ensure header is added only once
@@ -1471,10 +1374,6 @@ namespace PackingApplication
 
             if (selectedItem.ItemId > 0)
             {
-                //if (!headerAdded)
-                //{
-                //    AddHeader();
-                //}
                 // Check duplicate value
                 bool alreadyExists = flowLayoutPanel1.Controls
                     .OfType<Panel>().Skip(1) // Skip header
@@ -1497,7 +1396,6 @@ namespace PackingApplication
                 {
                     var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
                     tag.Item2.Text = qty.ToString();
-                    //MessageBox.Show("Item quantity updated.");
                     foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
                     {
                         if (control.Text == "Remove")
@@ -1798,39 +1696,16 @@ namespace PackingApplication
                     if (gross >= tare)
                     {
                         CalculateNetWeight();
-                        //grosswterror.Text = "";
                         grosswterror.Visible = false;
-                    }
-                    else
-                    {
-                        //grosswterror.Text = "Gross Wt > Tare Wt";
-                        //if(grosswterror.Visible)
-                        //{
-                        //    MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //    netwt.Text = "0";
-                        //    wtpercop.Text = "0";
-                        //}
-
                     }
                 }
             }
-
         }
 
         private void GrossWeight_Validating(object sender, CancelEventArgs e)
         {
             if (!isFormReady) return;
 
-            //if (selectedSOId == 0)
-            //{
-            //    //if (soerror.Visible)
-            //    //{
-            //    //soerror.Text = "Please select sale order";
-            //    MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    //}
-            //    e.Cancel = true;
-            //    return;
-            //}
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 //grosswterror.Visible = true;
@@ -1848,43 +1723,12 @@ namespace PackingApplication
                     decimal gross, tare;
                     if (decimal.TryParse(grosswtno.Text, out gross) && decimal.TryParse(tarewt.Text, out tare))
                     {
-                        //decimal newBalanceQty = balanceQty - gross;
-                        //if (newBalanceQty < 0)
-                        //{
-                        //    //grosswterror.Text = "No Prod Bal Qty remaining";
-                        //    //grosswterror.Visible = true;
-                        //    MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //    submit.Enabled = false;
-                        //    saveprint.Enabled = false;
-                        //    e.Cancel = true;
-                        //    return;
-                        //}
-                        //else
-                        //{
-                        //    //grosswterror.Text = "";
-                        //    //grosswterror.Visible = false;
-                        //    submit.Enabled = true;
-                        //    saveprint.Enabled = true;
-                        //}
                         if (gross >= tare)
                         {
                             CalculateNetWeight();
-                            //grosswterror.Text = "";
-                            //grosswterror.Visible = false;
-                        }
-                        else
-                        {
-                            //grosswterror.Text = "Gross Wt > Tare Wt";
-                            //grosswterror.Visible = true;
-                            //MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //netwt.Text = "0";
-                            //wtpercop.Text = "0";
-                            //e.Cancel = true;
-                            //return;
-                        }
+                        }                        
                     }
                 }
-
             }
         }
 
@@ -1909,19 +1753,7 @@ namespace PackingApplication
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
             if (!isFormReady) return;
-            //if (string.IsNullOrWhiteSpace(spoolno.Text))
-            //{
-            //    //spoolnoerror.Text = "Please enter spool no";
-            //    //if(spoolnoerror.Visible)
-            //    //{
-            //        MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        tarewt.Text = "0";
-            //        spoolwt.Text = "0";
-            //        return;
-            //    //}
 
-            //}
-            //else 
             if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
@@ -1937,11 +1769,9 @@ namespace PackingApplication
                     spoolwt.Text = (spoolnum * copswt).ToString();
                     CalculateWeightPerCop();
                     CalculateTareWeight();
-                    //GrossWeight_TextChanged(sender, e);
                     spoolnoerror.Text = "";
                     spoolnoerror.Visible = false;
                 }
-
             }
         }
 
@@ -1953,10 +1783,7 @@ namespace PackingApplication
             decimal.TryParse(spoolno.Text, out num2);
             if (num1 > 0 && num2 > 0)
             {
-                //if (num1 >= num2)
-                //{
                 wtpercop.Text = (num1 / num2).ToString("F3");
-                //}
             }
         }
 
@@ -2032,7 +1859,6 @@ namespace PackingApplication
                     consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
                     consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
                     consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
-                    //consumptionDetailsRequest.StockTrfDetailsId = 0;
                     productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
                 }
 
@@ -2055,10 +1881,6 @@ namespace PackingApplication
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
 
-                //MessageBox.Show("POY Packing added successfully for BoxNo " + result.BoxNo + ".",
-                //"Success",
-                //MessageBoxButtons.OK,
-                //MessageBoxIcon.Information);
                 isFormReady = false;
                 this.spoolno.Text = "0";
                 this.spoolwt.Text = "0";
@@ -2135,63 +1957,47 @@ namespace PackingApplication
 
             if (LineNoList.SelectedIndex <= 0)
             {
-                //linenoerror.Text = "Please select a line no";
-                //linenoerror.Visible = true;
                 MessageBox.Show("Please select a line no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
             if (string.IsNullOrWhiteSpace(copyno.Text))
             {
-                //copynoerror.Text = "Please enter no of copies";
-                //copynoerror.Visible = true;
                 MessageBox.Show("Please enter no of copies", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (MergeNoList.SelectedIndex <= 0)
             {
-                //mergenoerror.Text = "Please select merge no";
-                //mergenoerror.Visible = true;
                 MessageBox.Show("Please select merge no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (QualityList.SelectedIndex <= 0)
             {
-                //qualityerror.Text = "Please select quality";
-                //qualityerror.Visible = true;
                 MessageBox.Show("Please select quality", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (SaleOrderList.SelectedIndex <= 0)
             {
-                //soerror.Text = "Please select sale order";
-                //soerror.Visible = true;
                 MessageBox.Show("Please select sale order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (PackSizeList.SelectedIndex <= 0)
             {
-                //packsizeerror.Text = "Please select pack size";
-                //packsizeerror.Visible = true;
                 MessageBox.Show("Please select pack size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (WindingTypeList.SelectedIndex <= 0)
             {
-                //windingerror.Text = "Please select winding type";
-                //windingerror.Visible = true;
                 MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (PrefixList.SelectedIndex <= 0)
             {
-                //boxnoerror.Text = "Please select prefix";
-                //boxnoerror.Visible = true;
                 MessageBox.Show("Please select prefix", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
@@ -2210,39 +2016,30 @@ namespace PackingApplication
 
             if (string.IsNullOrWhiteSpace(spoolno.Text) || Convert.ToInt32(spoolno.Text) == 0)
             {
-                //spoolnoerror.Text = "Please enter spool no";
-                //spoolnoerror.Visible = true;
                 MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(spoolwt.Text) || Convert.ToDecimal(spoolwt.Text) == 0)
             {
-                //spoolwterror.Text = "Please enter spool wt";
-                //spoolwterror.Visible = true;
                 MessageBox.Show("Please enter spool wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(palletwtno.Text) || Convert.ToDecimal(palletwtno.Text) == 0)
             {
-                //palletwterror.Text = "Please enter pallet wt";
-                //palletwterror.Visible = true;
                 MessageBox.Show("Please enter pallet wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text) || Convert.ToDecimal(grosswtno.Text) == 0)
             {
-                //grosswterror.Text = "Please enter gross wt";
-                //grosswterror.Visible = true;
                 MessageBox.Show("Please enter gross wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
 
             if (flowLayoutPanel1.Controls.Count == 1)
             {
-                //MessageBox.Show("Please add atleast one record in Pallet details");
                 MessageBox.Show("Please add atleast one record in Pallet details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
@@ -2251,8 +2048,6 @@ namespace PackingApplication
             if (spoolnum == 0)
             {
                 MessageBox.Show("Spool no > 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //tarewt.Text = "0";
-                //spoolwt.Text = "0";
                 isValid = false;
 
             }
@@ -2277,11 +2072,7 @@ namespace PackingApplication
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
-            //totalProdQty = 0;
-            //foreach (var proditem in gridList)
-            //{
-            //    totalProdQty += proditem.GrossWt;
-            //}
+          
             balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
@@ -2299,11 +2090,6 @@ namespace PackingApplication
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //var dashboard = this.ParentForm as AdminAccount;
-            //if (dashboard != null)
-            //{
-            //    dashboard.LoadFormInContent(new POYPackingList());
-            //}
             ResetForm(this);
         }
 
@@ -2457,11 +2243,6 @@ namespace PackingApplication
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow control keys (backspace, delete, etc.)
-            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            //{
-            //    e.Handled = true; // Reject the input
-            //}
             if (sender is System.Windows.Forms.TextBox txt)
             {
                 // Allow control keys (backspace, delete, etc.)
@@ -2728,16 +2509,6 @@ namespace PackingApplication
 
                     else if (c is DateTimePicker)
                         ((DateTimePicker)c).Value = DateTime.Now;
-
-                    //else if (c is System.Windows.Forms.CheckBox)
-                    //    ((System.Windows.Forms.CheckBox)c).Checked = false;
-
-                    //else if (c is System.Windows.Forms.RadioButton)
-                    //    ((System.Windows.Forms.RadioButton)c).Checked = false;
-
-                    // Recursive call if the control has children (like Panels, GroupBoxes, etc.)
-                    //if (c.HasChildren)
-                    //    ResetForm(c);
                 }
                 copyno.Text = "1";
                 spoolwt.Text = "0";
@@ -2844,13 +2615,8 @@ namespace PackingApplication
             if (prcompany.Checked)
             {
                 prowner.Checked = false;
-                //prowner.Enabled = false; // disable the other
                 prcompany.Focus();       // keep focus on the current one
             }
-            //else
-            //{
-            //    prowner.Checked = true;  // re-enable when unchecked
-            //}
         }
 
         private void prowner_CheckedChanged(object sender, EventArgs e)
@@ -2859,14 +2625,9 @@ namespace PackingApplication
 
             if (prowner.Checked)
             {
-                prcompany.Checked = false;
-                //prcompany.Enabled = false; // disable the other
+                prcompany.Checked = false;                
                 prowner.Focus();           // keep focus
             }
-            //else
-            //{
-            //    prcompany.Enabled = true;  // re-enable when unchecked
-            //}
         }
 
         private void txtNumeric_KeyPress(object sender, KeyPressEventArgs e)
@@ -2921,54 +2682,6 @@ namespace PackingApplication
                 }
             }
         }
-
-        //private void LineNo_TextUpdate(object sender, EventArgs e)
-        //{
-        //    string typedText = LineNoList.Text.ToLower();
-
-        //    var filtered = o_machineList.Where(m => !string.IsNullOrEmpty(m.CName) && m.CName.Contains(typedText.ToUpper())).ToList();
-
-        //    if (filtered.Count == 0) return;
-
-        //    LineNoList.DataSource = null; // Reset binding
-        //    LineNoList.DataSource = filtered;
-        //    LineNoList.DisplayMember = "MachineName";
-        //    LineNoList.ValueMember = "MachineId";
-        //    LineNoList.SelectionStart = typedText.Length;
-        //    LineNoList.DroppedDown = true;
-        //}
-
-        //private void LineNo_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (_isFiltering) return;
-
-        //    _isFiltering = true;
-
-        //    string typedText = LineNoList.Text.Trim();
-        //    if (string.IsNullOrEmpty(typedText))
-        //    {
-        //        _isFiltering = true;
-        //        LineNoList.DataSource = o_machinesResponse.ToList();
-        //        LineNoList.DroppedDown = false;
-        //        _isFiltering = false;
-        //        return;
-        //    }
-
-        //    _isFiltering = true;
-        //    var filtered = o_machinesResponse
-        //        .Where(c => !string.IsNullOrEmpty(c.CName) &&
-        //                    c.CName.Replace(" ", "")
-        //                    .IndexOf(typedText.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) >= 0)
-        //        .ToList();
-
-        //    LineNoList.DataSource = filtered;
-        //    LineNoList.DroppedDown = true;
-        //    LineNoList.DisplayMember = "MachineName";
-        //    LineNoList.SelectionStart = LineNoList.Text.Length;
-        //    LineNoList.SelectionLength = 0;
-
-        //    _isFiltering = false;
-        //}
 
         private void spoolNo_Enter(object sender, EventArgs e)
         {
@@ -3058,7 +2771,6 @@ namespace PackingApplication
             {
                 // Optionally clear or handle custom entry
                 cmb.SelectedIndex = 0;
-                // cmb.Text = ""; // clear invalid entry
             }
         }
 
