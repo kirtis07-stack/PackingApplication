@@ -55,6 +55,7 @@ namespace PackingApplication
             this.Shown += ViewChipsPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
+            _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
         }
 
         private void ViewChipsPackingForm_Load(object sender, EventArgs e)
