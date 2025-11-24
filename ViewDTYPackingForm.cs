@@ -58,6 +58,7 @@ namespace PackingApplication
             this.Shown += ViewDTYPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
+            _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
         }
 
         private void ViewDTYPackingForm_Load(object sender, EventArgs e)

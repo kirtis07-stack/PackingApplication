@@ -44,15 +44,8 @@ namespace PackingApplication
             this.quality = new System.Windows.Forms.Label();
             this.saleorderno = new System.Windows.Forms.Label();
             this.packsize = new System.Windows.Forms.Label();
-            this.updenier = new System.Windows.Forms.Label();
             this.windingtype = new System.Windows.Forms.Label();
             this.comport = new System.Windows.Forms.Label();
-            this.copssize = new System.Windows.Forms.Label();
-            this.copweight = new System.Windows.Forms.Label();
-            this.copstock = new System.Windows.Forms.Label();
-            this.boxtype = new System.Windows.Forms.Label();
-            this.boxweight = new System.Windows.Forms.Label();
-            this.boxstock = new System.Windows.Forms.Label();
             this.remark = new System.Windows.Forms.Label();
             this.remarks = new System.Windows.Forms.TextBox();
             this.scalemodel = new System.Windows.Forms.Label();
@@ -61,8 +54,6 @@ namespace PackingApplication
             this.WindingTypeList = new System.Windows.Forms.ComboBox();
             this.ComPortList = new System.Windows.Forms.ComboBox();
             this.WeighingList = new System.Windows.Forms.ComboBox();
-            this.CopsItemList = new System.Windows.Forms.ComboBox();
-            this.BoxItemList = new System.Windows.Forms.ComboBox();
             this.SaleOrderList = new System.Windows.Forms.ComboBox();
             this.prcompany = new System.Windows.Forms.CheckBox();
             this.prowner = new System.Windows.Forms.CheckBox();
@@ -142,29 +133,50 @@ namespace PackingApplication
             this.Packagingboxlbl = new System.Windows.Forms.Label();
             this.packagingboxpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel52 = new System.Windows.Forms.Panel();
+            this.boxtype = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.BoxItemList = new System.Windows.Forms.ComboBox();
+            this.panel53 = new System.Windows.Forms.Panel();
+            this.boxpalletitemwt = new System.Windows.Forms.Label();
+            this.boxweight = new System.Windows.Forms.Label();
+            this.panel54 = new System.Windows.Forms.Panel();
+            this.boxpalletstock = new System.Windows.Forms.Label();
+            this.boxstock = new System.Windows.Forms.Label();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel50 = new System.Windows.Forms.Panel();
+            this.CopsItemList = new System.Windows.Forms.ComboBox();
+            this.copssize = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel49 = new System.Windows.Forms.Panel();
+            this.copsstock = new System.Windows.Forms.Label();
+            this.copstock = new System.Windows.Forms.Label();
+            this.panel51 = new System.Windows.Forms.Panel();
+            this.copsitemwt = new System.Windows.Forms.Label();
+            this.copweight = new System.Windows.Forms.Label();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel48 = new System.Windows.Forms.Panel();
+            this.updenier = new System.Windows.Forms.Label();
+            this.uptodenier = new System.Windows.Forms.Label();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.frwt = new System.Windows.Forms.Label();
+            this.fromwt = new System.Windows.Forms.Label();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.frdenier = new System.Windows.Forms.Label();
+            this.fromdenier = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.upwt = new System.Windows.Forms.Label();
+            this.uptowt = new System.Windows.Forms.Label();
             this.panel47 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.req6 = new System.Windows.Forms.Label();
             this.packsizeerror = new System.Windows.Forms.Label();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.upwt = new System.Windows.Forms.Label();
-            this.frwt = new System.Windows.Forms.Label();
-            this.uptowt = new System.Windows.Forms.Label();
-            this.fromwt = new System.Windows.Forms.Label();
-            this.frdenier = new System.Windows.Forms.Label();
-            this.uptodenier = new System.Windows.Forms.Label();
-            this.fromdenier = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.OwnerList = new System.Windows.Forms.ComboBox();
             this.owner = new System.Windows.Forms.Label();
-            this.panel22 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.copsstock = new System.Windows.Forms.Label();
-            this.copsitemwt = new System.Windows.Forms.Label();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.boxpalletstock = new System.Windows.Forms.Label();
-            this.boxpalletitemwt = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.partyn = new System.Windows.Forms.Label();
             this.bppartyname = new System.Windows.Forms.Label();
@@ -295,12 +307,24 @@ namespace PackingApplication
             this.packagingboxheader.SuspendLayout();
             this.packagingboxpanel.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.panel25.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            this.panel52.SuspendLayout();
+            this.panel53.SuspendLayout();
+            this.panel54.SuspendLayout();
+            this.panel22.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.panel50.SuspendLayout();
+            this.panel49.SuspendLayout();
+            this.panel51.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.panel48.SuspendLayout();
+            this.panel26.SuspendLayout();
+            this.panel20.SuspendLayout();
+            this.panel23.SuspendLayout();
             this.panel47.SuspendLayout();
             this.panel19.SuspendLayout();
-            this.panel20.SuspendLayout();
             this.panel27.SuspendLayout();
-            this.panel22.SuspendLayout();
-            this.panel25.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel18.SuspendLayout();
             this.machineboxlayout.SuspendLayout();
@@ -421,17 +445,6 @@ namespace PackingApplication
             this.packsize.TabIndex = 22;
             this.packsize.Text = "Pack Size:";
             // 
-            // updenier
-            // 
-            this.updenier.AutoSize = true;
-            this.updenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.updenier.Location = new System.Drawing.Point(110, 5);
-            this.updenier.Name = "updenier";
-            this.updenier.Size = new System.Drawing.Size(0, 16);
-            this.updenier.TabIndex = 6;
-            this.updenier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.updenier.UseCompatibleTextRendering = true;
-            // 
             // windingtype
             // 
             this.windingtype.AutoSize = true;
@@ -452,66 +465,6 @@ namespace PackingApplication
             this.comport.TabIndex = 30;
             this.comport.Text = "Com\nPort:";
             this.comport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // copssize
-            // 
-            this.copssize.AutoSize = true;
-            this.copssize.Location = new System.Drawing.Point(-3, 5);
-            this.copssize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.copssize.Name = "copssize";
-            this.copssize.Size = new System.Drawing.Size(57, 13);
-            this.copssize.TabIndex = 32;
-            this.copssize.Text = "Cops Size:";
-            // 
-            // copweight
-            // 
-            this.copweight.AutoSize = true;
-            this.copweight.Location = new System.Drawing.Point(321, 5);
-            this.copweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.copweight.Name = "copweight";
-            this.copweight.Size = new System.Drawing.Size(24, 13);
-            this.copweight.TabIndex = 34;
-            this.copweight.Text = "Wt:";
-            // 
-            // copstock
-            // 
-            this.copstock.AutoSize = true;
-            this.copstock.Location = new System.Drawing.Point(382, 2);
-            this.copstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.copstock.Name = "copstock";
-            this.copstock.Size = new System.Drawing.Size(38, 26);
-            this.copstock.TabIndex = 35;
-            this.copstock.Text = "Cops\nStock:";
-            // 
-            // boxtype
-            // 
-            this.boxtype.AutoSize = true;
-            this.boxtype.Location = new System.Drawing.Point(-3, 2);
-            this.boxtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.boxtype.Name = "boxtype";
-            this.boxtype.Size = new System.Drawing.Size(56, 26);
-            this.boxtype.TabIndex = 38;
-            this.boxtype.Text = "Box/Pallet\nType:";
-            // 
-            // boxweight
-            // 
-            this.boxweight.AutoSize = true;
-            this.boxweight.Location = new System.Drawing.Point(321, 5);
-            this.boxweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.boxweight.Name = "boxweight";
-            this.boxweight.Size = new System.Drawing.Size(24, 13);
-            this.boxweight.TabIndex = 40;
-            this.boxweight.Text = "Wt:";
-            // 
-            // boxstock
-            // 
-            this.boxstock.AutoSize = true;
-            this.boxstock.Location = new System.Drawing.Point(381, 2);
-            this.boxstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.boxstock.Name = "boxstock";
-            this.boxstock.Size = new System.Drawing.Size(56, 26);
-            this.boxstock.TabIndex = 42;
-            this.boxstock.Text = "Box/Pallet\nStock:";
             // 
             // remark
             // 
@@ -621,36 +574,6 @@ namespace PackingApplication
             this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             this.WeighingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WeighingList_KeyDown);
             this.WeighingList.Leave += new System.EventHandler(this.ComboBox_Leave);
-            // 
-            // CopsItemList
-            // 
-            this.CopsItemList.AllowDrop = true;
-            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CopsItemList.FormattingEnabled = true;
-            this.CopsItemList.Location = new System.Drawing.Point(58, 2);
-            this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
-            this.CopsItemList.Name = "CopsItemList";
-            this.CopsItemList.Size = new System.Drawing.Size(100, 21);
-            this.CopsItemList.TabIndex = 2;
-            this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
-            this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
-            this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
-            // 
-            // BoxItemList
-            // 
-            this.BoxItemList.AllowDrop = true;
-            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BoxItemList.FormattingEnabled = true;
-            this.BoxItemList.Location = new System.Drawing.Point(58, 2);
-            this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
-            this.BoxItemList.Name = "BoxItemList";
-            this.BoxItemList.Size = new System.Drawing.Size(101, 21);
-            this.BoxItemList.TabIndex = 3;
-            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
-            this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
-            this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // SaleOrderList
             // 
@@ -1729,12 +1652,12 @@ namespace PackingApplication
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62F));
+            this.tableLayoutPanel5.Controls.Add(this.panel25, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.panel22, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel8, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.panel47, 1, 4);
             this.tableLayoutPanel5.Controls.Add(this.panel19, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.panel20, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.panel27, 0, 4);
-            this.tableLayoutPanel5.Controls.Add(this.panel22, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.panel25, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.panel15, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.panel18, 1, 3);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1751,6 +1674,425 @@ namespace PackingApplication
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(305, 135);
             this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // panel25
+            // 
+            this.tableLayoutPanel5.SetColumnSpan(this.panel25, 2);
+            this.panel25.Controls.Add(this.tableLayoutPanel10);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel25.Location = new System.Drawing.Point(0, 54);
+            this.panel25.Margin = new System.Windows.Forms.Padding(0);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(305, 27);
+            this.panel25.TabIndex = 3;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel10.Controls.Add(this.panel52, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.panel53, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.panel54, 2, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(305, 27);
+            this.tableLayoutPanel10.TabIndex = 125;
+            // 
+            // panel52
+            // 
+            this.panel52.Controls.Add(this.boxtype);
+            this.panel52.Controls.Add(this.label7);
+            this.panel52.Controls.Add(this.BoxItemList);
+            this.panel52.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel52.Location = new System.Drawing.Point(0, 0);
+            this.panel52.Margin = new System.Windows.Forms.Padding(0);
+            this.panel52.Name = "panel52";
+            this.panel52.Size = new System.Drawing.Size(210, 27);
+            this.panel52.TabIndex = 0;
+            // 
+            // boxtype
+            // 
+            this.boxtype.AutoSize = true;
+            this.boxtype.Location = new System.Drawing.Point(-3, 2);
+            this.boxtype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxtype.Name = "boxtype";
+            this.boxtype.Size = new System.Drawing.Size(56, 26);
+            this.boxtype.TabIndex = 38;
+            this.boxtype.Text = "Box/Pallet\nType:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(48, 1);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 13);
+            this.label7.TabIndex = 118;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // BoxItemList
+            // 
+            this.BoxItemList.AllowDrop = true;
+            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BoxItemList.FormattingEnabled = true;
+            this.BoxItemList.Location = new System.Drawing.Point(58, 2);
+            this.BoxItemList.Margin = new System.Windows.Forms.Padding(2);
+            this.BoxItemList.Name = "BoxItemList";
+            this.BoxItemList.Size = new System.Drawing.Size(150, 21);
+            this.BoxItemList.TabIndex = 3;
+            // 
+            // panel53
+            // 
+            this.panel53.Controls.Add(this.boxpalletitemwt);
+            this.panel53.Controls.Add(this.boxweight);
+            this.panel53.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel53.Location = new System.Drawing.Point(210, 0);
+            this.panel53.Margin = new System.Windows.Forms.Padding(0);
+            this.panel53.Name = "panel53";
+            this.panel53.Size = new System.Drawing.Size(45, 27);
+            this.panel53.TabIndex = 1;
+            // 
+            // boxpalletitemwt
+            // 
+            this.boxpalletitemwt.AutoSize = true;
+            this.boxpalletitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxpalletitemwt.Location = new System.Drawing.Point(25, 5);
+            this.boxpalletitemwt.Name = "boxpalletitemwt";
+            this.boxpalletitemwt.Size = new System.Drawing.Size(0, 13);
+            this.boxpalletitemwt.TabIndex = 5;
+            this.boxpalletitemwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // boxweight
+            // 
+            this.boxweight.AutoSize = true;
+            this.boxweight.Location = new System.Drawing.Point(0, 5);
+            this.boxweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxweight.Name = "boxweight";
+            this.boxweight.Size = new System.Drawing.Size(24, 13);
+            this.boxweight.TabIndex = 40;
+            this.boxweight.Text = "Wt:";
+            // 
+            // panel54
+            // 
+            this.panel54.Controls.Add(this.boxpalletstock);
+            this.panel54.Controls.Add(this.boxstock);
+            this.panel54.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel54.Location = new System.Drawing.Point(255, 0);
+            this.panel54.Margin = new System.Windows.Forms.Padding(0);
+            this.panel54.Name = "panel54";
+            this.panel54.Size = new System.Drawing.Size(50, 27);
+            this.panel54.TabIndex = 2;
+            // 
+            // boxpalletstock
+            // 
+            this.boxpalletstock.AutoSize = true;
+            this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.boxpalletstock.Location = new System.Drawing.Point(50, 5);
+            this.boxpalletstock.Name = "boxpalletstock";
+            this.boxpalletstock.Size = new System.Drawing.Size(0, 16);
+            this.boxpalletstock.TabIndex = 124;
+            this.boxpalletstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boxpalletstock.UseCompatibleTextRendering = true;
+            // 
+            // boxstock
+            // 
+            this.boxstock.AutoSize = true;
+            this.boxstock.Location = new System.Drawing.Point(-3, 2);
+            this.boxstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.boxstock.Name = "boxstock";
+            this.boxstock.Size = new System.Drawing.Size(56, 26);
+            this.boxstock.TabIndex = 42;
+            this.boxstock.Text = "Box/Pallet\nStock:";
+            // 
+            // panel22
+            // 
+            this.tableLayoutPanel5.SetColumnSpan(this.panel22, 2);
+            this.panel22.Controls.Add(this.tableLayoutPanel9);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel22.Location = new System.Drawing.Point(0, 27);
+            this.panel22.Margin = new System.Windows.Forms.Padding(0);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(305, 27);
+            this.panel22.TabIndex = 2;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 3;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel9.Controls.Add(this.panel50, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.panel49, 2, 0);
+            this.tableLayoutPanel9.Controls.Add(this.panel51, 1, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(305, 27);
+            this.tableLayoutPanel9.TabIndex = 125;
+            // 
+            // panel50
+            // 
+            this.panel50.Controls.Add(this.CopsItemList);
+            this.panel50.Controls.Add(this.copssize);
+            this.panel50.Controls.Add(this.label8);
+            this.panel50.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel50.Location = new System.Drawing.Point(0, 0);
+            this.panel50.Margin = new System.Windows.Forms.Padding(0);
+            this.panel50.Name = "panel50";
+            this.panel50.Size = new System.Drawing.Size(210, 27);
+            this.panel50.TabIndex = 124;
+            // 
+            // CopsItemList
+            // 
+            this.CopsItemList.AllowDrop = true;
+            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CopsItemList.FormattingEnabled = true;
+            this.CopsItemList.Location = new System.Drawing.Point(58, 2);
+            this.CopsItemList.Margin = new System.Windows.Forms.Padding(2);
+            this.CopsItemList.Name = "CopsItemList";
+            this.CopsItemList.Size = new System.Drawing.Size(150, 21);
+            this.CopsItemList.TabIndex = 2;
+            // 
+            // copssize
+            // 
+            this.copssize.AutoSize = true;
+            this.copssize.Location = new System.Drawing.Point(-3, 5);
+            this.copssize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.copssize.Name = "copssize";
+            this.copssize.Size = new System.Drawing.Size(57, 13);
+            this.copssize.TabIndex = 32;
+            this.copssize.Text = "Cops Size:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(50, 1);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(11, 13);
+            this.label8.TabIndex = 119;
+            this.label8.Text = "*";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel49
+            // 
+            this.panel49.Controls.Add(this.copsstock);
+            this.panel49.Controls.Add(this.copstock);
+            this.panel49.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel49.Location = new System.Drawing.Point(255, 0);
+            this.panel49.Margin = new System.Windows.Forms.Padding(0);
+            this.panel49.Name = "panel49";
+            this.panel49.Size = new System.Drawing.Size(50, 27);
+            this.panel49.TabIndex = 0;
+            // 
+            // copsstock
+            // 
+            this.copsstock.AutoSize = true;
+            this.copsstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.copsstock.Location = new System.Drawing.Point(40, 5);
+            this.copsstock.Name = "copsstock";
+            this.copsstock.Size = new System.Drawing.Size(0, 16);
+            this.copsstock.TabIndex = 124;
+            this.copsstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.copsstock.UseCompatibleTextRendering = true;
+            // 
+            // copstock
+            // 
+            this.copstock.AutoSize = true;
+            this.copstock.Location = new System.Drawing.Point(0, 2);
+            this.copstock.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.copstock.Name = "copstock";
+            this.copstock.Size = new System.Drawing.Size(38, 26);
+            this.copstock.TabIndex = 35;
+            this.copstock.Text = "Cops\nStock:";
+            // 
+            // panel51
+            // 
+            this.panel51.Controls.Add(this.copsitemwt);
+            this.panel51.Controls.Add(this.copweight);
+            this.panel51.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel51.Location = new System.Drawing.Point(210, 0);
+            this.panel51.Margin = new System.Windows.Forms.Padding(0);
+            this.panel51.Name = "panel51";
+            this.panel51.Size = new System.Drawing.Size(45, 27);
+            this.panel51.TabIndex = 125;
+            // 
+            // copsitemwt
+            // 
+            this.copsitemwt.AutoSize = true;
+            this.copsitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.copsitemwt.Location = new System.Drawing.Point(25, 5);
+            this.copsitemwt.Name = "copsitemwt";
+            this.copsitemwt.Size = new System.Drawing.Size(0, 13);
+            this.copsitemwt.TabIndex = 5;
+            this.copsitemwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // copweight
+            // 
+            this.copweight.AutoSize = true;
+            this.copweight.Location = new System.Drawing.Point(0, 5);
+            this.copweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.copweight.Name = "copweight";
+            this.copweight.Size = new System.Drawing.Size(24, 13);
+            this.copweight.TabIndex = 34;
+            this.copweight.Text = "Wt:";
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 4;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.Controls.Add(this.panel48, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.panel26, 2, 0);
+            this.tableLayoutPanel8.Controls.Add(this.panel20, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.panel23, 3, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(115, 0);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(190, 27);
+            this.tableLayoutPanel8.TabIndex = 128;
+            // 
+            // panel48
+            // 
+            this.panel48.Controls.Add(this.updenier);
+            this.panel48.Controls.Add(this.uptodenier);
+            this.panel48.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel48.Location = new System.Drawing.Point(43, 0);
+            this.panel48.Margin = new System.Windows.Forms.Padding(0);
+            this.panel48.Name = "panel48";
+            this.panel48.Size = new System.Drawing.Size(51, 27);
+            this.panel48.TabIndex = 124;
+            // 
+            // updenier
+            // 
+            this.updenier.AutoSize = true;
+            this.updenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.updenier.Location = new System.Drawing.Point(40, 5);
+            this.updenier.Name = "updenier";
+            this.updenier.Size = new System.Drawing.Size(0, 16);
+            this.updenier.TabIndex = 6;
+            this.updenier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.updenier.UseCompatibleTextRendering = true;
+            // 
+            // uptodenier
+            // 
+            this.uptodenier.AutoSize = true;
+            this.uptodenier.Location = new System.Drawing.Point(0, 0);
+            this.uptodenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.uptodenier.Name = "uptodenier";
+            this.uptodenier.Size = new System.Drawing.Size(41, 26);
+            this.uptodenier.TabIndex = 117;
+            this.uptodenier.Text = "Upto\nDenier:";
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.frwt);
+            this.panel26.Controls.Add(this.fromwt);
+            this.panel26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel26.Location = new System.Drawing.Point(94, 0);
+            this.panel26.Margin = new System.Windows.Forms.Padding(0);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(47, 27);
+            this.panel26.TabIndex = 124;
+            // 
+            // frwt
+            // 
+            this.frwt.AutoSize = true;
+            this.frwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.frwt.Location = new System.Drawing.Point(30, 5);
+            this.frwt.Name = "frwt";
+            this.frwt.Size = new System.Drawing.Size(0, 16);
+            this.frwt.TabIndex = 124;
+            this.frwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.frwt.UseCompatibleTextRendering = true;
+            // 
+            // fromwt
+            // 
+            this.fromwt.AutoSize = true;
+            this.fromwt.Location = new System.Drawing.Point(0, 0);
+            this.fromwt.Name = "fromwt";
+            this.fromwt.Size = new System.Drawing.Size(30, 26);
+            this.fromwt.TabIndex = 124;
+            this.fromwt.Text = "From\nWt:";
+            // 
+            // panel20
+            // 
+            this.panel20.Controls.Add(this.frdenier);
+            this.panel20.Controls.Add(this.fromdenier);
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel20.Location = new System.Drawing.Point(0, 0);
+            this.panel20.Margin = new System.Windows.Forms.Padding(0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(43, 27);
+            this.panel20.TabIndex = 4;
+            // 
+            // frdenier
+            // 
+            this.frdenier.AutoSize = true;
+            this.frdenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.frdenier.Location = new System.Drawing.Point(37, 5);
+            this.frdenier.Name = "frdenier";
+            this.frdenier.Size = new System.Drawing.Size(0, 16);
+            this.frdenier.TabIndex = 5;
+            this.frdenier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.frdenier.UseCompatibleTextRendering = true;
+            // 
+            // fromdenier
+            // 
+            this.fromdenier.AutoSize = true;
+            this.fromdenier.Location = new System.Drawing.Point(0, 0);
+            this.fromdenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.fromdenier.Name = "fromdenier";
+            this.fromdenier.Size = new System.Drawing.Size(41, 26);
+            this.fromdenier.TabIndex = 116;
+            this.fromdenier.Text = "From\nDenier:";
+            // 
+            // panel23
+            // 
+            this.panel23.Controls.Add(this.upwt);
+            this.panel23.Controls.Add(this.uptowt);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel23.Location = new System.Drawing.Point(141, 0);
+            this.panel23.Margin = new System.Windows.Forms.Padding(0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(49, 27);
+            this.panel23.TabIndex = 0;
+            // 
+            // upwt
+            // 
+            this.upwt.AutoSize = true;
+            this.upwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.upwt.Location = new System.Drawing.Point(30, 5);
+            this.upwt.Name = "upwt";
+            this.upwt.Size = new System.Drawing.Size(0, 16);
+            this.upwt.TabIndex = 124;
+            this.upwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.upwt.UseCompatibleTextRendering = true;
+            // 
+            // uptowt
+            // 
+            this.uptowt.AutoSize = true;
+            this.uptowt.Location = new System.Drawing.Point(0, 0);
+            this.uptowt.Name = "uptowt";
+            this.uptowt.Size = new System.Drawing.Size(30, 26);
+            this.uptowt.TabIndex = 124;
+            this.uptowt.Text = "Upto\nWt:";
             // 
             // panel47
             // 
@@ -1798,94 +2140,6 @@ namespace PackingApplication
             this.packsizeerror.TabIndex = 103;
             this.packsizeerror.Visible = false;
             // 
-            // panel20
-            // 
-            this.panel20.Controls.Add(this.upwt);
-            this.panel20.Controls.Add(this.frwt);
-            this.panel20.Controls.Add(this.uptowt);
-            this.panel20.Controls.Add(this.fromwt);
-            this.panel20.Controls.Add(this.updenier);
-            this.panel20.Controls.Add(this.frdenier);
-            this.panel20.Controls.Add(this.uptodenier);
-            this.panel20.Controls.Add(this.fromdenier);
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel20.Location = new System.Drawing.Point(115, 0);
-            this.panel20.Margin = new System.Windows.Forms.Padding(0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(190, 27);
-            this.panel20.TabIndex = 4;
-            // 
-            // upwt
-            // 
-            this.upwt.AutoSize = true;
-            this.upwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.upwt.Location = new System.Drawing.Point(235, 5);
-            this.upwt.Name = "upwt";
-            this.upwt.Size = new System.Drawing.Size(0, 16);
-            this.upwt.TabIndex = 124;
-            this.upwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.upwt.UseCompatibleTextRendering = true;
-            // 
-            // frwt
-            // 
-            this.frwt.AutoSize = true;
-            this.frwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.frwt.Location = new System.Drawing.Point(175, 5);
-            this.frwt.Name = "frwt";
-            this.frwt.Size = new System.Drawing.Size(0, 16);
-            this.frwt.TabIndex = 124;
-            this.frwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.frwt.UseCompatibleTextRendering = true;
-            // 
-            // uptowt
-            // 
-            this.uptowt.AutoSize = true;
-            this.uptowt.Location = new System.Drawing.Point(209, 2);
-            this.uptowt.Name = "uptowt";
-            this.uptowt.Size = new System.Drawing.Size(30, 26);
-            this.uptowt.TabIndex = 124;
-            this.uptowt.Text = "Upto\nWt:";
-            // 
-            // fromwt
-            // 
-            this.fromwt.AutoSize = true;
-            this.fromwt.Location = new System.Drawing.Point(145, 1);
-            this.fromwt.Name = "fromwt";
-            this.fromwt.Size = new System.Drawing.Size(30, 26);
-            this.fromwt.TabIndex = 124;
-            this.fromwt.Text = "From\nWt:";
-            // 
-            // frdenier
-            // 
-            this.frdenier.AutoSize = true;
-            this.frdenier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.frdenier.Location = new System.Drawing.Point(37, 5);
-            this.frdenier.Name = "frdenier";
-            this.frdenier.Size = new System.Drawing.Size(0, 16);
-            this.frdenier.TabIndex = 5;
-            this.frdenier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.frdenier.UseCompatibleTextRendering = true;
-            // 
-            // uptodenier
-            // 
-            this.uptodenier.AutoSize = true;
-            this.uptodenier.Location = new System.Drawing.Point(70, 1);
-            this.uptodenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uptodenier.Name = "uptodenier";
-            this.uptodenier.Size = new System.Drawing.Size(41, 26);
-            this.uptodenier.TabIndex = 117;
-            this.uptodenier.Text = "Upto\nDenier:";
-            // 
-            // fromdenier
-            // 
-            this.fromdenier.AutoSize = true;
-            this.fromdenier.Location = new System.Drawing.Point(0, 1);
-            this.fromdenier.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.fromdenier.Name = "fromdenier";
-            this.fromdenier.Size = new System.Drawing.Size(41, 26);
-            this.fromdenier.TabIndex = 116;
-            this.fromdenier.Text = "From\nDenier:";
-            // 
             // panel27
             // 
             this.panel27.Controls.Add(this.OwnerList);
@@ -1918,104 +2172,6 @@ namespace PackingApplication
             this.owner.Size = new System.Drawing.Size(41, 13);
             this.owner.TabIndex = 124;
             this.owner.Text = "Owner:";
-            // 
-            // panel22
-            // 
-            this.tableLayoutPanel5.SetColumnSpan(this.panel22, 2);
-            this.panel22.Controls.Add(this.label8);
-            this.panel22.Controls.Add(this.CopsItemList);
-            this.panel22.Controls.Add(this.copssize);
-            this.panel22.Controls.Add(this.copsstock);
-            this.panel22.Controls.Add(this.copstock);
-            this.panel22.Controls.Add(this.copsitemwt);
-            this.panel22.Controls.Add(this.copweight);
-            this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel22.Location = new System.Drawing.Point(0, 27);
-            this.panel22.Margin = new System.Windows.Forms.Padding(0);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(305, 27);
-            this.panel22.TabIndex = 2;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(48, 5);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(11, 13);
-            this.label8.TabIndex = 119;
-            this.label8.Text = "*";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // copsstock
-            // 
-            this.copsstock.AutoSize = true;
-            this.copsstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.copsstock.Location = new System.Drawing.Point(435, 5);
-            this.copsstock.Name = "copsstock";
-            this.copsstock.Size = new System.Drawing.Size(0, 16);
-            this.copsstock.TabIndex = 124;
-            this.copsstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.copsstock.UseCompatibleTextRendering = true;
-            // 
-            // copsitemwt
-            // 
-            this.copsitemwt.AutoSize = true;
-            this.copsitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.copsitemwt.Location = new System.Drawing.Point(340, 5);
-            this.copsitemwt.Name = "copsitemwt";
-            this.copsitemwt.Size = new System.Drawing.Size(0, 13);
-            this.copsitemwt.TabIndex = 5;
-            this.copsitemwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel25
-            // 
-            this.tableLayoutPanel5.SetColumnSpan(this.panel25, 2);
-            this.panel25.Controls.Add(this.boxpalletstock);
-            this.panel25.Controls.Add(this.boxpalletitemwt);
-            this.panel25.Controls.Add(this.boxstock);
-            this.panel25.Controls.Add(this.boxweight);
-            this.panel25.Controls.Add(this.BoxItemList);
-            this.panel25.Controls.Add(this.label7);
-            this.panel25.Controls.Add(this.boxtype);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel25.Location = new System.Drawing.Point(0, 54);
-            this.panel25.Margin = new System.Windows.Forms.Padding(0);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(305, 27);
-            this.panel25.TabIndex = 3;
-            // 
-            // boxpalletstock
-            // 
-            this.boxpalletstock.AutoSize = true;
-            this.boxpalletstock.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxpalletstock.Location = new System.Drawing.Point(435, 5);
-            this.boxpalletstock.Name = "boxpalletstock";
-            this.boxpalletstock.Size = new System.Drawing.Size(0, 16);
-            this.boxpalletstock.TabIndex = 124;
-            this.boxpalletstock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.boxpalletstock.UseCompatibleTextRendering = true;
-            // 
-            // boxpalletitemwt
-            // 
-            this.boxpalletitemwt.AutoSize = true;
-            this.boxpalletitemwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxpalletitemwt.Location = new System.Drawing.Point(340, 5);
-            this.boxpalletitemwt.Name = "boxpalletitemwt";
-            this.boxpalletitemwt.Size = new System.Drawing.Size(0, 13);
-            this.boxpalletitemwt.TabIndex = 5;
-            this.boxpalletitemwt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(46, 1);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(11, 13);
-            this.label7.TabIndex = 118;
-            this.label7.Text = "*";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panel15
             // 
@@ -3229,18 +3385,37 @@ namespace PackingApplication
             this.packagingboxheader.PerformLayout();
             this.packagingboxpanel.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.panel52.ResumeLayout(false);
+            this.panel52.PerformLayout();
+            this.panel53.ResumeLayout(false);
+            this.panel53.PerformLayout();
+            this.panel54.ResumeLayout(false);
+            this.panel54.PerformLayout();
+            this.panel22.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.panel50.ResumeLayout(false);
+            this.panel50.PerformLayout();
+            this.panel49.ResumeLayout(false);
+            this.panel49.PerformLayout();
+            this.panel51.ResumeLayout(false);
+            this.panel51.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.panel48.ResumeLayout(false);
+            this.panel48.PerformLayout();
+            this.panel26.ResumeLayout(false);
+            this.panel26.PerformLayout();
+            this.panel20.ResumeLayout(false);
+            this.panel20.PerformLayout();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.panel47.ResumeLayout(false);
             this.panel47.PerformLayout();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
-            this.panel20.ResumeLayout(false);
-            this.panel20.PerformLayout();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
-            this.panel22.ResumeLayout(false);
-            this.panel22.PerformLayout();
-            this.panel25.ResumeLayout(false);
-            this.panel25.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.panel18.ResumeLayout(false);
@@ -3329,15 +3504,8 @@ namespace PackingApplication
         private System.Windows.Forms.Label quality;
         private System.Windows.Forms.Label saleorderno;
         private System.Windows.Forms.Label packsize;
-        private System.Windows.Forms.Label updenier;
         private System.Windows.Forms.Label windingtype;
         private System.Windows.Forms.Label comport;
-        private System.Windows.Forms.Label copssize;
-        private System.Windows.Forms.Label copweight;
-        private System.Windows.Forms.Label copstock;
-        private System.Windows.Forms.Label boxtype;
-        private System.Windows.Forms.Label boxweight;
-        private System.Windows.Forms.Label boxstock;
         private System.Windows.Forms.Label remark;
         private System.Windows.Forms.TextBox remarks;
         private System.Windows.Forms.Label scalemodel;
@@ -3346,8 +3514,6 @@ namespace PackingApplication
         private System.Windows.Forms.ComboBox WindingTypeList;
         private System.Windows.Forms.ComboBox ComPortList;
         private System.Windows.Forms.ComboBox WeighingList;
-        private System.Windows.Forms.ComboBox CopsItemList;
-        private System.Windows.Forms.ComboBox BoxItemList;
         private System.Windows.Forms.ComboBox SaleOrderList;
         private System.Windows.Forms.CheckBox prcompany;
         private System.Windows.Forms.CheckBox prowner;
@@ -3460,9 +3626,6 @@ namespace PackingApplication
         private System.Windows.Forms.Label menu;
         private PictureBox menuBtn;
         private Button saveprint;
-        private System.Windows.Forms.Label uptodenier;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel tblpanl1;
         private TableLayoutPanel tableLayoutPanel2;
@@ -3476,9 +3639,6 @@ namespace PackingApplication
         private Panel panel16;
         private Panel panel17;
         private Panel panel19;
-        private Panel panel20;
-        private Panel panel22;
-        private Panel panel25;
         private TableLayoutPanel tableLayoutPanel6;
         private Panel panel28;
         private Panel panel29;
@@ -3524,10 +3684,6 @@ namespace PackingApplication
         private System.Windows.Forms.Label shadecd;
         private System.Windows.Forms.Label deniervalue;
         private System.Windows.Forms.Label prodtype;
-        private System.Windows.Forms.Label fromdenier;
-        private System.Windows.Forms.Label frdenier;
-        private System.Windows.Forms.Label copsitemwt;
-        private System.Windows.Forms.Label boxpalletitemwt;
         private Panel panel44;
         private Panel panel45;
         private System.Windows.Forms.Label copynoerror;
@@ -3542,21 +3698,52 @@ namespace PackingApplication
         private TableLayoutPanel buttontablelayout;
         private Panel panel21;
         private ComboBox DeptList;
-        private System.Windows.Forms.Label copsstock;
-        private System.Windows.Forms.Label boxpalletstock;
         private Panel panel24;
         private System.Windows.Forms.Label salelot;
         private System.Windows.Forms.Label salelotvalue;
         private Panel panel27;
         private System.Windows.Forms.Label owner;
         private ComboBox OwnerList;
-        private System.Windows.Forms.Label fromwt;
-        private System.Windows.Forms.Label uptowt;
-        private System.Windows.Forms.Label frwt;
-        private System.Windows.Forms.Label upwt;
         private Panel panel46;
         private Panel panel47;
         private System.Windows.Forms.Label boxnofrmt;
+        private TableLayoutPanel tableLayoutPanel8;
+        private Panel panel48;
+        private System.Windows.Forms.Label updenier;
+        private System.Windows.Forms.Label uptodenier;
+        private Panel panel26;
+        private System.Windows.Forms.Label frwt;
+        private System.Windows.Forms.Label fromwt;
+        private Panel panel20;
+        private System.Windows.Forms.Label frdenier;
+        private System.Windows.Forms.Label fromdenier;
+        private Panel panel23;
+        private System.Windows.Forms.Label upwt;
+        private System.Windows.Forms.Label uptowt;
+        private Panel panel22;
+        private TableLayoutPanel tableLayoutPanel9;
+        private Panel panel50;
+        private ComboBox CopsItemList;
+        private System.Windows.Forms.Label copssize;
+        private System.Windows.Forms.Label label8;
+        private Panel panel49;
+        private System.Windows.Forms.Label copsstock;
+        private System.Windows.Forms.Label copstock;
+        private Panel panel51;
+        private System.Windows.Forms.Label copsitemwt;
+        private System.Windows.Forms.Label copweight;
+        private Panel panel25;
+        private TableLayoutPanel tableLayoutPanel10;
+        private Panel panel52;
+        private System.Windows.Forms.Label boxtype;
+        private System.Windows.Forms.Label label7;
+        private ComboBox BoxItemList;
+        private Panel panel53;
+        private System.Windows.Forms.Label boxpalletitemwt;
+        private System.Windows.Forms.Label boxweight;
+        private Panel panel54;
+        private System.Windows.Forms.Label boxpalletstock;
+        private System.Windows.Forms.Label boxstock;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
