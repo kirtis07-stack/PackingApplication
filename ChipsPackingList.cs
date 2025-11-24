@@ -62,7 +62,6 @@ namespace PackingApplication
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
@@ -71,8 +70,7 @@ namespace PackingApplication
             dataGridView1.Columns["SrNo"].Width = 50;
             dataGridView1.Columns["PackingType"].Width = 100;
             dataGridView1.Columns["NoOfCopies"].Width = 50;
-            //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+           
             // Add Edit button column
             DataGridViewImageColumn btn = new DataGridViewImageColumn();
             btn.HeaderText = "Action";
@@ -85,7 +83,6 @@ namespace PackingApplication
 
             // Bind your list
             dataGridView1.DataSource = chipspackingList;
-
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
 
@@ -107,7 +104,6 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllChipsPackingList()
         {
-            //var getPacking = _packingService.getAllPackingListByPackingType("chipspacking");
             return new List<ProductionResponse>();
         }
 
@@ -116,7 +112,6 @@ namespace PackingApplication
             var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
-                //dashboard.LoadFormInContent(new ChipsPackingForm()); // open Add form
             }
         }
 
@@ -137,7 +132,6 @@ namespace PackingApplication
                 var dashboard = this.ParentForm as AdminAccount;
                 if (dashboard != null)
                 {
-                    //dashboard.LoadFormInContent(new ChipsPackingForm()); // open edit form
                 }
             }
         }

@@ -72,7 +72,6 @@ namespace PackingApplication
             dataGridView1.Columns["SrNo"].Width = 50;
             dataGridView1.Columns["PackingType"].Width = 100;
             dataGridView1.Columns["NoOfCopies"].Width = 50;
-            //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Add Edit button column
             DataGridViewImageColumn btn = new DataGridViewImageColumn();
@@ -108,7 +107,6 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllBCFPackingList()
         {
-            //var getPacking = _packingService.getAllPackingListByPackingType("bcfpacking");
             return new List<ProductionResponse>();
         }
 
@@ -117,7 +115,6 @@ namespace PackingApplication
             var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
-                //dashboard.LoadFormInContent(new BCFPackingForm()); // open Add form
             }
         }
 
@@ -137,7 +134,6 @@ namespace PackingApplication
                 var dashboard = this.ParentForm as AdminAccount;
                 if (dashboard != null)
                 {
-                    //dashboard.LoadFormInContent(new BCFPackingForm()); // open edit form
                 }
             }
         }

@@ -77,7 +77,6 @@ namespace PackingApplication
             request.Method = "GET";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            //request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
             var content = string.Empty;
 
             using (var response = (HttpWebResponse)request.GetResponse())
@@ -98,7 +97,6 @@ namespace PackingApplication
         {
             var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + false);
             var getYear = JsonConvert.DeserializeObject<List<FinancialYearResponse>>(getYearResponse);
-            //getYear.Insert(0, new FinancialYearResponse { FinYearId = 0, FinYear = "Select Year" });
             YearList.DataSource = getYear;
             YearList.DisplayMember = "FinYear";
             YearList.ValueMember = "FinYearId";

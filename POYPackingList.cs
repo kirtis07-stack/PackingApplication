@@ -72,7 +72,6 @@ namespace PackingApplication
             dataGridView1.Columns["SrNo"].Width = 50;
             dataGridView1.Columns["PackingType"].Width = 100;
             dataGridView1.Columns["NoOfCopies"].Width = 50;
-            //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Add Edit button column
             DataGridViewImageColumn btn = new DataGridViewImageColumn();
@@ -108,7 +107,6 @@ namespace PackingApplication
 
         private List<ProductionResponse> getAllPOYPackingList()
         {
-            //var getPacking = _packingService.getAllPackingListByPackingType("poypacking");
             return new List<ProductionResponse>();
         }
 
@@ -117,7 +115,6 @@ namespace PackingApplication
             var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
-                //dashboard.LoadFormInContent(new POYPackingForm()); // open Add form
             }
         }
 
@@ -138,7 +135,6 @@ namespace PackingApplication
                 var dashboard = this.ParentForm as AdminAccount;
                     if (dashboard != null)
                     {
-                        //dashboard.LoadFormInContent(new POYPackingForm()); // open edit form
                     }
             }
         }
