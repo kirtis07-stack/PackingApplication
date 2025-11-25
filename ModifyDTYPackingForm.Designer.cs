@@ -1417,6 +1417,9 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(177, 21);
             this.BoxItemList.TabIndex = 3;
+            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
+            this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // label7
             // 
@@ -1555,6 +1558,9 @@ namespace PackingApplication
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(175, 21);
             this.CopsItemList.TabIndex = 2;
+            this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
+            this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
+            this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // copssize
             // 

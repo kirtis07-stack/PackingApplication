@@ -1272,6 +1272,9 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(177, 21);
             this.BoxItemList.TabIndex = 3;
+            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
+            this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
             // label7
             // 
