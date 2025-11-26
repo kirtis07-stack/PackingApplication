@@ -462,6 +462,9 @@ namespace PackingApplication
             this.remarks.Name = "remarks";
             this.remarks.Size = new System.Drawing.Size(144, 31);
             this.remarks.TabIndex = 5;
+            this.remarks.WordWrap = true;
+            this.remarks.ScrollBars = ScrollBars.Vertical;
+            this.remarks.AcceptsReturn = true;
             // 
             // scalemodel
             // 
@@ -752,7 +755,7 @@ namespace PackingApplication
             // palletwt
             // 
             this.palletwt.AutoSize = true;
-            this.palletwt.Location = new System.Drawing.Point(0, 5);
+            this.palletwt.Location = new System.Drawing.Point(0, 0);
             this.palletwt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.palletwt.Name = "palletwt";
             this.palletwt.Size = new System.Drawing.Size(56, 26);
@@ -882,7 +885,7 @@ namespace PackingApplication
             // 
             this.req8.AutoSize = true;
             this.req8.ForeColor = System.Drawing.Color.Red;
-            this.req8.Location = new System.Drawing.Point(49, 5);
+            this.req8.Location = new System.Drawing.Point(49, 0);
             this.req8.Name = "req8";
             this.req8.Size = new System.Drawing.Size(11, 13);
             this.req8.TabIndex = 112;
@@ -2216,16 +2219,17 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.itemname.AutoEllipsis = true;
+            this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.itemname.Location = new System.Drawing.Point(28, 0);
-            this.itemname.MaximumSize = new System.Drawing.Size(250, 30);
+            this.itemname.Location = new System.Drawing.Point(28, -3);
+            this.itemname.MaximumSize = new System.Drawing.Size(195, 0);
             this.itemname.Name = "itemname";
-            this.itemname.Size = new System.Drawing.Size(141, 30);
+            this.itemname.Size = new System.Drawing.Size(0, 16);
             this.itemname.TabIndex = 5;
             this.itemname.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.itemname.UseCompatibleTextRendering = true;
             // 
             // item
             // 
@@ -2251,12 +2255,17 @@ namespace PackingApplication
             // 
             // shadename
             // 
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.shadename.Location = new System.Drawing.Point(38, 2);
+            this.shadename.Location = new System.Drawing.Point(43, -3);
+            this.shadename.MaximumSize = new System.Drawing.Size(200, 0);
             this.shadename.Name = "shadename";
-            this.shadename.Size = new System.Drawing.Size(0, 13);
+            this.shadename.Size = new System.Drawing.Size(63, 17);
             this.shadename.TabIndex = 5;
+            this.shadename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.shadename.UseCompatibleTextRendering = true;
             // 
             // shade
             // 
