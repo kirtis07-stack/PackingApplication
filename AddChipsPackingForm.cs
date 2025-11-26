@@ -57,7 +57,7 @@ namespace PackingApplication
         decimal endWeight = 0;
         public AddChipsPackingForm()
         {
-            Log.writeMessage("AddChipsPackingForm Constructor - Start : " + DateTime.Now);
+            Log.writeMessage("Chips AddChipsPackingForm Constructor - Start : " + DateTime.Now);
 
             InitializeComponent();
             ApplyFonts();
@@ -71,12 +71,12 @@ namespace PackingApplication
 
             rowMaterial.AutoGenerateColumns = false;
 
-            Log.writeMessage("AddChipsPackingForm Constructor - End : " + DateTime.Now);
+            Log.writeMessage("Chips AddChipsPackingForm Constructor - End : " + DateTime.Now);
         }
 
         private void AddChipsPackingForm_Load(object sender, EventArgs e)
         {
-            Log.writeMessage("AddChipsPackingForm_Load - Start : " + DateTime.Now);
+            Log.writeMessage("Chips AddChipsPackingForm_Load - Start : " + DateTime.Now);
 
             getLotRelatedDetails();
 
@@ -102,12 +102,12 @@ namespace PackingApplication
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
 
-            Log.writeMessage("AddChipsPackingForm_Load - End : " + DateTime.Now);
+            Log.writeMessage("Chips AddChipsPackingForm_Load - End : " + DateTime.Now);
         }
 
         private void getLotRelatedDetails()
         {
-            Log.writeMessage("getLotRelatedDetails - Start : " + DateTime.Now);
+            Log.writeMessage("Chips getLotRelatedDetails - Start : " + DateTime.Now);
 
             var windingtypeList = new List<WindingTypeResponse>();
             windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
@@ -137,12 +137,12 @@ namespace PackingApplication
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
 
-            Log.writeMessage("getLotRelatedDetails - End : " + DateTime.Now);
+            Log.writeMessage("Chips getLotRelatedDetails - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
         {
-            Log.writeMessage("ApplyFonts - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ApplyFonts - Start : " + DateTime.Now);
 
             this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -246,12 +246,12 @@ namespace PackingApplication
             this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
 
-            Log.writeMessage("ApplyFonts - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ApplyFonts - Start : " + DateTime.Now);
         }
 
         private async void AddChipsPackingForm_Shown(object sender, EventArgs e)
         {
-            Log.writeMessage("AddChipsPackingForm_Shown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips AddChipsPackingForm_Shown - Start : " + DateTime.Now);
 
             try
             {
@@ -343,12 +343,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("AddChipsPackingForm_Shown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips AddChipsPackingForm_Shown - Start : " + DateTime.Now);
         }
 
         private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
-            Log.writeMessage("LoadProductionDetailsAsync - Start : " + DateTime.Now);
+            Log.writeMessage("Chips LoadProductionDetailsAsync - Start : " + DateTime.Now);
 
             if (prodResponse != null)
             {
@@ -376,12 +376,12 @@ namespace PackingApplication
                 LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
             }
 
-            Log.writeMessage("LoadProductionDetailsAsync - End : " + DateTime.Now);
+            Log.writeMessage("Chips LoadProductionDetailsAsync - End : " + DateTime.Now);
         }
 
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("LineNoList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips LineNoList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return; // skip during load
 
@@ -441,12 +441,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("LineNoList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips LineNoList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("MergeNoList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips MergeNoList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -569,12 +569,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("MergeNoList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips MergeNoList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("PackSizeList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips PackSizeList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -610,12 +610,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("PackSizeList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips PackSizeList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("QualityList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips QualityList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -627,12 +627,12 @@ namespace PackingApplication
                 productionRequest.QualityId = selectedQualityId;
             }
 
-            Log.writeMessage("QualityList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips QualityList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("WindingTypeList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips WindingTypeList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -656,12 +656,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("WindingTypeList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips WindingTypeList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void RefreshGradewiseGrid()
         {
-            Log.writeMessage("RefreshGradewiseGrid - Start : " + DateTime.Now);
+            Log.writeMessage("Chips RefreshGradewiseGrid - Start : " + DateTime.Now);
 
             if (QualityList.SelectedValue != null)
             {
@@ -692,12 +692,12 @@ namespace PackingApplication
                 }                
             }
 
-            Log.writeMessage("RefreshGradewiseGrid - End : " + DateTime.Now);
+            Log.writeMessage("Chips RefreshGradewiseGrid - End : " + DateTime.Now);
         }
 
         private async void RefreshLastBoxDetails()
         {
-            Log.writeMessage("RefreshLastBoxDetails - Start : " + DateTime.Now);
+            Log.writeMessage("Chips RefreshLastBoxDetails - Start : " + DateTime.Now);
 
             var getLastBox = _packingService.getLastBoxDetails("chipspacking").Result;
 
@@ -714,12 +714,12 @@ namespace PackingApplication
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
 
-            Log.writeMessage("RefreshLastBoxDetails - End : " + DateTime.Now);
+            Log.writeMessage("Chips RefreshLastBoxDetails - End : " + DateTime.Now);
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("ComPortList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ComPortList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -729,12 +729,12 @@ namespace PackingApplication
                 comPort = ComPortList.SelectedValue.ToString();
             }
 
-            Log.writeMessage("ComPortList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips ComPortList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("WeighingList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips WeighingList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -755,12 +755,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("WeighingList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips WeighingList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("BoxItemList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips BoxItemList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -796,12 +796,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("BoxItemList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips BoxItemList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("PrefixList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips PrefixList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -825,12 +825,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("PrefixList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips PrefixList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("DeptList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips DeptList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -897,12 +897,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("DeptList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips DeptList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("OwnerList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips OwnerList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -930,12 +930,12 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("OwnerList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips OwnerList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async Task<List<string>> getComPortList()
         {
-            Log.writeMessage("getComPortList - Start : " + DateTime.Now);
+            Log.writeMessage("Chips getComPortList - Start : " + DateTime.Now);
 
             var getComPortType = new List<string>
             {
@@ -946,14 +946,14 @@ namespace PackingApplication
                 "COM4"
             };
 
-            Log.writeMessage("getComPortList - End : " + DateTime.Now);
+            Log.writeMessage("Chips getComPortList - End : " + DateTime.Now);
 
             return getComPortType;
         }
 
         private async Task<List<WeighingItem>> getWeighingList()
         {
-            Log.writeMessage("getWeighingList - Start : " + DateTime.Now);
+            Log.writeMessage("Chips getWeighingList - Start : " + DateTime.Now);
 
             var getWeighingScale = new List<WeighingItem>
             {
@@ -964,14 +964,14 @@ namespace PackingApplication
                 new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
 
-            Log.writeMessage("getWeighingList - End : " + DateTime.Now);
+            Log.writeMessage("Chips getWeighingList - End : " + DateTime.Now);
 
             return getWeighingScale;
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("PalletWeight_TextChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips PalletWeight_TextChanged - Start : " + DateTime.Now);
 
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
@@ -982,12 +982,12 @@ namespace PackingApplication
                 CalculateTareWeight();
             }
 
-            Log.writeMessage("PalletWeight_TextChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips PalletWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateTareWeight()
         {
-            Log.writeMessage("CalculateTareWeight - Start : " + DateTime.Now);
+            Log.writeMessage("Chips CalculateTareWeight - Start : " + DateTime.Now);
 
             decimal num2 = 0;
 
@@ -1007,12 +1007,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("CalculateTareWeight - End : " + DateTime.Now);
+            Log.writeMessage("Chips CalculateTareWeight - End : " + DateTime.Now);
         }
 
         private void GrossWeight_Validating(object sender, CancelEventArgs e)
         {
-            Log.writeMessage("GrossWeight_Validating - Start : " + DateTime.Now);
+            Log.writeMessage("Chips GrossWeight_Validating - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1037,12 +1037,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("GrossWeight_Validating - End : " + DateTime.Now);
+            Log.writeMessage("Chips GrossWeight_Validating - End : " + DateTime.Now);
         }
 
         private void CalculateNetWeight()
         {
-            Log.writeMessage("CalculateNetWeight - Start : " + DateTime.Now);
+            Log.writeMessage("Chips CalculateNetWeight - Start : " + DateTime.Now);
 
             decimal num1 = 0, num2 = 0;
 
@@ -1054,21 +1054,21 @@ namespace PackingApplication
                 CalculateWeightPerCop();
             }
 
-            Log.writeMessage("CalculateNetWeight - End : " + DateTime.Now);
+            Log.writeMessage("Chips CalculateNetWeight - End : " + DateTime.Now);
         }
 
         private void NetWeight_TextChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("NetWeight_TextChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips NetWeight_TextChanged - Start : " + DateTime.Now);
 
             CalculateWeightPerCop();
 
-            Log.writeMessage("NetWeight_TextChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips NetWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateWeightPerCop()
         {
-            Log.writeMessage("CalculateWeightPerCop - Start : " + DateTime.Now);
+            Log.writeMessage("Chips CalculateWeightPerCop - Start : " + DateTime.Now);
 
             decimal num1 = 0;
 
@@ -1078,12 +1078,12 @@ namespace PackingApplication
                 wtpercop.Text = (num1).ToString("F3");                
             }
 
-            Log.writeMessage("CalculateWeightPerCop - End : " + DateTime.Now);
+            Log.writeMessage("Chips CalculateWeightPerCop - End : " + DateTime.Now);
         }
 
         private void CopyNos_TextChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("CopyNos_TextChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips CopyNos_TextChanged - Start : " + DateTime.Now);
 
             if (string.IsNullOrWhiteSpace(copyno.Text))
             {
@@ -1095,30 +1095,30 @@ namespace PackingApplication
                 copynoerror.Visible = false;
             }
 
-            Log.writeMessage("CopyNos_TextChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips CopyNos_TextChanged - End : " + DateTime.Now);
         }
 
         private async void submit_Click(object sender, EventArgs e)
         {
-            Log.writeMessage("submit_Click - Start : " + DateTime.Now);
+            Log.writeMessage("Chips submit_Click - Start : " + DateTime.Now);
 
             submitForm(false);
 
-            Log.writeMessage("submit_Click - End : " + DateTime.Now);
+            Log.writeMessage("Chips submit_Click - End : " + DateTime.Now);
         }
 
         private async void saveprint_Click(object sender, EventArgs e)
         {
-            Log.writeMessage("saveprint_Click - Start : " + DateTime.Now);
+            Log.writeMessage("Chips saveprint_Click - Start : " + DateTime.Now);
 
             submitForm(true);
 
-            Log.writeMessage("saveprint_Click - End : " + DateTime.Now);
+            Log.writeMessage("Chips saveprint_Click - End : " + DateTime.Now);
         }
 
         public async void submitForm(bool isPrint)
         {
-            Log.writeMessage("submitForm - Start : " + DateTime.Now);
+            Log.writeMessage("Chips submitForm - Start : " + DateTime.Now);
 
             if (ValidateForm())
             {
@@ -1163,12 +1163,12 @@ namespace PackingApplication
                 ProductionResponse result = SubmitPacking(productionRequest, isPrint);
             }
 
-            Log.writeMessage("submitForm - End : " + DateTime.Now);
+            Log.writeMessage("Chips submitForm - End : " + DateTime.Now);
         }
 
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest, bool isPrint)
         {
-            Log.writeMessage("SubmitPacking - Start : " + DateTime.Now);
+            Log.writeMessage("Chips SubmitPacking - Start : " + DateTime.Now);
 
             submit.Enabled = false;
             saveprint.Enabled = false;
@@ -1247,14 +1247,14 @@ namespace PackingApplication
                     MessageBoxIcon.Error);
             }
 
-            Log.writeMessage("SubmitPacking - End : " + DateTime.Now);
+            Log.writeMessage("Chips SubmitPacking - End : " + DateTime.Now);
 
             return result;
         }
 
         private bool ValidateForm()
         {
-            Log.writeMessage("ValidateForm - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ValidateForm - Start : " + DateTime.Now);
 
             bool isValid = true;
 
@@ -1338,266 +1338,266 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            Log.writeMessage("ValidateForm - End : " + DateTime.Now);
+            Log.writeMessage("Chips ValidateForm - End : " + DateTime.Now);
 
             return isValid;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Log.writeMessage("btnCancel_Click - Start : " + DateTime.Now);
+            Log.writeMessage("Chips btnCancel_Click - Start : " + DateTime.Now);
 
             ResetForm(this);
 
-            Log.writeMessage("btnCancel_Click - End : " + DateTime.Now);
+            Log.writeMessage("Chips btnCancel_Click - End : " + DateTime.Now);
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("qualityqty_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips qualityqty_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
 
-            Log.writeMessage("qualityqty_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips qualityqty_Paint - End : " + DateTime.Now);
         }
 
         private void windinggrid_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("windinggrid_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips windinggrid_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
 
-            Log.writeMessage("windinggrid_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips windinggrid_Paint - End : " + DateTime.Now);
         }
 
         private void ordertable_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("ordertable_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ordertable_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("ordertable_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips ordertable_Paint - End : " + DateTime.Now);
         }
 
         private void packagingtable_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("packagingtable_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips packagingtable_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("packagingtable_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips packagingtable_Paint - End : " + DateTime.Now);
         }
 
         private void weightable_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("weightable_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips weightable_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("weightable_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips weightable_Paint - End : " + DateTime.Now);
         }
 
         private void reviewtable_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("reviewtable_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips reviewtable_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("reviewtable_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips reviewtable_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("machineboxlayout_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips machineboxlayout_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("machineboxlayout_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips machineboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("machineboxheader_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips machineboxheader_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("machineboxheader_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips machineboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("weighboxlayout_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips weighboxlayout_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("weighboxlayout_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips weighboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("weighboxheader_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips weighboxheader_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("weighboxheader_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips weighboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("packagingboxlayout_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips packagingboxlayout_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("packagingboxlayout_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips packagingboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("packagingboxheader_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips packagingboxheader_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("packagingboxheader_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips packagingboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxlayout_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("lastboxlayout_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastboxlayout_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("lastboxlayout_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("lastboxheader_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastboxheader_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("lastboxheader_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("lastbxcopspanel_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxcopspanel_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("lastbxcopspanel_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxcopspanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("lastbxtarepanel_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxtarepanel_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("lastbxtarepanel_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxtarepanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("lastbxgrosswtpanel_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxgrosswtpanel_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("lastbxgrosswtpanel_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxgrosswtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("lastbxnetwtpanel_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxnetwtpanel_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
 
-            Log.writeMessage("lastbxnetwtpanel_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastbxnetwtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("printingdetailslayout_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips printingdetailslayout_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("printingdetailslayout_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips printingdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("printingdetailsheader_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips printingdetailsheader_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("printingdetailsheader_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips printingdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("palletdetailslayout_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips palletdetailslayout_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("palletdetailslayout_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips palletdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
         {
-            Log.writeMessage("palletdetailsheader_Paint - Start : " + DateTime.Now);
+            Log.writeMessage("Chips palletdetailsheader_Paint - Start : " + DateTime.Now);
 
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
-            Log.writeMessage("palletdetailsheader_Paint - End : " + DateTime.Now);
+            Log.writeMessage("Chips palletdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Resize(object sender, EventArgs e)
         {
-            Log.writeMessage("machineboxheader_Resize - Start : " + DateTime.Now);
+            Log.writeMessage("Chips machineboxheader_Resize - Start : " + DateTime.Now);
 
             _cmethod.SetTopRoundedRegion(machineboxheader, 8);
 
-            Log.writeMessage("machineboxheader_Resize - End : " + DateTime.Now);
+            Log.writeMessage("Chips machineboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Resize(object sender, EventArgs e)
         {
-            Log.writeMessage("weighboxheader_Resize - Start : " + DateTime.Now);
+            Log.writeMessage("Chips weighboxheader_Resize - Start : " + DateTime.Now);
 
             _cmethod.SetTopRoundedRegion(weighboxheader, 8);
 
-            Log.writeMessage("weighboxheader_Resize - End : " + DateTime.Now);
+            Log.writeMessage("Chips weighboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Resize(object sender, EventArgs e)
         {
-            Log.writeMessage("packagingboxheader_Resize - Start : " + DateTime.Now);
+            Log.writeMessage("Chips packagingboxheader_Resize - Start : " + DateTime.Now);
 
             _cmethod.SetTopRoundedRegion(packagingboxheader, 8);
 
-            Log.writeMessage("packagingboxheader_Resize - End : " + DateTime.Now);
+            Log.writeMessage("Chips packagingboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Resize(object sender, EventArgs e)
         {
-            Log.writeMessage("lastboxheader_Resize - Start : " + DateTime.Now);
+            Log.writeMessage("Chips lastboxheader_Resize - Start : " + DateTime.Now);
 
             _cmethod.SetTopRoundedRegion(lastboxheader, 8);
 
-            Log.writeMessage("lastboxheader_Resize - End : " + DateTime.Now);
+            Log.writeMessage("Chips lastboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Resize(object sender, EventArgs e)
         {
-            Log.writeMessage("printingdetailsheader_Resize - Start : " + DateTime.Now);
+            Log.writeMessage("Chips printingdetailsheader_Resize - Start : " + DateTime.Now);
 
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
 
-            Log.writeMessage("printingdetailsheader_Resize - End : " + DateTime.Now);
+            Log.writeMessage("Chips printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Log.writeMessage("textBox1_KeyPress - Start : " + DateTime.Now);
+            Log.writeMessage("Chips textBox1_KeyPress - Start : " + DateTime.Now);
 
             if (sender is System.Windows.Forms.TextBox txt)
             {
@@ -1616,12 +1616,12 @@ namespace PackingApplication
                 e.Handled = true;
             }
 
-            Log.writeMessage("textBox1_KeyPress - End : " + DateTime.Now);
+            Log.writeMessage("Chips textBox1_KeyPress - End : " + DateTime.Now);
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("textBox1_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips textBox1_KeyDown - Start : " + DateTime.Now);
 
             // Select all text when the textbox receives focus via keyboard (Enter key)
             if (e.KeyCode == Keys.Enter)
@@ -1635,24 +1635,24 @@ namespace PackingApplication
                 ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
 
-            Log.writeMessage("textBox1_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips textBox1_KeyDown - End : " + DateTime.Now);
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
-            Log.writeMessage("textBox1_Enter - Start : " + DateTime.Now);
+            Log.writeMessage("Chips textBox1_Enter - Start : " + DateTime.Now);
 
             System.Windows.Forms.TextBox tb = sender as System.Windows.Forms.TextBox;
 
             if (!string.IsNullOrEmpty(tb.Text))
                 tb.SelectAll();
 
-            Log.writeMessage("textBox1_Enter - End : " + DateTime.Now);
+            Log.writeMessage("Chips textBox1_Enter - End : " + DateTime.Now);
         }
 
         private void checkBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("checkBox1_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips checkBox1_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -1669,12 +1669,12 @@ namespace PackingApplication
                 e.Handled = false;
             }
 
-            Log.writeMessage("checkBox1_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips checkBox1_KeyDown - End : " + DateTime.Now);
         }
 
         private void LineNoList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("LineNoList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips LineNoList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1686,12 +1686,12 @@ namespace PackingApplication
                 LineNoList.DroppedDown = false;
             }
 
-            Log.writeMessage("LineNoList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips LineNoList_KeyDown - End : " + DateTime.Now);
         }
 
         private void MergeNoList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("MergeNoList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips MergeNoList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1703,12 +1703,12 @@ namespace PackingApplication
                 MergeNoList.DroppedDown = false;
             }
 
-            Log.writeMessage("MergeNoList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips MergeNoList_KeyDown - End : " + DateTime.Now);
         }
 
         private void PackSizeList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("PackSizeList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips PackSizeList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1720,12 +1720,12 @@ namespace PackingApplication
                 PackSizeList.DroppedDown = false;
             }
 
-            Log.writeMessage("PackSizeList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips PackSizeList_KeyDown - End : " + DateTime.Now);
         }
 
         private void QualityList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("QualityList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips QualityList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1737,12 +1737,12 @@ namespace PackingApplication
                 QualityList.DroppedDown = false;
             }
 
-            Log.writeMessage("QualityList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips QualityList_KeyDown - End : " + DateTime.Now);
         }
 
         private void PrefixList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("PrefixList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips PrefixList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1754,12 +1754,12 @@ namespace PackingApplication
                 PrefixList.DroppedDown = false;
             }
 
-            Log.writeMessage("PrefixList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips PrefixList_KeyDown - End : " + DateTime.Now);
         }
 
         private void WindingTypeList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("WindingTypeList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips WindingTypeList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1771,12 +1771,12 @@ namespace PackingApplication
                 WindingTypeList.DroppedDown = false;
             }
 
-            Log.writeMessage("WindingTypeList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips WindingTypeList_KeyDown - End : " + DateTime.Now);
         }
 
         private void ComPortList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("ComPortList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ComPortList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1788,12 +1788,12 @@ namespace PackingApplication
                 ComPortList.DroppedDown = false;
             }
 
-            Log.writeMessage("ComPortList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips ComPortList_KeyDown - End : " + DateTime.Now);
         }
 
         private void WeighingList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("WeighingList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips WeighingList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1805,12 +1805,12 @@ namespace PackingApplication
                 WeighingList.DroppedDown = false;
             }
 
-            Log.writeMessage("WeighingList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips WeighingList_KeyDown - End : " + DateTime.Now);
         }
 
         private void BoxItemList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("BoxItemList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips BoxItemList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1822,12 +1822,12 @@ namespace PackingApplication
                 BoxItemList.DroppedDown = false;
             }
 
-            Log.writeMessage("BoxItemList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips BoxItemList_KeyDown - End : " + DateTime.Now);
         }
 
         private void DeptList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("DeptList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips DeptList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1839,12 +1839,12 @@ namespace PackingApplication
                 DeptList.DroppedDown = false;
             }
 
-            Log.writeMessage("DeptList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips DeptList_KeyDown - End : " + DateTime.Now);
         }
 
         private void OwnerList_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("OwnerList_KeyDown - Start : " + DateTime.Now);
+            Log.writeMessage("Chips OwnerList_KeyDown - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
@@ -1856,12 +1856,12 @@ namespace PackingApplication
                 OwnerList.DroppedDown = false;
             }
 
-            Log.writeMessage("OwnerList_KeyDown - End : " + DateTime.Now);
+            Log.writeMessage("Chips OwnerList_KeyDown - End : " + DateTime.Now);
         }
 
         private void ResetForm(Control parent)
         {
-            Log.writeMessage("ResetForm - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ResetForm - Start : " + DateTime.Now);
 
             lblLoading.Visible = true;
             try
@@ -1961,12 +1961,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("ResetForm - End : " + DateTime.Now);
+            Log.writeMessage("Chips ResetForm - End : " + DateTime.Now);
         }
 
         private void prcompany_CheckedChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("prcompany_CheckedChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips prcompany_CheckedChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1976,12 +1976,12 @@ namespace PackingApplication
                 prcompany.Focus();       // keep focus on the current one
             }
 
-            Log.writeMessage("prcompany_CheckedChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips prcompany_CheckedChanged - End : " + DateTime.Now);
         }
 
         private void prowner_CheckedChanged(object sender, EventArgs e)
         {
-            Log.writeMessage("prowner_CheckedChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips prowner_CheckedChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1991,12 +1991,12 @@ namespace PackingApplication
                 prowner.Focus();           // keep focus
             }
 
-            Log.writeMessage("prowner_CheckedChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips prowner_CheckedChanged - End : " + DateTime.Now);
         }
 
         private void txtNumeric_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Log.writeMessage("txtNumeric_KeyPress - Start : " + DateTime.Now);
+            Log.writeMessage("Chips txtNumeric_KeyPress - Start : " + DateTime.Now);
 
             System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
 
@@ -2029,12 +2029,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("txtNumeric_KeyPress - End : " + DateTime.Now);
+            Log.writeMessage("Chips txtNumeric_KeyPress - End : " + DateTime.Now);
         }
 
         private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
         {
-            Log.writeMessage("Control_EnterKeyMoveNext - Start : " + DateTime.Now);
+            Log.writeMessage("Chips Control_EnterKeyMoveNext - Start : " + DateTime.Now);
 
             if (e.KeyCode == Keys.Enter)
             {
@@ -2054,12 +2054,12 @@ namespace PackingApplication
                 }
             }
 
-            Log.writeMessage("Control_EnterKeyMoveNext - End : " + DateTime.Now);
+            Log.writeMessage("Chips Control_EnterKeyMoveNext - End : " + DateTime.Now);
         }
 
         private void ShowCustomMessage(string boxNo)
         {
-            Log.writeMessage("ShowCustomMessage - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ShowCustomMessage - Start : " + DateTime.Now);
 
             using (Form msgForm = new Form())
             {
@@ -2104,12 +2104,12 @@ namespace PackingApplication
                 msgForm.ShowDialog();
             }
 
-            Log.writeMessage("ShowCustomMessage - End : " + DateTime.Now);
+            Log.writeMessage("Chips ShowCustomMessage - End : " + DateTime.Now);
         }
 
         private void ComboBox_Leave(object sender, EventArgs e)
         {
-            Log.writeMessage("ComboBox_Leave - Start : " + DateTime.Now);
+            Log.writeMessage("Chips ComboBox_Leave - Start : " + DateTime.Now);
 
             System.Windows.Forms.ComboBox cmb = sender as System.Windows.Forms.ComboBox;
             string typedText = cmb.Text.Trim();
@@ -2131,27 +2131,27 @@ namespace PackingApplication
                 cmb.SelectedIndex = 0;
             }
 
-            Log.writeMessage("ComboBox_Leave - End : " + DateTime.Now);
+            Log.writeMessage("Chips ComboBox_Leave - End : " + DateTime.Now);
         }
 
         private void txtNumeric_Leave(object sender, EventArgs e)
         {
-            Log.writeMessage("txtNumeric_Leave - Start : " + DateTime.Now);
+            Log.writeMessage("Chips txtNumeric_Leave - Start : " + DateTime.Now);
 
             FormatToThreeDecimalPlaces(sender as TextBox);
 
-            Log.writeMessage("txtNumeric_Leave - End : " + DateTime.Now);
+            Log.writeMessage("Chips txtNumeric_Leave - End : " + DateTime.Now);
         }
         private void FormatToThreeDecimalPlaces(TextBox textBox)
         {
-            Log.writeMessage("FormatToThreeDecimalPlaces - Start : " + DateTime.Now);
+            Log.writeMessage("Chips FormatToThreeDecimalPlaces - Start : " + DateTime.Now);
 
             if (decimal.TryParse(textBox.Text, out decimal value))
                 textBox.Text = value.ToString("0.000");
             else
                 textBox.Text = "0.000"; // optional fallback
 
-            Log.writeMessage("FormatToThreeDecimalPlaces - End : " + DateTime.Now);
+            Log.writeMessage("Chips FormatToThreeDecimalPlaces - End : " + DateTime.Now);
         }
     }
 }
