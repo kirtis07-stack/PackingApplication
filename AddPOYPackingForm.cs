@@ -747,6 +747,7 @@ namespace PackingApplication
                         {
                             itemname.Text = (!string.IsNullOrEmpty(lotResponse.ItemName)) ? lotResponse.ItemName : "";
                             shadename.Text = (!string.IsNullOrEmpty(lotResponse.ShadeName)) ? lotResponse.ShadeName : "";
+                            AdjustNameByCharCount();
                             shadecd.Text = (!string.IsNullOrEmpty(lotResponse.ShadeCode)) ? lotResponse.ShadeCode : "";
                             deniervalue.Text = lotResponse.Denier.ToString();
                             salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
@@ -3166,5 +3167,36 @@ namespace PackingApplication
 
             Log.writeMessage("POY FormatToThreeDecimalPlaces - End : " + DateTime.Now);
         }
+
+        private void AdjustNameByCharCount()
+        {
+            Log.writeMessage("AdjustNameByCharCount - Start : " + DateTime.Now);
+
+            int shadeCharCount = shadename.Text.Length;
+
+            if (shadeCharCount > 20) 
+            {
+                // if shadename is large, fits in two lines
+                shadename.Location = new System.Drawing.Point(43, -3);
+            }
+            else
+            {
+                // if shadename is large, fits in one line
+                shadename.Location = new System.Drawing.Point(43, 5);
+            }
+
+            int itemCharCount = itemname.Text.Length;
+            if (itemCharCount > 20)
+            {
+                itemname.Location = new System.Drawing.Point(38, -3);
+            }
+            else
+            {
+                itemname.Location = new System.Drawing.Point(38, 5);
+            }
+
+            Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
+        }
+
     }
 }

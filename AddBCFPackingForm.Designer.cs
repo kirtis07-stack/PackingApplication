@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Reflection.Emit;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PackingApplication
 {
@@ -408,10 +409,10 @@ namespace PackingApplication
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(37, 0);
+            this.dateTimePicker1.Location = new System.Drawing.Point(33, 0);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(33, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(39, 20);
             this.dateTimePicker1.TabIndex = 6;
             this.dateTimePicker1.TabStop = false;
             // 
@@ -489,6 +490,9 @@ namespace PackingApplication
             this.remarks.Size = new System.Drawing.Size(132, 28);
             this.remarks.TabIndex = 5;
             this.remarks.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.remarks.WordWrap = true;
+            this.remarks.ScrollBars = ScrollBars.Vertical;
+            this.remarks.AcceptsReturn = true;
             // 
             // scalemodel
             // 
@@ -792,7 +796,7 @@ namespace PackingApplication
             // palletwt
             // 
             this.palletwt.AutoSize = true;
-            this.palletwt.Location = new System.Drawing.Point(0, 5);
+            this.palletwt.Location = new System.Drawing.Point(0, 0);
             this.palletwt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.palletwt.Name = "palletwt";
             this.palletwt.Size = new System.Drawing.Size(56, 26);
@@ -1011,7 +1015,7 @@ namespace PackingApplication
             // 
             this.req8.AutoSize = true;
             this.req8.ForeColor = System.Drawing.Color.Red;
-            this.req8.Location = new System.Drawing.Point(49, 5);
+            this.req8.Location = new System.Drawing.Point(49, 0);
             this.req8.Name = "req8";
             this.req8.Size = new System.Drawing.Size(11, 13);
             this.req8.TabIndex = 112;
@@ -2662,16 +2666,17 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.itemname.AutoEllipsis = true;
+            this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.itemname.Location = new System.Drawing.Point(28, 0);
-            this.itemname.MaximumSize = new System.Drawing.Size(250, 30);
+            this.itemname.Location = new System.Drawing.Point(28, -3);
+            this.itemname.MaximumSize = new System.Drawing.Size(195, 0);
             this.itemname.Name = "itemname";
-            this.itemname.Size = new System.Drawing.Size(118, 21);
+            this.itemname.Size = new System.Drawing.Size(0, 16);
             this.itemname.TabIndex = 5;
             this.itemname.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.itemname.UseCompatibleTextRendering = true;
             // 
             // item
             // 
@@ -2697,12 +2702,17 @@ namespace PackingApplication
             // 
             // shadename
             // 
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.shadename.Location = new System.Drawing.Point(38, 2);
+            this.shadename.Location = new System.Drawing.Point(43, -3);
+            this.shadename.MaximumSize = new System.Drawing.Size(200, 0);
             this.shadename.Name = "shadename";
-            this.shadename.Size = new System.Drawing.Size(0, 13);
+            this.shadename.Size = new System.Drawing.Size(63, 17);
             this.shadename.TabIndex = 5;
+            this.shadename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.shadename.UseCompatibleTextRendering = true;
             // 
             // shade
             // 
@@ -3553,7 +3563,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label role;
         private Panel rightpanel;
-        private ComboBox PrefixList;
+        private System.Windows.Forms.ComboBox PrefixList;
         private Panel panel3;
         private DataGridView qualityqty;
         private DataGridViewTextBoxColumn qualityDataGridViewTextBoxColumn;
@@ -3578,7 +3588,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label palletwterror;
         private System.Windows.Forms.Label grosswterror;
         private System.Windows.Forms.Label boxnoerror;
-        private Button cancelbtn;
+        private System.Windows.Forms.Button cancelbtn;
         private TableLayoutPanel packagingboxlayout;
         private Panel packagingboxpanel;
         private Panel packagingboxheader;
@@ -3593,19 +3603,19 @@ namespace PackingApplication
         private System.Windows.Forms.Label Machinelbl;
         private TableLayoutPanel lastboxlayout;
         private Panel lastboxpanel;
-        private TextBox copstxtbox;
+        private System.Windows.Forms.TextBox copstxtbox;
         private System.Windows.Forms.Label cops;
         private Panel lastboxheader;
         private System.Windows.Forms.Label Lastboxlbl;
         private Panel lastbxcopspanel;
         private Panel lastbxtarepanel;
-        private TextBox tarewghttxtbox;
+        private System.Windows.Forms.TextBox tarewghttxtbox;
         private System.Windows.Forms.Label tareweight;
         private Panel lastbxnetwtpanel;
-        private TextBox netwttxtbox;
+        private System.Windows.Forms.TextBox netwttxtbox;
         private System.Windows.Forms.Label netweight;
         private Panel lastbxgrosswtpanel;
-        private TextBox grosswttxtbox;
+        private System.Windows.Forms.TextBox grosswttxtbox;
         private System.Windows.Forms.Label grossweight;
         private TableLayoutPanel printingdetailslayout;
         private Panel printingdetailsheader;
@@ -3635,7 +3645,7 @@ namespace PackingApplication
         private Panel panel7;
         private System.Windows.Forms.Label menu;
         private PictureBox menuBtn;
-        private Button saveprint;
+        private System.Windows.Forms.Button saveprint;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel tblpanl1;
         private TableLayoutPanel tableLayoutPanel2;
@@ -3669,7 +3679,7 @@ namespace PackingApplication
         private Panel panel1;
         private System.Windows.Forms.Label lineno;
         private System.Windows.Forms.Label req1;
-        private ComboBox LineNoList;
+        private System.Windows.Forms.ComboBox LineNoList;
         private System.Windows.Forms.Label linenoerror;
         private Panel panel2;
         private System.Windows.Forms.Label lastbox;
@@ -3679,7 +3689,7 @@ namespace PackingApplication
         private Panel panel9;
         private System.Windows.Forms.Label req3;
         private System.Windows.Forms.Label mergeno;
-        private ComboBox MergeNoList;
+        private System.Windows.Forms.ComboBox MergeNoList;
         private System.Windows.Forms.Label mergenoerror;
         private Panel panel11;
         private System.Windows.Forms.Label item;
@@ -3707,13 +3717,13 @@ namespace PackingApplication
         private System.Windows.Forms.Label partyn;
         private TableLayoutPanel buttontablelayout;
         private Panel panel21;
-        private ComboBox DeptList;
+        private System.Windows.Forms.ComboBox DeptList;
         private Panel panel24;
         private System.Windows.Forms.Label salelot;
         private System.Windows.Forms.Label salelotvalue;
         private Panel panel27;
         private System.Windows.Forms.Label owner;
-        private ComboBox OwnerList;
+        private System.Windows.Forms.ComboBox OwnerList;
         private Panel panel46;
         private Panel panel47;
         private Panel panel25;
@@ -3721,7 +3731,7 @@ namespace PackingApplication
         private Panel panel52;
         private System.Windows.Forms.Label boxtype;
         private System.Windows.Forms.Label label7;
-        private ComboBox BoxItemList;
+        private System.Windows.Forms.ComboBox BoxItemList;
         private Panel panel53;
         private System.Windows.Forms.Label boxpalletitemwt;
         private System.Windows.Forms.Label boxweight;
@@ -3731,7 +3741,7 @@ namespace PackingApplication
         private Panel panel22;
         private TableLayoutPanel tableLayoutPanel9;
         private Panel panel50;
-        private ComboBox CopsItemList;
+        private System.Windows.Forms.ComboBox CopsItemList;
         private System.Windows.Forms.Label copssize;
         private System.Windows.Forms.Label label8;
         private Panel panel49;
