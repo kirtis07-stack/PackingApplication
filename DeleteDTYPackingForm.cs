@@ -60,6 +60,7 @@ namespace PackingApplication
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.delete, 8);
+            rowMaterial.AutoGenerateColumns = false;
         }
 
         private void DeleteDTYPackingForm_Load(object sender, EventArgs e)
