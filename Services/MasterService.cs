@@ -20,161 +20,264 @@ namespace PackingApplication.Services
 
         public async Task<List<MachineResponse>> GetMachineList(string lotType)
         {
-            Log.writeMessage("GetMachineList - Start : " + DateTime.Now);
+            Log.writeMessage("API call GetMachineList - Start : " + DateTime.Now);
             Log.writeMessage("GetMachineList : Machine/GetAllByLotType?lotType=" + lotType);
             var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType);
 
+            Log.writeMessage("Response : " + getMachineResponse);
+
             if (string.IsNullOrWhiteSpace(getMachineResponse))
-            {
-                Log.writeMessage("Response : " + getMachineResponse);
-                Log.writeMessage("GetMachineList - End : " + DateTime.Now);
+            {                
+                Log.writeMessage("API call GetMachineList - End : " + DateTime.Now);
                 return new List<MachineResponse>();
             }
 
-            Log.writeMessage("Response : " + getMachineResponse);
             var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse) ?? new List<MachineResponse>();
-            Log.writeMessage("GetMachineList - End : " + DateTime.Now);
+            Log.writeMessage("API call GetMachineList - End : " + DateTime.Now);
 
             return getMachine;            
         }
 
         public async Task<List<QualityResponse>> GetQualityList()
         {
-            Log.writeMessage("GetQualityList - Start : " + DateTime.Now);
+            Log.writeMessage("API call GetQualityList - Start : " + DateTime.Now);
             Log.writeMessage("GetQualityList : Quality/GetAll?IsDropDown=true");
             var getQualityResponse = await method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + true);
 
+            Log.writeMessage("Response : " + getQualityResponse);
+
             if (string.IsNullOrWhiteSpace(getQualityResponse))
-            {
-                Log.writeMessage("Response : " + getQualityResponse);
-                Log.writeMessage("GetQualityList - End : " + DateTime.Now);
+            {                
+                Log.writeMessage("API call GetQualityList - End : " + DateTime.Now);
                 return new List<QualityResponse>();
             }
 
-            Log.writeMessage("Response : " + getQualityResponse);
             var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse) ?? new List<QualityResponse>();
-            Log.writeMessage("GetQualityList - End : " + DateTime.Now);
+            Log.writeMessage("API call GetQualityList - End : " + DateTime.Now);
 
             return getQuality;
         }
 
         public async Task<List<PackSizeResponse>> GetPackSizeList()
         {
-            Log.writeMessage("GetPackSizeList - Start : " + DateTime.Now);
+            Log.writeMessage("API call GetPackSizeList - Start : " + DateTime.Now);
             Log.writeMessage("GetPackSizeList : PackSize/GetAll?IsDropDown=true");
 
             var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true);
 
-            if (string.IsNullOrWhiteSpace(getPackSizeResponse))
-            {
-                Log.writeMessage("Response : " + getPackSizeResponse);
-                Log.writeMessage("GetPackSizeList - End : " + DateTime.Now);
+            Log.writeMessage("Response : " + getPackSizeResponse);
 
+            if (string.IsNullOrWhiteSpace(getPackSizeResponse))
+            {                
+                Log.writeMessage("API call GetPackSizeList - End : " + DateTime.Now);
                 return new List<PackSizeResponse>();
             }
 
-            Log.writeMessage("Response : " + getPackSizeResponse);
             var getPackSize = JsonConvert.DeserializeObject<List<PackSizeResponse>>(getPackSizeResponse) ?? new List<PackSizeResponse>();
-            Log.writeMessage("GetPackSizeList - End : " + DateTime.Now);
+            Log.writeMessage("API call GetPackSizeList - End : " + DateTime.Now);
 
             return getPackSize;
         }
 
         public async Task<List<WindingTypeResponse>> GetWindingTypeList()
         {
+            Log.writeMessage("API call GetWindingTypeList - Start : " + DateTime.Now);
+            Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=true");
+
             var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true);
+
+            Log.writeMessage("GetWindingTypeList Response : " + getWindingTypeResponse);
+
             if (string.IsNullOrWhiteSpace(getWindingTypeResponse))
+            {                
+                Log.writeMessage("API call GetWindingTypeList - End : " + DateTime.Now);
                 return new List<WindingTypeResponse>();
-            var getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse)
-                ?? new List<WindingTypeResponse>();
+            }
+
+            List<WindingTypeResponse> getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse);
+            Log.writeMessage("API call GetWindingTypeList - End : " + DateTime.Now);
+
             return getWindingType;
         }
 
         public async Task<List<ItemResponse>> GetItemList(int categoryId)
         {
+            Log.writeMessage("API call GetItemList - Start : " + DateTime.Now);
+            Log.writeMessage("GetItemList : Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
+
             var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
-            //var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse);
+
+            Log.writeMessage("GetItemList Response : " + getItemResponse);
+
             if (string.IsNullOrWhiteSpace(getItemResponse))
+            {                
+                Log.writeMessage("API call GetItemList - End : " + DateTime.Now);
                 return new List<ItemResponse>();              // handle empty response
-            var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse)
-                     ?? new List<ItemResponse>();
+            }
+
+            var getItem = JsonConvert.DeserializeObject<List<ItemResponse>>(getItemResponse) ?? new List<ItemResponse>();
+            Log.writeMessage("API call GetItemList - End : " + DateTime.Now);
+
             return getItem;
         }
 
         public async Task<List<PrefixResponse>> GetPrefixList(TransactionTypePrefixRequest prefixRequest)
         {
+            Log.writeMessage("API call GetPrefixList - Start : " + DateTime.Now);
+            Log.writeMessage("GetPrefixList : Prefix/GetPrefixByTransactionTypeFlags - Request > " + JsonConvert.SerializeObject(prefixRequest));
+
             List<PrefixResponse> getPrefixResponse = await method.PostAsync<PrefixResponse>(masterURL + "Prefix/GetPrefixByTransactionTypeFlags", prefixRequest);
+
+            Log.writeMessage("GetItemList Response : " + JsonConvert.SerializeObject(getPrefixResponse));
+            Log.writeMessage("API call GetPrefixList - End : " + DateTime.Now);
+
             return getPrefixResponse;
         }
 
-
         public async Task<MachineResponse> GetMachineById(int machineId)
         {
+            Log.writeMessage("API call GetMachineById - Start : " + DateTime.Now);
+            Log.writeMessage("GetMachineById : Machine/GetById?machineId= " + +machineId);
+
             var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetById?machineId=" + machineId);
+            
+            Log.writeMessage("GetMachineById Response : " + getMachineResponse);
+
             if (string.IsNullOrWhiteSpace(getMachineResponse))
+            {                
+                Log.writeMessage("API call GetMachineById - End : " + DateTime.Now);
                 return new MachineResponse();
-            var getMachine = JsonConvert.DeserializeObject<MachineResponse>(getMachineResponse)
-                ?? new MachineResponse();
+            }
+
+            var getMachine = JsonConvert.DeserializeObject<MachineResponse>(getMachineResponse) ?? new MachineResponse();           
+            Log.writeMessage("API call GetMachineById - End : " + DateTime.Now);
+
             return getMachine;
         }
 
         public async Task<PackSizeResponse> GetPackSizeById(int packSizeId)
         {
+            Log.writeMessage("API call GetPackSizeById - Start : " + DateTime.Now);
+            Log.writeMessage("GetPackSizeById : PackSize/GetById?PackSizeId=" + packSizeId);
+
             var getPacksizeResponse = await method.GetCallApi(masterURL + "PackSize/GetById?PackSizeId=" + packSizeId);
+
+            Log.writeMessage("GetPackSizeById Response : " + getPacksizeResponse);
+
             if (string.IsNullOrWhiteSpace(getPacksizeResponse))
+            {                
+                Log.writeMessage("API call GetPackSizeById - End : " + DateTime.Now);
                 return new PackSizeResponse();
-            var getPacksize = JsonConvert.DeserializeObject<PackSizeResponse>(getPacksizeResponse)
-                ?? new PackSizeResponse();
+            }
+
+            var getPacksize = JsonConvert.DeserializeObject<PackSizeResponse>(getPacksizeResponse) ?? new PackSizeResponse();            
+            Log.writeMessage("API call GetPackSizeById - End : " + DateTime.Now);
+
             return getPacksize;
         }
 
         public async Task<List<QualityResponse>> GetQualityListByItemTypeId(int itemTypeId)
         {
+            Log.writeMessage("API call GetQualityListByItemTypeId - Start : " + DateTime.Now);
+            Log.writeMessage("GetQualityListByItemTypeId : Quality/GetByItemTypeId?itemTypeId=" + itemTypeId);
+
             var getQualityResponse = await method.GetCallApi(masterURL + "Quality/GetByItemTypeId?itemTypeId=" + itemTypeId);
+
+            Log.writeMessage("GetQualityListByItemTypeId Response : " + getQualityResponse);
+
             if (string.IsNullOrWhiteSpace(getQualityResponse))
+            {                
+                Log.writeMessage("API call GetQualityListByItemTypeId - End : " + DateTime.Now);
                 return new List<QualityResponse>();
-            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse)
-                ?? new List<QualityResponse>();
+            }
+
+            var getQuality = JsonConvert.DeserializeObject<List<QualityResponse>>(getQualityResponse) ?? new List<QualityResponse>();
+            Log.writeMessage("API call GetQualityListByItemTypeId - End : " + DateTime.Now);
+
             return getQuality;
         }
 
         public async Task<ItemResponse> GetItemById(int itemId)
         {
+            Log.writeMessage("API call GetItemById - Start : " + DateTime.Now);
+            Log.writeMessage("GetItemById : Items/GetById?itemsId=" + itemId);
+
             var getItemResponse = await method.GetCallApi(masterURL + "Items/GetById?itemsId=" + itemId);
+
+            Log.writeMessage("GetItemById Response : " + getItemResponse);
+
             if (string.IsNullOrWhiteSpace(getItemResponse))
+            {
+                Log.writeMessage("API call GetItemById - End : " + DateTime.Now);
                 return new ItemResponse();
-            var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse)
-                ?? new ItemResponse();
+            }
+
+            var getItem = JsonConvert.DeserializeObject<ItemResponse>(getItemResponse) ?? new ItemResponse();
+            Log.writeMessage("API call GetItemById - End : " + DateTime.Now);
+
             return getItem;
         }
 
         public async Task<List<DepartmentResponse>> GetDepartmentList()
         {
+            Log.writeMessage("API call GetDepartmentList - Start : " + DateTime.Now);
+            Log.writeMessage("GetDepartmentList : Departments/GetAll?IsDropDown=false");
+
             var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false);
+
+            Log.writeMessage("GetDepartmentList Response : " + getDepartmentResponse);
+
             if (string.IsNullOrWhiteSpace(getDepartmentResponse))
+            {
+                Log.writeMessage("API call GetDepartmentList - End : " + DateTime.Now);
                 return new List<DepartmentResponse>();
-            var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse)
-                ?? new List<DepartmentResponse>();
+            }
+
+            var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse) ?? new List<DepartmentResponse>();
+            Log.writeMessage("API call GetDepartmentList - End : " + DateTime.Now);
+
             return getDepartment;
         }
 
         public async Task<List<MachineResponse>> GetMachineByDepartmentIdAndLotType(int departmentId, string lotType)
         {
+            Log.writeMessage("API call GetMachineByDepartmentIdAndLotType - Start : " + DateTime.Now);
+            Log.writeMessage("GetMachineByDepartmentIdAndLotType : Machine/GetAllByDepartmentIdAndLotType?departmentId=" + departmentId + "&lotType=" + lotType);
+
             var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByDepartmentIdAndLotType?departmentId=" + departmentId + "&lotType=" + lotType);
+
+            Log.writeMessage("GetMachineByDepartmentIdAndLotType Response : " + getMachineResponse);
+
             if (string.IsNullOrWhiteSpace(getMachineResponse))
+            {
+                Log.writeMessage("API call GetMachineByDepartmentIdAndLotType - End : " + DateTime.Now);
                 return new List<MachineResponse>();
-            var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse)
-                ?? new List<MachineResponse>();
+            }
+
+            var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse) ?? new List<MachineResponse>();
+            Log.writeMessage("API call GetMachineByDepartmentIdAndLotType - End : " + DateTime.Now);
+
             return getMachine;
         }
 
         public async Task<List<BusinessPartnerResponse>> GetOwnerList()
         {
+            Log.writeMessage("API call GetOwnerList - Start : " + DateTime.Now);
+            Log.writeMessage("GetOwnerList : BusinessPartner/GetAll?IsDropDown=true");
+
             var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + true);
+
+            Log.writeMessage("GetOwnerList Response : " + getBusinessPartnerResponse);
+
             if (string.IsNullOrWhiteSpace(getBusinessPartnerResponse))
+            {
+                Log.writeMessage("API call GetOwnerList - End : " + DateTime.Now);
                 return new List<BusinessPartnerResponse>();              // handle empty response
-            var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse)
-                     ?? new List<BusinessPartnerResponse>();             // handle null JSON
+            }
+
+            var getBusinessPartner = JsonConvert.DeserializeObject<List<BusinessPartnerResponse>>(getBusinessPartnerResponse) ?? new List<BusinessPartnerResponse>();             // handle null JSON
+            Log.writeMessage("API call GetOwnerList - End : " + DateTime.Now);
+
             return getBusinessPartner;
         }
     }
