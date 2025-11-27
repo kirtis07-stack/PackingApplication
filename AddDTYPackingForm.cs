@@ -3,6 +3,7 @@ using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -1418,7 +1422,53 @@ namespace PackingApplication
                 this.wtpercop.Text = "0.000";
                 palletwtno.Text = boxpalletitemwt.Text;
                 isFormReady = true;
-                this.spoolno.Focus();               
+                this.spoolno.Focus();
+                if (isPrint)
+                {
+                    //call ssrs report to print
+                    string reportServer = "http://182.70.117.20:4444/ReportServer";
+                    string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                    string format = "PDF";
+
+                    //set params
+                    string productionId = result.ProductionId.ToString();
+                    string startDate = null;
+                    string endDate = null;
+                    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
+
+                    WebClient client = new WebClient();
+                    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    client.Credentials = new System.Net.NetworkCredential("ssrsreports", "ErpReports@2024", "DOMAIN");
+                    //client.UseDefaultCredentials = false;
+
+                    byte[] bytes = client.DownloadData(url);
+
+                    // Save to file
+                    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                    File.WriteAllBytes(tempFile, bytes);
+
+
+                    using (var pdfDoc = PdfiumViewer.PdfDocument.Load(tempFile))
+                    {
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                Copies = 1
+                            };
+                            // Set custom 4x4 label size
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+
+                            printDoc.PrinterSettings = printerSettings;
+                            printDoc.Print(); // sends PDF to printer
+                        }
+                    }
+
+                    // Clean up temp file
+                    File.Delete(tempFile);
+                }
             }
             else
             {
