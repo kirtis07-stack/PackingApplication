@@ -104,6 +104,10 @@ D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\nl\PdfiumViewer.r
 D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
 D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.exe
 D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.pdb
+D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
+D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
+D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
+D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\x64\pdfium.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
@@ -212,7 +216,3 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\Packin
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.pdb
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources

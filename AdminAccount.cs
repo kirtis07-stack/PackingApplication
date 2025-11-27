@@ -535,7 +535,7 @@ namespace PackingApplication
                 var formKey = "AddPOYPackingForm";
                 form.Tag = "Packing - Add POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -548,7 +548,7 @@ namespace PackingApplication
                 var formKey = "ViewPOYPackingForm";
                 form.Tag = "Packing - View POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -561,7 +561,7 @@ namespace PackingApplication
                 var formKey = "ModifyPOYPackingForm";
                 form.Tag = "Packing - Modify POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -574,7 +574,7 @@ namespace PackingApplication
                 var formKey = "DeletePOYPackingForm";
                 form.Tag = "Packing - Delete POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -587,7 +587,7 @@ namespace PackingApplication
                 var formKey = "AddDTYPackingForm";
                 form.Tag = "Packing - Add DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -600,7 +600,7 @@ namespace PackingApplication
                 var formKey = "ViewDTYPackingForm";
                 form.Tag = "Packing - View DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -613,7 +613,7 @@ namespace PackingApplication
                 var formKey = "ModifyDTYPackingForm";
                 form.Tag = "Packing - Modify DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -626,7 +626,7 @@ namespace PackingApplication
                 var formKey = "DeleteDTYPackingForm";
                 form.Tag = "Packing - Delete DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -639,7 +639,7 @@ namespace PackingApplication
                 var formKey = "AddBCFPackingForm";
                 form.Tag = "Packing - Add BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -652,7 +652,7 @@ namespace PackingApplication
                 var formKey = "ViewBCFPackingForm";
                 form.Tag = "Packing - View BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -665,7 +665,7 @@ namespace PackingApplication
                 var formKey = "ModifyBCFPackingForm";
                 form.Tag = "Packing - Modify BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -678,7 +678,7 @@ namespace PackingApplication
                 var formKey = "DeleteBCFPackingForm";
                 form.Tag = "Packing - Delete BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -691,7 +691,7 @@ namespace PackingApplication
                 var formKey = "AddChipsPackingForm";
                 form.Tag = "Packing - Add ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -704,7 +704,7 @@ namespace PackingApplication
                 var formKey = "ViewChipsPackingForm";
                 form.Tag = "Packing - View ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -717,7 +717,7 @@ namespace PackingApplication
                 var formKey = "ModifyChipsPackingForm";
                 form.Tag = "Packing - Modify ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -730,7 +730,7 @@ namespace PackingApplication
                 var formKey = "DeleteChipsPackingForm";
                 form.Tag = "Packing - Delete ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 

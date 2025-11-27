@@ -3,41 +3,20 @@
   "WorkspaceRootPath": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\adminaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:adminaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\deletebcfpackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:deletebcfpackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\deletedtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:deletedtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\deletedtypackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:deletedtypackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\viewdtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:viewdtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\deletechipspackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:deletechipspackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\viewpoypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:viewpoypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\pooja jagtap\\textforce erp\\packingapplication\\services\\masterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:services\\masterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\pooja jagtap\\textforce erp\\packingapplication\\adddtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:adddtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\addpoypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:addpoypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\addchipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:addchipspackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> e7cac63c29c940f186f85ed50dd01a6d8e636ff4
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\beekaylon\\api\\windowapplication\\packingapplication\\deletepoypackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:deletepoypackingform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,124 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< HEAD
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ViewPOYPackingForm.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ViewPOYPackingForm.cs",
-              "RelativeDocumentMoniker": "ViewPOYPackingForm.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ViewPOYPackingForm.cs",
-              "RelativeToolTip": "ViewPOYPackingForm.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAQwD0AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T05:09:06.788Z",
-=======
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MasterService.cs",
-              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\MasterService.cs",
-              "RelativeDocumentMoniker": "Services\\MasterService.cs",
-              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\MasterService.cs",
-              "RelativeToolTip": "Services\\MasterService.cs",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAuwBsBAAABAAAAAAAAAA==",
+              "Title": "DeleteBCFPackingForm.Designer.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteBCFPackingForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeleteBCFPackingForm.Designer.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteBCFPackingForm.Designer.cs",
+              "RelativeToolTip": "DeleteBCFPackingForm.Designer.cs",
+              "ViewState": "AgIAAPUGAAAAAAAAAAASwP0GAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T10:23:44.614Z",
+              "WhenOpened": "2025-11-27T10:08:41.89Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AddBCFPackingForm.cs",
-              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddBCFPackingForm.cs",
-              "RelativeDocumentMoniker": "AddBCFPackingForm.cs",
-              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddBCFPackingForm.cs",
-              "RelativeToolTip": "AddBCFPackingForm.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAwwK8BAAAoAAAAAAAAAA==",
+              "Title": "DeleteChipsPackingForm.Designer.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteChipsPackingForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeleteChipsPackingForm.Designer.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteChipsPackingForm.Designer.cs",
+              "RelativeToolTip": "DeleteChipsPackingForm.Designer.cs",
+              "ViewState": "AgIAAK0EAAAAAAAAAAASwMEEAAB0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T08:55:54.873Z",
+              "WhenOpened": "2025-11-27T10:08:16.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeleteDTYPackingForm.Designer.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteDTYPackingForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeleteDTYPackingForm.Designer.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteDTYPackingForm.Designer.cs",
+              "RelativeToolTip": "DeleteDTYPackingForm.Designer.cs",
+              "ViewState": "AgIAAMcFAAAAAAAAAAAAANcFAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T10:07:34.241Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AddPOYPackingForm.cs",
-              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddPOYPackingForm.cs",
-              "RelativeDocumentMoniker": "AddPOYPackingForm.cs",
-              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddPOYPackingForm.cs",
-              "RelativeToolTip": "AddPOYPackingForm.cs",
-              "ViewState": "AgIAAEMBAAAAAAAAAAAAALgAAABRAAAAAAAAAA==",
+              "Title": "DeletePOYPackingForm.Designer.cs",
+              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeletePOYPackingForm.Designer.cs",
+              "RelativeDocumentMoniker": "DeletePOYPackingForm.Designer.cs",
+              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeletePOYPackingForm.Designer.cs",
+              "RelativeToolTip": "DeletePOYPackingForm.Designer.cs",
+              "ViewState": "AgIAAP0GAAAAAAAAAAAAABAHAAB2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T08:49:11.696Z",
->>>>>>> e7cac63c29c940f186f85ed50dd01a6d8e636ff4
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 0,
-              "Title": "AdminAccount.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AdminAccount.cs",
-              "RelativeDocumentMoniker": "AdminAccount.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\AdminAccount.cs",
-              "RelativeToolTip": "AdminAccount.cs",
-              "ViewState": "AgIAAOgBAAAAAAAAAAAAAO0BAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T12:05:17.415Z",
-=======
-              "DocumentIndex": 1,
-              "Title": "AddDTYPackingForm.cs",
-              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddDTYPackingForm.cs",
-              "RelativeDocumentMoniker": "AddDTYPackingForm.cs",
-              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddDTYPackingForm.cs",
-              "RelativeToolTip": "AddDTYPackingForm.cs",
-              "ViewState": "AgIAAAoBAAAAAAAAAAAIwCIBAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T08:49:03.1Z",
->>>>>>> e7cac63c29c940f186f85ed50dd01a6d8e636ff4
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 1,
-              "Title": "DeleteDTYPackingForm.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteDTYPackingForm.cs",
-              "RelativeDocumentMoniker": "DeleteDTYPackingForm.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\DeleteDTYPackingForm.cs",
-              "RelativeToolTip": "DeleteDTYPackingForm.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAQwD4AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T05:48:39.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ViewDTYPackingForm.cs",
-              "DocumentMoniker": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ViewDTYPackingForm.cs",
-              "RelativeDocumentMoniker": "ViewDTYPackingForm.cs",
-              "ToolTip": "D:\\Kirti\\Beekaylon\\API\\WindowApplication\\PackingApplication\\ViewDTYPackingForm.cs",
-              "RelativeToolTip": "ViewDTYPackingForm.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAQwD0AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T05:48:03.211Z",
-=======
-              "DocumentIndex": 4,
-              "Title": "AddChipsPackingForm.cs",
-              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddChipsPackingForm.cs",
-              "RelativeDocumentMoniker": "AddChipsPackingForm.cs",
-              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddChipsPackingForm.cs",
-              "RelativeToolTip": "AddChipsPackingForm.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAqwDIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T06:40:02.973Z",
->>>>>>> e7cac63c29c940f186f85ed50dd01a6d8e636ff4
+              "WhenOpened": "2025-11-27T10:06:11.356Z",
               "EditorCaption": ""
             }
           ]
