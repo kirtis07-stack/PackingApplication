@@ -14,7 +14,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int BPId { get; set; }
         public string BusinessPartner { get; set; }
         public string BPPrintName { get; set; }
-        public string LotNo { get; set; }
+        public string LotNoFrmt { get; set; }
         public int PrefixId { get; set; }
         public string Prefix { get; set; }
         public int FinYearId { get; set; }
@@ -51,6 +51,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string ProcessName { get; set; }
         public List<LotsProductionDetailsResponse> LotsProductionDetailsResponses { get; set; }
         public List<LotsDetailsResponse> LotsDetailsResponses { get; set; }
+        public List<LotSaleOrderDetailsResponse> LotSaleOrderDetailsResponses { get; set; }
     }
 
     public class LotsProductionDetailsResponse : BaseAuditEntity

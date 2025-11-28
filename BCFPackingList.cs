@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,12 @@ namespace PackingApplication
         private static Logger Log = Logger.GetLogger();
         PackingService _packingService = new PackingService();
         CommonMethod _cmethod = new CommonMethod();
+
+        private int pageSize = 10;
+        private int currentPage = 1;
+        private int totalRecords = 0;
+        private int totalPages = 0;
+        private List<ProductionResponse> bcfpackingList;
         public BCFPackingList()
         {
             InitializeComponent();
@@ -44,8 +51,8 @@ namespace PackingApplication
 
         private async void BCFPackingList_Shown(object sender, EventArgs e)
         {
-            var bcfpackingList = await Task.Run(() => getAllBCFPackingList());
-
+            bcfpackingList = await Task.Run(() => getAllBCFPackingList());
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Clear();
             // Define columns
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
@@ -53,7 +60,7 @@ namespace PackingApplication
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNo", HeaderText = "Box No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
@@ -65,7 +72,6 @@ namespace PackingApplication
             dataGridView1.Columns["SrNo"].Width = 50;
             dataGridView1.Columns["PackingType"].Width = 100;
             dataGridView1.Columns["NoOfCopies"].Width = 50;
-            //dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Add Edit button column
             DataGridViewImageColumn btn = new DataGridViewImageColumn();
@@ -95,12 +101,13 @@ namespace PackingApplication
             {
                 dataGridView1.Cursor = Cursors.Default; // Reset back to default
             };
+
+            SetupPagination();
         }
 
         private List<ProductionResponse> getAllBCFPackingList()
         {
-            var getPacking = _packingService.getAllPackingListByPackingType("bcfpacking");
-            return getPacking;
+            return new List<ProductionResponse>();
         }
 
         private void addNew_Click(object sender, EventArgs e)
@@ -108,7 +115,6 @@ namespace PackingApplication
             var dashboard = this.ParentForm as AdminAccount;
             if (dashboard != null)
             {
-                dashboard.LoadFormInContent(new BCFPackingForm(0)); // open Add form
             }
         }
 
@@ -128,7 +134,6 @@ namespace PackingApplication
                 var dashboard = this.ParentForm as AdminAccount;
                 if (dashboard != null)
                 {
-                    dashboard.LoadFormInContent(new BCFPackingForm(productionId)); // open edit form
                 }
             }
         }
@@ -162,6 +167,58 @@ namespace PackingApplication
                     e.Graphics.DrawPath(pen, path);
                 }
             }
+        }
+
+        private void SetupPagination()
+        {
+            int totalRecords = bcfpackingList.Count;
+            totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            BindGrid();
+        }
+
+        private void BindGrid()
+        {
+            var data = bcfpackingList.Skip((currentPage - 1) * pageSize)
+                          .Take(pageSize)
+                          .Select((item, index) =>
+                          {
+                              item.SrNo = (currentPage - 1) * pageSize + index + 1;
+                              return item;
+                          })
+                          .ToList();
+
+            dataGridView1.DataSource = data;
+            lblPageInfo.Text = $"Page {currentPage} of {totalPages}";
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                BindGrid();
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                BindGrid();
+            }
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;
+            BindGrid();
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            currentPage = totalPages;
+            BindGrid();
         }
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props" Condition="Exists('packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" />
+  <Import Project="packages\PDFium.x64.v8-xfa.4194.0.0\build\pdfium.x64.v8-xfa.props" Condition="Exists('packages\PDFium.x64.v8-xfa.4194.0.0\build\pdfium.x64.v8-xfa.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,10 +15,12 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>C:\Users\ADMIN\Desktop\publishwindowapp\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -30,7 +34,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -48,13 +52,88 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.10\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Pipelines, Version=9.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.9.0.10\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=9.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.9.0.10\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=9.0.0.10, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.9.0.10\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -73,11 +152,11 @@
     <Compile Include="AdminAccount.Designer.cs">
       <DependentUpon>AdminAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCFPackingForm.cs">
+    <Compile Include="AddBCFPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BCFPackingForm.Designer.cs">
-      <DependentUpon>BCFPackingForm.cs</DependentUpon>
+    <Compile Include="AddBCFPackingForm.Designer.cs">
+      <DependentUpon>AddBCFPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BCFPackingList.cs">
       <SubType>Form</SubType>
@@ -85,11 +164,11 @@
     <Compile Include="BCFPackingList.Designer.cs">
       <DependentUpon>BCFPackingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChipsPackingForm.cs">
+    <Compile Include="AddChipsPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChipsPackingForm.Designer.cs">
-      <DependentUpon>ChipsPackingForm.cs</DependentUpon>
+    <Compile Include="AddChipsPackingForm.Designer.cs">
+      <DependentUpon>AddChipsPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ChipsPackingList.cs">
       <SubType>Form</SubType>
@@ -104,11 +183,35 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="DTYPackingForm.cs">
+    <Compile Include="AddDTYPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DTYPackingForm.Designer.cs">
-      <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    <Compile Include="AddDTYPackingForm.Designer.cs">
+      <DependentUpon>AddDTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteBCFPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteBCFPackingForm.Designer.cs">
+      <DependentUpon>DeleteBCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteChipsPackingForm.Designer.cs">
+      <DependentUpon>DeleteChipsPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteDTYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteDTYPackingForm.Designer.cs">
+      <DependentUpon>DeleteDTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeletePOYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeletePOYPackingForm.Designer.cs">
+      <DependentUpon>DeletePOYPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DTYPackingList.cs">
       <SubType>Form</SubType>
@@ -122,14 +225,41 @@
     <Compile Include="Helper\WeighingScaleReader.cs" />
     <Compile Include="Models\CommonEntities\Error.cs" />
     <Compile Include="Models\CommonEntities\SessionManager.cs" />
+    <Compile Include="Models\RequestEntities\Prefix.cs" />
+    <Compile Include="Models\ResponseEntities\BusinessPartnerResponse.cs" />
+    <Compile Include="Models\ResponseEntities\DepartmentResponse.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
     <Compile Include="Models\ResponseEntities\SaleOrderResponse.cs" />
     <Compile Include="Models\ResponseEntities\WindingTypeGridResponse.cs" />
-    <Compile Include="POYPackingForm.cs">
+    <Compile Include="ModifyBCFPackingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="POYPackingForm.Designer.cs">
-      <DependentUpon>POYPackingForm.cs</DependentUpon>
+    <Compile Include="ModifyBCFPackingForm.Designer.cs">
+      <DependentUpon>ModifyBCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyChipsPackingForm.Designer.cs">
+      <DependentUpon>ModifyChipsPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyDTYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyDTYPackingForm.Designer.cs">
+      <DependentUpon>ModifyDTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifyPOYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyPOYPackingForm.Designer.cs">
+      <DependentUpon>ModifyPOYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddPOYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPOYPackingForm.Designer.cs">
+      <DependentUpon>AddPOYPackingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Login.cs">
@@ -169,23 +299,72 @@
     <Compile Include="Sidebar.Designer.cs">
       <DependentUpon>Sidebar.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ViewBCFPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewBCFPackingForm.Designer.cs">
+      <DependentUpon>ViewBCFPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewChipsPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewChipsPackingForm.Designer.cs">
+      <DependentUpon>ViewChipsPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDTYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDTYPackingForm.Designer.cs">
+      <DependentUpon>ViewDTYPackingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPOYPackingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewPOYPackingForm.Designer.cs">
+      <DependentUpon>ViewPOYPackingForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminAccount.resx">
       <DependentUpon>AdminAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCFPackingForm.resx">
-      <DependentUpon>BCFPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddBCFPackingForm.resx">
+      <DependentUpon>AddBCFPackingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChipsPackingForm.resx">
-      <DependentUpon>ChipsPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddChipsPackingForm.resx">
+      <DependentUpon>AddChipsPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DTYPackingForm.resx">
-      <DependentUpon>DTYPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddDTYPackingForm.resx">
+      <DependentUpon>AddDTYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="POYPackingForm.resx">
-      <DependentUpon>POYPackingForm.cs</DependentUpon>
+    <EmbeddedResource Include="DeleteBCFPackingForm.resx">
+      <DependentUpon>DeleteBCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteChipsPackingForm.resx">
+      <DependentUpon>DeleteChipsPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteDTYPackingForm.resx">
+      <DependentUpon>DeleteDTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeletePOYPackingForm.resx">
+      <DependentUpon>DeletePOYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyBCFPackingForm.resx">
+      <DependentUpon>ModifyBCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyChipsPackingForm.resx">
+      <DependentUpon>ModifyChipsPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyDTYPackingForm.resx">
+      <DependentUpon>ModifyDTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyPOYPackingForm.resx">
+      <DependentUpon>ModifyPOYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPOYPackingForm.resx">
+      <DependentUpon>AddPOYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -205,6 +384,18 @@
     </Compile>
     <EmbeddedResource Include="Sidebar.resx">
       <DependentUpon>Sidebar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewBCFPackingForm.resx">
+      <DependentUpon>ViewBCFPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewChipsPackingForm.resx">
+      <DependentUpon>ViewChipsPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDTYPackingForm.resx">
+      <DependentUpon>ViewDTYPackingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewPOYPackingForm.resx">
+      <DependentUpon>ViewPOYPackingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -234,7 +425,21 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Images\logo.png" />
+    <None Include="Images\logo.png" />
+    <None Include="Resources\icons8-loader-48.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\icons8-menu-50.png" />
     <None Include="Resources\icons8-circled-4-48.png" />
     <None Include="Resources\icons8-circled-3-48.png" />
@@ -249,4 +454,11 @@
     <None Include="Resources\icons8-hide-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\PDFium.x64.v8-xfa.4194.0.0\build\pdfium.x64.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\PDFium.x64.v8-xfa.4194.0.0\build\pdfium.x64.v8-xfa.props'))" />
+    <Error Condition="!Exists('packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props'))" />
+  </Target>
 </Project>

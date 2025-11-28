@@ -14,7 +14,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static PackingApplication.POYPackingForm;
+using static PackingApplication.AddPOYPackingForm;
 using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using System.Configuration;
@@ -26,16 +26,47 @@ namespace PackingApplication
         string userURL = ConfigurationManager.AppSettings["userURL"];
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
         private bool isPasswordVisible = false;
+        private int finYearId = 0;
+        CommonMethod _cmethod = new CommonMethod();
         public Login()
         {
             InitializeComponent();
             getYearList();
+            ApplyFonts();
 
-            SetButtonBorderRadius(this.signin, 8);
+            _cmethod.SetButtonBorderRadius(this.signin, 8);
 
             YearList.SelectedIndexChanged += YearList_SelectedIndexChanged;
             email.TextChanged += Email_TextChanged;
             passwrd.TextChanged += Passwrd_TextChanged;
+
+            email.Text = "kirti.shinde@cyberscriptit.com";
+            passwrd.Text = "Kirti@123";
+            //email.Text = "sanket.bankar@cyberscriptit.com";
+            //passwrd.Text = "Sanket@123";
+        }
+
+        private void ApplyFonts()
+        {
+            this.emailid.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.email.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.password.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.passwrd.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.year.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.YearList.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.rememberme.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.signin.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.welcome.Font = FontManager.GetFont(14F, FontStyle.Bold);
+            this.subtitle.Font = FontManager.GetFont(10F, FontStyle.Regular);
+            this.subtitle1.Font = FontManager.GetFont(10F, FontStyle.Regular);
+            this.req1.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.req2.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.req3.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.label2.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.label1.Font = FontManager.GetFont(10F, FontStyle.Bold);
+            this.yearerror.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.passworderror.Font = FontManager.GetFont(9F, FontStyle.Regular);
+            this.emailerror.Font = FontManager.GetFont(9F, FontStyle.Regular);
         }
 
         private static Logger Log = Logger.GetLogger();
@@ -46,7 +77,6 @@ namespace PackingApplication
             request.Method = "GET";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            //request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
             var content = string.Empty;
 
             using (var response = (HttpWebResponse)request.GetResponse())
@@ -67,12 +97,12 @@ namespace PackingApplication
         {
             var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + false);
             var getYear = JsonConvert.DeserializeObject<List<FinancialYearResponse>>(getYearResponse);
-            //getYear.Insert(0, new FinancialYearResponse { FinYearId = 0, FinYear = "Select Year" });
             YearList.DataSource = getYear;
             YearList.DisplayMember = "FinYear";
             YearList.ValueMember = "FinYearId";
             var currentYear = getYear.Where(x => x.FinYear == DateTime.Now.Year.ToString()).ToList();
             YearList.SelectedValue = currentYear[0].FinYearId;
+            finYearId = currentYear[0].FinYearId;
         }
 
         private void signin_Click(object sender, EventArgs e)
@@ -105,6 +135,7 @@ namespace PackingApplication
                             SessionManager.AuthToken = userResponse.AccessToken;
                             SessionManager.UserName = userResponse.FullName;
                             SessionManager.Role = userResponse.Role;
+                            SessionManager.FinYearId = finYearId;
 
                             AdminAccount dashboard = new AdminAccount();
                             dashboard.Show();
@@ -117,7 +148,7 @@ namespace PackingApplication
 
                             var userResponse = JsonConvert.DeserializeObject<ErrorResponse>(errorMessage);
 
-                            MessageBox.Show(userResponse.message.ToString());
+                            MessageBox.Show(userResponse.message.ToString(),"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -142,36 +173,6 @@ namespace PackingApplication
             {
                 return false;
             }
-        }
-
-        private void SetButtonBorderRadius(System.Windows.Forms.Button button, int radius)
-        {
-            Log.writeMessage("SetButtonBorderRadius start");
-            try
-            {
-                button.FlatStyle = FlatStyle.Flat;
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
-                button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
-                button.BackColor = Color.FromArgb(0, 92, 232);
-
-                // Set the border radius
-                System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                int diameter = radius * 2;
-                path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
-                path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
-                path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-                path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
-                path.CloseFigure();
-
-                button.Region = new Region(path);
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"An error occurred: {ex.Message}");
-                Log.writeMessage($"An error occurred: {ex.Message}");
-            }
-            Log.writeMessage("SetButtonBorderRadius end");
         }
 
         private bool ValidateForm()
@@ -246,5 +247,46 @@ namespace PackingApplication
                 isPasswordVisible = true;
             }
         }
+
+        private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;           // Mark as handled
+                e.SuppressKeyPress = true;
+
+                Control current = (Control)sender;
+
+                if (current == rememberme)
+                {
+                    signin.Focus();
+                }
+                else
+                {
+                    this.SelectNextControl(current, true, true, true, true);
+                }
+                if (this.ActiveControl is CheckBox cb)
+                {
+                    cb.Invalidate(); // triggers paint to show focus border
+                }
+                if (this.ActiveControl is Button btn)
+                {
+                    // This makes Windows draw the dotted focus rectangle
+                    btn.Focus();
+                    btn.FlatStyle = FlatStyle.Standard; // ensures focus rectangle is visible
+                }
+            }
+        }
+
+        private void CheckBox_DrawFocusBorder(object sender, PaintEventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            if (cb.Focused)
+            {
+                _cmethod.DrawRoundedDashedBorder((CheckBox)sender, e, 1, Color.Black, 1);
+            }
+        }
+
     }
 }

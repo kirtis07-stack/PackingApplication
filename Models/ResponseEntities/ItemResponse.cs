@@ -56,6 +56,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int ProcessId { get; set; }              //get for Lots master
         public string ProcessName { get; set; }         //get for Lots master
         public string CName { get; set; }
+        public decimal Weight { get; set; }
     }
 
     public class ItemAndItemStructureDetailsResponse : BaseAuditEntity

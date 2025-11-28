@@ -15,6 +15,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string DepartmentName { get; set; }
         public int MachineId { get; set; }
         public string MachineName { get; set; }
+        public int PrefixCode { get; set; }
         public int LotId { get; set; }
         public string LotNo { get; set; }
         public string BoxPrefix { get; set; }
@@ -26,7 +27,7 @@ namespace PackingApplication.Models.ResponseEntities
         public DateTime ProductionDate { get; set; }
         public int QualityId { get; set; }
         public string QualityName { get; set; }
-        public int SaleOrderId { get; set; }
+        public int SaleOrderItemsId { get; set; }
         public string SalesOrderNumber { get; set; }
         public int PackSizeId { get; set; }
         public string PackSizeName { get; set; }
@@ -57,7 +58,12 @@ namespace PackingApplication.Models.ResponseEntities
         public int NoOfCopies { get; set; }
         public int ChallanId { get; set; }
         public List<ProductionPalletDetailsResponse> PalletDetailsResponse { get; set; }
-        //public List<ProductionConsumptionDetailsResponse> ConsumptionDetailsResponse { get; set; }
+        public List<ProductionConsumptionDetailsResponse> ConsumptionDetailsResponse { get; set; }
+        public int SrNo { get; set; }
+        public int OwnerId { get; set; }
+        public string OwnerName { get; set; }
+        public int ContainerTypeId { get; set; }
+        public string ContainerType { get; set; }
     }
 
     public class ProductionPalletDetailsResponse : BaseAuditEntity

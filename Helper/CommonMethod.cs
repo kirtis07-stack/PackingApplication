@@ -11,6 +11,32 @@ namespace PackingApplication.Helper
 {
     public class CommonMethod
     {
+        public static Label InitializeLoadingLabel(Form form, string text = "Loading, please wait...")
+        {
+            Label lblLoading = new Label
+            {
+                Text = text,
+                AutoSize = true,
+                Font = FontManager.GetFont(12F, FontStyle.Italic),
+                ForeColor = Color.Red,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Visible = false,
+                BackColor = Color.Transparent
+            };
+
+            form.Controls.Add(lblLoading);
+
+            // Center in the form
+            lblLoading.Location = new Point(
+                form.ClientSize.Width / 2 - lblLoading.Width / 2,
+                form.ClientSize.Height / 2 - lblLoading.Height / 2
+            );
+
+            lblLoading.BringToFront();
+
+            return lblLoading;
+        }
+
         public GraphicsPath GetRoundedRect(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
@@ -153,5 +179,29 @@ namespace PackingApplication.Helper
                 e.Graphics.DrawLine(pen, x, 0, x, control.ClientRectangle.Height);
             }
         }
+
+        //public void ComboBox_Paint(object sender, PaintEventArgs e)
+        //{
+        //    ComboBox combo = sender as ComboBox;
+        //    if (combo.Tag?.ToString() == "error")
+        //    {
+        //        // Draw red border
+        //        ControlPaint.DrawBorder(e.Graphics, combo.ClientRectangle,
+        //            Color.Red, 2, ButtonBorderStyle.Solid,
+        //            Color.Red, 2, ButtonBorderStyle.Solid,
+        //            Color.Red, 2, ButtonBorderStyle.Solid,
+        //            Color.Red, 2, ButtonBorderStyle.Solid);
+        //    }
+        //    else
+        //    {
+        //        // Draw normal border
+        //        ControlPaint.DrawBorder(e.Graphics, combo.ClientRectangle,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid,
+        //            SystemColors.WindowFrame, 1, ButtonBorderStyle.Solid);
+        //    }
+        //}
+
     }
 }

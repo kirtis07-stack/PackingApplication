@@ -3,42 +3,78 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PackingApplication.Helper
 {
+    public class WeighingItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
     public class WeighingScaleReader
     {
-        private SerialPort _serialPort;
-        private int _weighScaleType; // 0 = Old, 1 = Unique Instruments, 2/3 = JISL
-
-        public WeighingScaleReader(string portName, int baudRate = 9600, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
+        public string ReadWeight(string portName, int scaleType, int baudRate = 9600, int timeoutMs = 0)
         {
-            _serialPort = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
-            _serialPort.Open();
+            string weight = string.Empty;
+            try
+            {              
+                using (SerialPort serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One))
+                {
+                    AutoResetEvent dataReceivedEvent = new AutoResetEvent(false);
+
+                    serialPort.DataReceived += (sender, e) =>
+                    {
+                        try
+                        {
+                            string inputData = serialPort.ReadExisting();
+                            if (!string.IsNullOrEmpty(inputData))
+                            {
+                                string formattedWeight = ParseWeight(inputData, scaleType);
+                                if (!string.IsNullOrEmpty(formattedWeight))
+                                {
+                                    weight = formattedWeight;
+                                    dataReceivedEvent.Set(); // signal that data is ready
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            // Handle any parsing/reading error here
+                        }
+                    };
+
+                    serialPort.Open();
+
+                    // Wait until weight is read or timeout
+                    if (timeoutMs > 0)
+                    {
+                        dataReceivedEvent.WaitOne(timeoutMs);
+                    }
+                    else
+                    {
+                        dataReceivedEvent.WaitOne(); // wait indefinitely
+                    }
+
+                    serialPort.Close();
+                }
+            }
+            catch (Exception ex) { 
+            }
+
+            return weight;
         }
 
-        /// <summary>
-        /// Reads weight data from COM port
-        /// </summary>
-        /// <returns>Formatted weight string</returns>
-        public string ReadDataFromCOMPort()
+        private static string ParseWeight(string inputData, int scaleType)
         {
-            if (_serialPort == null || !_serialPort.IsOpen)
-                throw new InvalidOperationException("Serial port is not open.");
-
-            // Clear any existing buffer
-            _serialPort.DiscardInBuffer();
-
-            // Read available data
-            string inputData = _serialPort.ReadExisting();
-
             if (string.IsNullOrEmpty(inputData))
                 return string.Empty;
 
             string result = string.Empty;
 
-            switch (_weighScaleType)
+            switch (scaleType)
             {
                 case 0: // Old
                     int idx0 = inputData.IndexOf(" 0");
@@ -50,8 +86,8 @@ namespace PackingApplication.Helper
                     result = inputData.Length >= 9 ? inputData.Substring(0, 9) : inputData;
                     break;
 
-                case 2: // New - JISL (9600)
-                case 3: // New - JISL (2400)
+                case 2: // JISL (9600)
+                case 3: // JISL (2400)
                     int idxPlus = inputData.IndexOf("+");
                     if (idxPlus >= 0 && idxPlus + 1 + 11 <= inputData.Length)
                         result = inputData.Substring(idxPlus + 1, 11);
@@ -64,25 +100,6 @@ namespace PackingApplication.Helper
 
             return result.Trim();
         }
-
-        public void SetWeighScaleType(int type)
-        {
-            _weighScaleType = type;
-        }
-
-        public void Close()
-        {
-            if (_serialPort != null && _serialPort.IsOpen)
-                _serialPort.Close();
-        }
     }
 
-    //To call this function below code is used- 
-    //    var reader = new WeighingScaleReader("COM3", 9600);
-    //    reader.SetWeighScaleType(0); // Old type scale
-
-    //    string weight = reader.ReadDataFromCOMPort();
-    //    Console.WriteLine("Weight: " + weight);
-
-    //    reader.Close();
 }

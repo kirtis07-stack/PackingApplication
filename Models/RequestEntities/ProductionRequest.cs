@@ -14,11 +14,6 @@ namespace PackingApplication.Models.RequestEntities
         public int MachineId { get; set; }
         public int LotId { get; set; }
         public int PrefixCode { get; set; }
-        //public string BoxPrefix { get; set; }
-        //public string BoxNo { get; set; }
-        //public int BoxYearId { get; set; }
-        //public string BoxMonth { get; set; }
-        //public string BoxNoFmtd { get; set; }
         public DateTime ProductionDate { get; set; }
         public int QualityId { get; set; }
         public int SaleOrderId { get; set; }
@@ -46,7 +41,17 @@ namespace PackingApplication.Models.RequestEntities
         public int NoOfCopies { get; set; }
         public int ChallanId { get; set; }
         public List<ProductionPalletDetailsRequest> PalletDetailsRequest { get; set; }
-        //public List<ProductionConsumptionDetailsRequest> ConsumptionDetailsRequest { get; set; }
+        public List<ProductionConsumptionDetailsRequest> ConsumptionDetailsRequest { get; set; }
+        public int DispatchChallanId { get; set; }
+        public DateTime? DispatchDate { get; set; }
+        public int SaleOrderItemsId { get; set; }
+        public int PalletId { get; set; }
+        public string SaleLot { get; set; }
+        public int DispatchReserveId { get; set; }
+        public int ItemId { get; set; }             //added for to insert in ProductionSummary and FinishedGoodsStock table
+        public int ShadeId { get; set; }            //added for to insert in ProductionSummary and FinishedGoodsStock table
+        public int ContainerTypeId { get; set; }    //added for to insert in ProductionSummary and FinishedGoodsStock table
+        public int OwnerId { get; set; }
     }
 
     public class ProductionPalletDetailsRequest : BaseAuditEntity
@@ -69,6 +74,5 @@ namespace PackingApplication.Models.RequestEntities
         public decimal GainLossPerc { get; set; }
         public byte Extruder { get; set; }
         public long StockTrfDetailsId { get; set; }
-        public string UpdOrder { get; set; }
     }
 }

@@ -9,12 +9,14 @@ using System.Net.Http;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PackingApplication.Helper
 {
     public class HTTPMethod
     {
-        public string GetCallApi(string WebApiurl)
+        public async Task<string> GetCallApi(string WebApiurl)
         {
             var request = (HttpWebRequest)WebRequest.Create(WebApiurl);
 
@@ -22,21 +24,57 @@ namespace PackingApplication.Helper
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             request.Headers.Add("Authorization", "Bearer " + SessionManager.AuthToken);
+            //request.Timeout = 30000; // 30 seconds total timeout
+            //request.ReadWriteTimeout = 30000;
             var content = string.Empty;
 
-            using (var response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                using (var stream = response.GetResponseStream())
+                using (var response = (HttpWebResponse)request.GetResponseAsync().Result)
                 {
-                    using (var sr = new StreamReader(stream))
+                    using (var stream = response.GetResponseStream())
                     {
-                        content = sr.ReadToEnd();
+                        using (var sr = new StreamReader(stream))
+                        {
+                            content = sr.ReadToEndAsync().Result;
+                        }
                     }
                 }
+            }
+            catch (WebException ex)
+            {
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
             }
 
             return content;
         }
+
+        //public async Task<string> GetCallApi(string url)
+        //{
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        //client.Timeout = TimeSpan.FromSeconds(30);
+        //        client.DefaultRequestHeaders.Authorization =
+        //            new AuthenticationHeaderValue("Bearer", SessionManager.AuthToken);
+
+        //        try
+        //        {
+        //            var response = await client.GetAsync(url);
+        //            response.EnsureSuccessStatusCode();
+        //            return await response.Content.ReadAsStringAsync();
+        //        }
+        //        catch(Exception ex)
+        //        {
+        //            return string.Empty;
+        //        }
+        //    }
+        //}
+
+
         public async Task<string> PostCallApi(string path, object data)
         {
             HttpClient client = new HttpClient();
@@ -79,6 +117,36 @@ namespace PackingApplication.Helper
                 }
             }
 
+        }
+
+        public async Task<List<T>> PostAsync<T>(string path, object data)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(path);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SessionManager.AuthToken);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(path, content);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                // Deserialize JSON into List<T>
+                var result = JsonSerializer.Deserialize<List<T>>(responseBody,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                return result ?? new List<T>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error calling API: {ex.Message}");
+                return new List<T>();
+            }
         }
     }
 }
