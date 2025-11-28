@@ -58,6 +58,11 @@ namespace PackingApplication
         decimal startWeight = 0;
         decimal endWeight = 0;
         private long _productionId;
+        string reportServer = ConfigurationManager.AppSettings["reportServer"];
+        string reportPath = ConfigurationManager.AppSettings["reportPath"];
+        string UserName = ConfigurationManager.AppSettings["UserName"];
+        string Password = ConfigurationManager.AppSettings["Password"];
+        string Domain = ConfigurationManager.AppSettings["Domain"];
         public AddDTYPackingForm()
         {
             Log.writeMessage("DTY AddDTYPackingForm constructor - Start : " + DateTime.Now);
@@ -1426,19 +1431,18 @@ namespace PackingApplication
                 if (isPrint)
                 {
                     //call ssrs report to print
-                    string reportServer = "http://182.70.117.20:4444/ReportServer";
-                    string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                    string reportpathlink = reportPath + "/TextureAndPOY";
                     string format = "PDF";
 
                     //set params
                     string productionId = result.ProductionId.ToString();
                     string startDate = null;
                     string endDate = null;
-                    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
+                    string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
                     WebClient client = new WebClient();
                     //client.Credentials = CredentialCache.DefaultNetworkCredentials;
-                    client.Credentials = new System.Net.NetworkCredential("ssrsreports", "ErpReports@2024", "DOMAIN");
+                    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
                     //client.UseDefaultCredentials = false;
 
                     byte[] bytes = client.DownloadData(url);
