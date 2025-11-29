@@ -17,9 +17,9 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string productionURL = ConfigurationManager.AppSettings["productionURL"];
 
-        public async Task<List<LotsResponse>> getLotList(int machineId)
+        public async Task<List<LotsResponse>> getLotList(int machineId, string subString)
         {
-            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAllByMachineId?machineId=" + machineId);
+            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAllByMachineId?machineId=" + machineId + "&subString=" + subString);
             if (string.IsNullOrWhiteSpace(getLotsResponse))
                 return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)

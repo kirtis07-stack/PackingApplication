@@ -575,6 +575,7 @@ namespace PackingApplication
             this.PackSizeList.Size = new System.Drawing.Size(79, 21);
             this.PackSizeList.TabIndex = 1;
             this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
+            this.PackSizeList.TextUpdate += new System.EventHandler(this.PackSizeList_TextUpdate);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             this.PackSizeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -635,6 +636,7 @@ namespace PackingApplication
             this.CopsItemList.Size = new System.Drawing.Size(175, 21);
             this.CopsItemList.TabIndex = 2;
             this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
+            this.CopsItemList.TextUpdate += new System.EventHandler(this.CopsItemList_TextUpdate);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
             this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -650,6 +652,7 @@ namespace PackingApplication
             this.BoxItemList.Size = new System.Drawing.Size(177, 21);
             this.BoxItemList.TabIndex = 3;
             this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.TextUpdate += new System.EventHandler(this.BoxItemList_TextUpdate);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -1524,6 +1527,7 @@ namespace PackingApplication
             this.OwnerList.Size = new System.Drawing.Size(79, 21);
             this.OwnerList.TabIndex = 4;
             this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
+            this.OwnerList.TextUpdate += new System.EventHandler(this.OwnerList_TextUpdate);
             this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
             this.OwnerList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2051,6 +2055,7 @@ namespace PackingApplication
             this.LineNoList.Size = new System.Drawing.Size(39, 21);
             this.LineNoList.TabIndex = 1;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
+            this.LineNoList.TextUpdate += new System.EventHandler(this.LinoNoList_TextUpdate);
             this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
             this.LineNoList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2122,6 +2127,7 @@ namespace PackingApplication
             this.DeptList.Size = new System.Drawing.Size(49, 21);
             this.DeptList.TabIndex = 2;
             this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
+            this.DeptList.TextUpdate += new System.EventHandler(this.DeptList_TextUpdate);
             this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
             this.DeptList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2171,6 +2177,7 @@ namespace PackingApplication
             this.PrefixList.Size = new System.Drawing.Size(49, 21);
             this.PrefixList.TabIndex = 3;
             this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            this.PrefixList.TextUpdate += new System.EventHandler(this.PrefixList_TextUpdate);
             this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
             this.PrefixList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2242,6 +2249,7 @@ namespace PackingApplication
             this.MergeNoList.Size = new System.Drawing.Size(42, 21);
             this.MergeNoList.TabIndex = 4;
             this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
+            this.MergeNoList.TextUpdate += new System.EventHandler(this.MergeNoList_TextUpdate);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
             this.MergeNoList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2300,7 +2308,7 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2336,14 +2344,14 @@ namespace PackingApplication
             // 
             // shadename
             // 
-            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.shadename.Location = new System.Drawing.Point(43, -3);
             this.shadename.MaximumSize = new System.Drawing.Size(200, 0);
             this.shadename.Name = "shadename";
-            this.shadename.Size = new System.Drawing.Size(63, 17);
+            this.shadename.Size = new System.Drawing.Size(0, 16);
             this.shadename.TabIndex = 5;
             this.shadename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.shadename.UseCompatibleTextRendering = true;

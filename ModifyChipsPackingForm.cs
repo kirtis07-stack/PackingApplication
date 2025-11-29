@@ -228,12 +228,12 @@ namespace PackingApplication
         {
             try
             {
-                var machineTask = _masterService.GetMachineList("ChipsLot");
-                var packsizeTask = _masterService.GetPackSizeList();
-                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId);
-                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId);
-                var deptTask = _masterService.GetDepartmentList();
-                var ownerTask = _masterService.GetOwnerList();
+                var machineTask = _masterService.GetMachineList("ChipsLot", "");
+                var packsizeTask = _masterService.GetPackSizeList("");
+                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
+                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
+                var deptTask = _masterService.GetDepartmentList("");
+                var ownerTask = _masterService.GetOwnerList("");
 
                 // 2. Wait for all to complete
                 await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
@@ -384,7 +384,7 @@ namespace PackingApplication
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                         }
-                        var getLots = _productionService.getLotList(selectedMachineId).Result;
+                        var getLots = _productionService.getLotList(selectedMachineId, "").Result;
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                         MergeNoList.DataSource = getLots;
                         MergeNoList.DisplayMember = "LotNoFrmt";

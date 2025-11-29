@@ -63,13 +63,17 @@ namespace PackingApplication
         string UserName = ConfigurationManager.AppSettings["UserName"];
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
+        bool suppressEvents = false;
+        int selectedDeptId = 0;
+        int selectedMachineid = 0;
+
         public AddDTYPackingForm()
         {
             Log.writeMessage("DTY AddDTYPackingForm constructor - Start : " + DateTime.Now);
 
             InitializeComponent();
             ApplyFonts();
-            this.Shown += AddDTYPackingForm_Shown;
+            //this.Shown += AddDTYPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
@@ -125,6 +129,27 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY getLotRelatedDetails - Start : " + DateTime.Now);
 
+            var machineList = new List<MachineResponse>();
+            machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+            LineNoList.DataSource = machineList;
+            LineNoList.DisplayMember = "MachineName";
+            LineNoList.ValueMember = "MachineId";
+            LineNoList.SelectedIndex = 0;
+
+            var deptList = new List<DepartmentResponse>();
+            deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            DeptList.DataSource = deptList;
+            DeptList.DisplayMember = "DepartmentName";
+            DeptList.ValueMember = "DepartmentId";
+            DeptList.SelectedIndex = 0;
+
+            var packsizeList = new List<PackSizeResponse>();
+            packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+            PackSizeList.DataSource = packsizeList;
+            PackSizeList.DisplayMember = "PackSizeName";
+            PackSizeList.ValueMember = "PackSizeId";
+            PackSizeList.SelectedIndex = 0;
+            
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -159,6 +184,27 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNoFrmt";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+
+            var copsitemList = new List<ItemResponse>();
+            copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+            CopsItemList.DataSource = copsitemList;
+            CopsItemList.DisplayMember = "Name";
+            CopsItemList.ValueMember = "ItemId";
+            CopsItemList.SelectedIndex = 0;
+
+            var boxitemList = new List<ItemResponse>();
+            boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            BoxItemList.DataSource = boxitemList;
+            BoxItemList.DisplayMember = "Name";
+            BoxItemList.ValueMember = "ItemId";
+            BoxItemList.SelectedIndex = 0;
+
+            var ownerList = new List<BusinessPartnerResponse>();
+            ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+            OwnerList.DataSource = ownerList;
+            OwnerList.DisplayMember = "LegalName";
+            OwnerList.ValueMember = "BusinessPartnerId";
+            OwnerList.SelectedIndex = 0;
 
             Log.writeMessage("DTY getLotRelatedDetails - End : " + DateTime.Now);
         }
@@ -297,12 +343,12 @@ namespace PackingApplication
             {
                 Log.writeMessage("DTY AddDTYPackingForm_Shown - Start : " + DateTime.Now);
 
-                var machineTask = _masterService.GetMachineList("TexturisingLot");
-                var packsizeTask = _masterService.GetPackSizeList();
-                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId);
-                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId);
-                var deptTask = _masterService.GetDepartmentList();
-                var ownerTask = _masterService.GetOwnerList();
+                var machineTask = _masterService.GetMachineList("TexturisingLot", "");
+                var packsizeTask = _masterService.GetPackSizeList("");
+                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
+                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
+                var deptTask = _masterService.GetDepartmentList("");
+                var ownerTask = _masterService.GetOwnerList("");
 
                 // 2. Wait for all to complete
                 await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, deptTask, ownerTask);
@@ -438,13 +484,15 @@ namespace PackingApplication
 
             if (!isFormReady) return; // skip during load
 
+            if (suppressEvents) return;     //Prevent recursive refresh
+
             if (LineNoList.Items.Count == 0) return;
 
             if (LineNoList.SelectedIndex <= 0)
             {
                 return;
             }
-            
+            suppressEvents = true;          //Freeze dependent dropdown events
             lblLoading.Visible = true;
             try
             {
@@ -455,31 +503,34 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
-
+                        selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
+                            var deptTask = _masterService.GetDepartmentList(selectedMachine.DepartmentName).Result;
+                            deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
+                            DeptList.DataSource = deptTask;
                             DeptList.SelectedValue = selectedMachine.DepartmentId;
-                            var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
-                            filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
-                            DeptList.DataSource = filteredDepts;
+                            selectedDeptId = selectedMachine.DepartmentId;
+                            //var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
+                            //filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            //DeptList.DataSource = filteredDepts;
                             DeptList.DisplayMember = "DepartmentName";
                             DeptList.ValueMember = "DepartmentId";
                             if (DeptList.Items.Count > 1)
                             {
                                 DeptList.SelectedIndex = 1;
                             }
-                            DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                            DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                            DeptList_SelectedIndexChanged(DeptList, EventArgs.Empty);
+                            DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
                         }
-                        var getLots = _productionService.getLotList(selectedMachineId).Result;
+                        var getLots = _productionService.getLotList(selectedMachineId, "").Result;
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                        MergeNoList.SelectedIndexChanged -= MergeNoList_SelectedIndexChanged;  // stop auto fire
                         MergeNoList.DataSource = getLots;
                         MergeNoList.DisplayMember = "LotNoFrmt";
                         MergeNoList.ValueMember = "LotId";
                         MergeNoList.SelectedIndex = 0;
-                        MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        MergeNoList.SelectedIndexChanged += MergeNoList_SelectedIndexChanged;  // re-attach
 
                         if (_productionId > 0 && productionResponse != null)
                         {
@@ -495,9 +546,36 @@ namespace PackingApplication
             finally
             {
                 lblLoading.Visible = false;
+                suppressEvents = false;             //Allow events again
             }
 
             Log.writeMessage("DTY LineNoList_SelectedIndexChanged - End : " + DateTime.Now);
+        }
+
+        private void LinoNoList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                var machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result;
+
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+
+                LineNoList.TextUpdate -= LinoNoList_TextUpdate;
+
+                LineNoList.DisplayMember = "MachineName";
+                LineNoList.ValueMember = "MachineId";
+                LineNoList.DataSource = machineList;
+                LineNoList.Text = typedText;
+
+                LineNoList.DroppedDown = true;
+                LineNoList.SelectionStart = typedText.Length;
+                LineNoList.SelectionLength = 0;
+
+                LineNoList.TextUpdate += LinoNoList_TextUpdate;
+            }
         }
 
         private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
@@ -505,7 +583,9 @@ namespace PackingApplication
             Log.writeMessage("DTY MergeNoList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
-           
+
+            if (suppressEvents) return;
+
             if (MergeNoList.Items.Count == 0) return;
 
             if (MergeNoList.SelectedIndex <= 0)
@@ -529,7 +609,7 @@ namespace PackingApplication
                 MergeNoList.SelectedIndex = 0;
                 return;
             }
-
+            suppressEvents = true;
             lblLoading.Visible = true;
             try
             {
@@ -567,12 +647,13 @@ namespace PackingApplication
                                 {
                                     var qualityList = _masterService.GetQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                                    QualityList.SelectedIndexChanged -= QualityList_SelectedIndexChanged;
                                     QualityList.DataSource = qualityList;
                                     QualityList.DisplayMember = "Name";
                                     QualityList.ValueMember = "QualityId";
                                     QualityList.SelectedIndex = 0;
-                                    QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                                    QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                                    //QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                                    //QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                                     if (QualityList.Items.Count > 1)
                                     {
@@ -591,6 +672,7 @@ namespace PackingApplication
                                         int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
                                         productionRequest.QualityId = firstQualityId;
                                     }
+                                    QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
                                 }
                             }
                         }
@@ -604,35 +686,37 @@ namespace PackingApplication
                             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                         }
-
+                        WindingTypeList.SelectedIndexChanged -= WindingTypeList_SelectedIndexChanged;
                         WindingTypeList.DataSource = getWindingType;
                         WindingTypeList.DisplayMember = "WindingTypeName";
                         WindingTypeList.ValueMember = "WindingTypeId";
                         WindingTypeList.SelectedIndex = 0;
-                        WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        //WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        //WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
 
                         var getSaleOrder = _productionService.getSaleOrderList(selectedLotId).Result;
                         getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
+                        SaleOrderList.SelectedIndexChanged -= SaleOrderList_SelectedIndexChanged;
                         SaleOrderList.DataSource = getSaleOrder;
                         SaleOrderList.DisplayMember = "ItemName";
                         SaleOrderList.ValueMember = "SaleOrderItemsId";
                         SaleOrderList.SelectedIndex = 0;
-                        SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                        //SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        //SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                         if (SaleOrderList.Items.Count == 2)
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
-                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
                             SaleOrderList.Enabled = true;      // Allow user selection
                             SaleOrderList.SelectedIndex = 0;  // Optional: no default selection
                         }
-
+                        SaleOrderList.SelectedIndexChanged += SaleOrderList_SelectedIndexChanged;
                         lotsDetailsList = new List<LotsDetailsResponse>();
                         productionRequest.ProductionDate = dateTimePicker1.Value;
                         lotsDetailsList = _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate).Result;
@@ -663,15 +747,43 @@ namespace PackingApplication
             finally
             {
                 lblLoading.Visible = false;
+                suppressEvents = false;
             }
 
             Log.writeMessage("DTY MergeNoList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
+        private void MergeNoList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result;
+
+                mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+
+                MergeNoList.TextUpdate -= MergeNoList_TextUpdate;
+
+                MergeNoList.DisplayMember = "LotNoFrmt";
+                MergeNoList.ValueMember = "LotId";
+                MergeNoList.DataSource = mergenoList;
+                MergeNoList.Text = typedText;
+
+                MergeNoList.DroppedDown = true;
+                MergeNoList.SelectionStart = typedText.Length;
+                MergeNoList.SelectionLength = 0;
+
+                MergeNoList.TextUpdate += MergeNoList_TextUpdate;
+            }
+
+        }
+
         private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY PackSizeList_SelectedIndexChanged - Start : " + DateTime.Now);
-
+           
             if (!isFormReady) return;
 
             if (PackSizeList.SelectedIndex <= 0)
@@ -708,6 +820,33 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY PackSizeList_SelectedIndexChanged - End : " + DateTime.Now);
+        }
+
+        private void PackSizeList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if(typedText.Length >= 3)
+            {
+                var packsizeList = _masterService.GetPackSizeList(typedText).Result;
+
+                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+
+                PackSizeList.TextUpdate -= PackSizeList_TextUpdate;
+
+                PackSizeList.DisplayMember = "PackSizeName";
+                PackSizeList.ValueMember = "PackSizeId";
+                PackSizeList.DataSource = packsizeList;
+                PackSizeList.Text = typedText;
+
+                PackSizeList.DroppedDown = true;
+                PackSizeList.SelectionStart = typedText.Length;
+                PackSizeList.SelectionLength = 0;
+
+                PackSizeList.TextUpdate += PackSizeList_TextUpdate;
+            }
+            
         }
 
         private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
@@ -946,6 +1085,33 @@ namespace PackingApplication
             Log.writeMessage("DTY CopsItemList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
+        private void CopsItemList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, typedText).Result;
+
+                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+
+                CopsItemList.TextUpdate -= CopsItemList_TextUpdate;
+
+                CopsItemList.DisplayMember = "Name";
+                CopsItemList.ValueMember = "ItemId";
+                CopsItemList.DataSource = copsitemList;
+                CopsItemList.Text = typedText;
+
+                CopsItemList.DroppedDown = true;
+                CopsItemList.SelectionStart = typedText.Length;
+                CopsItemList.SelectionLength = 0;
+
+                CopsItemList.TextUpdate += CopsItemList_TextUpdate;
+            }
+
+        }
+
         private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY BoxItemList_SelectedIndexChanged - Start : " + DateTime.Now);
@@ -988,6 +1154,33 @@ namespace PackingApplication
             Log.writeMessage("DTY BoxItemList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
+        private void BoxItemList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result;
+
+                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+
+                BoxItemList.TextUpdate -= BoxItemList_TextUpdate;
+
+                BoxItemList.DisplayMember = "Name";
+                BoxItemList.ValueMember = "ItemId";
+                BoxItemList.DataSource = boxitemList;
+                BoxItemList.Text = typedText;
+
+                BoxItemList.DroppedDown = true;
+                BoxItemList.SelectionStart = typedText.Length;
+                BoxItemList.SelectionLength = 0;
+
+                BoxItemList.TextUpdate += BoxItemList_TextUpdate;
+            }
+
+        }
+
         private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY PrefixList_SelectedIndexChanged - Start : " + DateTime.Now);
@@ -1017,17 +1210,52 @@ namespace PackingApplication
             Log.writeMessage("DTY PrefixList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
+        private void PrefixList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                prefixRequest.DepartmentId = selectedDeptId;
+                prefixRequest.TxnFlag = "DTY";
+                prefixRequest.TransactionTypeId = 5;
+                prefixRequest.ProductionTypeId = 1;
+                prefixRequest.Prefix = "";
+                prefixRequest.FinYearId = SessionManager.FinYearId;
+                prefixRequest.SubString = typedText;
+
+                List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result;
+                prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+
+                PrefixList.TextUpdate -= PrefixList_TextUpdate;
+
+                PrefixList.DisplayMember = "Prefix";
+                PrefixList.ValueMember = "PrefixCode";
+                PrefixList.DataSource = prefixList;
+                PrefixList.Text = typedText;
+
+                PrefixList.DroppedDown = true;
+                PrefixList.SelectionStart = typedText.Length;
+                PrefixList.SelectionLength = 0;
+
+                PrefixList.TextUpdate += PrefixList_TextUpdate;
+            }
+        }
+
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY DeptList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
+            if (suppressEvents) return;
+
             if (DeptList.SelectedIndex <= 0)
             {
                 return;
             }
-
+            suppressEvents = true;
             lblLoading.Visible = true;
             try
             {
@@ -1045,7 +1273,7 @@ namespace PackingApplication
                     }
 
                     productionRequest.DepartmentId = selectedDepartmentId;
-
+                    selectedDeptId = selectedDepartmentId;
                     prefixRequest.DepartmentId = selectedDepartmentId;
                     prefixRequest.TxnFlag = "DTY";
                     prefixRequest.TransactionTypeId = 5;
@@ -1055,6 +1283,7 @@ namespace PackingApplication
 
                     List<PrefixResponse> prefixList = await _masterService.GetPrefixList(prefixRequest);
                     prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                    PrefixList.SelectedIndexChanged -= PrefixList_SelectedIndexChanged;
                     PrefixList.DataSource = prefixList;
                     PrefixList.DisplayMember = "Prefix";
                     PrefixList.ValueMember = "PrefixCode";
@@ -1064,13 +1293,13 @@ namespace PackingApplication
                     if (PrefixList.Items.Count == 2)
                     {
                         PrefixList.SelectedIndex = 1;   // Select the single record
-                        PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
+                        //PrefixList_SelectedIndexChanged(PrefixList, EventArgs.Empty);
                     }
                     else
                     {
                         PrefixList.SelectedIndex = 0;  // Optional: no default selection
                     }
-
+                    PrefixList.SelectedIndexChanged += PrefixList_SelectedIndexChanged;
                     if (_productionId > 0 && productionResponse != null)
                     {
                         if (selectedDepartmentId == productionResponse.DepartmentId && productionRequest.MachineId == productionResponse.MachineId)
@@ -1083,9 +1312,36 @@ namespace PackingApplication
             finally
             {
                 lblLoading.Visible = false;
+                suppressEvents = false;
             }
 
             Log.writeMessage("DTY DeptList_SelectedIndexChanged - End : " + DateTime.Now);
+        }
+
+        private void DeptList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                var deptList = _masterService.GetDepartmentList(typedText).Result;
+
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+
+                DeptList.TextUpdate -= DeptList_TextUpdate;
+
+                DeptList.DisplayMember = "DepartmentName";
+                DeptList.ValueMember = "DepartmentId";
+                DeptList.DataSource = deptList;
+                DeptList.Text = typedText;
+
+                DeptList.DroppedDown = true;
+                DeptList.SelectionStart = typedText.Length;
+                DeptList.SelectionLength = 0;
+
+                DeptList.TextUpdate += DeptList_TextUpdate;
+            }
         }
 
         private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1119,6 +1375,33 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY OwnerList_SelectedIndexChanged - End : " + DateTime.Now);
+        }
+
+        private void OwnerList_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 3)
+            {
+                var ownerList = _masterService.GetOwnerList(typedText).Result;
+
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+
+                OwnerList.TextUpdate -= OwnerList_TextUpdate;
+
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.DataSource = ownerList;
+                OwnerList.Text = typedText;
+
+                OwnerList.DroppedDown = true;
+                OwnerList.SelectionStart = typedText.Length;
+                OwnerList.SelectionLength = 0;
+
+                OwnerList.TextUpdate += OwnerList_TextUpdate;
+            }
+
         }
 
         private async Task<List<string>> getComPortList()
