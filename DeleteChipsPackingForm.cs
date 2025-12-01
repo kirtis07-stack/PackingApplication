@@ -473,11 +473,11 @@ namespace PackingApplication
                         }
 
                         var getWindingType = new List<WindingTypeResponse>();
-                        getWindingType = _productionService.getWinderTypeList(selectedLotId).Result;
+                        getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
                         getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                         if (getWindingType.Count <= 1)
                         {
-                            getWindingType = _masterService.GetWindingTypeList().Result;
+                            getWindingType = _masterService.GetWindingTypeList("").Result;
                             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                         }

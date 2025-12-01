@@ -560,6 +560,7 @@ namespace PackingApplication
             this.QualityList.Size = new System.Drawing.Size(42, 21);
             this.QualityList.TabIndex = 6;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
+            this.QualityList.TextUpdate += new System.EventHandler(this.QualityList_TextUpdate);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
             this.QualityList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -591,6 +592,7 @@ namespace PackingApplication
             this.WindingTypeList.Size = new System.Drawing.Size(104, 21);
             this.WindingTypeList.TabIndex = 7;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
+            this.WindingTypeList.TextUpdate += new System.EventHandler(this.WindingTypeList_TextUpdate);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
             this.WindingTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -668,6 +670,7 @@ namespace PackingApplication
             this.SaleOrderList.Size = new System.Drawing.Size(122, 21);
             this.SaleOrderList.TabIndex = 5;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
+            this.SaleOrderList.TextUpdate += new System.EventHandler(this.SaleOrderList_TextUpdate);
             this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SaleOrderList_KeyDown);
             this.SaleOrderList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
