@@ -131,10 +131,10 @@ namespace PackingApplication.Helper
                 string json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await client.PostAsync(path, content);
+                HttpResponseMessage response = client.PostAsync(path, content).Result;
                 response.EnsureSuccessStatusCode();
 
-                string responseBody = await response.Content.ReadAsStringAsync();
+                string responseBody = response.Content.ReadAsStringAsync().Result;
 
                 // Deserialize JSON into List<T>
                 var result = JsonSerializer.Deserialize<List<T>>(responseBody,
