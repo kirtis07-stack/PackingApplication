@@ -329,3 +329,7 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\Packin
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.pdb
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe.config
 >>>>>>> faa6c6fdd38d86c4955cf21e844edbb0dcf89451
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.exe.manifest
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.application
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.exe.manifest
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.application
