@@ -265,7 +265,7 @@ namespace PackingApplication.Services
             Log.writeMessage("API call GetOwnerList - Start : " + DateTime.Now);
             Log.writeMessage("GetOwnerList : BusinessPartner/GetAll?IsDropDown=true");
 
-            var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + true + "&subString=" + subString);
+            var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAllSearchable?subString=" + subString);
 
             Log.writeMessage("GetOwnerList Response : " + getBusinessPartnerResponse);
 
