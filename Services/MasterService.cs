@@ -18,11 +18,11 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string masterURL = ConfigurationManager.AppSettings["masterURL"];
 
-        public async Task<List<MachineResponse>> GetMachineList(string lotType)
+        public async Task<List<MachineResponse>> GetMachineList(string lotType, string subString)
         {
             Log.writeMessage("API call GetMachineList - Start : " + DateTime.Now);
-            Log.writeMessage("GetMachineList : Machine/GetAllByLotType?lotType=" + lotType);
-            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType);
+            Log.writeMessage("GetMachineList : Machine/GetAllByLotType?lotType=" + lotType + "&subString=" + subString);
+            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByLotType?lotType=" + lotType + "&subString=" + subString);
 
             Log.writeMessage("Response : " + getMachineResponse);
 
@@ -58,12 +58,12 @@ namespace PackingApplication.Services
             return getQuality;
         }
 
-        public async Task<List<PackSizeResponse>> GetPackSizeList()
+        public async Task<List<PackSizeResponse>> GetPackSizeList(string subString)
         {
             Log.writeMessage("API call GetPackSizeList - Start : " + DateTime.Now);
-            Log.writeMessage("GetPackSizeList : PackSize/GetAll?IsDropDown=true");
+            Log.writeMessage("GetPackSizeList : PackSize/GetAll?IsDropDown=true&subString=" + subString);
 
-            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true);
+            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true + "&subString=" + subString);
 
             Log.writeMessage("Response : " + getPackSizeResponse);
 
@@ -79,12 +79,12 @@ namespace PackingApplication.Services
             return getPackSize;
         }
 
-        public async Task<List<WindingTypeResponse>> GetWindingTypeList()
+        public async Task<List<WindingTypeResponse>> GetWindingTypeList(string subString)
         {
             Log.writeMessage("API call GetWindingTypeList - Start : " + DateTime.Now);
-            Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=true");
+            Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=true" + "&subString=" + subString);
 
-            var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true);
+            var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true + "&subString=" + subString);
 
             Log.writeMessage("GetWindingTypeList Response : " + getWindingTypeResponse);
 
@@ -100,12 +100,12 @@ namespace PackingApplication.Services
             return getWindingType;
         }
 
-        public async Task<List<ItemResponse>> GetItemList(int categoryId)
+        public async Task<List<ItemResponse>> GetItemList(int categoryId, string subString)
         {
             Log.writeMessage("API call GetItemList - Start : " + DateTime.Now);
-            Log.writeMessage("GetItemList : Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
+            Log.writeMessage("GetItemList : Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId + "&subString=" + subString);
 
-            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId);
+            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId + "&subString=" + subString);
 
             Log.writeMessage("GetItemList Response : " + getItemResponse);
 
@@ -218,12 +218,12 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public async Task<List<DepartmentResponse>> GetDepartmentList()
+        public async Task<List<DepartmentResponse>> GetDepartmentList(string subString)
         {
             Log.writeMessage("API call GetDepartmentList - Start : " + DateTime.Now);
             Log.writeMessage("GetDepartmentList : Departments/GetAll?IsDropDown=false");
 
-            var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false);
+            var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false + "&subString=" + subString);
 
             Log.writeMessage("GetDepartmentList Response : " + getDepartmentResponse);
 
@@ -260,12 +260,12 @@ namespace PackingApplication.Services
             return getMachine;
         }
 
-        public async Task<List<BusinessPartnerResponse>> GetOwnerList()
+        public async Task<List<BusinessPartnerResponse>> GetOwnerList(string subString)
         {
             Log.writeMessage("API call GetOwnerList - Start : " + DateTime.Now);
             Log.writeMessage("GetOwnerList : BusinessPartner/GetAll?IsDropDown=true");
 
-            var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAll?IsDropDown=" + true);
+            var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAllSearchable?subString=" + subString);
 
             Log.writeMessage("GetOwnerList Response : " + getBusinessPartnerResponse);
 
