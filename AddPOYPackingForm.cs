@@ -8,7 +8,6 @@ using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Properties;
 using PackingApplication.Services;
-using PdfiumViewer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -542,28 +541,14 @@ namespace PackingApplication
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
                 
-                LineNoList.DataSource = null;
-                LineNoList.Items.Clear();
-                LineNoList.Items.Add("Select Line No.");
-                LineNoList.Items.Add(productionResponse.MachineName);
-                LineNoList.SelectedItem = productionResponse.MachineName;
-                productionRequest.MachineId = productionResponse.MachineId;
-                selectedMachineid = productionResponse.MachineId;
-
-                DeptList.DataSource = null;
-                DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
-                DeptList.Items.Add(productionResponse.DepartmentName);
-                DeptList.SelectedItem = productionResponse.DepartmentName;
-                productionRequest.DepartmentId = productionResponse.DepartmentId;
-                selectedDeptId = productionResponse.DepartmentId;
-
+                
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
                 MergeNoList.Items.Add("Select MergeNo");
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
+                selectLotId = productionResponse.LotId;
 
                 PrefixList.DataSource = null;
                 PrefixList.Items.Clear();
@@ -580,6 +565,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
+                selectedSOId = productionResponse.SaleOrderItemsId;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -677,8 +663,9 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
+                grdsoqty.Text = totalSOQty.ToString("F2");
                 RefreshGradewiseGrid();
-                RefreshGradewiseGrid();
+                RefreshWindingGrid();
                 AdjustNameByCharCount();
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
@@ -693,6 +680,22 @@ namespace PackingApplication
                         ));
                     }
                 }
+
+                LineNoList.DataSource = null;
+                LineNoList.Items.Clear();
+                LineNoList.Items.Add("Select Line No.");
+                LineNoList.Items.Add(productionResponse.MachineName);
+                LineNoList.SelectedItem = productionResponse.MachineName;
+                productionRequest.MachineId = productionResponse.MachineId;
+                selectedMachineid = productionResponse.MachineId;
+
+                DeptList.DataSource = null;
+                DeptList.Items.Clear();
+                DeptList.Items.Add("Select Dept");
+                DeptList.Items.Add(productionResponse.DepartmentName);
+                DeptList.SelectedItem = productionResponse.DepartmentName;
+                productionRequest.DepartmentId = productionResponse.DepartmentId;
+                selectedDeptId = productionResponse.DepartmentId;
             }
 
             Log.writeMessage("POY LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -1008,7 +1011,6 @@ namespace PackingApplication
                             productionRequest.MachineId = lotResponse.MachineId;
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
-                            LineNoList.SelectedValue = lotResponse.MachineId;
 
                             if (lotResponse.ItemId > 0)
                             {
@@ -1477,10 +1479,10 @@ namespace PackingApplication
         {
             Log.writeMessage("POY RefreshWindingGrid - Start : " + DateTime.Now);
 
-            if (WindingTypeList.SelectedValue != null)
+            if (productionRequest.WindingTypeId != 0)
             {
-                int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-                if (selectedWindingTypeId > 0)
+                //int selectedWindingTypeId = productionRequest.WindingTypeId;
+                if (productionRequest.WindingTypeId > 0)
                 {
                     var getProductionByWindingType = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                     List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
@@ -1522,11 +1524,11 @@ namespace PackingApplication
         {
             Log.writeMessage("POY RefreshGradewiseGrid - Start : " + DateTime.Now);
 
-            if (QualityList.SelectedValue != null)
+            if (productionRequest.QualityId != 0)
             {
                 prodnbalqty.Text = "";
                 balanceQty = 0;
-                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <assemblyIdentity name="PackingApplication.application" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <assemblyIdentity name="PackingApplication.application" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="PackingApplication" asmv2:product="PackingApplication" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true">
     <deploymentProvider codebase="http://desktop-ocu1bqt/PackingApplication/PackingApplication.application" />
@@ -9,22 +9,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PackingApplication.exe.manifest" size="51986">
-      <assemblyIdentity name="PackingApplication.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
+    <dependentAssembly dependencyType="install" codebase="PackingApplication.exe.manifest" size="68653">
+      <assemblyIdentity name="PackingApplication.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
-        <dsig:DigestValue>xekfnxPbnsN7Hm06MNJtoqU/KsjvsV5SS+AuZAATfcA=</dsig:DigestValue>
-=======
-<<<<<<< HEAD
-        <dsig:DigestValue>B5OxTtF9cstQi+Iig68wowIwQR9TnKWNWqJz7V55T4w=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>LMA74UGPGYubdnZflR2GkMo18f2NaWqW1P3XEH3ZdQw=</dsig:DigestValue>
->>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
->>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
+        <dsig:DigestValue>7jZ1IiPEe6hItazRRmOzvLIhYk+i5rtmdpSditZt8j0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -8,7 +8,6 @@ using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Properties;
 using PackingApplication.Services;
-using PdfiumViewer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
