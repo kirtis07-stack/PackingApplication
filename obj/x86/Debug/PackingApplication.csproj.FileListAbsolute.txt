@@ -1,4 +1,31 @@
 <<<<<<< HEAD
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Dashboard.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyPOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddPOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Login.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.POYPackingList.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Properties.Resources.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Sidebar.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewPOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.GenerateResource.cache
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.CoreCompileInputs.cache
+=======
+<<<<<<< HEAD
 D:\Kirti\New folder\PackingApplication\bin\x86\Debug\x64\pdfium.dll
 D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
 D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
@@ -115,15 +142,18 @@ D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.pdb
 D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.exe.config
 =======
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\x64\pdfium.dll
+>>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\msvcr120.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\x64\pdfium.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.exe.config
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.exe.manifest
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.application
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.pdb
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Common.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.DataVisualization.dll
@@ -133,6 +163,8 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Micros
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.SqlServer.Types.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Newtonsoft.Json.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PdfiumViewer.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.Fonts.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.ImageSharp.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Buffers.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.IO.Pipelines.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Memory.dll
@@ -143,9 +175,13 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.ValueTuple.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\EnvDTE.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.pdb
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Newtonsoft.Json.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PdfiumViewer.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.Fonts.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.ImageSharp.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Buffers.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.IO.Pipelines.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Memory.xml
@@ -196,34 +232,13 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ru\Mic
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\nl\PdfiumViewer.resources.dll
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Dashboard.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyPOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddPOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Login.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.POYPackingList.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Properties.Resources.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Sidebar.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewPOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.GenerateResource.cache
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.CoreCompileInputs.cache
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe.manifest
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.application
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.pdb
+<<<<<<< HEAD
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe.config
+=======
 >>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
+>>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6

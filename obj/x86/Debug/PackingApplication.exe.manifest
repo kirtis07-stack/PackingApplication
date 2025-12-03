@@ -54,6 +54,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ICSharpCode.SharpZipLib.dll" size="253952">
+      <assemblyIdentity name="ICSharpCode.SharpZipLib" version="1.4.2.13" publicKeyToken="1B03E6ACF1164F73" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>y5wFtaHh2yb/Q0kO4m8uAquuPzIdLdXd1Dpo2kjquD0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Bcl.AsyncInterfaces.dll" size="26936">
       <assemblyIdentity name="Microsoft.Bcl.AsyncInterfaces" version="9.0.0.10" publicKeyToken="CC7B13FFCD2DDD51" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -631,10 +643,14 @@
   </dependency>
   <dependency>
 <<<<<<< HEAD
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3703776">
+=======
+<<<<<<< HEAD
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3713504">
 =======
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3693536">
 >>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
+>>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
@@ -642,34 +658,62 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
 <<<<<<< HEAD
+        <dsig:DigestValue>9VIBlqucHbW39Y6Hzfycvrx1O7twkglZn4wAwPSQeHA=</dsig:DigestValue>
+=======
+<<<<<<< HEAD
         <dsig:DigestValue>kb0cLO2Vrjr884/PUQlzG6rhZvP94UAScHyTvEGyUrY=</dsig:DigestValue>
 =======
         <dsig:DigestValue>drwDxMGLsCC1EtL1/h77ueETx7RVQqkn1egQy+Vmpjk=</dsig:DigestValue>
 >>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
+>>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PdfiumViewer.dll" size="115712">
-      <assemblyIdentity name="PdfiumViewer" version="2.13.0.0" publicKeyToken="91E4789CFB0609E0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PdfiumViewer.dll" size="111104">
+      <assemblyIdentity name="PdfiumViewer" version="2.12.0.0" publicKeyToken="91E4789CFB0609E0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZfH8v0qDbPN6DoyjK63A+4G5OHAUzhQcwF5dpxFIa6g=</dsig:DigestValue>
+        <dsig:DigestValue>Qrr5UmuXJ46LN3M255s7roaij6xr2btw4/Tei09mjTc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nl\PdfiumViewer.resources.dll" size="4608">
-      <assemblyIdentity name="PdfiumViewer.resources" version="2.13.0.0" publicKeyToken="91E4789CFB0609E0" language="nl" processorArchitecture="msil" />
+      <assemblyIdentity name="PdfiumViewer.resources" version="2.12.0.0" publicKeyToken="91E4789CFB0609E0" language="nl" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZCZVDasJn1Wllz3/QEmIpE2A0JcKuj8hT67j06OhlE4=</dsig:DigestValue>
+        <dsig:DigestValue>FtJRVYJ1mXyBTopBtePtonWj4mkK8YqbAIf0jKJa3U4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SixLabors.Fonts.dll" size="1142272">
+      <assemblyIdentity name="SixLabors.Fonts" version="1.0.0.0" publicKeyToken="D998EEA7B14CAB13" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>PYEdHDeh8OF/Nl8AYDAp61PiQFJlN+LNmf5CJ6q/Nqo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SixLabors.ImageSharp.dll" size="1211392">
+      <assemblyIdentity name="SixLabors.ImageSharp" version="1.0.0.0" publicKeyToken="D998EEA7B14CAB13" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>6v5w+QgG/baSl7knGlJsYYxgOD6Scvky6xiwhvHgeh4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -782,20 +826,28 @@
     </dependentAssembly>
   </dependency>
 <<<<<<< HEAD
+  <file name="PackingApplication.exe.config" size="3010">
+=======
+<<<<<<< HEAD
   <file name="PackingApplication.exe.config" size="2028">
 =======
   <file name="PackingApplication.exe.config" size="2195">
 >>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
+>>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
 <<<<<<< HEAD
+      <dsig:DigestValue>IXZ6+t/aB/GECKxQjTnlGwTChO4RTozBjWH5P1gh7XU=</dsig:DigestValue>
+=======
+<<<<<<< HEAD
       <dsig:DigestValue>ubzPiNHY25qoS9JwYR73lzXKEhQEMFYtVYtcj1xAd7k=</dsig:DigestValue>
 =======
       <dsig:DigestValue>HFvTjyoNf7M/Mn6T4RAAiZo8r0bVnjv53IfcPHLjloI=</dsig:DigestValue>
 >>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
+>>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
     </hash>
   </file>
   <file name="SqlServerTypes\readme.htm" size="2369">
@@ -843,13 +895,22 @@
       <dsig:DigestValue>rLztN4VXMw69Q6b6MX/FIYxzyxMKuwcEaaz4TnqMk8A=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="x64\pdfium.dll" size="19258368">
+  <file name="x64\pdfium.dll" size="15807488">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>F80718mwZVDuvYGTsEtyNxlVu6RWEQNuj5uai80K1sQ=</dsig:DigestValue>
+      <dsig:DigestValue>KlZXdUVx3P/lSQkI9G1YmMNKrgqpJrL/fPeiSPmAoeY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="x86\pdfium.dll" size="11075584">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>XRRVBzjZrGeIc0yvtFGoyfvOjxSKhY1RpZi6dur+h2g=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

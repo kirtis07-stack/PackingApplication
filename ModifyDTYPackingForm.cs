@@ -84,9 +84,9 @@ namespace PackingApplication
             LoadDropdowns();
 
             copyno.Text = "1";
-            //spoolno.Text = "0";
+            spoolno.Text = "0";
             //spoolwt.Text = "0";
-            palletwtno.Text = "0.000";
+            //palletwtno.Text = "0.000";
             grosswtno.Text = "0.000";
             tarewt.Text = "0.000";
             netwt.Text = "0.000";
@@ -712,6 +712,8 @@ namespace PackingApplication
 
         private void LinoNoList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY LinoNoList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -739,6 +741,7 @@ namespace PackingApplication
 
                 LineNoList.TextUpdate += LinoNoList_TextUpdate;
             }
+            Log.writeMessage("DTY LinoNoList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void MergeNoList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -903,6 +906,8 @@ namespace PackingApplication
 
         private void MergeNoList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY MergeNoList_TextUpdate - Start : " + DateTime.Now);
+
             if (suppressEvents) return;
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
@@ -934,11 +939,13 @@ namespace PackingApplication
 
                 suppressEvents = false;
             }
-
+            Log.writeMessage("DTY MergeNoList_TextUpdate - End : " + DateTime.Now);
         }
 
         private void ResetLotValues()
         {
+            Log.writeMessage("DTY ResetLotValues - Start : " + DateTime.Now);
+
             itemname.Text = "";
             shadename.Text = "";
             shadecd.Text = "";
@@ -956,6 +963,7 @@ namespace PackingApplication
             totalSOQty = 0;
             balanceQty = 0;
             //MergeNoList.SelectedIndex = 0;
+            Log.writeMessage("DTY ResetLotValues - End : " + DateTime.Now);
         }
 
         private async void PackSizeList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1002,6 +1010,8 @@ namespace PackingApplication
 
         private void PackSizeList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY PackSizeList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1029,7 +1039,7 @@ namespace PackingApplication
 
                 PackSizeList.TextUpdate += PackSizeList_TextUpdate;
             }
-
+            Log.writeMessage("DTY PackSizeList_TextUpdate - End : " + DateTime.Now);       
         }
 
         private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1051,6 +1061,8 @@ namespace PackingApplication
 
         private void QualityList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY QualityList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1080,7 +1092,7 @@ namespace PackingApplication
 
                 suppressEvents = false;
             }
-
+            Log.writeMessage("DTY QualityList_TextUpdate - End : " + DateTime.Now);
         }
 
         private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1114,6 +1126,8 @@ namespace PackingApplication
 
         private void WindingTypeList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY WindingTypeList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1150,7 +1164,7 @@ namespace PackingApplication
 
                 suppressEvents = false;
             }
-
+            Log.writeMessage("DTY WindingTypeList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1205,6 +1219,8 @@ namespace PackingApplication
 
         private void SaleOrderList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY SaleOrderList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1234,7 +1250,7 @@ namespace PackingApplication
 
                 suppressEvents = false;
             }
-
+            Log.writeMessage("DTY SaleOrderList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void RefreshGradewiseGrid()
@@ -1368,6 +1384,8 @@ namespace PackingApplication
 
         private void CopsItemList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY CopsItemList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1395,7 +1413,7 @@ namespace PackingApplication
 
                 CopsItemList.TextUpdate += CopsItemList_TextUpdate;
             }
-
+            Log.writeMessage("DTY CopsItemList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void BoxItemList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1442,6 +1460,8 @@ namespace PackingApplication
 
         private void BoxItemList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY BoxItemList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1469,7 +1489,7 @@ namespace PackingApplication
 
                 BoxItemList.TextUpdate += BoxItemList_TextUpdate;
             }
-
+            Log.writeMessage("DTY BoxItemList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1549,6 +1569,8 @@ namespace PackingApplication
 
         private void DeptList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY DeptList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1576,6 +1598,7 @@ namespace PackingApplication
 
                 DeptList.TextUpdate += DeptList_TextUpdate;
             }
+            Log.writeMessage("DTY DeptList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1613,6 +1636,8 @@ namespace PackingApplication
 
         private void OwnerList_TextUpdate(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY OwnerList_TextUpdate - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
@@ -1640,7 +1665,7 @@ namespace PackingApplication
 
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
             }
-
+            Log.writeMessage("DTY OwnerList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async Task<List<string>> getComPortList()
