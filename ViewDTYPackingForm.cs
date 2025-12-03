@@ -511,8 +511,11 @@ namespace PackingApplication
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
                 OwnerList.Items.Add("Select Owner");
-                OwnerList.Items.Add(productionResponse.OwnerName);
-                OwnerList.SelectedItem = productionResponse.OwnerName;
+                if (!string.IsNullOrEmpty(productionResponse.OwnerName))
+                {
+                    OwnerList.Items.Add(productionResponse.OwnerName);
+                    OwnerList.SelectedItem = productionResponse.OwnerName;
+                }
 
                 prodtype.Text = productionResponse.ProductionType;
                 remarks.Text = productionResponse.Remarks;

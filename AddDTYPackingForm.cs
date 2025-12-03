@@ -550,10 +550,12 @@ namespace PackingApplication
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
                 OwnerList.Items.Add("Select Owner");
-                OwnerList.Items.Add(productionResponse.OwnerName);
-                OwnerList.SelectedItem = productionResponse.OwnerName;
-                productionRequest.OwnerId = productionResponse.OwnerId;
-
+                if(!string.IsNullOrEmpty(productionResponse.OwnerName))
+                {
+                    OwnerList.Items.Add(productionResponse.OwnerName);
+                    OwnerList.SelectedItem = productionResponse.OwnerName;
+                    productionRequest.OwnerId = productionResponse.OwnerId;
+                }
                 //LineNoList.SelectedValue = productionResponse.MachineId;
                 //DeptList.SelectedValue = productionResponse.DepartmentId;
                 //MergeNoList.SelectedValue = productionResponse.LotId;

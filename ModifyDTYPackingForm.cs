@@ -552,9 +552,12 @@ namespace PackingApplication
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
                 OwnerList.Items.Add("Select Owner");
-                OwnerList.Items.Add(productionResponse.OwnerName);
-                OwnerList.SelectedItem = productionResponse.OwnerName;
-                productionRequest.OwnerId = productionResponse.OwnerId;
+                if (!string.IsNullOrEmpty(productionResponse.OwnerName))
+                {
+                    OwnerList.Items.Add(productionResponse.OwnerName);
+                    OwnerList.SelectedItem = productionResponse.OwnerName;
+                    productionRequest.OwnerId = productionResponse.OwnerId;
+                }
 
                 prodtype.Text = productionResponse.ProductionType;
                 productionRequest.ProdTypeId = productionResponse.ProdTypeId;
