@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EnvDTE.dll" size="256048">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EnvDTE.dll" size="256056">
       <assemblyIdentity name="EnvDTE" version="8.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0bLXFPFztfwHjiEt7eqXkgoMpy2mPt+HRhuFqNlX10g=</dsig:DigestValue>
+        <dsig:DigestValue>eDKi/NkVZrJF1fLaxIGf0bsObNmy6g8Y8Zr++/3hCwI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -630,14 +630,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3712480">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3713504">
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DqykatVXx4UjeOKdm5EpGAgtrlbkozT1KM9KdocLeQ4=</dsig:DigestValue>
+        <dsig:DigestValue>kb0cLO2Vrjr884/PUQlzG6rhZvP94UAScHyTvEGyUrY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -785,13 +785,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PackingApplication.exe.config" size="2135">
+  <file name="PackingApplication.exe.config" size="2028">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>7TpxTgpsCGpefmhaYE15828PyICENLnaJ3uMygZ+Mbk=</dsig:DigestValue>
+      <dsig:DigestValue>ubzPiNHY25qoS9JwYR73lzXKEhQEMFYtVYtcj1xAd7k=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SqlServerTypes\readme.htm" size="2369">
