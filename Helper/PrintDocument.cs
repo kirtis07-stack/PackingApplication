@@ -20,7 +20,7 @@ namespace PackingApplication.Helper
         protected override void OnPrintPage(PrintPageEventArgs e)
         {
             // Get PDF page as bitmap
-            using (var img = _pdf.Render(0, 300, 300, true)) // 300 DPI
+            using (var img = _pdf.Render(0, 600, 600, true)) // 300 DPI
             {
                 // Print at exact size with no scaling
                 e.Graphics.DrawImage(img, new Rectangle(0, 0,

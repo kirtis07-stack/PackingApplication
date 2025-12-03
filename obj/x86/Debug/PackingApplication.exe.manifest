@@ -642,30 +642,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-<<<<<<< HEAD
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3703776">
-=======
-<<<<<<< HEAD
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3713504">
-=======
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3693536">
->>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
->>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
-        <dsig:DigestValue>9VIBlqucHbW39Y6Hzfycvrx1O7twkglZn4wAwPSQeHA=</dsig:DigestValue>
-=======
-<<<<<<< HEAD
-        <dsig:DigestValue>kb0cLO2Vrjr884/PUQlzG6rhZvP94UAScHyTvEGyUrY=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>drwDxMGLsCC1EtL1/h77ueETx7RVQqkn1egQy+Vmpjk=</dsig:DigestValue>
->>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
->>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
+        <dsig:DigestValue>Lq+k442a7fPmlvYIWPVJOLGj4H+HmpKQ/exhoFAoUWA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -714,6 +698,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>6v5w+QgG/baSl7knGlJsYYxgOD6Scvky6xiwhvHgeh4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="stdole.dll" size="16384">
+      <assemblyIdentity name="stdole" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>1s35YcbScS/hlYgV5Rowlg15//Hpd4i3dBYn26ly6Pc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -825,29 +821,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-<<<<<<< HEAD
   <file name="PackingApplication.exe.config" size="3010">
-=======
-<<<<<<< HEAD
-  <file name="PackingApplication.exe.config" size="2028">
-=======
-  <file name="PackingApplication.exe.config" size="2195">
->>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
->>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
       <dsig:DigestValue>IXZ6+t/aB/GECKxQjTnlGwTChO4RTozBjWH5P1gh7XU=</dsig:DigestValue>
-=======
-<<<<<<< HEAD
-      <dsig:DigestValue>ubzPiNHY25qoS9JwYR73lzXKEhQEMFYtVYtcj1xAd7k=</dsig:DigestValue>
-=======
-      <dsig:DigestValue>HFvTjyoNf7M/Mn6T4RAAiZo8r0bVnjv53IfcPHLjloI=</dsig:DigestValue>
->>>>>>> 690a31a19b9e14f4658b1e783156c8b9cdd97b0b
->>>>>>> 0200e27e6834738b0ef2be1bc0635932d5535bc6
     </hash>
   </file>
   <file name="SqlServerTypes\readme.htm" size="2369">
