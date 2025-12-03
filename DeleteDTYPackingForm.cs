@@ -68,9 +68,9 @@ namespace PackingApplication
             LoadDropdowns();
 
             copyno.Text = "1";
-            //spoolno.Text = "0";
+            spoolno.Text = "0";
             //spoolwt.Text = "0";
-            palletwtno.Text = "0";
+            //palletwtno.Text = "0";
             grosswtno.Text = "0";
             tarewt.Text = "0";
             netwt.Text = "0";
