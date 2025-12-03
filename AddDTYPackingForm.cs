@@ -20,10 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using iText.Kernel.Pdf;
-using iText.Kernel.Geom;
-using iText.Kernel.Pdf.Canvas;
-using System.Drawing.Printing;
+using PdfiumViewer;
 
 namespace PackingApplication
 {
@@ -2093,35 +2090,28 @@ namespace PackingApplication
                     string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
                     File.WriteAllBytes(tempFile, bytes);
 
-                    // Print silently using Adobe Reader (VECTOR, no blur)
-                    PdfSilentPrinter.PrintPdf(tempFile);
+                    using (var pdfDoc = PdfDocument.Load(tempFile))
+                    {
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                Copies = 1
+                            };
+                            // Set custom 4x4 label size
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                    // Delete afterwards
+                            printDoc.PrinterSettings = printerSettings;
+                            printDoc.Print(); // sends PDF to printer
+                        }
+                    }
+
+                    // 5️⃣ Clean up temp file
                     File.Delete(tempFile);
-
-                    // Load PDF
-                    //PdfDocument pdf = new PdfDocument(new PdfReader(tempFile));
-
-                    //PrintDocument printDoc = new PdfPrintDocument(pdf);
-
-                    //var printerSettings = new PrinterSettings()
-                    //{
-                    //    Copies = 1,
-                    //    //PrinterName = "YourPrinterName"
-                    //};
-
-                    //printDoc.PrinterSettings = printerSettings;
-
-                    //// 4×4 inch label → 400 × 400 tenths of an inch
-                    //printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                    //printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
-
-                    //printDoc.PrintController = new StandardPrintController();
-                    //printDoc.Print();
-
-                    //pdf.Close();
-                    //File.Delete(tempFile);
                 }
+            
             }
             else
             {
