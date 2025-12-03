@@ -131,7 +131,7 @@ namespace PackingApplication
 
         private void LoadDropdowns()
         {
-            Log.writeMessage("DTY getLotRelatedDetails - Start : " + DateTime.Now);
+            Log.writeMessage("DTY LoadDropdowns - Start : " + DateTime.Now);
 
             var machineList = new List<MachineResponse>();
             machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
@@ -228,7 +228,7 @@ namespace PackingApplication
 
             isFormReady = true;
 
-            Log.writeMessage("DTY getLotRelatedDetails - End : " + DateTime.Now);
+            Log.writeMessage("DTY LoadDropdowns - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
