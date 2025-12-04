@@ -222,7 +222,7 @@ namespace PackingApplication
             menuStrip.Items.Add(bcf);
             menuStrip.Items.Add(chips);
             menuStrip.Items.Add(windows);
-
+            windows.DropDownOpened += Windows_DropDownOpened;
             leftPanel.Controls.Add(menuStrip);
             SetHandCursorForMenuItems(menuStrip.Items);
             // right panel for profile and logout
@@ -352,6 +352,11 @@ namespace PackingApplication
             this.Controls.Add(headerPanel);
             headerPanel.Dock = DockStyle.Top;
             this.IsMdiContainer = true;
+            if (this.ActiveMdiChild != null)
+            {
+                this.Text = this.ActiveMdiChild.Text;
+            }
+            menuStrip.MdiWindowListItem = windows;
             foreach (Control ctl in this.Controls)
             {
                 if (ctl is MdiClient)
@@ -431,45 +436,91 @@ namespace PackingApplication
         public void LoadFormInContent(Form child, string formKey)
         {
             // If already opened → just show it
+            //if (openForms.ContainsKey(formKey))
+            //{
+            //    if (activeChild != null)
+            //        activeChild.Hide();
+
+            //    activeChild = openForms[formKey];
+            //    activeChild.Show();
+            //    activeChild.WindowState = FormWindowState.Maximized;
+            //    activeChild.BringToFront();
+            //    return;
+            //}
+
+            //// New child form
+            //child.MdiParent = this;
+
+            //// Remove border/title bar
+            ////child.FormBorderStyle = FormBorderStyle.None;
+            //child.ControlBox = false;
+            ////child.ShowIcon = false;
+            ////child.Text = "";
+
+            //// Fullscreen inside MDI
+            //child.StartPosition = FormStartPosition.Manual;
+            //child.WindowState = FormWindowState.Maximized;
+
+            //// Match parent’s client area
+            //child.Dock = DockStyle.Fill;
+            //child.FormClosed += Child_FormClosed;
+            //// Save
+            //openForms[formKey] = child;
+
+            //// Hide previous
+            //if (activeChild != null)
+            //    activeChild.Hide();
+
+            //activeChild = child;
+
+            //// Add to Windows Menu
+            //AddMinimizedFormToMenu(formKey);
+
+            //child.Show();
+            //child.BringToFront();
+            // If already opened, activate it
             if (openForms.ContainsKey(formKey))
             {
-                if (activeChild != null)
+                Form existing = openForms[formKey];
+
+                if (activeChild != null && activeChild != existing)
                     activeChild.Hide();
 
-                activeChild = openForms[formKey];
-                activeChild.Show();
-                activeChild.WindowState = FormWindowState.Maximized;
-                activeChild.BringToFront();
+                activeChild = existing;
+                existing.WindowState = FormWindowState.Normal;
+                existing.Show();
+                existing.BringToFront();
                 return;
             }
 
-            // New child form
+            // New MDI child setup
             child.MdiParent = this;
 
-            // Remove border/title bar
-            child.FormBorderStyle = FormBorderStyle.None;
-            child.ControlBox = false;
-            child.ShowIcon = false;
-            child.Text = "";
+            // IMPORTANT for Option A (MDI should manage menu)
+            //child.AllowMerge = true;
 
-            // Fullscreen inside MDI
-            child.StartPosition = FormStartPosition.Manual;
-            child.WindowState = FormWindowState.Maximized;
+            // Remove window chrome so child looks like page
+            //child.FormBorderStyle = FormBorderStyle.None;
+            child.ControlBox = true;
+            //child.MinimizeBox = false;
+            //child.MaximizeBox = false;
+            //child.ShowIcon = false;
+            //child.Text = ""; // Prevent name from showing in menu if unwanted
 
-            // Match parent’s client area
+            // Fill parent
             child.Dock = DockStyle.Fill;
+            child.WindowState = FormWindowState.Normal;
 
-            // Save
+            // Track in dictionary
             openForms[formKey] = child;
 
-            // Hide previous
-            if (activeChild != null)
-                activeChild.Hide();
-
+            // Track active
+            //if (activeChild != null)
+            //    activeChild.Hide();
             activeChild = child;
-
-            // Add to Windows Menu
-            AddMinimizedFormToMenu(formKey);
+            activeChild.WindowState = FormWindowState.Normal;
+            // Handle removal on close
+            child.FormClosed += Child_FormClosed;
 
             child.Show();
             child.BringToFront();
@@ -484,7 +535,7 @@ namespace PackingApplication
                 var formKey = "AddPOYPackingForm";
                 form.Tag = "Packing - Add POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -497,7 +548,7 @@ namespace PackingApplication
                 var formKey = "ViewPOYPackingForm";
                 form.Tag = "Packing - View POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -510,7 +561,7 @@ namespace PackingApplication
                 var formKey = "ModifyPOYPackingForm";
                 form.Tag = "Packing - Modify POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -523,7 +574,7 @@ namespace PackingApplication
                 var formKey = "DeletePOYPackingForm";
                 form.Tag = "Packing - Delete POYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -536,7 +587,7 @@ namespace PackingApplication
                 var formKey = "AddDTYPackingForm";
                 form.Tag = "Packing - Add DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -549,7 +600,7 @@ namespace PackingApplication
                 var formKey = "ViewDTYPackingForm";
                 form.Tag = "Packing - View DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -562,7 +613,7 @@ namespace PackingApplication
                 var formKey = "ModifyDTYPackingForm";
                 form.Tag = "Packing - Modify DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -575,7 +626,7 @@ namespace PackingApplication
                 var formKey = "DeleteDTYPackingForm";
                 form.Tag = "Packing - Delete DTYPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -588,7 +639,7 @@ namespace PackingApplication
                 var formKey = "AddBCFPackingForm";
                 form.Tag = "Packing - Add BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -601,7 +652,7 @@ namespace PackingApplication
                 var formKey = "ViewBCFPackingForm";
                 form.Tag = "Packing - View BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -614,7 +665,7 @@ namespace PackingApplication
                 var formKey = "ModifyBCFPackingForm";
                 form.Tag = "Packing - Modify BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -627,7 +678,7 @@ namespace PackingApplication
                 var formKey = "DeleteBCFPackingForm";
                 form.Tag = "Packing - Delete BCFPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -640,7 +691,7 @@ namespace PackingApplication
                 var formKey = "AddChipsPackingForm";
                 form.Tag = "Packing - Add ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -653,7 +704,7 @@ namespace PackingApplication
                 var formKey = "ViewChipsPackingForm";
                 form.Tag = "Packing - View ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -666,7 +717,7 @@ namespace PackingApplication
                 var formKey = "ModifyChipsPackingForm";
                 form.Tag = "Packing - Modify ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -679,7 +730,7 @@ namespace PackingApplication
                 var formKey = "DeleteChipsPackingForm";
                 form.Tag = "Packing - Delete ChipsPacking";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                //this.Text = form.Tag.ToString();
             }
         }
 
@@ -771,5 +822,50 @@ namespace PackingApplication
                 form.SelectNextControl(null, true, true, true, true);
             }));
         }
+
+        private void Child_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form closedForm = sender as Form;
+            if (closedForm == null) return;
+
+            string keyToRemove = null;
+
+            // Find the matching key
+            foreach (var pair in openForms)
+            {
+                if (pair.Value == closedForm)
+                {
+                    keyToRemove = pair.Key;
+                    break;
+                }
+            }
+
+            // Remove from dictionary
+            if (keyToRemove != null)
+                openForms.Remove(keyToRemove);
+
+            // Remove from Windows menu
+            foreach (ToolStripMenuItem item in windows.DropDownItems)
+            {
+                if (item.Text == closedForm.Text)
+                {
+                    windows.DropDownItems.Remove(item);
+                    break;
+                }
+            }
+
+            // If the active form was closed → clear activeChild
+            if (activeChild == closedForm)
+                activeChild = null;
+        }
+
+        private void Windows_DropDownOpened(object sender, EventArgs e)
+        {
+            foreach (ToolStripItem item in windows.DropDownItems)
+            {
+                item.Font = FontManager.GetFont(8, FontStyle.Regular);
+            }
+        }
+
     }
 }

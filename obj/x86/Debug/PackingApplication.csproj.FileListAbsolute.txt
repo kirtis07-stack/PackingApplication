@@ -1,118 +1,64 @@
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.Dashboard.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.AddDTYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ModifyBCFPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ModifyChipsPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ModifyDTYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ModifyPOYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.AddPOYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.Login.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.POYPackingList.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.Properties.Resources.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.Sidebar.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ViewBCFPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ViewChipsPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ViewDTYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.ViewPOYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.csproj.GenerateResource.cache
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.csproj.CoreCompileInputs.cache
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\x64\pdfium.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\msvcr120.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\PackingApplication.exe.config
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\PackingApplication.exe
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\PackingApplication.pdb
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Common.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.DataVisualization.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Design.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.WinForms.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.SqlServer.Types.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Newtonsoft.Json.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\PdfiumViewer.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Buffers.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.IO.Pipelines.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Memory.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Numerics.Vectors.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Text.Encodings.Web.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Text.Json.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.ValueTuple.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\EnvDTE.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\stdole.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\Newtonsoft.Json.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\PdfiumViewer.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Buffers.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.IO.Pipelines.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Memory.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Numerics.Vectors.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Text.Encodings.Web.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Text.Json.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\System.ValueTuple.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\EnvDTE.xml
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\bin\x86\Debug\nl\PdfiumViewer.resources.dll
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.exe
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.pdb
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\x64\pdfium.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Dashboard.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyPOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddPOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Login.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.POYPackingList.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Properties.Resources.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Sidebar.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewBCFPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewChipsPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewDTYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewPOYPackingForm.resources
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.GenerateResource.cache
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.CoreCompileInputs.cache
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\Interop.Acrobat.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.ResolveComReference.cache
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\msvcr120.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.exe.config
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.exe.manifest
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.application
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PackingApplication.pdb
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\BouncyCastle.Cryptography.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.barcodes.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.bouncy-castle-adapter.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.bouncy-castle-connector.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.commons.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.font_asian.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.forms.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.io.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.kernel.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.layout.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.pdfa.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.pdfua.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.sign.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.styledxmlparser.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.svg.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itextsharp.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itextsharp.pdfa.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Options.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Primitives.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Common.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.DataVisualization.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Design.dll
@@ -120,25 +66,59 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Micros
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.WinForms.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.SqlServer.Types.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Newtonsoft.Json.dll
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PdfiumViewer.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.Fonts.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.ImageSharp.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Buffers.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Diagnostics.DiagnosticSource.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.IO.Pipelines.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Memory.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Numerics.Vectors.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Security.AccessControl.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Security.Cryptography.Xml.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Security.Principal.Windows.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Text.Encodings.Web.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Text.Json.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.ValueTuple.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\EnvDTE.dll
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\BouncyCastle.Cryptography.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.pdb
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.barcodes.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.bouncy-castle-adapter.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.bouncy-castle-connector.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.commons.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.font_asian.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.forms.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.io.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.kernel.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.layout.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.pdfa.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.pdfua.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.sign.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.styledxmlparser.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itext.svg.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\itextsharp.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Options.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Primitives.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\Newtonsoft.Json.xml
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\PdfiumViewer.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.Fonts.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\SixLabors.ImageSharp.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Buffers.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Diagnostics.DiagnosticSource.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.IO.Pipelines.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Memory.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Numerics.Vectors.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Security.AccessControl.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Security.Cryptography.Xml.xml
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Security.Principal.Windows.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Text.Encodings.Web.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Text.Json.xml
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.xml
@@ -183,36 +163,184 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\pt\Mic
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\bin\x86\Debug\nl\PdfiumViewer.resources.dll
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Dashboard.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ModifyPOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.AddPOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Login.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.POYPackingList.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Properties.Resources.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.Sidebar.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewBCFPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewChipsPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewDTYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.ViewPOYPackingForm.resources
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.GenerateResource.cache
-D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.csproj.CoreCompileInputs.cache
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe.manifest
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.application
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x86\Debug\PackingApplication.pdb
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
-D:\Pooja Jagtap\TextForce ERP\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\msvcr120.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\msvcr120.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\x64\pdfium.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.exe.config
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.exe.manifest
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.application
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.exe
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PackingApplication.pdb
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\BouncyCastle.Cryptography.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.barcodes.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.bouncy-castle-adapter.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.bouncy-castle-connector.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.commons.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.font_asian.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.forms.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.io.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.kernel.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.layout.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.pdfa.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.pdfua.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.sign.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.styledxmlparser.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.svg.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itextsharp.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itextsharp.pdfa.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Options.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Primitives.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Common.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.DataVisualization.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.Design.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.SqlServer.Types.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Newtonsoft.Json.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PdfiumViewer.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SixLabors.Fonts.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SixLabors.ImageSharp.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Buffers.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.IO.Pipelines.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Memory.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Numerics.Vectors.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Security.AccessControl.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Security.Cryptography.Xml.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Security.Principal.Windows.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Text.Encodings.Web.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Text.Json.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.ValueTuple.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\EnvDTE.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\stdole.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\BouncyCastle.Cryptography.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.pdb
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ICSharpCode.SharpZipLib.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.barcodes.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.bouncy-castle-adapter.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.bouncy-castle-connector.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.commons.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.font_asian.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.forms.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.io.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.kernel.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.layout.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.pdfa.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.pdfua.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.sign.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.styledxmlparser.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itext.svg.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\itextsharp.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Options.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Microsoft.Extensions.Primitives.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\Newtonsoft.Json.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\PdfiumViewer.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SixLabors.Fonts.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\SixLabors.ImageSharp.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Buffers.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.IO.Pipelines.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Memory.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Numerics.Vectors.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Security.AccessControl.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Security.Cryptography.Xml.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Security.Principal.Windows.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Text.Encodings.Web.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Text.Json.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.Threading.Tasks.Extensions.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\System.ValueTuple.xml
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Kirti\New folder\PackingApplication\bin\x86\Debug\nl\PdfiumViewer.resources.dll
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\Interop.Acrobat.dll
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.csproj.ResolveComReference.cache
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.Dashboard.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AddDTYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.DeleteBCFPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.DeleteChipsPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.DeleteDTYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.DeletePOYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ModifyBCFPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ModifyChipsPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ModifyDTYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ModifyPOYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AddPOYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.Login.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.POYPackingList.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.Properties.Resources.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.Sidebar.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ViewBCFPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ViewChipsPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ViewDTYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.ViewPOYPackingForm.resources
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.csproj.GenerateResource.cache
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.csproj.CoreCompileInputs.cache
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.exe.manifest
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.application
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingA.5D2CC269.Up2Date
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.exe
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.pdb
+D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.exe.config

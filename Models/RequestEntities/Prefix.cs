@@ -19,5 +19,6 @@ namespace PackingApplication.Models.RequestEntities
         public int FinYearId { get; set; }
         public DateTime? Date { get; set; } = null;
         public string TxnFlag { get; set; }
+        public string SubString { get; set; } = null;
     }
 }

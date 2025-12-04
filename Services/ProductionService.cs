@@ -17,9 +17,9 @@ namespace PackingApplication.Services
         HTTPMethod method = new HTTPMethod();
         string productionURL = ConfigurationManager.AppSettings["productionURL"];
 
-        public async Task<List<LotsResponse>> getLotList(int machineId)
+        public async Task<List<LotsResponse>> getLotList(int machineId, string subString)
         {
-            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAllByMachineId?machineId=" + machineId);
+            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAllByMachineId?machineId=" + machineId + "&subString=" + subString);
             if (string.IsNullOrWhiteSpace(getLotsResponse))
                 return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
@@ -37,9 +37,9 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public async Task<List<LotSaleOrderDetailsResponse>> getSaleOrderList(int lotId)
+        public async Task<List<LotSaleOrderDetailsResponse>> getSaleOrderList(int lotId, string subString)
         {
-            var getSaleOrderResponse = await method.GetCallApi(productionURL + "LotSaleOrderDetails/GetAllByLotsId?lotsId=" + lotId);
+            var getSaleOrderResponse = await method.GetCallApi(productionURL + "LotSaleOrderDetails/GetAllByLotsId?lotsId=" + lotId + "&subString=" + subString);
             if (string.IsNullOrWhiteSpace(getSaleOrderResponse))
                 return new List<LotSaleOrderDetailsResponse>();
             var getSaleOrder = JsonConvert.DeserializeObject<List<LotSaleOrderDetailsResponse>>(getSaleOrderResponse)
@@ -72,7 +72,7 @@ namespace PackingApplication.Services
             return getLotDetails;
         }
 
-        public async Task<List<WindingTypeResponse>> getWinderTypeList(int lotId)
+        public async Task<List<WindingTypeResponse>> getWinderTypeList(int lotId, string subString)
         {
             List<WindingTypeResponse> getWindingList = new List<WindingTypeResponse>();
             var getWinderTypeResponse = await method.GetCallApi(productionURL + "LotsProductionDetails/GetAllByLotsId?lotsId=" + lotId);

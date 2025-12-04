@@ -260,13 +260,13 @@ namespace PackingApplication
         {
             try
             {
-                var machineTask = _masterService.GetMachineList("BCFLot");
-                var packsizeTask = _masterService.GetPackSizeList();
-                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId);
-                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId);
-                var palletitemTask = _masterService.GetItemList(itemPalletCategoryId);
-                var deptTask = _masterService.GetDepartmentList();
-                var ownerTask = _masterService.GetOwnerList();
+                var machineTask = _masterService.GetMachineList("BCFLot", "");
+                var packsizeTask = _masterService.GetPackSizeList("");
+                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
+                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
+                var palletitemTask = _masterService.GetItemList(itemPalletCategoryId, "");
+                var deptTask = _masterService.GetDepartmentList("");
+                var ownerTask = _masterService.GetOwnerList("");
 
                 // 2. Wait for all to complete
                 await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
@@ -425,7 +425,7 @@ namespace PackingApplication
 
             foreach (var palletDetail in palletDetailsResponse)
             {
-                var palletItemList = _masterService.GetItemList(itemPalletCategoryId).Result;
+                var palletItemList = _masterService.GetItemList(itemPalletCategoryId, "").Result;
                 var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);
 
                 if (selectedItem == null)
@@ -505,7 +505,7 @@ namespace PackingApplication
                             DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                             DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
                         }
-                        var getLots = _productionService.getLotList(selectedMachineId).Result;
+                        var getLots = _productionService.getLotList(selectedMachineId, "").Result;
                         getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                         MergeNoList.DataSource = getLots;
                         MergeNoList.DisplayMember = "LotNoFrmt";
@@ -619,11 +619,11 @@ namespace PackingApplication
                         }
 
                         var getWindingType = new List<WindingTypeResponse>();
-                        getWindingType = _productionService.getWinderTypeList(selectedLotId).Result;
+                        getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
                         getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                         if (getWindingType.Count <= 1)
                         {
-                            getWindingType = _masterService.GetWindingTypeList().Result;
+                            getWindingType = _masterService.GetWindingTypeList("").Result;
                             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                         }
@@ -634,7 +634,7 @@ namespace PackingApplication
                         WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId).Result;
+                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result;
                         getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                         SaleOrderList.DataSource = getSaleOrder;
                         SaleOrderList.DisplayMember = "ItemName";
