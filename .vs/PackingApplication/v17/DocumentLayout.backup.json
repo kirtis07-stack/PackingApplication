@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\pooja jagtap\\textforce erp\\packingapplication\\services\\masterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:services\\masterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\pooja jagtap\\textforce erp\\packingapplication\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\adddtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:adddtypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\services\\productionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:services\\productionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\services\\saleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:services\\saleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\pooja jagtap\\textforce erp\\packingapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\pooja jagtap\\textforce erp\\packingapplication\\services\\packingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:services\\packingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\services\\masterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:services\\masterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\addpoypackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,17 +46,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-12-05T10:32:53.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T05:13:23.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductionService.cs",
+              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\ProductionService.cs",
+              "RelativeDocumentMoniker": "Services\\ProductionService.cs",
+              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\ProductionService.cs",
+              "RelativeToolTip": "Services\\ProductionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T07:29:52.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PackingService.cs",
+              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\PackingService.cs",
+              "RelativeDocumentMoniker": "Services\\PackingService.cs",
+              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\PackingService.cs",
+              "RelativeToolTip": "Services\\PackingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAgwAgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T07:29:49.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "MasterService.cs",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\MasterService.cs",
               "RelativeDocumentMoniker": "Services\\MasterService.cs",
               "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\MasterService.cs",
               "RelativeToolTip": "Services\\MasterService.cs",
-              "ViewState": "AgIAAAEBAAAAAAAAAADwvxsBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T10:23:44.614Z",
               "EditorCaption": ""
@@ -48,49 +120,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "SaleService.cs",
+              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\SaleService.cs",
+              "RelativeDocumentMoniker": "Services\\SaleService.cs",
+              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\Services\\SaleService.cs",
+              "RelativeToolTip": "Services\\SaleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T07:29:53.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AddBCFPackingForm.cs",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddBCFPackingForm.cs",
               "RelativeDocumentMoniker": "AddBCFPackingForm.cs",
               "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddBCFPackingForm.cs",
               "RelativeToolTip": "AddBCFPackingForm.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAwwK8BAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
-              "WhenOpened": "2025-11-26T08:55:54.873Z"
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABIIAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T08:55:54.873Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "AddPOYPackingForm.cs",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddPOYPackingForm.cs",
               "RelativeDocumentMoniker": "AddPOYPackingForm.cs",
               "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddPOYPackingForm.cs",
               "RelativeToolTip": "AddPOYPackingForm.cs",
               "ViewState": "AgIAAEMBAAAAAAAAAAAAALgAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T08:49:11.696Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddDTYPackingForm.cs",
-              "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddDTYPackingForm.cs",
-              "RelativeDocumentMoniker": "AddDTYPackingForm.cs",
-              "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddDTYPackingForm.cs",
-              "RelativeToolTip": "AddDTYPackingForm.cs",
-              "ViewState": "AgIAAAoBAAAAAAAAAAAIwCIBAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
-              "WhenOpened": "2025-11-25T08:49:03.1Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "AddChipsPackingForm.cs",
               "DocumentMoniker": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddChipsPackingForm.cs",
               "RelativeDocumentMoniker": "AddChipsPackingForm.cs",
               "ToolTip": "D:\\Pooja Jagtap\\TextForce ERP\\PackingApplication\\AddChipsPackingForm.cs",
               "RelativeToolTip": "AddChipsPackingForm.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAqwDIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-25T06:40:02.973Z"
             }
           ]
