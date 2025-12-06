@@ -941,7 +941,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
@@ -1130,7 +1130,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1231,7 +1231,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
@@ -1283,7 +1283,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1349,7 +1349,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1445,7 +1445,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1686,7 +1686,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 CopsItemList.BeginUpdate();
                 //CopsItemList.Items.Clear();
@@ -1761,7 +1761,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
@@ -1824,7 +1824,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 PrefixList.BeginUpdate();
                 //PrefixList.Items.Clear();
@@ -1936,7 +1936,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
@@ -2003,7 +2003,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
