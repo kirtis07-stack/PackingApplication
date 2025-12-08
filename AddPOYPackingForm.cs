@@ -3577,33 +3577,33 @@ namespace PackingApplication
                 prcompany.Checked = false;
                 prowner.Checked = false;
 
-                DeptList.DataSource = null;
-                DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
-                DeptList.SelectedIndex = 0;
+                //DeptList.DataSource = null;
+                //DeptList.Items.Clear();
+                //DeptList.Items.Add("Select Dept");
+                //DeptList.SelectedIndex = 0;
 
-                MergeNoList.DataSource = null;
-                MergeNoList.Items.Clear();
-                MergeNoList.Items.Add("Select MergeNo");
-                MergeNoList.SelectedIndex = 0;
+                //MergeNoList.DataSource = null;
+                //MergeNoList.Items.Clear();
+                //MergeNoList.Items.Add("Select MergeNo");
+                //MergeNoList.SelectedIndex = 0;
 
-                LineNoList.SelectedIndex = 0;
+                //LineNoList.SelectedIndex = 0;
 
-                PackSizeList.SelectedIndex = 0;
+                //PackSizeList.SelectedIndex = 0;
 
-                CopsItemList.SelectedIndex = 0;
+                //CopsItemList.SelectedIndex = 0;
 
-                BoxItemList.SelectedIndex = 0;
+                //BoxItemList.SelectedIndex = 0;
 
-                ComPortList.SelectedIndex = 0;
+                //ComPortList.SelectedIndex = 0;
 
-                WeighingList.SelectedIndex = 0;
+                //WeighingList.SelectedIndex = 0;
 
-                OwnerList.SelectedIndex = 0;
+                //OwnerList.SelectedIndex = 0;
 
-                PrefixList.SelectedIndex = 0;
+                //PrefixList.SelectedIndex = 0;
 
-                isFormReady = false;
+                //isFormReady = false;
                 spoolno.Text = "";
             }
             finally

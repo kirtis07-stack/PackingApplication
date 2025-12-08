@@ -34,7 +34,7 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.packingdate = new System.Windows.Forms.Label();
@@ -90,6 +90,7 @@ namespace PackingApplication
             this.rightpanel = new System.Windows.Forms.Panel();
             this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.delete = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
@@ -221,7 +222,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.delete = new System.Windows.Forms.Button();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -402,17 +402,16 @@ namespace PackingApplication
             // 
             // remarks
             // 
+            this.remarks.AcceptsReturn = true;
             this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(52, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
+            this.remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.remarks.Size = new System.Drawing.Size(145, 36);
             this.remarks.TabIndex = 4;
-            this.remarks.WordWrap = true;
-            this.remarks.ScrollBars = ScrollBars.Vertical;
-            this.remarks.AcceptsReturn = true;
             // 
             // scalemodel
             // 
@@ -435,7 +434,6 @@ namespace PackingApplication
             this.QualityList.Name = "QualityList";
             this.QualityList.Size = new System.Drawing.Size(41, 21);
             this.QualityList.TabIndex = 5;
-            this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
             // PackSizeList
             // 
@@ -448,7 +446,6 @@ namespace PackingApplication
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(79, 21);
             this.PackSizeList.TabIndex = 1;
-            this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             // 
             // WindingTypeList
             // 
@@ -461,7 +458,6 @@ namespace PackingApplication
             this.WindingTypeList.Name = "WindingTypeList";
             this.WindingTypeList.Size = new System.Drawing.Size(104, 21);
             this.WindingTypeList.TabIndex = 6;
-            this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             // 
             // ComPortList
             // 
@@ -474,7 +470,6 @@ namespace PackingApplication
             this.ComPortList.Name = "ComPortList";
             this.ComPortList.Size = new System.Drawing.Size(28, 21);
             this.ComPortList.TabIndex = 1;
-            this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             // 
             // WeighingList
             // 
@@ -487,7 +482,6 @@ namespace PackingApplication
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(114, 21);
             this.WeighingList.TabIndex = 1;
-            this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             // 
             // prcompany
             // 
@@ -499,6 +493,7 @@ namespace PackingApplication
             this.prcompany.Name = "prcompany";
             this.prcompany.Size = new System.Drawing.Size(94, 17);
             this.prcompany.TabIndex = 0;
+            this.prcompany.TabStop = false;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
             // 
@@ -510,6 +505,7 @@ namespace PackingApplication
             this.prowner.Name = "prowner";
             this.prowner.Size = new System.Drawing.Size(81, 17);
             this.prowner.TabIndex = 1;
+            this.prowner.TabStop = false;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
             // 
@@ -523,6 +519,7 @@ namespace PackingApplication
             this.prdate.Name = "prdate";
             this.prdate.Size = new System.Drawing.Size(73, 17);
             this.prdate.TabIndex = 2;
+            this.prdate.TabStop = false;
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prdate.UseVisualStyleBackColor = true;
@@ -537,6 +534,7 @@ namespace PackingApplication
             this.pruser.Name = "pruser";
             this.pruser.Size = new System.Drawing.Size(72, 17);
             this.pruser.TabIndex = 3;
+            this.pruser.TabStop = false;
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
@@ -551,6 +549,7 @@ namespace PackingApplication
             this.prhindi.Name = "prhindi";
             this.prhindi.Size = new System.Drawing.Size(108, 17);
             this.prhindi.TabIndex = 4;
+            this.prhindi.TabStop = false;
             this.prhindi.Text = "Print Hindi Words";
             this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prhindi.UseVisualStyleBackColor = true;
@@ -565,6 +564,7 @@ namespace PackingApplication
             this.prwtps.Name = "prwtps";
             this.prwtps.Size = new System.Drawing.Size(87, 17);
             this.prwtps.TabIndex = 6;
+            this.prwtps.TabStop = false;
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
@@ -579,6 +579,7 @@ namespace PackingApplication
             this.prqrcode.Name = "prqrcode";
             this.prqrcode.Size = new System.Drawing.Size(94, 17);
             this.prqrcode.TabIndex = 5;
+            this.prqrcode.TabStop = false;
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
@@ -970,6 +971,20 @@ namespace PackingApplication
             this.panel21.Size = new System.Drawing.Size(175, 25);
             this.panel21.TabIndex = 0;
             // 
+            // delete
+            // 
+            this.delete.BackColor = System.Drawing.SystemColors.Highlight;
+            this.delete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.delete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.delete.Location = new System.Drawing.Point(0, 0);
+            this.delete.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(81, 24);
+            this.delete.TabIndex = 123;
+            this.delete.Text = "Delete";
+            this.delete.UseVisualStyleBackColor = false;
+            // 
             // cancelbtn
             // 
             this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -1038,14 +1053,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1215,7 +1230,6 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(177, 21);
             this.BoxItemList.TabIndex = 3;
-            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -1502,7 +1516,6 @@ namespace PackingApplication
             this.OwnerList.Name = "OwnerList";
             this.OwnerList.Size = new System.Drawing.Size(79, 21);
             this.OwnerList.TabIndex = 3;
-            this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
             // 
             // owner
             // 
@@ -1634,7 +1647,6 @@ namespace PackingApplication
             this.LineNoList.Name = "LineNoList";
             this.LineNoList.Size = new System.Drawing.Size(42, 21);
             this.LineNoList.TabIndex = 1;
-            this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             // 
             // linenoerror
             // 
@@ -1668,7 +1680,6 @@ namespace PackingApplication
             this.DeptList.Name = "DeptList";
             this.DeptList.Size = new System.Drawing.Size(48, 21);
             this.DeptList.TabIndex = 2;
-            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
             // 
             // department
             // 
@@ -1817,7 +1828,6 @@ namespace PackingApplication
             this.MergeNoList.Name = "MergeNoList";
             this.MergeNoList.Size = new System.Drawing.Size(42, 21);
             this.MergeNoList.TabIndex = 4;
-            this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             // 
             // mergenoerror
             // 
@@ -1874,7 +1884,7 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -1950,14 +1960,14 @@ namespace PackingApplication
             // 
             // shadename
             // 
-            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.shadename.Location = new System.Drawing.Point(43, -3);
             this.shadename.MaximumSize = new System.Drawing.Size(200, 0);
             this.shadename.Name = "shadename";
-            this.shadename.Size = new System.Drawing.Size(63, 17);
+            this.shadename.Size = new System.Drawing.Size(0, 16);
             this.shadename.TabIndex = 5;
             this.shadename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.shadename.UseCompatibleTextRendering = true;
@@ -2289,6 +2299,7 @@ namespace PackingApplication
             this.prtwist.Name = "prtwist";
             this.prtwist.Size = new System.Drawing.Size(75, 17);
             this.prtwist.TabIndex = 0;
+            this.prtwist.TabStop = false;
             this.prtwist.Text = "Print Twist";
             this.prtwist.UseVisualStyleBackColor = true;
             // 
@@ -2571,20 +2582,6 @@ namespace PackingApplication
             this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
-            // 
-            // delete
-            // 
-            this.delete.BackColor = System.Drawing.SystemColors.Highlight;
-            this.delete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.delete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.delete.Location = new System.Drawing.Point(0, 0);
-            this.delete.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(81, 24);
-            this.delete.TabIndex = 123;
-            this.delete.Text = "Delete";
-            this.delete.UseVisualStyleBackColor = false;
             // 
             // DeleteChipsPackingForm
             // 

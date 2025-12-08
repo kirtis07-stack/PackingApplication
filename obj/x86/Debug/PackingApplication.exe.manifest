@@ -918,14 +918,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3695072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3709408">
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>E3ToHZLpxOGWmtC7tZGArkoFg1kgvRLZPuZoWzboDWo=</dsig:DigestValue>
+        <dsig:DigestValue>AJ2b8nND6yNekawUIPpxbUFJGAyzO/D1QtufL4JKrvI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

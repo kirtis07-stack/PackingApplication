@@ -1269,10 +1269,10 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY RefreshGradewiseGrid - Start : " + DateTime.Now);
 
-            if (QualityList.SelectedValue != null)
+            if (productionRequest.QualityId != 0)
             {
                 balanceQty = 0;
-                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
@@ -3167,7 +3167,7 @@ namespace PackingApplication
 
         private void AdjustNameByCharCount()
         {
-            Log.writeMessage("AdjustNameByCharCount - Start : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - Start : " + DateTime.Now);
 
             int shadeCharCount = shadename.Text.Length;
 
@@ -3192,7 +3192,7 @@ namespace PackingApplication
                 itemname.Location = new System.Drawing.Point(38, 5);
             }
 
-            Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - End : " + DateTime.Now);
         }
 
         private void ResetDependentDropdownValues()
