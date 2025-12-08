@@ -828,6 +828,8 @@ namespace PackingApplication
             {
                 frdenier.Text = "0";
                 updenier.Text = "0";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 return;
             }
             lblLoading.Visible = true;
@@ -2343,6 +2345,9 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 prodtype.Text = "";
+                frwt.Text = "0";
+                upwt.Text = "0";
+                remarks.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 LoadDropdowns();

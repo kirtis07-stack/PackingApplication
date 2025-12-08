@@ -984,6 +984,8 @@ namespace PackingApplication
             {
                 frdenier.Text = "0";
                 updenier.Text = "0";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 return;
             }
            
@@ -2839,7 +2841,6 @@ namespace PackingApplication
                 boxpalletitemwt.Text = "0";
                 boxpalletstock.Text = "0";
                 copsitemwt.Text = "0";
-                boxpalletitemwt.Text = "0";
                 frdenier.Text = "0";
                 updenier.Text = "0";
                 deniervalue.Text = "0";
@@ -2850,8 +2851,8 @@ namespace PackingApplication
                 shadecd.Text = "";
                 prodtype.Text = "";
                 twistvalue.Text = "";
-                frwt.Text = "";
-                upwt.Text = "";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 remarks.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
