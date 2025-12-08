@@ -478,17 +478,16 @@ namespace PackingApplication
             // 
             // remarks
             // 
+            this.remarks.AcceptsReturn = true;
             this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(56, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
+            this.remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.remarks.Size = new System.Drawing.Size(132, 28);
             this.remarks.TabIndex = 5;
-            this.remarks.WordWrap = true;
-            this.remarks.ScrollBars = ScrollBars.Vertical;
-            this.remarks.AcceptsReturn = true;
             // 
             // scalemodel
             // 
@@ -509,9 +508,8 @@ namespace PackingApplication
             this.QualityList.Location = new System.Drawing.Point(40, 0);
             this.QualityList.Margin = new System.Windows.Forms.Padding(2);
             this.QualityList.Name = "QualityList";
-            this.QualityList.Size = new System.Drawing.Size(43, 21);
+            this.QualityList.Size = new System.Drawing.Size(42, 21);
             this.QualityList.TabIndex = 6;
-            this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
             // 
             // PackSizeList
             // 
@@ -524,7 +522,6 @@ namespace PackingApplication
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(57, 21);
             this.PackSizeList.TabIndex = 1;
-            this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
             // 
             // WindingTypeList
             // 
@@ -537,7 +534,6 @@ namespace PackingApplication
             this.WindingTypeList.Name = "WindingTypeList";
             this.WindingTypeList.Size = new System.Drawing.Size(97, 21);
             this.WindingTypeList.TabIndex = 7;
-            this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
             // 
             // ComPortList
             // 
@@ -550,7 +546,6 @@ namespace PackingApplication
             this.ComPortList.Name = "ComPortList";
             this.ComPortList.Size = new System.Drawing.Size(22, 21);
             this.ComPortList.TabIndex = 1;
-            this.ComPortList.SelectedIndexChanged += new System.EventHandler(this.ComPortList_SelectedIndexChanged);
             // 
             // WeighingList
             // 
@@ -563,7 +558,6 @@ namespace PackingApplication
             this.WeighingList.Name = "WeighingList";
             this.WeighingList.Size = new System.Drawing.Size(24, 21);
             this.WeighingList.TabIndex = 2;
-            this.WeighingList.SelectedIndexChanged += new System.EventHandler(this.WeighingList_SelectedIndexChanged);
             // 
             // SaleOrderList
             // 
@@ -576,7 +570,6 @@ namespace PackingApplication
             this.SaleOrderList.Name = "SaleOrderList";
             this.SaleOrderList.Size = new System.Drawing.Size(118, 21);
             this.SaleOrderList.TabIndex = 5;
-            this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
             // 
             // prcompany
             // 
@@ -588,6 +581,7 @@ namespace PackingApplication
             this.prcompany.Name = "prcompany";
             this.prcompany.Size = new System.Drawing.Size(94, 17);
             this.prcompany.TabIndex = 0;
+            this.prcompany.TabStop = false;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
             // 
@@ -599,6 +593,7 @@ namespace PackingApplication
             this.prowner.Name = "prowner";
             this.prowner.Size = new System.Drawing.Size(81, 17);
             this.prowner.TabIndex = 1;
+            this.prowner.TabStop = false;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
             // 
@@ -612,6 +607,7 @@ namespace PackingApplication
             this.prdate.Name = "prdate";
             this.prdate.Size = new System.Drawing.Size(73, 17);
             this.prdate.TabIndex = 2;
+            this.prdate.TabStop = false;
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prdate.UseVisualStyleBackColor = true;
@@ -626,6 +622,7 @@ namespace PackingApplication
             this.pruser.Name = "pruser";
             this.pruser.Size = new System.Drawing.Size(72, 17);
             this.pruser.TabIndex = 3;
+            this.pruser.TabStop = false;
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
@@ -640,6 +637,7 @@ namespace PackingApplication
             this.prwtps.Name = "prwtps";
             this.prwtps.Size = new System.Drawing.Size(87, 17);
             this.prwtps.TabIndex = 6;
+            this.prwtps.TabStop = false;
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
@@ -654,6 +652,7 @@ namespace PackingApplication
             this.prqrcode.Name = "prqrcode";
             this.prqrcode.Size = new System.Drawing.Size(94, 17);
             this.prqrcode.TabIndex = 5;
+            this.prqrcode.TabStop = false;
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
@@ -864,7 +863,6 @@ namespace PackingApplication
             this.addqty.TabIndex = 3;
             this.addqty.Text = "Add";
             this.addqty.UseVisualStyleBackColor = false;
-            this.addqty.Click += new System.EventHandler(this.addqty_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -1682,7 +1680,6 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(150, 21);
             this.BoxItemList.TabIndex = 3;
-            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
             // 
             // panel53
             // 
@@ -1798,7 +1795,6 @@ namespace PackingApplication
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(150, 21);
             this.CopsItemList.TabIndex = 2;
-            this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
             // 
             // copssize
             // 
@@ -2096,7 +2092,6 @@ namespace PackingApplication
             this.OwnerList.Name = "OwnerList";
             this.OwnerList.Size = new System.Drawing.Size(57, 21);
             this.OwnerList.TabIndex = 4;
-            this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
             // 
             // owner
             // 
@@ -2374,9 +2369,8 @@ namespace PackingApplication
             this.LineNoList.Location = new System.Drawing.Point(40, 0);
             this.LineNoList.Margin = new System.Windows.Forms.Padding(2);
             this.LineNoList.Name = "LineNoList";
-            this.LineNoList.Size = new System.Drawing.Size(43, 21);
+            this.LineNoList.Size = new System.Drawing.Size(42, 21);
             this.LineNoList.TabIndex = 1;
-            this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
             // 
             // linenoerror
             // 
@@ -2410,7 +2404,6 @@ namespace PackingApplication
             this.DeptList.Name = "DeptList";
             this.DeptList.Size = new System.Drawing.Size(45, 21);
             this.DeptList.TabIndex = 2;
-            this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
             // 
             // department
             // 
@@ -2522,9 +2515,8 @@ namespace PackingApplication
             this.MergeNoList.Location = new System.Drawing.Point(40, 0);
             this.MergeNoList.Margin = new System.Windows.Forms.Padding(2);
             this.MergeNoList.Name = "MergeNoList";
-            this.MergeNoList.Size = new System.Drawing.Size(43, 21);
+            this.MergeNoList.Size = new System.Drawing.Size(42, 21);
             this.MergeNoList.TabIndex = 4;
-            this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
             // 
             // mergenoerror
             // 
@@ -2581,7 +2573,7 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2617,14 +2609,14 @@ namespace PackingApplication
             // 
             // shadename
             // 
-            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.shadename.Location = new System.Drawing.Point(43, -3);
             this.shadename.MaximumSize = new System.Drawing.Size(200, 0);
             this.shadename.Name = "shadename";
-            this.shadename.Size = new System.Drawing.Size(63, 17);
+            this.shadename.Size = new System.Drawing.Size(0, 16);
             this.shadename.TabIndex = 5;
             this.shadename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.shadename.UseCompatibleTextRendering = true;

@@ -34,9 +34,9 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.packingdate = new System.Windows.Forms.Label();
@@ -603,7 +603,7 @@ namespace PackingApplication
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(57, 21);
             this.PackSizeList.TabIndex = 1;
-            this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
+            this.PackSizeList.SelectionChangeCommitted += new System.EventHandler(this.PackSizeList_SelectionChangeCommitted);
             this.PackSizeList.TextUpdate += new System.EventHandler(this.PackSizeList_TextUpdate);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             this.PackSizeList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -665,7 +665,7 @@ namespace PackingApplication
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(150, 21);
             this.CopsItemList.TabIndex = 2;
-            this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
+            this.CopsItemList.SelectionChangeCommitted += new System.EventHandler(this.CopsItemList_SelectionChangeCommitted);
             this.CopsItemList.TextUpdate += new System.EventHandler(this.CopsItemList_TextUpdate);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
             this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -681,7 +681,7 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(150, 21);
             this.BoxItemList.TabIndex = 3;
-            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.SelectionChangeCommitted += new System.EventHandler(this.BoxItemList_SelectionChangeCommitted);
             this.BoxItemList.TextUpdate += new System.EventHandler(this.BoxItemList_TextUpdate);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
@@ -990,6 +990,7 @@ namespace PackingApplication
             this.PalletTypeList.Name = "PalletTypeList";
             this.PalletTypeList.Size = new System.Drawing.Size(154, 21);
             this.PalletTypeList.TabIndex = 1;
+            this.PalletTypeList.TextUpdate += new System.EventHandler(this.PalletTypeList_TextUpdate);
             this.PalletTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PalletTypeList_KeyDown);
             this.PalletTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -1464,14 +1465,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1536,14 +1537,14 @@ namespace PackingApplication
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.EnableHeadersVisualStyles = false;
@@ -1606,14 +1607,14 @@ namespace PackingApplication
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -2640,7 +2641,7 @@ namespace PackingApplication
             this.MergeNoList.Name = "MergeNoList";
             this.MergeNoList.Size = new System.Drawing.Size(42, 21);
             this.MergeNoList.TabIndex = 4;
-            this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
+            this.MergeNoList.SelectionChangeCommitted += new System.EventHandler(this.MergeNoList_SelectionChangeCommitted);
             this.MergeNoList.TextUpdate += new System.EventHandler(this.MergeNoList_TextUpdate);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
             this.MergeNoList.Leave += new System.EventHandler(this.ComboBox_Leave);

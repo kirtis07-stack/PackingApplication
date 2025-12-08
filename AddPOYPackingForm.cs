@@ -969,9 +969,9 @@ namespace PackingApplication
             Log.writeMessage("POY LinoNoList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void MergeNoList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Log.writeMessage("POY MergeNoList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("POY MergeNoList_SelectionChangeCommitted - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1118,7 +1118,7 @@ namespace PackingApplication
                 suppressEvents = false;
             }
 
-            Log.writeMessage("POY MergeNoList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("POY MergeNoList_SelectionChangeCommitted - End : " + DateTime.Now);
         }
 
         private void MergeNoList_TextUpdate(object sender, EventArgs e)
@@ -1175,17 +1175,24 @@ namespace PackingApplication
             lotsDetailsList = new List<LotsDetailsResponse>();
             LoadDropdowns();
             rowMaterial.Columns.Clear();
+            windinggrid.Columns.Clear();
+            qualityqty.Columns.Clear();
             totalProdQty = 0;
+            prodnbalqty.Text = "";
             selectedSOId = 0;
             totalSOQty = 0;
+            grdsoqty.Text = "";
             balanceQty = 0;
-            //MergeNoList.SelectedIndex = 0;
+            flowLayoutPanel1.Controls.Clear();
+            rowCount = 0;
+            AddHeader();
+
             Log.writeMessage("POY ResetLotValues - End : " + DateTime.Now);
         }
 
-        private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void PackSizeList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Log.writeMessage("POY PackSizeList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("POY PackSizeList_SelectionChangeCommitted - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1221,7 +1228,7 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("POY PackSizeList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("POY PackSizeList_SelectionChangeCommitted - End : " + DateTime.Now);
         }
 
         private void PackSizeList_TextUpdate(object sender, EventArgs e)
@@ -1637,9 +1644,9 @@ namespace PackingApplication
             Log.writeMessage("POY WeighingList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
-        private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void CopsItemList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Log.writeMessage("POY CopsItemList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("POY CopsItemList_SelectionChangeCommitted - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1676,7 +1683,7 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("POY CopsItemList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("POY CopsItemList_SelectionChangeCommitted - End : " + DateTime.Now);
         }
 
         private void CopsItemList_TextUpdate(object sender, EventArgs e)
@@ -1713,9 +1720,9 @@ namespace PackingApplication
             Log.writeMessage("POY CopsItemList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
+        private async void BoxItemList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Log.writeMessage("POY BoxItemList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("POY BoxItemList_SelectionChangeCommitted - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1751,7 +1758,7 @@ namespace PackingApplication
                 lblLoading.Visible = false;
             }
 
-            Log.writeMessage("POY BoxItemList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("POY BoxItemList_SelectionChangeCommitted - End : " + DateTime.Now);
         }
 
         private void BoxItemList_TextUpdate(object sender, EventArgs e)
@@ -2028,6 +2035,39 @@ namespace PackingApplication
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
             }
             Log.writeMessage("POY OwnerList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void PalletTypeList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("POY PalletTypeList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (typedText.Length >= 2)
+            {
+                PalletTypeList.BeginUpdate();
+
+                var palletitemList = _masterService.GetItemList(itemPalletCategoryId, typedText).Result;
+
+                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+
+                PalletTypeList.TextUpdate -= PalletTypeList_TextUpdate;
+
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.DataSource = palletitemList;
+                PalletTypeList.Text = typedText;
+
+                PalletTypeList.EndUpdate();
+
+                PalletTypeList.DroppedDown = true;
+                PalletTypeList.SelectionStart = typedText.Length;
+                PalletTypeList.SelectionLength = 0;
+
+                PalletTypeList.TextUpdate += PalletTypeList_TextUpdate;
+            }
+            Log.writeMessage("POY PalletTypeList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async Task<List<string>> getComPortList()
@@ -3537,33 +3577,33 @@ namespace PackingApplication
                 prcompany.Checked = false;
                 prowner.Checked = false;
 
-                DeptList.DataSource = null;
-                DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
-                DeptList.SelectedIndex = 0;
+                //DeptList.DataSource = null;
+                //DeptList.Items.Clear();
+                //DeptList.Items.Add("Select Dept");
+                //DeptList.SelectedIndex = 0;
 
-                MergeNoList.DataSource = null;
-                MergeNoList.Items.Clear();
-                MergeNoList.Items.Add("Select MergeNo");
-                MergeNoList.SelectedIndex = 0;
+                //MergeNoList.DataSource = null;
+                //MergeNoList.Items.Clear();
+                //MergeNoList.Items.Add("Select MergeNo");
+                //MergeNoList.SelectedIndex = 0;
 
-                LineNoList.SelectedIndex = 0;
+                //LineNoList.SelectedIndex = 0;
 
-                PackSizeList.SelectedIndex = 0;
+                //PackSizeList.SelectedIndex = 0;
 
-                CopsItemList.SelectedIndex = 0;
+                //CopsItemList.SelectedIndex = 0;
 
-                BoxItemList.SelectedIndex = 0;
+                //BoxItemList.SelectedIndex = 0;
 
-                ComPortList.SelectedIndex = 0;
+                //ComPortList.SelectedIndex = 0;
 
-                WeighingList.SelectedIndex = 0;
+                //WeighingList.SelectedIndex = 0;
 
-                OwnerList.SelectedIndex = 0;
+                //OwnerList.SelectedIndex = 0;
 
-                PrefixList.SelectedIndex = 0;
+                //PrefixList.SelectedIndex = 0;
 
-                isFormReady = false;
+                //isFormReady = false;
                 spoolno.Text = "";
             }
             finally
