@@ -506,6 +506,7 @@ namespace PackingApplication
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
+                selectLotId = productionResponse.LotId;
 
                 SaleOrderList.DataSource = null;
                 SaleOrderList.Items.Clear();
@@ -515,6 +516,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
+                selectedSOId = productionResponse.SaleOrderItemsId;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -868,7 +870,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
-                            //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
@@ -1292,6 +1294,12 @@ namespace PackingApplication
                     {
                         existing.GrossWt += quality.GrossWt;
                     }
+                }
+
+                totalProdQty = 0;
+                foreach (var proditem in gridList)
+                {
+                    totalProdQty += proditem.GrossWt;
                 }
             }
 
@@ -2823,9 +2831,13 @@ namespace PackingApplication
                 selectedMachineid = 0;
                 selectedItemTypeid = 0;
                 selectedDeptId = 0;
+                selectLotId = 0;
+                selectedSOId = 0;
+                selectedSONumber = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
                 spoolno.Text = "";
+                productionRequest = new ProductionRequest();
             }
             finally
             {

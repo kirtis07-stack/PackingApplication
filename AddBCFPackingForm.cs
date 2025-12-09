@@ -1079,7 +1079,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
-                            //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
@@ -3586,11 +3586,17 @@ namespace PackingApplication
                 totalSOQty = 0;
                 grdsoqty.Text = "";
                 balanceQty = 0;
+                selectedMachineid = 0;
+                selectedItemTypeid = 0;
+                selectedDeptId = 0;
+                selectLotId = 0;
+                selectedSOId = 0;
+                selectedSONumber = "";
                 flowLayoutPanel1.Controls.Clear();
                 rowCount = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
-
+                productionRequest = new ProductionRequest();
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
                 //DeptList.Items.Add("Select Dept");

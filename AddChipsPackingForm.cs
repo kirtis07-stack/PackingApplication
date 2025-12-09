@@ -454,6 +454,7 @@ namespace PackingApplication
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
+                selectLotId = productionResponse.LotId;
 
                 PrefixList.DataSource = null;
                 PrefixList.Items.Clear();
@@ -2431,9 +2432,14 @@ namespace PackingApplication
                 selectedSOId = 0;
                 totalSOQty = 0;
                 balanceQty = 0;
+                selectedMachineid = 0;
+                selectedItemTypeid = 0;
+                selectedDeptId = 0;
+                selectLotId = 0;
+                selectedSOId = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
-
+                productionRequest = new ProductionRequest();
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
                 //DeptList.Items.Add("Select Dept");
