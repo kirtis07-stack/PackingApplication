@@ -560,6 +560,7 @@ namespace PackingApplication
 
             if (LineNoList.SelectedIndex <= 0)
             {
+                selectedMachineid = 0;
                 return;
             }
             suppressEvents = true;          //Freeze dependent dropdown events
@@ -626,9 +627,19 @@ namespace PackingApplication
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
 
-                var machineList = _masterService.GetMachineList("ChipsLot", typedText).Result;
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList("ChipsLot", typedText).Result;
 
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "ChipsLot").Result;
+
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
 
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
 
@@ -809,12 +820,15 @@ namespace PackingApplication
             salelotvalue.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
-            LoadDropdowns();
+            ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             totalProdQty = 0;
             selectedSOId = 0;
             totalSOQty = 0;
             balanceQty = 0;
+            selectLotId = 0;
+            selectedSONumber = "";
+            selectedItemTypeid = 0;
             //MergeNoList.SelectedIndex = 0;
             Log.writeMessage("Chips ResetLotValues - End : " + DateTime.Now);
         }
@@ -1212,6 +1226,7 @@ namespace PackingApplication
 
             if (DeptList.SelectedIndex <= 0)
             {
+                selectedDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -1233,6 +1248,18 @@ namespace PackingApplication
 
                     productionRequest.DepartmentId = selectedDepartmentId;
                     selectedDeptId = selectedDepartmentId;
+
+                    LineNoList.DataSource = null;
+                    LineNoList.Items.Clear();
+                    LineNoList.Items.Add("Select Line No.");
+                    LineNoList.SelectedItem = "Select Line No.";
+
+                    MergeNoList.DataSource = null;
+                    MergeNoList.Items.Clear();
+                    MergeNoList.Items.Add("Select MergeNo");
+                    MergeNoList.SelectedItem = "Select MergeNo";
+
+                    ResetDependentDropdownValues();
                 }
             }
             finally

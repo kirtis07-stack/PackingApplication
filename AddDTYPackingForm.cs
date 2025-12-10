@@ -152,7 +152,7 @@ namespace PackingApplication
             PackSizeList.DisplayMember = "PackSizeName";
             PackSizeList.ValueMember = "PackSizeId";
             PackSizeList.SelectedIndex = 0;
-            
+
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -508,7 +508,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Add("Select Sale Order Item");
                 var salesOrderNumber = "";
                 salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.ItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
-                SaleOrderList.Items.Add(salesOrderNumber);               
+                SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
                 selectedSOId = productionResponse.SaleOrderItemsId;
@@ -551,7 +551,7 @@ namespace PackingApplication
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
                 OwnerList.Items.Add("Select Owner");
-                if(!string.IsNullOrEmpty(productionResponse.OwnerName))
+                if (!string.IsNullOrEmpty(productionResponse.OwnerName))
                 {
                     OwnerList.Items.Add(productionResponse.OwnerName);
                     OwnerList.SelectedItem = productionResponse.OwnerName;
@@ -643,6 +643,7 @@ namespace PackingApplication
 
             if (LineNoList.SelectedIndex <= 0)
             {
+                selectedMachineid = 0;
                 return;
             }
             suppressEvents = true;          //Freeze dependent dropdown events
@@ -650,7 +651,7 @@ namespace PackingApplication
             try
             {
                 if (LineNoList.SelectedValue != null)
-                {                   
+                {
                     MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
                     int selectedMachineId = selectedMachine.MachineId;
                     if (selectedMachineId > 0)
@@ -729,10 +730,19 @@ namespace PackingApplication
             {
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result;
 
-                var machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result;
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result;
 
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
 
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
 
@@ -881,7 +891,7 @@ namespace PackingApplication
                         productionRequest.ProductionDate = dateTimePicker1.Value;
                         lotsDetailsList = _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate).Result;
                         if (lotsDetailsList.Count > 0)
-                        {                            
+                        {
                             rowMaterial.Columns.Clear();
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
                             rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
@@ -966,12 +976,15 @@ namespace PackingApplication
             partyshade.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
-            LoadDropdowns();
+            ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             totalProdQty = 0;
             selectedSOId = 0;
             totalSOQty = 0;
             balanceQty = 0;
+            selectLotId = 0;
+            selectedSONumber = "";
+            selectedItemTypeid = 0;
             //MergeNoList.SelectedIndex = 0;
             Log.writeMessage("DTY ResetLotValues - End : " + DateTime.Now);
         }
@@ -979,7 +992,7 @@ namespace PackingApplication
         private async void PackSizeList_SelectionChangeCommitted(object sender, EventArgs e)
         {
             Log.writeMessage("DTY PackSizeList_SelectionChangeCommitted - Start : " + DateTime.Now);
-           
+
             if (!isFormReady) return;
 
             if (PackSizeList.SelectedIndex <= 0)
@@ -990,7 +1003,7 @@ namespace PackingApplication
                 upwt.Text = "0";
                 return;
             }
-           
+
             lblLoading.Visible = true;
             try
             {
@@ -1027,7 +1040,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if(typedText.Length >= 2)
+            if (typedText.Length >= 2)
             {
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
@@ -1060,7 +1073,7 @@ namespace PackingApplication
             Log.writeMessage("DTY QualityList_SelectedIndexChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
-                       
+
             if (QualityList.SelectedValue != null)
             {
                 QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
@@ -1605,6 +1618,7 @@ namespace PackingApplication
 
             if (DeptList.SelectedIndex <= 0)
             {
+                selectedDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -1616,16 +1630,33 @@ namespace PackingApplication
                     DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
                     int selectedDepartmentId = selectedDepartment.DepartmentId;
 
-                    if (selectedDepartment != null && productionRequest.MachineId == 0)
-                    {
-                        var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId,"TexturisingLot").Result;
+                    //if (selectedDepartment != null && productionRequest.DepartmentId == 0)
+                    //{
+                    //    var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId,"TexturisingLot").Result;
 
-                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                        LineNoList.DataSource = machineList;
-                    }
+                    //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    //    LineNoList.DataSource = machineList;
+                    //}
 
                     productionRequest.DepartmentId = selectedDepartmentId;
                     selectedDeptId = selectedDepartmentId;
+
+                    LineNoList.DataSource = null;
+                    LineNoList.Items.Clear();
+                    LineNoList.Items.Add("Select Line No.");
+                    LineNoList.SelectedItem = "Select Line No.";
+
+                    PrefixList.DataSource = null;
+                    PrefixList.Items.Clear();
+                    PrefixList.Items.Add("Select Prefix");
+                    PrefixList.SelectedItem = "Select Prefix";
+
+                    MergeNoList.DataSource = null;
+                    MergeNoList.Items.Clear();
+                    MergeNoList.Items.Add("Select MergeNo");
+                    MergeNoList.SelectedItem = "Select MergeNo";
+
+                    ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "DTY";
                     //prefixRequest.TransactionTypeId = 5;
@@ -1858,7 +1889,7 @@ namespace PackingApplication
                     {
                         CalculateNetWeight();
                         grosswterror.Visible = false;
-                    }                    
+                    }
                 }
             }
             Log.writeMessage("DTY CalculateTareWeight - End : " + DateTime.Now);
@@ -2007,7 +2038,7 @@ namespace PackingApplication
 
             if (ValidateForm())
             {
-                productionRequest.OwnerId = this.OwnerList.SelectedIndex <=0 ? 0 : productionRequest.OwnerId;
+                productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
                 productionRequest.PackingType = "DTYPacking";
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
@@ -2121,7 +2152,7 @@ namespace PackingApplication
                     // 5️⃣ Clean up temp file
                     File.Delete(tempFile);
                 }
-            
+
             }
             else
             {
@@ -2532,7 +2563,7 @@ namespace PackingApplication
 
             if (sender is System.Windows.Forms.TextBox txt)
             {
-                if (char.IsControl(e.KeyChar))  return;
+                if (char.IsControl(e.KeyChar)) return;
 
                 // Allow digits
                 if (char.IsDigit(e.KeyChar)) return;
@@ -2837,7 +2868,7 @@ namespace PackingApplication
                         ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
 
                     else if (c is DateTimePicker)
-                        ((DateTimePicker)c).Value = DateTime.Now;                    
+                        ((DateTimePicker)c).Value = DateTime.Now;
                 }
                 copyno.Text = "1";
                 spoolwt.Text = "0";

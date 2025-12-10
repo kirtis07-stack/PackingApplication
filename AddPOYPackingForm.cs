@@ -859,6 +859,7 @@ namespace PackingApplication
 
             if (LineNoList.SelectedIndex <= 0)
             {
+                selectedMachineid = 0;
                 return;
             }
             suppressEvents = true;          //Freeze dependent dropdown events
@@ -872,7 +873,7 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
-
+                        selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
                             var deptTask = _masterService.GetDepartmentList(selectedMachine.DepartmentName).Result;
@@ -946,10 +947,19 @@ namespace PackingApplication
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
 
-                var machineList = _masterService.GetMachineList("SpinningLot", typedText).Result;
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList("SpinningLot", typedText).Result;
 
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "SpinningLot").Result;
 
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
 
                 LineNoList.DisplayMember = "MachineName";
@@ -1173,7 +1183,7 @@ namespace PackingApplication
             partyshade.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
-            LoadDropdowns();
+            ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             windinggrid.Columns.Clear();
             qualityqty.Columns.Clear();
@@ -1183,6 +1193,9 @@ namespace PackingApplication
             totalSOQty = 0;
             grdsoqty.Text = "";
             balanceQty = 0;
+            selectLotId = 0;
+            selectedSONumber = "";
+            selectedItemTypeid = 0;
             flowLayoutPanel1.Controls.Clear();
             rowCount = 0;
             AddHeader();
@@ -1873,11 +1886,14 @@ namespace PackingApplication
 
             if (!isFormReady) return;
 
+            if (suppressEvents) return;
+
             if (DeptList.SelectedIndex <= 0)
             {
+                selectedDeptId = 0;
                 return;
             }
-
+            suppressEvents = true;
             lblLoading.Visible = true;
             try
             {
@@ -1895,6 +1911,23 @@ namespace PackingApplication
 
                     productionRequest.DepartmentId = selectedDepartmentId;
                     selectedDeptId = selectedDepartmentId;
+
+                    LineNoList.DataSource = null;
+                    LineNoList.Items.Clear();
+                    LineNoList.Items.Add("Select Line No.");
+                    LineNoList.SelectedItem = "Select Line No.";
+
+                    PrefixList.DataSource = null;
+                    PrefixList.Items.Clear();
+                    PrefixList.Items.Add("Select Prefix");
+                    PrefixList.SelectedItem = "Select Prefix";
+
+                    MergeNoList.DataSource = null;
+                    MergeNoList.Items.Clear();
+                    MergeNoList.Items.Add("Select MergeNo");
+                    MergeNoList.SelectedItem = "Select MergeNo";
+
+                    ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "POY";
                     //prefixRequest.TransactionTypeId = 5;
@@ -1933,6 +1966,7 @@ namespace PackingApplication
             finally
             {
                 lblLoading.Visible = false;
+                suppressEvents = false;
             }
 
             Log.writeMessage("POY DeptList_SelectedIndexChanged - Start : " + DateTime.Now);
