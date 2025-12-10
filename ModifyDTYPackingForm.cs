@@ -447,6 +447,8 @@ namespace PackingApplication
 
         private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
+            Log.writeMessage("DTY LoadProductionDetailsAsync - Start : " + DateTime.Now);
+
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
@@ -504,6 +506,7 @@ namespace PackingApplication
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
+                selectLotId = productionResponse.LotId;
 
                 SaleOrderList.DataSource = null;
                 SaleOrderList.Items.Clear();
@@ -513,6 +516,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
+                selectedSOId = productionResponse.SaleOrderItemsId;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -632,10 +636,14 @@ namespace PackingApplication
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
             }
+
+            Log.writeMessage("DTY LoadProductionDetailsAsync - End : " + DateTime.Now);
         }
 
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY LineNoList_SelectedIndexChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return; // skip during load
 
             if (suppressEvents) return;     //Prevent recursive refresh
@@ -708,6 +716,8 @@ namespace PackingApplication
                 lblLoading.Visible = false;
                 suppressEvents = false;             //Allow events again
             }
+
+            Log.writeMessage("DTY LineNoList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void LinoNoList_TextUpdate(object sender, EventArgs e)
@@ -717,7 +727,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
@@ -860,7 +870,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
-                            //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
@@ -913,7 +923,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -976,6 +986,8 @@ namespace PackingApplication
             {
                 frdenier.Text = "0";
                 updenier.Text = "0";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 return;
             }
 
@@ -1015,7 +1027,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
@@ -1066,7 +1078,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1131,7 +1143,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1224,7 +1236,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1283,6 +1295,12 @@ namespace PackingApplication
                         existing.GrossWt += quality.GrossWt;
                     }
                 }
+
+                totalProdQty = 0;
+                foreach (var proditem in gridList)
+                {
+                    totalProdQty += proditem.GrossWt;
+                }
             }
 
             Log.writeMessage("DTY RefreshGradewiseGrid - End : " + DateTime.Now);
@@ -1290,6 +1308,8 @@ namespace PackingApplication
 
         private async void RefreshLastBoxDetails()
         {
+            Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
+
             var getLastBox = _packingService.getLastBoxDetails("dtypacking").Result;
 
             //lastboxdetails
@@ -1304,10 +1324,14 @@ namespace PackingApplication
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
+
+            Log.writeMessage("DTY RefreshLastBoxDetails - End : " + DateTime.Now);
         }
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY ComPortList_SelectedIndexChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (ComPortList.SelectedValue != null)
@@ -1315,10 +1339,14 @@ namespace PackingApplication
                 var ComPort = ComPortList.SelectedValue.ToString();
                 comPort = ComPortList.SelectedValue.ToString();
             }
+
+            Log.writeMessage("DTY ComPortList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY WeighingList_SelectedIndexChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (WeighingList.SelectedValue != null)
@@ -1338,6 +1366,8 @@ namespace PackingApplication
                 }
 
             }
+
+            Log.writeMessage("DTY WeighingList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private async void CopsItemList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1389,7 +1419,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 CopsItemList.BeginUpdate();
                 //CopsItemList.Items.Clear();
@@ -1465,7 +1495,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
@@ -1574,7 +1604,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
@@ -1641,7 +1671,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
@@ -1670,6 +1700,8 @@ namespace PackingApplication
 
         private async Task<List<string>> getComPortList()
         {
+            Log.writeMessage("DTY getComPortList - Start : " + DateTime.Now);
+
             var getComPortType = new List<string>
             {
                 "Select Com Port",
@@ -1679,11 +1711,15 @@ namespace PackingApplication
                 "COM4"
             };
 
+            Log.writeMessage("DTY getComPortList - End : " + DateTime.Now);
+
             return getComPortType;
         }
 
         private async Task<List<WeighingItem>> GetWeighingList()
         {
+            Log.writeMessage("DTY GetWeighingList - Start : " + DateTime.Now);
+
             var getWeighingScale = new List<WeighingItem>
             {
                 new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
@@ -1693,11 +1729,15 @@ namespace PackingApplication
                 new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
 
+            Log.writeMessage("DTY GetWeighingList - End : " + DateTime.Now);
+
             return getWeighingScale;
         }
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY SpoolWeight_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 CalculateTareWeight();
@@ -1706,10 +1746,14 @@ namespace PackingApplication
             {
                 CalculateTareWeight();
             }
+
+            Log.writeMessage("DTY SpoolWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY PalletWeight_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 CalculateTareWeight();
@@ -1718,10 +1762,14 @@ namespace PackingApplication
             {
                 CalculateTareWeight();
             }
+
+            Log.writeMessage("DTY PalletWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateTareWeight()
         {
+            Log.writeMessage("DTY CalculateTareWeight - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(spoolwt.Text, out num1);
@@ -1740,10 +1788,13 @@ namespace PackingApplication
                     }
                 }
             }
+            Log.writeMessage("DTY CalculateTareWeight - End : " + DateTime.Now);
         }
 
         private void GrossWeight_Validating(object sender, CancelEventArgs e)
         {
+            Log.writeMessage("DTY GrossWeight_Validating - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
@@ -1767,10 +1818,14 @@ namespace PackingApplication
                     }
                 }
             }
+
+            Log.writeMessage("DTY GrossWeight_Validating - End : " + DateTime.Now);
         }
 
         private void CalculateNetWeight()
         {
+            Log.writeMessage("DTY CalculateNetWeight - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(grosswtno.Text, out num1);
@@ -1780,16 +1835,25 @@ namespace PackingApplication
                 netwt.Text = (num1 - num2).ToString("F3");
                 CalculateWeightPerCop();
             }
+
+            Log.writeMessage("DTY CalculateNetWeight - End : " + DateTime.Now);
         }
 
         private void NetWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY NetWeight_TextChanged - Start : " + DateTime.Now);
+
             CalculateWeightPerCop();
+
+            Log.writeMessage("DTY NetWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY SpoolNo_TextChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
+
             if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
@@ -1809,10 +1873,14 @@ namespace PackingApplication
                     spoolnoerror.Visible = false;
                 }
             }
+
+            Log.writeMessage("DTY SpoolNo_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateWeightPerCop()
         {
+            Log.writeMessage("DTY CalculateWeightPerCop - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(netwt.Text, out num1);
@@ -1821,10 +1889,14 @@ namespace PackingApplication
             {
                 wtpercop.Text = (num1 / num2).ToString("F3");
             }
+
+            Log.writeMessage("DTY CalculateWeightPerCop - End : " + DateTime.Now);
         }
 
         private void CopyNos_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY CopyNos_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(copyno.Text))
             {
                 copynoerror.Visible = true;
@@ -1834,20 +1906,32 @@ namespace PackingApplication
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
+
+            Log.writeMessage("DTY CopyNos_TextChanged - End : " + DateTime.Now);
         }
 
         private async void submit_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY submit_Click - Start : " + DateTime.Now);
+
             submitForm(false);
+
+            Log.writeMessage("DTY submit_Click - End : " + DateTime.Now);
         }
 
         private async void saveprint_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY saveprint_Click - Start : " + DateTime.Now);
+
             submitForm(true);
+
+            Log.writeMessage("DTY saveprint_Click - End : " + DateTime.Now);
         }
 
         public async void submitForm(bool isPrint)
         {
+            Log.writeMessage("DTY submitForm - Start : " + DateTime.Now);
+
             if (ValidateForm())
             {
                 productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
@@ -1892,10 +1976,14 @@ namespace PackingApplication
 
                 ProductionResponse result = SubmitPacking(productionRequest, isPrint);
             }
+
+            Log.writeMessage("DTY submitForm - End : " + DateTime.Now);
         }
 
         public ProductionResponse SubmitPacking(ProductionRequest productionRequest, bool isPrint)
         {
+            Log.writeMessage("DTY SubmitPacking - Start : " + DateTime.Now);
+
             submit.Enabled = false;
             saveprint.Enabled = false;
             ProductionResponse result = new ProductionResponse();
@@ -2023,11 +2111,16 @@ namespace PackingApplication
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
+            Log.writeMessage("DTY SubmitPacking - End : " + DateTime.Now);
+
             return result;
         }
 
         private bool ValidateForm()
         {
+            Log.writeMessage("DTY ValidateForm - Start : " + DateTime.Now);
+
             bool isValid = true;
 
             if (LineNoList.SelectedIndex <= 0)
@@ -2146,151 +2239,267 @@ namespace PackingApplication
                 MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
+
+            Log.writeMessage("DTY ValidateForm - End : " + DateTime.Now);
             return isValid;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY btnCancel_Click - Start : " + DateTime.Now);
+
             ResetForm(this);
+
+            Log.writeMessage("DTY btnCancel_Click - End : " + DateTime.Now);
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY qualityqty_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+
+            Log.writeMessage("DTY qualityqty_Paint - End : " + DateTime.Now);
         }
 
         private void windinggrid_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY windinggrid_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+
+            Log.writeMessage("DTY windinggrid_Paint - End : " + DateTime.Now);
         }
 
         private void ordertable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY ordertable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY ordertable_Paint - End : " + DateTime.Now);
         }
 
         private void packagingtable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY packagingtable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY packagingtable_Paint - End : " + DateTime.Now);
         }
 
         private void weightable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY weightable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY weightable_Paint - End : " + DateTime.Now);
         }
 
         private void reviewtable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY reviewtable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY reviewtable_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY machineboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY machineboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY machineboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY machineboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY weighboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY weighboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY weighboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY weighboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY packagingboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY packagingboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY packagingboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY packagingboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY lastboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY lastboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxcopspanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxcopspanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxtarepanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxtarepanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxgrosswtpanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxgrosswtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxnetwtpanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxnetwtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY printingdetailslayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY printingdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY printingdetailsheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY printingdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY palletdetailslayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY palletdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY palletdetailsheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY palletdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY machineboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(machineboxheader, 8);
+
+            Log.writeMessage("DTY machineboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY weighboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(weighboxheader, 8);
+
+            Log.writeMessage("DTY weighboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY packagingboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(packagingboxheader, 8);
+
+            Log.writeMessage("DTY packagingboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY lastboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(lastboxheader, 8);
+
+            Log.writeMessage("DTY lastboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY printingdetailsheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
+
+            Log.writeMessage("DTY printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Log.writeMessage("DTY textBox1_KeyPress - Start : " + DateTime.Now);
+
             if (sender is System.Windows.Forms.TextBox txt)
             {
                 // Allow control keys (backspace, delete, etc.)
@@ -2308,10 +2517,14 @@ namespace PackingApplication
                 // Block everything else
                 e.Handled = true;
             }
+
+            Log.writeMessage("DTY textBox1_KeyPress - End : " + DateTime.Now);
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY textBox1_KeyDown - Start : " + DateTime.Now);
+
             // Select all text when the textbox receives focus via keyboard (Enter key)
             if (e.KeyCode == Keys.Enter)
             {
@@ -2323,18 +2536,26 @@ namespace PackingApplication
                 ((System.Windows.Forms.TextBox)sender).SelectAll();
                 ((System.Windows.Forms.TextBox)sender).Clear(); // clear existing value before paste
             }
+
+            Log.writeMessage("DTY textBox1_KeyDown - End : " + DateTime.Now);
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY textBox1_Enter - Start : " + DateTime.Now);
+
             System.Windows.Forms.TextBox tb = sender as System.Windows.Forms.TextBox;
 
             if (!string.IsNullOrEmpty(tb.Text))
                 tb.SelectAll();
+
+            Log.writeMessage("DTY textBox1_Enter - End : " + DateTime.Now);
         }
 
         private void checkBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY checkBox1_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.Enter)
             {
                 System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
@@ -2349,10 +2570,14 @@ namespace PackingApplication
                 // For Tab (and other keys), don't mark as handled
                 e.Handled = false;
             }
+
+            Log.writeMessage("DTY checkBox1_KeyDown - End : " + DateTime.Now);
         }
 
         private void LineNoList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY LineNoList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 LineNoList.DroppedDown = true; // Open the dropdown list
@@ -2362,10 +2587,14 @@ namespace PackingApplication
             {
                 LineNoList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY LineNoList_KeyDown - End : " + DateTime.Now);
         }
 
         private void MergeNoList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY MergeNoList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 MergeNoList.DroppedDown = true; // Open the dropdown list
@@ -2375,10 +2604,14 @@ namespace PackingApplication
             {
                 MergeNoList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY MergeNoList_KeyDown - End : " + DateTime.Now);
         }
 
         private void PackSizeList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY PackSizeList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 PackSizeList.DroppedDown = true; // Open the dropdown list
@@ -2388,10 +2621,14 @@ namespace PackingApplication
             {
                 PackSizeList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY PackSizeList_KeyDown - End : " + DateTime.Now);
         }
 
         private void QualityList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY QualityList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 QualityList.DroppedDown = true; // Open the dropdown list
@@ -2401,10 +2638,14 @@ namespace PackingApplication
             {
                 QualityList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY QualityList_KeyDown - End : " + DateTime.Now);
         }
 
         private void SaleOrderList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY SaleOrderList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 SaleOrderList.DroppedDown = true; // Open the dropdown list
@@ -2414,10 +2655,14 @@ namespace PackingApplication
             {
                 SaleOrderList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY SaleOrderList_KeyDown - End : " + DateTime.Now);
         }
 
         private void WindingTypeList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY WindingTypeList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 WindingTypeList.DroppedDown = true; // Open the dropdown list
@@ -2427,10 +2672,14 @@ namespace PackingApplication
             {
                 WindingTypeList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY WindingTypeList_KeyDown - End : " + DateTime.Now);
         }
 
         private void ComPortList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY ComPortList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 ComPortList.DroppedDown = true; // Open the dropdown list
@@ -2440,10 +2689,14 @@ namespace PackingApplication
             {
                 ComPortList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY ComPortList_KeyDown - End : " + DateTime.Now);
         }
 
         private void WeighingList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY WeighingList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 WeighingList.DroppedDown = true; // Open the dropdown list
@@ -2453,10 +2706,14 @@ namespace PackingApplication
             {
                 WeighingList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY WeighingList_KeyDown - End : " + DateTime.Now);
         }
 
         private void CopsItemList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY CopsItemList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 CopsItemList.DroppedDown = true; // Open the dropdown list
@@ -2466,10 +2723,14 @@ namespace PackingApplication
             {
                 CopsItemList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY CopsItemList_KeyDown - End : " + DateTime.Now);
         }
 
         private void BoxItemList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY BoxItemList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 BoxItemList.DroppedDown = true; // Open the dropdown list
@@ -2479,10 +2740,14 @@ namespace PackingApplication
             {
                 BoxItemList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY BoxItemList_KeyDown - End : " + DateTime.Now);
         }
 
         private void DeptList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY DeptList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 DeptList.DroppedDown = true; // Open the dropdown list
@@ -2492,10 +2757,14 @@ namespace PackingApplication
             {
                 DeptList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY DeptList_KeyDown - End : " + DateTime.Now);
         }
 
         private void OwnerList_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY OwnerList_KeyDown - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
             {
                 OwnerList.DroppedDown = true; // Open the dropdown list
@@ -2505,10 +2774,14 @@ namespace PackingApplication
             {
                 OwnerList.DroppedDown = false;
             }
+
+            Log.writeMessage("DTY OwnerList_KeyDown - End : " + DateTime.Now);
         }
 
         private void ResetForm(Control parent)
         {
+            Log.writeMessage("DTY ResetForm - Start : " + DateTime.Now);
+
             lblLoading.Visible = true;
             try
             {
@@ -2544,8 +2817,8 @@ namespace PackingApplication
                 shadecd.Text = "";
                 prodtype.Text = "";
                 twistvalue.Text = "";
-                frwt.Text = "";
-                upwt.Text = "";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 remarks.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
@@ -2558,9 +2831,13 @@ namespace PackingApplication
                 selectedMachineid = 0;
                 selectedItemTypeid = 0;
                 selectedDeptId = 0;
+                selectLotId = 0;
+                selectedSOId = 0;
+                selectedSONumber = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
                 spoolno.Text = "";
+                productionRequest = new ProductionRequest();
             }
             finally
             {
@@ -2592,10 +2869,14 @@ namespace PackingApplication
                     }
                 }
             }
+
+            Log.writeMessage("DTY ResetForm - End : " + DateTime.Now);
         }
 
         private void prcompany_CheckedChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY prcompany_CheckedChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (prcompany.Checked)
@@ -2603,10 +2884,14 @@ namespace PackingApplication
                 prowner.Checked = false;
                 prcompany.Focus();       // keep focus on the current one
             }
+
+            Log.writeMessage("DTY prcompany_CheckedChanged - End : " + DateTime.Now);
         }
 
         private void prowner_CheckedChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY prowner_CheckedChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (prowner.Checked)
@@ -2614,10 +2899,14 @@ namespace PackingApplication
                 prcompany.Checked = false;
                 prowner.Focus();           // keep focus
             }
+
+            Log.writeMessage("DTY prowner_CheckedChanged - End : " + DateTime.Now);
         }
 
         private void txtNumeric_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Log.writeMessage("DTY txtNumeric_KeyPress - Start : " + DateTime.Now);
+
             System.Windows.Forms.TextBox txt = sender as System.Windows.Forms.TextBox;
 
             // Allow control keys (Backspace, Delete, etc.)
@@ -2648,32 +2937,14 @@ namespace PackingApplication
                     e.Handled = true;
                 }
             }
-        }
 
-        private void spoolNo_Enter(object sender, EventArgs e)
-        {
-            // When control gets focus
-            if (spoolno.Text == "0")
-            {
-                spoolno.Clear(); // remove the default value
-            }
-            else
-            {
-                ((System.Windows.Forms.TextBox)sender).SelectAll();
-            }
-        }
-
-        private void spoolNo_Leave(object sender, EventArgs e)
-        {
-            // When control loses focus
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                spoolno.Text = "0"; // restore default
-            }
+            Log.writeMessage("DTY txtNumeric_KeyPress - End : " + DateTime.Now);
         }
 
         private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("DTY Control_EnterKeyMoveNext - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // Prevent the "ding" sound
@@ -2691,10 +2962,44 @@ namespace PackingApplication
                     this.SelectNextControl(current, true, true, true, true);
                 }
             }
+
+            Log.writeMessage("DTY Control_EnterKeyMoveNext - End : " + DateTime.Now);
+        }
+
+        private void spoolNo_Enter(object sender, EventArgs e)
+        {
+            Log.writeMessage("DTY spoolNo_Enter - Start : " + DateTime.Now);
+
+            // When control gets focus
+            if (spoolno.Text == "0")
+            {
+                spoolno.Clear(); // remove the default value
+            }
+            else
+            {
+                ((System.Windows.Forms.TextBox)sender).SelectAll();
+            }
+
+            Log.writeMessage("DTY spoolNo_Enter - End : " + DateTime.Now);
+        }
+
+        private void spoolNo_Leave(object sender, EventArgs e)
+        {
+            Log.writeMessage("DTY spoolNo_Leave - Start : " + DateTime.Now);
+
+            // When control loses focus
+            if (string.IsNullOrWhiteSpace(spoolno.Text))
+            {
+                spoolno.Text = "0"; // restore default
+            }
+
+            Log.writeMessage("DTY spoolNo_Leave - End : " + DateTime.Now);
         }
 
         private void ShowCustomMessage(string boxNo)
         {
+            Log.writeMessage("DTY ShowCustomMessage - Start : " + DateTime.Now);
+
             using (Form msgForm = new Form())
             {
                 msgForm.Width = 420;
@@ -2737,10 +3042,14 @@ namespace PackingApplication
                 msgForm.AcceptButton = btnOk;
                 msgForm.ShowDialog();
             }
+
+            Log.writeMessage("DTY ShowCustomMessage - End : " + DateTime.Now);
         }
 
         private void ComboBox_Leave(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY ComboBox_Leave - Start : " + DateTime.Now);
+
             System.Windows.Forms.ComboBox cmb = sender as System.Windows.Forms.ComboBox;
             string typedText = cmb.Text.Trim();
 
@@ -2760,22 +3069,32 @@ namespace PackingApplication
                 // Optionally clear or handle custom entry
                 cmb.SelectedIndex = 0;
             }
+
+            Log.writeMessage("DTY ComboBox_Leave - End : " + DateTime.Now);
         }
         private void txtNumeric_Leave(object sender, EventArgs e)
         {
-            FormatToThreeDecimalPlaces(sender as TextBox);
+            Log.writeMessage("DTY txtNumeric_Leave - Start : " + DateTime.Now);
+
+            FormatToThreeDecimalPlaces(sender as System.Windows.Forms.TextBox);
+
+            Log.writeMessage("DTY txtNumeric_Leave - End : " + DateTime.Now);
         }
-        private void FormatToThreeDecimalPlaces(TextBox textBox)
+        private void FormatToThreeDecimalPlaces(System.Windows.Forms.TextBox textBox)
         {
+            Log.writeMessage("DTY FormatToThreeDecimalPlaces - Start : " + DateTime.Now);
+
             if (decimal.TryParse(textBox.Text, out decimal value))
                 textBox.Text = value.ToString("0.000");
             else
                 textBox.Text = "0.000"; // optional fallback
+
+            Log.writeMessage("DTY FormatToThreeDecimalPlaces - End : " + DateTime.Now);
         }
 
         private void AdjustNameByCharCount()
         {
-            Log.writeMessage("AdjustNameByCharCount - Start : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - Start : " + DateTime.Now);
 
             int shadeCharCount = shadename.Text.Length;
 
@@ -2800,11 +3119,13 @@ namespace PackingApplication
                 itemname.Location = new System.Drawing.Point(38, 5);
             }
 
-            Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - End : " + DateTime.Now);
         }
 
         private void ResetDependentDropdownValues()
         {
+            Log.writeMessage("DTY ResetDependentDropdownValues - Start : " + DateTime.Now);
+
             SaleOrderList.DataSource = null;
             SaleOrderList.Items.Clear();
             SaleOrderList.Items.Add("Select Sale Order Item");
@@ -2819,6 +3140,8 @@ namespace PackingApplication
             WindingTypeList.Items.Clear();
             WindingTypeList.Items.Add("Select Winding Type");
             WindingTypeList.SelectedItem = "Select Winding Type";
+
+            Log.writeMessage("DTY ResetDependentDropdownValues - End : " + DateTime.Now);
         }
     }
 }

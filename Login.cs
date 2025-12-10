@@ -14,7 +14,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static PackingApplication.AddPOYPackingForm;
 using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using System.Configuration;
@@ -42,8 +41,8 @@ namespace PackingApplication
 
             //email.Text = "kirti.shinde@cyberscriptit.com";
             //passwrd.Text = "Kirti@123";
-            email.Text = "sanket.bankar@cyberscriptit.com";
-            passwrd.Text = "Sanket@123";
+            //email.Text = "sanket.bankar@cyberscriptit.com";
+            //passwrd.Text = "Sanket@123";
         }
 
         private void ApplyFonts()

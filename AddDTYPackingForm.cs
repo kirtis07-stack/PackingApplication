@@ -494,6 +494,7 @@ namespace PackingApplication
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
+                selectLotId = productionResponse.LotId;
 
                 PrefixList.DataSource = null;
                 PrefixList.Items.Clear();
@@ -510,6 +511,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Add(salesOrderNumber);               
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
+                selectedSOId = productionResponse.SaleOrderItemsId;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -723,7 +725,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
@@ -867,7 +869,7 @@ namespace PackingApplication
                         {
                             SaleOrderList.SelectedIndex = 1;   // Select the single record
                             SaleOrderList.Enabled = false;     // Disable user selection
-                            //SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
                         }
                         else
                         {
@@ -920,7 +922,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -984,6 +986,8 @@ namespace PackingApplication
             {
                 frdenier.Text = "0";
                 updenier.Text = "0";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 return;
             }
            
@@ -1023,7 +1027,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if(typedText.Length >= 3)
+            if(typedText.Length >= 2)
             {
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
@@ -1075,7 +1079,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1141,7 +1145,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1235,7 +1239,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
@@ -1269,10 +1273,10 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY RefreshGradewiseGrid - Start : " + DateTime.Now);
 
-            if (QualityList.SelectedValue != null)
+            if (productionRequest.QualityId != 0)
             {
                 balanceQty = 0;
-                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
@@ -1294,6 +1298,12 @@ namespace PackingApplication
                     {
                         existing.GrossWt += quality.GrossWt;
                     }
+                }
+
+                totalProdQty = 0;
+                foreach (var proditem in gridList)
+                {
+                    totalProdQty += proditem.GrossWt;
                 }
             }
 
@@ -1412,7 +1422,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 CopsItemList.BeginUpdate();
                 //CopsItemList.Items.Clear();
@@ -1488,7 +1498,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
@@ -1551,7 +1561,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 PrefixList.BeginUpdate();
                 //PrefixList.Items.Clear();
@@ -1667,7 +1677,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
@@ -1734,7 +1744,7 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
-            if (typedText.Length >= 3)
+            if (typedText.Length >= 2)
             {
                 OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
@@ -2839,7 +2849,6 @@ namespace PackingApplication
                 boxpalletitemwt.Text = "0";
                 boxpalletstock.Text = "0";
                 copsitemwt.Text = "0";
-                boxpalletitemwt.Text = "0";
                 frdenier.Text = "0";
                 updenier.Text = "0";
                 deniervalue.Text = "0";
@@ -2850,8 +2859,8 @@ namespace PackingApplication
                 shadecd.Text = "";
                 prodtype.Text = "";
                 twistvalue.Text = "";
-                frwt.Text = "";
-                upwt.Text = "";
+                frwt.Text = "0";
+                upwt.Text = "0";
                 remarks.Text = "";
                 lotResponse = new LotsResponse();
                 lotsDetailsList = new List<LotsDetailsResponse>();
@@ -2864,8 +2873,12 @@ namespace PackingApplication
                 selectedMachineid = 0;
                 selectedItemTypeid = 0;
                 selectedDeptId = 0;
+                selectLotId = 0;
+                selectedSOId = 0;
+                selectedSONumber = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                productionRequest = new ProductionRequest();
 
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
@@ -3167,7 +3180,7 @@ namespace PackingApplication
 
         private void AdjustNameByCharCount()
         {
-            Log.writeMessage("AdjustNameByCharCount - Start : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - Start : " + DateTime.Now);
 
             int shadeCharCount = shadename.Text.Length;
 
@@ -3192,7 +3205,7 @@ namespace PackingApplication
                 itemname.Location = new System.Drawing.Point(38, 5);
             }
 
-            Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - End : " + DateTime.Now);
         }
 
         private void ResetDependentDropdownValues()

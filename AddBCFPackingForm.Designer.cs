@@ -481,18 +481,17 @@ namespace PackingApplication
             // 
             // remarks
             // 
+            this.remarks.AcceptsReturn = true;
             this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(56, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
+            this.remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.remarks.Size = new System.Drawing.Size(132, 28);
             this.remarks.TabIndex = 5;
             this.remarks.Enter += new System.EventHandler(this.textBox1_Enter);
-            this.remarks.WordWrap = true;
-            this.remarks.ScrollBars = ScrollBars.Vertical;
-            this.remarks.AcceptsReturn = true;
             // 
             // scalemodel
             // 
@@ -513,9 +512,10 @@ namespace PackingApplication
             this.QualityList.Location = new System.Drawing.Point(40, 0);
             this.QualityList.Margin = new System.Windows.Forms.Padding(2);
             this.QualityList.Name = "QualityList";
-            this.QualityList.Size = new System.Drawing.Size(43, 21);
+            this.QualityList.Size = new System.Drawing.Size(42, 21);
             this.QualityList.TabIndex = 6;
             this.QualityList.SelectedIndexChanged += new System.EventHandler(this.QualityList_SelectedIndexChanged);
+            this.QualityList.TextUpdate += new System.EventHandler(this.QualityList_TextUpdate);
             this.QualityList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.QualityList_KeyDown);
             this.QualityList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -530,7 +530,8 @@ namespace PackingApplication
             this.PackSizeList.Name = "PackSizeList";
             this.PackSizeList.Size = new System.Drawing.Size(57, 21);
             this.PackSizeList.TabIndex = 1;
-            this.PackSizeList.SelectedIndexChanged += new System.EventHandler(this.PackSizeList_SelectedIndexChanged);
+            this.PackSizeList.SelectionChangeCommitted += new System.EventHandler(this.PackSizeList_SelectionChangeCommitted);
+            this.PackSizeList.TextUpdate += new System.EventHandler(this.PackSizeList_TextUpdate);
             this.PackSizeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackSizeList_KeyDown);
             this.PackSizeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -546,6 +547,7 @@ namespace PackingApplication
             this.WindingTypeList.Size = new System.Drawing.Size(97, 21);
             this.WindingTypeList.TabIndex = 7;
             this.WindingTypeList.SelectedIndexChanged += new System.EventHandler(this.WindingTypeList_SelectedIndexChanged);
+            this.WindingTypeList.TextUpdate += new System.EventHandler(this.WindingTypeList_TextUpdate);
             this.WindingTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WindingTypeList_KeyDown);
             this.WindingTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -591,6 +593,7 @@ namespace PackingApplication
             this.SaleOrderList.Size = new System.Drawing.Size(118, 21);
             this.SaleOrderList.TabIndex = 5;
             this.SaleOrderList.SelectedIndexChanged += new System.EventHandler(this.SaleOrderList_SelectedIndexChanged);
+            this.SaleOrderList.TextUpdate += new System.EventHandler(this.SaleOrderList_TextUpdate);
             this.SaleOrderList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SaleOrderList_KeyDown);
             this.SaleOrderList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -604,6 +607,7 @@ namespace PackingApplication
             this.prcompany.Name = "prcompany";
             this.prcompany.Size = new System.Drawing.Size(94, 17);
             this.prcompany.TabIndex = 0;
+            this.prcompany.TabStop = false;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
             this.prcompany.CheckedChanged += new System.EventHandler(this.prcompany_CheckedChanged);
@@ -617,6 +621,7 @@ namespace PackingApplication
             this.prowner.Name = "prowner";
             this.prowner.Size = new System.Drawing.Size(81, 17);
             this.prowner.TabIndex = 1;
+            this.prowner.TabStop = false;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
             this.prowner.CheckedChanged += new System.EventHandler(this.prowner_CheckedChanged);
@@ -632,6 +637,7 @@ namespace PackingApplication
             this.prdate.Name = "prdate";
             this.prdate.Size = new System.Drawing.Size(73, 17);
             this.prdate.TabIndex = 2;
+            this.prdate.TabStop = false;
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prdate.UseVisualStyleBackColor = true;
@@ -647,6 +653,7 @@ namespace PackingApplication
             this.pruser.Name = "pruser";
             this.pruser.Size = new System.Drawing.Size(72, 17);
             this.pruser.TabIndex = 3;
+            this.pruser.TabStop = false;
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
@@ -662,6 +669,7 @@ namespace PackingApplication
             this.prwtps.Name = "prwtps";
             this.prwtps.Size = new System.Drawing.Size(87, 17);
             this.prwtps.TabIndex = 6;
+            this.prwtps.TabStop = false;
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
@@ -677,6 +685,7 @@ namespace PackingApplication
             this.prqrcode.Name = "prqrcode";
             this.prqrcode.Size = new System.Drawing.Size(94, 17);
             this.prqrcode.TabIndex = 5;
+            this.prqrcode.TabStop = false;
             this.prqrcode.Text = "Print QR Code";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
@@ -860,6 +869,7 @@ namespace PackingApplication
             this.PalletTypeList.Name = "PalletTypeList";
             this.PalletTypeList.Size = new System.Drawing.Size(154, 21);
             this.PalletTypeList.TabIndex = 1;
+            this.PalletTypeList.TextUpdate += new System.EventHandler(this.PalletTypeList_TextUpdate);
             this.PalletTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PalletTypeList_KeyDown);
             this.PalletTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -1875,7 +1885,8 @@ namespace PackingApplication
             this.CopsItemList.Name = "CopsItemList";
             this.CopsItemList.Size = new System.Drawing.Size(150, 21);
             this.CopsItemList.TabIndex = 2;
-            this.CopsItemList.SelectedIndexChanged += new System.EventHandler(this.CopsItemList_SelectedIndexChanged);
+            this.CopsItemList.SelectionChangeCommitted += new System.EventHandler(this.CopsItemList_SelectionChangeCommitted);
+            this.CopsItemList.TextUpdate += new System.EventHandler(this.CopsItemList_TextUpdate);
             this.CopsItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopsItemList_KeyDown);
             this.CopsItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2036,7 +2047,8 @@ namespace PackingApplication
             this.BoxItemList.Name = "BoxItemList";
             this.BoxItemList.Size = new System.Drawing.Size(150, 21);
             this.BoxItemList.TabIndex = 3;
-            this.BoxItemList.SelectedIndexChanged += new System.EventHandler(this.BoxItemList_SelectedIndexChanged);
+            this.BoxItemList.SelectionChangeCommitted += new System.EventHandler(this.BoxItemList_SelectionChangeCommitted);
+            this.BoxItemList.TextUpdate += new System.EventHandler(this.BoxItemList_TextUpdate);
             this.BoxItemList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BoxItemList_KeyDown);
             this.BoxItemList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2170,6 +2182,7 @@ namespace PackingApplication
             this.OwnerList.Size = new System.Drawing.Size(57, 21);
             this.OwnerList.TabIndex = 4;
             this.OwnerList.SelectedIndexChanged += new System.EventHandler(this.OwnerList_SelectedIndexChanged);
+            this.OwnerList.TextUpdate += new System.EventHandler(this.OwnerList_TextUpdate);
             this.OwnerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OwnerList_KeyDown);
             this.OwnerList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2449,9 +2462,10 @@ namespace PackingApplication
             this.LineNoList.Location = new System.Drawing.Point(40, 0);
             this.LineNoList.Margin = new System.Windows.Forms.Padding(2);
             this.LineNoList.Name = "LineNoList";
-            this.LineNoList.Size = new System.Drawing.Size(43, 21);
+            this.LineNoList.Size = new System.Drawing.Size(42, 21);
             this.LineNoList.TabIndex = 1;
             this.LineNoList.SelectedIndexChanged += new System.EventHandler(this.LineNoList_SelectedIndexChanged);
+            this.LineNoList.TextUpdate += new System.EventHandler(this.LinoNoList_TextUpdate);
             this.LineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LineNoList_KeyDown);
             this.LineNoList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2488,6 +2502,7 @@ namespace PackingApplication
             this.DeptList.Size = new System.Drawing.Size(45, 21);
             this.DeptList.TabIndex = 2;
             this.DeptList.SelectedIndexChanged += new System.EventHandler(this.DeptList_SelectedIndexChanged);
+            this.DeptList.TextUpdate += new System.EventHandler(this.DeptList_TextUpdate);
             this.DeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeptList_KeyDown);
             this.DeptList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2537,6 +2552,7 @@ namespace PackingApplication
             this.PrefixList.Size = new System.Drawing.Size(39, 21);
             this.PrefixList.TabIndex = 3;
             this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            this.PrefixList.TextUpdate += new System.EventHandler(this.PrefixList_TextUpdate);
             this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
             this.PrefixList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2605,9 +2621,10 @@ namespace PackingApplication
             this.MergeNoList.Location = new System.Drawing.Point(40, 0);
             this.MergeNoList.Margin = new System.Windows.Forms.Padding(2);
             this.MergeNoList.Name = "MergeNoList";
-            this.MergeNoList.Size = new System.Drawing.Size(43, 21);
+            this.MergeNoList.Size = new System.Drawing.Size(42, 21);
             this.MergeNoList.TabIndex = 4;
-            this.MergeNoList.SelectedIndexChanged += new System.EventHandler(this.MergeNoList_SelectedIndexChanged);
+            this.MergeNoList.SelectionChangeCommitted += new System.EventHandler(this.MergeNoList_SelectionChangeCommitted);
+            this.MergeNoList.TextUpdate += new System.EventHandler(this.MergeNoList_TextUpdate);
             this.MergeNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MergeNoList_KeyDown);
             this.MergeNoList.Leave += new System.EventHandler(this.ComboBox_Leave);
             // 
@@ -2666,7 +2683,7 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2702,14 +2719,14 @@ namespace PackingApplication
             // 
             // shadename
             // 
-            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.shadename.Location = new System.Drawing.Point(43, -3);
             this.shadename.MaximumSize = new System.Drawing.Size(200, 0);
             this.shadename.Name = "shadename";
-            this.shadename.Size = new System.Drawing.Size(63, 17);
+            this.shadename.Size = new System.Drawing.Size(0, 16);
             this.shadename.TabIndex = 5;
             this.shadename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.shadename.UseCompatibleTextRendering = true;
@@ -3560,23 +3577,16 @@ namespace PackingApplication
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button submit;
         //private System.Windows.Forms.Button Logout;
-        private System.Windows.Forms.Label Username;
-        private System.Windows.Forms.Label role;
         private Panel rightpanel;
         private System.Windows.Forms.ComboBox PrefixList;
         private Panel panel3;
         private DataGridView qualityqty;
-        private DataGridViewTextBoxColumn qualityDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn prodQtyDataGridViewTextBoxColumn;
         //private DataTable windingqty;
         //private DataTable qualityandqty;
         private DataGridViewTextBoxColumn windingtypeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn soqtyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn windingprodqtyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn windingbalqtyDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn windingTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn saleOrderQtyDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn balanceQtyDataGridViewTextBoxColumn;
         private GroupBox gradewiseprodn;
         private System.Windows.Forms.Label saleordrqty;
         private System.Windows.Forms.Label totalprodbalqty;

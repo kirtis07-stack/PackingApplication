@@ -51,9 +51,11 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         public DeleteBCFPackingForm()
         {
+            Log.writeMessage("BCF DeleteBCFPackingForm - Start : " + DateTime.Now);
+
             InitializeComponent();
             ApplyFonts();
-            this.Shown += DeleteBCFPackingForm_Shown;
+            //this.Shown += DeleteBCFPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
@@ -64,32 +66,38 @@ namespace PackingApplication
             rowMaterial.AutoGenerateColumns = false;
             windinggrid.AutoGenerateColumns = false;
             qualityqty.AutoGenerateColumns = false;
+
+            Log.writeMessage("BCF DeleteBCFPackingForm - End : " + DateTime.Now);
         }
 
         private void DeleteBCFPackingForm_Load(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF DeleteBCFPackingForm_Load - Start : " + DateTime.Now);
+
             AddHeader();
 
-            getLotRelatedDetails();
+            LoadDropdowns();
 
             copyno.Text = "2";
             spoolno.Text = "0";
-            spoolwt.Text = "0";
-            palletwtno.Text = "0";
+            //spoolwt.Text = "0";
+            //palletwtno.Text = "0";
             grosswtno.Text = "0";
             tarewt.Text = "0";
             netwt.Text = "0";
             wtpercop.Text = "0";
             copsstock.Text = "0";
             boxpalletstock.Text = "0";
-            copsitemwt.Text = "0";
-            boxpalletitemwt.Text = "0";
-            frdenier.Text = "0";
-            updenier.Text = "0";
-            deniervalue.Text = "0";
-            partyn.Text = "";
-            partyshade.Text = "";
+            //copsitemwt.Text = "0";
+            //boxpalletitemwt.Text = "0";
+            //frdenier.Text = "0";
+            //updenier.Text = "0";
+            //deniervalue.Text = "0";
+            //partyn.Text = "";
+            //partyshade.Text = "";
             isFormReady = true;
+
+            RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
@@ -97,10 +105,35 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+
+            Log.writeMessage("BCF DeleteBCFPackingForm_Load - End : " + DateTime.Now);
         }
 
-        private void getLotRelatedDetails()
+        private void LoadDropdowns()
         {
+            Log.writeMessage("BCF LoadDropdowns - Start : " + DateTime.Now);
+
+            var machineList = new List<MachineResponse>();
+            machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+            LineNoList.DataSource = machineList;
+            LineNoList.DisplayMember = "MachineName";
+            LineNoList.ValueMember = "MachineId";
+            LineNoList.SelectedIndex = 0;
+
+            var deptList = new List<DepartmentResponse>();
+            deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            DeptList.DataSource = deptList;
+            DeptList.DisplayMember = "DepartmentName";
+            DeptList.ValueMember = "DepartmentId";
+            DeptList.SelectedIndex = 0;
+
+            var packsizeList = new List<PackSizeResponse>();
+            packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+            PackSizeList.DataSource = packsizeList;
+            PackSizeList.DisplayMember = "PackSizeName";
+            PackSizeList.ValueMember = "PackSizeId";
+            PackSizeList.SelectedIndex = 0;
+
             var getSaleOrder = new List<LotSaleOrderDetailsResponse>();
             getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
             SaleOrderList.DataSource = getSaleOrder;
@@ -128,296 +161,463 @@ namespace PackingApplication
             MergeNoList.DisplayMember = "LotNoFrmt";
             MergeNoList.ValueMember = "LotId";
             MergeNoList.SelectedIndex = 0;
+
+            var copsitemList = new List<ItemResponse>();
+            copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+            CopsItemList.DataSource = copsitemList;
+            CopsItemList.DisplayMember = "Name";
+            CopsItemList.ValueMember = "ItemId";
+            CopsItemList.SelectedIndex = 0;
+
+            var boxitemList = new List<ItemResponse>();
+            boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            BoxItemList.DataSource = boxitemList;
+            BoxItemList.DisplayMember = "Name";
+            BoxItemList.ValueMember = "ItemId";
+            BoxItemList.SelectedIndex = 0;
+
+            var ownerList = new List<BusinessPartnerResponse>();
+            ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+            OwnerList.DataSource = ownerList;
+            OwnerList.DisplayMember = "LegalName";
+            OwnerList.ValueMember = "BusinessPartnerId";
+            OwnerList.SelectedIndex = 0;
+
+            var comportList = new List<string>();
+            comportList = getComPortList().Result;
+            ComPortList.DataSource = comportList;
+            ComPortList.SelectedIndex = 0;
+            ComPortList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            ComPortList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            var weightingList = new List<WeighingItem>();
+            weightingList = getWeighingList().Result;
+            WeighingList.DataSource = weightingList;
+            WeighingList.DisplayMember = "Name";
+            WeighingList.ValueMember = "Id";
+            WeighingList.SelectedIndex = 0;
+            WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            var palletitemList = new List<ItemResponse>();
+            palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+            PalletTypeList.DataSource = palletitemList;
+            PalletTypeList.DisplayMember = "Name";
+            PalletTypeList.ValueMember = "ItemId";
+            PalletTypeList.SelectedIndex = 0;
+
+            Log.writeMessage("BCF LoadDropdowns - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
         {
-            this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.lastboxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.remark.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.remarks.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.scalemodel.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.LineNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.DeptList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.MergeNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.itemname.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.shadename.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.ComPortList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.WeighingList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.CopsItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.BoxItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.SaleOrderList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prcompany.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.pruser.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.netwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label4.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.tarewt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label3.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.grosswtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label2.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.palletwtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.spoolwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.label6.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.qnty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            Log.writeMessage("BCF ApplyFonts - Start : " + DateTime.Now);
+
+            this.lineno.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.department.Font       = FontManager.GetFont(8F, FontStyle.Bold);
+            this.mergeno.Font          = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastboxno.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastbox.Font          = FontManager.GetFont(8F, FontStyle.Regular);
+            this.item.Font             = FontManager.GetFont(8F, FontStyle.Bold);
+            this.shade.Font            = FontManager.GetFont(8F, FontStyle.Bold);
+            this.shadecode.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxno.Font            = FontManager.GetFont(8F, FontStyle.Bold);
+            this.packingdate.Font      = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dateTimePicker1.Font  = FontManager.GetFont(8F, FontStyle.Regular);
+            this.quality.Font          = FontManager.GetFont(8F, FontStyle.Bold);
+            this.saleorderno.Font      = FontManager.GetFont(8F, FontStyle.Bold);
+            this.packsize.Font         = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frdenier.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.updenier.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.windingtype.Font      = FontManager.GetFont(8F, FontStyle.Bold);
+            this.comport.Font          = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copssize.Font         = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copweight.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstock.Font         = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copsitemwt.Font       = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletitemwt.Font  = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxtype.Font          = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxweight.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copsstock.Font        = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxstock.Font         = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxpalletstock.Font   = FontManager.GetFont(8F, FontStyle.Regular);
+            this.productiontype.Font   = FontManager.GetFont(8F, FontStyle.Bold);
+            this.remark.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.remarks.Font          = FontManager.GetFont(8F, FontStyle.Regular);
+            this.scalemodel.Font       = FontManager.GetFont(8F, FontStyle.Bold);
+            this.LineNoList.Font       = FontManager.GetFont(8F, FontStyle.Regular);
+            this.DeptList.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.MergeNoList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.itemname.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.shadename.Font        = FontManager.GetFont(8F, FontStyle.Regular);
+            this.shadecd.Font          = FontManager.GetFont(8F, FontStyle.Regular);
+            this.QualityList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.PackSizeList.Font     = FontManager.GetFont(8F, FontStyle.Regular);
+            this.WindingTypeList.Font  = FontManager.GetFont(8F, FontStyle.Regular);
+            this.ComPortList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.WeighingList.Font     = FontManager.GetFont(8F, FontStyle.Regular);
+            this.CopsItemList.Font     = FontManager.GetFont(8F, FontStyle.Regular);
+            this.BoxItemList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.SaleOrderList.Font    = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prcompany.Font        = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prowner.Font          = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prdate.Font           = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pruser.Font           = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prwtps.Font           = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prqrcode.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label1.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copyno.Font           = FontManager.GetFont(8F, FontStyle.Regular);
+            this.wtpercop.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label5.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netwt.Font            = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label4.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tarewt.Font           = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label3.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grosswtno.Font        = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label2.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.palletwtno.Font       = FontManager.GetFont(8F, FontStyle.Regular);
+            this.palletwt.Font         = FontManager.GetFont(8F, FontStyle.Bold);
+            this.spoolwt.Font          = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spoolno.Font          = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spool.Font            = FontManager.GetFont(8F, FontStyle.Bold);
+            this.prodtype.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.palletdetails.Font    = FontManager.GetFont(9F, FontStyle.Bold);
+            this.label6.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.PalletTypeList.Font   = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pquantity.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.qnty.Font             = FontManager.GetFont(8F, FontStyle.Regular);
+            this.addqty.Font           = FontManager.GetFont(8F, FontStyle.Bold);
             this.flowLayoutPanel1.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.wgroupbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.grossweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copstxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.gradewiseprodn.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.totalprodbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.saleordrqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Printinglbl.Font      = FontManager.GetFont(9F, FontStyle.Bold);
+            this.wgroupbox.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netwttxtbox.Font      = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netweight.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grosswttxtbox.Font    = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grossweight.Font      = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstxtbox.Font       = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tarewghttxtbox.Font   = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tareweight.Font       = FontManager.GetFont(8F, FontStyle.Bold);
+            this.cops.Font             = FontManager.GetFont(8F, FontStyle.Bold);
+            this.gradewiseprodn.Font   = FontManager.GetFont(8F, FontStyle.Bold);
+            this.totalprodbalqty.Font  = FontManager.GetFont(8F, FontStyle.Regular);
+            this.saleordrqty.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.Lastboxlbl.Font       = FontManager.GetFont(9F, FontStyle.Bold);
+            this.deniervalue.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.denier.Font           = FontManager.GetFont(8F, FontStyle.Bold);
             this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.palletwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.spoolwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.spoolnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.soerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.qualityerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
-            this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.Font = FontManager.GetFont(9F, FontStyle.Bold);
-            this.bppartyname.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.fromwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.frwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Machinelbl.Font       = FontManager.GetFont(9F, FontStyle.Bold);
+            this.grosswterror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
+            this.palletwterror.Font    = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolwterror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolnoerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
+            this.Weighboxlbl.Font      = FontManager.GetFont(9F, FontStyle.Bold);
+            this.Packagingboxlbl.Font  = FontManager.GetFont(9F, FontStyle.Bold);
+            this.cancelbtn.Font        = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxnoerror.Font       = FontManager.GetFont(7F, FontStyle.Regular);
+            this.windingerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
+            this.packsizeerror.Font    = FontManager.GetFont(7F, FontStyle.Regular);
+            this.soerror.Font          = FontManager.GetFont(7F, FontStyle.Regular);
+            this.qualityerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
+            this.mergenoerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
+            this.copynoerror.Font      = FontManager.GetFont(7F, FontStyle.Regular);
+            this.linenoerror.Font      = FontManager.GetFont(7F, FontStyle.Regular);
+            this.grdsoqty.Font         = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prodnbalqty.Font      = FontManager.GetFont(8F, FontStyle.Regular);
+            this.rowMaterialBox.Font   = FontManager.GetFont(8F, FontStyle.Bold);
+            this.fromdenier.Font       = FontManager.GetFont(8F, FontStyle.Bold);
+            this.uptodenier.Font       = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Font                  = FontManager.GetFont(9F, FontStyle.Bold);
+            this.bppartyname.Font      = FontManager.GetFont(8F, FontStyle.Bold);
+            this.partyshade.Font       = FontManager.GetFont(8F, FontStyle.Regular);
+            this.partyshd.Font         = FontManager.GetFont(8F, FontStyle.Bold);
+            this.partyn.Font           = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelotvalue.Font     = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font          = FontManager.GetFont(8F, FontStyle.Bold);
+            this.owner.Font            = FontManager.GetFont(8F, FontStyle.Bold);
+            this.OwnerList.Font        = FontManager.GetFont(8F, FontStyle.Regular);
+            this.fromwt.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frwt.Font             = FontManager.GetFont(8F, FontStyle.Regular);
+            this.uptowt.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.upwt.Font             = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxnofrmt.Font        = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxno.Font            = FontManager.GetFont(8F, FontStyle.Bold);
+
+            Log.writeMessage("BCF ApplyFonts - End : " + DateTime.Now);
         }
 
-        private async void DeleteBCFPackingForm_Shown(object sender, EventArgs e)
-        {
-            try
-            {
-                var machineTask = _masterService.GetMachineList("BCFLot", "");
-                var packsizeTask = _masterService.GetPackSizeList("");
-                var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
-                var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
-                var palletitemTask = _masterService.GetItemList(itemPalletCategoryId, "");
-                var deptTask = _masterService.GetDepartmentList("");
-                var ownerTask = _masterService.GetOwnerList("");
+        //private async void DeleteBCFPackingForm_Shown(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var machineTask = _masterService.GetMachineList("BCFLot", "");
+        //        var packsizeTask = _masterService.GetPackSizeList("");
+        //        var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
+        //        var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
+        //        var palletitemTask = _masterService.GetItemList(itemPalletCategoryId, "");
+        //        var deptTask = _masterService.GetDepartmentList("");
+        //        var ownerTask = _masterService.GetOwnerList("");
 
-                // 2. Wait for all to complete
-                await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
+        //        // 2. Wait for all to complete
+        //        await Task.WhenAll(machineTask, packsizeTask, copsitemTask, boxitemTask, palletitemTask, deptTask, ownerTask);
 
-                // 3. Get the results
-                var machineList = machineTask.Result;
-                var packsizeList = packsizeTask.Result;
-                var copsitemList = copsitemTask.Result;
-                var boxitemList = boxitemTask.Result;
-                var palletitemList = palletitemTask.Result;
-                var deptList = deptTask.Result;
-                var ownerList = ownerTask.Result;
+        //        // 3. Get the results
+        //        var machineList = machineTask.Result;
+        //        var packsizeList = packsizeTask.Result;
+        //        var copsitemList = copsitemTask.Result;
+        //        var boxitemList = boxitemTask.Result;
+        //        var palletitemList = palletitemTask.Result;
+        //        var deptList = deptTask.Result;
+        //        var ownerList = ownerTask.Result;
 
-                //machine
-                o_machinesResponse = machineList;
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                LineNoList.DataSource = machineList;
-                LineNoList.DisplayMember = "MachineName";
-                LineNoList.ValueMember = "MachineId";
-                LineNoList.SelectedIndex = 0;
-                LineNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        //machine
+        //        o_machinesResponse = machineList;
+        //        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+        //        LineNoList.DataSource = machineList;
+        //        LineNoList.DisplayMember = "MachineName";
+        //        LineNoList.ValueMember = "MachineId";
+        //        LineNoList.SelectedIndex = 0;
+        //        LineNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        LineNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                //packsize
-                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
-                PackSizeList.DataSource = packsizeList;
-                PackSizeList.DisplayMember = "PackSizeName";
-                PackSizeList.ValueMember = "PackSizeId";
-                PackSizeList.SelectedIndex = 0;
-                PackSizeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                PackSizeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        //packsize
+        //        packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+        //        PackSizeList.DataSource = packsizeList;
+        //        PackSizeList.DisplayMember = "PackSizeName";
+        //        PackSizeList.ValueMember = "PackSizeId";
+        //        PackSizeList.SelectedIndex = 0;
+        //        PackSizeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        PackSizeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                var comportList = await Task.Run(() => getComPortList());
-                //comport
-                ComPortList.DataSource = comportList;
-                ComPortList.SelectedIndex = 0;
-                ComPortList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                ComPortList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        var comportList = await Task.Run(() => getComPortList());
+        //        //comport
+        //        ComPortList.DataSource = comportList;
+        //        ComPortList.SelectedIndex = 0;
+        //        ComPortList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        ComPortList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                var weightingList = await Task.Run(() => getWeighingList());
-                //weighting
-                WeighingList.DataSource = weightingList;
-                WeighingList.DisplayMember = "Name";
-                WeighingList.ValueMember = "Id";
-                WeighingList.SelectedIndex = 0;
-                WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        var weightingList = await Task.Run(() => getWeighingList());
+        //        //weighting
+        //        WeighingList.DataSource = weightingList;
+        //        WeighingList.DisplayMember = "Name";
+        //        WeighingList.ValueMember = "Id";
+        //        WeighingList.SelectedIndex = 0;
+        //        WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                //copsitem
-                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
-                CopsItemList.DataSource = copsitemList;
-                CopsItemList.DisplayMember = "Name";
-                CopsItemList.ValueMember = "ItemId";
-                CopsItemList.SelectedIndex = 0;
-                CopsItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        //copsitem
+        //        copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+        //        CopsItemList.DataSource = copsitemList;
+        //        CopsItemList.DisplayMember = "Name";
+        //        CopsItemList.ValueMember = "ItemId";
+        //        CopsItemList.SelectedIndex = 0;
+        //        CopsItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        CopsItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                //boxitem
-                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-                BoxItemList.DataSource = boxitemList;
-                BoxItemList.DisplayMember = "Name";
-                BoxItemList.ValueMember = "ItemId";
-                BoxItemList.SelectedIndex = 0;
-                BoxItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        //boxitem
+        //        boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+        //        BoxItemList.DataSource = boxitemList;
+        //        BoxItemList.DisplayMember = "Name";
+        //        BoxItemList.ValueMember = "ItemId";
+        //        BoxItemList.SelectedIndex = 0;
+        //        BoxItemList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                //palletitem
-                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-                PalletTypeList.DataSource = palletitemList;
-                PalletTypeList.DisplayMember = "Name";
-                PalletTypeList.ValueMember = "ItemId";
-                PalletTypeList.SelectedIndex = 0;
-                PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        //palletitem
+        //        palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+        //        PalletTypeList.DataSource = palletitemList;
+        //        PalletTypeList.DisplayMember = "Name";
+        //        PalletTypeList.ValueMember = "ItemId";
+        //        PalletTypeList.SelectedIndex = 0;
+        //        PalletTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                o_departmentResponses = deptList;
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
-                DeptList.DataSource = deptList;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
-                DeptList.SelectedIndex = 0;
-                DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        o_departmentResponses = deptList;
+        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+        //        DeptList.DataSource = deptList;
+        //        DeptList.DisplayMember = "DepartmentName";
+        //        DeptList.ValueMember = "DepartmentId";
+        //        DeptList.SelectedIndex = 0;
+        //        DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
-                OwnerList.DataSource = ownerList;
-                OwnerList.DisplayMember = "LegalName";
-                OwnerList.ValueMember = "BusinessPartnerId";
-                OwnerList.SelectedIndex = 0;
-                OwnerList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                OwnerList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //        ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+        //        OwnerList.DataSource = ownerList;
+        //        OwnerList.DisplayMember = "LegalName";
+        //        OwnerList.ValueMember = "BusinessPartnerId";
+        //        OwnerList.SelectedIndex = 0;
+        //        OwnerList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //        OwnerList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                RefreshLastBoxDetails();
+        //        RefreshLastBoxDetails();
 
-                isFormReady = true;
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //        isFormReady = true;
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
         private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
+            Log.writeMessage("BCF LoadProductionDetailsAsync - Start : " + DateTime.Now);
+
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
 
-                LineNoList.SelectedValue = productionResponse.MachineId;
-                DeptList.SelectedValue = productionResponse.DepartmentId;
-                MergeNoList.SelectedValue = productionResponse.LotId;
+                MergeNoList.DataSource = null;
+                MergeNoList.Items.Clear();
+                MergeNoList.Items.Add("Select MergeNo");
+                MergeNoList.Items.Add(productionResponse.LotNo);
+                MergeNoList.SelectedItem = productionResponse.LotNo;
+                productionRequest.LotId = productionResponse.LotId;
+                selectLotId = productionResponse.LotId;
+
+                SaleOrderList.DataSource = null;
+                SaleOrderList.Items.Clear();
+                SaleOrderList.Items.Add("Select Sale Order Item");
+                var salesOrderNumber = "";
+                salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.ItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
+                SaleOrderList.Items.Add(salesOrderNumber);
+                SaleOrderList.SelectedItem = salesOrderNumber;
+                productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
+                selectedSOId = productionResponse.SaleOrderItemsId;
+
+                QualityList.DataSource = null;
+                QualityList.Items.Clear();
+                QualityList.Items.Add("Select Quality");
+                QualityList.Items.Add(productionResponse.QualityName);
+                QualityList.SelectedItem = productionResponse.QualityName;
+                productionRequest.QualityId = productionResponse.QualityId;
+
+                WindingTypeList.DataSource = null;
+                WindingTypeList.Items.Clear();
+                WindingTypeList.Items.Add("Select Winding Type");
+                WindingTypeList.Items.Add(productionResponse.WindingTypeName);
+                WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
+                productionRequest.WindingTypeId = productionResponse.WindingTypeId;
+
+                PackSizeList.DataSource = null;
+                PackSizeList.Items.Clear();
+                PackSizeList.Items.Add("Select Pack Size");
+                PackSizeList.Items.Add(productionResponse.PackSizeName);
+                PackSizeList.SelectedItem = productionResponse.PackSizeName;
+                productionRequest.PackSizeId = productionResponse.PackSizeId;
+
+                CopsItemList.DataSource = null;
+                CopsItemList.Items.Clear();
+                CopsItemList.Items.Add("Select Cops Item");
+                CopsItemList.Items.Add(productionResponse.SpoolItemName);
+                CopsItemList.SelectedItem = productionResponse.SpoolItemName;
+                productionRequest.SpoolItemId = productionResponse.SpoolItemId;
+
+                BoxItemList.DataSource = null;
+                BoxItemList.Items.Clear();
+                BoxItemList.Items.Add("Select Box/Pallet");
+                BoxItemList.Items.Add(productionResponse.BoxItemName);
+                BoxItemList.SelectedItem = productionResponse.BoxItemName;
+                productionRequest.BoxItemId = productionResponse.BoxItemId;
+
+                OwnerList.DataSource = null;
+                OwnerList.Items.Clear();
+                OwnerList.Items.Add("Select Owner");
+                if (!string.IsNullOrEmpty(productionResponse.OwnerName))
+                {
+                    OwnerList.Items.Add(productionResponse.OwnerName);
+                    OwnerList.SelectedItem = productionResponse.OwnerName;
+                    productionRequest.OwnerId = productionResponse.OwnerId;
+                }
+
+                prodtype.Text = productionResponse.ProductionType;
+                productionRequest.ProdTypeId = productionResponse.ProdTypeId;
+                remarks.Text = productionResponse.Remarks;
+                productionRequest.Remarks = productionResponse.Remarks;
+                prcompany.Checked = productionResponse.PrintCompany;
+                productionRequest.PrintCompany = productionResponse.PrintCompany;
+                prowner.Checked = productionResponse.PrintOwner;
+                productionRequest.PrintOwner = productionResponse.PrintOwner;
+                prdate.Checked = productionResponse.PrintDate;
+                productionRequest.PrintDate = productionResponse.PrintDate;
+                pruser.Checked = productionResponse.PrintUser;
+                productionRequest.PrintUser = productionResponse.PrintUser;
+                productionRequest.PrintHindiWords = productionResponse.PrintHindiWords;
+                prwtps.Checked = productionResponse.PrintWTPS;
+                productionRequest.PrintWTPS = productionResponse.PrintWTPS;
+                prqrcode.Checked = productionResponse.PrintQRCode;
+                productionRequest.PrintQRCode = productionResponse.PrintQRCode;
+                productionRequest.PrintTwist = productionResponse.PrintTwist;
+                lotsDetailsList = new List<LotsDetailsResponse>();
+                if (productionResponse.LotsDetailsResponse.Count > 0)
+                {
+                    rowMaterial.Columns.Clear();
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
+                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
+                    rowMaterial.DataSource = productionResponse.LotsDetailsResponse;
+                    lotsDetailsList = productionResponse.LotsDetailsResponse;
+                }
+                itemname.Text = productionResponse.ItemName;
+                shadename.Text = productionResponse.ShadeName;
+                shadecd.Text = productionResponse.ShadeCode;
+                deniervalue.Text = productionResponse.Denier.ToString();
+                salelotvalue.Text = productionResponse.SaleLot.ToString();
+                frdenier.Text = productionResponse.FromDenier.ToString();
+                updenier.Text = productionResponse.UpToDenier.ToString();
+                frwt.Text = productionResponse.StartWeight.ToString();
+                upwt.Text = productionResponse.EndWeight.ToString();
+                copsitemwt.Text = productionResponse.CopsItemWeight.ToString();
+                boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
+                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                totalSOQty = productionResponse.SOQuantity;
+                grdsoqty.Text = totalSOQty.ToString("F2");
+                RefreshGradewiseGrid();
+                RefreshWindingGrid();
+                AdjustNameByCharCount();
+                productionRequest.ItemId = productionResponse.ItemId;
+                productionRequest.ShadeId = productionResponse.ShadeId;
+                productionRequest.TwistId = productionResponse.TwistId;
+                productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
+                boxnofrmt.Text = productionResponse.BoxNoFmtd;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                QualityList.SelectedValue = productionResponse.QualityId;
-                PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                prodtype.Text = productionResponse.ProductionType;
-                remarks.Text = productionResponse.Remarks;
-                prcompany.Checked = productionResponse.PrintCompany;
-                prowner.Checked = productionResponse.PrintOwner;
-                prdate.Checked = productionResponse.PrintDate;
-                pruser.Checked = productionResponse.PrintUser;
-                prwtps.Checked = productionResponse.PrintWTPS;
-                prqrcode.Checked = productionResponse.PrintQRCode;
-                spoolno.Text = productionResponse.Spools.ToString();
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                grosswtno.Text = productionResponse.GrossWt.ToString();
-                tarewt.Text = productionResponse.TareWt.ToString();
-                netwt.Text = productionResponse.NetWt.ToString();
-                OwnerList.SelectedValue = productionResponse.OwnerId;
-                LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
-
                 if (productionResponse.PalletDetailsResponse.Count > 0)
                 {
                     if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
                     {
                         this.BeginInvoke((Action)(() =>
-                            BindPalletDetails(productionResponse.PalletDetailsResponse)
+                        BindPalletDetails(productionResponse.PalletDetailsResponse)
                         ));
                     }
                 }
+
+                LineNoList.DataSource = null;
+                LineNoList.Items.Clear();
+                LineNoList.Items.Add("Select Line No.");
+                LineNoList.Items.Add(productionResponse.MachineName);
+                LineNoList.SelectedItem = productionResponse.MachineName;
+                productionRequest.MachineId = productionResponse.MachineId;
+
+                DeptList.DataSource = null;
+                DeptList.Items.Clear();
+                DeptList.Items.Add("Select Dept");
+                DeptList.Items.Add(productionResponse.DepartmentName);
+                DeptList.SelectedItem = productionResponse.DepartmentName;
+                productionRequest.DepartmentId = productionResponse.DepartmentId;
             }
+
+            Log.writeMessage("BCF LoadProductionDetailsAsync - End : " + DateTime.Now);
         }
 
         private void BindPalletDetails(List<ProductionPalletDetailsResponse> palletDetailsResponse)
         {
+            Log.writeMessage("BCF BindPalletDetails - Start : " + DateTime.Now);
+
             flowLayoutPanel1.Controls.Clear();
             rowCount = 0;
             headerAdded = false;
@@ -474,348 +674,352 @@ namespace PackingApplication
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+
+            Log.writeMessage("BCF BindPalletDetails - Start : " + DateTime.Now);
         }
 
-        private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return; // skip during load
+        //private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return; // skip during load
 
-            if (LineNoList.SelectedIndex <= 0)
-            {
-                return;
-            }
-            lblLoading.Visible = true;
-            try
-            {
-                if (LineNoList.SelectedValue != null)
-                {
-                    MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
-                    int selectedMachineId = selectedMachine.MachineId;
-                    if (selectedMachineId > 0)
-                    {
-                        productionRequest.MachineId = selectedMachineId;
+        //    if (LineNoList.SelectedIndex <= 0)
+        //    {
+        //        return;
+        //    }
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (LineNoList.SelectedValue != null)
+        //        {
+        //            MachineResponse selectedMachine = (MachineResponse)LineNoList.SelectedItem;
+        //            int selectedMachineId = selectedMachine.MachineId;
+        //            if (selectedMachineId > 0)
+        //            {
+        //                productionRequest.MachineId = selectedMachineId;
 
-                        if (selectedMachine != null)
-                        {
-                            DeptList.SelectedValue = selectedMachine.DepartmentId;
-                            var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
-                            filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
-                            DeptList.DataSource = filteredDepts;
-                            DeptList.DisplayMember = "DepartmentName";
-                            DeptList.ValueMember = "DepartmentId";
-                            DeptList.SelectedIndex = 1;
-                            DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                            DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                        }
-                        var getLots = _productionService.getLotList(selectedMachineId, "").Result;
-                        getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
-                        MergeNoList.DataSource = getLots;
-                        MergeNoList.DisplayMember = "LotNoFrmt";
-                        MergeNoList.ValueMember = "LotId";
-                        MergeNoList.SelectedIndex = 0;
-                        MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //                if (selectedMachine != null)
+        //                {
+        //                    DeptList.SelectedValue = selectedMachine.DepartmentId;
+        //                    var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
+        //                    filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+        //                    DeptList.DataSource = filteredDepts;
+        //                    DeptList.DisplayMember = "DepartmentName";
+        //                    DeptList.ValueMember = "DepartmentId";
+        //                    DeptList.SelectedIndex = 1;
+        //                    DeptList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //                    DeptList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //                }
+        //                var getLots = _productionService.getLotList(selectedMachineId, "").Result;
+        //                getLots.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+        //                MergeNoList.DataSource = getLots;
+        //                MergeNoList.DisplayMember = "LotNoFrmt";
+        //                MergeNoList.ValueMember = "LotId";
+        //                MergeNoList.SelectedIndex = 0;
+        //                MergeNoList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //                MergeNoList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            MergeNoList.SelectedValue = productionResponse.LotId;
-                            DeptList.SelectedValue = productionResponse.DepartmentId;
-                            MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //                if (_productionId > 0 && productionResponse != null)
+        //                {
+        //                    MergeNoList.SelectedValue = productionResponse.LotId;
+        //                    DeptList.SelectedValue = productionResponse.DepartmentId;
+        //                    MergeNoList_SelectedIndexChanged(MergeNoList, EventArgs.Empty);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void MergeNoList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (MergeNoList.SelectedIndex <= 0)
-            {
-                itemname.Text = "";
-                shadename.Text = "";
-                shadecd.Text = "";
-                deniervalue.Text = "";
-                partyn.Text = "";
-                partyshade.Text = "";
-                salelotvalue.Text = "";
-                lotResponse = new LotsResponse();
-                lotsDetailsList = new List<LotsDetailsResponse>();
-                getLotRelatedDetails();
-                rowMaterial.Columns.Clear();
-                windinggrid.Columns.Clear();
-                qualityqty.Columns.Clear();
-                totalProdQty = 0;
-                prodnbalqty.Text = "";
-                selectedSOId = 0;
-                totalSOQty = 0;
-                grdsoqty.Text = "";
-                balanceQty = 0;
-                flowLayoutPanel1.Controls.Clear();
-                rowCount = 0;
-                AddHeader();
-                return;
-            }
+        //    if (MergeNoList.SelectedIndex <= 0)
+        //    {
+        //        itemname.Text = "";
+        //        shadename.Text = "";
+        //        shadecd.Text = "";
+        //        deniervalue.Text = "";
+        //        partyn.Text = "";
+        //        partyshade.Text = "";
+        //        salelotvalue.Text = "";
+        //        lotResponse = new LotsResponse();
+        //        lotsDetailsList = new List<LotsDetailsResponse>();
+        //        LoadDropdowns();
+        //        rowMaterial.Columns.Clear();
+        //        windinggrid.Columns.Clear();
+        //        qualityqty.Columns.Clear();
+        //        totalProdQty = 0;
+        //        prodnbalqty.Text = "";
+        //        selectedSOId = 0;
+        //        totalSOQty = 0;
+        //        grdsoqty.Text = "";
+        //        balanceQty = 0;
+        //        flowLayoutPanel1.Controls.Clear();
+        //        rowCount = 0;
+        //        AddHeader();
+        //        return;
+        //    }
 
-            lblLoading.Visible = true;
-            try
-            {
-                if (MergeNoList.SelectedValue != null)
-                {
-                    LotsResponse selectedLot = (LotsResponse)MergeNoList.SelectedItem;
-                    int selectedLotId = selectedLot.LotId;
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (MergeNoList.SelectedValue != null)
+        //        {
+        //            LotsResponse selectedLot = (LotsResponse)MergeNoList.SelectedItem;
+        //            int selectedLotId = selectedLot.LotId;
 
-                    productionRequest.LotId = selectedLot.LotId;
-                    if (selectedLotId > 0)
-                    {
-                        selectLotId = selectedLotId;
+        //            productionRequest.LotId = selectedLot.LotId;
+        //            if (selectedLotId > 0)
+        //            {
+        //                selectLotId = selectedLotId;
 
-                        lotResponse = _productionService.getLotById(selectedLotId).Result;
-                        if (lotResponse != null)
-                        {
-                            itemname.Text = (!string.IsNullOrEmpty(lotResponse.ItemName)) ? lotResponse.ItemName : "";
-                            shadename.Text = (!string.IsNullOrEmpty(lotResponse.ShadeName)) ? lotResponse.ShadeName : "";
-                            AdjustNameByCharCount();
-                            shadecd.Text = (!string.IsNullOrEmpty(lotResponse.ShadeCode)) ? lotResponse.ShadeCode : "";
-                            deniervalue.Text = lotResponse.Denier.ToString();
-                            salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
-                            productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
-                            productionRequest.MachineId = lotResponse.MachineId;
-                            productionRequest.ItemId = lotResponse.ItemId;
-                            productionRequest.ShadeId = lotResponse.ShadeId;
-                            LineNoList.SelectedValue = lotResponse.MachineId;
+        //                lotResponse = _productionService.getLotById(selectedLotId).Result;
+        //                if (lotResponse != null)
+        //                {
+        //                    itemname.Text = (!string.IsNullOrEmpty(lotResponse.ItemName)) ? lotResponse.ItemName : "";
+        //                    shadename.Text = (!string.IsNullOrEmpty(lotResponse.ShadeName)) ? lotResponse.ShadeName : "";
+        //                    AdjustNameByCharCount();
+        //                    shadecd.Text = (!string.IsNullOrEmpty(lotResponse.ShadeCode)) ? lotResponse.ShadeCode : "";
+        //                    deniervalue.Text = lotResponse.Denier.ToString();
+        //                    salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
+        //                    productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
+        //                    productionRequest.MachineId = lotResponse.MachineId;
+        //                    productionRequest.ItemId = lotResponse.ItemId;
+        //                    productionRequest.ShadeId = lotResponse.ShadeId;
+        //                    LineNoList.SelectedValue = lotResponse.MachineId;
 
-                            if (lotResponse.ItemId > 0)
-                            {
-                                var itemResponse = await Task.Run(() => _masterService.GetItemById(lotResponse.ItemId));
-                                if (itemResponse != null)
-                                {
-                                    var qualityList = _masterService.GetQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
-                                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                                    QualityList.DataSource = qualityList;
-                                    QualityList.DisplayMember = "Name";
-                                    QualityList.ValueMember = "QualityId";
-                                    QualityList.SelectedIndex = 0;
-                                    QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                                    QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //                    if (lotResponse.ItemId > 0)
+        //                    {
+        //                        var itemResponse = await Task.Run(() => _masterService.GetItemById(lotResponse.ItemId));
+        //                        if (itemResponse != null)
+        //                        {
+        //                            var qualityList = _masterService.GetQualityListByItemTypeId(itemResponse.ItemTypeId).Result;
+        //                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+        //                            QualityList.DataSource = qualityList;
+        //                            QualityList.DisplayMember = "Name";
+        //                            QualityList.ValueMember = "QualityId";
+        //                            QualityList.SelectedIndex = 0;
+        //                            QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //                            QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                                    if (QualityList.Items.Count > 1)
-                                    {
-                                        QualityList.SelectedIndex = 1;
-                                    }
-                                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                                    {
-                                        QualityList.SelectedIndex = 0;
-                                    }
-                                    else
-                                    {
-                                        QualityList.SelectedIndex = -1; // no selection possible
-                                    }
-                                }
-                            }
-                        }
+        //                            if (QualityList.Items.Count > 1)
+        //                            {
+        //                                QualityList.SelectedIndex = 1;
+        //                            }
+        //                            else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+        //                            {
+        //                                QualityList.SelectedIndex = 0;
+        //                            }
+        //                            else
+        //                            {
+        //                                QualityList.SelectedIndex = -1; // no selection possible
+        //                            }
+        //                        }
+        //                    }
+        //                }
 
-                        var getWindingType = new List<WindingTypeResponse>();
-                        getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
-                        getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                        if (getWindingType.Count <= 1)
-                        {
-                            getWindingType = _masterService.GetWindingTypeList("").Result;
-                            getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+        //                var getWindingType = new List<WindingTypeResponse>();
+        //                getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
+        //                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+        //                if (getWindingType.Count <= 1)
+        //                {
+        //                    getWindingType = _masterService.GetWindingTypeList("").Result;
+        //                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
-                        }
-                        WindingTypeList.DataSource = getWindingType;
-                        WindingTypeList.DisplayMember = "WindingTypeName";
-                        WindingTypeList.ValueMember = "WindingTypeId";
-                        WindingTypeList.SelectedIndex = 0;
-                        WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //                }
+        //                WindingTypeList.DataSource = getWindingType;
+        //                WindingTypeList.DisplayMember = "WindingTypeName";
+        //                WindingTypeList.ValueMember = "WindingTypeId";
+        //                WindingTypeList.SelectedIndex = 0;
+        //                WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //                WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result;
-                        getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
-                        SaleOrderList.DataSource = getSaleOrder;
-                        SaleOrderList.DisplayMember = "ItemName";
-                        SaleOrderList.ValueMember = "SaleOrderItemsId";
-                        SaleOrderList.SelectedIndex = 0;
-                        SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
-                        if (SaleOrderList.Items.Count == 2)
-                        {
-                            SaleOrderList.SelectedIndex = 1;   // Select the single record
-                            SaleOrderList.Enabled = false;     // Disable user selection
-                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
-                        }
-                        else
-                        {
-                            SaleOrderList.Enabled = true;      // Allow user selection
-                            SaleOrderList.SelectedIndex = 0;  // Optional: no default selection
-                        }
+        //                var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result;
+        //                getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
+        //                SaleOrderList.DataSource = getSaleOrder;
+        //                SaleOrderList.DisplayMember = "ItemName";
+        //                SaleOrderList.ValueMember = "SaleOrderItemsId";
+        //                SaleOrderList.SelectedIndex = 0;
+        //                SaleOrderList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //                SaleOrderList.AutoCompleteSource = AutoCompleteSource.ListItems;
+        //                if (SaleOrderList.Items.Count == 2)
+        //                {
+        //                    SaleOrderList.SelectedIndex = 1;   // Select the single record
+        //                    SaleOrderList.Enabled = false;     // Disable user selection
+        //                    SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+        //                }
+        //                else
+        //                {
+        //                    SaleOrderList.Enabled = true;      // Allow user selection
+        //                    SaleOrderList.SelectedIndex = 0;  // Optional: no default selection
+        //                }
 
-                        lotsDetailsList = new List<LotsDetailsResponse>();
-                        productionRequest.ProductionDate = dateTimePicker1.Value;
-                        lotsDetailsList = _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate).Result;
-                        if (lotsDetailsList.Count > 0)
-                        {
-                            rowMaterial.Columns.Clear();
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
-                            rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
-                            rowMaterial.DataSource = lotsDetailsList;
-                        }
+        //                lotsDetailsList = new List<LotsDetailsResponse>();
+        //                productionRequest.ProductionDate = dateTimePicker1.Value;
+        //                lotsDetailsList = _productionService.getLotsDetailsByLotsIdAndProductionDate(selectedLotId, productionRequest.ProductionDate).Result;
+        //                if (lotsDetailsList.Count > 0)
+        //                {
+        //                    rowMaterial.Columns.Clear();
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotType", DataPropertyName = "PrevLotType", HeaderText = "Prev.LotType" });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotNo", DataPropertyName = "PrevLotNo", HeaderText = "Prev.LotNo" });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotItemName", DataPropertyName = "PrevLotItemName", HeaderText = "Prev.LotItem" });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotShadeName", DataPropertyName = "PrevLotShadeName", HeaderText = "Prev.LotShade" });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "PrevLotQuality", DataPropertyName = "PrevLotQuality", HeaderText = "Quality" });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionPerc", DataPropertyName = "ProductionPerc", HeaderText = "Production %" });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveFrom", DataPropertyName = "EffectiveFrom", HeaderText = "EffectiveFrom", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
+        //                    rowMaterial.Columns.Add(new DataGridViewTextBoxColumn { Name = "EffectiveUpto", DataPropertyName = "EffectiveUpto", HeaderText = "EffectiveUpto", Width = 150, DefaultCellStyle = { Format = "dd-MM-yyyy hh:mm tt" } });
+        //                    rowMaterial.DataSource = lotsDetailsList;
+        //                }
 
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                            SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
-                        }
-                    }
+        //                if (_productionId > 0 && productionResponse != null)
+        //                {
+        //                    SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
+        //                    SaleOrderList_SelectedIndexChanged(SaleOrderList, EventArgs.Empty);
+        //                }
+        //            }
 
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void PackSizeList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (PackSizeList.SelectedIndex <= 0)
-            {
-                frdenier.Text = "0";
-                updenier.Text = "0";
-                return;
-            }
-            lblLoading.Visible = true;
-            try
-            {
-                if (PackSizeList.SelectedValue != null)
-                {
-                    PackSizeResponse selectedPacksize = (PackSizeResponse)PackSizeList.SelectedItem;
-                    int selectedPacksizeId = selectedPacksize.PackSizeId;
+        //    if (PackSizeList.SelectedIndex <= 0)
+        //    {
+        //        frdenier.Text = "0";
+        //        updenier.Text = "0";
+        //        return;
+        //    }
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (PackSizeList.SelectedValue != null)
+        //        {
+        //            PackSizeResponse selectedPacksize = (PackSizeResponse)PackSizeList.SelectedItem;
+        //            int selectedPacksizeId = selectedPacksize.PackSizeId;
 
-                    productionRequest.PackSizeId = selectedPacksizeId;
-                    if (selectedPacksizeId > 0)
-                    {
-                        var packsize = _masterService.GetPackSizeById(selectedPacksizeId).Result;
-                        frdenier.Text = packsize.FromDenier.ToString();
-                        updenier.Text = packsize.UpToDenier.ToString();
-                        frwt.Text = packsize.StartWeight.ToString();
-                        upwt.Text = packsize.EndWeight.ToString();
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //            productionRequest.PackSizeId = selectedPacksizeId;
+        //            if (selectedPacksizeId > 0)
+        //            {
+        //                var packsize = _masterService.GetPackSizeById(selectedPacksizeId).Result;
+        //                frdenier.Text = packsize.FromDenier.ToString();
+        //                updenier.Text = packsize.UpToDenier.ToString();
+        //                frwt.Text = packsize.StartWeight.ToString();
+        //                upwt.Text = packsize.EndWeight.ToString();
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private void QualityList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (QualityList.SelectedValue != null)
-            {
-                QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
-                int selectedQualityId = selectedQuality.QualityId;
+        //    if (QualityList.SelectedValue != null)
+        //    {
+        //        QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
+        //        int selectedQualityId = selectedQuality.QualityId;
 
-                productionRequest.QualityId = selectedQualityId;
-            }
-        }
+        //        productionRequest.QualityId = selectedQualityId;
+        //    }
+        //}
 
-        private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            lblLoading.Visible = true;
+        //    lblLoading.Visible = true;
 
-            try
-            {
-                if (WindingTypeList.SelectedValue != null)
-                {
-                    WindingTypeResponse selectedWindingType = (WindingTypeResponse)WindingTypeList.SelectedItem;
-                    int selectedWindingTypeId = selectedWindingType.WindingTypeId;
+        //    try
+        //    {
+        //        if (WindingTypeList.SelectedValue != null)
+        //        {
+        //            WindingTypeResponse selectedWindingType = (WindingTypeResponse)WindingTypeList.SelectedItem;
+        //            int selectedWindingTypeId = selectedWindingType.WindingTypeId;
 
-                    if (selectedWindingTypeId > 0)
-                    {
-                        productionRequest.WindingTypeId = selectedWindingTypeId;
-                        RefreshWindingGrid();
-                    }
+        //            if (selectedWindingTypeId > 0)
+        //            {
+        //                productionRequest.WindingTypeId = selectedWindingTypeId;
+        //                RefreshWindingGrid();
+        //            }
 
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //            if (_productionId > 0 && productionResponse != null)
+        //            {
+        //                WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void SaleOrderList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            lblLoading.Visible = true;
-            try
-            {
-                if (SaleOrderList.SelectedValue != null)
-                {
-                    totalSOQty = 0;
-                    grdsoqty.Text = "";
-                    LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
-                    int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
-                    string soNumber = selectedSaleOrder.SaleOrderNumber;
-                    productionRequest.SaleOrderItemsId = selectedSaleOrderId;
-                    if (selectedSaleOrderId > 0)
-                    {
-                        selectedSOId = selectedSaleOrderId;
-                        selectedSONumber = selectedSaleOrder.SaleOrderNumber;
-                        totalSOQty = selectedSaleOrder.Quantity;
-                        grdsoqty.Text = totalSOQty.ToString("F2");
-                        var saleOrderItemResponse = _saleService.getSaleOrderItemById(selectedSaleOrderId).Result;
-                        if (saleOrderItemResponse != null)
-                        {
-                            productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
-                            partyn.Text = saleOrderItemResponse.ItemDescription;
-                            partyshade.Text = saleOrderItemResponse.ShadeNameDescription + "-" + saleOrderItemResponse.ShadeCodeDescription;
-                        }
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (SaleOrderList.SelectedValue != null)
+        //        {
+        //            totalSOQty = 0;
+        //            grdsoqty.Text = "";
+        //            LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
+        //            int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
+        //            string soNumber = selectedSaleOrder.SaleOrderNumber;
+        //            productionRequest.SaleOrderItemsId = selectedSaleOrderId;
+        //            if (selectedSaleOrderId > 0)
+        //            {
+        //                selectedSOId = selectedSaleOrderId;
+        //                selectedSONumber = selectedSaleOrder.SaleOrderNumber;
+        //                totalSOQty = selectedSaleOrder.Quantity;
+        //                grdsoqty.Text = totalSOQty.ToString("F2");
+        //                var saleOrderItemResponse = _saleService.getSaleOrderItemById(selectedSaleOrderId).Result;
+        //                if (saleOrderItemResponse != null)
+        //                {
+        //                    productionRequest.ContainerTypeId = saleOrderItemResponse.ContainerTypeId;
+        //                    partyn.Text = saleOrderItemResponse.ItemDescription;
+        //                    partyshade.Text = saleOrderItemResponse.ShadeNameDescription + "-" + saleOrderItemResponse.ShadeCodeDescription;
+        //                }
 
-                        RefreshGradewiseGrid();
-                        if (_productionId > 0 && productionResponse != null)
-                        {
-                            WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                            WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //                RefreshGradewiseGrid();
+        //                if (_productionId > 0 && productionResponse != null)
+        //                {
+        //                    WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
+        //                    WindingTypeList_SelectedIndexChanged(WindingTypeList, EventArgs.Empty);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
         private async void RefreshWindingGrid()
         {
-            if (WindingTypeList.SelectedValue != null)
+            Log.writeMessage("BCF RefreshWindingGrid - Start : " + DateTime.Now);
+
+            if (productionRequest.WindingTypeId != 0)
             {
-                int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
-                if (selectedWindingTypeId > 0)
+                //int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
+                if (productionRequest.WindingTypeId > 0)
                 {
                     var getProductionByWindingType = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
@@ -847,15 +1051,19 @@ namespace PackingApplication
                     windinggrid.DataSource = gridList;
                 }
             }
+
+            Log.writeMessage("BCF RefreshWindingGrid - End : " + DateTime.Now);
         }
 
         private async void RefreshGradewiseGrid()
         {
-            if (QualityList.SelectedValue != null)
+            Log.writeMessage("BCF RefreshLastBoxDetails - Start : " + DateTime.Now);
+
+            if (productionRequest.QualityId != 0)
             {
                 prodnbalqty.Text = "";
                 balanceQty = 0;
-                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
 
@@ -900,10 +1108,14 @@ namespace PackingApplication
                     prodnbalqty.Text = balanceQty.ToString("F2");
                 }
             }
+
+            Log.writeMessage("BCF RefreshLastBoxDetails - End : " + DateTime.Now);
         }
 
         private async void RefreshLastBoxDetails()
         {
+            Log.writeMessage("BCF RefreshLastBoxDetails - Start : " + DateTime.Now);
+
             var getLastBox = _packingService.getLastBoxDetails("bcfpacking").Result;
 
             //lastboxdetails
@@ -918,162 +1130,164 @@ namespace PackingApplication
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
                 this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
             }
+
+            Log.writeMessage("BCF RefreshLastBoxDetails - End : " + DateTime.Now);
         }
 
-        private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (ComPortList.SelectedValue != null)
-            {
-                var ComPort = ComPortList.SelectedValue.ToString();
-                comPort = ComPortList.SelectedValue.ToString();
-            }
-        }
+        //    if (ComPortList.SelectedValue != null)
+        //    {
+        //        var ComPort = ComPortList.SelectedValue.ToString();
+        //        comPort = ComPortList.SelectedValue.ToString();
+        //    }
+        //}
 
-        private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (WeighingList.SelectedValue != null)
-            {
-                WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
-                int selectedScaleId = selectedWeighingScale.Id;
-            }
-        }
+        //    if (WeighingList.SelectedValue != null)
+        //    {
+        //        WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
+        //        int selectedScaleId = selectedWeighingScale.Id;
+        //    }
+        //}
 
-        private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void CopsItemList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (CopsItemList.SelectedIndex <= 0)
-            {
-                copsitemwt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-            }
+        //    if (CopsItemList.SelectedIndex <= 0)
+        //    {
+        //        copsitemwt.Text = "0";
+        //        spoolwt.Text = "0";
+        //        return;
+        //    }
 
-            lblLoading.Visible = true;
-            try
-            {
-                if (CopsItemList.SelectedValue != null)
-                {
-                    ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
-                    int selectedItemId = selectedCopsItem.ItemId;
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (CopsItemList.SelectedValue != null)
+        //        {
+        //            ItemResponse selectedCopsItem = (ItemResponse)CopsItemList.SelectedItem;
+        //            int selectedItemId = selectedCopsItem.ItemId;
 
-                    if (selectedItemId > 0)
-                    {
-                        productionRequest.SpoolItemId = selectedItemId;
+        //            if (selectedItemId > 0)
+        //            {
+        //                productionRequest.SpoolItemId = selectedItemId;
 
-                        var itemResponse = _masterService.GetItemById(selectedItemId).Result;
-                        if (itemResponse != null)
-                        {
-                            copsitemwt.Text = itemResponse.Weight.ToString();
-                            SpoolNo_TextChanged(sender, e);
-                            GrossWeight_TextChanged(sender, e);
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //                var itemResponse = _masterService.GetItemById(selectedItemId).Result;
+        //                if (itemResponse != null)
+        //                {
+        //                    copsitemwt.Text = itemResponse.Weight.ToString();
+        //                    SpoolNo_TextChanged(sender, e);
+        //                    GrossWeight_TextChanged(sender, e);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void BoxItemList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (BoxItemList.SelectedIndex <= 0)
-            {
-                boxpalletitemwt.Text = "0";
-                palletwtno.Text = "0";
-                return;
-            }
+        //    if (BoxItemList.SelectedIndex <= 0)
+        //    {
+        //        boxpalletitemwt.Text = "0";
+        //        palletwtno.Text = "0";
+        //        return;
+        //    }
 
-            lblLoading.Visible = true;
-            try
-            {
-                if (BoxItemList.SelectedValue != null)
-                {
-                    ItemResponse selectedBoxItem = (ItemResponse)BoxItemList.SelectedItem;
-                    int selectedBoxItemId = selectedBoxItem.ItemId;
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (BoxItemList.SelectedValue != null)
+        //        {
+        //            ItemResponse selectedBoxItem = (ItemResponse)BoxItemList.SelectedItem;
+        //            int selectedBoxItemId = selectedBoxItem.ItemId;
 
-                    if (selectedBoxItemId > 0)
-                    {
-                        productionRequest.BoxItemId = selectedBoxItemId;
-                        var itemResponse = _masterService.GetItemById(selectedBoxItemId).Result;
-                        if (itemResponse != null)
-                        {
-                            boxpalletitemwt.Text = itemResponse.Weight.ToString();
-                            palletwtno.Text = itemResponse.Weight.ToString();
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //            if (selectedBoxItemId > 0)
+        //            {
+        //                productionRequest.BoxItemId = selectedBoxItemId;
+        //                var itemResponse = _masterService.GetItemById(selectedBoxItemId).Result;
+        //                if (itemResponse != null)
+        //                {
+        //                    boxpalletitemwt.Text = itemResponse.Weight.ToString();
+        //                    palletwtno.Text = itemResponse.Weight.ToString();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (DeptList.SelectedIndex <= 0)
-            {
-                return;
-            }
-            lblLoading.Visible = true;
-            try
-            {
-                if (DeptList.SelectedValue != null)
-                {
-                    DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
-                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+        //    if (DeptList.SelectedIndex <= 0)
+        //    {
+        //        return;
+        //    }
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (DeptList.SelectedValue != null)
+        //        {
+        //            DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
+        //            int selectedDepartmentId = selectedDepartment.DepartmentId;
 
-                    if (selectedDepartment != null && productionRequest.MachineId == 0)
-                    {
-                        var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "BCFLot").Result;
-                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                        LineNoList.DataSource = machineList;
-                    }
+        //            if (selectedDepartment != null && productionRequest.MachineId == 0)
+        //            {
+        //                var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "BCFLot").Result;
+        //                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+        //                LineNoList.DataSource = machineList;
+        //            }
 
-                    productionRequest.DepartmentId = selectedDepartmentId;
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //            productionRequest.DepartmentId = selectedDepartmentId;
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
-        private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isFormReady) return;
+        //private async void OwnerList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (!isFormReady) return;
 
-            if (OwnerList.SelectedIndex <= 0)
-            {
-                return;
-            }
-            lblLoading.Visible = true;
-            try
-            {
-                if (OwnerList.SelectedValue != null)
-                {
-                    BusinessPartnerResponse selectedOwner = (BusinessPartnerResponse)OwnerList.SelectedItem;
-                    int selectedOwnerId = selectedOwner.BusinessPartnerId;
+        //    if (OwnerList.SelectedIndex <= 0)
+        //    {
+        //        return;
+        //    }
+        //    lblLoading.Visible = true;
+        //    try
+        //    {
+        //        if (OwnerList.SelectedValue != null)
+        //        {
+        //            BusinessPartnerResponse selectedOwner = (BusinessPartnerResponse)OwnerList.SelectedItem;
+        //            int selectedOwnerId = selectedOwner.BusinessPartnerId;
 
-                    productionRequest.OwnerId = selectedOwnerId;
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-        }
+        //            productionRequest.OwnerId = selectedOwnerId;
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        lblLoading.Visible = false;
+        //    }
+        //}
 
         //private Task<List<MachineResponse>> getMachineList()
         //{
@@ -1095,8 +1309,10 @@ namespace PackingApplication
         //    return Task.Run(() => _masterService.getPackSizeList());
         //}
 
-        private List<string> getComPortList()
+        private async Task<List<string>> getComPortList()
         {
+            Log.writeMessage("BCF getComPortList - Start : " + DateTime.Now);
+
             var getComPortType = new List<string>
             {
                 "Select Com Port",
@@ -1106,11 +1322,15 @@ namespace PackingApplication
                 "COM4"
             };
 
+            Log.writeMessage("BCF getComPortList - End : " + DateTime.Now);
+
             return getComPortType;
         }
 
-        private List<WeighingItem> getWeighingList()
+        private async Task<List<WeighingItem>> getWeighingList()
         {
+            Log.writeMessage("BCF getWeighingList - Start : " + DateTime.Now);
+
             var getWeighingScale = new List<WeighingItem>
             {
                 new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
@@ -1120,249 +1340,253 @@ namespace PackingApplication
                 new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
 
+            Log.writeMessage("BCF getWeighingList - Start : " + DateTime.Now);
+
             return getWeighingScale;
         }
 
         private int rowCount = 0; // Keeps track of SrNo
         private bool headerAdded = false; // To ensure header is added only once
         private int currentY = 35; // Start below header height
-        private void addqty_Click(object sender, EventArgs e)
-        {
-            var selectedItem = (ItemResponse)PalletTypeList.SelectedItem;
-            if (selectedItem != null)
-            {
-                if (selectedItem.ItemId == 0)
-                {
-                    MessageBox.Show("Please select an item.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            if (string.IsNullOrEmpty(qnty.Text))
-            {
-                MessageBox.Show("Please enter quantity.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error); return;
-            }
-            int qty = Convert.ToInt32(qnty.Text);
+        //private void addqty_Click(object sender, EventArgs e)
+        //{
+        //    var selectedItem = (ItemResponse)PalletTypeList.SelectedItem;
+        //    if (selectedItem != null)
+        //    {
+        //        if (selectedItem.ItemId == 0)
+        //        {
+        //            MessageBox.Show("Please select an item.",
+        //            "Error",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //            return;
+        //        }
+        //    }
+        //    if (string.IsNullOrEmpty(qnty.Text))
+        //    {
+        //        MessageBox.Show("Please enter quantity.",
+        //            "Error",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error); return;
+        //    }
+        //    int qty = Convert.ToInt32(qnty.Text);
 
-            if (selectedItem.ItemId > 0)
-            {
-                // Check duplicate value
-                bool alreadyExists = flowLayoutPanel1.Controls
-                    .OfType<Panel>().Skip(1) // Skip header
-                    .Any(ctrl => {
-                        if (ctrl.Tag is Tuple<ItemResponse, int> tagData)
-                        {
-                            return tagData.Item1.ItemId == selectedItem.ItemId && tagData.Item2 == qty;
-                        }
-                        return false;
-                    });
+        //    if (selectedItem.ItemId > 0)
+        //    {
+        //        // Check duplicate value
+        //        bool alreadyExists = flowLayoutPanel1.Controls
+        //            .OfType<Panel>().Skip(1) // Skip header
+        //            .Any(ctrl => {
+        //                if (ctrl.Tag is Tuple<ItemResponse, int> tagData)
+        //                {
+        //                    return tagData.Item1.ItemId == selectedItem.ItemId && tagData.Item2 == qty;
+        //                }
+        //                return false;
+        //            });
 
-                var existingPanel = flowLayoutPanel1.Controls
-                    .OfType<Panel>()
-                    .Skip(1) // Skip header
-                    .FirstOrDefault(ctrl =>
-                        ctrl.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tag &&
-                        tag.Item1.ItemId == selectedItem.ItemId);
+        //        var existingPanel = flowLayoutPanel1.Controls
+        //            .OfType<Panel>()
+        //            .Skip(1) // Skip header
+        //            .FirstOrDefault(ctrl =>
+        //                ctrl.Tag is Tuple<ItemResponse, System.Windows.Forms.Label> tag &&
+        //                tag.Item1.ItemId == selectedItem.ItemId);
 
-                if (existingPanel != null)
-                {
-                    var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
-                    tag.Item2.Text = qty.ToString();
-                    foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
-                    {
-                        if (control.Text == "Remove")
-                        {
-                            control.Enabled = true;
-                        }
-                    }
+        //        if (existingPanel != null)
+        //        {
+        //            var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
+        //            tag.Item2.Text = qty.ToString();
+        //            foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
+        //            {
+        //                if (control.Text == "Remove")
+        //                {
+        //                    control.Enabled = true;
+        //                }
+        //            }
 
-                    qnty.Text = "";
-                    PalletTypeList.SelectedIndex = 0;
-                    return;
-                }
+        //            qnty.Text = "";
+        //            PalletTypeList.SelectedIndex = 0;
+        //            return;
+        //        }
 
-                if (!alreadyExists)
-                {
-                    rowCount++;
+        //        if (!alreadyExists)
+        //        {
+        //            rowCount++;
 
-                    Panel rowPanel = new Panel();
-                    rowPanel.Size = new Size(width, 35);
-                    rowPanel.BorderStyle = BorderStyle.None;
+        //            Panel rowPanel = new Panel();
+        //            rowPanel.Size = new Size(width, 35);
+        //            rowPanel.BorderStyle = BorderStyle.None;
 
-                    rowPanel.Paint += (s, pe) =>
-                    {
-                        using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
-                        {
-                            // dashed border example: pen.DashStyle = DashStyle.Dash;
-                            pe.Graphics.DrawLine(
-                                pen,
-                                0, rowPanel.Height - 1,
-                                rowPanel.Width, rowPanel.Height - 1
-                            );
-                        }
-                    };
+        //            rowPanel.Paint += (s, pe) =>
+        //            {
+        //                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) // thickness = 1
+        //                {
+        //                    // dashed border example: pen.DashStyle = DashStyle.Dash;
+        //                    pe.Graphics.DrawLine(
+        //                        pen,
+        //                        0, rowPanel.Height - 1,
+        //                        rowPanel.Width, rowPanel.Height - 1
+        //                    );
+        //                }
+        //            };
 
-                    // SrNo
-                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+        //            // SrNo
+        //            System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
-                    // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
+        //            // Item Name
+        //            System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
 
-                    // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+        //            // Qty
+        //            System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new System.Drawing.Point(200, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
-                    // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
-                    btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
-                    btnEdit.FlatAppearance.BorderSize = 1;
-                    btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
-                    btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
-                    btnEdit.FlatAppearance.BorderSize = 0;
-                    btnEdit.TabIndex = 4;
-                    btnEdit.TabStop = true;
-                    btnEdit.Cursor = Cursors.Hand;
-                    btnEdit.Paint += (s, f) =>
-                    {
-                        var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
+        //            // Edit Button
+        //            System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(250, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+        //            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
+        //            btnEdit.FlatAppearance.BorderSize = 1;
+        //            btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
+        //            btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
+        //            btnEdit.FlatAppearance.BorderSize = 0;
+        //            btnEdit.TabIndex = 4;
+        //            btnEdit.TabStop = true;
+        //            btnEdit.Cursor = Cursors.Hand;
+        //            btnEdit.Paint += (s, f) =>
+        //            {
+        //                var rect = new Rectangle(0, 0, btnEdit.Width - 1, btnEdit.Height - 1);
 
-                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
-                        using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
-                        using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
-                        {
-                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        //                using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4)) // radius = 4
+        //                using (Pen borderPen = new Pen(btnEdit.FlatAppearance.BorderColor, btnEdit.FlatAppearance.BorderSize))
+        //                using (SolidBrush brush = new SolidBrush(btnEdit.BackColor))
+        //                {
+        //                    f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                            f.Graphics.FillPath(brush, path);
+        //                    f.Graphics.FillPath(brush, path);
 
-                            f.Graphics.DrawPath(borderPen, path);
+        //                    f.Graphics.DrawPath(borderPen, path);
 
-                            if (btnEdit.Focused)
-                            {
-                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
-                            }
+        //                    if (btnEdit.Focused)
+        //                    {
+        //                        ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+        //                    }
 
-                            TextRenderer.DrawText(
-                                f.Graphics,
-                                btnEdit.Text,
-                                btnEdit.Font,
-                                rect,
-                                btnEdit.ForeColor,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                            );
-                        }
-                    };
-                    btnEdit.Click += editPallet_Click;
+        //                    TextRenderer.DrawText(
+        //                        f.Graphics,
+        //                        btnEdit.Text,
+        //                        btnEdit.Font,
+        //                        rect,
+        //                        btnEdit.ForeColor,
+        //                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+        //                    );
+        //                }
+        //            };
+        //            btnEdit.Click += editPallet_Click;
 
-                    // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
-                    btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
-                    btnDelete.FlatAppearance.BorderSize = 1;
-                    btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
-                    btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
-                    btnDelete.FlatAppearance.BorderSize = 0;
-                    btnDelete.TabIndex = 5;
-                    btnDelete.TabStop = true;
-                    btnDelete.Cursor = Cursors.Hand;
-                    btnDelete.Paint += (s, f) =>
-                    {
-                        var button = (System.Windows.Forms.Button)s;
-                        var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
+        //            // Delete Button
+        //            System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(300, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+        //            btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
+        //            btnDelete.FlatAppearance.BorderSize = 1;
+        //            btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
+        //            btnDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 230, 230);
+        //            btnDelete.FlatAppearance.BorderSize = 0;
+        //            btnDelete.TabIndex = 5;
+        //            btnDelete.TabStop = true;
+        //            btnDelete.Cursor = Cursors.Hand;
+        //            btnDelete.Paint += (s, f) =>
+        //            {
+        //                var button = (System.Windows.Forms.Button)s;
+        //                var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
 
-                        // button color change for enabled/disabled
-                        Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
-                        Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
-                        Color foreColor = button.Enabled ? button.ForeColor : Color.DarkGray;
+        //                // button color change for enabled/disabled
+        //                Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
+        //                Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
+        //                Color foreColor = button.Enabled ? button.ForeColor : Color.DarkGray;
 
-                        using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
-                        using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
-                        using (SolidBrush brush = new SolidBrush(backColor))
-                        {
-                            f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                            f.Graphics.FillPath(brush, path);
-                            f.Graphics.DrawPath(borderPen, path);
+        //                using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
+        //                using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
+        //                using (SolidBrush brush = new SolidBrush(backColor))
+        //                {
+        //                    f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        //                    f.Graphics.FillPath(brush, path);
+        //                    f.Graphics.DrawPath(borderPen, path);
 
-                            if (btnDelete.Focused)
-                            {
-                                ControlPaint.DrawFocusRectangle(f.Graphics, rect);
-                            }
+        //                    if (btnDelete.Focused)
+        //                    {
+        //                        ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+        //                    }
 
-                            TextRenderer.DrawText(
-                                f.Graphics,
-                                button.Text,
-                                button.Font,
-                                rect,
-                                foreColor,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                            );
-                        }
-                    };
-                    // Remove Row
-                    btnDelete.Click += (s, args) =>
-                    {
-                        flowLayoutPanel1.Controls.Remove(rowPanel);
-                        ReorderSrNo();
-                    };
+        //                    TextRenderer.DrawText(
+        //                        f.Graphics,
+        //                        button.Text,
+        //                        button.Font,
+        //                        rect,
+        //                        foreColor,
+        //                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+        //                    );
+        //                }
+        //            };
+        //            // Remove Row
+        //            btnDelete.Click += (s, args) =>
+        //            {
+        //                flowLayoutPanel1.Controls.Remove(rowPanel);
+        //                ReorderSrNo();
+        //            };
 
-                    rowPanel.Controls.Add(lblSrNo);
-                    rowPanel.Controls.Add(lblItem);
-                    rowPanel.Controls.Add(lblQty);
-                    rowPanel.Controls.Add(btnEdit);
-                    rowPanel.Controls.Add(btnDelete);
-                    rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+        //            rowPanel.Controls.Add(lblSrNo);
+        //            rowPanel.Controls.Add(lblItem);
+        //            rowPanel.Controls.Add(lblQty);
+        //            rowPanel.Controls.Add(btnEdit);
+        //            rowPanel.Controls.Add(btnDelete);
+        //            rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
 
-                    flowLayoutPanel1.Controls.Add(rowPanel);
-                    flowLayoutPanel1.AutoScroll = true;
-                    flowLayoutPanel1.WrapContents = false;
-                    flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+        //            flowLayoutPanel1.Controls.Add(rowPanel);
+        //            flowLayoutPanel1.AutoScroll = true;
+        //            flowLayoutPanel1.WrapContents = false;
+        //            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
 
-                    qnty.Text = "";
-                    PalletTypeList.SelectedIndex = 0;
-                    PalletTypeList.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("Item already added.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select an item.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
+        //            qnty.Text = "";
+        //            PalletTypeList.SelectedIndex = 0;
+        //            PalletTypeList.Focus();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Item already added.",
+        //            "Error",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please select an item.",
+        //            "Error",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Error);
+        //    }
+        //}
 
-        private void ReorderSrNo()
-        {
-            int srNo = 1;
-            int y = 35;
+        //private void ReorderSrNo()
+        //{
+        //    int srNo = 1;
+        //    int y = 35;
 
-            foreach (Panel row in flowLayoutPanel1.Controls.OfType<Panel>().Skip(1))
-            {
-                row.Location = new System.Drawing.Point(0, y);
-                var lbl = row.Controls.OfType<System.Windows.Forms.Label>().FirstOrDefault();
-                if (lbl != null)
-                    lbl.Text = srNo.ToString();
+        //    foreach (Panel row in flowLayoutPanel1.Controls.OfType<Panel>().Skip(1))
+        //    {
+        //        row.Location = new System.Drawing.Point(0, y);
+        //        var lbl = row.Controls.OfType<System.Windows.Forms.Label>().FirstOrDefault();
+        //        if (lbl != null)
+        //            lbl.Text = srNo.ToString();
 
-                y += row.Height;
-                srNo++;
-            }
+        //        y += row.Height;
+        //        srNo++;
+        //    }
 
-            currentY = y; // Reset currentY for next added row
-            rowCount = srNo - 1;
-            PalletTypeList.Focus();
-        }
+        //    currentY = y; // Reset currentY for next added row
+        //    rowCount = srNo - 1;
+        //    PalletTypeList.Focus();
+        //}
 
         private void AddHeader()
         {
+            Log.writeMessage("BCF AddHeader - Start : " + DateTime.Now);
+
             Panel headerPanel = new Panel();
             headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width - 20, 35);
             headerPanel.BackColor = Color.White;
@@ -1384,47 +1608,51 @@ namespace PackingApplication
 
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
+
+            Log.writeMessage("BCF AddHeader - End : " + DateTime.Now);
         }
 
-        private void editPallet_Click(object sender, EventArgs e)
-        {
-            var btn = sender as System.Windows.Forms.Button;
-            var data = btn.Tag as Tuple<ItemResponse, System.Windows.Forms.Label>;
+        //private void editPallet_Click(object sender, EventArgs e)
+        //{
+        //    var btn = sender as System.Windows.Forms.Button;
+        //    var data = btn.Tag as Tuple<ItemResponse, System.Windows.Forms.Label>;
 
-            if (data != null)
-            {
-                ItemResponse item = data.Item1;
-                int quantity = Convert.ToInt32(data.Item2.Text);
+        //    if (data != null)
+        //    {
+        //        ItemResponse item = data.Item1;
+        //        int quantity = Convert.ToInt32(data.Item2.Text);
 
-                foreach (ItemResponse entry in PalletTypeList.Items)
-                {
-                    if (entry.ItemId == item.ItemId)
-                    {
-                        PalletTypeList.SelectedItem = entry;
-                        break;
-                    }
-                }
+        //        foreach (ItemResponse entry in PalletTypeList.Items)
+        //        {
+        //            if (entry.ItemId == item.ItemId)
+        //            {
+        //                PalletTypeList.SelectedItem = entry;
+        //                break;
+        //            }
+        //        }
 
-                qnty.Text = quantity.ToString();
+        //        qnty.Text = quantity.ToString();
 
-                //disable remove button when edit row
-                var rowPanel = btn.Parent as Panel;
-                if (rowPanel != null)
-                {
-                    foreach (var control in rowPanel.Controls.OfType<System.Windows.Forms.Button>())
-                    {
-                        if (control.Text == "Remove")
-                        {
-                            control.Enabled = false;
-                        }
-                    }
-                }
-                PalletTypeList.Focus();
-            }
-        }
+        //        //disable remove button when edit row
+        //        var rowPanel = btn.Parent as Panel;
+        //        if (rowPanel != null)
+        //        {
+        //            foreach (var control in rowPanel.Controls.OfType<System.Windows.Forms.Button>())
+        //            {
+        //                if (control.Text == "Remove")
+        //                {
+        //                    control.Enabled = false;
+        //                }
+        //            }
+        //        }
+        //        PalletTypeList.Focus();
+        //    }
+        //}
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF SpoolWeight_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 CalculateTareWeight();
@@ -1433,10 +1661,14 @@ namespace PackingApplication
             {
                 CalculateTareWeight();
             }
+
+            Log.writeMessage("BCF SpoolWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF PalletWeight_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 CalculateTareWeight();
@@ -1445,10 +1677,14 @@ namespace PackingApplication
             {
                 CalculateTareWeight();
             }
+
+            Log.writeMessage("BCF PalletWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateTareWeight()
         {
+            Log.writeMessage("BCF CalculateTareWeight - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(spoolwt.Text, out num1);
@@ -1463,19 +1699,24 @@ namespace PackingApplication
                     if (gross >= tare)
                     {
                         CalculateNetWeight();
-                        grosswterror.Visible = false;
                     }
                 }
             }
+
+            Log.writeMessage("BCF CalculateTareWeight - End : " + DateTime.Now);
         }
 
-        private void GrossWeight_TextChanged(object sender, EventArgs e)
+        private void GrossWeight_Validating(object sender, CancelEventArgs e)
         {
+            Log.writeMessage("BCF GrossWeight_Validating - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
             {
                 MessageBox.Show("Please enter gross weight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                return;
             }
             else
             {
@@ -1492,10 +1733,14 @@ namespace PackingApplication
                     }
                 }
             }
+
+            Log.writeMessage("BCF GrossWeight_Validating - End : " + DateTime.Now);
         }
 
         private void CalculateNetWeight()
         {
+            Log.writeMessage("BCF CalculateNetWeight - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(grosswtno.Text, out num1);
@@ -1505,24 +1750,26 @@ namespace PackingApplication
                 netwt.Text = (num1 - num2).ToString("F3");
                 CalculateWeightPerCop();
             }
+
+            Log.writeMessage("BCF CalculateNetWeight - End : " + DateTime.Now);
         }
 
         private void NetWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF NetWeight_TextChanged - Start : " + DateTime.Now);
+
             CalculateWeightPerCop();
+
+            Log.writeMessage("BCF NetWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF SpoolNo_TextChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
-            if (string.IsNullOrWhiteSpace(spoolno.Text))
-            {
-                MessageBox.Show("Please enter spool no", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tarewt.Text = "0";
-                spoolwt.Text = "0";
-                return;
-            }
-            else if (string.IsNullOrWhiteSpace(copsitemwt.Text))
+
+            if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
                 return;
@@ -1537,15 +1784,18 @@ namespace PackingApplication
                     spoolwt.Text = (spoolnum * copswt).ToString();
                     CalculateWeightPerCop();
                     CalculateTareWeight();
-                    GrossWeight_TextChanged(sender, e);
                     spoolnoerror.Text = "";
                     spoolnoerror.Visible = false;
                 }
             }
+
+            Log.writeMessage("BCF SpoolNo_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateWeightPerCop()
         {
+            Log.writeMessage("BCF CalculateWeightPerCop - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(netwt.Text, out num1);
@@ -1554,10 +1804,14 @@ namespace PackingApplication
             {
                 wtpercop.Text = (num1 / num2).ToString("F3");
             }
+
+            Log.writeMessage("BCF CalculateWeightPerCop - End : " + DateTime.Now);
         }
 
         private void CopyNos_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF CopyNos_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(copyno.Text))
             {
                 copynoerror.Visible = true;
@@ -1567,150 +1821,267 @@ namespace PackingApplication
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
+
+            Log.writeMessage("BCF CopyNos_TextChanged - End : " + DateTime.Now);
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF qualityqty_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+
+            Log.writeMessage("BCF qualityqty_Paint - End : " + DateTime.Now);
         }
 
         private void windinggrid_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF windinggrid_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+
+            Log.writeMessage("BCF windinggrid_Paint - End : " + DateTime.Now);
         }
 
         private void ordertable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF ordertable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF ordertable_Paint - End : " + DateTime.Now);
         }
 
         private void packagingtable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF packagingtable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF packagingtable_Paint - End : " + DateTime.Now);
         }
 
         private void weightable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF weightable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF weightable_Paint - End : " + DateTime.Now);
         }
 
         private void reviewtable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF reviewtable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF reviewtable_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF machineboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF machineboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF machineboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF machineboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF weighboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF weighboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF weighboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF weighboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF packagingboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF packagingboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF packagingboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF packagingboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF lastboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF lastboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF lastboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF lastboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF lastbxcopspanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF lastbxcopspanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF lastbxtarepanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF lastbxtarepanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF lastbxgrosswtpanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF lastbxgrosswtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF lastbxnetwtpanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("BCF lastbxnetwtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF printingdetailslayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF printingdetailslayout_Paint - End : " + DateTime.Now);
+
         }
 
         private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF printingdetailsheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF printingdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF palletdetailslayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF palletdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("BCF palletdetailsheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF palletdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF machineboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(machineboxheader, 8);
+
+            Log.writeMessage("BCF machineboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF weighboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(weighboxheader, 8);
+
+            Log.writeMessage("BCF weighboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF packagingboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(packagingboxheader, 8);
+
+            Log.writeMessage("BCF packagingboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF lastboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(lastboxheader, 8);
+
+            Log.writeMessage("BCF lastboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF printingdetailsheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
+
+            Log.writeMessage("BCF printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
         private void palletdetailsheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF palletdetailsheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
+
+            Log.writeMessage("BCF palletdetailsheader_Resize - End : " + DateTime.Now);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("BCF btnCancel_Click - Start : " + DateTime.Now);
+
             if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
             {
                 if (parentForm.MainMenuStrip != null)
@@ -1736,11 +2107,13 @@ namespace PackingApplication
                         ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
                 }
             }
+
+            Log.writeMessage("BCF btnCancel_Click - End : " + DateTime.Now);
         }
 
         private void AdjustNameByCharCount()
         {
-            Log.writeMessage("AdjustNameByCharCount - Start : " + DateTime.Now);
+            Log.writeMessage("BCF AdjustNameByCharCount - Start : " + DateTime.Now);
 
             int shadeCharCount = shadename.Text.Length;
 
@@ -1765,7 +2138,7 @@ namespace PackingApplication
                 itemname.Location = new System.Drawing.Point(38, 5);
             }
 
-            Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
+            Log.writeMessage("BCF AdjustNameByCharCount - End : " + DateTime.Now);
         }
     }
 }
