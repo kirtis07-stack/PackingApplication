@@ -2644,6 +2644,18 @@ namespace PackingApplication
             {
                 LineNoList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                LineNoList.DataSource = null;
+                var machineList = _masterService.GetMachineList("TexturisingLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                LineNoList.DataSource = machineList;
+                LineNoList.DisplayMember = "MachineName";
+                LineNoList.ValueMember = "MachineId";
+                LineNoList.SelectedIndex = 0;
+                LineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("DTY LineNoList_KeyDown - End : " + DateTime.Now);
         }
@@ -2661,6 +2673,18 @@ namespace PackingApplication
             {
                 MergeNoList.DroppedDown = false;
             }
+            //if (e.KeyCode == Keys.F2) // Detect F2 key
+            //{
+            //    MergeNoList.DataSource = null;
+            //    var mergenoList = _productionService.getLotList(selectedMachineid, "").Result.OrderBy(x => x.LotNoFrmt).ToList();
+            //    mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+            //    MergeNoList.DisplayMember = "LotNoFrmt";
+            //    MergeNoList.ValueMember = "LotId";
+            //    MergeNoList.DataSource = mergenoList;
+            //    MergeNoList.SelectedIndex = 0;
+            //    MergeNoList.DroppedDown = true; // Open the dropdown list
+            //    e.SuppressKeyPress = true;    // Prevent any side effect
+            //}
 
             Log.writeMessage("DTY MergeNoList_KeyDown - End : " + DateTime.Now);
         }
@@ -2677,6 +2701,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 PackSizeList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                PackSizeList.DataSource = null;
+                var packsizeList = _masterService.GetPackSizeList("").Result.OrderBy(x => x.PackSizeName).ToList();
+                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+                PackSizeList.DisplayMember = "PackSizeName";
+                PackSizeList.ValueMember = "PackSizeId";
+                PackSizeList.DataSource = packsizeList;
+                PackSizeList.SelectedIndex = 0;
+                PackSizeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("DTY PackSizeList_KeyDown - End : " + DateTime.Now);
@@ -2695,6 +2731,18 @@ namespace PackingApplication
             {
                 QualityList.DroppedDown = false;
             }
+            //if (e.KeyCode == Keys.F2) // Detect F2 key
+            //{
+            //    QualityList.DataSource = null;
+            //    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
+            //    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+            //    QualityList.DisplayMember = "Name";
+            //    QualityList.ValueMember = "QualityId";
+            //    QualityList.DataSource = qualityList;
+            //    QualityList.SelectedIndex = 0;
+            //    QualityList.DroppedDown = true; // Open the dropdown list
+            //    e.SuppressKeyPress = true;    // Prevent any side effect
+            //}
 
             Log.writeMessage("DTY QualityList_KeyDown - End : " + DateTime.Now);
         }
@@ -2712,6 +2760,18 @@ namespace PackingApplication
             {
                 SaleOrderList.DroppedDown = false;
             }
+            //if (e.KeyCode == Keys.F2) // Detect F2 key
+            //{
+            //    SaleOrderList.DataSource = null;
+            //    var getSaleOrder = _productionService.getSaleOrderList(selectLotId, "").Result.OrderBy(x => x.ItemName).ToList();
+            //    getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
+            //    SaleOrderList.DisplayMember = "ItemName";
+            //    SaleOrderList.ValueMember = "SaleOrderItemsId";
+            //    SaleOrderList.DataSource = getSaleOrder;
+            //    SaleOrderList.SelectedIndex = 0;
+            //    SaleOrderList.DroppedDown = true; // Open the dropdown list
+            //    e.SuppressKeyPress = true;    // Prevent any side effect
+            //}
 
             Log.writeMessage("DTY SaleOrderList_KeyDown - End : " + DateTime.Now);
         }
@@ -2729,6 +2789,18 @@ namespace PackingApplication
             {
                 PrefixList.DroppedDown = false;
             }
+            //if (e.KeyCode == Keys.F2) // Detect F2 key
+            //{
+            //    PrefixList.DataSource = null;
+            //    List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result.OrderBy(x => x.Prefix).ToList();
+            //    prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+            //    PrefixList.DisplayMember = "Prefix";
+            //    PrefixList.ValueMember = "PrefixCode";
+            //    PrefixList.DataSource = prefixList;
+            //    PrefixList.SelectedIndex = 0;
+            //    PrefixList.DroppedDown = true; // Open the dropdown list
+            //    e.SuppressKeyPress = true;    // Prevent any side effect
+            //}
 
             Log.writeMessage("DTY PrefixList_KeyDown - End : " + DateTime.Now);
         }
@@ -2745,6 +2817,24 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 WindingTypeList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                WindingTypeList.DataSource = null;
+                var getWindingType = new List<WindingTypeResponse>();
+                getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
+                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                if (getWindingType.Count <= 1)
+                {
+                    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                }
+                WindingTypeList.DisplayMember = "WindingTypeName";
+                WindingTypeList.ValueMember = "WindingTypeId";
+                WindingTypeList.DataSource = getWindingType;
+                WindingTypeList.SelectedIndex = 0;
+                WindingTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("DTY WindingTypeList_KeyDown - End : " + DateTime.Now);
@@ -2797,6 +2887,18 @@ namespace PackingApplication
             {
                 CopsItemList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                CopsItemList.DataSource = null;
+                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+                CopsItemList.DisplayMember = "Name";
+                CopsItemList.ValueMember = "ItemId";
+                CopsItemList.DataSource = copsitemList;
+                CopsItemList.SelectedIndex = 0;
+                CopsItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("DTY CopsItemList_KeyDown - End : " + DateTime.Now);
         }
@@ -2813,6 +2915,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 BoxItemList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                BoxItemList.DataSource = null;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                BoxItemList.DisplayMember = "Name";
+                BoxItemList.ValueMember = "ItemId";
+                BoxItemList.DataSource = boxitemList;
+                BoxItemList.SelectedIndex = 0;
+                BoxItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("DTY BoxItemList_KeyDown - End : " + DateTime.Now);
@@ -2831,6 +2945,18 @@ namespace PackingApplication
             {
                 DeptList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                DeptList.DataSource = null;
+                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                DeptList.DisplayMember = "DepartmentName";
+                DeptList.ValueMember = "DepartmentId";
+                DeptList.DataSource = deptList;
+                DeptList.SelectedIndex = 0;
+                DeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("DTY DeptList_KeyDown - End : " + DateTime.Now);
         }
@@ -2847,6 +2973,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 OwnerList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                OwnerList.DataSource = null;
+                var ownerList = _masterService.GetOwnerList("").Result.OrderBy(x => x.LegalName).ToList();
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.DataSource = ownerList;
+                OwnerList.SelectedIndex = 0;
+                OwnerList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("DTY OwnerList_KeyDown - End : " + DateTime.Now);

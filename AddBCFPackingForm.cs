@@ -3342,6 +3342,18 @@ namespace PackingApplication
             {
                 LineNoList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                LineNoList.DataSource = null;
+                var machineList = _masterService.GetMachineList("BCFLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                LineNoList.DataSource = machineList;
+                LineNoList.DisplayMember = "MachineName";
+                LineNoList.ValueMember = "MachineId";
+                LineNoList.SelectedIndex = 0;
+                LineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF LineNoList_KeyDown - End : " + DateTime.Now);
         }
@@ -3375,6 +3387,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 PackSizeList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                PackSizeList.DataSource = null;
+                var packsizeList = _masterService.GetPackSizeList("").Result.OrderBy(x => x.PackSizeName).ToList();
+                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+                PackSizeList.DisplayMember = "PackSizeName";
+                PackSizeList.ValueMember = "PackSizeId";
+                PackSizeList.DataSource = packsizeList;
+                PackSizeList.SelectedIndex = 0;
+                PackSizeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF PackSizeList_KeyDown - End : " + DateTime.Now);
@@ -3444,6 +3468,24 @@ namespace PackingApplication
             {
                 WindingTypeList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                WindingTypeList.DataSource = null;
+                var getWindingType = new List<WindingTypeResponse>();
+                getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
+                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                if (getWindingType.Count <= 1)
+                {
+                    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                }
+                WindingTypeList.DisplayMember = "WindingTypeName";
+                WindingTypeList.ValueMember = "WindingTypeId";
+                WindingTypeList.DataSource = getWindingType;
+                WindingTypeList.SelectedIndex = 0;
+                WindingTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF WindingTypeList_KeyDown - End : " + DateTime.Now);
         }
@@ -3495,6 +3537,18 @@ namespace PackingApplication
             {
                 CopsItemList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                CopsItemList.DataSource = null;
+                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+                CopsItemList.DisplayMember = "Name";
+                CopsItemList.ValueMember = "ItemId";
+                CopsItemList.DataSource = copsitemList;
+                CopsItemList.SelectedIndex = 0;
+                CopsItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF CopsItemList_KeyDown - End : " + DateTime.Now);
         }
@@ -3511,6 +3565,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 BoxItemList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                BoxItemList.DataSource = null;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                BoxItemList.DisplayMember = "Name";
+                BoxItemList.ValueMember = "ItemId";
+                BoxItemList.DataSource = boxitemList;
+                BoxItemList.SelectedIndex = 0;
+                BoxItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF BoxItemList_KeyDown - End : " + DateTime.Now);
@@ -3529,6 +3595,18 @@ namespace PackingApplication
             {
                 PalletTypeList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                PalletTypeList.DataSource = null;
+                var palletitemList = _masterService.GetItemList(itemPalletCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.DataSource = palletitemList;
+                PalletTypeList.SelectedIndex = 0;
+                PalletTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF PalletTypeList_KeyDown - End : " + DateTime.Now);
         }
@@ -3546,6 +3624,18 @@ namespace PackingApplication
             {
                 DeptList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                DeptList.DataSource = null;
+                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                DeptList.DisplayMember = "DepartmentName";
+                DeptList.ValueMember = "DepartmentId";
+                DeptList.DataSource = deptList;
+                DeptList.SelectedIndex = 0;
+                DeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF DeptList_KeyDown - End : " + DateTime.Now);
         }
@@ -3562,6 +3652,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 OwnerList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                OwnerList.DataSource = null;
+                var ownerList = _masterService.GetOwnerList("").Result.OrderBy(x => x.LegalName).ToList();
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.DataSource = ownerList;
+                OwnerList.SelectedIndex = 0;
+                OwnerList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF OwnerList_KeyDown - End : " + DateTime.Now);
