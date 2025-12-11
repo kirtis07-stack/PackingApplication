@@ -733,13 +733,13 @@ namespace PackingApplication
                 List<MachineResponse> machineList = new List<MachineResponse>();
                 if (selectedDeptId == 0)
                 {
-                    machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result;
+                    machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result;
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result.OrderBy(x => x.MachineName).ToList(); 
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -815,7 +815,7 @@ namespace PackingApplication
                                 if (itemResponse != null)
                                 {
                                     selectedItemTypeid = itemResponse.ItemTypeId;
-                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result;
+                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.SelectedIndexChanged -= QualityList_SelectedIndexChanged;
                                     QualityList.DataSource = qualityList;
@@ -865,7 +865,7 @@ namespace PackingApplication
                         ////WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
                         //WindingTypeList.SelectedIndexChanged += WindingTypeList_SelectedIndexChanged;
 
-                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result;
+                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result.OrderBy(x => x.ItemName).ToList();
                         getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                         SaleOrderList.SelectedIndexChanged -= SaleOrderList_SelectedIndexChanged;
                         SaleOrderList.DataSource = getSaleOrder;
@@ -939,7 +939,7 @@ namespace PackingApplication
                 MergeNoList.BeginUpdate();
                 //MergeNoList.Items.Clear();
 
-                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result;
+                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList(); 
 
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
 
@@ -1045,7 +1045,7 @@ namespace PackingApplication
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
 
-                var packsizeList = _masterService.GetPackSizeList(typedText).Result;
+                var packsizeList = _masterService.GetPackSizeList(typedText).Result.OrderBy(x => x.PackSizeName).ToList(); 
 
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
 
@@ -1099,7 +1099,7 @@ namespace PackingApplication
                 QualityList.BeginUpdate();
                 //QualityList.Items.Clear();
 
-                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result;
+                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList(); 
                 qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                 QualityList.TextUpdate -= QualityList_TextUpdate;
 
@@ -1166,11 +1166,11 @@ namespace PackingApplication
                 //WindingTypeList.Items.Clear();
 
                 var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result;
+                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result.OrderBy(x => x.WindingTypeName).ToList(); 
                 getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                 if (getWindingType.Count <= 1)
                 {
-                    getWindingType = _masterService.GetWindingTypeList(typedText).Result;
+                    getWindingType = _masterService.GetWindingTypeList(typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
                     getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                 }
@@ -1259,7 +1259,7 @@ namespace PackingApplication
                 SaleOrderList.BeginUpdate();
                 //SaleOrderList.Items.Clear();
 
-                var getSaleOrder = _productionService.getSaleOrderList(selectLotId, typedText).Result;
+                var getSaleOrder = _productionService.getSaleOrderList(selectLotId, typedText).Result.OrderBy(x => x.ItemName).ToList();
                 getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                 SaleOrderList.TextUpdate -= SaleOrderList_TextUpdate;
 
@@ -1440,7 +1440,7 @@ namespace PackingApplication
                 CopsItemList.BeginUpdate();
                 //CopsItemList.Items.Clear();
 
-                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, typedText).Result;
+                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
 
@@ -1516,7 +1516,7 @@ namespace PackingApplication
                 BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
 
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
@@ -1587,7 +1587,7 @@ namespace PackingApplication
                 prefixRequest.FinYearId = SessionManager.FinYearId;
                 prefixRequest.SubString = typedText;
 
-                List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result;
+                List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result.OrderBy(x => x.Prefix).ToList();
                 prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
 
                 PrefixList.TextUpdate -= PrefixList_TextUpdate;
@@ -1713,7 +1713,7 @@ namespace PackingApplication
                 DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(typedText).Result;
+                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
@@ -1780,7 +1780,7 @@ namespace PackingApplication
                 OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
 
-                var ownerList = _masterService.GetOwnerList(typedText).Result;
+                var ownerList = _masterService.GetOwnerList(typedText).Result.OrderBy(x => x.LegalName).ToList();
 
                 ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
 
