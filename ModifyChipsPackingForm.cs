@@ -646,12 +646,12 @@ namespace PackingApplication
                 LineNoList.DisplayMember = "MachineName";
                 LineNoList.ValueMember = "MachineId";
                 LineNoList.DataSource = machineList;
-                LineNoList.Text = typedText;
+                //LineNoList.Text = typedText;
 
                 LineNoList.EndUpdate();
 
                 LineNoList.DroppedDown = true;
-                LineNoList.SelectionStart = typedText.Length;
+                //LineNoList.SelectionStart = typedText.Length;
                 LineNoList.SelectionLength = 0;
 
                 LineNoList.TextUpdate += LinoNoList_TextUpdate;
@@ -794,12 +794,12 @@ namespace PackingApplication
                 MergeNoList.DisplayMember = "LotNoFrmt";
                 MergeNoList.ValueMember = "LotId";
                 MergeNoList.DataSource = mergenoList;
-                MergeNoList.Text = typedText;
+                //MergeNoList.Text = typedText;
 
                 MergeNoList.EndUpdate();
 
                 MergeNoList.DroppedDown = true;
-                MergeNoList.SelectionStart = typedText.Length;
+                //MergeNoList.SelectionStart = typedText.Length;
                 MergeNoList.SelectionLength = 0;
                 MergeNoList.TextUpdate += MergeNoList_TextUpdate;
 
@@ -897,12 +897,12 @@ namespace PackingApplication
                 PackSizeList.DisplayMember = "PackSizeName";
                 PackSizeList.ValueMember = "PackSizeId";
                 PackSizeList.DataSource = packsizeList;
-                PackSizeList.Text = typedText;
+                //PackSizeList.Text = typedText;
 
                 PackSizeList.EndUpdate();
 
                 PackSizeList.DroppedDown = true;
-                PackSizeList.SelectionStart = typedText.Length;
+                //PackSizeList.SelectionStart = typedText.Length;
                 PackSizeList.SelectionLength = 0;
 
                 PackSizeList.TextUpdate += PackSizeList_TextUpdate;
@@ -949,12 +949,12 @@ namespace PackingApplication
                 QualityList.DisplayMember = "Name";
                 QualityList.ValueMember = "QualityId";
                 QualityList.DataSource = qualityList;
-                QualityList.Text = typedText;
+                //QualityList.Text = typedText;
 
                 QualityList.EndUpdate();
 
                 QualityList.DroppedDown = true;
-                QualityList.SelectionStart = typedText.Length;
+                //QualityList.SelectionStart = typedText.Length;
                 QualityList.SelectionLength = 0;
 
                 QualityList.TextUpdate += QualityList_TextUpdate;
@@ -1026,12 +1026,12 @@ namespace PackingApplication
                 WindingTypeList.DisplayMember = "WindingTypeName";
                 WindingTypeList.ValueMember = "WindingTypeId";
                 WindingTypeList.DataSource = getWindingType;
-                WindingTypeList.Text = typedText;
+                //WindingTypeList.Text = typedText;
 
                 WindingTypeList.EndUpdate();
 
                 WindingTypeList.DroppedDown = true;
-                WindingTypeList.SelectionStart = typedText.Length;
+                //WindingTypeList.SelectionStart = typedText.Length;
                 WindingTypeList.SelectionLength = 0;
 
                 WindingTypeList.TextUpdate += WindingTypeList_TextUpdate;
@@ -1203,12 +1203,12 @@ namespace PackingApplication
                 BoxItemList.DisplayMember = "Name";
                 BoxItemList.ValueMember = "ItemId";
                 BoxItemList.DataSource = boxitemList;
-                BoxItemList.Text = typedText;
+                //BoxItemList.Text = typedText;
 
                 BoxItemList.EndUpdate();
 
                 BoxItemList.DroppedDown = true;
-                BoxItemList.SelectionStart = typedText.Length;
+                //BoxItemList.SelectionStart = typedText.Length;
                 BoxItemList.SelectionLength = 0;
 
                 BoxItemList.TextUpdate += BoxItemList_TextUpdate;
@@ -1292,12 +1292,12 @@ namespace PackingApplication
                 DeptList.DisplayMember = "DepartmentName";
                 DeptList.ValueMember = "DepartmentId";
                 DeptList.DataSource = deptList;
-                DeptList.Text = typedText;
+                //DeptList.Text = typedText;
 
                 DeptList.EndUpdate();
 
                 DeptList.DroppedDown = true;
-                DeptList.SelectionStart = typedText.Length;
+                //DeptList.SelectionStart = typedText.Length;
                 DeptList.SelectionLength = 0;
 
                 DeptList.TextUpdate += DeptList_TextUpdate;
@@ -1359,12 +1359,12 @@ namespace PackingApplication
                 OwnerList.DisplayMember = "LegalName";
                 OwnerList.ValueMember = "BusinessPartnerId";
                 OwnerList.DataSource = ownerList;
-                OwnerList.Text = typedText;
+                //OwnerList.Text = typedText;
 
                 OwnerList.EndUpdate();
 
                 OwnerList.DroppedDown = true;
-                OwnerList.SelectionStart = typedText.Length;
+                //OwnerList.SelectionStart = typedText.Length;
                 OwnerList.SelectionLength = 0;
 
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
