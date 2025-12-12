@@ -1810,9 +1810,9 @@ namespace PackingApplication
             Log.writeMessage("POY BoxItemList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private void PrefixList_SelectedIndexChanged(object sender, EventArgs e)
+        private void PrefixList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Log.writeMessage("POY PrefixList_SelectedIndexChanged - Start : " + DateTime.Now);
+            Log.writeMessage("POY PrefixList_SelectionChangeCommitted - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
 
@@ -1829,14 +1829,28 @@ namespace PackingApplication
 
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                if(selectedPrefix.ProductionType.ToString() != null)
+                var deptTask = _masterService.GetDepartmentList(selectedPrefix.Department).Result;
+                deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
+                DeptList.DataSource = deptTask;
+                DeptList.SelectedValue = selectedPrefix.DepartmentId;
+                selectedDeptId = selectedPrefix.DepartmentId;
+                productionRequest.DepartmentId = selectedDeptId;
+                DeptList.DisplayMember = "DepartmentName";
+                DeptList.ValueMember = "DepartmentId";
+                if (DeptList.Items.Count > 1)
+                {
+                    DeptList.SelectedIndex = 1;
+                }
+                DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
+                if (selectedPrefix.ProductionType.ToString() != null)
                 {
                     prodtype.Text = selectedPrefix.ProductionType.ToString();
                     productionRequest.ProdTypeId = selectedPrefix.ProductionTypeId;
                 }
             }
 
-            Log.writeMessage("POY PrefixList_SelectedIndexChanged - End : " + DateTime.Now);
+            Log.writeMessage("POY PrefixList_SelectionChangeCommitted - End : " + DateTime.Now);
         }
 
         private void PrefixList_TextUpdate(object sender, EventArgs e)
@@ -3441,6 +3455,26 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 PrefixList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                prefixRequest.DepartmentId = 0;
+                prefixRequest.TxnFlag = "poy";
+                prefixRequest.TransactionTypeId = 5;
+                prefixRequest.ProductionTypeId = 1;
+                prefixRequest.Prefix = "";
+                prefixRequest.FinYearId = SessionManager.FinYearId;
+                prefixRequest.GetAllFlag = true;
+
+                PrefixList.DataSource = null;
+                List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result.OrderBy(x => x.Prefix).ToList();
+                prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+                PrefixList.DisplayMember = "Prefix";
+                PrefixList.ValueMember = "PrefixCode";
+                PrefixList.DataSource = prefixList;
+                PrefixList.SelectedIndex = 0;
+                PrefixList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("POY PrefixList_KeyDown - End : " + DateTime.Now);

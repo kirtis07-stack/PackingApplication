@@ -2569,7 +2569,7 @@ namespace PackingApplication
             this.PrefixList.Name = "PrefixList";
             this.PrefixList.Size = new System.Drawing.Size(39, 21);
             this.PrefixList.TabIndex = 3;
-            this.PrefixList.SelectedIndexChanged += new System.EventHandler(this.PrefixList_SelectedIndexChanged);
+            this.PrefixList.SelectionChangeCommitted += new System.EventHandler(this.PrefixList_SelectionChangeCommitted);
             this.PrefixList.TextUpdate += new System.EventHandler(this.PrefixList_TextUpdate);
             this.PrefixList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrefixList_KeyDown);
             this.PrefixList.Leave += new System.EventHandler(this.ComboBox_Leave);
