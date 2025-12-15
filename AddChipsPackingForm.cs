@@ -3,6 +3,7 @@ using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +12,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +59,11 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
+        string reportServer = ConfigurationManager.AppSettings["reportServer"];
+        string reportPath = ConfigurationManager.AppSettings["reportPath"];
+        string UserName = ConfigurationManager.AppSettings["UserName"];
+        string Password = ConfigurationManager.AppSettings["Password"];
+        string Domain = ConfigurationManager.AppSettings["Domain"];
         bool suppressEvents = false;
         int selectedDeptId = 0;
         int selectedMachineid = 0;
@@ -1765,52 +1774,49 @@ namespace PackingApplication
                 this.wtpercop.Text = "0.000";
                 palletwtno.Text = boxpalletitemwt.Text;
                 isFormReady = true;
-                //if (isPrint)
-                //{
-                //    //call ssrs report to print
-                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                //    string format = "PDF";
+                if (isPrint)
+                {
+                    //call ssrs report to print
+                    string reportpathlink = reportPath + "/Chips";
+                    string format = "PDF";
 
-                //    //set params
-                //    string productionId = result.ProductionId.ToString();
-                //    string startDate = "";
-                //    string endDate = "";
-                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                    //set params
+                    string productionId = result.ProductionId.ToString();
+                    string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
-                //    WebClient client = new WebClient();
-                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    WebClient client = new WebClient();
+                    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+                    //client.UseDefaultCredentials = false;
 
-                //    byte[] bytes = client.DownloadData(url);
+                    // Download PDF
+                    byte[] bytes = client.DownloadData(url);
 
-                //    // Save to file
-                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                //    File.WriteAllBytes(tempFile, bytes);
+                    // Save to temp
+                    string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
+                    File.WriteAllBytes(tempFile, bytes);
 
-                //    //// Open with default PDF reader
-                //    //System.Diagnostics.Process.Start("Report.pdf");
+                    using (var pdfDoc = PdfDocument.Load(tempFile))
+                    {
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                Copies = 1
+                            };
+                            // Set custom 4x4 label size
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                //    {
-                //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                //        {
-                //            var printerSettings = new PrinterSettings()
-                //            {
-                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                //                Copies = 1
-                //            };
-                //            // Set custom 4x4 label size
-                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+                            printDoc.PrinterSettings = printerSettings;
+                            printDoc.Print(); // sends PDF to printer
+                        }
+                    }
 
-                //            printDoc.PrinterSettings = printerSettings;
-                //            printDoc.Print(); // sends PDF to printer
-                //        }
-                //    }
-
-                //    // 5️⃣ Clean up temp file
-                //    File.Delete(tempFile);
-                //}
+                    // 5️⃣ Clean up temp file
+                    File.Delete(tempFile);
+                }
 
             }
             else

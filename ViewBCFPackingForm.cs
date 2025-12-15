@@ -60,6 +60,7 @@ namespace PackingApplication
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.addqty, 8);
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
             windinggrid.AutoGenerateColumns = false;
