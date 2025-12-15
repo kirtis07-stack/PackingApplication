@@ -58,7 +58,6 @@ namespace PackingApplication
             this.prowner = new System.Windows.Forms.CheckBox();
             this.prdate = new System.Windows.Forms.CheckBox();
             this.pruser = new System.Windows.Forms.CheckBox();
-            this.prhindi = new System.Windows.Forms.CheckBox();
             this.prwtps = new System.Windows.Forms.CheckBox();
             this.prqrcode = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -243,7 +242,6 @@ namespace PackingApplication
             this.panel37 = new System.Windows.Forms.Panel();
             this.panel38 = new System.Windows.Forms.Panel();
             this.panel39 = new System.Windows.Forms.Panel();
-            this.panel40 = new System.Windows.Forms.Panel();
             this.panel42 = new System.Windows.Forms.Panel();
             this.panel41 = new System.Windows.Forms.Panel();
             this.panel43 = new System.Windows.Forms.Panel();
@@ -355,7 +353,6 @@ namespace PackingApplication
             this.panel37.SuspendLayout();
             this.panel38.SuspendLayout();
             this.panel39.SuspendLayout();
-            this.panel40.SuspendLayout();
             this.panel42.SuspendLayout();
             this.panel41.SuspendLayout();
             this.panel43.SuspendLayout();
@@ -394,7 +391,7 @@ namespace PackingApplication
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Enabled = false;
@@ -459,7 +456,7 @@ namespace PackingApplication
             // 
             // remark
             // 
-            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
             this.remark.Location = new System.Drawing.Point(0, 5);
@@ -472,7 +469,7 @@ namespace PackingApplication
             // remarks
             // 
             this.remarks.AcceptsReturn = true;
-            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(56, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -495,7 +492,7 @@ namespace PackingApplication
             // QualityList
             // 
             this.QualityList.AllowDrop = true;
-            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.QualityList.FormattingEnabled = true;
             this.QualityList.Location = new System.Drawing.Point(52, 0);
@@ -507,7 +504,7 @@ namespace PackingApplication
             // PackSizeList
             // 
             this.PackSizeList.AllowDrop = true;
-            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackSizeList.FormattingEnabled = true;
             this.PackSizeList.Location = new System.Drawing.Point(58, 2);
@@ -519,7 +516,7 @@ namespace PackingApplication
             // WindingTypeList
             // 
             this.WindingTypeList.AllowDrop = true;
-            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WindingTypeList.FormattingEnabled = true;
             this.WindingTypeList.Location = new System.Drawing.Point(52, 0);
@@ -531,7 +528,7 @@ namespace PackingApplication
             // ComPortList
             // 
             this.ComPortList.AllowDrop = true;
-            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComPortList.FormattingEnabled = true;
             this.ComPortList.Location = new System.Drawing.Point(30, 2);
@@ -543,7 +540,7 @@ namespace PackingApplication
             // WeighingList
             // 
             this.WeighingList.AllowDrop = true;
-            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WeighingList.FormattingEnabled = true;
             this.WeighingList.Location = new System.Drawing.Point(42, 3);
@@ -555,7 +552,7 @@ namespace PackingApplication
             // SaleOrderList
             // 
             this.SaleOrderList.AllowDrop = true;
-            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SaleOrderList.FormattingEnabled = true;
             this.SaleOrderList.Location = new System.Drawing.Point(40, 0);
@@ -620,21 +617,6 @@ namespace PackingApplication
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
             // 
-            // prhindi
-            // 
-            this.prhindi.AutoSize = true;
-            this.prhindi.Checked = true;
-            this.prhindi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.prhindi.Location = new System.Drawing.Point(1, 1);
-            this.prhindi.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.prhindi.Name = "prhindi";
-            this.prhindi.Size = new System.Drawing.Size(108, 17);
-            this.prhindi.TabIndex = 4;
-            this.prhindi.TabStop = false;
-            this.prhindi.Text = "Print Hindi Words";
-            this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.prhindi.UseVisualStyleBackColor = true;
-            // 
             // prwtps
             // 
             this.prwtps.AutoSize = true;
@@ -655,7 +637,7 @@ namespace PackingApplication
             this.prqrcode.AutoSize = true;
             this.prqrcode.Checked = true;
             this.prqrcode.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.prqrcode.Location = new System.Drawing.Point(0, 1);
+            this.prqrcode.Location = new System.Drawing.Point(1, 1);
             this.prqrcode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prqrcode.Name = "prqrcode";
             this.prqrcode.Size = new System.Drawing.Size(94, 17);
@@ -677,7 +659,7 @@ namespace PackingApplication
             // 
             // copyno
             // 
-            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.copyno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.copyno.Location = new System.Drawing.Point(45, 3);
@@ -702,7 +684,7 @@ namespace PackingApplication
             // 
             // netwt
             // 
-            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.netwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.netwt.Location = new System.Drawing.Point(62, 2);
@@ -737,7 +719,7 @@ namespace PackingApplication
             // 
             // grosswtno
             // 
-            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grosswtno.Location = new System.Drawing.Point(57, 2);
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -758,7 +740,7 @@ namespace PackingApplication
             // 
             // palletwtno
             // 
-            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.palletwtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.palletwtno.Location = new System.Drawing.Point(60, 2);
@@ -781,7 +763,7 @@ namespace PackingApplication
             // 
             // spoolno
             // 
-            this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spoolno.Location = new System.Drawing.Point(45, 0);
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1177,7 +1159,7 @@ namespace PackingApplication
             // 
             // buttontablelayout
             // 
-            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttontablelayout.ColumnCount = 3;
             this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -1194,7 +1176,7 @@ namespace PackingApplication
             // 
             // panel21
             // 
-            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel21.Controls.Add(this.cancelbtn);
             this.panel21.Location = new System.Drawing.Point(299, 3);
@@ -1219,7 +1201,7 @@ namespace PackingApplication
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1235,7 +1217,7 @@ namespace PackingApplication
             // 
             // rowMaterialBox
             // 
-            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterialBox.Controls.Add(this.rowMaterialPanel);
@@ -1251,7 +1233,7 @@ namespace PackingApplication
             // 
             // rowMaterialPanel
             // 
-            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(7, 16);
@@ -1265,7 +1247,7 @@ namespace PackingApplication
             this.rowMaterial.AllowUserToDeleteRows = false;
             this.rowMaterial.AllowUserToResizeColumns = false;
             this.rowMaterial.AllowUserToResizeRows = false;
-            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -1320,7 +1302,7 @@ namespace PackingApplication
             // 
             // wgroupbox
             // 
-            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wgroupbox.Controls.Add(this.windinggrid);
             this.wgroupbox.Location = new System.Drawing.Point(2, 0);
@@ -1367,7 +1349,7 @@ namespace PackingApplication
             // 
             // gradewiseprodn
             // 
-            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gradewiseprodn.Controls.Add(this.prodnbalqty);
             this.gradewiseprodn.Controls.Add(this.grdsoqty);
@@ -1460,7 +1442,7 @@ namespace PackingApplication
             // 
             // palletdetailslayout
             // 
-            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.palletdetailslayout.BackColor = System.Drawing.Color.White;
             this.palletdetailslayout.ColumnCount = 1;
@@ -1509,7 +1491,7 @@ namespace PackingApplication
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
@@ -1535,7 +1517,7 @@ namespace PackingApplication
             // 
             // packagingboxlayout
             // 
-            this.packagingboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.packagingboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxlayout.BackColor = System.Drawing.Color.White;
             this.packagingboxlayout.ColumnCount = 1;
@@ -1555,7 +1537,7 @@ namespace PackingApplication
             // 
             // packagingboxheader
             // 
-            this.packagingboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.packagingboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.packagingboxheader.Controls.Add(this.Packagingboxlbl);
@@ -1680,7 +1662,7 @@ namespace PackingApplication
             // BoxItemList
             // 
             this.BoxItemList.AllowDrop = true;
-            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BoxItemList.FormattingEnabled = true;
             this.BoxItemList.Location = new System.Drawing.Point(58, 2);
@@ -1795,7 +1777,7 @@ namespace PackingApplication
             // CopsItemList
             // 
             this.CopsItemList.AllowDrop = true;
-            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CopsItemList.FormattingEnabled = true;
             this.CopsItemList.Location = new System.Drawing.Point(58, 2);
@@ -2093,7 +2075,7 @@ namespace PackingApplication
             // 
             // OwnerList
             // 
-            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OwnerList.FormattingEnabled = true;
             this.OwnerList.Location = new System.Drawing.Point(58, 0);
@@ -2123,7 +2105,7 @@ namespace PackingApplication
             // 
             // partyn
             // 
-            this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyn.AutoEllipsis = true;
             this.partyn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2156,7 +2138,7 @@ namespace PackingApplication
             // 
             // partyshade
             // 
-            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyshade.AutoEllipsis = true;
             this.partyshade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2178,7 +2160,7 @@ namespace PackingApplication
             // 
             // machineboxlayout
             // 
-            this.machineboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.machineboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.machineboxlayout.BackColor = System.Drawing.Color.White;
             this.machineboxlayout.ColumnCount = 1;
@@ -2372,7 +2354,7 @@ namespace PackingApplication
             // LineNoList
             // 
             this.LineNoList.AllowDrop = true;
-            this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LineNoList.FormattingEnabled = true;
             this.LineNoList.Location = new System.Drawing.Point(34, 0);
@@ -2407,7 +2389,7 @@ namespace PackingApplication
             // 
             // DeptList
             // 
-            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DeptList.FormattingEnabled = true;
             this.DeptList.Location = new System.Drawing.Point(30, 0);
@@ -2519,7 +2501,7 @@ namespace PackingApplication
             // MergeNoList
             // 
             this.MergeNoList.AllowDrop = true;
-            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MergeNoList.FormattingEnabled = true;
             this.MergeNoList.Location = new System.Drawing.Point(40, 0);
@@ -2554,7 +2536,7 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2590,7 +2572,7 @@ namespace PackingApplication
             // 
             // shadename
             // 
-            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2778,7 +2760,7 @@ namespace PackingApplication
             // 
             // weighboxlayout
             // 
-            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.weighboxlayout.BackColor = System.Drawing.Color.White;
             this.weighboxlayout.ColumnCount = 1;
@@ -2843,7 +2825,7 @@ namespace PackingApplication
             // 
             // printingdetailslayout
             // 
-            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailslayout.BackColor = System.Drawing.Color.White;
             this.printingdetailslayout.ColumnCount = 1;
@@ -2881,10 +2863,9 @@ namespace PackingApplication
             this.tableLayoutPanel7.Controls.Add(this.panel37, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.panel38, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.panel39, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel40, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.panel42, 2, 1);
             this.tableLayoutPanel7.Controls.Add(this.panel41, 3, 0);
-            this.tableLayoutPanel7.Controls.Add(this.panel43, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.panel43, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.panel42, 1, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
@@ -2925,31 +2906,19 @@ namespace PackingApplication
             this.panel39.Size = new System.Drawing.Size(44, 23);
             this.panel39.TabIndex = 2;
             // 
-            // panel40
-            // 
-            this.panel40.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel40.Controls.Add(this.prhindi);
-            this.panel40.Location = new System.Drawing.Point(0, 23);
-            this.panel40.Margin = new System.Windows.Forms.Padding(0);
-            this.panel40.Name = "panel40";
-            this.panel40.Size = new System.Drawing.Size(56, 17);
-            this.panel40.TabIndex = 4;
-            // 
             // panel42
             // 
-            this.panel42.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel42.Controls.Add(this.prwtps);
-            this.panel42.Location = new System.Drawing.Point(107, 23);
+            this.panel42.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel42.Location = new System.Drawing.Point(56, 23);
             this.panel42.Margin = new System.Windows.Forms.Padding(0);
             this.panel42.Name = "panel42";
-            this.panel42.Size = new System.Drawing.Size(44, 17);
+            this.panel42.Size = new System.Drawing.Size(51, 23);
             this.panel42.TabIndex = 6;
             // 
             // panel41
             // 
-            this.panel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel41.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel41.Controls.Add(this.pruser);
             this.panel41.Location = new System.Drawing.Point(151, 0);
@@ -2962,15 +2931,15 @@ namespace PackingApplication
             // 
             this.panel43.Controls.Add(this.prqrcode);
             this.panel43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel43.Location = new System.Drawing.Point(56, 23);
+            this.panel43.Location = new System.Drawing.Point(0, 23);
             this.panel43.Margin = new System.Windows.Forms.Padding(0);
             this.panel43.Name = "panel43";
-            this.panel43.Size = new System.Drawing.Size(51, 23);
+            this.panel43.Size = new System.Drawing.Size(56, 23);
             this.panel43.TabIndex = 5;
             // 
             // printingdetailsheader
             // 
-            this.printingdetailsheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.printingdetailsheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printingdetailsheader.Controls.Add(this.Printinglbl);
@@ -2995,7 +2964,7 @@ namespace PackingApplication
             // 
             // lastboxlayout
             // 
-            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxlayout.BackColor = System.Drawing.Color.White;
             this.lastboxlayout.ColumnCount = 1;
@@ -3180,7 +3149,7 @@ namespace PackingApplication
             // 
             // lastboxheader
             // 
-            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lastboxheader.Controls.Add(this.Lastboxlbl);
@@ -3426,8 +3395,6 @@ namespace PackingApplication
             this.panel38.PerformLayout();
             this.panel39.ResumeLayout(false);
             this.panel39.PerformLayout();
-            this.panel40.ResumeLayout(false);
-            this.panel40.PerformLayout();
             this.panel42.ResumeLayout(false);
             this.panel42.PerformLayout();
             this.panel41.ResumeLayout(false);
@@ -3478,7 +3445,6 @@ namespace PackingApplication
         private System.Windows.Forms.CheckBox prowner;
         private System.Windows.Forms.CheckBox prdate;
         private System.Windows.Forms.CheckBox pruser;
-        private System.Windows.Forms.CheckBox prhindi;
         private System.Windows.Forms.CheckBox prwtps;
         private System.Windows.Forms.CheckBox prqrcode;
         private System.Windows.Forms.Label label1;
@@ -3608,7 +3574,6 @@ namespace PackingApplication
         private Panel panel37;
         private Panel panel38;
         private Panel panel39;
-        private Panel panel40;
         private Panel panel41;
         private Panel panel42;
         private Panel panel43;
