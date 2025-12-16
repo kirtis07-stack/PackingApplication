@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,5 +21,7 @@ namespace PackingApplication.Models.RequestEntities
         public DateTime? Date { get; set; } = null;
         public string TxnFlag { get; set; }
         public string SubString { get; set; } = null;
+        [DefaultValue(false)]
+        public bool? GetAllFlag { get; set; } = false;
     }
 }

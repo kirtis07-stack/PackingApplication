@@ -60,6 +60,7 @@ namespace PackingApplication
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.addqty, 8);
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
             windinggrid.AutoGenerateColumns = false;
@@ -101,8 +102,11 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
-            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel8, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel9, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel16, 3);
 
             Log.writeMessage("POY ViewPOYPackingForm_Load - End : " + DateTime.Now);
         }

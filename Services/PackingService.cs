@@ -5,6 +5,7 @@ using PackingApplication.Models.ResponseEntities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace PackingApplication.Services
     {
         HTTPMethod method = new HTTPMethod();
         string packingURL = ConfigurationManager.AppSettings["packingURL"];
-
+        private static Logger Log = Logger.GetLogger();
         public async Task<List<ProductionResponse>> getAllPackingListByPackingType(string packingType)
         {
             var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetAllProductionByPackingType?packingType=" + packingType);
@@ -38,9 +39,13 @@ namespace PackingApplication.Services
 
         public ProductionResponse AddUpdatePOYPacking(long packingId, ProductionRequest productionRequest)
         {
-            if(packingId == 0)
+            Log.writeMessage("API call AddUpdatePOYPacking - Start : " + DateTime.Now);
+            string jsonRequest = JsonConvert.SerializeObject(productionRequest, Formatting.Indented);
+            Log.writeMessage("AddUpdatePOYPacking : Production/Add" + jsonRequest);
+            if (packingId == 0)
             {
                 var getPackingResponse = method.PostCallApi(packingURL + "Production/Add", productionRequest).Result;
+                Log.writeMessage("Response : " + getPackingResponse);
                 return JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
             }
             else

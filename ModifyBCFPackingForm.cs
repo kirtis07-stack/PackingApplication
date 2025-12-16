@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +61,7 @@ namespace PackingApplication
 
             InitializeComponent();
             ApplyFonts();
+
             //this.Shown += ModifyBCFPackingForm_Shown;
             this.AutoScroll = true;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
@@ -81,7 +81,7 @@ namespace PackingApplication
 
         private void ModifyBCFPackingForm_Load(object sender, EventArgs e)
         {
-            Log.writeMessage("BCF ModifyBCFPackingForm_Load - Start : " + DateTime.Now);
+            Log.writeMessage("BCF ModifyBCFPackingForm - Start : " + DateTime.Now);
 
             AddHeader();
 
@@ -112,13 +112,16 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
-            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel8, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel9, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel16, 3);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
 
-            Log.writeMessage("BCF ModifyBCFPackingForm_Load - End : " + DateTime.Now);
+            Log.writeMessage("BCF ModifyBCFPackingForm - Start : " + DateTime.Now);
         }
 
         private void LoadDropdowns()
@@ -225,136 +228,136 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF ApplyFonts - Start : " + DateTime.Now);
 
-            this.lineno.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.department.Font       = FontManager.GetFont(8F, FontStyle.Bold);
-            this.mergeno.Font          = FontManager.GetFont(8F, FontStyle.Bold);
-            this.lastboxno.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.lastbox.Font          = FontManager.GetFont(8F, FontStyle.Regular);
-            this.item.Font             = FontManager.GetFont(8F, FontStyle.Bold);
-            this.shade.Font            = FontManager.GetFont(8F, FontStyle.Bold);
-            this.shadecode.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxno.Font            = FontManager.GetFont(8F, FontStyle.Bold);
-            this.packingdate.Font      = FontManager.GetFont(8F, FontStyle.Bold);
-            this.dateTimePicker1.Font  = FontManager.GetFont(8F, FontStyle.Regular);
-            this.quality.Font          = FontManager.GetFont(8F, FontStyle.Bold);
-            this.saleorderno.Font      = FontManager.GetFont(8F, FontStyle.Bold);
-            this.packsize.Font         = FontManager.GetFont(8F, FontStyle.Bold);
-            this.frdenier.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.updenier.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.windingtype.Font      = FontManager.GetFont(8F, FontStyle.Bold);
-            this.comport.Font          = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copssize.Font         = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copweight.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copstock.Font         = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsitemwt.Font       = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxpalletitemwt.Font  = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxtype.Font          = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxweight.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copsstock.Font        = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxstock.Font         = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxpalletstock.Font   = FontManager.GetFont(8F, FontStyle.Regular);
-            this.productiontype.Font   = FontManager.GetFont(8F, FontStyle.Bold);
-            this.remark.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.remarks.Font          = FontManager.GetFont(8F, FontStyle.Regular);
-            this.scalemodel.Font       = FontManager.GetFont(8F, FontStyle.Bold);
-            this.LineNoList.Font       = FontManager.GetFont(8F, FontStyle.Regular);
-            this.DeptList.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.MergeNoList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.itemname.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.shadename.Font        = FontManager.GetFont(8F, FontStyle.Regular);
-            this.shadecd.Font          = FontManager.GetFont(8F, FontStyle.Regular);
-            this.QualityList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.PackSizeList.Font     = FontManager.GetFont(8F, FontStyle.Regular);
-            this.WindingTypeList.Font  = FontManager.GetFont(8F, FontStyle.Regular);
-            this.ComPortList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.WeighingList.Font     = FontManager.GetFont(8F, FontStyle.Regular);
-            this.CopsItemList.Font     = FontManager.GetFont(8F, FontStyle.Regular);
-            this.BoxItemList.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.SaleOrderList.Font    = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prcompany.Font        = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prowner.Font          = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prdate.Font           = FontManager.GetFont(8F, FontStyle.Regular);
-            this.pruser.Font           = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prwtps.Font           = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prqrcode.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label1.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copyno.Font           = FontManager.GetFont(8F, FontStyle.Regular);
-            this.wtpercop.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label5.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.netwt.Font            = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label4.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.tarewt.Font           = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label3.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.grosswtno.Font        = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label2.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.palletwtno.Font       = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletwt.Font         = FontManager.GetFont(8F, FontStyle.Bold);
-            this.spoolwt.Font          = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spoolno.Font          = FontManager.GetFont(8F, FontStyle.Regular);
-            this.spool.Font            = FontManager.GetFont(8F, FontStyle.Bold);
-            this.prodtype.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletdetails.Font    = FontManager.GetFont(9F, FontStyle.Bold);
-            this.label6.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.PalletTypeList.Font   = FontManager.GetFont(8F, FontStyle.Regular);
-            this.pquantity.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.qnty.Font             = FontManager.GetFont(8F, FontStyle.Regular);
-            this.addqty.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastboxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lastbox.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.item.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.shade.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.shadecode.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.packingdate.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dateTimePicker1.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.quality.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.saleorderno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copssize.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copsitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copsstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxstock.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxpalletstock.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.productiontype.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.remark.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.remarks.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.scalemodel.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.LineNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.DeptList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.MergeNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.itemname.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.shadename.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.ComPortList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.WeighingList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.CopsItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.BoxItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.SaleOrderList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prcompany.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pruser.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label4.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tarewt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label3.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grosswtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.label2.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.palletwtno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.palletwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.spoolwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.label6.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.qnty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.addqty.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.flowLayoutPanel1.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.submit.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.saveprint.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.Printinglbl.Font      = FontManager.GetFont(9F, FontStyle.Bold);
-            this.wgroupbox.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.netwttxtbox.Font      = FontManager.GetFont(8F, FontStyle.Bold);
-            this.netweight.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.grosswttxtbox.Font    = FontManager.GetFont(8F, FontStyle.Bold);
-            this.grossweight.Font      = FontManager.GetFont(8F, FontStyle.Bold);
-            this.copstxtbox.Font       = FontManager.GetFont(8F, FontStyle.Bold);
-            this.tarewghttxtbox.Font   = FontManager.GetFont(8F, FontStyle.Bold);
-            this.tareweight.Font       = FontManager.GetFont(8F, FontStyle.Bold);
-            this.cops.Font             = FontManager.GetFont(8F, FontStyle.Bold);
-            this.gradewiseprodn.Font   = FontManager.GetFont(8F, FontStyle.Bold);
-            this.totalprodbalqty.Font  = FontManager.GetFont(8F, FontStyle.Regular);
-            this.saleordrqty.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.Lastboxlbl.Font       = FontManager.GetFont(9F, FontStyle.Bold);
-            this.deniervalue.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.denier.Font           = FontManager.GetFont(8F, FontStyle.Bold);
+            this.submit.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.saveprint.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.wgroupbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netwttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.netweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grosswttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.grossweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.copstxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tarewghttxtbox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.tareweight.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.cops.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.gradewiseprodn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.totalprodbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.saleordrqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.Lastboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.deniervalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.denier.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.machineboxheader.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.Machinelbl.Font       = FontManager.GetFont(9F, FontStyle.Bold);
-            this.grosswterror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
-            this.palletwterror.Font    = FontManager.GetFont(7F, FontStyle.Regular);
-            this.spoolwterror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
-            this.spoolnoerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
-            this.Weighboxlbl.Font      = FontManager.GetFont(9F, FontStyle.Bold);
-            this.Packagingboxlbl.Font  = FontManager.GetFont(9F, FontStyle.Bold);
-            this.cancelbtn.Font        = FontManager.GetFont(8F, FontStyle.Bold);
-            this.boxnoerror.Font       = FontManager.GetFont(7F, FontStyle.Regular);
-            this.windingerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
-            this.packsizeerror.Font    = FontManager.GetFont(7F, FontStyle.Regular);
-            this.soerror.Font          = FontManager.GetFont(7F, FontStyle.Regular);
-            this.qualityerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
-            this.mergenoerror.Font     = FontManager.GetFont(7F, FontStyle.Regular);
-            this.copynoerror.Font      = FontManager.GetFont(7F, FontStyle.Regular);
-            this.linenoerror.Font      = FontManager.GetFont(7F, FontStyle.Regular);
-            this.grdsoqty.Font         = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prodnbalqty.Font      = FontManager.GetFont(8F, FontStyle.Regular);
-            this.rowMaterialBox.Font   = FontManager.GetFont(8F, FontStyle.Bold);
-            this.fromdenier.Font       = FontManager.GetFont(8F, FontStyle.Bold);
-            this.uptodenier.Font       = FontManager.GetFont(8F, FontStyle.Bold);
-            this.Font                  = FontManager.GetFont(9F, FontStyle.Bold);
-            this.bppartyname.Font      = FontManager.GetFont(8F, FontStyle.Bold);
-            this.partyshade.Font       = FontManager.GetFont(8F, FontStyle.Regular);
-            this.partyshd.Font         = FontManager.GetFont(8F, FontStyle.Bold);
-            this.partyn.Font           = FontManager.GetFont(8F, FontStyle.Regular);
-            this.salelotvalue.Font     = FontManager.GetFont(8F, FontStyle.Regular);
-            this.salelot.Font          = FontManager.GetFont(8F, FontStyle.Bold);
-            this.owner.Font            = FontManager.GetFont(8F, FontStyle.Bold);
-            this.OwnerList.Font        = FontManager.GetFont(8F, FontStyle.Regular);
-            this.fromwt.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.frwt.Font             = FontManager.GetFont(8F, FontStyle.Regular);
-            this.uptowt.Font           = FontManager.GetFont(8F, FontStyle.Bold);
-            this.upwt.Font             = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxnofrmt.Font        = FontManager.GetFont(8F, FontStyle.Regular);
-            this.boxno.Font            = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Machinelbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.grosswterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.palletwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolwterror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.spoolnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.Weighboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.Packagingboxlbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.boxnoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.windingerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.packsizeerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.soerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.qualityerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.mergenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.copynoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.linenoerror.Font = FontManager.GetFont(7F, FontStyle.Regular);
+            this.grdsoqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prodnbalqty.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.rowMaterialBox.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.fromdenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.uptodenier.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            this.bppartyname.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.partyshade.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.partyshd.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.partyn.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelotvalue.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.salelot.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.owner.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.OwnerList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.fromwt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.frwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.uptowt.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("BCF ApplyFonts - End : " + DateTime.Now);
         }
@@ -363,6 +366,7 @@ namespace PackingApplication
         //{
         //    try
         //    {
+
         //        var machineTask = _masterService.GetMachineList("BCFLot", "");
         //        var packsizeTask = _masterService.GetPackSizeList("");
         //        var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
@@ -474,12 +478,15 @@ namespace PackingApplication
 
         private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
+            Log.writeMessage("BCF LoadProductionDetailsAsync - Start : " + DateTime.Now);
+
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
 
                 //LineNoList.SelectedValue = productionResponse.MachineId;
                 //DeptList.SelectedValue = productionResponse.DepartmentId;
+                //boxnofrmt.Text = productionResponse.BoxNoFmtd;
                 //MergeNoList.SelectedValue = productionResponse.LotId;
                 //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 //dateTimePicker1.Value = productionResponse.ProductionDate;
@@ -495,6 +502,7 @@ namespace PackingApplication
                 //prowner.Checked = productionResponse.PrintOwner;
                 //prdate.Checked = productionResponse.PrintDate;
                 //pruser.Checked = productionResponse.PrintUser;
+                //prhindi.Checked = productionResponse.PrintHindiWords;
                 //prwtps.Checked = productionResponse.PrintWTPS;
                 //prqrcode.Checked = productionResponse.PrintQRCode;
                 //spoolno.Text = productionResponse.Spools.ToString();
@@ -503,16 +511,16 @@ namespace PackingApplication
                 //grosswtno.Text = productionResponse.GrossWt.ToString();
                 //tarewt.Text = productionResponse.TareWt.ToString();
                 //netwt.Text = productionResponse.NetWt.ToString();
+                //OwnerList.SelectedValue = productionResponse.OwnerId;
                 //submit.Text = "Update";
                 //saveprint.Text = "Update && Print";
-                //OwnerList.SelectedValue = productionResponse.OwnerId;
 
                 //if (productionResponse.PalletDetailsResponse.Count > 0)
                 //{
                 //    if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
                 //    {
                 //        this.BeginInvoke((Action)(() =>
-                //            BindPalletDetails(productionResponse.PalletDetailsResponse)
+                //        BindPalletDetails(productionResponse.PalletDetailsResponse)
                 //        ));
                 //    }
                 //}
@@ -598,6 +606,9 @@ namespace PackingApplication
                 prqrcode.Checked = productionResponse.PrintQRCode;
                 productionRequest.PrintQRCode = productionResponse.PrintQRCode;
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
+                boxnofrmt.Text = productionResponse.BoxNoFmtd;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {
@@ -636,9 +647,6 @@ namespace PackingApplication
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
                 productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
-                boxnofrmt.Text = productionResponse.BoxNoFmtd;
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
                 if (productionResponse.PalletDetailsResponse.Count > 0)
                 {
                     if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
@@ -664,7 +672,11 @@ namespace PackingApplication
                 DeptList.SelectedItem = productionResponse.DepartmentName;
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
                 selectedDeptId = productionResponse.DepartmentId;
+
+                submit.Text = "Update";
+                saveprint.Text = "Update && Print";
             }
+
             Log.writeMessage("BCF LoadProductionDetailsAsync - End : " + DateTime.Now);
         }
 
@@ -718,6 +730,7 @@ namespace PackingApplication
                 System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
                 // Edit Button
                 System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(320, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+
                 btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                 btnEdit.FlatAppearance.BorderSize = 1;
                 btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
@@ -811,7 +824,7 @@ namespace PackingApplication
             flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
 
-            Log.writeMessage("BCF BindPalletDetails - Start : " + DateTime.Now);
+            Log.writeMessage("BCF BindPalletDetails - End : " + DateTime.Now);
         }
 
         private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
@@ -826,6 +839,7 @@ namespace PackingApplication
 
             if (LineNoList.SelectedIndex <= 0)
             {
+                selectedMachineid = 0;
                 return;
             }
             suppressEvents = true;          //Freeze dependent dropdown events
@@ -909,21 +923,31 @@ namespace PackingApplication
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
 
-                var machineList = _masterService.GetMachineList("SpinningLot", typedText).Result;
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
 
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result.OrderBy(x => x.MachineName).ToList();
+
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
 
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
 
                 LineNoList.DisplayMember = "MachineName";
                 LineNoList.ValueMember = "MachineId";
                 LineNoList.DataSource = machineList;
-                LineNoList.Text = typedText;
+                //LineNoList.Text = typedText;
 
                 LineNoList.EndUpdate();
 
                 LineNoList.DroppedDown = true;
-                LineNoList.SelectionStart = typedText.Length;
+                //LineNoList.SelectionStart = typedText.Length;
                 LineNoList.SelectionLength = 0;
 
                 LineNoList.TextUpdate += LinoNoList_TextUpdate;
@@ -981,7 +1005,7 @@ namespace PackingApplication
                                 if (itemResponse != null)
                                 {
                                     selectedItemTypeid = itemResponse.ItemTypeId;
-                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result;
+                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.DataSource = qualityList;
                                     QualityList.DisplayMember = "Name";
@@ -1027,7 +1051,7 @@ namespace PackingApplication
                         //WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         //WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result;
+                        var getSaleOrder = _productionService.getSaleOrderList(selectedLotId, "").Result.OrderBy(x => x.ItemName).ToList();
                         getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                         SaleOrderList.DataSource = getSaleOrder;
                         SaleOrderList.DisplayMember = "ItemName";
@@ -1100,7 +1124,7 @@ namespace PackingApplication
                 MergeNoList.BeginUpdate();
                 //MergeNoList.Items.Clear();
 
-                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result;
+                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
 
@@ -1108,12 +1132,12 @@ namespace PackingApplication
                 MergeNoList.DisplayMember = "LotNoFrmt";
                 MergeNoList.ValueMember = "LotId";
                 MergeNoList.DataSource = mergenoList;
-                MergeNoList.Text = typedText;
+                //MergeNoList.Text = typedText;
 
                 MergeNoList.EndUpdate();
 
                 MergeNoList.DroppedDown = true;
-                MergeNoList.SelectionStart = typedText.Length;
+                //MergeNoList.SelectionStart = typedText.Length;
                 MergeNoList.SelectionLength = 0;
                 MergeNoList.TextUpdate += MergeNoList_TextUpdate;
 
@@ -1136,7 +1160,7 @@ namespace PackingApplication
             partyshade.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
-            LoadDropdowns();
+            ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             windinggrid.Columns.Clear();
             qualityqty.Columns.Clear();
@@ -1146,6 +1170,9 @@ namespace PackingApplication
             totalSOQty = 0;
             grdsoqty.Text = "";
             balanceQty = 0;
+            selectLotId = 0;
+            selectedSONumber = "";
+            selectedItemTypeid = 0;
             flowLayoutPanel1.Controls.Clear();
             rowCount = 0;
             AddHeader();
@@ -1209,7 +1236,7 @@ namespace PackingApplication
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
 
-                var packsizeList = _masterService.GetPackSizeList(typedText).Result;
+                var packsizeList = _masterService.GetPackSizeList(typedText).Result.OrderBy(x => x.PackSizeName).ToList();
 
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
 
@@ -1218,12 +1245,12 @@ namespace PackingApplication
                 PackSizeList.DisplayMember = "PackSizeName";
                 PackSizeList.ValueMember = "PackSizeId";
                 PackSizeList.DataSource = packsizeList;
-                PackSizeList.Text = typedText;
+                //PackSizeList.Text = typedText;
 
                 PackSizeList.EndUpdate();
 
                 PackSizeList.DroppedDown = true;
-                PackSizeList.SelectionStart = typedText.Length;
+                //PackSizeList.SelectionStart = typedText.Length;
                 PackSizeList.SelectionLength = 0;
 
                 PackSizeList.TextUpdate += PackSizeList_TextUpdate;
@@ -1263,19 +1290,19 @@ namespace PackingApplication
                 QualityList.BeginUpdate();
                 //QualityList.Items.Clear();
 
-                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result;
+                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                 qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                 QualityList.TextUpdate -= QualityList_TextUpdate;
 
                 QualityList.DisplayMember = "Name";
                 QualityList.ValueMember = "QualityId";
                 QualityList.DataSource = qualityList;
-                QualityList.Text = typedText;
+                //QualityList.Text = typedText;
 
                 QualityList.EndUpdate();
 
                 QualityList.DroppedDown = true;
-                QualityList.SelectionStart = typedText.Length;
+                //QualityList.SelectionStart = typedText.Length;
                 QualityList.SelectionLength = 0;
 
                 QualityList.TextUpdate += QualityList_TextUpdate;
@@ -1330,11 +1357,11 @@ namespace PackingApplication
                 //WindingTypeList.Items.Clear();
 
                 var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result;
+                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
                 getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                 if (getWindingType.Count <= 1)
                 {
-                    getWindingType = _masterService.GetWindingTypeList(typedText).Result;
+                    getWindingType = _masterService.GetWindingTypeList(typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
                     getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                 }
@@ -1343,12 +1370,12 @@ namespace PackingApplication
                 WindingTypeList.DisplayMember = "WindingTypeName";
                 WindingTypeList.ValueMember = "WindingTypeId";
                 WindingTypeList.DataSource = getWindingType;
-                WindingTypeList.Text = typedText;
+                //WindingTypeList.Text = typedText;
 
                 WindingTypeList.EndUpdate();
 
                 WindingTypeList.DroppedDown = true;
-                WindingTypeList.SelectionStart = typedText.Length;
+                //WindingTypeList.SelectionStart = typedText.Length;
                 WindingTypeList.SelectionLength = 0;
 
                 WindingTypeList.TextUpdate += WindingTypeList_TextUpdate;
@@ -1417,19 +1444,19 @@ namespace PackingApplication
                 SaleOrderList.BeginUpdate();
                 //SaleOrderList.Items.Clear();
 
-                var getSaleOrder = _productionService.getSaleOrderList(selectLotId, typedText).Result;
+                var getSaleOrder = _productionService.getSaleOrderList(selectLotId, typedText).Result.OrderBy(x => x.ItemName).ToList();
                 getSaleOrder.Insert(0, new LotSaleOrderDetailsResponse { SaleOrderItemsId = 0, ItemName = "Select Sale Order Item" });
                 SaleOrderList.TextUpdate -= SaleOrderList_TextUpdate;
 
                 SaleOrderList.DisplayMember = "ItemName";
                 SaleOrderList.ValueMember = "SaleOrderItemsId";
                 SaleOrderList.DataSource = getSaleOrder;
-                SaleOrderList.Text = typedText;
+                //SaleOrderList.Text = typedText;
 
                 SaleOrderList.EndUpdate();
 
                 SaleOrderList.DroppedDown = true;
-                SaleOrderList.SelectionStart = typedText.Length;
+                //SaleOrderList.SelectionStart = typedText.Length;
                 SaleOrderList.SelectionLength = 0;
 
                 SaleOrderList.TextUpdate += SaleOrderList_TextUpdate;
@@ -1544,7 +1571,7 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("bcfpacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("BCFpacking").Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1657,7 +1684,7 @@ namespace PackingApplication
                 CopsItemList.BeginUpdate();
                 //CopsItemList.Items.Clear();
 
-                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, typedText).Result;
+                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
 
@@ -1666,12 +1693,12 @@ namespace PackingApplication
                 CopsItemList.DisplayMember = "Name";
                 CopsItemList.ValueMember = "ItemId";
                 CopsItemList.DataSource = copsitemList;
-                CopsItemList.Text = typedText;
+                //CopsItemList.Text = typedText;
 
                 CopsItemList.EndUpdate();
 
                 CopsItemList.DroppedDown = true;
-                CopsItemList.SelectionStart = typedText.Length;
+                //CopsItemList.SelectionStart = typedText.Length;
                 CopsItemList.SelectionLength = 0;
 
                 CopsItemList.TextUpdate += CopsItemList_TextUpdate;
@@ -1732,7 +1759,7 @@ namespace PackingApplication
                 BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
 
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
@@ -1741,12 +1768,12 @@ namespace PackingApplication
                 BoxItemList.DisplayMember = "Name";
                 BoxItemList.ValueMember = "ItemId";
                 BoxItemList.DataSource = boxitemList;
-                BoxItemList.Text = typedText;
+                //BoxItemList.Text = typedText;
 
                 BoxItemList.EndUpdate();
 
                 BoxItemList.DroppedDown = true;
-                BoxItemList.SelectionStart = typedText.Length;
+                //BoxItemList.SelectionStart = typedText.Length;
                 BoxItemList.SelectionLength = 0;
 
                 BoxItemList.TextUpdate += BoxItemList_TextUpdate;
@@ -1760,11 +1787,14 @@ namespace PackingApplication
 
             if (!isFormReady) return;
 
+            if (suppressEvents) return;
+
             if (DeptList.SelectedIndex <= 0)
             {
+                selectedDeptId = 0;
                 return;
             }
-
+            suppressEvents = true;
             lblLoading.Visible = true;
             try
             {
@@ -1773,16 +1803,28 @@ namespace PackingApplication
                     DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
                     int selectedDepartmentId = selectedDepartment.DepartmentId;
 
-                    if (selectedDepartment != null && productionRequest.MachineId == 0)
-                    {
-                        var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "SpinningLot").Result;
+                    //if (selectedDepartment != null && productionRequest.MachineId == 0)
+                    //{
+                    //    var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "BCFLot").Result;
 
-                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                        LineNoList.DataSource = machineList;
-                    }
+                    //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    //    LineNoList.DataSource = machineList;
+                    //}
 
                     productionRequest.DepartmentId = selectedDepartmentId;
                     selectedDeptId = selectedDepartmentId;
+
+                    LineNoList.DataSource = null;
+                    LineNoList.Items.Clear();
+                    LineNoList.Items.Add("Select Line No.");
+                    LineNoList.SelectedItem = "Select Line No.";
+
+                    MergeNoList.DataSource = null;
+                    MergeNoList.Items.Clear();
+                    MergeNoList.Items.Add("Select MergeNo");
+                    MergeNoList.SelectedItem = "Select MergeNo";
+
+                    ResetDependentDropdownValues();
                 }
             }
             finally
@@ -1805,7 +1847,7 @@ namespace PackingApplication
                 DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(typedText).Result;
+                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
@@ -1814,12 +1856,12 @@ namespace PackingApplication
                 DeptList.DisplayMember = "DepartmentName";
                 DeptList.ValueMember = "DepartmentId";
                 DeptList.DataSource = deptList;
-                DeptList.Text = typedText;
+                //DeptList.Text = typedText;
 
                 DeptList.EndUpdate();
 
                 DeptList.DroppedDown = true;
-                DeptList.SelectionStart = typedText.Length;
+                //DeptList.SelectionStart = typedText.Length;
                 DeptList.SelectionLength = 0;
 
                 DeptList.TextUpdate += DeptList_TextUpdate;
@@ -1872,7 +1914,7 @@ namespace PackingApplication
                 OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
 
-                var ownerList = _masterService.GetOwnerList(typedText).Result;
+                var ownerList = _masterService.GetOwnerList(typedText).Result.OrderBy(x => x.LegalName).ToList();
 
                 ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
 
@@ -1881,12 +1923,12 @@ namespace PackingApplication
                 OwnerList.DisplayMember = "LegalName";
                 OwnerList.ValueMember = "BusinessPartnerId";
                 OwnerList.DataSource = ownerList;
-                OwnerList.Text = typedText;
+                //OwnerList.Text = typedText;
 
                 OwnerList.EndUpdate();
 
                 OwnerList.DroppedDown = true;
-                OwnerList.SelectionStart = typedText.Length;
+                //OwnerList.SelectionStart = typedText.Length;
                 OwnerList.SelectionLength = 0;
 
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
@@ -1905,7 +1947,7 @@ namespace PackingApplication
             {
                 PalletTypeList.BeginUpdate();
 
-                var palletitemList = _masterService.GetItemList(itemPalletCategoryId, typedText).Result;
+                var palletitemList = _masterService.GetItemList(itemPalletCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
@@ -1914,12 +1956,12 @@ namespace PackingApplication
                 PalletTypeList.DisplayMember = "Name";
                 PalletTypeList.ValueMember = "ItemId";
                 PalletTypeList.DataSource = palletitemList;
-                PalletTypeList.Text = typedText;
+                //PalletTypeList.Text = typedText;
 
                 PalletTypeList.EndUpdate();
 
                 PalletTypeList.DroppedDown = true;
-                PalletTypeList.SelectionStart = typedText.Length;
+                //PalletTypeList.SelectionStart = typedText.Length;
                 PalletTypeList.SelectionLength = 0;
 
                 PalletTypeList.TextUpdate += PalletTypeList_TextUpdate;
@@ -1947,7 +1989,7 @@ namespace PackingApplication
 
         private async Task<List<WeighingItem>> getWeighingList()
         {
-            Log.writeMessage("BCF ModifyBCFPackingForm_Load - Start : " + DateTime.Now);
+            Log.writeMessage("BCF getWeighingList - Start : " + DateTime.Now);
 
             var getWeighingScale = new List<WeighingItem>
             {
@@ -1958,7 +2000,7 @@ namespace PackingApplication
                 new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
 
-            Log.writeMessage("BCF ModifyBCFPackingForm_Load - Start : " + DateTime.Now);
+            Log.writeMessage("BCF getWeighingList - End : " + DateTime.Now);
 
             return getWeighingScale;
         }
@@ -2036,7 +2078,6 @@ namespace PackingApplication
                 {
                     var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
                     tag.Item2.Text = qty.ToString();
-                    //MessageBox.Show("Item quantity updated.");
                     foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
                     {
                         if (control.Text == "Remove")
@@ -2082,7 +2123,7 @@ namespace PackingApplication
                     System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 60, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(350, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(320, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
@@ -2123,7 +2164,7 @@ namespace PackingApplication
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(390, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(360, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                     btnDelete.FlatAppearance.BorderSize = 1;
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -2355,7 +2396,8 @@ namespace PackingApplication
                     if (gross >= tare)
                     {
                         CalculateNetWeight();
-                    }                    
+                        grosswterror.Visible = false;
+                    }
                 }
             }
 
@@ -2424,7 +2466,7 @@ namespace PackingApplication
             Log.writeMessage("BCF SpoolNo_TextChanged - Start : " + DateTime.Now);
 
             if (!isFormReady) return;
-            
+
             if (string.IsNullOrWhiteSpace(copsitemwt.Text))
             {
                 spoolwt.Text = "0";
@@ -2576,10 +2618,7 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 if (_productionId == 0)
                 {
-                    MessageBox.Show("BCF Packing added successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    ShowCustomMessage(result.BoxNoFmtd);
                     isFormReady = false;
                     this.spoolno.Text = "0";
                     this.spoolwt.Text = "0";
@@ -2587,7 +2626,9 @@ namespace PackingApplication
                     this.tarewt.Text = "0.000";
                     this.netwt.Text = "0.000";
                     this.wtpercop.Text = "0.000";
+                    palletwtno.Text = boxpalletitemwt.Text;
                     isFormReady = true;
+                    this.spoolno.Focus();
                     //if (isPrint)
                     //{
                     //    //call ssrs report to print
@@ -2637,9 +2678,6 @@ namespace PackingApplication
                 }
                 else
                 {
-                    //MessageBox.Show("BCF Packing updated successfully!", "Success",
-                    //MessageBoxButtons.OK,
-                    //MessageBoxIcon.Information);
                     ShowCustomMessage(result.BoxNoFmtd);
                     //if (isPrint)
                     //{
@@ -2787,7 +2825,6 @@ namespace PackingApplication
                 MessageBox.Show("Please add atleast one record in Pallet details", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
-
             decimal spoolnum = 0;
             decimal.TryParse(spoolno.Text, out spoolnum);
             if (spoolnum == 0)
@@ -2817,6 +2854,7 @@ namespace PackingApplication
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
+            balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
@@ -3012,7 +3050,6 @@ namespace PackingApplication
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
 
             Log.writeMessage("BCF printingdetailslayout_Paint - End : " + DateTime.Now);
-
         }
 
         private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
@@ -3156,7 +3193,6 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF palletQty_KeyPress - Start : " + DateTime.Now);
 
-            // Allow control keys (backspace, delete, etc.)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true; // Reject the input
@@ -3200,6 +3236,18 @@ namespace PackingApplication
             {
                 LineNoList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                LineNoList.DataSource = null;
+                var machineList = _masterService.GetMachineList("BCFLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                LineNoList.DataSource = machineList;
+                LineNoList.DisplayMember = "MachineName";
+                LineNoList.ValueMember = "MachineId";
+                LineNoList.SelectedIndex = 0;
+                LineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF LineNoList_KeyDown - End : " + DateTime.Now);
         }
@@ -3233,6 +3281,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 PackSizeList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                PackSizeList.DataSource = null;
+                var packsizeList = _masterService.GetPackSizeList("").Result.OrderBy(x => x.PackSizeName).ToList();
+                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+                PackSizeList.DisplayMember = "PackSizeName";
+                PackSizeList.ValueMember = "PackSizeId";
+                PackSizeList.DataSource = packsizeList;
+                PackSizeList.SelectedIndex = 0;
+                PackSizeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF PackSizeList_KeyDown - End : " + DateTime.Now);
@@ -3285,6 +3345,24 @@ namespace PackingApplication
             {
                 WindingTypeList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                WindingTypeList.DataSource = null;
+                var getWindingType = new List<WindingTypeResponse>();
+                getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
+                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                if (getWindingType.Count <= 1)
+                {
+                    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                }
+                WindingTypeList.DisplayMember = "WindingTypeName";
+                WindingTypeList.ValueMember = "WindingTypeId";
+                WindingTypeList.DataSource = getWindingType;
+                WindingTypeList.SelectedIndex = 0;
+                WindingTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF WindingTypeList_KeyDown - End : " + DateTime.Now);
         }
@@ -3336,6 +3414,18 @@ namespace PackingApplication
             {
                 CopsItemList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                CopsItemList.DataSource = null;
+                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
+                CopsItemList.DisplayMember = "Name";
+                CopsItemList.ValueMember = "ItemId";
+                CopsItemList.DataSource = copsitemList;
+                CopsItemList.SelectedIndex = 0;
+                CopsItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF CopsItemList_KeyDown - End : " + DateTime.Now);
         }
@@ -3352,6 +3442,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 BoxItemList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                BoxItemList.DataSource = null;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                BoxItemList.DisplayMember = "Name";
+                BoxItemList.ValueMember = "ItemId";
+                BoxItemList.DataSource = boxitemList;
+                BoxItemList.SelectedIndex = 0;
+                BoxItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF BoxItemList_KeyDown - End : " + DateTime.Now);
@@ -3370,6 +3472,18 @@ namespace PackingApplication
             {
                 PalletTypeList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                PalletTypeList.DataSource = null;
+                var palletitemList = _masterService.GetItemList(itemPalletCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                palletitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.DataSource = palletitemList;
+                PalletTypeList.SelectedIndex = 0;
+                PalletTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF PalletTypeList_KeyDown - End : " + DateTime.Now);
         }
@@ -3387,6 +3501,18 @@ namespace PackingApplication
             {
                 DeptList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                DeptList.DataSource = null;
+                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                DeptList.DisplayMember = "DepartmentName";
+                DeptList.ValueMember = "DepartmentId";
+                DeptList.DataSource = deptList;
+                DeptList.SelectedIndex = 0;
+                DeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF DeptList_KeyDown - End : " + DateTime.Now);
         }
@@ -3403,6 +3529,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 OwnerList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                OwnerList.DataSource = null;
+                var ownerList = _masterService.GetOwnerList("").Result.OrderBy(x => x.LegalName).ToList();
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.DataSource = ownerList;
+                OwnerList.SelectedIndex = 0;
+                OwnerList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF OwnerList_KeyDown - End : " + DateTime.Now);
@@ -3649,7 +3787,7 @@ namespace PackingApplication
                 System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
                 {
                     AutoSize = false,
-                    Text = $"BCF Packing updated successfully for BoxNo {boxNo}.",
+                    Text = $"BCF Packing added successfully for BoxNo {boxNo}.",
                     Font = FontManager.GetFont(12F, FontStyle.Regular),
                     ForeColor = Color.Black,
                     Location = new System.Drawing.Point(85, 40),

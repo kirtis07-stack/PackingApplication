@@ -101,9 +101,12 @@ namespace PackingApplication
 
             prcompany.FlatStyle = FlatStyle.System;
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
-            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel8, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel9, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel16, 3);
             this.grosswtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
 
@@ -560,6 +563,7 @@ namespace PackingApplication
 
             if (LineNoList.SelectedIndex <= 0)
             {
+                selectedMachineid = 0;
                 return;
             }
             suppressEvents = true;          //Freeze dependent dropdown events
@@ -626,21 +630,31 @@ namespace PackingApplication
                 LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
 
-                var machineList = _masterService.GetMachineList("ChipsLot", typedText).Result;
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList("ChipsLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
 
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "ChipsLot").Result.OrderBy(x => x.MachineName).ToList();
+
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
 
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
 
                 LineNoList.DisplayMember = "MachineName";
                 LineNoList.ValueMember = "MachineId";
                 LineNoList.DataSource = machineList;
-                LineNoList.Text = typedText;
+                //LineNoList.Text = typedText;
 
                 LineNoList.EndUpdate();
 
                 LineNoList.DroppedDown = true;
-                LineNoList.SelectionStart = typedText.Length;
+                //LineNoList.SelectionStart = typedText.Length;
                 LineNoList.SelectionLength = 0;
 
                 LineNoList.TextUpdate += LinoNoList_TextUpdate;
@@ -699,7 +713,7 @@ namespace PackingApplication
                                 if (itemResponse != null)
                                 {
                                     selectedItemTypeid = itemResponse.ItemTypeId;
-                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result;
+                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.SelectedIndexChanged -= QualityList_SelectedIndexChanged;
                                     QualityList.DataSource = qualityList;
@@ -775,7 +789,7 @@ namespace PackingApplication
                 MergeNoList.BeginUpdate();
                 //MergeNoList.Items.Clear();
 
-                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result;
+                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
 
@@ -783,12 +797,12 @@ namespace PackingApplication
                 MergeNoList.DisplayMember = "LotNoFrmt";
                 MergeNoList.ValueMember = "LotId";
                 MergeNoList.DataSource = mergenoList;
-                MergeNoList.Text = typedText;
+                //MergeNoList.Text = typedText;
 
                 MergeNoList.EndUpdate();
 
                 MergeNoList.DroppedDown = true;
-                MergeNoList.SelectionStart = typedText.Length;
+                //MergeNoList.SelectionStart = typedText.Length;
                 MergeNoList.SelectionLength = 0;
                 MergeNoList.TextUpdate += MergeNoList_TextUpdate;
 
@@ -809,12 +823,15 @@ namespace PackingApplication
             salelotvalue.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
-            LoadDropdowns();
+            ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             totalProdQty = 0;
             selectedSOId = 0;
             totalSOQty = 0;
             balanceQty = 0;
+            selectLotId = 0;
+            selectedSONumber = "";
+            selectedItemTypeid = 0;
             //MergeNoList.SelectedIndex = 0;
             Log.writeMessage("Chips ResetLotValues - End : " + DateTime.Now);
         }
@@ -874,7 +891,7 @@ namespace PackingApplication
                 PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
 
-                var packsizeList = _masterService.GetPackSizeList(typedText).Result;
+                var packsizeList = _masterService.GetPackSizeList(typedText).Result.OrderBy(x => x.PackSizeName).ToList();
 
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
 
@@ -883,12 +900,12 @@ namespace PackingApplication
                 PackSizeList.DisplayMember = "PackSizeName";
                 PackSizeList.ValueMember = "PackSizeId";
                 PackSizeList.DataSource = packsizeList;
-                PackSizeList.Text = typedText;
+                //PackSizeList.Text = typedText;
 
                 PackSizeList.EndUpdate();
 
                 PackSizeList.DroppedDown = true;
-                PackSizeList.SelectionStart = typedText.Length;
+                //PackSizeList.SelectionStart = typedText.Length;
                 PackSizeList.SelectionLength = 0;
 
                 PackSizeList.TextUpdate += PackSizeList_TextUpdate;
@@ -928,19 +945,19 @@ namespace PackingApplication
                 QualityList.BeginUpdate();
                 //QualityList.Items.Clear();
 
-                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result;
+                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                 qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                 QualityList.TextUpdate -= QualityList_TextUpdate;
 
                 QualityList.DisplayMember = "Name";
                 QualityList.ValueMember = "QualityId";
                 QualityList.DataSource = qualityList;
-                QualityList.Text = typedText;
+                //QualityList.Text = typedText;
 
                 QualityList.EndUpdate();
 
                 QualityList.DroppedDown = true;
-                QualityList.SelectionStart = typedText.Length;
+                //QualityList.SelectionStart = typedText.Length;
                 QualityList.SelectionLength = 0;
 
                 QualityList.TextUpdate += QualityList_TextUpdate;
@@ -999,11 +1016,11 @@ namespace PackingApplication
                 //WindingTypeList.Items.Clear();
 
                 var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result;
+                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
                 getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
                 if (getWindingType.Count <= 1)
                 {
-                    getWindingType = _masterService.GetWindingTypeList(typedText).Result;
+                    getWindingType = _masterService.GetWindingTypeList(typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
                     getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                 }
@@ -1012,12 +1029,12 @@ namespace PackingApplication
                 WindingTypeList.DisplayMember = "WindingTypeName";
                 WindingTypeList.ValueMember = "WindingTypeId";
                 WindingTypeList.DataSource = getWindingType;
-                WindingTypeList.Text = typedText;
+                //WindingTypeList.Text = typedText;
 
                 WindingTypeList.EndUpdate();
 
                 WindingTypeList.DroppedDown = true;
-                WindingTypeList.SelectionStart = typedText.Length;
+                //WindingTypeList.SelectionStart = typedText.Length;
                 WindingTypeList.SelectionLength = 0;
 
                 WindingTypeList.TextUpdate += WindingTypeList_TextUpdate;
@@ -1180,7 +1197,7 @@ namespace PackingApplication
                 BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
 
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
@@ -1189,12 +1206,12 @@ namespace PackingApplication
                 BoxItemList.DisplayMember = "Name";
                 BoxItemList.ValueMember = "ItemId";
                 BoxItemList.DataSource = boxitemList;
-                BoxItemList.Text = typedText;
+                //BoxItemList.Text = typedText;
 
                 BoxItemList.EndUpdate();
 
                 BoxItemList.DroppedDown = true;
-                BoxItemList.SelectionStart = typedText.Length;
+                //BoxItemList.SelectionStart = typedText.Length;
                 BoxItemList.SelectionLength = 0;
 
                 BoxItemList.TextUpdate += BoxItemList_TextUpdate;
@@ -1212,6 +1229,7 @@ namespace PackingApplication
 
             if (DeptList.SelectedIndex <= 0)
             {
+                selectedDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -1223,16 +1241,28 @@ namespace PackingApplication
                     DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
                     int selectedDepartmentId = selectedDepartment.DepartmentId;
 
-                    if (selectedDepartment != null && productionRequest.MachineId == 0)
-                    {
-                        var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "ChipsLot").Result;
+                    //if (selectedDepartment != null && productionRequest.MachineId == 0)
+                    //{
+                    //    var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "ChipsLot").Result;
 
-                        machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                        LineNoList.DataSource = machineList;
-                    }
+                    //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    //    LineNoList.DataSource = machineList;
+                    //}
 
                     productionRequest.DepartmentId = selectedDepartmentId;
                     selectedDeptId = selectedDepartmentId;
+
+                    LineNoList.DataSource = null;
+                    LineNoList.Items.Clear();
+                    LineNoList.Items.Add("Select Line No.");
+                    LineNoList.SelectedItem = "Select Line No.";
+
+                    MergeNoList.DataSource = null;
+                    MergeNoList.Items.Clear();
+                    MergeNoList.Items.Add("Select MergeNo");
+                    MergeNoList.SelectedItem = "Select MergeNo";
+
+                    ResetDependentDropdownValues();
                 }
             }
             finally
@@ -1256,7 +1286,7 @@ namespace PackingApplication
                 DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(typedText).Result;
+                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
@@ -1265,12 +1295,12 @@ namespace PackingApplication
                 DeptList.DisplayMember = "DepartmentName";
                 DeptList.ValueMember = "DepartmentId";
                 DeptList.DataSource = deptList;
-                DeptList.Text = typedText;
+                //DeptList.Text = typedText;
 
                 DeptList.EndUpdate();
 
                 DeptList.DroppedDown = true;
-                DeptList.SelectionStart = typedText.Length;
+                //DeptList.SelectionStart = typedText.Length;
                 DeptList.SelectionLength = 0;
 
                 DeptList.TextUpdate += DeptList_TextUpdate;
@@ -1323,7 +1353,7 @@ namespace PackingApplication
                 OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
 
-                var ownerList = _masterService.GetOwnerList(typedText).Result;
+                var ownerList = _masterService.GetOwnerList(typedText).Result.OrderBy(x => x.LegalName).ToList();
 
                 ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
 
@@ -1332,12 +1362,12 @@ namespace PackingApplication
                 OwnerList.DisplayMember = "LegalName";
                 OwnerList.ValueMember = "BusinessPartnerId";
                 OwnerList.DataSource = ownerList;
-                OwnerList.Text = typedText;
+                //OwnerList.Text = typedText;
 
                 OwnerList.EndUpdate();
 
                 OwnerList.DroppedDown = true;
-                OwnerList.SelectionStart = typedText.Length;
+                //OwnerList.SelectionStart = typedText.Length;
                 OwnerList.SelectionLength = 0;
 
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
@@ -2155,6 +2185,18 @@ namespace PackingApplication
             {
                 LineNoList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                LineNoList.DataSource = null;
+                var machineList = _masterService.GetMachineList("ChipsLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                LineNoList.DataSource = machineList;
+                LineNoList.DisplayMember = "MachineName";
+                LineNoList.ValueMember = "MachineId";
+                LineNoList.SelectedIndex = 0;
+                LineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("Chips LineNoList_KeyDown - End : " + DateTime.Now);
         }
@@ -2189,6 +2231,18 @@ namespace PackingApplication
             {
                 PackSizeList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                PackSizeList.DataSource = null;
+                var packsizeList = _masterService.GetPackSizeList("").Result.OrderBy(x => x.PackSizeName).ToList();
+                packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
+                PackSizeList.DisplayMember = "PackSizeName";
+                PackSizeList.ValueMember = "PackSizeId";
+                PackSizeList.DataSource = packsizeList;
+                PackSizeList.SelectedIndex = 0;
+                PackSizeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("Chips PackSizeList_KeyDown - End : " + DateTime.Now);
         }
@@ -2222,6 +2276,24 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 WindingTypeList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                WindingTypeList.DataSource = null;
+                var getWindingType = new List<WindingTypeResponse>();
+                getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
+                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                if (getWindingType.Count <= 1)
+                {
+                    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                }
+                WindingTypeList.DisplayMember = "WindingTypeName";
+                WindingTypeList.ValueMember = "WindingTypeId";
+                WindingTypeList.DataSource = getWindingType;
+                WindingTypeList.SelectedIndex = 0;
+                WindingTypeList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("Chips WindingTypeList_KeyDown - End : " + DateTime.Now);
@@ -2274,6 +2346,18 @@ namespace PackingApplication
             {
                 BoxItemList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                BoxItemList.DataSource = null;
+                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                BoxItemList.DisplayMember = "Name";
+                BoxItemList.ValueMember = "ItemId";
+                BoxItemList.DataSource = boxitemList;
+                BoxItemList.SelectedIndex = 0;
+                BoxItemList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("Chips BoxItemList_KeyDown - End : " + DateTime.Now);
         }
@@ -2291,6 +2375,18 @@ namespace PackingApplication
             {
                 DeptList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                DeptList.DataSource = null;
+                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                DeptList.DisplayMember = "DepartmentName";
+                DeptList.ValueMember = "DepartmentId";
+                DeptList.DataSource = deptList;
+                DeptList.SelectedIndex = 0;
+                DeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("Chips DeptList_KeyDown - End : " + DateTime.Now);
         }
@@ -2307,6 +2403,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 OwnerList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                OwnerList.DataSource = null;
+                var ownerList = _masterService.GetOwnerList("").Result.OrderBy(x => x.LegalName).ToList();
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                OwnerList.DisplayMember = "LegalName";
+                OwnerList.ValueMember = "BusinessPartnerId";
+                OwnerList.DataSource = ownerList;
+                OwnerList.SelectedIndex = 0;
+                OwnerList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("Chips OwnerList_KeyDown - End : " + DateTime.Now);
