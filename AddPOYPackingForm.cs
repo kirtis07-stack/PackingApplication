@@ -872,7 +872,7 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
-
+                        selectedMachineid = selectedMachineId;
                         if (selectedMachine != null)
                         {
                             var deptTask = _masterService.GetDepartmentList(selectedMachine.DepartmentName).Result;
