@@ -510,7 +510,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Clear();
                 SaleOrderList.Items.Add("Select Sale Order Item");
                 var salesOrderNumber = "";
-                salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.ItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
+                salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.SOItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
@@ -2114,7 +2114,7 @@ namespace PackingApplication
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
-                //ShowCustomMessage(result.BoxNoFmtd);
+                ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
                 this.spoolno.Text = "0";
                 this.spoolwt.Text = "0";

@@ -180,5 +180,6 @@ namespace PackingApplication.Models.ResponseEntities
         public decimal CopsItemWeight { get; set; }
         public decimal BoxItemWeight { get; set; }
         public int SrNo { get; set; }
+        public string SOItemName { get; set; }
     }
 }
