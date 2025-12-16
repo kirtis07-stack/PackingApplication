@@ -2114,7 +2114,7 @@ namespace PackingApplication
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
-                ShowCustomMessage(result.BoxNoFmtd);
+                //ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
                 this.spoolno.Text = "0";
                 this.spoolwt.Text = "0";
