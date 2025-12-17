@@ -621,10 +621,27 @@ namespace PackingApplication
                             }
                             DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
                         }
-                        PrefixList.DataSource = null;
-                        PrefixList.Items.Clear();
-                        PrefixList.Items.Add("Select Prefix");
-                        PrefixList.SelectedItem = "Select Prefix";
+                        if (productionRequest.PrefixCode != 0)
+                        {
+                            prefixRequest.DepartmentId = selectedDeptId;
+                            prefixRequest.TxnFlag = "Chp";
+                            prefixRequest.TransactionTypeId = 5;
+                            prefixRequest.ProductionTypeId = 1;
+                            prefixRequest.Prefix = "";
+                            prefixRequest.FinYearId = SessionManager.FinYearId;
+
+                            List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result.OrderBy(x => x.Prefix).ToList();
+                            prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
+
+                            var isExist = prefixList.Where(x => x.PrefixCode == productionRequest.PrefixCode).Any();
+                            if (!isExist)
+                            {
+                                PrefixList.DataSource = null;
+                                PrefixList.Items.Clear();
+                                PrefixList.Items.Add("Select Prefix");
+                                PrefixList.SelectedItem = "Select Prefix";
+                            }
+                        }
 
                         MergeNoList.DataSource = null;
                         MergeNoList.Items.Clear();
@@ -650,6 +667,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= LinoNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;   // "Select Line No."
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += LinoNoList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -808,6 +837,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= MergeNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += MergeNoList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -914,6 +955,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= PackSizeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += PackSizeList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -966,6 +1019,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= QualityList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += QualityList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1033,6 +1098,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= WindingTypeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += WindingTypeList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1219,6 +1296,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= BoxItemList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += BoxItemList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1280,6 +1369,26 @@ namespace PackingApplication
                     DeptList.SelectedIndex = 1;
                 }
                 DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedDeptId != 0)
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "ChipsLot").Result;
+
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    //LineNoList.DataSource = machineList;
+
+                    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
+                    if (!isExist)
+                    {
+                        LineNoList.BeginUpdate();
+                        LineNoList.DataSource = null;
+                        LineNoList.DisplayMember = "MachineName";
+                        LineNoList.ValueMember = "MachineId";
+                        LineNoList.DataSource = machineList;
+                        LineNoList.EndUpdate();
+                    }
+                }
+
                 if (selectedPrefix.ProductionType.ToString() != null)
                 {
                     prodtype.Text = selectedPrefix.ProductionType.ToString();
@@ -1296,6 +1405,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= PrefixList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += PrefixList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1432,6 +1553,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= DeptList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += DeptList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1499,6 +1632,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= OwnerList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += OwnerList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 

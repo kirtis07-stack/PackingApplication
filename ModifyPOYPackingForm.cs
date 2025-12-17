@@ -920,6 +920,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= LinoNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;   // "Select Line No."
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += LinoNoList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1119,6 +1131,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= MergeNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += MergeNoList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1235,6 +1259,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= PackSizeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += PackSizeList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1287,6 +1323,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= QualityList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += QualityList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1354,6 +1402,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= WindingTypeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += WindingTypeList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1443,6 +1503,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SaleOrderList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += SaleOrderList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1687,6 +1759,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= CopsItemList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += CopsItemList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1762,6 +1846,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= BoxItemList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += BoxItemList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
@@ -1852,6 +1948,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= DeptList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += DeptList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1920,6 +2028,18 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= OwnerList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += OwnerList_TextUpdate;
+                return;
+            }
+
             int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
@@ -1954,6 +2074,18 @@ namespace PackingApplication
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= PalletTypeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += PalletTypeList_TextUpdate;
+                return;
+            }
 
             int cursorPosition = cb.SelectionStart;
 
