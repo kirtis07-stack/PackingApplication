@@ -89,5 +89,15 @@ namespace PackingApplication.Services
             }
             return getWindingList;
         }
+
+        public async Task<List<LotsResponse>> getLotsByLotType(string lotType, string subString, DateTime? startDate = null, DateTime? endDate = null)
+        {
+            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetByLotType?lotType=" + lotType + "&subString=" + subString);
+            if (string.IsNullOrWhiteSpace(getLotsResponse))
+                return new List<LotsResponse>();
+            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
+                ?? new List<LotsResponse>();
+            return getItem;
+        }
     }
 }

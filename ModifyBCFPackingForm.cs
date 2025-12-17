@@ -996,6 +996,26 @@ namespace PackingApplication
                     {
                         ResetDependentDropdownValues();
                         productionRequest.LotId = selectedLot.LotId;
+                        if (selectedMachineid == 0)
+                        {
+                            LineNoList.DataSource = null;
+                            LineNoList.Items.Clear();
+                            LineNoList.Items.Add("Select Line No.");
+                            LineNoList.Items.Add(selectedLot.MachineName);
+                            LineNoList.SelectedItem = selectedLot.MachineName;
+                            productionRequest.MachineId = selectedLot.MachineId;
+                            selectedMachineid = selectedLot.MachineId;
+                        }
+                        if (selectedDeptId == 0)
+                        {
+                            DeptList.DataSource = null;
+                            DeptList.Items.Clear();
+                            DeptList.Items.Add("Select Dept");
+                            DeptList.Items.Add(selectedLot.DepartmentName);
+                            DeptList.SelectedItem = selectedLot.DepartmentName;
+                            productionRequest.DepartmentId = selectedLot.DepartmentId;
+                            selectedDeptId = selectedLot.DepartmentId;
+                        }
                         selectLotId = selectedLotId;
                         lotResponse = _productionService.getLotById(selectedLotId).Result;
                         if (lotResponse != null)
@@ -1149,9 +1169,19 @@ namespace PackingApplication
 
                 //MergeNoList.Items.Clear();
 
-                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
+                List<LotsResponse> mergenoList = new List<LotsResponse>();
+                if (selectedMachineid > 0)
+                {
+                    mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
-                mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                    mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                }
+                else
+                {
+                    mergenoList = _productionService.getLotsByLotType("BCFLot", typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
+
+                    mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                }
 
                 MergeNoList.BeginUpdate();
                 MergeNoList.DataSource = null;
