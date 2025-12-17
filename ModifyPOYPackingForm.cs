@@ -1930,6 +1930,7 @@ namespace PackingApplication
                     MergeNoList.Items.Add("Select MergeNo");
                     MergeNoList.SelectedItem = "Select MergeNo";
 
+                    ResetLotValues();
                     ResetDependentDropdownValues();
                 }
             }

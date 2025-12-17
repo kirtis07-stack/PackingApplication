@@ -1684,6 +1684,7 @@ namespace PackingApplication
                     MergeNoList.Items.Add("Select MergeNo");
                     MergeNoList.SelectedItem = "Select MergeNo";
 
+                    ResetLotValues();
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "DTY";

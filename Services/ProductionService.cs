@@ -29,7 +29,7 @@ namespace PackingApplication.Services
 
         public async Task<List<LotsResponse>> getAllLotList()
         {
-            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + true);
+            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + false);
             if (string.IsNullOrWhiteSpace(getLotsResponse))
                 return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)

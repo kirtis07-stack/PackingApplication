@@ -1502,6 +1502,8 @@ namespace PackingApplication
                     MergeNoList.Items.Add("Select MergeNo");
                     MergeNoList.SelectedItem = "Select MergeNo";
 
+                    ResetLotValues();
+                    prodtype.Text = "";
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "Chp";

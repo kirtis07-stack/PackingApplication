@@ -128,6 +128,8 @@ namespace PackingApplication
             this.palletwtno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.spoolno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
 
+            //ConfigureComboBoxWithDisabledItems(DeptList);
+
             Log.writeMessage("DTY AddDTYPackingForm_Load - End : " + DateTime.Now);
         }
 
@@ -1821,6 +1823,8 @@ namespace PackingApplication
                     MergeNoList.Items.Add("Select MergeNo");
                     MergeNoList.SelectedItem = "Select MergeNo";
 
+                    ResetLotValues();
+                    prodtype.Text = "";
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "DTY";
@@ -3596,5 +3600,12 @@ namespace PackingApplication
 
             Log.writeMessage("DTY ResetDependentDropdownValues - End : " + DateTime.Now);
         }
+
+        //private void ConfigureComboBoxWithDisabledItems(System.Windows.Forms.ComboBox combo)
+        //{
+        //    combo.DrawMode = DrawMode.OwnerDrawFixed;
+        //    combo.DrawItem += _cmethod.Combo_DrawItem_Common;
+        //    combo.SelectionChangeCommitted += _cmethod.Combo_SelectionChangeCommitted_Common;
+        //}
     }
 }

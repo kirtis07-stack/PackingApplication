@@ -39,8 +39,8 @@ namespace PackingApplication
             email.TextChanged += Email_TextChanged;
             passwrd.TextChanged += Passwrd_TextChanged;
 
-            email.Text = "kirti.shinde@cyberscriptit.com";
-            passwrd.Text = "Kirti@123";
+            //email.Text = "kirti.shinde@cyberscriptit.com";
+            //passwrd.Text = "Kirti@123";
             //email.Text = "sanket.bankar@cyberscriptit.com";
             //passwrd.Text = "Sanket@123";
         }
@@ -94,7 +94,7 @@ namespace PackingApplication
 
         private void getYearList()
         {
-            var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + false);
+            var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + true);
             var getYear = JsonConvert.DeserializeObject<List<FinancialYearResponse>>(getYearResponse);
             YearList.DataSource = getYear;
             YearList.DisplayMember = "FinYear";
