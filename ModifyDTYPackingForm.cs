@@ -810,6 +810,14 @@ namespace PackingApplication
                         productionRequest.LotId = selectedLot.LotId;
                         if (selectedMachineid == 0)
                         {
+                            MergeNoList.DataSource = null;
+                            MergeNoList.Items.Clear();
+                            MergeNoList.Items.Add("Select MergeNo");
+                            MergeNoList.Items.Add(selectedLot.LotNoFrmt);
+                            MergeNoList.SelectedItem = selectedLot.LotNoFrmt;
+                            productionRequest.LotId = selectedLot.LotId;
+                            selectLotId = selectedLot.LotId;
+
                             LineNoList.DataSource = null;
                             LineNoList.Items.Clear();
                             LineNoList.Items.Add("Select Line No.");
@@ -2815,6 +2823,20 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 MergeNoList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                selectedMachineid = 0;      // Make selectedMachineid, selectedDeptId so that all mergeno will get in list
+                selectedDeptId = 0;
+                MergeNoList.DataSource = null;
+                var mergenoList = _productionService.getLotsByLotType("TexturisingLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
+                mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                MergeNoList.DisplayMember = "LotNoFrmt";
+                MergeNoList.ValueMember = "LotId";
+                MergeNoList.DataSource = mergenoList;
+                MergeNoList.SelectedIndex = 0;
+                MergeNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("DTY MergeNoList_KeyDown - End : " + DateTime.Now);
