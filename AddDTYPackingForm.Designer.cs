@@ -1702,10 +1702,11 @@ namespace PackingApplication
             // 
             this.panel55.Controls.Add(this.boxweight);
             this.panel55.Controls.Add(this.boxpalletitemwt);
+            this.panel55.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel55.Location = new System.Drawing.Point(232, 0);
             this.panel55.Margin = new System.Windows.Forms.Padding(0);
             this.panel55.Name = "panel55";
-            this.panel55.Size = new System.Drawing.Size(45, 28);
+            this.panel55.Size = new System.Drawing.Size(45, 36);
             this.panel55.TabIndex = 1;
             // 
             // boxpalletitemwt
