@@ -737,6 +737,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;   // "Select Line No."
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                selectedMachineid = 0;
 
                 cb.TextUpdate += LinoNoList_TextUpdate;
                 return;
@@ -975,6 +976,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                ResetLotValues();
 
                 cb.TextUpdate += MergeNoList_TextUpdate;
                 return;
@@ -1106,6 +1108,10 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                frdenier.Text = "0";
+                updenier.Text = "0";
+                frwt.Text = "0";
+                upwt.Text = "0";
 
                 cb.TextUpdate += PackSizeList_TextUpdate;
                 return;
@@ -1550,6 +1556,8 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                copsitemwt.Text = "0";
+                spoolwt.Text = "0";
 
                 cb.TextUpdate += CopsItemList_TextUpdate;
                 return;
@@ -1638,6 +1646,8 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                boxpalletitemwt.Text = "0";
+                palletwtno.Text = "0";
 
                 cb.TextUpdate += BoxItemList_TextUpdate;
                 return;
@@ -1774,6 +1784,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                selectedDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;
