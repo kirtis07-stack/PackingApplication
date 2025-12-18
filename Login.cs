@@ -94,7 +94,7 @@ namespace PackingApplication
 
         private void getYearList()
         {
-            var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + false);
+            var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + true);
             var getYear = JsonConvert.DeserializeObject<List<FinancialYearResponse>>(getYearResponse);
             YearList.DataSource = getYear;
             YearList.DisplayMember = "FinYear";

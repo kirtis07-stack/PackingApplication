@@ -45,7 +45,7 @@ namespace PackingApplication
         private bool isFormReady = false;
         int itemBoxCategoryId = 2;
         int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 5;
+        int itemPalletCategoryId = 2;
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -482,7 +482,7 @@ namespace PackingApplication
                 SaleOrderList.Items.Clear();
                 SaleOrderList.Items.Add("Select Sale Order Item");
                 var salesOrderNumber = "";
-                salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.ItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
+                salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.SOItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;

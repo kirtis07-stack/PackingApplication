@@ -29,7 +29,7 @@ namespace PackingApplication.Services
 
         public async Task<List<LotsResponse>> getAllLotList()
         {
-            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + true);
+            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetAll?IsDropDown=" + false);
             if (string.IsNullOrWhiteSpace(getLotsResponse))
                 return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
@@ -88,6 +88,16 @@ namespace PackingApplication.Services
                 getWindingList.Add(type);
             }
             return getWindingList;
+        }
+
+        public async Task<List<LotsResponse>> getLotsByLotType(string lotType, string subString, DateTime? startDate = null, DateTime? endDate = null)
+        {
+            var getLotsResponse = await method.GetCallApi(productionURL + "Lots/GetByLotType?lotType=" + lotType + "&subString=" + subString);
+            if (string.IsNullOrWhiteSpace(getLotsResponse))
+                return new List<LotsResponse>();
+            var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
+                ?? new List<LotsResponse>();
+            return getItem;
         }
     }
 }
