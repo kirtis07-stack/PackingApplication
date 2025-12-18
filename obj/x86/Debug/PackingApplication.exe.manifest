@@ -726,14 +726,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3777504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="3788768">
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JkaKT3ZHLMI7hYMcwNVfpHAq3gR86VA9xPxrzYoHcFE=</dsig:DigestValue>
+        <dsig:DigestValue>EU2vW4uIESdmmp4b2sh3Yujm+F2rwu0eZvJrrsRaqOo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

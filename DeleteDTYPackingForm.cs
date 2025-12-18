@@ -1388,6 +1388,15 @@ namespace PackingApplication
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
         }
 
+        private void machinetablelayout_Paint(object sender, PaintEventArgs e)
+        {
+            Log.writeMessage("DTY machinetablelayout_Paint - Start : " + DateTime.Now);
+
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY machinetablelayout_Paint - End : " + DateTime.Now);
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)

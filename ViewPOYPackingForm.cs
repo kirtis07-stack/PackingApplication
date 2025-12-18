@@ -2065,6 +2065,15 @@ namespace PackingApplication
             Log.writeMessage("POY palletdetailsheader_Resize - End : " + DateTime.Now);
         }
 
+        private void machinetablelayout_Paint(object sender, PaintEventArgs e)
+        {
+            Log.writeMessage("POY machinetablelayout_Paint - Start : " + DateTime.Now);
+
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("POY machinetablelayout_Paint - End : " + DateTime.Now);
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Log.writeMessage("POY btnCancel_Click - Start : " + DateTime.Now);
