@@ -3495,6 +3495,15 @@ namespace PackingApplication
             Log.writeMessage("POY palletdetailsheader_Resize - End : " + DateTime.Now);
         }
 
+        private void machinetablelayout_Paint(object sender, PaintEventArgs e)
+        {
+            Log.writeMessage("POY machinetablelayout_Paint - Start : " + DateTime.Now);
+
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("POY machinetablelayout_Paint - End : " + DateTime.Now);
+        }
+
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             Log.writeMessage("POY textBox1_KeyPress - Start : " + DateTime.Now);
