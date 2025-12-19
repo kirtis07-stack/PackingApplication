@@ -273,5 +273,29 @@ namespace PackingApplication.Helper
             }
         }
 
+        public void DrawPanelRoundedBorder(Control ctrl, PaintEventArgs e, int radius, Color borderColor, int thickness)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            // Keep radius safe
+            radius = Math.Min(radius, Math.Min(ctrl.Width, ctrl.Height) / 2);
+
+            // Draw INSIDE bounds
+            Rectangle rect = new Rectangle(
+                thickness,
+                thickness,
+                ctrl.Width - (thickness * 2) - 1,
+                ctrl.Height - (thickness * 2) - 1
+            );
+
+            using (GraphicsPath path = GetRoundedRect(rect, radius))
+            using (Pen pen = new Pen(borderColor, thickness))
+            {
+                pen.Alignment = PenAlignment.Inset; 
+                e.Graphics.DrawPath(pen, path);
+            }
+        }
+
+
     }
 }
