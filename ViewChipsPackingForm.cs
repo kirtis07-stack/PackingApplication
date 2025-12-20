@@ -841,7 +841,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("chipspacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails("chppacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1610,7 +1610,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var srboxnoList = _packingService.getAllBoxNoByPackingType("ChipsPacking", typedText).Result;
+                var srboxnoList = _packingService.getAllBoxNoByPackingType("ChpPacking", typedText).Result;
 
                 srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
 
@@ -1684,7 +1684,7 @@ namespace PackingApplication
         //{
         //    Log.writeMessage("Chips GetPackingList - Start : " + DateTime.Now);
 
-        //    packingList = _packingService.getProductionDetailsBySelectedParameter("ChipsPacking", machineId, deptId, boxNo, productionDate).Result;
+        //    packingList = _packingService.getProductionDetailsBySelectedParameter("ChpPacking", machineId, deptId, boxNo, productionDate).Result;
 
         //    Log.writeMessage("Chips GetPackingList - End : " + DateTime.Now);
 
@@ -1702,7 +1702,7 @@ namespace PackingApplication
             if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
             if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
             if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
-            packingList = _packingService.getProductionDetailsBySelectedParameter("ChipsPacking", machineid, deptid, boxnoid, proddt).Result;
+            packingList = _packingService.getProductionDetailsBySelectedParameter("ChpPacking", machineid, deptid, boxnoid, proddt).Result;
 
             datalistpopuppanel.Visible = true;
             datalistpopuppanel.BringToFront();
@@ -1789,7 +1789,7 @@ namespace PackingApplication
                     ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
                 );
 
-                var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chipspacking", productionId).Result;
+                var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
 
                 //SelectedProductionDetails
                 if (getSelectedProductionDetails.ProductionId > 0)
