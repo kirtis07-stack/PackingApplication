@@ -537,7 +537,7 @@ namespace PackingApplication
 
         private async void RefreshLastBoxDetails()
         {
-            var getLastBox = _packingService.getLastBoxDetails("dtypacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("dtypacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)

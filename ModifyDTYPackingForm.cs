@@ -643,12 +643,12 @@ namespace PackingApplication
                     rowMaterial.DataSource = productionResponse.LotsDetailsResponse;
                     lotsDetailsList = productionResponse.LotsDetailsResponse;
                 }
-                itemname.Text = productionResponse.ItemName;
-                shadename.Text = productionResponse.ShadeName;
-                shadecd.Text = productionResponse.ShadeCode;
+                itemname.Text = (!string.IsNullOrEmpty(productionResponse.ItemName)) ? productionResponse.ItemName : "";
+                shadename.Text = (!string.IsNullOrEmpty(productionResponse.ShadeName)) ? productionResponse.ShadeName : "";
+                shadecd.Text = (!string.IsNullOrEmpty(productionResponse.ShadeCode)) ? productionResponse.ShadeCode : "";
                 deniervalue.Text = productionResponse.Denier.ToString();
-                twistvalue.Text = productionResponse.TwistName.ToString();
-                salelotvalue.Text = productionResponse.SaleLot.ToString();
+                twistvalue.Text = (!string.IsNullOrEmpty(productionResponse.TwistName)) ? productionResponse.TwistName.ToString() : "";
+                salelotvalue.Text = (!string.IsNullOrEmpty(productionResponse.SaleLot)) ? productionResponse.SaleLot.ToString() : "";
                 frdenier.Text = productionResponse.FromDenier.ToString();
                 updenier.Text = productionResponse.UpToDenier.ToString();
                 startWeight = productionResponse.StartWeight;
@@ -665,7 +665,7 @@ namespace PackingApplication
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
                 productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
-                boxnofrmt.Text = productionResponse.BoxNoFmtd;
+                boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
                 spoolno.Text = productionResponse.Spools.ToString();
@@ -1450,10 +1450,10 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY RefreshGradewiseGrid - Start : " + DateTime.Now);
 
-            if (QualityList.SelectedValue != null)
+            if (productionRequest.QualityId != 0)
             {
                 balanceQty = 0;
-                int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
@@ -1491,7 +1491,7 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("dtypacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("dtypacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -2219,7 +2219,7 @@ namespace PackingApplication
                     consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
                     consumptionDetailsRequest.ProductionLotId = lot.LotId;
                     consumptionDetailsRequest.InputLotId = lot.LotId;
-                    consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
+                    consumptionDetailsRequest.InputItemId = lot.PrevLotItemId;
                     consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
                     consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
                     productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
@@ -2244,72 +2244,72 @@ namespace PackingApplication
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
-                RefreshLastBoxDetails();
-                if (_productionId == 0)
-                {
-                    MessageBox.Show("DTY Packing added successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                    isFormReady = false;
-                    this.spoolno.Text = "0";
-                    this.spoolwt.Text = "0";
-                    this.grosswtno.Text = "0.000";
-                    this.tarewt.Text = "0.000";
-                    this.netwt.Text = "0.000";
-                    this.wtpercop.Text = "0.000";
-                    palletwtno.Text = boxpalletitemwt.Text;
-                    isFormReady = true;
-                    //if (isPrint)
-                    //{
-                    //    //call ssrs report to print
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
+                //RefreshLastBoxDetails();
+                //if (_productionId == 0)
+                //{
+                //    MessageBox.Show("DTY Packing added successfully!",
+                //    "Success",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Information);
+                //    isFormReady = false;
+                //    this.spoolno.Text = "0";
+                //    this.spoolwt.Text = "0";
+                //    this.grosswtno.Text = "0.000";
+                //    this.tarewt.Text = "0.000";
+                //    this.netwt.Text = "0.000";
+                //    this.wtpercop.Text = "0.000";
+                //    palletwtno.Text = boxpalletitemwt.Text;
+                //    isFormReady = true;
+                //if (isPrint)
+                //{
+                //    //call ssrs report to print
+                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
+                //    string format = "PDF";
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "";
-                    //    string endDate = "";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                //    //set params
+                //    string productionId = result.ProductionId.ToString();
+                //    string startDate = "";
+                //    string endDate = "";
+                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                //    WebClient client = new WebClient();
+                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                    //    byte[] bytes = client.DownloadData(url);
+                //    byte[] bytes = client.DownloadData(url);
 
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
+                //    // Save to file
+                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                //    File.WriteAllBytes(tempFile, bytes);
 
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
+                //    //// Open with default PDF reader
+                //    //System.Diagnostics.Process.Start("Report.pdf");
 
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            var printerSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            // Set custom 4x4 label size
-                    //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                    //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+                //    using (var pdfDoc = PdfDocument.Load(tempFile))
+                //    {
+                //        using (var printDoc = pdfDoc.CreatePrintDocument())
+                //        {
+                //            var printerSettings = new PrinterSettings()
+                //            {
+                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                //                Copies = 1
+                //            };
+                //            // Set custom 4x4 label size
+                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                    //            printDoc.PrinterSettings = printerSettings;
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
+                //            printDoc.PrinterSettings = printerSettings;
+                //            printDoc.Print(); // sends PDF to printer
+                //        }
+                //    }
 
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-                    //}
-                }
-                else
-                {
-                    ShowCustomMessage(result.BoxNoFmtd);
+                //    // 5️⃣ Clean up temp file
+                //    File.Delete(tempFile);
+                //}
+                //}
+                //else
+                //{
+                ShowCustomMessage(result.BoxNoFmtd);
                     //if (isPrint)
                     //{
                     //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
@@ -2351,7 +2351,7 @@ namespace PackingApplication
                     //    File.Delete(tempFile);
 
                     //}
-                }
+                //}
             }
             else
             {
@@ -2479,6 +2479,7 @@ namespace PackingApplication
                 MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 isValid = false;
             }
+            balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
@@ -3788,16 +3789,73 @@ namespace PackingApplication
             dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
 
             dataGridView1.Columns["SrNo"].Width = 50;
+
+            // Add Edit button column
+            DataGridViewImageColumn btn = new DataGridViewImageColumn();
+            btn.HeaderText = "Action";
+            btn.Name = "Action";
+            btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+            btn.ImageLayout = DataGridViewImageCellLayout.Normal;
+            btn.Width = 45;  // column width
+            dataGridView1.RowTemplate.Height = 40; // row height
+            dataGridView1.Columns.Add(btn);
+
             dataGridView1.DataSource = packingList;
 
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
+
+            dataGridView1.CellMouseEnter += (s, te) =>
+            {
+                if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                {
+                    dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                }
+            };
+
+            dataGridView1.CellMouseLeave += (s, te) =>
+            {
+                dataGridView1.Cursor = Cursors.Default; // Reset back to default
+            };
 
             Log.writeMessage("DTY btnSearch_Click - End : " + DateTime.Now);
         }
 
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
+            Log.writeMessage("DTY dataGridView1_RowPostPaint - Start : " + DateTime.Now);
+
             dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = e.RowIndex + 1;
+
+            Log.writeMessage("DTY dataGridView1_RowPostPaint - End : " + DateTime.Now);
+        }
+
+        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Log.writeMessage("DTY dataGridView1_CellContentClick - Start : " + DateTime.Now);
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
+            {
+                long productionId = Convert.ToInt32(
+                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
+                );
+
+                var getSelectedProductionDetails = _packingService.getLastBoxDetails("dtypacking", productionId).Result;
+
+                //SelectedProductionDetails
+                if (getSelectedProductionDetails.ProductionId > 0)
+                {
+                    await LoadProductionDetailsAsync(getSelectedProductionDetails);
+
+                    this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
+                    this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
+                    this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
+                    this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                    this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+                }
+            }
+
+            Log.writeMessage("DTY dataGridView1_CellContentClick - End : " + DateTime.Now);
         }
 
         private async void SrLineNoList_SelectionChangeCommitted(object sender, EventArgs e)

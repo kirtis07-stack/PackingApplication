@@ -784,7 +784,7 @@ namespace PackingApplication
 
         private async void RefreshLastBoxDetails()
         {
-            var getLastBox = _packingService.getLastBoxDetails("chipspacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("chipspacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)

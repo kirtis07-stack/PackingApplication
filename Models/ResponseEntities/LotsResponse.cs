@@ -71,6 +71,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string LotType { get; set; }
         public int PrevLotId { get; set; }
         public string PrevLotType { get; set; }
+        public int PrevLotItemId { get; set; }
         public string PrevLotItemName { get; set; }
         public string PrevLotShadeName { get; set; }
         public string PrevLotShadeCode { get; set; }

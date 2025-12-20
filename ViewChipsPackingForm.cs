@@ -785,7 +785,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("chipspacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("chipspacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)

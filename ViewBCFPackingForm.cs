@@ -1117,7 +1117,7 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("BCFpacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("BCFpacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)

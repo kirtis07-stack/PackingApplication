@@ -28,9 +28,9 @@ namespace PackingApplication.Services
             return getPacking;
         }
 
-        public async Task<ProductionResponse> getLastBoxDetails(string packingType)
+        public async Task<ProductionResponse> getLastBoxDetails(string packingType, long productionId)
         {
-            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetLastBoxDetails?packingType=" + packingType);
+            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetLastBoxDetails?packingType=" + packingType + "&productionId=" + productionId);
             if (string.IsNullOrWhiteSpace(getPackingResponse))
                 return new ProductionResponse();
             var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse)

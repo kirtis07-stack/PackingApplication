@@ -1750,7 +1750,7 @@ namespace PackingApplication
         {
             Log.writeMessage("POY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("poypacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("poypacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
