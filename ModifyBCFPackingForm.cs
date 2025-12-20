@@ -55,6 +55,11 @@ namespace PackingApplication
         int selectedDeptId = 0;
         int selectedMachineid = 0;
         int selectedItemTypeid = 0;
+        List<ProductionResponse> packingList = new List<ProductionResponse>();
+        int selectedSrDeptId = 0;
+        int selectedSrMachineId = 0;
+        string selectedSrBoxNo = null;
+        string selectedSrProductionDate = null;
         public ModifyBCFPackingForm()
         {
             Log.writeMessage("BCF ModifyBCFPackingForm - Start : " + DateTime.Now);
@@ -70,6 +75,10 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
+            _cmethod.SetButtonBorderRadius(this.findbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.closepopupbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.searchbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.closelistbtn, 8);
 
             width = flowLayoutPanel1.ClientSize.Width;
             rowMaterial.AutoGenerateColumns = false;
@@ -221,6 +230,27 @@ namespace PackingApplication
             PalletTypeList.ValueMember = "ItemId";
             PalletTypeList.SelectedIndex = 0;
 
+            var srmachineList = new List<MachineResponse>();
+            srmachineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+            SrLineNoList.DataSource = srmachineList;
+            SrLineNoList.DisplayMember = "MachineName";
+            SrLineNoList.ValueMember = "MachineId";
+            SrLineNoList.SelectedIndex = 0;
+
+            var srdeptList = new List<DepartmentResponse>();
+            srdeptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            SrDeptList.DataSource = srdeptList;
+            SrDeptList.DisplayMember = "DepartmentName";
+            SrDeptList.ValueMember = "DepartmentId";
+            SrDeptList.SelectedIndex = 0;
+
+            var srboxnoList = new List<ProductionResponse>();
+            srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+            SrBoxNoList.DataSource = srboxnoList;
+            SrBoxNoList.DisplayMember = "BoxNo";
+            SrBoxNoList.ValueMember = "ProductionId";
+            SrBoxNoList.SelectedIndex = 0;
+
             Log.writeMessage("BCF LoadDropdowns - End : " + DateTime.Now);
         }
 
@@ -278,6 +308,7 @@ namespace PackingApplication
             this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.pruser.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.prhindi.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -358,6 +389,18 @@ namespace PackingApplication
             this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.findbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.closepopupbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.searchbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.srlinenoradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.SrLineNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.srdeptradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.SrDeptList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.srboxnoradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.SrBoxNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.srproddateradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("BCF ApplyFonts - End : " + DateTime.Now);
         }
@@ -600,13 +643,14 @@ namespace PackingApplication
                 productionRequest.PrintDate = productionResponse.PrintDate;
                 pruser.Checked = productionResponse.PrintUser;
                 productionRequest.PrintUser = productionResponse.PrintUser;
+                prhindi.Checked = productionResponse.PrintHindiWords;
                 productionRequest.PrintHindiWords = productionResponse.PrintHindiWords;
                 prwtps.Checked = productionResponse.PrintWTPS;
                 productionRequest.PrintWTPS = productionResponse.PrintWTPS;
                 prqrcode.Checked = productionResponse.PrintQRCode;
                 productionRequest.PrintQRCode = productionResponse.PrintQRCode;
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
-                boxnofrmt.Text = productionResponse.BoxNoFmtd;
+                boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
                 lotsDetailsList = new List<LotsDetailsResponse>();
@@ -624,11 +668,11 @@ namespace PackingApplication
                     rowMaterial.DataSource = productionResponse.LotsDetailsResponse;
                     lotsDetailsList = productionResponse.LotsDetailsResponse;
                 }
-                itemname.Text = productionResponse.ItemName;
-                shadename.Text = productionResponse.ShadeName;
-                shadecd.Text = productionResponse.ShadeCode;
+                itemname.Text = (!string.IsNullOrEmpty(productionResponse.ItemName)) ? productionResponse.ItemName : "";
+                shadename.Text = (!string.IsNullOrEmpty(productionResponse.ShadeName)) ? productionResponse.ShadeName : "";
+                shadecd.Text = (!string.IsNullOrEmpty(productionResponse.ShadeCode)) ? productionResponse.ShadeCode : "";
                 deniervalue.Text = productionResponse.Denier.ToString();
-                salelotvalue.Text = productionResponse.SaleLot.ToString();
+                salelotvalue.Text = (!string.IsNullOrEmpty(productionResponse.SaleLot)) ? productionResponse.SaleLot.ToString() : "";
                 frdenier.Text = productionResponse.FromDenier.ToString();
                 updenier.Text = productionResponse.UpToDenier.ToString();
                 startWeight = productionResponse.StartWeight;
@@ -2756,6 +2800,7 @@ namespace PackingApplication
                 productionRequest.PrintOwner = prowner.Checked;
                 productionRequest.PrintDate = prdate.Checked;
                 productionRequest.PrintUser = pruser.Checked;
+                productionRequest.PrintHindiWords = prhindi.Checked;
                 productionRequest.PrintQRCode = prqrcode.Checked;
                 productionRequest.PrintWTPS = prwtps.Checked;
 
@@ -2781,7 +2826,7 @@ namespace PackingApplication
                     consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
                     consumptionDetailsRequest.ProductionLotId = lot.LotId;
                     consumptionDetailsRequest.InputLotId = lot.LotId;
-                    consumptionDetailsRequest.InputItemId = lotResponse.ItemId;
+                    consumptionDetailsRequest.InputItemId = lot.PrevLotItemId;
                     consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
                     consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
                     productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
@@ -2807,112 +2852,112 @@ namespace PackingApplication
                 saveprint.Enabled = true;
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
-                RefreshLastBoxDetails();
-                if (_productionId == 0)
-                {
-                    ShowCustomMessage(result.BoxNoFmtd);
-                    isFormReady = false;
-                    this.spoolno.Text = "0";
-                    this.spoolwt.Text = "0";
-                    this.grosswtno.Text = "0.000";
-                    this.tarewt.Text = "0.000";
-                    this.netwt.Text = "0.000";
-                    this.wtpercop.Text = "0.000";
-                    palletwtno.Text = boxpalletitemwt.Text;
-                    isFormReady = true;
-                    this.spoolno.Focus();
-                    //if (isPrint)
-                    //{
-                    //    //call ssrs report to print
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndBCF";
-                    //    string format = "PDF";
+                //RefreshLastBoxDetails();
+                //if (_productionId == 0)
+                //{
+                //    ShowCustomMessage(result.BoxNoFmtd);
+                //    isFormReady = false;
+                //    this.spoolno.Text = "0";
+                //    this.spoolwt.Text = "0";
+                //    this.grosswtno.Text = "0.000";
+                //    this.tarewt.Text = "0.000";
+                //    this.netwt.Text = "0.000";
+                //    this.wtpercop.Text = "0.000";
+                //    palletwtno.Text = boxpalletitemwt.Text;
+                //    isFormReady = true;
+                //    this.spoolno.Focus();
+                //if (isPrint)
+                //{
+                //    //call ssrs report to print
+                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                //    string reportPath = "/PackingSSRSReport/TextureAndBCF";
+                //    string format = "PDF";
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "";
-                    //    string endDate = "";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                //    //set params
+                //    string productionId = result.ProductionId.ToString();
+                //    string startDate = "";
+                //    string endDate = "";
+                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                //    WebClient client = new WebClient();
+                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                    //    byte[] bytes = client.DownloadData(url);
+                //    byte[] bytes = client.DownloadData(url);
 
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
+                //    // Save to file
+                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                //    File.WriteAllBytes(tempFile, bytes);
 
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
+                //    //// Open with default PDF reader
+                //    //System.Diagnostics.Process.Start("Report.pdf");
 
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            var printerSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            // Set custom 4x4 label size
-                    //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                    //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+                //    using (var pdfDoc = PdfDocument.Load(tempFile))
+                //    {
+                //        using (var printDoc = pdfDoc.CreatePrintDocument())
+                //        {
+                //            var printerSettings = new PrinterSettings()
+                //            {
+                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                //                Copies = 1
+                //            };
+                //            // Set custom 4x4 label size
+                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                    //            printDoc.PrinterSettings = printerSettings;
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
+                //            printDoc.PrinterSettings = printerSettings;
+                //            printDoc.Print(); // sends PDF to printer
+                //        }
+                //    }
 
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-                    //}
-                }
-                else
-                {
-                    ShowCustomMessage(result.BoxNoFmtd);
-                    //if (isPrint)
-                    //{
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndBCF";
-                    //    string format = "PDF";
+                //    // 5️⃣ Clean up temp file
+                //    File.Delete(tempFile);
+                //}
+                //}
+                //else
+                //{
+                ShowCustomMessage(result.BoxNoFmtd);
+                //if (isPrint)
+                //{
+                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
+                //    string reportPath = "/PackingSSRSReport/TextureAndBCF";
+                //    string format = "PDF";
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "2025-09-01";
-                    //    string endDate = "2025-09-30";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                //    //set params
+                //    string productionId = result.ProductionId.ToString();
+                //    string startDate = "2025-09-01";
+                //    string endDate = "2025-09-30";
+                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                //    WebClient client = new WebClient();
+                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
 
-                    //    byte[] bytes = client.DownloadData(url);
+                //    byte[] bytes = client.DownloadData(url);
 
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
+                //    // Save to file
+                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
+                //    File.WriteAllBytes(tempFile, bytes);
 
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
+                //    //// Open with default PDF reader
+                //    //System.Diagnostics.Process.Start("Report.pdf");
 
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            printDoc.PrinterSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
+                //    using (var pdfDoc = PdfDocument.Load(tempFile))
+                //    {
+                //        using (var printDoc = pdfDoc.CreatePrintDocument())
+                //        {
+                //            printDoc.PrinterSettings = new PrinterSettings()
+                //            {
+                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                //                Copies = 1
+                //            };
+                //            printDoc.Print(); // sends PDF to printer
+                //        }
+                //    }
 
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
+                //    // 5️⃣ Clean up temp file
+                //    File.Delete(tempFile);
 
-                    //}
-                }
+                //}
+                //}
             }
             else
             {
@@ -3039,7 +3084,7 @@ namespace PackingApplication
             decimal.TryParse(wtpercop.Text, out whtpercop);
             if (whtpercop >= startWeight && whtpercop <= endWeight)
             {
-                isValid = true;
+                //isValid = true;
             }
             else
             {
@@ -3332,6 +3377,15 @@ namespace PackingApplication
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
 
             Log.writeMessage("BCF machinetablelayout_Paint - End : " + DateTime.Now);
+        }
+
+        private void popuppanel_Paint(object sender, PaintEventArgs e)
+        {
+            Log.writeMessage("BCF popuppanel_Paint - Start : " + DateTime.Now);
+
+            _cmethod.DrawPanelRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("BCF popuppanel_Paint - End : " + DateTime.Now);
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -4002,7 +4056,7 @@ namespace PackingApplication
                 System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
                 {
                     AutoSize = false,
-                    Text = $"BCF Packing added successfully for BoxNo {boxNo}.",
+                    Text = $"BCF Packing updated successfully for BoxNo {boxNo}.",
                     Font = FontManager.GetFont(12F, FontStyle.Regular),
                     ForeColor = Color.Black,
                     Location = new System.Drawing.Point(85, 40),
@@ -4129,6 +4183,472 @@ namespace PackingApplication
             WindingTypeList.SelectedItem = "Select Winding Type";
 
             Log.writeMessage("BCF ResetDependentDropdownValues - End : " + DateTime.Now);
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF btnFind_Click - Start : " + DateTime.Now);
+
+            popuppanel.Visible = true;
+            popuppanel.BringToFront();
+
+            // Center popup in form
+            popuppanel.Left = (this.ClientSize.Width - popuppanel.Width) / 2;
+            popuppanel.Top = (this.ClientSize.Height - popuppanel.Height) / 2;
+
+            Log.writeMessage("BCF btnFind_Click - End : " + DateTime.Now);
+        }
+
+        private void btnClosePopup_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF btnClosePopup_Click - Start : " + DateTime.Now);
+
+            popuppanel.Visible = false;
+
+            Log.writeMessage("BCF btnClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrLineNoList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SrLineNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;   // "Select Line No."
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                selectedSrMachineId = 0;
+
+                cb.TextUpdate += SrLineNoList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
+            if (typedText.Length >= 2)
+            {
+
+                var machineList = _masterService.GetMachineList("BCFLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+
+                SrLineNoList.BeginUpdate();
+                SrLineNoList.DataSource = null;
+                SrLineNoList.DisplayMember = "MachineName";
+                SrLineNoList.ValueMember = "MachineId";
+                SrLineNoList.DataSource = machineList;
+                SrLineNoList.EndUpdate();
+
+                SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
+                SrLineNoList.Text = typedText;
+                SrLineNoList.DroppedDown = true;
+                SrLineNoList.SelectionStart = cursorPosition;
+                SrLineNoList.SelectionLength = typedText.Length;
+                SrLineNoList.TextUpdate += SrLineNoList_TextUpdate;
+            }
+
+            Log.writeMessage("BCF SrLineNoList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void SrDeptList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrDeptList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SrDeptList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                selectedSrDeptId = 0;
+
+                cb.TextUpdate += SrDeptList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
+            if (typedText.Length >= 2)
+            {
+                //DeptList.Items.Clear();
+
+                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+
+                SrDeptList.BeginUpdate();
+                SrDeptList.DataSource = null;
+                SrDeptList.DisplayMember = "DepartmentName";
+                SrDeptList.ValueMember = "DepartmentId";
+                SrDeptList.DataSource = deptList;
+                SrDeptList.EndUpdate();
+
+                SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
+                SrDeptList.DroppedDown = true;
+                SrDeptList.Text = typedText;
+                SrDeptList.SelectionStart = cursorPosition;
+                SrDeptList.SelectionLength = typedText.Length;
+                SrDeptList.TextUpdate += SrDeptList_TextUpdate;
+
+            }
+            Log.writeMessage("BCF SrDeptList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrBoxNoList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SrBoxNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += SrBoxNoList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
+            if (typedText.Length >= 2)
+            {
+                //DeptList.Items.Clear();
+
+                var srboxnoList = _packingService.getAllBoxNoByPackingType("BCFPacking", typedText).Result;
+
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+
+                SrBoxNoList.BeginUpdate();
+                SrBoxNoList.DataSource = null;
+                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.ValueMember = "ProductionId";
+                SrBoxNoList.DataSource = srboxnoList;
+                SrBoxNoList.EndUpdate();
+
+                SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
+                SrBoxNoList.DroppedDown = true;
+                SrBoxNoList.Text = typedText;
+                SrBoxNoList.SelectionStart = cursorPosition;
+                SrBoxNoList.SelectionLength = typedText.Length;
+                SrBoxNoList.TextUpdate += SrBoxNoList_TextUpdate;
+
+            }
+            Log.writeMessage("BCF SrBoxNoList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void rbLineNo_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF rbLineNo_CheckedChanged - Start : " + DateTime.Now);
+
+            SrLineNoList.Enabled = srlinenoradiobtn.Checked;
+            SrDeptList.Enabled = false;
+            SrBoxNoList.Enabled = false;
+            dateTimePicker2.Enabled = false;
+
+            Log.writeMessage("BCF rbLineNo_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void rbDepartment_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF rbDepartment_CheckedChanged - Start : " + DateTime.Now);
+
+            SrDeptList.Enabled = srdeptradiobtn.Checked;
+            SrLineNoList.Enabled = false;
+            SrBoxNoList.Enabled = false;
+            dateTimePicker2.Enabled = false;
+
+            Log.writeMessage("BCF rbDepartment_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void rbBoxNo_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
+
+            SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
+            SrLineNoList.Enabled = false;
+            SrDeptList.Enabled = false;
+            dateTimePicker2.Enabled = false;
+
+            Log.writeMessage("BCF rbBoxNo_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void rbDate_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF rbDate_CheckedChanged - Start : " + DateTime.Now);
+
+            dateTimePicker2.Enabled = srproddateradiobtn.Checked;
+            SrLineNoList.Enabled = false;
+            SrDeptList.Enabled = false;
+            SrBoxNoList.Enabled = false;
+
+            Log.writeMessage("BCF rbDate_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        //public List<ProductionResponse> GetPackingList(int machineId, int deptId, string boxNo, string productionDate)
+        //{
+        //    Log.writeMessage("DTY GetPackingList - Start : " + DateTime.Now);
+
+        //    packingList = _packingService.getProductionDetailsBySelectedParameter("DTYPacking", machineId, deptId, boxNo, productionDate).Result;
+
+        //    Log.writeMessage("DTY GetPackingList - End : " + DateTime.Now);
+
+        //    return packingList;
+        //}
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF btnSearch_Click - Start : " + DateTime.Now);
+
+            int machineid = 0, deptid = 0;
+            string boxnoid = null;
+            string proddt = null;
+            if (srlinenoradiobtn.Checked) { machineid = selectedSrMachineId; }
+            if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
+            if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
+            if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
+            packingList = _packingService.getProductionDetailsBySelectedParameter("BCFPacking", machineid, deptid, boxnoid, proddt).Result;
+
+            datalistpopuppanel.Visible = true;
+            datalistpopuppanel.BringToFront();
+
+            // Center popup in form
+            datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
+            datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
+
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Clear();
+
+            // Define columns
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
+            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
+            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
+            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
+            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
+            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
+
+            dataGridView1.Columns["SrNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            dataGridView1.Columns["DepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            dataGridView1.Columns["MachineName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            dataGridView1.Columns["LotNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            dataGridView1.Columns["BoxNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+
+            dataGridView1.Columns["SrNo"].Width = 50;
+
+            // Add Edit button column
+            DataGridViewImageColumn btn = new DataGridViewImageColumn();
+            btn.HeaderText = "Action";
+            btn.Name = "Action";
+            btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+            btn.ImageLayout = DataGridViewImageCellLayout.Normal;
+            btn.Width = 45;  // column width
+            dataGridView1.RowTemplate.Height = 40; // row height
+            dataGridView1.Columns.Add(btn);
+
+            dataGridView1.DataSource = packingList;
+
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
+
+            dataGridView1.CellMouseEnter += (s, te) =>
+            {
+                if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                {
+                    dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                }
+            };
+
+            dataGridView1.CellMouseLeave += (s, te) =>
+            {
+                dataGridView1.Cursor = Cursors.Default; // Reset back to default
+            };
+
+            Log.writeMessage("BCF btnSearch_Click - End : " + DateTime.Now);
+        }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            Log.writeMessage("BCF dataGridView1_RowPostPaint - Start : " + DateTime.Now);
+
+            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = e.RowIndex + 1;
+
+            Log.writeMessage("BCF dataGridView1_RowPostPaint - End : " + DateTime.Now);
+        }
+
+        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Log.writeMessage("BCF dataGridView1_CellContentClick - Start : " + DateTime.Now);
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
+            {
+                long productionId = Convert.ToInt32(
+                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
+                );
+
+                var getSelectedProductionDetails = _packingService.getLastBoxDetails("BCFpacking", productionId).Result;
+
+                //SelectedProductionDetails
+                if (getSelectedProductionDetails.ProductionId > 0)
+                {
+                    _productionId = getSelectedProductionDetails.ProductionId;
+                    await LoadProductionDetailsAsync(getSelectedProductionDetails);
+
+                    this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
+                    this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
+                    this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
+                    this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                    this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+                }
+            }
+
+            Log.writeMessage("BCF dataGridView1_CellContentClick - End : " + DateTime.Now);
+        }
+
+        private async void SrLineNoList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrLineNoList_SelectionChangeCommitted - Start : " + DateTime.Now);
+
+            if (!isFormReady) return; // skip during load
+
+            //if (suppressEvents) return;     //Prevent recursive refresh
+
+            if (SrLineNoList.Items.Count == 0) return;
+
+            if (SrLineNoList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            //suppressEvents = true;          //Freeze dependent dropdown events
+            lblLoading.Visible = true;
+            try
+            {
+                if (SrLineNoList.SelectedValue != null)
+                {
+                    MachineResponse selectedMachine = (MachineResponse)SrLineNoList.SelectedItem;
+                    int selectedMachineId = selectedMachine.MachineId;
+                    if (selectedMachineId > 0)
+                    {
+                        selectedSrMachineId = selectedMachine.MachineId;
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                //suppressEvents = false;             //Allow events again
+            }
+
+            Log.writeMessage("BCF SrLineNoList_SelectionChangeCommitted - End : " + DateTime.Now);
+        }
+
+        private async void SrDeptList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrDeptList_SelectionChangeCommitted - Start : " + DateTime.Now);
+
+            if (!isFormReady) return; // skip during load
+
+            //if (suppressEvents) return;     //Prevent recursive refresh
+
+            if (SrDeptList.Items.Count == 0) return;
+
+            if (SrDeptList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            //suppressEvents = true;          //Freeze dependent dropdown events
+            lblLoading.Visible = true;
+            try
+            {
+                if (SrDeptList.SelectedValue != null)
+                {
+                    DepartmentResponse selectedDepartment = (DepartmentResponse)SrDeptList.SelectedItem;
+                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+                    if (selectedDepartmentId > 0)
+                    {
+                        selectedSrDeptId = selectedDepartment.DepartmentId;
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                //suppressEvents = false;             //Allow events again
+            }
+
+            Log.writeMessage("BCF SrDeptList_SelectionChangeCommitted - End : " + DateTime.Now);
+        }
+
+        private async void SrBoxNoList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrBoxNoList_SelectionChangeCommitted - Start : " + DateTime.Now);
+
+            if (!isFormReady) return; // skip during load
+
+            //if (suppressEvents) return;     //Prevent recursive refresh
+
+            if (SrBoxNoList.Items.Count == 0) return;
+
+            if (SrBoxNoList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            //suppressEvents = true;          //Freeze dependent dropdown events
+            lblLoading.Visible = true;
+            try
+            {
+                if (SrBoxNoList.SelectedValue != null)
+                {
+                    ProductionResponse selectedBoxNo = (ProductionResponse)SrBoxNoList.SelectedItem;
+                    long selectedProductionId = selectedBoxNo.ProductionId;
+                    if (selectedProductionId > 0)
+                    {
+                        selectedSrBoxNo = selectedBoxNo.BoxNo;
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                //suppressEvents = false;             //Allow events again
+            }
+
+            Log.writeMessage("BCF SrBoxNoList_SelectionChangeCommitted - End : " + DateTime.Now);
+        }
+
+        private void SrProdDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = dateTimePicker2.Value.Date;
+            selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
+        }
+
+        private void btnDatalistClosePopup_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF btnDatalistClosePopup_Click - Start : " + DateTime.Now);
+
+            datalistpopuppanel.Visible = false;
+
+            Log.writeMessage("BCF btnDatalistClosePopup_Click - End : " + DateTime.Now);
         }
     }
 }

@@ -34,9 +34,10 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle84 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
             this.saleorderno = new System.Windows.Forms.Label();
@@ -276,6 +277,24 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.popuppanel = new System.Windows.Forms.Panel();
+            this.searchbtn = new System.Windows.Forms.Button();
+            this.closepopupbtn = new System.Windows.Forms.Button();
+            this.panel58 = new System.Windows.Forms.Panel();
+            this.srproddateradiobtn = new System.Windows.Forms.RadioButton();
+            this.srboxnoradiobtn = new System.Windows.Forms.RadioButton();
+            this.srdeptradiobtn = new System.Windows.Forms.RadioButton();
+            this.srlinenoradiobtn = new System.Windows.Forms.RadioButton();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.SrBoxNoList = new System.Windows.Forms.ComboBox();
+            this.SrDeptList = new System.Windows.Forms.ComboBox();
+            this.SrLineNoList = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.datalistpopuppanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.closelistbtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.findbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -374,6 +393,11 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.popuppanel.SuspendLayout();
+            this.panel58.SuspendLayout();
+            this.datalistpopuppanel.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1042,6 +1066,8 @@ namespace PackingApplication
             // 
             this.rightpanel.AutoScroll = true;
             this.rightpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.rightpanel.Controls.Add(this.datalistpopuppanel);
+            this.rightpanel.Controls.Add(this.popuppanel);
             this.rightpanel.Controls.Add(this.buttontablelayout);
             this.rightpanel.Controls.Add(this.tableLayoutPanel3);
             this.rightpanel.Controls.Add(this.tableLayoutPanel2);
@@ -1051,8 +1077,10 @@ namespace PackingApplication
             this.rightpanel.Location = new System.Drawing.Point(0, 0);
             this.rightpanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightpanel.Name = "rightpanel";
-            this.rightpanel.Size = new System.Drawing.Size(909, 487);
+            this.rightpanel.Size = new System.Drawing.Size(909, 521);
             this.rightpanel.TabIndex = 89;
+            this.rightpanel.Click += new System.EventHandler(this.btnFind_Click);
+            this.rightpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
             // 
             // buttontablelayout
             // 
@@ -1075,6 +1103,7 @@ namespace PackingApplication
             // 
             this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel21.Controls.Add(this.findbtn);
             this.panel21.Controls.Add(this.cancelbtn);
             this.panel21.Location = new System.Drawing.Point(299, 3);
             this.panel21.Name = "panel21";
@@ -1087,7 +1116,7 @@ namespace PackingApplication
             this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(106, 1);
+            this.cancelbtn.Location = new System.Drawing.Point(172, 1);
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(81, 24);
@@ -1149,14 +1178,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle84.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle84.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle84.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle84.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle84.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle84.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle84.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle84;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1221,14 +1250,14 @@ namespace PackingApplication
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle85.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle85.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle85.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle85.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle85.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.EnableHeadersVisualStyles = false;
@@ -1291,14 +1320,14 @@ namespace PackingApplication
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle86.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle86.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle86.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle86.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle86.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle86.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle86;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -3317,12 +3346,283 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
+            // popuppanel
+            // 
+            this.popuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.popuppanel.Controls.Add(this.searchbtn);
+            this.popuppanel.Controls.Add(this.closepopupbtn);
+            this.popuppanel.Controls.Add(this.panel58);
+            this.popuppanel.Location = new System.Drawing.Point(615, 494);
+            this.popuppanel.Margin = new System.Windows.Forms.Padding(0);
+            this.popuppanel.Name = "popuppanel";
+            this.popuppanel.Padding = new System.Windows.Forms.Padding(5);
+            this.popuppanel.Size = new System.Drawing.Size(241, 180);
+            this.popuppanel.TabIndex = 126;
+            this.popuppanel.Visible = false;
+            this.popuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
+            // 
+            // searchbtn
+            // 
+            this.searchbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.searchbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.searchbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchbtn.Location = new System.Drawing.Point(27, 150);
+            this.searchbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.searchbtn.Name = "searchbtn";
+            this.searchbtn.Size = new System.Drawing.Size(70, 22);
+            this.searchbtn.TabIndex = 110;
+            this.searchbtn.Text = "Search";
+            this.searchbtn.UseVisualStyleBackColor = false;
+            this.searchbtn.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // closepopupbtn
+            // 
+            this.closepopupbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
+            this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.closepopupbtn.Name = "closepopupbtn";
+            this.closepopupbtn.Size = new System.Drawing.Size(70, 22);
+            this.closepopupbtn.TabIndex = 109;
+            this.closepopupbtn.Text = "Close";
+            this.closepopupbtn.UseVisualStyleBackColor = false;
+            this.closepopupbtn.Click += new System.EventHandler(this.btnClosePopup_Click);
+            // 
+            // panel58
+            // 
+            this.panel58.Controls.Add(this.srproddateradiobtn);
+            this.panel58.Controls.Add(this.srboxnoradiobtn);
+            this.panel58.Controls.Add(this.srdeptradiobtn);
+            this.panel58.Controls.Add(this.srlinenoradiobtn);
+            this.panel58.Controls.Add(this.dateTimePicker2);
+            this.panel58.Controls.Add(this.SrBoxNoList);
+            this.panel58.Controls.Add(this.SrDeptList);
+            this.panel58.Controls.Add(this.SrLineNoList);
+            this.panel58.Controls.Add(this.label10);
+            this.panel58.Location = new System.Drawing.Point(7, 14);
+            this.panel58.Margin = new System.Windows.Forms.Padding(2);
+            this.panel58.Name = "panel58";
+            this.panel58.Padding = new System.Windows.Forms.Padding(5);
+            this.panel58.Size = new System.Drawing.Size(230, 120);
+            this.panel58.TabIndex = 1;
+            // 
+            // srproddateradiobtn
+            // 
+            this.srproddateradiobtn.AutoSize = true;
+            this.srproddateradiobtn.Location = new System.Drawing.Point(0, 92);
+            this.srproddateradiobtn.Name = "srproddateradiobtn";
+            this.srproddateradiobtn.Size = new System.Drawing.Size(51, 17);
+            this.srproddateradiobtn.TabIndex = 116;
+            this.srproddateradiobtn.TabStop = true;
+            this.srproddateradiobtn.Text = "Date:";
+            this.srproddateradiobtn.UseVisualStyleBackColor = true;
+            this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
+            // 
+            // srboxnoradiobtn
+            // 
+            this.srboxnoradiobtn.AutoSize = true;
+            this.srboxnoradiobtn.Location = new System.Drawing.Point(0, 64);
+            this.srboxnoradiobtn.Name = "srboxnoradiobtn";
+            this.srboxnoradiobtn.Size = new System.Drawing.Size(60, 17);
+            this.srboxnoradiobtn.TabIndex = 115;
+            this.srboxnoradiobtn.TabStop = true;
+            this.srboxnoradiobtn.Text = "BoxNo:";
+            this.srboxnoradiobtn.UseVisualStyleBackColor = true;
+            this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
+            // 
+            // srdeptradiobtn
+            // 
+            this.srdeptradiobtn.AutoSize = true;
+            this.srdeptradiobtn.Location = new System.Drawing.Point(0, 36);
+            this.srdeptradiobtn.Name = "srdeptradiobtn";
+            this.srdeptradiobtn.Size = new System.Drawing.Size(51, 17);
+            this.srdeptradiobtn.TabIndex = 114;
+            this.srdeptradiobtn.TabStop = true;
+            this.srdeptradiobtn.Text = "Dept:";
+            this.srdeptradiobtn.UseVisualStyleBackColor = true;
+            this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
+            // 
+            // srlinenoradiobtn
+            // 
+            this.srlinenoradiobtn.AutoSize = true;
+            this.srlinenoradiobtn.Location = new System.Drawing.Point(0, 8);
+            this.srlinenoradiobtn.Name = "srlinenoradiobtn";
+            this.srlinenoradiobtn.Size = new System.Drawing.Size(62, 17);
+            this.srlinenoradiobtn.TabIndex = 113;
+            this.srlinenoradiobtn.TabStop = true;
+            this.srlinenoradiobtn.Text = "LineNo:";
+            this.srlinenoradiobtn.UseVisualStyleBackColor = true;
+            this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(62, 89);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
+            this.dateTimePicker2.TabIndex = 112;
+            this.dateTimePicker2.TabStop = false;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.SrProdDate_ValueChanged);
+            // 
+            // SrBoxNoList
+            // 
+            this.SrBoxNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SrBoxNoList.FormattingEnabled = true;
+            this.SrBoxNoList.Location = new System.Drawing.Point(62, 62);
+            this.SrBoxNoList.Name = "SrBoxNoList";
+            this.SrBoxNoList.Size = new System.Drawing.Size(163, 21);
+            this.SrBoxNoList.TabIndex = 110;
+            this.SrBoxNoList.SelectionChangeCommitted += new System.EventHandler(this.SrBoxNoList_SelectionChangeCommitted);
+            this.SrBoxNoList.TextUpdate += new System.EventHandler(this.SrBoxNoList_TextUpdate);
+            // 
+            // SrDeptList
+            // 
+            this.SrDeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SrDeptList.FormattingEnabled = true;
+            this.SrDeptList.Location = new System.Drawing.Point(62, 33);
+            this.SrDeptList.Name = "SrDeptList";
+            this.SrDeptList.Size = new System.Drawing.Size(163, 21);
+            this.SrDeptList.TabIndex = 2;
+            this.SrDeptList.SelectionChangeCommitted += new System.EventHandler(this.SrDeptList_SelectionChangeCommitted);
+            this.SrDeptList.TextUpdate += new System.EventHandler(this.SrDeptList_TextUpdate);
+            // 
+            // SrLineNoList
+            // 
+            this.SrLineNoList.AllowDrop = true;
+            this.SrLineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SrLineNoList.FormattingEnabled = true;
+            this.SrLineNoList.Location = new System.Drawing.Point(62, 5);
+            this.SrLineNoList.Margin = new System.Windows.Forms.Padding(2);
+            this.SrLineNoList.Name = "SrLineNoList";
+            this.SrLineNoList.Size = new System.Drawing.Size(163, 21);
+            this.SrLineNoList.TabIndex = 1;
+            this.SrLineNoList.SelectionChangeCommitted += new System.EventHandler(this.SrLineNoList_SelectionChangeCommitted);
+            this.SrLineNoList.TextUpdate += new System.EventHandler(this.SrLineNoList_TextUpdate);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(7, 36);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 13);
+            this.label10.TabIndex = 98;
+            this.label10.Visible = false;
+            // 
+            // datalistpopuppanel
+            // 
+            this.datalistpopuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.datalistpopuppanel.Controls.Add(this.tableLayoutPanel12);
+            this.datalistpopuppanel.Controls.Add(this.dataGridView1);
+            this.datalistpopuppanel.Location = new System.Drawing.Point(242, 494);
+            this.datalistpopuppanel.Margin = new System.Windows.Forms.Padding(0);
+            this.datalistpopuppanel.Name = "datalistpopuppanel";
+            this.datalistpopuppanel.Padding = new System.Windows.Forms.Padding(5);
+            this.datalistpopuppanel.Size = new System.Drawing.Size(310, 396);
+            this.datalistpopuppanel.TabIndex = 127;
+            this.datalistpopuppanel.Visible = false;
+            this.datalistpopuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 3;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
+            this.tableLayoutPanel12.Controls.Add(this.closelistbtn, 1, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(5, 362);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(300, 29);
+            this.tableLayoutPanel12.TabIndex = 110;
+            // 
+            // closelistbtn
+            // 
+            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.closelistbtn.Location = new System.Drawing.Point(129, 3);
+            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.closelistbtn.Name = "closelistbtn";
+            this.closelistbtn.Size = new System.Drawing.Size(41, 22);
+            this.closelistbtn.TabIndex = 109;
+            this.closelistbtn.Text = "Close";
+            this.closelistbtn.UseVisualStyleBackColor = false;
+            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeight = 34;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle87.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle87.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle87.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle87.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle87;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.Location = new System.Drawing.Point(7, 5);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(299, 355);
+            this.dataGridView1.TabIndex = 99;
+            // 
+            // findbtn
+            // 
+            this.findbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.findbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.findbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.findbtn.Location = new System.Drawing.Point(34, 1);
+            this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.findbtn.Name = "findbtn";
+            this.findbtn.Size = new System.Drawing.Size(81, 24);
+            this.findbtn.TabIndex = 124;
+            this.findbtn.Text = "Find";
+            this.findbtn.UseVisualStyleBackColor = false;
+            this.findbtn.Click += new System.EventHandler(this.btnFind_Click);
+            // 
             // ViewPOYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(909, 487);
+            this.ClientSize = new System.Drawing.Size(909, 521);
             this.Controls.Add(this.rightpanel);
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -3487,6 +3787,12 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.popuppanel.ResumeLayout(false);
+            this.panel58.ResumeLayout(false);
+            this.panel58.PerformLayout();
+            this.datalistpopuppanel.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3741,6 +4047,24 @@ namespace PackingApplication
         private Panel panel10;
         private System.Windows.Forms.Label packingdate;
         private DateTimePicker dateTimePicker1;
+        private Panel popuppanel;
+        private Button searchbtn;
+        private Button closepopupbtn;
+        private Panel panel58;
+        internal RadioButton srproddateradiobtn;
+        private RadioButton srboxnoradiobtn;
+        private RadioButton srdeptradiobtn;
+        private RadioButton srlinenoradiobtn;
+        private DateTimePicker dateTimePicker2;
+        private ComboBox SrBoxNoList;
+        private ComboBox SrDeptList;
+        private ComboBox SrLineNoList;
+        private System.Windows.Forms.Label label10;
+        private Panel datalistpopuppanel;
+        private TableLayoutPanel tableLayoutPanel12;
+        private Button closelistbtn;
+        private DataGridView dataGridView1;
+        private Button findbtn;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

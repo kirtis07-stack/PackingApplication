@@ -3555,7 +3555,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;   // "Select Line No."
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
-                selectedMachineid = 0;
+                selectedSrMachineId = 0;
 
                 cb.TextUpdate += SrLineNoList_TextUpdate;
                 return;
@@ -3601,7 +3601,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
-                selectedDeptId = 0;
+                selectedSrDeptId = 0;
 
                 cb.TextUpdate += SrDeptList_TextUpdate;
                 return;
@@ -3649,7 +3649,6 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
-                selectedDeptId = 0;
 
                 cb.TextUpdate += SrBoxNoList_TextUpdate;
                 return;
@@ -3845,6 +3844,7 @@ namespace PackingApplication
                 //SelectedProductionDetails
                 if (getSelectedProductionDetails.ProductionId > 0)
                 {
+                    _productionId = getSelectedProductionDetails.ProductionId;
                     await LoadProductionDetailsAsync(getSelectedProductionDetails);
 
                     this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();

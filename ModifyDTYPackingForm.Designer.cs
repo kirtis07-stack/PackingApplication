@@ -90,8 +90,9 @@ namespace PackingApplication
             this.submit = new System.Windows.Forms.Button();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.datalistpopuppanel = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.closelistbtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.popuppanel = new System.Windows.Forms.Panel();
             this.searchbtn = new System.Windows.Forms.Button();
             this.closepopupbtn = new System.Windows.Forms.Button();
@@ -107,9 +108,9 @@ namespace PackingApplication
             this.label10 = new System.Windows.Forms.Label();
             this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.findbtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.saveprint = new System.Windows.Forms.Button();
-            this.findbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rowMaterialBox = new System.Windows.Forms.GroupBox();
             this.rowMaterialPanel = new System.Windows.Forms.Panel();
@@ -275,7 +276,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -289,6 +289,7 @@ namespace PackingApplication
             this.panel30.SuspendLayout();
             this.rightpanel.SuspendLayout();
             this.datalistpopuppanel.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.popuppanel.SuspendLayout();
             this.panel58.SuspendLayout();
@@ -371,7 +372,6 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1040,10 +1040,40 @@ namespace PackingApplication
             this.datalistpopuppanel.Margin = new System.Windows.Forms.Padding(0);
             this.datalistpopuppanel.Name = "datalistpopuppanel";
             this.datalistpopuppanel.Padding = new System.Windows.Forms.Padding(5);
-            this.datalistpopuppanel.Size = new System.Drawing.Size(310, 435);
+            this.datalistpopuppanel.Size = new System.Drawing.Size(310, 417);
             this.datalistpopuppanel.TabIndex = 125;
             this.datalistpopuppanel.Visible = false;
             this.datalistpopuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
+            this.tableLayoutPanel10.Controls.Add(this.closelistbtn, 1, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(5, 383);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(300, 29);
+            this.tableLayoutPanel10.TabIndex = 110;
+            // 
+            // closelistbtn
+            // 
+            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.closelistbtn.Location = new System.Drawing.Point(129, 3);
+            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.closelistbtn.Name = "closelistbtn";
+            this.closelistbtn.Size = new System.Drawing.Size(41, 22);
+            this.closelistbtn.TabIndex = 109;
+            this.closelistbtn.Text = "Close";
+            this.closelistbtn.UseVisualStyleBackColor = false;
+            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
             // 
             // dataGridView1
             // 
@@ -1079,23 +1109,8 @@ namespace PackingApplication
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(299, 394);
+            this.dataGridView1.Size = new System.Drawing.Size(299, 376);
             this.dataGridView1.TabIndex = 99;
-            // 
-            // closelistbtn
-            // 
-            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closelistbtn.Location = new System.Drawing.Point(129, 3);
-            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.closelistbtn.Name = "closelistbtn";
-            this.closelistbtn.Size = new System.Drawing.Size(41, 22);
-            this.closelistbtn.TabIndex = 109;
-            this.closelistbtn.Text = "Close";
-            this.closelistbtn.UseVisualStyleBackColor = false;
-            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
             // 
             // popuppanel
             // 
@@ -1301,6 +1316,21 @@ namespace PackingApplication
             this.panel21.Size = new System.Drawing.Size(350, 25);
             this.panel21.TabIndex = 0;
             // 
+            // findbtn
+            // 
+            this.findbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.findbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.findbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.findbtn.Location = new System.Drawing.Point(0, 1);
+            this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.findbtn.Name = "findbtn";
+            this.findbtn.Size = new System.Drawing.Size(81, 24);
+            this.findbtn.TabIndex = 1;
+            this.findbtn.Text = "Find";
+            this.findbtn.UseVisualStyleBackColor = false;
+            this.findbtn.Click += new System.EventHandler(this.btnFind_Click);
+            // 
             // cancelbtn
             // 
             this.cancelbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -1330,21 +1360,6 @@ namespace PackingApplication
             this.saveprint.Text = "Save && Print";
             this.saveprint.UseVisualStyleBackColor = false;
             this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
-            // 
-            // findbtn
-            // 
-            this.findbtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.findbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.findbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.findbtn.Location = new System.Drawing.Point(0, 1);
-            this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.findbtn.Name = "findbtn";
-            this.findbtn.Size = new System.Drawing.Size(81, 24);
-            this.findbtn.TabIndex = 1;
-            this.findbtn.Text = "Find";
-            this.findbtn.UseVisualStyleBackColor = false;
-            this.findbtn.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -3383,21 +3398,6 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
-            this.tableLayoutPanel10.Controls.Add(this.closelistbtn, 1, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(5, 401);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(300, 29);
-            this.tableLayoutPanel10.TabIndex = 110;
-            // 
             // ModifyDTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3433,6 +3433,7 @@ namespace PackingApplication
             this.panel30.PerformLayout();
             this.rightpanel.ResumeLayout(false);
             this.datalistpopuppanel.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.popuppanel.ResumeLayout(false);
             this.panel58.ResumeLayout(false);
@@ -3565,7 +3566,6 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.tableLayoutPanel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
