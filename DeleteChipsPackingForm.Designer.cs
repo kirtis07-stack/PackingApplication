@@ -1159,6 +1159,7 @@ namespace PackingApplication
             this.delete.TabIndex = 123;
             this.delete.Text = "Delete";
             this.delete.UseVisualStyleBackColor = false;
+            this.delete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cancelbtn
             // 
