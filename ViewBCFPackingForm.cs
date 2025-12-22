@@ -2513,10 +2513,6 @@ namespace PackingApplication
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
-                var rowObj = dataGridView1.Rows[e.RowIndex].DataBoundItem as ProductionResponse;
-                if (!rowObj.CanModifyDelete)
-                    return;
-
                 popuppanel.Visible = false;
                 datalistpopuppanel.Visible = false;
 
