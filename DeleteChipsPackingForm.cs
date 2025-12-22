@@ -452,6 +452,9 @@ namespace PackingApplication
                 //tarewt.Text = productionResponse.TareWt.ToString();
                 //netwt.Text = productionResponse.NetWt.ToString();
                 //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
+                productionRequest.PackingType = productionResponse.PackingType;
+                productionRequest.ProductionDate = productionResponse.ProductionDate;
+                delete.Enabled = productionResponse.IsDisabled ? false : true;
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -1944,6 +1947,96 @@ namespace PackingApplication
             datalistpopuppanel.Visible = false;
 
             Log.writeMessage("Chips btnDatalistClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips btnDelete_Click - Start : " + DateTime.Now);
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                productionRequest.IsDisabled = true;
+                productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
+
+                productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
+                foreach (var lot in lotsDetailsList)
+                {
+                    ProductionConsumptionDetailsRequest consumptionDetailsRequest = new ProductionConsumptionDetailsRequest();
+                    consumptionDetailsRequest.Extruder = lot.Extruder;
+                    consumptionDetailsRequest.InputPerc = lot.InputPerc;
+                    consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
+                    consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
+                    consumptionDetailsRequest.ProductionLotId = lot.LotId;
+                    consumptionDetailsRequest.InputLotId = lot.LotId;
+                    consumptionDetailsRequest.InputItemId = lot.PrevLotItemId;
+                    consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
+                    consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
+                    productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
+                }
+
+                ProductionResponse response = new ProductionResponse();
+                response = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
+                if (response.IsDisabled)
+                {
+                    ShowCustomMessage(response.BoxNoFmtd);
+                    delete.Enabled = false;
+                }
+            }
+
+            Log.writeMessage("Chips btnDelete_Click - End : " + DateTime.Now);
+        }
+
+        private void ShowCustomMessage(string boxNo)
+        {
+            Log.writeMessage("Chips ShowCustomMessage - Start : " + DateTime.Now);
+
+            using (Form msgForm = new Form())
+            {
+                msgForm.Width = 420;
+                msgForm.Height = 200;
+                msgForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                msgForm.Text = "Success";
+                msgForm.StartPosition = FormStartPosition.CenterScreen;
+                msgForm.MaximizeBox = false;
+                msgForm.MinimizeBox = false;
+                msgForm.ShowIcon = false;
+                msgForm.ShowInTaskbar = false;
+                msgForm.BackColor = Color.White;
+
+                System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
+                {
+                    AutoSize = false,
+                    Text = $"Chips Packing deleted successfully for BoxNo {boxNo}.",
+                    Font = FontManager.GetFont(12F, FontStyle.Regular),
+                    ForeColor = Color.Black,
+                    Location = new System.Drawing.Point(85, 40),
+                    Size = new Size(300, 60)
+                };
+
+                System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button()
+                {
+                    Text = "OK",
+                    DialogResult = DialogResult.OK,
+                    Font = FontManager.GetFont(10F, FontStyle.Bold),
+                    BackColor = Color.FromArgb(230, 240, 255),
+                    FlatStyle = FlatStyle.Flat,
+                    Size = new Size(80, 32),
+                    Location = new System.Drawing.Point(msgForm.Width / 2 - 40, 100),
+                    Cursor = Cursors.Hand
+                };
+                btnOk.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 230);
+
+                msgForm.Controls.Add(lblMessage);
+                msgForm.Controls.Add(btnOk);
+
+                msgForm.AcceptButton = btnOk;
+                msgForm.ShowDialog(this);
+            }
+
+            Log.writeMessage("Chips ShowCustomMessage - End : " + DateTime.Now);
         }
     }
 }

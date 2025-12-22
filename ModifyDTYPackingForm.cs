@@ -530,6 +530,9 @@ namespace PackingApplication
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
+                submit.Enabled = productionResponse.IsDisabled ? false : true;
+                saveprint.Enabled = productionResponse.IsDisabled ? false : true;
+
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
                 LineNoList.Items.Add("Select Line No.");
@@ -3415,7 +3418,7 @@ namespace PackingApplication
                 msgForm.Controls.Add(btnOk);
 
                 msgForm.AcceptButton = btnOk;
-                msgForm.ShowDialog();
+                msgForm.ShowDialog(this);
             }
 
             Log.writeMessage("DTY ShowCustomMessage - End : " + DateTime.Now);

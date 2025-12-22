@@ -569,6 +569,11 @@ namespace PackingApplication
                 //    }
                 //}
 
+                submit.Text = "Update";
+                saveprint.Text = "Update && Print";
+                submit.Enabled = productionResponse.IsDisabled ? false : true;
+                saveprint.Enabled = productionResponse.IsDisabled ? false : true;
+
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
                 MergeNoList.Items.Add("Select MergeNo");
@@ -717,9 +722,6 @@ namespace PackingApplication
                 DeptList.SelectedItem = productionResponse.DepartmentName;
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
                 selectedDeptId = productionResponse.DepartmentId;
-
-                submit.Text = "Update";
-                saveprint.Text = "Update && Print";
             }
 
             Log.writeMessage("POY LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -4081,7 +4083,7 @@ namespace PackingApplication
                 msgForm.Controls.Add(btnOk);
 
                 msgForm.AcceptButton = btnOk;
-                msgForm.ShowDialog();
+                msgForm.ShowDialog(this);
             }
 
             Log.writeMessage("POY ShowCustomMessage - End : " + DateTime.Now);

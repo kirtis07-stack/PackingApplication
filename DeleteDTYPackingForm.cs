@@ -464,24 +464,30 @@ namespace PackingApplication
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
+                productionRequest.PackingType = productionResponse.PackingType;
+                productionRequest.ProductionDate = productionResponse.ProductionDate;
+                delete.Enabled = productionResponse.IsDisabled ? false : true;
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
                 LineNoList.Items.Add("Select Line No.");
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
+                productionRequest.MachineId = productionResponse.MachineId;
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
                 DeptList.Items.Add("Select Dept");
                 DeptList.Items.Add(productionResponse.DepartmentName);
                 DeptList.SelectedItem = productionResponse.DepartmentName;
+                productionRequest.DepartmentId = productionResponse.DepartmentId;
 
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
                 MergeNoList.Items.Add("Select MergeNo");
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
+                productionRequest.LotId = productionResponse.LotId;
 
                 SaleOrderList.DataSource = null;
                 SaleOrderList.Items.Clear();
@@ -490,36 +496,42 @@ namespace PackingApplication
                 salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.SOItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
+                productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
                 QualityList.Items.Add("Select Quality");
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
+                productionRequest.QualityId = productionResponse.QualityId;
 
                 WindingTypeList.DataSource = null;
                 WindingTypeList.Items.Clear();
                 WindingTypeList.Items.Add("Select Winding Type");
                 WindingTypeList.Items.Add(productionResponse.WindingTypeName);
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
+                productionRequest.WindingTypeId = productionResponse.WindingTypeId;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
                 PackSizeList.Items.Add("Select Pack Size");
                 PackSizeList.Items.Add(productionResponse.PackSizeName);
                 PackSizeList.SelectedItem = productionResponse.PackSizeName;
+                productionRequest.PackSizeId = productionResponse.PackSizeId;
 
                 CopsItemList.DataSource = null;
                 CopsItemList.Items.Clear();
                 CopsItemList.Items.Add("Select Cops Item");
                 CopsItemList.Items.Add(productionResponse.SpoolItemName);
                 CopsItemList.SelectedItem = productionResponse.SpoolItemName;
+                productionRequest.SpoolItemId = productionResponse.SpoolItemId;
 
                 BoxItemList.DataSource = null;
                 BoxItemList.Items.Clear();
                 BoxItemList.Items.Add("Select Box/Pallet");
                 BoxItemList.Items.Add(productionResponse.BoxItemName);
                 BoxItemList.SelectedItem = productionResponse.BoxItemName;
+                productionRequest.BoxItemId = productionResponse.BoxItemId;
 
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
@@ -528,18 +540,29 @@ namespace PackingApplication
                 {
                     OwnerList.Items.Add(productionResponse.OwnerName);
                     OwnerList.SelectedItem = productionResponse.OwnerName;
+                    productionRequest.OwnerId = productionResponse.OwnerId;
                 }
 
                 prodtype.Text = productionResponse.ProductionType;
+                productionRequest.ProdTypeId = productionResponse.ProdTypeId;
                 remarks.Text = productionResponse.Remarks;
+                productionRequest.Remarks = productionResponse.Remarks;
                 prcompany.Checked = productionResponse.PrintCompany;
+                productionRequest.PrintCompany = productionResponse.PrintCompany;
                 prowner.Checked = productionResponse.PrintOwner;
+                productionRequest.PrintOwner = productionResponse.PrintOwner;
                 prdate.Checked = productionResponse.PrintDate;
+                productionRequest.PrintDate = productionResponse.PrintDate;
                 pruser.Checked = productionResponse.PrintUser;
+                productionRequest.PrintUser = productionResponse.PrintUser;
                 prhindi.Checked = productionResponse.PrintHindiWords;
+                productionRequest.PrintHindiWords = productionResponse.PrintHindiWords;
                 prwtps.Checked = productionResponse.PrintWTPS;
+                productionRequest.PrintWTPS = productionResponse.PrintWTPS;
                 prqrcode.Checked = productionResponse.PrintQRCode;
+                productionRequest.PrintQRCode = productionResponse.PrintQRCode;
                 prtwist.Checked = productionResponse.PrintTwist;
+                productionRequest.PrintTwist = productionResponse.PrintTwist;
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {
@@ -569,15 +592,25 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 AdjustNameByCharCount();
+                productionRequest.ItemId = productionResponse.ItemId;
+                productionRequest.ShadeId = productionResponse.ShadeId;
+                productionRequest.TwistId = productionResponse.TwistId;
+                productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
                 boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
                 spoolno.Text = productionResponse.Spools.ToString();
+                productionRequest.Spools = productionResponse.Spools;
                 spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
                 grosswtno.Text = productionResponse.GrossWt.ToString();
+                productionRequest.GrossWt = productionResponse.GrossWt;
                 tarewt.Text = productionResponse.TareWt.ToString();
+                productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
+                productionRequest.NetWt = productionResponse.NetWt;
             }
         }
 
@@ -1857,6 +1890,7 @@ namespace PackingApplication
                 //SelectedProductionDetails
                 if (getSelectedProductionDetails.ProductionId > 0)
                 {
+                    _productionId = getSelectedProductionDetails.ProductionId;
                     await LoadProductionDetailsAsync(getSelectedProductionDetails);
 
                     this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
@@ -1998,6 +2032,96 @@ namespace PackingApplication
             datalistpopuppanel.Visible = false;
 
             Log.writeMessage("DTY btnDatalistClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("DTY btnDelete_Click - Start : " + DateTime.Now);
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete?", 
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                productionRequest.IsDisabled = true;
+                productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
+
+                productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
+                foreach (var lot in lotsDetailsList)
+                {
+                    ProductionConsumptionDetailsRequest consumptionDetailsRequest = new ProductionConsumptionDetailsRequest();
+                    consumptionDetailsRequest.Extruder = lot.Extruder;
+                    consumptionDetailsRequest.InputPerc = lot.InputPerc;
+                    consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
+                    consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
+                    consumptionDetailsRequest.ProductionLotId = lot.LotId;
+                    consumptionDetailsRequest.InputLotId = lot.LotId;
+                    consumptionDetailsRequest.InputItemId = lot.PrevLotItemId;
+                    consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
+                    consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
+                    productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
+                }
+
+                ProductionResponse response = new ProductionResponse();
+                response = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
+                if(response.IsDisabled)
+                {
+                    ShowCustomMessage(response.BoxNoFmtd);
+                    delete.Enabled = false;
+                }
+            }
+
+            Log.writeMessage("DTY btnDelete_Click - End : " + DateTime.Now);
+        }
+
+        private void ShowCustomMessage(string boxNo)
+        {
+            Log.writeMessage("DTY ShowCustomMessage - Start : " + DateTime.Now);
+
+            using (Form msgForm = new Form())
+            {
+                msgForm.Width = 420;
+                msgForm.Height = 200;
+                msgForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                msgForm.Text = "Success";
+                msgForm.StartPosition = FormStartPosition.CenterScreen;
+                msgForm.MaximizeBox = false;
+                msgForm.MinimizeBox = false;
+                msgForm.ShowIcon = false;
+                msgForm.ShowInTaskbar = false;
+                msgForm.BackColor = Color.White;
+
+                System.Windows.Forms.Label lblMessage = new System.Windows.Forms.Label()
+                {
+                    AutoSize = false,
+                    Text = $"DTY Packing deleted successfully for BoxNo {boxNo}.",
+                    Font = FontManager.GetFont(12F, FontStyle.Regular),
+                    ForeColor = Color.Black,
+                    Location = new System.Drawing.Point(85, 40),
+                    Size = new Size(300, 60)
+                };
+
+                System.Windows.Forms.Button btnOk = new System.Windows.Forms.Button()
+                {
+                    Text = "OK",
+                    DialogResult = DialogResult.OK,
+                    Font = FontManager.GetFont(10F, FontStyle.Bold),
+                    BackColor = Color.FromArgb(230, 240, 255),
+                    FlatStyle = FlatStyle.Flat,
+                    Size = new Size(80, 32),
+                    Location = new System.Drawing.Point(msgForm.Width / 2 - 40, 100),
+                    Cursor = Cursors.Hand
+                };
+                btnOk.FlatAppearance.BorderColor = Color.FromArgb(180, 200, 230);
+
+                msgForm.Controls.Add(lblMessage);
+                msgForm.Controls.Add(btnOk);
+
+                msgForm.AcceptButton = btnOk;
+                msgForm.ShowDialog(this);
+            }
+
+            Log.writeMessage("DTY ShowCustomMessage - End : " + DateTime.Now);
         }
     }
 }

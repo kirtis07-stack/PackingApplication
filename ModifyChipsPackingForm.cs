@@ -470,6 +470,8 @@ namespace PackingApplication
                 //netwt.Text = productionResponse.NetWt.ToString();
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
+                submit.Enabled = productionResponse.IsDisabled ? false : true;
+                saveprint.Enabled = productionResponse.IsDisabled ? false : true;
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -2883,7 +2885,7 @@ namespace PackingApplication
                 msgForm.Controls.Add(btnOk);
 
                 msgForm.AcceptButton = btnOk;
-                msgForm.ShowDialog();
+                msgForm.ShowDialog(this);
             }
 
             Log.writeMessage("Chips ShowCustomMessage - End : " + DateTime.Now);
