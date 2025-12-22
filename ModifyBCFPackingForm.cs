@@ -4421,68 +4421,76 @@ namespace PackingApplication
             if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
             packingList = _packingService.getProductionDetailsBySelectedParameter("BCFPacking", machineid, deptid, boxnoid, proddt).Result;
 
-            datalistpopuppanel.Visible = true;
-            datalistpopuppanel.BringToFront();
-
-            // Center popup in form
-            datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
-            datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
-
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.Columns.Clear();
-
-            // Define columns
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
-            //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
-
-            dataGridView1.Columns["SrNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            dataGridView1.Columns["DepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            dataGridView1.Columns["MachineName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            dataGridView1.Columns["LotNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            dataGridView1.Columns["BoxNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-
-            dataGridView1.Columns["SrNo"].Width = 50;
-
-            // Add Edit button column
-            DataGridViewImageColumn btn = new DataGridViewImageColumn();
-            btn.HeaderText = "Action";
-            btn.Name = "Action";
-            btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
-            btn.ImageLayout = DataGridViewImageCellLayout.Normal;
-            btn.Width = 45;  // column width
-            dataGridView1.RowTemplate.Height = 40; // row height
-            dataGridView1.Columns.Add(btn);
-
-            dataGridView1.DataSource = packingList;
-
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
-
-            dataGridView1.CellMouseEnter += (s, te) =>
+            if (packingList.Count > 0)
             {
-                if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                datalistpopuppanel.Visible = true;
+                datalistpopuppanel.BringToFront();
+
+                // Center popup in form
+                datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
+                datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
+
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.Columns.Clear();
+
+                // Define columns
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
+
+                dataGridView1.Columns["SrNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["DepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["MachineName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["LotNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["BoxNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+
+                dataGridView1.Columns["SrNo"].Width = 50;
+
+                // Add Edit button column
+                DataGridViewImageColumn btn = new DataGridViewImageColumn();
+                btn.HeaderText = "Action";
+                btn.Name = "Action";
+                btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+                btn.ImageLayout = DataGridViewImageCellLayout.Normal;
+                btn.Width = 45;  // column width
+                dataGridView1.RowTemplate.Height = 40; // row height
+                dataGridView1.Columns.Add(btn);
+
+                dataGridView1.DataSource = packingList;
+
+                dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+                dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
+
+                dataGridView1.CellMouseEnter += (s, te) =>
                 {
-                    dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
-                }
-            };
+                    if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                    {
+                        dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                    }
+                };
 
-            dataGridView1.CellMouseLeave += (s, te) =>
+                dataGridView1.CellMouseLeave += (s, te) =>
+                {
+                    dataGridView1.Cursor = Cursors.Default; // Reset back to default
+                };
+            }
+            else
             {
-                dataGridView1.Cursor = Cursors.Default; // Reset back to default
-            };
+                dataGridView1.DataSource = null;
+                MessageBox.Show("Data not found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             Log.writeMessage("BCF btnSearch_Click - End : " + DateTime.Now);
         }
@@ -4502,6 +4510,9 @@ namespace PackingApplication
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
+                popuppanel.Visible = false;
+                datalistpopuppanel.Visible = false;
+
                 long productionId = Convert.ToInt32(
                     ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
                 );
