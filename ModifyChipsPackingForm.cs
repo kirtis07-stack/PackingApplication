@@ -722,10 +722,11 @@ namespace PackingApplication
                 LineNoList.EndUpdate();
 
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
-                LineNoList.Text = typedText;
                 LineNoList.DroppedDown = true;
-                LineNoList.SelectionStart = cursorPosition;
                 LineNoList.SelectionLength = typedText.Length;
+                LineNoList.SelectedIndex = -1;
+                LineNoList.Text = typedText;
+                LineNoList.SelectionStart = cursorPosition;
                 LineNoList.TextUpdate += LinoNoList_TextUpdate;
             }
 
@@ -922,10 +923,11 @@ namespace PackingApplication
                 MergeNoList.EndUpdate();
 
                 MergeNoList.TextUpdate -= MergeNoList_TextUpdate;
-                MergeNoList.Text = typedText;
                 MergeNoList.DroppedDown = true;
-                MergeNoList.SelectionStart = cursorPosition;
                 MergeNoList.SelectionLength = typedText.Length;
+                MergeNoList.SelectedIndex = -1;
+                MergeNoList.Text = typedText;
+                MergeNoList.SelectionStart = cursorPosition;
                 MergeNoList.TextUpdate += MergeNoList_TextUpdate;
 
                 suppressEvents = false;
@@ -1043,9 +1045,10 @@ namespace PackingApplication
 
                 PackSizeList.TextUpdate -= PackSizeList_TextUpdate;
                 PackSizeList.DroppedDown = true;
+                PackSizeList.SelectionLength = typedText.Length;
+                PackSizeList.SelectedIndex = -1;
                 PackSizeList.Text = typedText;
                 PackSizeList.SelectionStart = cursorPosition;
-                PackSizeList.SelectionLength = typedText.Length;
                 PackSizeList.TextUpdate += PackSizeList_TextUpdate;
 
             }
@@ -1109,9 +1112,10 @@ namespace PackingApplication
 
                 QualityList.TextUpdate -= QualityList_TextUpdate;
                 QualityList.DroppedDown = true;
+                QualityList.SelectionLength = typedText.Length;
+                QualityList.SelectedIndex = -1;
                 QualityList.Text = typedText;
                 QualityList.SelectionStart = cursorPosition;
-                QualityList.SelectionLength = typedText.Length;
                 QualityList.TextUpdate += QualityList_TextUpdate;
 
                 suppressEvents = false;
@@ -1199,9 +1203,10 @@ namespace PackingApplication
 
                 WindingTypeList.TextUpdate -= WindingTypeList_TextUpdate;
                 WindingTypeList.DroppedDown = true;
+                WindingTypeList.SelectionLength = typedText.Length;
+                WindingTypeList.SelectedIndex = -1;
                 WindingTypeList.Text = typedText;
                 WindingTypeList.SelectionStart = cursorPosition;
-                WindingTypeList.SelectionLength = typedText.Length;
                 WindingTypeList.TextUpdate += WindingTypeList_TextUpdate;
 
                 suppressEvents = false;
@@ -1390,9 +1395,10 @@ namespace PackingApplication
 
                 BoxItemList.TextUpdate -= BoxItemList_TextUpdate;
                 BoxItemList.DroppedDown = true;
+                BoxItemList.SelectionLength = typedText.Length;
+                BoxItemList.SelectedIndex = -1;
                 BoxItemList.Text = typedText;
                 BoxItemList.SelectionStart = cursorPosition;
-                BoxItemList.SelectionLength = typedText.Length;
                 BoxItemList.TextUpdate += BoxItemList_TextUpdate;
 
             }
@@ -1494,9 +1500,10 @@ namespace PackingApplication
 
                 DeptList.TextUpdate -= DeptList_TextUpdate;
                 DeptList.DroppedDown = true;
+                DeptList.SelectionLength = typedText.Length;
+                DeptList.SelectedIndex = -1;
                 DeptList.Text = typedText;
                 DeptList.SelectionStart = cursorPosition;
-                DeptList.SelectionLength = typedText.Length;
                 DeptList.TextUpdate += DeptList_TextUpdate;
 
             }
@@ -1574,9 +1581,10 @@ namespace PackingApplication
 
                 OwnerList.TextUpdate -= OwnerList_TextUpdate;
                 OwnerList.DroppedDown = true;
+                OwnerList.SelectionLength = typedText.Length;
+                OwnerList.SelectedIndex = -1;
                 OwnerList.Text = typedText;
                 OwnerList.SelectionStart = cursorPosition;
-                OwnerList.SelectionLength = typedText.Length;
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
 
             }
