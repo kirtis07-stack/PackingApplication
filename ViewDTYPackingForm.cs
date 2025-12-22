@@ -103,6 +103,7 @@ namespace PackingApplication
             //partyn.Text = "";
             //partyshade.Text = "";
             isFormReady = true;
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
 
             RefreshLastBoxDetails();
 
@@ -1940,6 +1941,12 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY btnSearch_Click - Start : " + DateTime.Now);
 
+            if (!srlinenoradiobtn.Checked && !srdeptradiobtn.Checked && !srboxnoradiobtn.Checked && !srproddateradiobtn.Checked)
+            {
+                MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             int machineid = 0, deptid = 0;
             string boxnoid = null;
             string proddt = null;
@@ -1962,7 +1969,7 @@ namespace PackingApplication
                 dataGridView1.Columns.Clear();
 
                 // Define columns
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", DataPropertyName = "SerialNo", HeaderText = "SR. No" });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
@@ -1999,7 +2006,6 @@ namespace PackingApplication
                 dataGridView1.DataSource = packingList;
 
                 dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-                dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
 
                 dataGridView1.CellMouseEnter += (s, te) =>
                 {
@@ -2023,14 +2029,14 @@ namespace PackingApplication
             Log.writeMessage("DTY btnSearch_Click - End : " + DateTime.Now);
         }
 
-        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            Log.writeMessage("DTY dataGridView1_RowPostPaint - Start : " + DateTime.Now);
+        //private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        //{
+        //    Log.writeMessage("DTY dataGridView1_RowPostPaint - Start : " + DateTime.Now);
 
-            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = e.RowIndex + 1;
+        //    dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = e.RowIndex + 1;
 
-            Log.writeMessage("DTY dataGridView1_RowPostPaint - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("DTY dataGridView1_RowPostPaint - End : " + DateTime.Now);
+        //}
 
         private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -2038,6 +2044,10 @@ namespace PackingApplication
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
+                var rowObj = dataGridView1.Rows[e.RowIndex].DataBoundItem as ProductionResponse;
+                if (!rowObj.CanModifyDelete)
+                    return;
+
                 popuppanel.Visible = false;
                 datalistpopuppanel.Visible = false;
 
@@ -2176,8 +2186,12 @@ namespace PackingApplication
 
         private void SrProdDate_ValueChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY SrProdDate_ValueChanged - Start : " + DateTime.Now);
+
             DateTime selectedDate = dateTimePicker2.Value.Date;
             selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
+
+            Log.writeMessage("DTY SrProdDate_ValueChanged - End : " + DateTime.Now);
         }
 
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)

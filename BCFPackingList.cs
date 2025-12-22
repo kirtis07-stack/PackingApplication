@@ -182,7 +182,7 @@ namespace PackingApplication
                           .Take(pageSize)
                           .Select((item, index) =>
                           {
-                              item.SrNo = (currentPage - 1) * pageSize + index + 1;
+                              item.SerialNo = (currentPage - 1) * pageSize + index + 1;
                               return item;
                           })
                           .ToList();

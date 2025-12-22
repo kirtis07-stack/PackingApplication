@@ -34,10 +34,10 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle81 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle82 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle83 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle80 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
             this.saleorderno = new System.Windows.Forms.Label();
@@ -96,8 +96,26 @@ namespace PackingApplication
             this.req10 = new System.Windows.Forms.Label();
             this.windingerror = new System.Windows.Forms.Label();
             this.rightpanel = new System.Windows.Forms.Panel();
+            this.datalistpopuppanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.closelistbtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.popuppanel = new System.Windows.Forms.Panel();
+            this.searchbtn = new System.Windows.Forms.Button();
+            this.closepopupbtn = new System.Windows.Forms.Button();
+            this.panel58 = new System.Windows.Forms.Panel();
+            this.srproddateradiobtn = new System.Windows.Forms.RadioButton();
+            this.srboxnoradiobtn = new System.Windows.Forms.RadioButton();
+            this.srdeptradiobtn = new System.Windows.Forms.RadioButton();
+            this.srlinenoradiobtn = new System.Windows.Forms.RadioButton();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.SrBoxNoList = new System.Windows.Forms.ComboBox();
+            this.SrDeptList = new System.Windows.Forms.ComboBox();
+            this.SrLineNoList = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.findbtn = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -278,24 +296,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.popuppanel = new System.Windows.Forms.Panel();
-            this.searchbtn = new System.Windows.Forms.Button();
-            this.closepopupbtn = new System.Windows.Forms.Button();
-            this.panel58 = new System.Windows.Forms.Panel();
-            this.srproddateradiobtn = new System.Windows.Forms.RadioButton();
-            this.srboxnoradiobtn = new System.Windows.Forms.RadioButton();
-            this.srdeptradiobtn = new System.Windows.Forms.RadioButton();
-            this.srlinenoradiobtn = new System.Windows.Forms.RadioButton();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.SrBoxNoList = new System.Windows.Forms.ComboBox();
-            this.SrDeptList = new System.Windows.Forms.ComboBox();
-            this.SrLineNoList = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.datalistpopuppanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.closelistbtn = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.findbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -308,6 +308,11 @@ namespace PackingApplication
             this.panel45.SuspendLayout();
             this.panel30.SuspendLayout();
             this.rightpanel.SuspendLayout();
+            this.datalistpopuppanel.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.popuppanel.SuspendLayout();
+            this.panel58.SuspendLayout();
             this.buttontablelayout.SuspendLayout();
             this.panel21.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -394,11 +399,6 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.popuppanel.SuspendLayout();
-            this.panel58.SuspendLayout();
-            this.datalistpopuppanel.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // shadecode
@@ -464,7 +464,7 @@ namespace PackingApplication
             // 
             // remark
             // 
-            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.remark.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remark.AutoSize = true;
             this.remark.Location = new System.Drawing.Point(0, 5);
@@ -477,7 +477,7 @@ namespace PackingApplication
             // remarks
             // 
             this.remarks.AcceptsReturn = true;
-            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.remarks.Location = new System.Drawing.Point(56, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -500,7 +500,7 @@ namespace PackingApplication
             // QualityList
             // 
             this.QualityList.AllowDrop = true;
-            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.QualityList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.QualityList.FormattingEnabled = true;
             this.QualityList.Location = new System.Drawing.Point(52, 0);
@@ -512,7 +512,7 @@ namespace PackingApplication
             // PackSizeList
             // 
             this.PackSizeList.AllowDrop = true;
-            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.PackSizeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackSizeList.FormattingEnabled = true;
             this.PackSizeList.Location = new System.Drawing.Point(58, 2);
@@ -524,7 +524,7 @@ namespace PackingApplication
             // WindingTypeList
             // 
             this.WindingTypeList.AllowDrop = true;
-            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WindingTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WindingTypeList.FormattingEnabled = true;
             this.WindingTypeList.Location = new System.Drawing.Point(52, 0);
@@ -536,7 +536,7 @@ namespace PackingApplication
             // ComPortList
             // 
             this.ComPortList.AllowDrop = true;
-            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ComPortList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComPortList.FormattingEnabled = true;
             this.ComPortList.Location = new System.Drawing.Point(30, 2);
@@ -548,7 +548,7 @@ namespace PackingApplication
             // WeighingList
             // 
             this.WeighingList.AllowDrop = true;
-            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WeighingList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WeighingList.FormattingEnabled = true;
             this.WeighingList.Location = new System.Drawing.Point(42, 3);
@@ -560,7 +560,7 @@ namespace PackingApplication
             // SaleOrderList
             // 
             this.SaleOrderList.AllowDrop = true;
-            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SaleOrderList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SaleOrderList.FormattingEnabled = true;
             this.SaleOrderList.Location = new System.Drawing.Point(40, 0);
@@ -581,7 +581,7 @@ namespace PackingApplication
             // 
             // copyno
             // 
-            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.copyno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.copyno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.copyno.Location = new System.Drawing.Point(45, 3);
@@ -606,7 +606,7 @@ namespace PackingApplication
             // 
             // netwt
             // 
-            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.netwt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.netwt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.netwt.Location = new System.Drawing.Point(62, 2);
@@ -641,7 +641,7 @@ namespace PackingApplication
             // 
             // grosswtno
             // 
-            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grosswtno.Location = new System.Drawing.Point(57, 2);
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -662,7 +662,7 @@ namespace PackingApplication
             // 
             // palletwtno
             // 
-            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.palletwtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.palletwtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.palletwtno.Location = new System.Drawing.Point(60, 2);
@@ -685,7 +685,7 @@ namespace PackingApplication
             // 
             // spoolno
             // 
-            this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spoolno.Location = new System.Drawing.Point(45, 0);
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1081,9 +1081,263 @@ namespace PackingApplication
             this.rightpanel.Size = new System.Drawing.Size(909, 536);
             this.rightpanel.TabIndex = 89;
             // 
+            // datalistpopuppanel
+            // 
+            this.datalistpopuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.datalistpopuppanel.Controls.Add(this.tableLayoutPanel12);
+            this.datalistpopuppanel.Controls.Add(this.dataGridView1);
+            this.datalistpopuppanel.Location = new System.Drawing.Point(8, 494);
+            this.datalistpopuppanel.Margin = new System.Windows.Forms.Padding(0);
+            this.datalistpopuppanel.Name = "datalistpopuppanel";
+            this.datalistpopuppanel.Padding = new System.Windows.Forms.Padding(5);
+            this.datalistpopuppanel.Size = new System.Drawing.Size(622, 396);
+            this.datalistpopuppanel.TabIndex = 127;
+            this.datalistpopuppanel.Visible = false;
+            this.datalistpopuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 3;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
+            this.tableLayoutPanel12.Controls.Add(this.closelistbtn, 1, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(5, 362);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(612, 29);
+            this.tableLayoutPanel12.TabIndex = 110;
+            // 
+            // closelistbtn
+            // 
+            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.closelistbtn.Location = new System.Drawing.Point(262, 3);
+            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.closelistbtn.Name = "closelistbtn";
+            this.closelistbtn.Size = new System.Drawing.Size(63, 22);
+            this.closelistbtn.TabIndex = 109;
+            this.closelistbtn.Text = "Close";
+            this.closelistbtn.UseVisualStyleBackColor = false;
+            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeight = 34;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.Location = new System.Drawing.Point(5, 5);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(612, 386);
+            this.dataGridView1.TabIndex = 99;
+            // 
+            // popuppanel
+            // 
+            this.popuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.popuppanel.Controls.Add(this.searchbtn);
+            this.popuppanel.Controls.Add(this.closepopupbtn);
+            this.popuppanel.Controls.Add(this.panel58);
+            this.popuppanel.Location = new System.Drawing.Point(644, 494);
+            this.popuppanel.Margin = new System.Windows.Forms.Padding(0);
+            this.popuppanel.Name = "popuppanel";
+            this.popuppanel.Padding = new System.Windows.Forms.Padding(5);
+            this.popuppanel.Size = new System.Drawing.Size(241, 180);
+            this.popuppanel.TabIndex = 126;
+            this.popuppanel.Visible = false;
+            this.popuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
+            // 
+            // searchbtn
+            // 
+            this.searchbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.searchbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.searchbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.searchbtn.Location = new System.Drawing.Point(27, 150);
+            this.searchbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.searchbtn.Name = "searchbtn";
+            this.searchbtn.Size = new System.Drawing.Size(70, 22);
+            this.searchbtn.TabIndex = 110;
+            this.searchbtn.Text = "Search";
+            this.searchbtn.UseVisualStyleBackColor = false;
+            this.searchbtn.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // closepopupbtn
+            // 
+            this.closepopupbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
+            this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.closepopupbtn.Name = "closepopupbtn";
+            this.closepopupbtn.Size = new System.Drawing.Size(70, 22);
+            this.closepopupbtn.TabIndex = 109;
+            this.closepopupbtn.Text = "Close";
+            this.closepopupbtn.UseVisualStyleBackColor = false;
+            this.closepopupbtn.Click += new System.EventHandler(this.btnClosePopup_Click);
+            // 
+            // panel58
+            // 
+            this.panel58.Controls.Add(this.srproddateradiobtn);
+            this.panel58.Controls.Add(this.srboxnoradiobtn);
+            this.panel58.Controls.Add(this.srdeptradiobtn);
+            this.panel58.Controls.Add(this.srlinenoradiobtn);
+            this.panel58.Controls.Add(this.dateTimePicker2);
+            this.panel58.Controls.Add(this.SrBoxNoList);
+            this.panel58.Controls.Add(this.SrDeptList);
+            this.panel58.Controls.Add(this.SrLineNoList);
+            this.panel58.Controls.Add(this.label10);
+            this.panel58.Location = new System.Drawing.Point(7, 14);
+            this.panel58.Margin = new System.Windows.Forms.Padding(2);
+            this.panel58.Name = "panel58";
+            this.panel58.Padding = new System.Windows.Forms.Padding(5);
+            this.panel58.Size = new System.Drawing.Size(230, 120);
+            this.panel58.TabIndex = 1;
+            // 
+            // srproddateradiobtn
+            // 
+            this.srproddateradiobtn.AutoSize = true;
+            this.srproddateradiobtn.Location = new System.Drawing.Point(0, 92);
+            this.srproddateradiobtn.Name = "srproddateradiobtn";
+            this.srproddateradiobtn.Size = new System.Drawing.Size(51, 17);
+            this.srproddateradiobtn.TabIndex = 116;
+            this.srproddateradiobtn.TabStop = true;
+            this.srproddateradiobtn.Text = "Date:";
+            this.srproddateradiobtn.UseVisualStyleBackColor = true;
+            this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
+            // 
+            // srboxnoradiobtn
+            // 
+            this.srboxnoradiobtn.AutoSize = true;
+            this.srboxnoradiobtn.Location = new System.Drawing.Point(0, 64);
+            this.srboxnoradiobtn.Name = "srboxnoradiobtn";
+            this.srboxnoradiobtn.Size = new System.Drawing.Size(60, 17);
+            this.srboxnoradiobtn.TabIndex = 115;
+            this.srboxnoradiobtn.TabStop = true;
+            this.srboxnoradiobtn.Text = "BoxNo:";
+            this.srboxnoradiobtn.UseVisualStyleBackColor = true;
+            this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
+            // 
+            // srdeptradiobtn
+            // 
+            this.srdeptradiobtn.AutoSize = true;
+            this.srdeptradiobtn.Location = new System.Drawing.Point(0, 36);
+            this.srdeptradiobtn.Name = "srdeptradiobtn";
+            this.srdeptradiobtn.Size = new System.Drawing.Size(51, 17);
+            this.srdeptradiobtn.TabIndex = 114;
+            this.srdeptradiobtn.TabStop = true;
+            this.srdeptradiobtn.Text = "Dept:";
+            this.srdeptradiobtn.UseVisualStyleBackColor = true;
+            this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
+            // 
+            // srlinenoradiobtn
+            // 
+            this.srlinenoradiobtn.AutoSize = true;
+            this.srlinenoradiobtn.Location = new System.Drawing.Point(0, 8);
+            this.srlinenoradiobtn.Name = "srlinenoradiobtn";
+            this.srlinenoradiobtn.Size = new System.Drawing.Size(62, 17);
+            this.srlinenoradiobtn.TabIndex = 113;
+            this.srlinenoradiobtn.TabStop = true;
+            this.srlinenoradiobtn.Text = "LineNo:";
+            this.srlinenoradiobtn.UseVisualStyleBackColor = true;
+            this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(62, 89);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
+            this.dateTimePicker2.TabIndex = 112;
+            this.dateTimePicker2.TabStop = false;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.SrProdDate_ValueChanged);
+            // 
+            // SrBoxNoList
+            // 
+            this.SrBoxNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SrBoxNoList.FormattingEnabled = true;
+            this.SrBoxNoList.Location = new System.Drawing.Point(62, 62);
+            this.SrBoxNoList.Name = "SrBoxNoList";
+            this.SrBoxNoList.Size = new System.Drawing.Size(163, 21);
+            this.SrBoxNoList.TabIndex = 110;
+            this.SrBoxNoList.SelectionChangeCommitted += new System.EventHandler(this.SrBoxNoList_SelectionChangeCommitted);
+            this.SrBoxNoList.TextUpdate += new System.EventHandler(this.SrBoxNoList_TextUpdate);
+            // 
+            // SrDeptList
+            // 
+            this.SrDeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SrDeptList.FormattingEnabled = true;
+            this.SrDeptList.Location = new System.Drawing.Point(62, 33);
+            this.SrDeptList.Name = "SrDeptList";
+            this.SrDeptList.Size = new System.Drawing.Size(163, 21);
+            this.SrDeptList.TabIndex = 2;
+            this.SrDeptList.SelectionChangeCommitted += new System.EventHandler(this.SrDeptList_SelectionChangeCommitted);
+            this.SrDeptList.TextUpdate += new System.EventHandler(this.SrDeptList_TextUpdate);
+            // 
+            // SrLineNoList
+            // 
+            this.SrLineNoList.AllowDrop = true;
+            this.SrLineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SrLineNoList.FormattingEnabled = true;
+            this.SrLineNoList.Location = new System.Drawing.Point(62, 5);
+            this.SrLineNoList.Margin = new System.Windows.Forms.Padding(2);
+            this.SrLineNoList.Name = "SrLineNoList";
+            this.SrLineNoList.Size = new System.Drawing.Size(163, 21);
+            this.SrLineNoList.TabIndex = 1;
+            this.SrLineNoList.SelectionChangeCommitted += new System.EventHandler(this.SrLineNoList_SelectionChangeCommitted);
+            this.SrLineNoList.TextUpdate += new System.EventHandler(this.SrLineNoList_TextUpdate);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(7, 36);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 13);
+            this.label10.TabIndex = 98;
+            this.label10.Visible = false;
+            // 
             // buttontablelayout
             // 
-            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.buttontablelayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttontablelayout.ColumnCount = 3;
             this.buttontablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -1099,7 +1353,7 @@ namespace PackingApplication
             // 
             // panel21
             // 
-            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel21.Controls.Add(this.findbtn);
             this.panel21.Controls.Add(this.delete);
@@ -1108,6 +1362,21 @@ namespace PackingApplication
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(290, 25);
             this.panel21.TabIndex = 0;
+            // 
+            // findbtn
+            // 
+            this.findbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.findbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.findbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.findbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.findbtn.Location = new System.Drawing.Point(2, 1);
+            this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.findbtn.Name = "findbtn";
+            this.findbtn.Size = new System.Drawing.Size(81, 24);
+            this.findbtn.TabIndex = 124;
+            this.findbtn.Text = "Find";
+            this.findbtn.UseVisualStyleBackColor = false;
+            this.findbtn.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // delete
             // 
@@ -1140,7 +1409,7 @@ namespace PackingApplication
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1156,7 +1425,7 @@ namespace PackingApplication
             // 
             // rowMaterialBox
             // 
-            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterialBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterialBox.Controls.Add(this.rowMaterialPanel);
@@ -1172,7 +1441,7 @@ namespace PackingApplication
             // 
             // rowMaterialPanel
             // 
-            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterialPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterialPanel.Controls.Add(this.rowMaterial);
             this.rowMaterialPanel.Location = new System.Drawing.Point(7, 16);
@@ -1186,19 +1455,19 @@ namespace PackingApplication
             this.rowMaterial.AllowUserToDeleteRows = false;
             this.rowMaterial.AllowUserToResizeColumns = false;
             this.rowMaterial.AllowUserToResizeRows = false;
-            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.rowMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle81.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle81.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle81.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle81.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle81.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle81.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle81.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle81;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1241,7 +1510,7 @@ namespace PackingApplication
             // 
             // wgroupbox
             // 
-            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.wgroupbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wgroupbox.Controls.Add(this.windinggrid);
             this.wgroupbox.Location = new System.Drawing.Point(2, 0);
@@ -1263,14 +1532,14 @@ namespace PackingApplication
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle82.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle82.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle82.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle82.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle82.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle82.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle82.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle82;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.EnableHeadersVisualStyles = false;
@@ -1288,7 +1557,7 @@ namespace PackingApplication
             // 
             // gradewiseprodn
             // 
-            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.gradewiseprodn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gradewiseprodn.Controls.Add(this.prodnbalqty);
             this.gradewiseprodn.Controls.Add(this.grdsoqty);
@@ -1333,14 +1602,14 @@ namespace PackingApplication
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle83.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle83.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle83.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle83.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle83.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle83.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle83;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -1381,7 +1650,7 @@ namespace PackingApplication
             // 
             // palletdetailslayout
             // 
-            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.palletdetailslayout.BackColor = System.Drawing.Color.White;
             this.palletdetailslayout.ColumnCount = 1;
@@ -1430,7 +1699,7 @@ namespace PackingApplication
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
@@ -1456,7 +1725,7 @@ namespace PackingApplication
             // 
             // packagingboxlayout
             // 
-            this.packagingboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.packagingboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxlayout.BackColor = System.Drawing.Color.White;
             this.packagingboxlayout.ColumnCount = 1;
@@ -1476,7 +1745,7 @@ namespace PackingApplication
             // 
             // packagingboxheader
             // 
-            this.packagingboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.packagingboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packagingboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.packagingboxheader.Controls.Add(this.Packagingboxlbl);
@@ -1601,7 +1870,7 @@ namespace PackingApplication
             // BoxItemList
             // 
             this.BoxItemList.AllowDrop = true;
-            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.BoxItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BoxItemList.FormattingEnabled = true;
             this.BoxItemList.Location = new System.Drawing.Point(58, 2);
@@ -1716,7 +1985,7 @@ namespace PackingApplication
             // CopsItemList
             // 
             this.CopsItemList.AllowDrop = true;
-            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CopsItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CopsItemList.FormattingEnabled = true;
             this.CopsItemList.Location = new System.Drawing.Point(58, 2);
@@ -2014,7 +2283,7 @@ namespace PackingApplication
             // 
             // OwnerList
             // 
-            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.OwnerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OwnerList.FormattingEnabled = true;
             this.OwnerList.Location = new System.Drawing.Point(58, 0);
@@ -2044,7 +2313,7 @@ namespace PackingApplication
             // 
             // partyn
             // 
-            this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.partyn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyn.AutoEllipsis = true;
             this.partyn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2077,7 +2346,7 @@ namespace PackingApplication
             // 
             // partyshade
             // 
-            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.partyshade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.partyshade.AutoEllipsis = true;
             this.partyshade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2099,7 +2368,7 @@ namespace PackingApplication
             // 
             // machineboxlayout
             // 
-            this.machineboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.machineboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.machineboxlayout.BackColor = System.Drawing.Color.White;
             this.machineboxlayout.ColumnCount = 1;
@@ -2171,7 +2440,7 @@ namespace PackingApplication
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.panel2.Controls.Add(this.lastbox);
@@ -2203,7 +2472,7 @@ namespace PackingApplication
             // 
             // panel10
             // 
-            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.panel10.Controls.Add(this.packingdate);
@@ -2226,7 +2495,7 @@ namespace PackingApplication
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker1.Enabled = false;
@@ -2413,7 +2682,7 @@ namespace PackingApplication
             // LineNoList
             // 
             this.LineNoList.AllowDrop = true;
-            this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LineNoList.FormattingEnabled = true;
             this.LineNoList.Location = new System.Drawing.Point(34, 0);
@@ -2448,7 +2717,7 @@ namespace PackingApplication
             // 
             // DeptList
             // 
-            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DeptList.FormattingEnabled = true;
             this.DeptList.Location = new System.Drawing.Point(30, 0);
@@ -2560,7 +2829,7 @@ namespace PackingApplication
             // MergeNoList
             // 
             this.MergeNoList.AllowDrop = true;
-            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MergeNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MergeNoList.FormattingEnabled = true;
             this.MergeNoList.Location = new System.Drawing.Point(40, 0);
@@ -2595,7 +2864,7 @@ namespace PackingApplication
             // 
             // itemname
             // 
-            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.itemname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemname.AutoSize = true;
             this.itemname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2631,7 +2900,7 @@ namespace PackingApplication
             // 
             // shadename
             // 
-            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.shadename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shadename.AutoSize = true;
             this.shadename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -2755,7 +3024,7 @@ namespace PackingApplication
             // 
             // printingdetailslayout
             // 
-            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.printingdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailslayout.BackColor = System.Drawing.Color.White;
             this.printingdetailslayout.ColumnCount = 1;
@@ -2980,7 +3249,7 @@ namespace PackingApplication
             // 
             // printingdetailsheader
             // 
-            this.printingdetailsheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.printingdetailsheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.printingdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printingdetailsheader.Controls.Add(this.Printinglbl);
@@ -3005,7 +3274,7 @@ namespace PackingApplication
             // 
             // weighboxlayout
             // 
-            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.weighboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.weighboxlayout.BackColor = System.Drawing.Color.White;
             this.weighboxlayout.ColumnCount = 1;
@@ -3070,7 +3339,7 @@ namespace PackingApplication
             // 
             // lastboxlayout
             // 
-            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lastboxlayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxlayout.BackColor = System.Drawing.Color.White;
             this.lastboxlayout.ColumnCount = 1;
@@ -3255,7 +3524,7 @@ namespace PackingApplication
             // 
             // lastboxheader
             // 
-            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.lastboxheader.Controls.Add(this.Lastboxlbl);
@@ -3359,277 +3628,6 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // popuppanel
-            // 
-            this.popuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.popuppanel.Controls.Add(this.searchbtn);
-            this.popuppanel.Controls.Add(this.closepopupbtn);
-            this.popuppanel.Controls.Add(this.panel58);
-            this.popuppanel.Location = new System.Drawing.Point(564, 494);
-            this.popuppanel.Margin = new System.Windows.Forms.Padding(0);
-            this.popuppanel.Name = "popuppanel";
-            this.popuppanel.Padding = new System.Windows.Forms.Padding(5);
-            this.popuppanel.Size = new System.Drawing.Size(241, 180);
-            this.popuppanel.TabIndex = 126;
-            this.popuppanel.Visible = false;
-            this.popuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
-            // 
-            // searchbtn
-            // 
-            this.searchbtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.searchbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.searchbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchbtn.Location = new System.Drawing.Point(27, 150);
-            this.searchbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.searchbtn.Name = "searchbtn";
-            this.searchbtn.Size = new System.Drawing.Size(70, 22);
-            this.searchbtn.TabIndex = 110;
-            this.searchbtn.Text = "Search";
-            this.searchbtn.UseVisualStyleBackColor = false;
-            this.searchbtn.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // closepopupbtn
-            // 
-            this.closepopupbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
-            this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.closepopupbtn.Name = "closepopupbtn";
-            this.closepopupbtn.Size = new System.Drawing.Size(70, 22);
-            this.closepopupbtn.TabIndex = 109;
-            this.closepopupbtn.Text = "Close";
-            this.closepopupbtn.UseVisualStyleBackColor = false;
-            this.closepopupbtn.Click += new System.EventHandler(this.btnClosePopup_Click);
-            // 
-            // panel58
-            // 
-            this.panel58.Controls.Add(this.srproddateradiobtn);
-            this.panel58.Controls.Add(this.srboxnoradiobtn);
-            this.panel58.Controls.Add(this.srdeptradiobtn);
-            this.panel58.Controls.Add(this.srlinenoradiobtn);
-            this.panel58.Controls.Add(this.dateTimePicker2);
-            this.panel58.Controls.Add(this.SrBoxNoList);
-            this.panel58.Controls.Add(this.SrDeptList);
-            this.panel58.Controls.Add(this.SrLineNoList);
-            this.panel58.Controls.Add(this.label10);
-            this.panel58.Location = new System.Drawing.Point(7, 14);
-            this.panel58.Margin = new System.Windows.Forms.Padding(2);
-            this.panel58.Name = "panel58";
-            this.panel58.Padding = new System.Windows.Forms.Padding(5);
-            this.panel58.Size = new System.Drawing.Size(230, 120);
-            this.panel58.TabIndex = 1;
-            // 
-            // srproddateradiobtn
-            // 
-            this.srproddateradiobtn.AutoSize = true;
-            this.srproddateradiobtn.Location = new System.Drawing.Point(0, 92);
-            this.srproddateradiobtn.Name = "srproddateradiobtn";
-            this.srproddateradiobtn.Size = new System.Drawing.Size(51, 17);
-            this.srproddateradiobtn.TabIndex = 116;
-            this.srproddateradiobtn.TabStop = true;
-            this.srproddateradiobtn.Text = "Date:";
-            this.srproddateradiobtn.UseVisualStyleBackColor = true;
-            this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
-            // 
-            // srboxnoradiobtn
-            // 
-            this.srboxnoradiobtn.AutoSize = true;
-            this.srboxnoradiobtn.Location = new System.Drawing.Point(0, 64);
-            this.srboxnoradiobtn.Name = "srboxnoradiobtn";
-            this.srboxnoradiobtn.Size = new System.Drawing.Size(60, 17);
-            this.srboxnoradiobtn.TabIndex = 115;
-            this.srboxnoradiobtn.TabStop = true;
-            this.srboxnoradiobtn.Text = "BoxNo:";
-            this.srboxnoradiobtn.UseVisualStyleBackColor = true;
-            this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
-            // 
-            // srdeptradiobtn
-            // 
-            this.srdeptradiobtn.AutoSize = true;
-            this.srdeptradiobtn.Location = new System.Drawing.Point(0, 36);
-            this.srdeptradiobtn.Name = "srdeptradiobtn";
-            this.srdeptradiobtn.Size = new System.Drawing.Size(51, 17);
-            this.srdeptradiobtn.TabIndex = 114;
-            this.srdeptradiobtn.TabStop = true;
-            this.srdeptradiobtn.Text = "Dept:";
-            this.srdeptradiobtn.UseVisualStyleBackColor = true;
-            this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
-            // 
-            // srlinenoradiobtn
-            // 
-            this.srlinenoradiobtn.AutoSize = true;
-            this.srlinenoradiobtn.Location = new System.Drawing.Point(0, 8);
-            this.srlinenoradiobtn.Name = "srlinenoradiobtn";
-            this.srlinenoradiobtn.Size = new System.Drawing.Size(62, 17);
-            this.srlinenoradiobtn.TabIndex = 113;
-            this.srlinenoradiobtn.TabStop = true;
-            this.srlinenoradiobtn.Text = "LineNo:";
-            this.srlinenoradiobtn.UseVisualStyleBackColor = true;
-            this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(62, 89);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
-            this.dateTimePicker2.TabIndex = 112;
-            this.dateTimePicker2.TabStop = false;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.SrProdDate_ValueChanged);
-            // 
-            // SrBoxNoList
-            // 
-            this.SrBoxNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SrBoxNoList.FormattingEnabled = true;
-            this.SrBoxNoList.Location = new System.Drawing.Point(62, 62);
-            this.SrBoxNoList.Name = "SrBoxNoList";
-            this.SrBoxNoList.Size = new System.Drawing.Size(163, 21);
-            this.SrBoxNoList.TabIndex = 110;
-            this.SrBoxNoList.SelectionChangeCommitted += new System.EventHandler(this.SrBoxNoList_SelectionChangeCommitted);
-            this.SrBoxNoList.TextUpdate += new System.EventHandler(this.SrBoxNoList_TextUpdate);
-            // 
-            // SrDeptList
-            // 
-            this.SrDeptList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SrDeptList.FormattingEnabled = true;
-            this.SrDeptList.Location = new System.Drawing.Point(62, 33);
-            this.SrDeptList.Name = "SrDeptList";
-            this.SrDeptList.Size = new System.Drawing.Size(163, 21);
-            this.SrDeptList.TabIndex = 2;
-            this.SrDeptList.SelectionChangeCommitted += new System.EventHandler(this.SrDeptList_SelectionChangeCommitted);
-            this.SrDeptList.TextUpdate += new System.EventHandler(this.SrDeptList_TextUpdate);
-            // 
-            // SrLineNoList
-            // 
-            this.SrLineNoList.AllowDrop = true;
-            this.SrLineNoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SrLineNoList.FormattingEnabled = true;
-            this.SrLineNoList.Location = new System.Drawing.Point(62, 5);
-            this.SrLineNoList.Margin = new System.Windows.Forms.Padding(2);
-            this.SrLineNoList.Name = "SrLineNoList";
-            this.SrLineNoList.Size = new System.Drawing.Size(163, 21);
-            this.SrLineNoList.TabIndex = 1;
-            this.SrLineNoList.SelectionChangeCommitted += new System.EventHandler(this.SrLineNoList_SelectionChangeCommitted);
-            this.SrLineNoList.TextUpdate += new System.EventHandler(this.SrLineNoList_TextUpdate);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(7, 36);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 13);
-            this.label10.TabIndex = 98;
-            this.label10.Visible = false;
-            // 
-            // datalistpopuppanel
-            // 
-            this.datalistpopuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.datalistpopuppanel.Controls.Add(this.tableLayoutPanel12);
-            this.datalistpopuppanel.Controls.Add(this.dataGridView1);
-            this.datalistpopuppanel.Location = new System.Drawing.Point(221, 494);
-            this.datalistpopuppanel.Margin = new System.Windows.Forms.Padding(0);
-            this.datalistpopuppanel.Name = "datalistpopuppanel";
-            this.datalistpopuppanel.Padding = new System.Windows.Forms.Padding(5);
-            this.datalistpopuppanel.Size = new System.Drawing.Size(310, 396);
-            this.datalistpopuppanel.TabIndex = 127;
-            this.datalistpopuppanel.Visible = false;
-            this.datalistpopuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
-            this.tableLayoutPanel12.Controls.Add(this.closelistbtn, 1, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(5, 362);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 1;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(300, 29);
-            this.tableLayoutPanel12.TabIndex = 110;
-            // 
-            // closelistbtn
-            // 
-            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closelistbtn.Location = new System.Drawing.Point(129, 3);
-            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.closelistbtn.Name = "closelistbtn";
-            this.closelistbtn.Size = new System.Drawing.Size(41, 22);
-            this.closelistbtn.TabIndex = 109;
-            this.closelistbtn.Text = "Close";
-            this.closelistbtn.UseVisualStyleBackColor = false;
-            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeight = 34;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle80.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle80.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle80.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle80.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle80.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle80.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle80.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle80;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 5);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(299, 355);
-            this.dataGridView1.TabIndex = 99;
-            // 
-            // findbtn
-            // 
-            this.findbtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.findbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.findbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.findbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.findbtn.Location = new System.Drawing.Point(2, 1);
-            this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.findbtn.Name = "findbtn";
-            this.findbtn.Size = new System.Drawing.Size(81, 24);
-            this.findbtn.TabIndex = 124;
-            this.findbtn.Text = "Find";
-            this.findbtn.UseVisualStyleBackColor = false;
-            this.findbtn.Click += new System.EventHandler(this.btnFind_Click);
-            // 
             // DeleteBCFPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3664,6 +3662,12 @@ namespace PackingApplication
             this.panel30.ResumeLayout(false);
             this.panel30.PerformLayout();
             this.rightpanel.ResumeLayout(false);
+            this.datalistpopuppanel.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.popuppanel.ResumeLayout(false);
+            this.panel58.ResumeLayout(false);
+            this.panel58.PerformLayout();
             this.buttontablelayout.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -3800,12 +3804,6 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.popuppanel.ResumeLayout(false);
-            this.panel58.ResumeLayout(false);
-            this.panel58.PerformLayout();
-            this.datalistpopuppanel.ResumeLayout(false);
-            this.tableLayoutPanel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
