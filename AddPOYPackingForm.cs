@@ -4260,7 +4260,7 @@ namespace PackingApplication
                 msgForm.Controls.Add(btnOk);
 
                 msgForm.AcceptButton = btnOk;
-                msgForm.ShowDialog();
+                msgForm.ShowDialog(this);
             }
 
             Log.writeMessage("POY ShowCustomMessage - End : " + DateTime.Now);

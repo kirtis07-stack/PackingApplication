@@ -3017,7 +3017,7 @@ namespace PackingApplication
                 msgForm.Controls.Add(btnOk);
 
                 msgForm.AcceptButton = btnOk;
-                msgForm.ShowDialog();
+                msgForm.ShowDialog(this);
             }
 
             Log.writeMessage("Chips ShowCustomMessage - End : " + DateTime.Now);
