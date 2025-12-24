@@ -88,7 +88,8 @@ namespace PackingApplication
         bool suppressEvents = false;
         int selectedDeptId = 0;
         int selectedMachineid = 0;
-        int selectedItemTypeid = 0;
+        short selectedItemTypeid = 0;
+        short selectedMainItemTypeid = 0;
         public AddBCFPackingForm()
         {
             Log.writeMessage("BCF AddBCFPackingForm - Start : " + DateTime.Now);
@@ -704,6 +705,9 @@ namespace PackingApplication
                 DeptList.SelectedItem = productionResponse.DepartmentName;
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
                 selectedDeptId = productionResponse.DepartmentId;
+
+                selectedMainItemTypeid = productionResponse.MainItemTypeId;
+                selectedItemTypeid = productionResponse.ItemTypeId;
             }
 
             Log.writeMessage("BCF LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -1095,13 +1099,16 @@ namespace PackingApplication
                             productionRequest.MachineId = lotResponse.MachineId;
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
+                            LineNoList.SelectedValue = lotResponse.MachineId;
+                            selectedItemTypeid = lotResponse.ItemTypeId;
+                            selectedMainItemTypeid = lotResponse.MainItemTypeId;
 
-                            if (lotResponse.ItemId > 0)
-                            {
-                                var itemResponse = _masterService.GetItemById(lotResponse.ItemId).Result;
-                                if (itemResponse != null)
-                                {
-                                    selectedItemTypeid = itemResponse.ItemTypeId;
+                            //if (lotResponse.ItemId > 0)
+                            //{
+                            //    var itemResponse = _masterService.GetItemById(lotResponse.ItemId).Result;
+                            //    if (itemResponse != null)
+                            //    {
+                                    //selectedItemTypeid = itemResponse.ItemTypeId;
                                     var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.DataSource = qualityList;
@@ -1128,8 +1135,8 @@ namespace PackingApplication
                                         int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
                                         productionRequest.QualityId = firstQualityId;
                                     }
-                                }
-                            }
+                            //    }
+                            //}
                         }
 
                         //var getWindingType = new List<WindingTypeResponse>();
@@ -1375,7 +1382,7 @@ namespace PackingApplication
             {
                 //PackSizeList.Items.Clear();
 
-                var packsizeList = _masterService.GetPackSizeList(typedText).Result.OrderBy(x => x.PackSizeName).ToList();
+                var packsizeList = _masterService.GetPackSizeList(selectedMainItemTypeid, typedText).Result.OrderBy(x => x.PackSizeName).ToList();
 
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
 
@@ -3697,7 +3704,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 PackSizeList.DataSource = null;
-                var packsizeList = _masterService.GetPackSizeList("").Result.OrderBy(x => x.PackSizeName).ToList();
+                var packsizeList = _masterService.GetPackSizeList(selectedMainItemTypeid, "").Result.OrderBy(x => x.PackSizeName).ToList();
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
                 PackSizeList.DisplayMember = "PackSizeName";
                 PackSizeList.ValueMember = "PackSizeId";

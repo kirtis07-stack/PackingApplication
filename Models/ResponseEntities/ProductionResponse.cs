@@ -182,5 +182,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int SerialNo { get; set; }
         public string SOItemName { get; set; }
         public bool CanModifyDelete { get; set; } = false;
+        public short ItemTypeId { get; set; }
+        public short MainItemTypeId { get; set; }
     }
 }
