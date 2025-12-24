@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlTypes;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,9 @@ namespace PackingApplication.Services
             return getPacking;
         }
 
-        public async Task<ProductionResponse> getLastBoxDetails(string packingType)
+        public async Task<ProductionResponse> getLastBoxDetails(string packingType, long productionId)
         {
-            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetLastBoxDetails?packingType=" + packingType);
+            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetLastBoxDetails?packingType=" + packingType + "&productionId=" + productionId);
             if (string.IsNullOrWhiteSpace(getPackingResponse))
                 return new ProductionResponse();
             var getPacking = JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse)
@@ -92,6 +93,34 @@ namespace PackingApplication.Services
                 return new List<ProductionResponse>();              // handle empty response
             var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
                      ?? new List<ProductionResponse>();             // handle null JSON
+            return getPacking;
+        }
+
+        public async Task<List<ProductionResponse>> getAllBoxNoByPackingType(string packingType, string subString)
+        {
+            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetAllBoxNoByPackingType?packingType=" + packingType + "&subString=" + subString);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new List<ProductionResponse>();
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
+                ?? new List<ProductionResponse>();
+            return getPacking;
+        }
+
+        public async Task<List<ProductionResponse>> getProductionDetailsBySelectedParameter(string packingType, int machineId, int deptId, string boxNo, string productionDate)
+        {
+            string ProductionDate = null;
+            if (!string.IsNullOrEmpty(productionDate))
+            {
+                if (DateTime.TryParseExact(productionDate, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    ProductionDate = parsedDate.ToString("yyyy-MM-dd");
+                }
+            }
+            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetProductionDetailsBySelectedParameter?packingType=" + packingType + "&machineId=" + machineId + "&deptId=" + deptId + "&boxNo=" + boxNo + "&productionDate=" + ProductionDate);
+            if (string.IsNullOrWhiteSpace(getPackingResponse))
+                return new List<ProductionResponse>();
+            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
+                ?? new List<ProductionResponse>();
             return getPacking;
         }
     }

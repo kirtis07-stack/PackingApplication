@@ -59,6 +59,11 @@ namespace PackingApplication
         int selectedDeptId = 0;
         int selectedMachineid = 0;
         int selectedItemTypeid = 0;
+        List<ProductionResponse> packingList = new List<ProductionResponse>();
+        int selectedSrDeptId = 0;
+        int selectedSrMachineId = 0;
+        string selectedSrBoxNo = null;
+        string selectedSrProductionDate = null;
         public ModifyChipsPackingForm()
         {
             Log.writeMessage("Chips ModifyChipsPackingForm Constructor - Start : " + DateTime.Now);
@@ -72,6 +77,10 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.submit, 8);
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
             _cmethod.SetButtonBorderRadius(this.saveprint, 8);
+            _cmethod.SetButtonBorderRadius(this.findbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.closepopupbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.searchbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.closelistbtn, 8);
 
             rowMaterial.AutoGenerateColumns = false;
 
@@ -96,6 +105,7 @@ namespace PackingApplication
             //updenier.Text = "0";
             //deniervalue.Text = "0";
             isFormReady = true;
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
 
             RefreshLastBoxDetails();
 
@@ -188,6 +198,27 @@ namespace PackingApplication
             WeighingList.SelectedIndex = 0;
             WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            var srmachineList = new List<MachineResponse>();
+            srmachineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+            SrLineNoList.DataSource = srmachineList;
+            SrLineNoList.DisplayMember = "MachineName";
+            SrLineNoList.ValueMember = "MachineId";
+            SrLineNoList.SelectedIndex = 0;
+
+            var srdeptList = new List<DepartmentResponse>();
+            srdeptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            SrDeptList.DataSource = srdeptList;
+            SrDeptList.DisplayMember = "DepartmentName";
+            SrDeptList.ValueMember = "DepartmentId";
+            SrDeptList.SelectedIndex = 0;
+
+            var srboxnoList = new List<ProductionResponse>();
+            srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+            SrBoxNoList.DataSource = srboxnoList;
+            SrBoxNoList.DisplayMember = "BoxNo";
+            SrBoxNoList.ValueMember = "ProductionId";
+            SrBoxNoList.SelectedIndex = 0;
 
             Log.writeMessage("Chips LoadDropdowns - End : " + DateTime.Now);
         }
@@ -296,6 +327,18 @@ namespace PackingApplication
             this.upwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxnofrmt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.findbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.closepopupbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.searchbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.srlinenoradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.SrLineNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.srdeptradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.SrDeptList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.srboxnoradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.SrBoxNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.srproddateradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("ApplyFonts - End : " + DateTime.Now);
         }
@@ -411,7 +454,7 @@ namespace PackingApplication
                 //WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
                 //PackSizeList.SelectedValue = productionResponse.PackSizeId;
                 //BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                //prodtype.Text = productionResponse.ProductionType;
+                //proChipspe.Text = productionResponse.ProductionType;
                 //remarks.Text = productionResponse.Remarks;
                 //prcompany.Checked = productionResponse.PrintCompany;
                 //prowner.Checked = productionResponse.PrintOwner;
@@ -427,6 +470,8 @@ namespace PackingApplication
                 //netwt.Text = productionResponse.NetWt.ToString();
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
+                submit.Enabled = productionResponse.IsDisabled ? false : true;
+                saveprint.Enabled = productionResponse.IsDisabled ? false : true;
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -526,11 +571,11 @@ namespace PackingApplication
                     rowMaterial.DataSource = productionResponse.LotsDetailsResponse;
                     lotsDetailsList = productionResponse.LotsDetailsResponse;
                 }
-                itemname.Text = productionResponse.ItemName;
-                shadename.Text = productionResponse.ShadeName;
-                shadecd.Text = productionResponse.ShadeCode;
+                itemname.Text = (!string.IsNullOrEmpty(productionResponse.ItemName)) ? productionResponse.ItemName : "";
+                shadename.Text = (!string.IsNullOrEmpty(productionResponse.ShadeName)) ? productionResponse.ShadeName : "";
+                shadecd.Text = (!string.IsNullOrEmpty(productionResponse.ShadeCode)) ? productionResponse.ShadeCode : "";
                 deniervalue.Text = productionResponse.Denier.ToString();
-                salelotvalue.Text = productionResponse.SaleLot.ToString();
+                salelotvalue.Text = (!string.IsNullOrEmpty(productionResponse.SaleLot)) ? productionResponse.SaleLot.ToString() : "";
                 frdenier.Text = productionResponse.FromDenier.ToString();
                 updenier.Text = productionResponse.UpToDenier.ToString();
                 startWeight = productionResponse.StartWeight;
@@ -546,6 +591,17 @@ namespace PackingApplication
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
                 productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
+                boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
+                dateTimePicker1.Value = productionResponse.ProductionDate;
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                productionRequest.GrossWt = productionResponse.GrossWt;
+                tarewt.Text = productionResponse.TareWt.ToString();
+                productionRequest.TareWt = productionResponse.TareWt;
+                netwt.Text = productionResponse.NetWt.ToString();
+                productionRequest.NetWt = productionResponse.NetWt;
             }
 
             Log.writeMessage("Chips LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -625,9 +681,23 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= LinoNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;   // "Select Line No."
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                selectedMachineid = 0;
+
+                cb.TextUpdate += LinoNoList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
-                LineNoList.BeginUpdate();
                 //LineNoList.Items.Clear();
 
                 List<MachineResponse> machineList = new List<MachineResponse>();
@@ -644,19 +714,19 @@ namespace PackingApplication
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
 
-                LineNoList.TextUpdate -= LinoNoList_TextUpdate;
-
+                LineNoList.BeginUpdate();
+                LineNoList.DataSource = null;
                 LineNoList.DisplayMember = "MachineName";
                 LineNoList.ValueMember = "MachineId";
                 LineNoList.DataSource = machineList;
-                //LineNoList.Text = typedText;
-
                 LineNoList.EndUpdate();
 
+                LineNoList.TextUpdate -= LinoNoList_TextUpdate;
                 LineNoList.DroppedDown = true;
-                //LineNoList.SelectionStart = typedText.Length;
-                LineNoList.SelectionLength = 0;
-
+                LineNoList.SelectionLength = typedText.Length;
+                LineNoList.SelectedIndex = -1;
+                LineNoList.Text = typedText;
+                LineNoList.SelectionStart = cursorPosition;
                 LineNoList.TextUpdate += LinoNoList_TextUpdate;
             }
 
@@ -691,6 +761,34 @@ namespace PackingApplication
                     {
                         ResetDependentDropdownValues();
                         productionRequest.LotId = selectedLot.LotId;
+                        if (selectedMachineid == 0)
+                        {
+                            MergeNoList.DataSource = null;
+                            MergeNoList.Items.Clear();
+                            MergeNoList.Items.Add("Select MergeNo");
+                            MergeNoList.Items.Add(selectedLot.LotNoFrmt);
+                            MergeNoList.SelectedItem = selectedLot.LotNoFrmt;
+                            productionRequest.LotId = selectedLot.LotId;
+                            selectLotId = selectedLot.LotId;
+
+                            LineNoList.DataSource = null;
+                            LineNoList.Items.Clear();
+                            LineNoList.Items.Add("Select Line No.");
+                            LineNoList.Items.Add(selectedLot.MachineName);
+                            LineNoList.SelectedItem = selectedLot.MachineName;
+                            productionRequest.MachineId = selectedLot.MachineId;
+                            selectedMachineid = selectedLot.MachineId;
+                        }
+                        if (selectedDeptId == 0)
+                        {
+                            DeptList.DataSource = null;
+                            DeptList.Items.Clear();
+                            DeptList.Items.Add("Select Dept");
+                            DeptList.Items.Add(selectedLot.DepartmentName);
+                            DeptList.SelectedItem = selectedLot.DepartmentName;
+                            productionRequest.DepartmentId = selectedLot.DepartmentId;
+                            selectedDeptId = selectedLot.DepartmentId;
+                        }
                         selectLotId = selectedLotId;
                         lotResponse = _productionService.getLotById(selectedLotId).Result;
                         if (lotResponse != null)
@@ -782,28 +880,54 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= MergeNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                ResetLotValues();
+
+                cb.TextUpdate += MergeNoList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
-                MergeNoList.BeginUpdate();
                 //MergeNoList.Items.Clear();
 
-                var mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
+                List<LotsResponse> mergenoList = new List<LotsResponse>();
+                if (selectedMachineid > 0)
+                {
+                    mergenoList = _productionService.getLotList(selectedMachineid, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
-                mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                    mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                }
+                else
+                {
+                    mergenoList = _productionService.getLotsByLotType("ChipsLot", typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
-                MergeNoList.TextUpdate -= MergeNoList_TextUpdate;
+                    mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                }
+
+                MergeNoList.BeginUpdate();
+                MergeNoList.DataSource = null;
                 MergeNoList.DisplayMember = "LotNoFrmt";
                 MergeNoList.ValueMember = "LotId";
                 MergeNoList.DataSource = mergenoList;
-                //MergeNoList.Text = typedText;
-
                 MergeNoList.EndUpdate();
 
+                MergeNoList.TextUpdate -= MergeNoList_TextUpdate;
                 MergeNoList.DroppedDown = true;
-                //MergeNoList.SelectionStart = typedText.Length;
-                MergeNoList.SelectionLength = 0;
+                MergeNoList.SelectionLength = typedText.Length;
+                MergeNoList.SelectedIndex = -1;
+                MergeNoList.Text = typedText;
+                MergeNoList.SelectionStart = cursorPosition;
                 MergeNoList.TextUpdate += MergeNoList_TextUpdate;
 
                 suppressEvents = false;
@@ -886,29 +1010,47 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= PackSizeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                frdenier.Text = "0";
+                updenier.Text = "0";
+                frwt.Text = "0";
+                upwt.Text = "0";
+
+                cb.TextUpdate += PackSizeList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
-                PackSizeList.BeginUpdate();
                 //PackSizeList.Items.Clear();
 
                 var packsizeList = _masterService.GetPackSizeList(typedText).Result.OrderBy(x => x.PackSizeName).ToList();
 
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
 
-                PackSizeList.TextUpdate -= PackSizeList_TextUpdate;
-
+                PackSizeList.BeginUpdate();
+                PackSizeList.DataSource = null;
                 PackSizeList.DisplayMember = "PackSizeName";
                 PackSizeList.ValueMember = "PackSizeId";
                 PackSizeList.DataSource = packsizeList;
-                //PackSizeList.Text = typedText;
-
                 PackSizeList.EndUpdate();
 
+                PackSizeList.TextUpdate -= PackSizeList_TextUpdate;
                 PackSizeList.DroppedDown = true;
-                //PackSizeList.SelectionStart = typedText.Length;
-                PackSizeList.SelectionLength = 0;
-
+                PackSizeList.SelectionLength = typedText.Length;
+                PackSizeList.SelectedIndex = -1;
+                PackSizeList.Text = typedText;
+                PackSizeList.SelectionStart = cursorPosition;
                 PackSizeList.TextUpdate += PackSizeList_TextUpdate;
+
             }
 
             Log.writeMessage("Chips PackSizeList_TextUpdate - End : " + DateTime.Now);
@@ -938,28 +1080,42 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= QualityList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += QualityList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
-                QualityList.BeginUpdate();
                 //QualityList.Items.Clear();
 
                 var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                 qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                QualityList.TextUpdate -= QualityList_TextUpdate;
 
+                QualityList.BeginUpdate();
+                QualityList.DataSource = null;
                 QualityList.DisplayMember = "Name";
                 QualityList.ValueMember = "QualityId";
                 QualityList.DataSource = qualityList;
-                //QualityList.Text = typedText;
-
                 QualityList.EndUpdate();
 
+                QualityList.TextUpdate -= QualityList_TextUpdate;
                 QualityList.DroppedDown = true;
-                //QualityList.SelectionStart = typedText.Length;
-                QualityList.SelectionLength = 0;
-
+                QualityList.SelectionLength = typedText.Length;
+                QualityList.SelectedIndex = -1;
+                QualityList.Text = typedText;
+                QualityList.SelectionStart = cursorPosition;
                 QualityList.TextUpdate += QualityList_TextUpdate;
 
                 suppressEvents = false;
@@ -1003,16 +1159,29 @@ namespace PackingApplication
 
         private void WindingTypeList_TextUpdate(object sender, EventArgs e)
         {
-            Log.writeMessage("DTY WindingTypeList_TextUpdate - Start : " + DateTime.Now);
+            Log.writeMessage("Chips WindingTypeList_TextUpdate - Start : " + DateTime.Now);
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= WindingTypeList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += WindingTypeList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
 
             if (typedText.Length >= 2)
             {
                 suppressEvents = true;
 
-                WindingTypeList.BeginUpdate();
                 //WindingTypeList.Items.Clear();
 
                 var getWindingType = new List<WindingTypeResponse>();
@@ -1024,25 +1193,26 @@ namespace PackingApplication
                     getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
                 }
-                WindingTypeList.TextUpdate -= WindingTypeList_TextUpdate;
 
+                WindingTypeList.BeginUpdate();
+                WindingTypeList.DataSource = null;
                 WindingTypeList.DisplayMember = "WindingTypeName";
                 WindingTypeList.ValueMember = "WindingTypeId";
                 WindingTypeList.DataSource = getWindingType;
-                //WindingTypeList.Text = typedText;
-
                 WindingTypeList.EndUpdate();
 
+                WindingTypeList.TextUpdate -= WindingTypeList_TextUpdate;
                 WindingTypeList.DroppedDown = true;
-                //WindingTypeList.SelectionStart = typedText.Length;
-                WindingTypeList.SelectionLength = 0;
-
+                WindingTypeList.SelectionLength = typedText.Length;
+                WindingTypeList.SelectedIndex = -1;
+                WindingTypeList.Text = typedText;
+                WindingTypeList.SelectionStart = cursorPosition;
                 WindingTypeList.TextUpdate += WindingTypeList_TextUpdate;
 
                 suppressEvents = false;
             }
 
-            Log.writeMessage("DTY WindingTypeList_TextUpdate - End : " + DateTime.Now);
+            Log.writeMessage("Chips WindingTypeList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void RefreshGradewiseGrid()
@@ -1084,7 +1254,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("chipspacking").Result;
+            var getLastBox = _packingService.getLastBoxDetails("chppacking", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1187,36 +1357,52 @@ namespace PackingApplication
 
         private void BoxItemList_TextUpdate(object sender, EventArgs e)
         {
-            Log.writeMessage("DTY BoxItemList_TextUpdate - Start : " + DateTime.Now);
+            Log.writeMessage("Chips BoxItemList_TextUpdate - Start : " + DateTime.Now);
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= BoxItemList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                boxpalletitemwt.Text = "0";
+                palletwtno.Text = "0";
+
+                cb.TextUpdate += BoxItemList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
-                BoxItemList.BeginUpdate();
                 //BoxItemList.Items.Clear();
 
                 var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
-                BoxItemList.TextUpdate -= BoxItemList_TextUpdate;
-
+                BoxItemList.BeginUpdate();
+                BoxItemList.DataSource = null;
                 BoxItemList.DisplayMember = "Name";
                 BoxItemList.ValueMember = "ItemId";
                 BoxItemList.DataSource = boxitemList;
-                //BoxItemList.Text = typedText;
-
                 BoxItemList.EndUpdate();
 
+                BoxItemList.TextUpdate -= BoxItemList_TextUpdate;
                 BoxItemList.DroppedDown = true;
-                //BoxItemList.SelectionStart = typedText.Length;
-                BoxItemList.SelectionLength = 0;
-
+                BoxItemList.SelectionLength = typedText.Length;
+                BoxItemList.SelectedIndex = -1;
+                BoxItemList.Text = typedText;
+                BoxItemList.SelectionStart = cursorPosition;
                 BoxItemList.TextUpdate += BoxItemList_TextUpdate;
+
             }
-            Log.writeMessage("DTY BoxItemList_TextUpdate - End : " + DateTime.Now);
+            Log.writeMessage("Chips BoxItemList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async void DeptList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1262,6 +1448,7 @@ namespace PackingApplication
                     MergeNoList.Items.Add("Select MergeNo");
                     MergeNoList.SelectedItem = "Select MergeNo";
 
+                    ResetLotValues();
                     ResetDependentDropdownValues();
                 }
             }
@@ -1281,29 +1468,44 @@ namespace PackingApplication
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= DeptList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                selectedDeptId = 0;
+
+                cb.TextUpdate += DeptList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
-                DeptList.BeginUpdate();
                 //DeptList.Items.Clear();
 
                 var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
-                DeptList.TextUpdate -= DeptList_TextUpdate;
-
+                DeptList.BeginUpdate();
+                DeptList.DataSource = null;
                 DeptList.DisplayMember = "DepartmentName";
                 DeptList.ValueMember = "DepartmentId";
                 DeptList.DataSource = deptList;
-                //DeptList.Text = typedText;
-
                 DeptList.EndUpdate();
 
+                DeptList.TextUpdate -= DeptList_TextUpdate;
                 DeptList.DroppedDown = true;
-                //DeptList.SelectionStart = typedText.Length;
-                DeptList.SelectionLength = 0;
-
+                DeptList.SelectionLength = typedText.Length;
+                DeptList.SelectedIndex = -1;
+                DeptList.Text = typedText;
+                DeptList.SelectionStart = cursorPosition;
                 DeptList.TextUpdate += DeptList_TextUpdate;
+
             }
             Log.writeMessage("Chips DeptList_TextUpdate - End : " + DateTime.Now);
         }
@@ -1343,36 +1545,50 @@ namespace PackingApplication
 
         private void OwnerList_TextUpdate(object sender, EventArgs e)
         {
-            Log.writeMessage("DTY OwnerList_TextUpdate - Start : " + DateTime.Now);
+            Log.writeMessage("Chips OwnerList_TextUpdate - Start : " + DateTime.Now);
 
             System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
             string typedText = cb.Text;
 
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= OwnerList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += OwnerList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
             if (typedText.Length >= 2)
             {
-                OwnerList.BeginUpdate();
                 //OwnerList.Items.Clear();
 
                 var ownerList = _masterService.GetOwnerList(typedText).Result.OrderBy(x => x.LegalName).ToList();
 
                 ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
 
-                OwnerList.TextUpdate -= OwnerList_TextUpdate;
-
+                OwnerList.BeginUpdate();
+                OwnerList.DataSource = null;
                 OwnerList.DisplayMember = "LegalName";
                 OwnerList.ValueMember = "BusinessPartnerId";
                 OwnerList.DataSource = ownerList;
-                //OwnerList.Text = typedText;
-
                 OwnerList.EndUpdate();
 
+                OwnerList.TextUpdate -= OwnerList_TextUpdate;
                 OwnerList.DroppedDown = true;
-                //OwnerList.SelectionStart = typedText.Length;
-                OwnerList.SelectionLength = 0;
-
+                OwnerList.SelectionLength = typedText.Length;
+                OwnerList.SelectedIndex = -1;
+                OwnerList.Text = typedText;
+                OwnerList.SelectionStart = cursorPosition;
                 OwnerList.TextUpdate += OwnerList_TextUpdate;
+
             }
-            Log.writeMessage("DTY OwnerList_TextUpdate - End : " + DateTime.Now);
+            Log.writeMessage("Chips OwnerList_TextUpdate - End : " + DateTime.Now);
         }
 
         private async Task<List<string>> getComPortList()
@@ -1565,7 +1781,7 @@ namespace PackingApplication
             if (ValidateForm())
             {
                 productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
-                productionRequest.PackingType = "ChipsPacking";
+                productionRequest.PackingType = "ChpPacking";
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
                 productionRequest.GrossWt = Convert.ToDecimal(grosswtno.Text.Trim());
@@ -2095,6 +2311,24 @@ namespace PackingApplication
             Log.writeMessage("Chips printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
+        private void machinetablelayout_Paint(object sender, PaintEventArgs e)
+        {
+            Log.writeMessage("Chips machinetablelayout_Paint - Start : " + DateTime.Now);
+
+            _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("Chips machinetablelayout_Paint - End : " + DateTime.Now);
+        }
+
+        private void popuppanel_Paint(object sender, PaintEventArgs e)
+        {
+            Log.writeMessage("DTY popuppanel_Paint - Start : " + DateTime.Now);
+
+            _cmethod.DrawPanelRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY popuppanel_Paint - End : " + DateTime.Now);
+        }
+
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             Log.writeMessage("Chips textBox1_KeyPress - Start : " + DateTime.Now);
@@ -2213,6 +2447,20 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 MergeNoList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                selectedMachineid = 0;      // Make selectedMachineid, selectedDeptId so that all mergeno will get in list
+                selectedDeptId = 0;
+                MergeNoList.DataSource = null;
+                var mergenoList = _productionService.getLotsByLotType("ChipsLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
+                mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
+                MergeNoList.DisplayMember = "LotNoFrmt";
+                MergeNoList.ValueMember = "LotId";
+                MergeNoList.DataSource = mergenoList;
+                MergeNoList.SelectedIndex = 0;
+                MergeNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("Chips MergeNoList_KeyDown - End : " + DateTime.Now);
@@ -2645,7 +2893,7 @@ namespace PackingApplication
                 msgForm.Controls.Add(btnOk);
 
                 msgForm.AcceptButton = btnOk;
-                msgForm.ShowDialog();
+                msgForm.ShowDialog(this);
             }
 
             Log.writeMessage("Chips ShowCustomMessage - End : " + DateTime.Now);
@@ -2743,6 +2991,486 @@ namespace PackingApplication
             WindingTypeList.SelectedItem = "Select Winding Type";
 
             Log.writeMessage("Chips ResetDependentDropdownValues - End : " + DateTime.Now);
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips btnFind_Click - Start : " + DateTime.Now);
+
+            popuppanel.Visible = true;
+            popuppanel.BringToFront();
+
+            // Center popup in form
+            popuppanel.Left = (this.ClientSize.Width - popuppanel.Width) / 2;
+            popuppanel.Top = (this.ClientSize.Height - popuppanel.Height) / 2;
+
+            Log.writeMessage("Chips btnFind_Click - End : " + DateTime.Now);
+        }
+
+        private void btnClosePopup_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips btnClosePopup_Click - Start : " + DateTime.Now);
+
+            popuppanel.Visible = false;
+
+            Log.writeMessage("Chips btnClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrLineNoList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SrLineNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;   // "Select Line No."
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                selectedSrMachineId = 0;
+
+                cb.TextUpdate += SrLineNoList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
+            if (typedText.Length >= 2)
+            {
+
+                var machineList = _masterService.GetMachineList("ChipsLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+
+                SrLineNoList.BeginUpdate();
+                SrLineNoList.DataSource = null;
+                SrLineNoList.DisplayMember = "MachineName";
+                SrLineNoList.ValueMember = "MachineId";
+                SrLineNoList.DataSource = machineList;
+                SrLineNoList.EndUpdate();
+
+                SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
+                SrLineNoList.Text = typedText;
+                SrLineNoList.DroppedDown = true;
+                SrLineNoList.SelectionStart = cursorPosition;
+                SrLineNoList.SelectionLength = typedText.Length;
+                SrLineNoList.TextUpdate += SrLineNoList_TextUpdate;
+            }
+
+            Log.writeMessage("Chips SrLineNoList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void SrDeptList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrDeptList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SrDeptList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+                selectedSrDeptId = 0;
+
+                cb.TextUpdate += SrDeptList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
+            if (typedText.Length >= 2)
+            {
+                //DeptList.Items.Clear();
+
+                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+
+                SrDeptList.BeginUpdate();
+                SrDeptList.DataSource = null;
+                SrDeptList.DisplayMember = "DepartmentName";
+                SrDeptList.ValueMember = "DepartmentId";
+                SrDeptList.DataSource = deptList;
+                SrDeptList.EndUpdate();
+
+                SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
+                SrDeptList.DroppedDown = true;
+                SrDeptList.Text = typedText;
+                SrDeptList.SelectionStart = cursorPosition;
+                SrDeptList.SelectionLength = typedText.Length;
+                SrDeptList.TextUpdate += SrDeptList_TextUpdate;
+
+            }
+            Log.writeMessage("Chips SrDeptList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoList_TextUpdate(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrBoxNoList_TextUpdate - Start : " + DateTime.Now);
+
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            string typedText = cb.Text;
+
+            if (string.IsNullOrWhiteSpace(cb.Text))
+            {
+                cb.TextUpdate -= SrBoxNoList_TextUpdate;
+
+                cb.SelectedIndex = 0;
+                cb.Text = string.Empty;
+                cb.DroppedDown = false;
+
+                cb.TextUpdate += SrBoxNoList_TextUpdate;
+                return;
+            }
+
+            int cursorPosition = cb.SelectionStart;
+
+            if (typedText.Length >= 2)
+            {
+                //DeptList.Items.Clear();
+
+                var srboxnoList = _packingService.getAllBoxNoByPackingType("ChpPacking", typedText).Result;
+
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+
+                SrBoxNoList.BeginUpdate();
+                SrBoxNoList.DataSource = null;
+                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.ValueMember = "ProductionId";
+                SrBoxNoList.DataSource = srboxnoList;
+                SrBoxNoList.EndUpdate();
+
+                SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
+                SrBoxNoList.DroppedDown = true;
+                SrBoxNoList.Text = typedText;
+                SrBoxNoList.SelectionStart = cursorPosition;
+                SrBoxNoList.SelectionLength = typedText.Length;
+                SrBoxNoList.TextUpdate += SrBoxNoList_TextUpdate;
+
+            }
+            Log.writeMessage("Chips SrBoxNoList_TextUpdate - End : " + DateTime.Now);
+        }
+
+        private void rbLineNo_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips rbLineNo_CheckedChanged - Start : " + DateTime.Now);
+
+            SrLineNoList.Enabled = srlinenoradiobtn.Checked;
+            SrDeptList.Enabled = false;
+            SrBoxNoList.Enabled = false;
+            dateTimePicker2.Enabled = false;
+
+            Log.writeMessage("Chips rbLineNo_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void rbDepartment_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips rbDepartment_CheckedChanged - Start : " + DateTime.Now);
+
+            SrDeptList.Enabled = srdeptradiobtn.Checked;
+            SrLineNoList.Enabled = false;
+            SrBoxNoList.Enabled = false;
+            dateTimePicker2.Enabled = false;
+
+            Log.writeMessage("Chips rbDepartment_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void rbBoxNo_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
+
+            SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
+            SrLineNoList.Enabled = false;
+            SrDeptList.Enabled = false;
+            dateTimePicker2.Enabled = false;
+
+            Log.writeMessage("Chips rbBoxNo_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void rbDate_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips rbDate_CheckedChanged - Start : " + DateTime.Now);
+
+            dateTimePicker2.Enabled = srproddateradiobtn.Checked;
+            SrLineNoList.Enabled = false;
+            SrDeptList.Enabled = false;
+            SrBoxNoList.Enabled = false;
+
+            Log.writeMessage("Chips rbDate_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        //public List<ProductionResponse> GetPackingList(int machineId, int deptId, string boxNo, string productionDate)
+        //{
+        //    Log.writeMessage("Chips GetPackingList - Start : " + DateTime.Now);
+
+        //    packingList = _packingService.getProductionDetailsBySelectedParameter("ChpPacking", machineId, deptId, boxNo, productionDate).Result;
+
+        //    Log.writeMessage("Chips GetPackingList - End : " + DateTime.Now);
+
+        //    return packingList;
+        //}
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips btnSearch_Click - Start : " + DateTime.Now);
+
+            if (!srlinenoradiobtn.Checked && !srdeptradiobtn.Checked && !srboxnoradiobtn.Checked && !srproddateradiobtn.Checked)
+            {
+                MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int machineid = 0, deptid = 0;
+            string boxnoid = null;
+            string proddt = null;
+            if (srlinenoradiobtn.Checked) { machineid = selectedSrMachineId; }
+            if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
+            if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
+            if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
+            packingList = _packingService.getProductionDetailsBySelectedParameter("ChpPacking", machineid, deptid, boxnoid, proddt).Result;
+
+            if (packingList.Count > 0)
+            {
+                datalistpopuppanel.Visible = true;
+                datalistpopuppanel.BringToFront();
+
+                // Center popup in form
+                datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
+                datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
+
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.Columns.Clear();
+
+                // Define columns
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", DataPropertyName = "SerialNo", HeaderText = "SR. No" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
+                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
+
+                dataGridView1.Columns["SrNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["DepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["MachineName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["LotNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["BoxNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+
+                dataGridView1.Columns["SrNo"].Width = 50;
+
+                // Add Edit button column
+                DataGridViewImageColumn btn = new DataGridViewImageColumn();
+                btn.HeaderText = "Action";
+                btn.Name = "Action";
+                btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
+                btn.ImageLayout = DataGridViewImageCellLayout.Normal;
+                btn.Width = 45;  // column width
+                dataGridView1.RowTemplate.Height = 40; // row height
+                dataGridView1.Columns.Add(btn);
+
+                dataGridView1.DataSource = packingList;
+
+                dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+
+                dataGridView1.CellMouseEnter += (s, te) =>
+                {
+                    if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                    {
+                        dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                    }
+                };
+
+                dataGridView1.CellMouseLeave += (s, te) =>
+                {
+                    dataGridView1.Cursor = Cursors.Default; // Reset back to default
+                };
+            }
+            else
+            {
+                dataGridView1.DataSource = null;
+                MessageBox.Show("Data not found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            Log.writeMessage("Chips btnSearch_Click - End : " + DateTime.Now);
+        }
+
+        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Log.writeMessage("Chips dataGridView1_CellContentClick - Start : " + DateTime.Now);
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
+            {
+                var rowObj = dataGridView1.Rows[e.RowIndex].DataBoundItem as ProductionResponse;
+                if (!rowObj.CanModifyDelete)
+                    return;
+
+                popuppanel.Visible = false;
+                datalistpopuppanel.Visible = false;
+
+                long productionId = Convert.ToInt32(
+                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
+                );
+
+                var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
+
+                //SelectedProductionDetails
+                if (getSelectedProductionDetails.ProductionId > 0)
+                {
+                    _productionId = getSelectedProductionDetails.ProductionId;
+                    await LoadProductionDetailsAsync(getSelectedProductionDetails);
+
+                    this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
+                    this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
+                    this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
+                    this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                    this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+                }
+            }
+
+            Log.writeMessage("Chips dataGridView1_CellContentClick - End : " + DateTime.Now);
+        }
+
+        private async void SrLineNoList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrLineNoList_SelectionChangeCommitted - Start : " + DateTime.Now);
+
+            if (!isFormReady) return; // skip during load
+
+            if (suppressEvents) return;     //Prevent recursive refresh
+
+            if (SrLineNoList.Items.Count == 0) return;
+
+            if (SrLineNoList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            suppressEvents = true;          //Freeze dependent dropdown events
+            lblLoading.Visible = true;
+            try
+            {
+                if (SrLineNoList.SelectedValue != null)
+                {
+                    MachineResponse selectedMachine = (MachineResponse)SrLineNoList.SelectedItem;
+                    int selectedMachineId = selectedMachine.MachineId;
+                    if (selectedMachineId > 0)
+                    {
+                        selectedSrMachineId = selectedMachine.MachineId;
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                suppressEvents = false;             //Allow events again
+            }
+
+            Log.writeMessage("Chips SrLineNoList_SelectionChangeCommitted - End : " + DateTime.Now);
+        }
+
+        private async void SrDeptList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrDeptList_SelectionChangeCommitted - Start : " + DateTime.Now);
+
+            if (!isFormReady) return; // skip during load
+
+            if (suppressEvents) return;     //Prevent recursive refresh
+
+            if (SrDeptList.Items.Count == 0) return;
+
+            if (SrDeptList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            suppressEvents = true;          //Freeze dependent dropdown events
+            lblLoading.Visible = true;
+            try
+            {
+                if (SrDeptList.SelectedValue != null)
+                {
+                    DepartmentResponse selectedDepartment = (DepartmentResponse)SrDeptList.SelectedItem;
+                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+                    if (selectedDepartmentId > 0)
+                    {
+                        selectedSrDeptId = selectedDepartment.DepartmentId;
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                suppressEvents = false;             //Allow events again
+            }
+
+            Log.writeMessage("Chips SrDeptList_SelectionChangeCommitted - End : " + DateTime.Now);
+        }
+
+        private async void SrBoxNoList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrBoxNoList_SelectionChangeCommitted - Start : " + DateTime.Now);
+
+            if (!isFormReady) return; // skip during load
+
+            if (suppressEvents) return;     //Prevent recursive refresh
+
+            if (SrBoxNoList.Items.Count == 0) return;
+
+            if (SrBoxNoList.SelectedIndex <= 0)
+            {
+                return;
+            }
+            suppressEvents = true;          //Freeze dependent dropdown events
+            lblLoading.Visible = true;
+            try
+            {
+                if (SrBoxNoList.SelectedValue != null)
+                {
+                    ProductionResponse selectedBoxNo = (ProductionResponse)SrBoxNoList.SelectedItem;
+                    long selectedProductionId = selectedBoxNo.ProductionId;
+                    if (selectedProductionId > 0)
+                    {
+                        selectedSrBoxNo = selectedBoxNo.BoxNo;
+                    }
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                suppressEvents = false;             //Allow events again
+            }
+
+            Log.writeMessage("Chips SrBoxNoList_SelectionChangeCommitted - End : " + DateTime.Now);
+        }
+
+        private void SrProdDate_ValueChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrProdDate_ValueChanged - Start : " + DateTime.Now); 
+
+            DateTime selectedDate = dateTimePicker2.Value.Date;
+            selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
+
+            Log.writeMessage("Chips SrProdDate_ValueChanged - End : " + DateTime.Now);
+        }
+
+        private void btnDatalistClosePopup_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips btnDatalistClosePopup_Click - Start : " + DateTime.Now);
+
+            datalistpopuppanel.Visible = false;
+
+            Log.writeMessage("Chips btnDatalistClosePopup_Click - End : " + DateTime.Now);
         }
     }
 }

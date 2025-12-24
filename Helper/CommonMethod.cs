@@ -203,5 +203,99 @@ namespace PackingApplication.Helper
         //    }
         //}
 
+        public void Combo_DrawItem_Common(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            ComboBox cb = (ComboBox)sender;
+            object item = cb.Items[e.Index];
+
+            // 🔹 Read IsDisabled property dynamically
+            bool isDisabled = false;
+            var prop = item?.GetType().GetProperty("IsDisabled");
+            if (prop != null)
+            {
+                object propValue = prop.GetValue(item);
+
+                if (propValue is bool b)
+                    isDisabled = b == true;   // false = disabled
+                else if (propValue is int i)
+                    isDisabled = i == 1;       // 0 = disabled
+            }
+
+            // 🔹 Background color
+            Color backColor = isDisabled
+                ? Color.LightGray
+                : ((e.State & DrawItemState.Selected) == DrawItemState.Selected
+                    ? SystemColors.Highlight
+                    : cb.BackColor);
+
+            // 🔹 Text color
+            Color textColor = isDisabled
+                ? Color.DarkGray
+                : ((e.State & DrawItemState.Selected) == DrawItemState.Selected
+                    ? SystemColors.HighlightText
+                    : cb.ForeColor);
+
+            using (Brush backBrush = new SolidBrush(backColor))
+                e.Graphics.FillRectangle(backBrush, e.Bounds);
+
+            string text = cb.GetItemText(item);
+
+            using (Brush textBrush = new SolidBrush(textColor))
+                e.Graphics.DrawString(text, e.Font, textBrush, e.Bounds);
+
+            if (!isDisabled)
+                e.DrawFocusRectangle();
+        }
+
+        private int _lastValidIndex = -1;
+
+        public void Combo_SelectionChangeCommitted_Common(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            object item = cb.SelectedItem;
+
+            bool isDisabled = false;
+            var prop = item?.GetType().GetProperty("IsDisabled");
+            if (prop != null && prop.GetValue(item) is int value)
+                isDisabled = value == 0;
+
+            if (isDisabled)
+            {
+                MessageBox.Show("This item is disabled.");
+                cb.SelectedIndex = _lastValidIndex;
+                cb.DroppedDown = false;
+            }
+            else
+            {
+                _lastValidIndex = cb.SelectedIndex;
+            }
+        }
+
+        public void DrawPanelRoundedBorder(Control ctrl, PaintEventArgs e, int radius, Color borderColor, int thickness)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            // Keep radius safe
+            radius = Math.Min(radius, Math.Min(ctrl.Width, ctrl.Height) / 2);
+
+            // Draw INSIDE bounds
+            Rectangle rect = new Rectangle(
+                thickness,
+                thickness,
+                ctrl.Width - (thickness * 2) - 1,
+                ctrl.Height - (thickness * 2) - 1
+            );
+
+            using (GraphicsPath path = GetRoundedRect(rect, radius))
+            using (Pen pen = new Pen(borderColor, thickness))
+            {
+                pen.Alignment = PenAlignment.Inset; 
+                e.Graphics.DrawPath(pen, path);
+            }
+        }
+
+
     }
 }

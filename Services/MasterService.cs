@@ -41,8 +41,8 @@ namespace PackingApplication.Services
         public async Task<List<QualityResponse>> GetQualityList()
         {
             Log.writeMessage("API call GetQualityList - Start : " + DateTime.Now);
-            Log.writeMessage("GetQualityList : Quality/GetAll?IsDropDown=true");
-            var getQualityResponse = await method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + true);
+            Log.writeMessage("GetQualityList : Quality/GetAll?IsDropDown=false");
+            var getQualityResponse = await method.GetCallApi(masterURL + "Quality/GetAll?IsDropDown=" + false);
 
             Log.writeMessage("Response : " + getQualityResponse);
 
@@ -61,9 +61,9 @@ namespace PackingApplication.Services
         public async Task<List<PackSizeResponse>> GetPackSizeList(string subString)
         {
             Log.writeMessage("API call GetPackSizeList - Start : " + DateTime.Now);
-            Log.writeMessage("GetPackSizeList : PackSize/GetAll?IsDropDown=true&subString=" + subString);
+            Log.writeMessage("GetPackSizeList : PackSize/GetAll?IsDropDown=false&subString=" + subString);
 
-            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + true + "&subString=" + subString);
+            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + false + "&subString=" + subString);
 
             Log.writeMessage("Response : " + getPackSizeResponse);
 
@@ -82,9 +82,9 @@ namespace PackingApplication.Services
         public async Task<List<WindingTypeResponse>> GetWindingTypeList(string subString)
         {
             Log.writeMessage("API call GetWindingTypeList - Start : " + DateTime.Now);
-            Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=true" + "&subString=" + subString);
+            Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=false" + "&subString=" + subString);
 
-            var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + true + "&subString=" + subString);
+            var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + false + "&subString=" + subString);
 
             Log.writeMessage("GetWindingTypeList Response : " + getWindingTypeResponse);
 
@@ -263,7 +263,7 @@ namespace PackingApplication.Services
         public async Task<List<BusinessPartnerResponse>> GetOwnerList(string subString)
         {
             Log.writeMessage("API call GetOwnerList - Start : " + DateTime.Now);
-            Log.writeMessage("GetOwnerList : BusinessPartner/GetAll?IsDropDown=true");
+            Log.writeMessage("GetOwnerList : BusinessPartner/GetAllSearchable");
 
             var getBusinessPartnerResponse = await method.GetCallApi(masterURL + "BusinessPartner/GetAllSearchable?subString=" + subString);
 

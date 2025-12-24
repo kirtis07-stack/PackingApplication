@@ -179,7 +179,8 @@ namespace PackingApplication.Models.ResponseEntities
         public decimal SOQuantity { get; set; }
         public decimal CopsItemWeight { get; set; }
         public decimal BoxItemWeight { get; set; }
-        public int SrNo { get; set; }
+        public int SerialNo { get; set; }
         public string SOItemName { get; set; }
+        public bool CanModifyDelete { get; set; } = false;
     }
 }
