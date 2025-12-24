@@ -2352,6 +2352,7 @@ namespace PackingApplication
                     addqty.Text = "Add"; // reset button text back to Add
                     qnty.Text = "";
                     PalletTypeList.SelectedIndex = 0;
+                    PalletTypeList.Enabled = true;
                     return;
                 }
 
@@ -2491,6 +2492,7 @@ namespace PackingApplication
 
                     qnty.Text = "";
                     PalletTypeList.SelectedIndex = 0;
+                    PalletTypeList.Enabled = true;
                     PalletTypeList.Focus();
                 }
                 else
@@ -2595,6 +2597,7 @@ namespace PackingApplication
                 PalletTypeList.DisplayMember = "Name";
                 PalletTypeList.ValueMember = "ItemId";
                 PalletTypeList.SelectedIndex = 1;
+                PalletTypeList.Enabled = false;
 
                 qnty.Text = quantity.ToString();
                 addqty.Text = "Update";
@@ -2608,6 +2611,39 @@ namespace PackingApplication
                         if (control.Text == "Remove")
                         {
                             control.Enabled = false;
+                            control.Paint += (s, f) =>
+                            {
+                                var button = (System.Windows.Forms.Button)s;
+                                var rect = new Rectangle(0, 0, button.Width - 1, button.Height - 1);
+
+                                // button color change for enabled/disabled
+                                Color backColor = button.Enabled ? button.BackColor : Color.LightGray;
+                                Color borderColor = button.Enabled ? button.FlatAppearance.BorderColor : Color.Gray;
+                                Color foreColor = button.Enabled ? button.ForeColor : Color.Gray;
+
+                                using (GraphicsPath path = _cmethod.GetRoundedRect(rect, 4))
+                                using (Pen borderPen = new Pen(borderColor, button.FlatAppearance.BorderSize))
+                                using (SolidBrush brush = new SolidBrush(backColor))
+                                {
+                                    f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                                    f.Graphics.FillPath(brush, path);
+                                    f.Graphics.DrawPath(borderPen, path);
+
+                                    if (control.Focused)
+                                    {
+                                        ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                                    }
+
+                                    TextRenderer.DrawText(
+                                        f.Graphics,
+                                        button.Text,
+                                        button.Font,
+                                        rect,
+                                        foreColor,
+                                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                                    );
+                                }
+                            };
                         }
                     }
                 }
