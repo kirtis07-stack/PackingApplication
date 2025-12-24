@@ -73,7 +73,7 @@ namespace PackingApplication
         private bool isFormReady = false;
         int itemBoxCategoryId = 2;
         int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 2;
+        int itemPalletCategoryId = 5;
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -820,7 +820,13 @@ namespace PackingApplication
                         f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
                         f.Graphics.FillPath(brush, path);
+
                         f.Graphics.DrawPath(borderPen, path);
+
+                        if (btnDelete.Focused)
+                        {
+                            ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                        }
 
                         TextRenderer.DrawText(
                             f.Graphics,
@@ -2732,14 +2738,22 @@ namespace PackingApplication
                 ItemResponse item = data.Item1;
                 int quantity = Convert.ToInt32(data.Item2.Text);
 
-                foreach (ItemResponse entry in PalletTypeList.Items)
-                {
-                    if (entry.ItemId == item.ItemId)
-                    {
-                        PalletTypeList.SelectedItem = entry;
-                        break;
-                    }
-                }
+                PalletTypeList.DataSource = null;
+                PalletTypeList.Items.Clear();
+                PalletTypeList.Items.Add(new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                PalletTypeList.Items.Add(item);
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.SelectedIndex = 1;
+
+                //foreach (ItemResponse entry in PalletTypeList.Items)
+                //{
+                //    if (entry.ItemId == item.ItemId)
+                //    {
+                //        PalletTypeList.SelectedItem = entry;
+                //        break;
+                //    }
+                //}
 
                 qnty.Text = quantity.ToString();
                 addqty.Text = "Update";

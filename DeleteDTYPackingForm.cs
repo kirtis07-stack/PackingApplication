@@ -1603,10 +1603,11 @@ namespace PackingApplication
                 SrLineNoList.EndUpdate();
 
                 SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
-                SrLineNoList.Text = typedText;
                 SrLineNoList.DroppedDown = true;
-                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.SelectionLength = typedText.Length;
+                SrLineNoList.SelectedIndex = -1;
+                SrLineNoList.Text = typedText;
+                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.TextUpdate += SrLineNoList_TextUpdate;
             }
 
@@ -1652,9 +1653,10 @@ namespace PackingApplication
 
                 SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
                 SrDeptList.DroppedDown = true;
+                SrDeptList.SelectionLength = typedText.Length;
+                SrDeptList.SelectedIndex = -1;
                 SrDeptList.Text = typedText;
                 SrDeptList.SelectionStart = cursorPosition;
-                SrDeptList.SelectionLength = typedText.Length;
                 SrDeptList.TextUpdate += SrDeptList_TextUpdate;
 
             }
@@ -1699,9 +1701,10 @@ namespace PackingApplication
 
                 SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
                 SrBoxNoList.DroppedDown = true;
+                SrBoxNoList.SelectionLength = typedText.Length;
+                SrBoxNoList.SelectedIndex = -1;
                 SrBoxNoList.Text = typedText;
                 SrBoxNoList.SelectionStart = cursorPosition;
-                SrBoxNoList.SelectionLength = typedText.Length;
                 SrBoxNoList.TextUpdate += SrBoxNoList_TextUpdate;
 
             }
@@ -2122,6 +2125,57 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY ShowCustomMessage - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrLineNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrLineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrLineNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("DTY SrLineNoList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrDeptList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrDeptList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrDeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrDeptList.DroppedDown = false;
+            }
+
+            Log.writeMessage("DTY SrDeptList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrBoxNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrBoxNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrBoxNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("DTY SrBoxNoList_KeyDown - End : " + DateTime.Now);
         }
     }
 }

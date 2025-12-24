@@ -45,7 +45,7 @@ namespace PackingApplication
         private bool isFormReady = false;
         int itemBoxCategoryId = 2;
         int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 2;
+        int itemPalletCategoryId = 5;
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -68,7 +68,6 @@ namespace PackingApplication
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
-            _cmethod.SetButtonBorderRadius(this.addqty, 8);
             _cmethod.SetButtonBorderRadius(this.findbtn, 8);
             _cmethod.SetButtonBorderRadius(this.closepopupbtn, 8);
             _cmethod.SetButtonBorderRadius(this.searchbtn, 8);
@@ -324,7 +323,6 @@ namespace PackingApplication
             this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.qnty.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.addqty.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.flowLayoutPanel1.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.Printinglbl.Font = FontManager.GetFont(9F, FontStyle.Bold);
@@ -2252,10 +2250,11 @@ namespace PackingApplication
                 SrLineNoList.EndUpdate();
 
                 SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
-                SrLineNoList.Text = typedText;
                 SrLineNoList.DroppedDown = true;
-                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.SelectionLength = typedText.Length;
+                SrLineNoList.SelectedIndex = -1;
+                SrLineNoList.Text = typedText;
+                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.TextUpdate += SrLineNoList_TextUpdate;
             }
 
@@ -2301,9 +2300,10 @@ namespace PackingApplication
 
                 SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
                 SrDeptList.DroppedDown = true;
+                SrDeptList.SelectionLength = typedText.Length;
+                SrDeptList.SelectedIndex = -1;
                 SrDeptList.Text = typedText;
                 SrDeptList.SelectionStart = cursorPosition;
-                SrDeptList.SelectionLength = typedText.Length;
                 SrDeptList.TextUpdate += SrDeptList_TextUpdate;
 
             }
@@ -2348,9 +2348,10 @@ namespace PackingApplication
 
                 SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
                 SrBoxNoList.DroppedDown = true;
+                SrBoxNoList.SelectionLength = typedText.Length;
+                SrBoxNoList.SelectedIndex = -1;
                 SrBoxNoList.Text = typedText;
                 SrBoxNoList.SelectionStart = cursorPosition;
-                SrBoxNoList.SelectionLength = typedText.Length;
                 SrBoxNoList.TextUpdate += SrBoxNoList_TextUpdate;
 
             }
@@ -2666,6 +2667,57 @@ namespace PackingApplication
             datalistpopuppanel.Visible = false;
 
             Log.writeMessage("BCF btnDatalistClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("BCF SrLineNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrLineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrLineNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("BCF SrLineNoList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrDeptList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("BCF SrDeptList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrDeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrDeptList.DroppedDown = false;
+            }
+
+            Log.writeMessage("BCF SrDeptList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("BCF SrBoxNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrBoxNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrBoxNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("BCF SrBoxNoList_KeyDown - End : " + DateTime.Now);
         }
     }
 }

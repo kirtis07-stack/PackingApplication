@@ -45,7 +45,7 @@ namespace PackingApplication
         private bool isFormReady = false;
         int itemBoxCategoryId = 2;
         int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 2;
+        int itemPalletCategoryId = 5;
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -838,7 +838,13 @@ namespace PackingApplication
                         f.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
                         f.Graphics.FillPath(brush, path);
+
                         f.Graphics.DrawPath(borderPen, path);
+
+                        if (btnDelete.Focused)
+                        {
+                            ControlPaint.DrawFocusRectangle(f.Graphics, rect);
+                        }
 
                         TextRenderer.DrawText(
                             f.Graphics,
@@ -2566,14 +2572,22 @@ namespace PackingApplication
                 ItemResponse item = data.Item1;
                 int quantity = Convert.ToInt32(data.Item2.Text);
 
-                foreach (ItemResponse entry in PalletTypeList.Items)
-                {
-                    if (entry.ItemId == item.ItemId)
-                    {
-                        PalletTypeList.SelectedItem = entry;
-                        break;
-                    }
-                }
+                //foreach (ItemResponse entry in PalletTypeList.Items)
+                //{
+                //    if (entry.ItemId == item.ItemId)
+                //    {
+                //        PalletTypeList.SelectedItem = entry;
+                //        break;
+                //    }
+                //}
+
+                PalletTypeList.DataSource = null;
+                PalletTypeList.Items.Clear();
+                PalletTypeList.Items.Add(new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
+                PalletTypeList.Items.Add(item);
+                PalletTypeList.DisplayMember = "Name";
+                PalletTypeList.ValueMember = "ItemId";
+                PalletTypeList.SelectedIndex = 1;
 
                 qnty.Text = quantity.ToString();
                 addqty.Text = "Update";
@@ -4258,10 +4272,11 @@ namespace PackingApplication
                 SrLineNoList.EndUpdate();
 
                 SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
-                SrLineNoList.Text = typedText;
                 SrLineNoList.DroppedDown = true;
-                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.SelectionLength = typedText.Length;
+                SrLineNoList.SelectedIndex = -1;
+                SrLineNoList.Text = typedText;
+                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.TextUpdate += SrLineNoList_TextUpdate;
             }
 
@@ -4307,9 +4322,10 @@ namespace PackingApplication
 
                 SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
                 SrDeptList.DroppedDown = true;
+                SrDeptList.SelectionLength = typedText.Length;
+                SrDeptList.SelectedIndex = -1;
                 SrDeptList.Text = typedText;
                 SrDeptList.SelectionStart = cursorPosition;
-                SrDeptList.SelectionLength = typedText.Length;
                 SrDeptList.TextUpdate += SrDeptList_TextUpdate;
 
             }
@@ -4354,9 +4370,10 @@ namespace PackingApplication
 
                 SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
                 SrBoxNoList.DroppedDown = true;
+                SrBoxNoList.SelectionLength = typedText.Length;
+                SrBoxNoList.SelectedIndex = -1;
                 SrBoxNoList.Text = typedText;
                 SrBoxNoList.SelectionStart = cursorPosition;
-                SrBoxNoList.SelectionLength = typedText.Length;
                 SrBoxNoList.TextUpdate += SrBoxNoList_TextUpdate;
 
             }
@@ -4677,6 +4694,57 @@ namespace PackingApplication
             datalistpopuppanel.Visible = false;
 
             Log.writeMessage("POY btnDatalistClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("POY SrLineNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrLineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrLineNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("POY SrLineNoList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrDeptList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("POY SrDeptList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrDeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrDeptList.DroppedDown = false;
+            }
+
+            Log.writeMessage("POY SrDeptList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("POY SrBoxNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrBoxNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrBoxNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("POY SrBoxNoList_KeyDown - End : " + DateTime.Now);
         }
     }
 }
