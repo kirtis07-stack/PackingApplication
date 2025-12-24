@@ -3,19 +3,15 @@
   "WorkspaceRootPath": "D:\\Kirti\\New folder\\PackingApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\new folder\\packingapplication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\New folder\\PackingApplication\\addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\New folder\\PackingApplication\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\New folder\\PackingApplication\\addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|D:\\Kirti\\New folder\\PackingApplication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|d:\\kirti\\new folder\\packingapplication\\addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{86BFB830-9645-456B-9B7C-12BEB8D2C87F}|PackingApplication.csproj|solutionrelative:addbcfpackingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -38,30 +34,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddBCFPackingForm.cs [Design]",
-              "DocumentMoniker": "D:\\Kirti\\New folder\\PackingApplication\\AddBCFPackingForm.cs",
-              "RelativeDocumentMoniker": "AddBCFPackingForm.cs",
-              "ToolTip": "D:\\Kirti\\New folder\\PackingApplication\\AddBCFPackingForm.cs [Design]",
-              "RelativeToolTip": "AddBCFPackingForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T06:42:55.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "AddBCFPackingForm.cs",
               "DocumentMoniker": "D:\\Kirti\\New folder\\PackingApplication\\AddBCFPackingForm.cs",
               "RelativeDocumentMoniker": "AddBCFPackingForm.cs",
               "ToolTip": "D:\\Kirti\\New folder\\PackingApplication\\AddBCFPackingForm.cs",
               "RelativeToolTip": "AddBCFPackingForm.cs",
-              "ViewState": "AgIAANUKAAAAAAAAAAAAAHgFAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAHgFAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T06:38:13.874Z"
+              "WhenOpened": "2025-12-10T06:38:13.874Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "AddDTYPackingForm.cs",
               "DocumentMoniker": "D:\\Kirti\\New folder\\PackingApplication\\AddDTYPackingForm.cs",
               "RelativeDocumentMoniker": "AddDTYPackingForm.cs",
@@ -73,20 +59,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Login.cs",
               "DocumentMoniker": "D:\\Kirti\\New folder\\PackingApplication\\Login.cs",
               "RelativeDocumentMoniker": "Login.cs",
               "ToolTip": "D:\\Kirti\\New folder\\PackingApplication\\Login.cs",
               "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAAwFAAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAIwE4AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-03T11:59:06.46Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "App.config",
               "DocumentMoniker": "D:\\Kirti\\New folder\\PackingApplication\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -94,7 +80,8 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AgIAAAcAAAAAAAAAAAAuwBcAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-03T11:59:06.46Z"
+              "WhenOpened": "2025-12-03T11:59:06.46Z",
+              "EditorCaption": ""
             }
           ]
         }
