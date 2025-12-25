@@ -108,6 +108,11 @@ namespace PackingApplication
             RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;
+            srlinenoradiobtn.FlatStyle = FlatStyle.System;
+            srdeptradiobtn.FlatStyle = FlatStyle.System;
+            srboxnoradiobtn.FlatStyle = FlatStyle.System;
+            srproddateradiobtn.FlatStyle = FlatStyle.System;
+            closepopupbtn.FlatStyle = FlatStyle.System;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
@@ -1725,6 +1730,8 @@ namespace PackingApplication
             popuppanel.Left = (this.ClientSize.Width - popuppanel.Width) / 2;
             popuppanel.Top = (this.ClientSize.Height - popuppanel.Height) / 2;
 
+            panel58.Focus();
+
             Log.writeMessage("DTY btnFind_Click - End : " + DateTime.Now);
         }
 
@@ -1733,6 +1740,7 @@ namespace PackingApplication
             Log.writeMessage("DTY btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            findbtn.Focus();
 
             Log.writeMessage("DTY btnClosePopup_Click - End : " + DateTime.Now);
         }
@@ -1968,6 +1976,7 @@ namespace PackingApplication
                 datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
                 datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
 
+                dataGridView1.Focus();
                 dataGridView1.AutoGenerateColumns = false;
                 dataGridView1.Columns.Clear();
 
@@ -2198,6 +2207,7 @@ namespace PackingApplication
             Log.writeMessage("DTY btnDatalistClosePopup_Click - Start : " + DateTime.Now);
 
             datalistpopuppanel.Visible = false;
+            panel58.Focus();
 
             Log.writeMessage("DTY btnDatalistClosePopup_Click - End : " + DateTime.Now);
         }
@@ -2251,6 +2261,62 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY SrBoxNoList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrDeptRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrProdDateRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
         }
     }
 }
