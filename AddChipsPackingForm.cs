@@ -534,7 +534,7 @@ namespace PackingApplication
                 productionRequest.PrintQRCode = productionResponse.PrintQRCode;
                 prtwist.Checked = productionResponse.PrintTwist;
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
-
+                productionRequest.PrefixCode = productionResponse.PrefixCode;
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {

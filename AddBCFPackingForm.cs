@@ -642,6 +642,7 @@ namespace PackingApplication
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
+                productionRequest.PrefixCode = productionResponse.PrefixCode;
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {
