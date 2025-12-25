@@ -70,7 +70,6 @@ namespace PackingApplication
             this.PalletTypeList = new System.Windows.Forms.ComboBox();
             this.pquantity = new System.Windows.Forms.Label();
             this.qnty = new System.Windows.Forms.TextBox();
-            this.addqty = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel31 = new System.Windows.Forms.Panel();
@@ -757,25 +756,6 @@ namespace PackingApplication
             this.qnty.TabIndex = 2;
             this.qnty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // addqty
-            // 
-            this.addqty.BackColor = System.Drawing.SystemColors.Highlight;
-            this.addqty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.addqty.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addqty.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.addqty.FlatAppearance.BorderSize = 0;
-            this.addqty.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.addqty.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.addqty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addqty.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.addqty.Location = new System.Drawing.Point(305, 6);
-            this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.addqty.Name = "addqty";
-            this.addqty.Size = new System.Drawing.Size(48, 19);
-            this.addqty.TabIndex = 3;
-            this.addqty.Text = "Add";
-            this.addqty.UseVisualStyleBackColor = false;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1120,7 +1100,7 @@ namespace PackingApplication
             this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closelistbtn.Name = "closelistbtn";
             this.closelistbtn.Size = new System.Drawing.Size(63, 22);
-            this.closelistbtn.TabIndex = 109;
+            this.closelistbtn.TabIndex = 1;
             this.closelistbtn.Text = "Close";
             this.closelistbtn.UseVisualStyleBackColor = false;
             this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
@@ -1171,7 +1151,7 @@ namespace PackingApplication
             this.popuppanel.Name = "popuppanel";
             this.popuppanel.Padding = new System.Windows.Forms.Padding(5);
             this.popuppanel.Size = new System.Drawing.Size(241, 180);
-            this.popuppanel.TabIndex = 126;
+            this.popuppanel.TabIndex = 0;
             this.popuppanel.Visible = false;
             this.popuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
             // 
@@ -1185,7 +1165,7 @@ namespace PackingApplication
             this.searchbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.searchbtn.Name = "searchbtn";
             this.searchbtn.Size = new System.Drawing.Size(70, 22);
-            this.searchbtn.TabIndex = 110;
+            this.searchbtn.TabIndex = 9;
             this.searchbtn.Text = "Search";
             this.searchbtn.UseVisualStyleBackColor = false;
             this.searchbtn.Click += new System.EventHandler(this.btnSearch_Click);
@@ -1194,13 +1174,13 @@ namespace PackingApplication
             // 
             this.closepopupbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
             this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
             this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closepopupbtn.Name = "closepopupbtn";
             this.closepopupbtn.Size = new System.Drawing.Size(70, 22);
-            this.closepopupbtn.TabIndex = 109;
+            this.closepopupbtn.TabIndex = 10;
             this.closepopupbtn.Text = "Close";
             this.closepopupbtn.UseVisualStyleBackColor = false;
             this.closepopupbtn.Click += new System.EventHandler(this.btnClosePopup_Click);
@@ -1222,54 +1202,63 @@ namespace PackingApplication
             this.panel58.Padding = new System.Windows.Forms.Padding(5);
             this.panel58.Size = new System.Drawing.Size(230, 120);
             this.panel58.TabIndex = 1;
+            this.panel58.TabStop = true;
             // 
             // srproddateradiobtn
             // 
+            this.srproddateradiobtn.AutoCheck = false;
             this.srproddateradiobtn.AutoSize = true;
             this.srproddateradiobtn.Location = new System.Drawing.Point(0, 92);
             this.srproddateradiobtn.Name = "srproddateradiobtn";
             this.srproddateradiobtn.Size = new System.Drawing.Size(51, 17);
-            this.srproddateradiobtn.TabIndex = 116;
+            this.srproddateradiobtn.TabIndex = 7;
             this.srproddateradiobtn.TabStop = true;
             this.srproddateradiobtn.Text = "Date:";
             this.srproddateradiobtn.UseVisualStyleBackColor = true;
             this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
+            this.srproddateradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDateRadiobtn_KeyDown);
             // 
             // srboxnoradiobtn
             // 
+            this.srboxnoradiobtn.AutoCheck = false;
             this.srboxnoradiobtn.AutoSize = true;
             this.srboxnoradiobtn.Location = new System.Drawing.Point(0, 64);
             this.srboxnoradiobtn.Name = "srboxnoradiobtn";
             this.srboxnoradiobtn.Size = new System.Drawing.Size(60, 17);
-            this.srboxnoradiobtn.TabIndex = 115;
+            this.srboxnoradiobtn.TabIndex = 5;
             this.srboxnoradiobtn.TabStop = true;
             this.srboxnoradiobtn.Text = "BoxNo:";
             this.srboxnoradiobtn.UseVisualStyleBackColor = true;
             this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
+            this.srboxnoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrBoxNoRadiobtn_KeyDown);
             // 
             // srdeptradiobtn
             // 
+            this.srdeptradiobtn.AutoCheck = false;
             this.srdeptradiobtn.AutoSize = true;
             this.srdeptradiobtn.Location = new System.Drawing.Point(0, 36);
             this.srdeptradiobtn.Name = "srdeptradiobtn";
             this.srdeptradiobtn.Size = new System.Drawing.Size(51, 17);
-            this.srdeptradiobtn.TabIndex = 114;
+            this.srdeptradiobtn.TabIndex = 3;
             this.srdeptradiobtn.TabStop = true;
             this.srdeptradiobtn.Text = "Dept:";
             this.srdeptradiobtn.UseVisualStyleBackColor = true;
             this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
+            this.srdeptradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrDeptRadiobtn_KeyDown);
             // 
             // srlinenoradiobtn
             // 
+            this.srlinenoradiobtn.AutoCheck = false;
             this.srlinenoradiobtn.AutoSize = true;
             this.srlinenoradiobtn.Location = new System.Drawing.Point(0, 8);
             this.srlinenoradiobtn.Name = "srlinenoradiobtn";
             this.srlinenoradiobtn.Size = new System.Drawing.Size(62, 17);
-            this.srlinenoradiobtn.TabIndex = 113;
+            this.srlinenoradiobtn.TabIndex = 1;
             this.srlinenoradiobtn.TabStop = true;
             this.srlinenoradiobtn.Text = "LineNo:";
             this.srlinenoradiobtn.UseVisualStyleBackColor = true;
             this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
+            this.srlinenoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrLineNoRadiobtn_KeyDown);
             // 
             // dateTimePicker2
             // 
@@ -1281,8 +1270,7 @@ namespace PackingApplication
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
-            this.dateTimePicker2.TabIndex = 112;
-            this.dateTimePicker2.TabStop = false;
+            this.dateTimePicker2.TabIndex = 8;
             this.dateTimePicker2.ValueChanged += new System.EventHandler(this.SrProdDate_ValueChanged);
             // 
             // SrBoxNoList
@@ -1293,9 +1281,10 @@ namespace PackingApplication
             this.SrBoxNoList.Location = new System.Drawing.Point(62, 62);
             this.SrBoxNoList.Name = "SrBoxNoList";
             this.SrBoxNoList.Size = new System.Drawing.Size(163, 21);
-            this.SrBoxNoList.TabIndex = 110;
+            this.SrBoxNoList.TabIndex = 6;
             this.SrBoxNoList.SelectionChangeCommitted += new System.EventHandler(this.SrBoxNoList_SelectionChangeCommitted);
             this.SrBoxNoList.TextUpdate += new System.EventHandler(this.SrBoxNoList_TextUpdate);
+            this.SrBoxNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrBoxNoList_KeyDown);
             // 
             // SrDeptList
             // 
@@ -1305,9 +1294,10 @@ namespace PackingApplication
             this.SrDeptList.Location = new System.Drawing.Point(62, 33);
             this.SrDeptList.Name = "SrDeptList";
             this.SrDeptList.Size = new System.Drawing.Size(163, 21);
-            this.SrDeptList.TabIndex = 2;
+            this.SrDeptList.TabIndex = 4;
             this.SrDeptList.SelectionChangeCommitted += new System.EventHandler(this.SrDeptList_SelectionChangeCommitted);
             this.SrDeptList.TextUpdate += new System.EventHandler(this.SrDeptList_TextUpdate);
+            this.SrDeptList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrDeptList_KeyDown);
             // 
             // SrLineNoList
             // 
@@ -1319,9 +1309,10 @@ namespace PackingApplication
             this.SrLineNoList.Margin = new System.Windows.Forms.Padding(2);
             this.SrLineNoList.Name = "SrLineNoList";
             this.SrLineNoList.Size = new System.Drawing.Size(163, 21);
-            this.SrLineNoList.TabIndex = 1;
+            this.SrLineNoList.TabIndex = 2;
             this.SrLineNoList.SelectionChangeCommitted += new System.EventHandler(this.SrLineNoList_SelectionChangeCommitted);
             this.SrLineNoList.TextUpdate += new System.EventHandler(this.SrLineNoList_TextUpdate);
+            this.SrLineNoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrLineNoList_KeyDown);
             // 
             // label10
             // 
@@ -1373,7 +1364,7 @@ namespace PackingApplication
             this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.findbtn.Name = "findbtn";
             this.findbtn.Size = new System.Drawing.Size(81, 24);
-            this.findbtn.TabIndex = 124;
+            this.findbtn.TabIndex = 119;
             this.findbtn.Text = "Find";
             this.findbtn.UseVisualStyleBackColor = false;
             this.findbtn.Click += new System.EventHandler(this.btnFind_Click);
@@ -1388,7 +1379,7 @@ namespace PackingApplication
             this.delete.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(81, 24);
-            this.delete.TabIndex = 123;
+            this.delete.TabIndex = 120;
             this.delete.Text = "Delete";
             this.delete.UseVisualStyleBackColor = false;
             this.delete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -1690,7 +1681,6 @@ namespace PackingApplication
             this.palletdetailspanel.Controls.Add(this.PalletTypeList);
             this.palletdetailspanel.Controls.Add(this.pquantity);
             this.palletdetailspanel.Controls.Add(this.qnty);
-            this.palletdetailspanel.Controls.Add(this.addqty);
             this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
             this.palletdetailspanel.Location = new System.Drawing.Point(4, 29);
             this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -3841,7 +3831,6 @@ namespace PackingApplication
         private System.Windows.Forms.ComboBox PalletTypeList;
         private System.Windows.Forms.Label pquantity;
         private System.Windows.Forms.TextBox qnty;
-        private System.Windows.Forms.Button addqty;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         //private System.Windows.Forms.Button Logout;
         private System.Windows.Forms.Label Username;

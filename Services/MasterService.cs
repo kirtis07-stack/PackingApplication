@@ -58,12 +58,12 @@ namespace PackingApplication.Services
             return getQuality;
         }
 
-        public async Task<List<PackSizeResponse>> GetPackSizeList(string subString)
+        public async Task<List<PackSizeResponse>> GetPackSizeList(short mainItemTypeId, string subString)
         {
             Log.writeMessage("API call GetPackSizeList - Start : " + DateTime.Now);
-            Log.writeMessage("GetPackSizeList : PackSize/GetAll?IsDropDown=false&subString=" + subString);
+            Log.writeMessage("GetPackSizeList : PackSize/GetPackSizeByMainItemTypeId?mainItemTypeId=mainItemTypeId&subString=" + subString);
 
-            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetAll?IsDropDown=" + false + "&subString=" + subString);
+            var getPackSizeResponse = await method.GetCallApi(masterURL + "PackSize/GetPackSizeByMainItemTypeId?mainItemTypeId=" + mainItemTypeId + "&subString=" + subString);
 
             Log.writeMessage("Response : " + getPackSizeResponse);
 

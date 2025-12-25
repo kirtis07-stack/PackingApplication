@@ -58,7 +58,8 @@ namespace PackingApplication
         bool suppressEvents = false;
         int selectedDeptId = 0;
         int selectedMachineid = 0;
-        int selectedItemTypeid = 0;
+        short selectedItemTypeid = 0;
+        short selectedMainItemTypeid = 0;
         List<ProductionResponse> packingList = new List<ProductionResponse>();
         int selectedSrDeptId = 0;
         int selectedSrMachineId = 0;
@@ -117,6 +118,11 @@ namespace PackingApplication
             RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;
+            srlinenoradiobtn.FlatStyle = FlatStyle.System;
+            srdeptradiobtn.FlatStyle = FlatStyle.System;
+            srboxnoradiobtn.FlatStyle = FlatStyle.System;
+            srproddateradiobtn.FlatStyle = FlatStyle.System;
+            closepopupbtn.FlatStyle = FlatStyle.System;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
@@ -684,6 +690,9 @@ namespace PackingApplication
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
+
+                selectedMainItemTypeid = productionResponse.MainItemTypeId;
+                selectedItemTypeid = productionResponse.ItemTypeId;
             }
 
             Log.writeMessage("DTY LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -901,13 +910,15 @@ namespace PackingApplication
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
                             LineNoList.SelectedValue = lotResponse.MachineId;
+                            selectedItemTypeid = lotResponse.ItemTypeId;
+                            selectedMainItemTypeid = lotResponse.MainItemTypeId;
 
-                            if (lotResponse.ItemId > 0)
-                            {
-                                var itemResponse = _masterService.GetItemById(lotResponse.ItemId).Result;
-                                if (itemResponse != null)
-                                {
-                                    selectedItemTypeid = itemResponse.ItemTypeId;
+                            //if (lotResponse.ItemId > 0)
+                            //{
+                            //    var itemResponse = _masterService.GetItemById(lotResponse.ItemId).Result;
+                            //    if (itemResponse != null)
+                            //    {
+                            //        selectedItemTypeid = itemResponse.ItemTypeId;
                                     var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
                                     qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
                                     QualityList.SelectedIndexChanged -= QualityList_SelectedIndexChanged;
@@ -936,8 +947,8 @@ namespace PackingApplication
                                         productionRequest.QualityId = firstQualityId;
                                     }
                                     QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
-                                }
-                            }
+                            //    }
+                            //}
                         }
 
                         //var getWindingType = new List<WindingTypeResponse>();
@@ -1180,7 +1191,7 @@ namespace PackingApplication
             {
                 //PackSizeList.Items.Clear();
 
-                var packsizeList = _masterService.GetPackSizeList(typedText).Result.OrderBy(x => x.PackSizeName).ToList();
+                var packsizeList = _masterService.GetPackSizeList(selectedMainItemTypeid, typedText).Result.OrderBy(x => x.PackSizeName).ToList();
 
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
 
@@ -2932,7 +2943,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 PackSizeList.DataSource = null;
-                var packsizeList = _masterService.GetPackSizeList("").Result.OrderBy(x => x.PackSizeName).ToList();
+                var packsizeList = _masterService.GetPackSizeList(selectedMainItemTypeid, "").Result.OrderBy(x => x.PackSizeName).ToList();
                 packsizeList.Insert(0, new PackSizeResponse { PackSizeId = 0, PackSizeName = "Select Pack Size" });
                 PackSizeList.DisplayMember = "PackSizeName";
                 PackSizeList.ValueMember = "PackSizeId";
@@ -3541,6 +3552,8 @@ namespace PackingApplication
             popuppanel.Left = (this.ClientSize.Width - popuppanel.Width) / 2;
             popuppanel.Top = (this.ClientSize.Height - popuppanel.Height) / 2;
 
+            panel58.Focus();
+
             Log.writeMessage("DTY btnFind_Click - End : " + DateTime.Now);
         }
 
@@ -3549,6 +3562,7 @@ namespace PackingApplication
             Log.writeMessage("DTY btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            findbtn.Focus();
 
             Log.writeMessage("DTY btnClosePopup_Click - End : " + DateTime.Now);
         }
@@ -3589,10 +3603,11 @@ namespace PackingApplication
                 SrLineNoList.EndUpdate();
 
                 SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
-                SrLineNoList.Text = typedText;
                 SrLineNoList.DroppedDown = true;
-                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.SelectionLength = typedText.Length;
+                SrLineNoList.SelectedIndex = -1;
+                SrLineNoList.Text = typedText;
+                SrLineNoList.SelectionStart = cursorPosition;
                 SrLineNoList.TextUpdate += SrLineNoList_TextUpdate;
             }
 
@@ -3638,9 +3653,10 @@ namespace PackingApplication
 
                 SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
                 SrDeptList.DroppedDown = true;
+                SrDeptList.SelectionLength = typedText.Length;
+                SrDeptList.SelectedIndex = -1;
                 SrDeptList.Text = typedText;
                 SrDeptList.SelectionStart = cursorPosition;
-                SrDeptList.SelectionLength = typedText.Length;
                 SrDeptList.TextUpdate += SrDeptList_TextUpdate;
 
             }
@@ -3685,9 +3701,10 @@ namespace PackingApplication
 
                 SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
                 SrBoxNoList.DroppedDown = true;
+                SrBoxNoList.SelectionLength = typedText.Length;
+                SrBoxNoList.SelectedIndex = -1;
                 SrBoxNoList.Text = typedText;
                 SrBoxNoList.SelectionStart = cursorPosition;
-                SrBoxNoList.SelectionLength = typedText.Length;
                 SrBoxNoList.TextUpdate += SrBoxNoList_TextUpdate;
 
             }
@@ -3780,6 +3797,7 @@ namespace PackingApplication
                 datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
                 datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
 
+                dataGridView1.Focus();
                 dataGridView1.AutoGenerateColumns = false;
                 dataGridView1.Columns.Clear();
 
@@ -4006,8 +4024,116 @@ namespace PackingApplication
             Log.writeMessage("DTY btnDatalistClosePopup_Click - Start : " + DateTime.Now);
 
             datalistpopuppanel.Visible = false;
+            panel58.Focus();
 
             Log.writeMessage("DTY btnDatalistClosePopup_Click - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrLineNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrLineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrLineNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("DTY SrLineNoList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrDeptList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrDeptList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrDeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrDeptList.DroppedDown = false;
+            }
+
+            Log.writeMessage("DTY SrDeptList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrBoxNoList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                SrBoxNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                SrBoxNoList.DroppedDown = false;
+            }
+
+            Log.writeMessage("DTY SrBoxNoList_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrLineNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrDeptRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrBoxNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void SrProdDateRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                RadioButton rb = sender as RadioButton;
+                rb.Checked = !rb.Checked;   // toggle select / deselect
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
         }
     }
 }
