@@ -2647,7 +2647,7 @@ namespace PackingApplication
                         }
                     }
                 }
-                PalletTypeList.Focus();
+                qnty.Focus();
             }
 
             Log.writeMessage("POY editPallet_Click - End : " + DateTime.Now);

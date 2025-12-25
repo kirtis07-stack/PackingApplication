@@ -2815,7 +2815,7 @@ namespace PackingApplication
                         }
                     }
                 }
-                PalletTypeList.Focus();
+                qnty.Focus();
             }
 
             Log.writeMessage("BCF editPallet_Click - End : " + DateTime.Now);
