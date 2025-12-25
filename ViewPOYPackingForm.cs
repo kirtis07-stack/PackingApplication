@@ -663,6 +663,13 @@ namespace PackingApplication
                 DeptList.Items.Add(productionResponse.DepartmentName);
                 DeptList.SelectedItem = productionResponse.DepartmentName;
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
+
+                spoolno.Text = productionResponse.Spools.ToString();
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
+                grosswtno.Text = productionResponse.GrossWt.ToString();
+                tarewt.Text = productionResponse.TareWt.ToString();
+                netwt.Text = productionResponse.NetWt.ToString();
             }
 
             Log.writeMessage("POY LoadProductionDetailsAsync - End : " + DateTime.Now);
