@@ -113,6 +113,7 @@ namespace PackingApplication
             srboxnoradiobtn.FlatStyle = FlatStyle.System;
             srproddateradiobtn.FlatStyle = FlatStyle.System;
             closepopupbtn.FlatStyle = FlatStyle.System;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
@@ -1740,6 +1741,8 @@ namespace PackingApplication
             Log.writeMessage("DTY btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             findbtn.Focus();
 
             Log.writeMessage("DTY btnClosePopup_Click - End : " + DateTime.Now);
@@ -1893,6 +1896,9 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY rbLineNo_CheckedChanged - Start : " + DateTime.Now);
 
+            if (!srlinenoradiobtn.Checked)
+                return;
+
             SrLineNoList.Enabled = srlinenoradiobtn.Checked;
             SrDeptList.Enabled = false;
             SrBoxNoList.Enabled = false;
@@ -1904,6 +1910,9 @@ namespace PackingApplication
         private void rbDepartment_CheckedChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY rbDepartment_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!srdeptradiobtn.Checked)
+                return;
 
             SrDeptList.Enabled = srdeptradiobtn.Checked;
             SrLineNoList.Enabled = false;
@@ -1917,6 +1926,9 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
 
+            if (!srboxnoradiobtn.Checked)
+                return;
+
             SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
             SrLineNoList.Enabled = false;
             SrDeptList.Enabled = false;
@@ -1928,6 +1940,9 @@ namespace PackingApplication
         private void rbDate_CheckedChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY rbDate_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!srproddateradiobtn.Checked)
+                return;
 
             dateTimePicker2.Enabled = srproddateradiobtn.Checked;
             SrLineNoList.Enabled = false;
@@ -2271,6 +2286,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -2285,6 +2301,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -2299,6 +2316,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -2313,10 +2331,38 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = false;
                 e.Handled = true;
             }
 
             Log.writeMessage("DTY SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void RadioButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            Log.writeMessage("DTY RadioButton_MouseDown - End : " + DateTime.Now);
+
+            RadioButton rb = sender as RadioButton;
+            if (rb == null) return;
+
+            SelectRadio(rb);
+
+            Log.writeMessage("DTY RadioButton_MouseDown - End : " + DateTime.Now);
+        }
+
+        private void SelectRadio(RadioButton selected)
+        {
+            Log.writeMessage("DTY SelectRadio - End : " + DateTime.Now);
+
+            foreach (Control ctrl in selected.Parent.Controls)
+            {
+                if (ctrl is RadioButton rb)
+                {
+                    rb.Checked = (rb == selected);
+                }
+            }
+
+            Log.writeMessage("DTY SelectRadio - End : " + DateTime.Now);
         }
     }
 }

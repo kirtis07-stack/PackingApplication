@@ -903,6 +903,7 @@ namespace PackingApplication
             this.srproddateradiobtn.UseVisualStyleBackColor = true;
             this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
             this.srproddateradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDateRadiobtn_KeyDown);
+            this.srproddateradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srboxnoradiobtn
             // 
@@ -917,6 +918,7 @@ namespace PackingApplication
             this.srboxnoradiobtn.UseVisualStyleBackColor = true;
             this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
             this.srboxnoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrBoxNoRadiobtn_KeyDown);
+            this.srboxnoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srdeptradiobtn
             // 
@@ -931,6 +933,7 @@ namespace PackingApplication
             this.srdeptradiobtn.UseVisualStyleBackColor = true;
             this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
             this.srdeptradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrDeptRadiobtn_KeyDown);
+            this.srdeptradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srlinenoradiobtn
             // 
@@ -945,6 +948,7 @@ namespace PackingApplication
             this.srlinenoradiobtn.UseVisualStyleBackColor = true;
             this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
             this.srlinenoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrLineNoRadiobtn_KeyDown);
+            this.srlinenoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // dateTimePicker2
             // 

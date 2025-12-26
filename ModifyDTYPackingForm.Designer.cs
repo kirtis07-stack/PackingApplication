@@ -34,8 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -1086,14 +1086,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1131,7 +1131,7 @@ namespace PackingApplication
             this.searchbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.searchbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchbtn.Location = new System.Drawing.Point(12, 150);
+            this.searchbtn.Location = new System.Drawing.Point(27, 150);
             this.searchbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.searchbtn.Name = "searchbtn";
             this.searchbtn.Size = new System.Drawing.Size(70, 22);
@@ -1146,7 +1146,7 @@ namespace PackingApplication
             this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closepopupbtn.Location = new System.Drawing.Point(119, 150);
+            this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
             this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closepopupbtn.Name = "closepopupbtn";
             this.closepopupbtn.Size = new System.Drawing.Size(70, 22);
@@ -1187,6 +1187,7 @@ namespace PackingApplication
             this.srproddateradiobtn.UseVisualStyleBackColor = true;
             this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
             this.srproddateradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDateRadiobtn_KeyDown);
+            this.srproddateradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srboxnoradiobtn
             // 
@@ -1201,6 +1202,7 @@ namespace PackingApplication
             this.srboxnoradiobtn.UseVisualStyleBackColor = true;
             this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
             this.srboxnoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrBoxNoRadiobtn_KeyDown);
+            this.srboxnoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srdeptradiobtn
             // 
@@ -1215,6 +1217,7 @@ namespace PackingApplication
             this.srdeptradiobtn.UseVisualStyleBackColor = true;
             this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
             this.srdeptradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrDeptRadiobtn_KeyDown);
+            this.srdeptradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srlinenoradiobtn
             // 
@@ -1229,6 +1232,7 @@ namespace PackingApplication
             this.srlinenoradiobtn.UseVisualStyleBackColor = true;
             this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
             this.srlinenoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrLineNoRadiobtn_KeyDown);
+            this.srlinenoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // dateTimePicker2
             // 
@@ -1424,7 +1428,7 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
