@@ -4,14 +4,19 @@ using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -57,6 +62,12 @@ namespace PackingApplication
         int selectedSrMachineId = 0;
         string selectedSrBoxNo = null;
         string selectedSrProductionDate = null;
+        ProductionPrintSlipRequest slipRequest = new ProductionPrintSlipRequest();
+        string reportServer = ConfigurationManager.AppSettings["reportServer"];
+        string reportPath = ConfigurationManager.AppSettings["reportPath"];
+        string UserName = ConfigurationManager.AppSettings["UserName"];
+        string Password = ConfigurationManager.AppSettings["Password"];
+        string Domain = ConfigurationManager.AppSettings["Domain"];
         public ViewDTYPackingForm()
         {
             Log.writeMessage("DTY ViewDTYPackingForm constructor - Start : " + DateTime.Now);
@@ -72,6 +83,7 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.closepopupbtn, 8);
             _cmethod.SetButtonBorderRadius(this.searchbtn, 8);
             _cmethod.SetButtonBorderRadius(this.closelistbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.printbtn, 8);
 
             rowMaterial.AutoGenerateColumns = false;
 
@@ -372,6 +384,7 @@ namespace PackingApplication
             this.srproddateradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.printbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("DTY ApplyFonts - End : " + DateTime.Now);
         }
@@ -2083,6 +2096,7 @@ namespace PackingApplication
                 //SelectedProductionDetails
                 if (getSelectedProductionDetails.ProductionId > 0)
                 {
+                    _productionId = getSelectedProductionDetails.ProductionId;
                     await LoadProductionDetailsAsync(getSelectedProductionDetails);
 
                     this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
@@ -2363,6 +2377,72 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY SelectRadio - End : " + DateTime.Now);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("DTY btnPrint_Click - Start : " + DateTime.Now);
+
+            slipRequest.ProductionId = _productionId;
+            //call ssrs report to print
+            string reportpathlink = reportPath + "/Texture";
+            string format = "PDF";
+
+            //set params
+            string productionId = _productionId.ToString();
+            string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
+
+            WebClient client = new WebClient();
+            //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+            //client.UseDefaultCredentials = false;
+
+            // Download PDF
+            byte[] bytes = client.DownloadData(url);
+
+            // Save to temp
+            string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
+            File.WriteAllBytes(tempFile, bytes);
+
+            using (var pdfDoc = PdfDocument.Load(tempFile))
+            {
+                using (var printDoc = pdfDoc.CreatePrintDocument())
+                {
+                    var printerSettings = new PrinterSettings()
+                    {
+                        // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                        Copies = 1
+                    };
+                    // Set custom 4x4 label size
+                    printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                    printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+
+                    printDoc.PrinterSettings = printerSettings;
+                    //printDoc.Print(); // sends PDF to printer
+                    try
+                    {
+                        printDoc.Print();
+                        int slipId = _packingService.AddPrintSlip(slipRequest);
+                    }
+                    catch (InvalidPrinterException ex)
+                    {
+                        MessageBox.Show("Printer is not available.\n" + ex.Message);
+                    }
+                    catch (Win32Exception ex)
+                    {
+                        MessageBox.Show("Printing failed.\n" + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                    }
+                }
+            }
+
+            // Clean up temp file
+            File.Delete(tempFile);
+
+            Log.writeMessage("DTY btnPrint_Click - End : " + DateTime.Now);
         }
     }
 }

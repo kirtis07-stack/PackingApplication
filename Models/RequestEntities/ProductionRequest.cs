@@ -75,4 +75,12 @@ namespace PackingApplication.Models.RequestEntities
         public byte Extruder { get; set; }
         public long StockTrfDetailsId { get; set; }
     }
+
+    public class ProductionPrintSlipRequest
+    {
+        public int SlipId { get; set; }
+        public long ProductionId { get; set; }
+        public int UserId { get; set; }
+        public DateTime PrintDate { get; set; }
+    }
 }

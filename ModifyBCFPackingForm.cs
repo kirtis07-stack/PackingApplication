@@ -3,13 +3,18 @@ using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -61,6 +66,12 @@ namespace PackingApplication
         int selectedSrMachineId = 0;
         string selectedSrBoxNo = null;
         string selectedSrProductionDate = null;
+        ProductionPrintSlipRequest slipRequest = new ProductionPrintSlipRequest();
+        string reportServer = ConfigurationManager.AppSettings["reportServer"];
+        string reportPath = ConfigurationManager.AppSettings["reportPath"];
+        string UserName = ConfigurationManager.AppSettings["UserName"];
+        string Password = ConfigurationManager.AppSettings["Password"];
+        string Domain = ConfigurationManager.AppSettings["Domain"];
         public ModifyBCFPackingForm()
         {
             Log.writeMessage("BCF ModifyBCFPackingForm - Start : " + DateTime.Now);
@@ -2937,125 +2948,82 @@ namespace PackingApplication
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null && result.ProductionId > 0)
             {
+                slipRequest.ProductionId = result.ProductionId;
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
-                //RefreshLastBoxDetails();
-                //if (_productionId == 0)
-                //{
-                //    ShowCustomMessage(result.BoxNoFmtd);
-                //    isFormReady = false;
-                //    this.spoolno.Text = "0";
-                //    this.spoolwt.Text = "0";
-                //    this.grosswtno.Text = "0.000";
-                //    this.tarewt.Text = "0.000";
-                //    this.netwt.Text = "0.000";
-                //    this.wtpercop.Text = "0.000";
-                //    palletwtno.Text = boxpalletitemwt.Text;
-                //    isFormReady = true;
-                //    this.spoolno.Focus();
-                //if (isPrint)
-                //{
-                //    //call ssrs report to print
-                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                //    string reportPath = "/PackingSSRSReport/TextureAndBCF";
-                //    string format = "PDF";
-
-                //    //set params
-                //    string productionId = result.ProductionId.ToString();
-                //    string startDate = "";
-                //    string endDate = "";
-                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
-
-                //    WebClient client = new WebClient();
-                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                //    byte[] bytes = client.DownloadData(url);
-
-                //    // Save to file
-                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                //    File.WriteAllBytes(tempFile, bytes);
-
-                //    //// Open with default PDF reader
-                //    //System.Diagnostics.Process.Start("Report.pdf");
-
-                //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                //    {
-                //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                //        {
-                //            var printerSettings = new PrinterSettings()
-                //            {
-                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                //                Copies = 1
-                //            };
-                //            // Set custom 4x4 label size
-                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-
-                //            printDoc.PrinterSettings = printerSettings;
-                //            printDoc.Print(); // sends PDF to printer
-                //        }
-                //    }
-
-                //    // 5️⃣ Clean up temp file
-                //    File.Delete(tempFile);
-                //}
-                //}
-                //else
-                //{
+                RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
-                //if (isPrint)
-                //{
-                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                //    string reportPath = "/PackingSSRSReport/TextureAndBCF";
-                //    string format = "PDF";
+                if (isPrint)
+                {
+                    //call ssrs report to print
+                    string reportpathlink = reportPath + "/BCF";
+                    string format = "PDF";
 
-                //    //set params
-                //    string productionId = result.ProductionId.ToString();
-                //    string startDate = "2025-09-01";
-                //    string endDate = "2025-09-30";
-                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                    //set params
+                    string productionId = result.ProductionId.ToString();
+                    string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
-                //    WebClient client = new WebClient();
-                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    WebClient client = new WebClient();
+                    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+                    //client.UseDefaultCredentials = false;
 
-                //    byte[] bytes = client.DownloadData(url);
+                    // Download PDF
+                    byte[] bytes = client.DownloadData(url);
 
-                //    // Save to file
-                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                //    File.WriteAllBytes(tempFile, bytes);
+                    // Save to temp
+                    string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
+                    File.WriteAllBytes(tempFile, bytes);
 
-                //    //// Open with default PDF reader
-                //    //System.Diagnostics.Process.Start("Report.pdf");
+                    using (var pdfDoc = PdfDocument.Load(tempFile))
+                    {
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                Copies = 1
+                            };
+                            // Set custom 4x4 label size
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                //    {
-                //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                //        {
-                //            printDoc.PrinterSettings = new PrinterSettings()
-                //            {
-                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                //                Copies = 1
-                //            };
-                //            printDoc.Print(); // sends PDF to printer
-                //        }
-                //    }
+                            printDoc.PrinterSettings = printerSettings;
+                            //printDoc.Print(); // sends PDF to printer
+                            try
+                            {
+                                printDoc.Print();
+                                int slipId = _packingService.AddPrintSlip(slipRequest);
+                            }
+                            catch (InvalidPrinterException ex)
+                            {
+                                MessageBox.Show("Printer is not available.\n" + ex.Message);
+                            }
+                            catch (Win32Exception ex)
+                            {
+                                MessageBox.Show("Printing failed.\n" + ex.Message);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                            }
+                        }
+                    }
 
-                //    // 5️⃣ Clean up temp file
-                //    File.Delete(tempFile);
-
-                //}
-                //}
+                    // Clean up temp file
+                    File.Delete(tempFile);
+                }
             }
             else
             {
                 submit.Enabled = true;
                 saveprint.Enabled = true;
-                MessageBox.Show("Something went wrong.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                //MessageBox.Show("Something went wrong.",
+                //    "Error",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Error);
             }
 
             Log.writeMessage("BCF SubmitPacking - End : " + DateTime.Now);

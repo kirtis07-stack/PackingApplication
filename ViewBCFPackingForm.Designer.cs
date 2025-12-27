@@ -114,6 +114,7 @@ namespace PackingApplication
             this.label10 = new System.Windows.Forms.Label();
             this.buttontablelayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.printbtn = new System.Windows.Forms.Button();
             this.findbtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -1352,6 +1353,7 @@ namespace PackingApplication
             // 
             this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel21.Controls.Add(this.printbtn);
             this.panel21.Controls.Add(this.findbtn);
             this.panel21.Controls.Add(this.cancelbtn);
             this.panel21.Location = new System.Drawing.Point(299, 3);
@@ -1359,13 +1361,28 @@ namespace PackingApplication
             this.panel21.Size = new System.Drawing.Size(290, 25);
             this.panel21.TabIndex = 0;
             // 
+            // printbtn
+            // 
+            this.printbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.printbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.printbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.printbtn.Location = new System.Drawing.Point(105, 0);
+            this.printbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.printbtn.Name = "printbtn";
+            this.printbtn.Size = new System.Drawing.Size(81, 24);
+            this.printbtn.TabIndex = 122;
+            this.printbtn.Text = "Print";
+            this.printbtn.UseVisualStyleBackColor = false;
+            this.printbtn.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // findbtn
             // 
             this.findbtn.BackColor = System.Drawing.SystemColors.Highlight;
             this.findbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.findbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.findbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.findbtn.Location = new System.Drawing.Point(34, 1);
+            this.findbtn.Location = new System.Drawing.Point(0, 0);
             this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.findbtn.Name = "findbtn";
             this.findbtn.Size = new System.Drawing.Size(81, 24);
@@ -1380,7 +1397,7 @@ namespace PackingApplication
             this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(172, 1);
+            this.cancelbtn.Location = new System.Drawing.Point(209, 1);
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(81, 24);
@@ -4056,6 +4073,7 @@ namespace PackingApplication
         private Button closelistbtn;
         private DataGridView dataGridView1;
         private Button findbtn;
+        private Button printbtn;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
