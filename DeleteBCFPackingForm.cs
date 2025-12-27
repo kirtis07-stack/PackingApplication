@@ -397,6 +397,8 @@ namespace PackingApplication
             this.srproddateradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.delete.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("BCF ApplyFonts - End : " + DateTime.Now);
         }

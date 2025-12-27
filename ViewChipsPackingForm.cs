@@ -340,6 +340,7 @@ namespace PackingApplication
             this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.printbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("Chips ApplyFonts - End : " + DateTime.Now);
         }
