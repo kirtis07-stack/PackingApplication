@@ -3283,11 +3283,18 @@ namespace PackingApplication
 
                 dataGridView1.CellContentClick += dataGridView1_CellContentClick;
 
+                dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+
                 dataGridView1.CellMouseEnter += (s, te) =>
                 {
-                    if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                    if (te.RowIndex >= 0 && te.ColumnIndex >= 0 &&
+                        dataGridView1.Columns[te.ColumnIndex].Name == "Action")
                     {
-                        dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                        dataGridView1.Cursor = Cursors.Hand;
+                    }
+                    else
+                    {
+                        dataGridView1.Cursor = Cursors.Default;
                     }
                 };
 
@@ -3305,40 +3312,66 @@ namespace PackingApplication
             Log.writeMessage("Chips btnSearch_Click - End : " + DateTime.Now);
         }
 
-        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Log.writeMessage("Chips dataGridView1_CellContentClick - Start : " + DateTime.Now);
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
-                var rowObj = dataGridView1.Rows[e.RowIndex].DataBoundItem as ProductionResponse;
-                if (!rowObj.CanModifyDelete)
-                    return;
-
-                popuppanel.Visible = false;
-                datalistpopuppanel.Visible = false;
-
-                long productionId = Convert.ToInt32(
-                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
-                );
-
-                var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
-
-                //SelectedProductionDetails
-                if (getSelectedProductionDetails.ProductionId > 0)
-                {
-                    _productionId = getSelectedProductionDetails.ProductionId;
-                    await LoadProductionDetailsAsync(getSelectedProductionDetails);
-
-                    this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
-                    this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
-                    this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
-                    this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
-                    this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
-                }
+                EditRow(e.RowIndex);
             }
 
             Log.writeMessage("Chips dataGridView1_CellContentClick - End : " + DateTime.Now);
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("Chips dataGridView1_KeyDown - Start : " + DateTime.Now);
+
+            if ((e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space) &&
+                dataGridView1.CurrentCell?.OwningColumn?.Name == "Action")
+            {
+                EditRow(dataGridView1.CurrentCell.RowIndex);
+                e.Handled = true;
+            }
+
+            Log.writeMessage("Chips dataGridView1_KeyDown - End : " + DateTime.Now);
+        }
+
+        private async void EditRow(int rowIndex)
+        {
+            Log.writeMessage("Chips EditRow - Start : " + DateTime.Now);
+
+            if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count)
+                return;
+
+            var rowObj = dataGridView1.Rows[rowIndex].DataBoundItem as ProductionResponse;
+            if (!rowObj.CanModifyDelete)
+                return;
+
+            popuppanel.Visible = false;
+            datalistpopuppanel.Visible = false;
+
+            long productionId = Convert.ToInt32(
+                ((ProductionResponse)dataGridView1.Rows[rowIndex].DataBoundItem).ProductionId
+            );
+
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
+
+            //SelectedProductionDetails
+            if (getSelectedProductionDetails.ProductionId > 0)
+            {
+                _productionId = getSelectedProductionDetails.ProductionId;
+                await LoadProductionDetailsAsync(getSelectedProductionDetails);
+
+                this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
+                this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
+                this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
+                this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+            }
+
+            Log.writeMessage("Chips EditRow - End : " + DateTime.Now);
         }
 
         private async void SrLineNoList_SelectionChangeCommitted(object sender, EventArgs e)
