@@ -1990,10 +1990,10 @@ namespace PackingApplication
                 ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
                 this.grosswtno.Text = "0.000";
-                this.tarewt.Text = "0.000";
                 this.netwt.Text = "0.000";
                 this.wtpercop.Text = "0.000";
                 palletwtno.Text = boxpalletitemwt.Text;
+                tarewt.Text = boxpalletitemwt.Text;
                 isFormReady = true;
                 if (isPrint)
                 {
