@@ -104,6 +104,7 @@ namespace PackingApplication
             srboxnoradiobtn.FlatStyle = FlatStyle.System;
             srproddateradiobtn.FlatStyle = FlatStyle.System;
             closepopupbtn.FlatStyle = FlatStyle.System;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
@@ -327,6 +328,8 @@ namespace PackingApplication
             this.srproddateradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.delete.Font = FontManager.GetFont(8F, FontStyle.Bold);
 
             Log.writeMessage("Chips ApplyFonts - End : " + DateTime.Now);
         }
@@ -1495,6 +1498,8 @@ namespace PackingApplication
             Log.writeMessage("Chips btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             findbtn.Focus();
 
             Log.writeMessage("Chips btnClosePopup_Click - End : " + DateTime.Now);
@@ -1648,6 +1653,9 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips rbLineNo_CheckedChanged - Start : " + DateTime.Now);
 
+            if (!srlinenoradiobtn.Checked)
+                return;
+
             SrLineNoList.Enabled = srlinenoradiobtn.Checked;
             SrDeptList.Enabled = false;
             SrBoxNoList.Enabled = false;
@@ -1659,6 +1667,9 @@ namespace PackingApplication
         private void rbDepartment_CheckedChanged(object sender, EventArgs e)
         {
             Log.writeMessage("Chips rbDepartment_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!srdeptradiobtn.Checked)
+                return;
 
             SrDeptList.Enabled = srdeptradiobtn.Checked;
             SrLineNoList.Enabled = false;
@@ -1672,6 +1683,9 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
 
+            if (!srboxnoradiobtn.Checked)
+                return;
+
             SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
             SrLineNoList.Enabled = false;
             SrDeptList.Enabled = false;
@@ -1683,6 +1697,9 @@ namespace PackingApplication
         private void rbDate_CheckedChanged(object sender, EventArgs e)
         {
             Log.writeMessage("Chips rbDate_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!srproddateradiobtn.Checked)
+                return;
 
             dateTimePicker2.Enabled = srproddateradiobtn.Checked;
             SrLineNoList.Enabled = false;
@@ -1773,11 +1790,18 @@ namespace PackingApplication
 
                 dataGridView1.CellContentClick += dataGridView1_CellContentClick;
 
+                dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+
                 dataGridView1.CellMouseEnter += (s, te) =>
                 {
-                    if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                    if (te.RowIndex >= 0 && te.ColumnIndex >= 0 &&
+                        dataGridView1.Columns[te.ColumnIndex].Name == "Action")
                     {
-                        dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                        dataGridView1.Cursor = Cursors.Hand;
+                    }
+                    else
+                    {
+                        dataGridView1.Cursor = Cursors.Default;
                     }
                 };
 
@@ -1795,40 +1819,66 @@ namespace PackingApplication
             Log.writeMessage("Chips btnSearch_Click - End : " + DateTime.Now);
         }
 
-        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Log.writeMessage("Chips dataGridView1_CellContentClick - Start : " + DateTime.Now);
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
-                var rowObj = dataGridView1.Rows[e.RowIndex].DataBoundItem as ProductionResponse;
-                if (!rowObj.CanModifyDelete)
-                    return;
-
-                popuppanel.Visible = false;
-                datalistpopuppanel.Visible = false;
-
-                long productionId = Convert.ToInt32(
-                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
-                );
-
-                var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
-
-                //SelectedProductionDetails
-                if (getSelectedProductionDetails.ProductionId > 0)
-                {
-                    _productionId = getSelectedProductionDetails.ProductionId;
-                    await LoadProductionDetailsAsync(getSelectedProductionDetails);
-
-                    this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
-                    this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
-                    this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
-                    this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
-                    this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
-                }
+                EditRow(e.RowIndex);
             }
 
             Log.writeMessage("Chips dataGridView1_CellContentClick - End : " + DateTime.Now);
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("Chips dataGridView1_KeyDown - Start : " + DateTime.Now);
+
+            if ((e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space) &&
+                dataGridView1.CurrentCell?.OwningColumn?.Name == "Action")
+            {
+                EditRow(dataGridView1.CurrentCell.RowIndex);
+                e.Handled = true;
+            }
+
+            Log.writeMessage("Chips dataGridView1_KeyDown - End : " + DateTime.Now);
+        }
+
+        private async void EditRow(int rowIndex)
+        {
+            Log.writeMessage("Chips EditRow - Start : " + DateTime.Now);
+
+            if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count)
+                return;
+
+            var rowObj = dataGridView1.Rows[rowIndex].DataBoundItem as ProductionResponse;
+            if (!rowObj.CanModifyDelete)
+                return;
+
+            popuppanel.Visible = false;
+            datalistpopuppanel.Visible = false;
+
+            long productionId = Convert.ToInt32(
+                ((ProductionResponse)dataGridView1.Rows[rowIndex].DataBoundItem).ProductionId
+            );
+
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
+
+            //SelectedProductionDetails
+            if (getSelectedProductionDetails.ProductionId > 0)
+            {
+                _productionId = getSelectedProductionDetails.ProductionId;
+                await LoadProductionDetailsAsync(getSelectedProductionDetails);
+
+                this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
+                this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
+                this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
+                this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+            }
+
+            Log.writeMessage("Chips EditRow - End : " + DateTime.Now);
         }
 
         private async void SrLineNoList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -2111,6 +2161,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -2125,6 +2176,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -2139,6 +2191,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -2153,10 +2206,38 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = false;
                 e.Handled = true;
             }
 
             Log.writeMessage("Chips SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void RadioButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            Log.writeMessage("Chips RadioButton_MouseDown - End : " + DateTime.Now);
+
+            RadioButton rb = sender as RadioButton;
+            if (rb == null) return;
+
+            SelectRadio(rb);
+
+            Log.writeMessage("Chips RadioButton_MouseDown - End : " + DateTime.Now);
+        }
+
+        private void SelectRadio(RadioButton selected)
+        {
+            Log.writeMessage("Chips SelectRadio - End : " + DateTime.Now);
+
+            foreach (Control ctrl in selected.Parent.Controls)
+            {
+                if (ctrl is RadioButton rb)
+                {
+                    rb.Checked = (rb == selected);
+                }
+            }
+
+            Log.writeMessage("Chips SelectRadio - End : " + DateTime.Now);
         }
     }
 }

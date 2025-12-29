@@ -69,6 +69,7 @@ namespace PackingApplication
         int selectedMachineid = 0;
         short selectedItemTypeid = 0;
         short selectedMainItemTypeid = 0;
+        ProductionPrintSlipRequest slipRequest = new ProductionPrintSlipRequest();
         public AddChipsPackingForm()
         {
             Log.writeMessage("Chips AddChipsPackingForm Constructor - Start : " + DateTime.Now);
@@ -1980,6 +1981,7 @@ namespace PackingApplication
             result = _packingService.AddUpdatePOYPacking(0, productionRequest);
             if (result != null && result.ProductionId > 0)
             {
+                slipRequest.ProductionId = result.ProductionId;
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
@@ -2029,11 +2031,29 @@ namespace PackingApplication
                             printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
                             printDoc.PrinterSettings = printerSettings;
-                            printDoc.Print(); // sends PDF to printer
+                            //printDoc.Print(); // sends PDF to printer
+
+                            try
+                            {
+                                printDoc.Print();
+                                int slipId = _packingService.AddPrintSlip(slipRequest);
+                            }
+                            catch (InvalidPrinterException ex)
+                            {
+                                MessageBox.Show("Printer is not available.\n" + ex.Message);
+                            }
+                            catch (Win32Exception ex)
+                            {
+                                MessageBox.Show("Printing failed.\n" + ex.Message);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                            }
                         }
                     }
 
-                    // 5️⃣ Clean up temp file
+                    //Clean up temp file
                     File.Delete(tempFile);
                 }
 
@@ -2042,10 +2062,10 @@ namespace PackingApplication
             {
                 submit.Enabled = true;
                 saveprint.Enabled = true;
-                MessageBox.Show("Something went wrong.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                //MessageBox.Show("Something went wrong.",
+                //    "Error",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Error);
             }
 
             Log.writeMessage("Chips SubmitPacking - End : " + DateTime.Now);

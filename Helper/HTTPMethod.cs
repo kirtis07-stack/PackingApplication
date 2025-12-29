@@ -1,15 +1,16 @@
 ﻿using Newtonsoft.Json;
 using PackingApplication.Models.CommonEntities;
+using PackingApplication.Models.ResponseEntities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
+using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PackingApplication.Helper
@@ -75,7 +76,7 @@ namespace PackingApplication.Helper
         //}
 
 
-        public async Task<string> PostCallApi(string path, object data)
+        public async Task<ApiResponse> PostCallApi(string path, object data)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(path);
@@ -84,20 +85,26 @@ namespace PackingApplication.Helper
             using (var content = new StringContent(JsonConvert.SerializeObject(data), System.Text.Encoding.UTF8, "application/json"))
             {
                 var response = client.PostAsync(path, content).Result;
+                string responseText = response.Content.ReadAsStringAsync().Result;
+                return new ApiResponse
+                {
+                    StatusCode = (int)response.StatusCode,
+                    ResponseBody = responseText
+                };
                 //use await it has moved in some context on .core 6.0
-                if (response.IsSuccessStatusCode == true)
-                {
-                    return response.Content.ReadAsStringAsync().Result;
-                }
-                else
-                {
-                    return response.Content.ReadAsStringAsync().Result;
-                }
+                //if (response.IsSuccessStatusCode == true)
+                //{
+                //    return response.Content.ReadAsStringAsync().Result;
+                //}
+                //else
+                //{
+                //    return response.Content.ReadAsStringAsync().Result;
+                //}
             }
 
         }
 
-        public async Task<string> PutCallApi(string path, object data)
+        public async Task<ApiResponse> PutCallApi(string path, object data)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(path);
@@ -106,15 +113,21 @@ namespace PackingApplication.Helper
             using (var content = new StringContent(JsonConvert.SerializeObject(data), System.Text.Encoding.UTF8, "application/json"))
             {
                 var response = client.PutAsync(path, content).Result;
+                string responseText = response.Content.ReadAsStringAsync().Result;
+                return new ApiResponse
+                {
+                    StatusCode = (int)response.StatusCode,
+                    ResponseBody = responseText
+                };
                 //use await it has moved in some context on .core 6.0
-                if (response.IsSuccessStatusCode == true)
-                {
-                    return response.Content.ReadAsStringAsync().Result;
-                }
-                else
-                {
-                    return response.Content.ReadAsStringAsync().Result;
-                }
+                //if (response.IsSuccessStatusCode == true)
+                //{
+                //    return response.Content.ReadAsStringAsync().Result;
+                //}
+                //else
+                //{
+                //    return response.Content.ReadAsStringAsync().Result;
+                //}
             }
 
         }

@@ -3,6 +3,7 @@ using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,9 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +68,12 @@ namespace PackingApplication
         int selectedSrMachineId = 0;
         string selectedSrBoxNo = null;
         string selectedSrProductionDate = null;
+        ProductionPrintSlipRequest slipRequest = new ProductionPrintSlipRequest();
+        string reportServer = ConfigurationManager.AppSettings["reportServer"];
+        string reportPath = ConfigurationManager.AppSettings["reportPath"];
+        string UserName = ConfigurationManager.AppSettings["UserName"];
+        string Password = ConfigurationManager.AppSettings["Password"];
+        string Domain = ConfigurationManager.AppSettings["Domain"];
         public ModifyDTYPackingForm()
         {
             Log.writeMessage("ModifyDTYPackingForm - Start : "+ DateTime.Now);
@@ -123,6 +132,7 @@ namespace PackingApplication
             srboxnoradiobtn.FlatStyle = FlatStyle.System;
             srproddateradiobtn.FlatStyle = FlatStyle.System;
             closepopupbtn.FlatStyle = FlatStyle.System;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
@@ -2264,126 +2274,81 @@ namespace PackingApplication
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null && result.ProductionId > 0)
             {
+                slipRequest.ProductionId = result.ProductionId;
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
-                //RefreshLastBoxDetails();
-                //if (_productionId == 0)
-                //{
-                //    MessageBox.Show("DTY Packing added successfully!",
-                //    "Success",
-                //    MessageBoxButtons.OK,
-                //    MessageBoxIcon.Information);
-                //    isFormReady = false;
-                //    this.spoolno.Text = "0";
-                //    this.spoolwt.Text = "0";
-                //    this.grosswtno.Text = "0.000";
-                //    this.tarewt.Text = "0.000";
-                //    this.netwt.Text = "0.000";
-                //    this.wtpercop.Text = "0.000";
-                //    palletwtno.Text = boxpalletitemwt.Text;
-                //    isFormReady = true;
-                //if (isPrint)
-                //{
-                //    //call ssrs report to print
-                //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                //    string format = "PDF";
-
-                //    //set params
-                //    string productionId = result.ProductionId.ToString();
-                //    string startDate = "";
-                //    string endDate = "";
-                //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
-
-                //    WebClient client = new WebClient();
-                //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-                //    byte[] bytes = client.DownloadData(url);
-
-                //    // Save to file
-                //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                //    File.WriteAllBytes(tempFile, bytes);
-
-                //    //// Open with default PDF reader
-                //    //System.Diagnostics.Process.Start("Report.pdf");
-
-                //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                //    {
-                //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                //        {
-                //            var printerSettings = new PrinterSettings()
-                //            {
-                //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                //                Copies = 1
-                //            };
-                //            // Set custom 4x4 label size
-                //            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-
-                //            printDoc.PrinterSettings = printerSettings;
-                //            printDoc.Print(); // sends PDF to printer
-                //        }
-                //    }
-
-                //    // 5️⃣ Clean up temp file
-                //    File.Delete(tempFile);
-                //}
-                //}
-                //else
-                //{
+                RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
-                    //if (isPrint)
-                    //{
-                    //    string reportServer = "http://desktop-ocu1bqt/ReportServer";
-                    //    string reportPath = "/PackingSSRSReport/TextureAndPOY";
-                    //    string format = "PDF";
+                if (isPrint)
+                {
+                    //call ssrs report to print
+                    string reportpathlink = reportPath + "/Texture";
+                    string format = "PDF";
 
-                    //    //set params
-                    //    string productionId = result.ProductionId.ToString();
-                    //    string startDate = "2025-09-01";
-                    //    string endDate = "2025-09-30";
-                    //    string url = $"{reportServer}?{reportPath}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate={startDate}&EndDate={endDate}";
+                    //set params
+                    string productionId = result.ProductionId.ToString();
+                    string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
-                    //    WebClient client = new WebClient();
-                    //    client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    WebClient client = new WebClient();
+                    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+                    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+                    //client.UseDefaultCredentials = false;
 
-                    //    byte[] bytes = client.DownloadData(url);
+                    // Download PDF
+                    byte[] bytes = client.DownloadData(url);
 
-                    //    // Save to file
-                    //    string tempFile = Path.Combine(Path.GetTempPath(), "Report.pdf");
-                    //    File.WriteAllBytes(tempFile, bytes);
+                    // Save to temp
+                    string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
+                    File.WriteAllBytes(tempFile, bytes);
 
-                    //    //// Open with default PDF reader
-                    //    //System.Diagnostics.Process.Start("Report.pdf");
+                    using (var pdfDoc = PdfDocument.Load(tempFile))
+                    {
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+                                Copies = 1
+                            };
+                            // Set custom 4x4 label size
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
 
-                    //    using (var pdfDoc = PdfDocument.Load(tempFile))
-                    //    {
-                    //        using (var printDoc = pdfDoc.CreatePrintDocument())
-                    //        {
-                    //            printDoc.PrinterSettings = new PrinterSettings()
-                    //            {
-                    //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                    //                Copies = 1
-                    //            };
-                    //            printDoc.Print(); // sends PDF to printer
-                    //        }
-                    //    }
+                            printDoc.PrinterSettings = printerSettings;
+                            //printDoc.Print(); // sends PDF to printer
+                            try
+                            {
+                                printDoc.Print();
+                                int slipId = _packingService.AddPrintSlip(slipRequest);
+                            }
+                            catch (InvalidPrinterException ex)
+                            {
+                                MessageBox.Show("Printer is not available.\n" + ex.Message);
+                            }
+                            catch (Win32Exception ex)
+                            {
+                                MessageBox.Show("Printing failed.\n" + ex.Message);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                            }
+                        }
+                    }
 
-                    //    // 5️⃣ Clean up temp file
-                    //    File.Delete(tempFile);
-
-                    //}
-                //}
+                    // Clean up temp file
+                    File.Delete(tempFile);
+                }
             }
             else
             {
                 submit.Enabled = true;
                 saveprint.Enabled = true;
-                MessageBox.Show("Something went wrong.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                //MessageBox.Show("Something went wrong.",
+                //    "Error",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Error);
             }
 
             Log.writeMessage("DTY SubmitPacking - End : " + DateTime.Now);
@@ -3562,6 +3527,8 @@ namespace PackingApplication
             Log.writeMessage("DTY btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             findbtn.Focus();
 
             Log.writeMessage("DTY btnClosePopup_Click - End : " + DateTime.Now);
@@ -3715,6 +3682,9 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY rbLineNo_CheckedChanged - Start : " + DateTime.Now);
 
+            if (!srlinenoradiobtn.Checked)
+                return;
+
             SrLineNoList.Enabled = srlinenoradiobtn.Checked;
             SrDeptList.Enabled = false;
             SrBoxNoList.Enabled = false;
@@ -3726,6 +3696,9 @@ namespace PackingApplication
         private void rbDepartment_CheckedChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY rbDepartment_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!srdeptradiobtn.Checked)
+                return;
 
             SrDeptList.Enabled = srdeptradiobtn.Checked;
             SrLineNoList.Enabled = false;
@@ -3739,6 +3712,9 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
 
+            if (!srboxnoradiobtn.Checked)
+                return;
+
             SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
             SrLineNoList.Enabled = false;
             SrDeptList.Enabled = false;
@@ -3750,6 +3726,9 @@ namespace PackingApplication
         private void rbDate_CheckedChanged(object sender, EventArgs e)
         {
             Log.writeMessage("DTY rbDate_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!srproddateradiobtn.Checked)
+                return;
 
             dateTimePicker2.Enabled = srproddateradiobtn.Checked;
             SrLineNoList.Enabled = false;
@@ -3840,11 +3819,18 @@ namespace PackingApplication
 
                 dataGridView1.CellContentClick += dataGridView1_CellContentClick;
 
+                dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+
                 dataGridView1.CellMouseEnter += (s, te) =>
                 {
-                    if (te.ColumnIndex == dataGridView1.Columns["Action"].Index && te.RowIndex >= 0)
+                    if (te.RowIndex >= 0 && te.ColumnIndex >= 0 &&
+                        dataGridView1.Columns[te.ColumnIndex].Name == "Action")
                     {
-                        dataGridView1.Cursor = Cursors.Hand; // Hand cursor when over the image cell
+                        dataGridView1.Cursor = Cursors.Hand;
+                    }
+                    else
+                    {
+                        dataGridView1.Cursor = Cursors.Default;
                     }
                 };
 
@@ -3862,40 +3848,66 @@ namespace PackingApplication
             Log.writeMessage("DTY btnSearch_Click - End : " + DateTime.Now);
         }
 
-        private async void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Log.writeMessage("DTY dataGridView1_CellContentClick - Start : " + DateTime.Now);
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Action"].Index)
             {
-                var rowObj = dataGridView1.Rows[e.RowIndex].DataBoundItem as ProductionResponse;
-                if (!rowObj.CanModifyDelete)
-                    return;
-
-                popuppanel.Visible = false;
-                datalistpopuppanel.Visible = false;
-
-                long productionId = Convert.ToInt32(
-                    ((ProductionResponse)dataGridView1.Rows[e.RowIndex].DataBoundItem).ProductionId
-                );
-
-                var getSelectedProductionDetails = _packingService.getLastBoxDetails("dtypacking", productionId).Result;
-
-                //SelectedProductionDetails
-                if (getSelectedProductionDetails.ProductionId > 0)
-                {
-                    _productionId = getSelectedProductionDetails.ProductionId;
-                    await LoadProductionDetailsAsync(getSelectedProductionDetails);
-
-                    this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
-                    this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
-                    this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
-                    this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
-                    this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
-                }
+                EditRow(e.RowIndex);
             }
 
             Log.writeMessage("DTY dataGridView1_CellContentClick - End : " + DateTime.Now);
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY dataGridView1_KeyDown - Start : " + DateTime.Now);
+
+            if ((e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space) &&
+                dataGridView1.CurrentCell?.OwningColumn?.Name == "Action")
+            {
+                EditRow(dataGridView1.CurrentCell.RowIndex);
+                e.Handled = true;
+            }
+
+            Log.writeMessage("DTY dataGridView1_KeyDown - End : " + DateTime.Now);
+        }
+
+        private async void EditRow(int rowIndex)
+        {
+            Log.writeMessage("DTY EditRow - Start : " + DateTime.Now);
+
+            if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count)
+                return;
+
+            var rowObj = dataGridView1.Rows[rowIndex].DataBoundItem as ProductionResponse;
+            if (!rowObj.CanModifyDelete)
+                return;
+
+            popuppanel.Visible = false;
+            datalistpopuppanel.Visible = false;
+
+            long productionId = Convert.ToInt32(
+                ((ProductionResponse)dataGridView1.Rows[rowIndex].DataBoundItem).ProductionId
+            );
+
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails("dtypacking", productionId).Result;
+
+            //SelectedProductionDetails
+            if (getSelectedProductionDetails.ProductionId > 0)
+            {
+                _productionId = getSelectedProductionDetails.ProductionId;
+                await LoadProductionDetailsAsync(getSelectedProductionDetails);
+
+                this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
+                this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
+                this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
+                this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+            }
+
+            Log.writeMessage("DTY EditRow - End : " + DateTime.Now);
         }
 
         private async void SrLineNoList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -4088,6 +4100,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -4102,6 +4115,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -4116,6 +4130,7 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srproddateradiobtn.Checked = false;
                 e.Handled = true;
             }
 
@@ -4130,10 +4145,38 @@ namespace PackingApplication
             {
                 RadioButton rb = sender as RadioButton;
                 rb.Checked = !rb.Checked;   // toggle select / deselect
+                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = false;
                 e.Handled = true;
             }
 
             Log.writeMessage("DTY SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void RadioButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            Log.writeMessage("DTY RadioButton_MouseDown - End : " + DateTime.Now);
+
+            RadioButton rb = sender as RadioButton;
+            if (rb == null) return;
+
+            SelectRadio(rb);
+
+            Log.writeMessage("DTY RadioButton_MouseDown - End : " + DateTime.Now);
+        }
+
+        private void SelectRadio(RadioButton selected)
+        {
+            Log.writeMessage("DTY SelectRadio - End : " + DateTime.Now);
+
+            foreach (Control ctrl in selected.Parent.Controls)
+            {
+                if (ctrl is RadioButton rb)
+                {
+                    rb.Checked = (rb == selected);
+                }
+            }
+
+            Log.writeMessage("DTY SelectRadio - End : " + DateTime.Now);
         }
     }
 }

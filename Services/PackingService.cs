@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PackingApplication.Services
 {
@@ -46,13 +47,26 @@ namespace PackingApplication.Services
             if (packingId == 0)
             {
                 var getPackingResponse = method.PostCallApi(packingURL + "Production/Add", productionRequest).Result;
-                Log.writeMessage("Response : " + getPackingResponse);
-                return JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
+                if (getPackingResponse.StatusCode != 200)
+                {
+                    var error = JsonConvert.DeserializeObject<ApiErrorResponse>(getPackingResponse.ResponseBody);
+                    MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                Log.writeMessage("AddResponse : " + getPackingResponse);
+                return JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse.ResponseBody);
             }
             else
             {
                 var getPackingResponse = method.PutCallApi(packingURL + "Production/Update?productionId=" + packingId, productionRequest).Result;
-                return JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse);
+                if (getPackingResponse.StatusCode != 200)
+                {
+                    var error = JsonConvert.DeserializeObject<ApiErrorResponse>(getPackingResponse.ResponseBody);
+                    MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                Log.writeMessage("UpdateResponse : " + getPackingResponse);
+                return JsonConvert.DeserializeObject<ProductionResponse>(getPackingResponse.ResponseBody);
             }
         }
 
@@ -122,6 +136,23 @@ namespace PackingApplication.Services
             var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
                 ?? new List<ProductionResponse>();
             return getPacking;
+        }
+
+        public int AddPrintSlip(ProductionPrintSlipRequest slipRequest)
+        {
+            Log.writeMessage("API call AddPrintSlip - Start : " + DateTime.Now);
+            string jsonRequest = JsonConvert.SerializeObject(slipRequest, Formatting.Indented);
+            Log.writeMessage("AddPrintSlip : ProductionPrintSlip/Add" + jsonRequest);
+
+            var getSlipResponse = method.PostCallApi(packingURL + "ProductionPrintSlip/Add", slipRequest).Result;
+            if (getSlipResponse.StatusCode != 200)
+            {
+                var error = JsonConvert.DeserializeObject<ApiErrorResponse>(getSlipResponse.ResponseBody);
+                MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+            Log.writeMessage("AddPrintSlipResponse : " + getSlipResponse);
+            return JsonConvert.DeserializeObject<int>(getSlipResponse.ResponseBody);
         }
     }
 }

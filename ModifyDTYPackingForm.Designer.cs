@@ -1005,7 +1005,7 @@ namespace PackingApplication
             this.submit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.submit.Location = new System.Drawing.Point(321, 0);
+            this.submit.Location = new System.Drawing.Point(267, 1);
             this.submit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(81, 24);
@@ -1106,7 +1106,7 @@ namespace PackingApplication
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(610, 407);
             this.dataGridView1.TabIndex = 99;
             // 
@@ -1131,7 +1131,7 @@ namespace PackingApplication
             this.searchbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.searchbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.searchbtn.Location = new System.Drawing.Point(12, 150);
+            this.searchbtn.Location = new System.Drawing.Point(27, 150);
             this.searchbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.searchbtn.Name = "searchbtn";
             this.searchbtn.Size = new System.Drawing.Size(70, 22);
@@ -1146,7 +1146,7 @@ namespace PackingApplication
             this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closepopupbtn.Location = new System.Drawing.Point(119, 150);
+            this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
             this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closepopupbtn.Name = "closepopupbtn";
             this.closepopupbtn.Size = new System.Drawing.Size(70, 22);
@@ -1187,6 +1187,7 @@ namespace PackingApplication
             this.srproddateradiobtn.UseVisualStyleBackColor = true;
             this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
             this.srproddateradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDateRadiobtn_KeyDown);
+            this.srproddateradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srboxnoradiobtn
             // 
@@ -1201,6 +1202,7 @@ namespace PackingApplication
             this.srboxnoradiobtn.UseVisualStyleBackColor = true;
             this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
             this.srboxnoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrBoxNoRadiobtn_KeyDown);
+            this.srboxnoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srdeptradiobtn
             // 
@@ -1215,6 +1217,7 @@ namespace PackingApplication
             this.srdeptradiobtn.UseVisualStyleBackColor = true;
             this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
             this.srdeptradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrDeptRadiobtn_KeyDown);
+            this.srdeptradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // srlinenoradiobtn
             // 
@@ -1229,6 +1232,7 @@ namespace PackingApplication
             this.srlinenoradiobtn.UseVisualStyleBackColor = true;
             this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
             this.srlinenoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrLineNoRadiobtn_KeyDown);
+            this.srlinenoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // dateTimePicker2
             // 
@@ -1347,7 +1351,7 @@ namespace PackingApplication
             this.cancelbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.cancelbtn.Location = new System.Drawing.Point(214, 0);
+            this.cancelbtn.Location = new System.Drawing.Point(178, 1);
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(81, 24);
@@ -1362,7 +1366,7 @@ namespace PackingApplication
             this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(107, 1);
+            this.saveprint.Location = new System.Drawing.Point(89, 1);
             this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.saveprint.Name = "saveprint";
             this.saveprint.Size = new System.Drawing.Size(81, 24);
