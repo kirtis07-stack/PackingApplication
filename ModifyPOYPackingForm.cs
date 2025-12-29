@@ -1800,7 +1800,7 @@ namespace PackingApplication
                 this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
                 this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.BoxNoFmtd.ToString();
+                this.lastbox.Text = getLastBox.LastBox.ToString();
             }
 
             Log.writeMessage("POY RefreshLastBoxDetails - End : " + DateTime.Now);
@@ -4640,7 +4640,7 @@ namespace PackingApplication
                 this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
                 this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
                 this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
-                this.lastbox.Text = getSelectedProductionDetails.BoxNoFmtd.ToString();
+                this.lastbox.Text = getSelectedProductionDetails.LastBox.ToString();
             }
 
             Log.writeMessage("POY EditRow - End : " + DateTime.Now);

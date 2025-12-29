@@ -184,5 +184,6 @@ namespace PackingApplication.Models.ResponseEntities
         public bool CanModifyDelete { get; set; } = false;
         public short ItemTypeId { get; set; }
         public short MainItemTypeId { get; set; }
+        public string LastBox { get; set; }
     }
 }
