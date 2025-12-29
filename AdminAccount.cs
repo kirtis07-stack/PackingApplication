@@ -484,7 +484,10 @@ namespace PackingApplication
                 Form existing = openForms[formKey];
 
                 if (activeChild != null && activeChild != existing)
-                    activeChild.Hide();
+                {
+                    //activeChild.Hide();
+                    activeChild.Close();   // removes from Window menu correctly
+                }
 
                 activeChild = existing;
                 existing.WindowState = FormWindowState.Normal;
