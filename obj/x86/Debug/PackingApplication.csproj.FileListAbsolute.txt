@@ -107,7 +107,6 @@ D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHS\Microsoft.ReportView
 D:\Kirti\New folder\PackingApplication\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Kirti\New folder\PackingApplication\bin\x86\Debug\nl\PdfiumViewer.resources.dll
 D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.csproj.AssemblyReference.cache
-D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.exe.config
 D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AdminAccount.resources
 D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AddBCFPackingForm.resources
 D:\Kirti\New folder\PackingApplication\obj\x86\Debug\PackingApplication.AddChipsPackingForm.resources
