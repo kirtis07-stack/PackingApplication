@@ -2644,7 +2644,7 @@ namespace PackingApplication
                 this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
                 this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
                 this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
-                this.lastbox.Text = getSelectedProductionDetails.LastBox.ToString();
+                this.lastbox.Text = (!string.IsNullOrEmpty(getSelectedProductionDetails.LastBox) ? getSelectedProductionDetails.LastBox : "");
             }
 
             Log.writeMessage("POY EditRow - End : " + DateTime.Now);
