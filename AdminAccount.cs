@@ -28,6 +28,7 @@ namespace PackingApplication
         private Dictionary<string, Form> openForms = new Dictionary<string, Form>();
         MenuStrip menuStrip = new MenuStrip();
         private Form activeChild = null;
+        private static Logger Log = Logger.GetLogger();
 
         // Windows menu
         ToolStripMenuItem windows = new ToolStripMenuItem("Windows")
@@ -37,6 +38,8 @@ namespace PackingApplication
         };
         public AdminAccount()
         {
+            Log.writeMessage("AdminAccount - Start : " + DateTime.Now);
+
             InitializeComponent();
             this.Text = "Packing";
 
@@ -365,10 +368,14 @@ namespace PackingApplication
                     break;
                 }
             }
+
+            Log.writeMessage("AdminAccount - End : " + DateTime.Now);
         }
 
         private void MenuStrip_EnterHandler(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount MenuStrip_EnterHandler - Start : " + DateTime.Now);
+
             if (sender is MenuStrip menuStrip && menuStrip.Items.Count > 0)
             {
                 // Find highlighted item (if any)
@@ -390,10 +397,14 @@ namespace PackingApplication
                 // Give keyboard focus to menuStrip
                 menuStrip.Focus();
             }
+
+            Log.writeMessage("AdminAccount MenuStrip_EnterHandler - End : " + DateTime.Now);
         }
 
         private void SetHandCursorForMenuItems(ToolStripItemCollection menuItems)
         {
+            Log.writeMessage("AdminAccount SetHandCursorForMenuItems - Start : " + DateTime.Now);
+
             foreach (ToolStripItem item in menuItems)
             {
                 item.MouseMove += ToolStripMenuItem_MouseMove;
@@ -412,29 +423,45 @@ namespace PackingApplication
                     };
                 }
             }
+
+            Log.writeMessage("AdminAccount SetHandCursorForMenuItems - End : " + DateTime.Now);
         }
 
         private void ToolStripMenuItem_MouseMove(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ToolStripMenuItem_MouseMove - Start : " + DateTime.Now);
+
             this.Cursor = Cursors.Hand;
+
+            Log.writeMessage("AdminAccount ToolStripMenuItem_MouseMove - End : " + DateTime.Now);
         }
 
         private void ToolStripMenuItem_MouseLeave(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ToolStripMenuItem_MouseLeave - Start : " + DateTime.Now);
+
             this.Cursor = Cursors.Default;
+
+            Log.writeMessage("AdminAccount ToolStripMenuItem_MouseLeave - End : " + DateTime.Now);
         }
 
         private void Logout_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount Logout_Click - Start : " + DateTime.Now);
+
             SessionManager.Clear();
 
             var loginForm = new Login();
             loginForm.Show();
             this.Close();
+
+            Log.writeMessage("AdminAccount Logout_Click - End : " + DateTime.Now);
         }
 
         public void LoadFormInContent(Form child, string formKey)
         {
+            Log.writeMessage("AdminAccount LoadFormInContent - Start : " + DateTime.Now);
+
             // If already opened → just show it
             //if (openForms.ContainsKey(formKey))
             //{
@@ -527,10 +554,14 @@ namespace PackingApplication
 
             child.Show();
             child.BringToFront();
+
+            Log.writeMessage("AdminAccount LoadFormInContent - End : " + DateTime.Now);
         }
 
         private void AddPOYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount AddPOYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -540,10 +571,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount AddPOYPacking_Click - End : " + DateTime.Now);
         }
 
         private void ViewPOYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ViewPOYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -553,10 +588,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ViewPOYPacking_Click - End : " + DateTime.Now);
         }
 
         private void ModifyPOYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ModifyPOYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -566,10 +605,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ModifyPOYPacking_Click - End : " + DateTime.Now);
         }
 
         private void DeletePOYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount DeletePOYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -579,10 +622,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount DeletePOYPacking_Click - End : " + DateTime.Now);
         }
 
         private void DTYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount DTYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -592,10 +639,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount DTYPacking_Click - End : " + DateTime.Now);
         }
 
         private void ViewDTYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ViewDTYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -605,10 +656,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ViewDTYPacking_Click - End : " + DateTime.Now);
         }
 
         private void ModifyDTYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ModifyDTYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -618,10 +673,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ModifyDTYPacking_Click - End : " + DateTime.Now);
         }
 
         private void DeleteDTYPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount DeleteDTYPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -631,10 +690,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount DeleteDTYPacking_Click - End : " + DateTime.Now);
         }
 
         private void BCFPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount BCFPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -644,10 +707,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount BCFPacking_Click - End : " + DateTime.Now);
         }
 
         private void ViewBCFPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ViewBCFPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -657,10 +724,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ViewBCFPacking_Click - End : " + DateTime.Now);
         }
 
         private void ModifyBCFPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ModifyBCFPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -670,10 +741,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ModifyBCFPacking_Click - End : " + DateTime.Now);
         }
 
         private void DeleteBCFPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount DeleteBCFPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -683,10 +758,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount DeleteBCFPacking_Click - End : " + DateTime.Now);
         }
 
         private void ChipsPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ChipsPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -696,10 +775,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ChipsPacking_Click - End : " + DateTime.Now);
         }
 
         private void ViewChipsPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ViewChipsPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -709,10 +792,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ViewChipsPacking_Click - End : " + DateTime.Now);
         }
 
         private void ModifyChipsPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount ModifyChipsPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -722,10 +809,14 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount ModifyChipsPacking_Click - End : " + DateTime.Now);
         }
 
         private void DeleteChipsPacking_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount DeleteChipsPacking_Click - Start : " + DateTime.Now);
+
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
@@ -735,11 +826,15 @@ namespace PackingApplication
                 dashboard.LoadFormInContent(form, formKey);
                 //this.Text = form.Tag.ToString();
             }
+
+            Log.writeMessage("AdminAccount DeleteChipsPacking_Click - End : " + DateTime.Now);
         }
 
         // highlight selected menu
         private void HighlightMenuItem(object sender)
         {
+            Log.writeMessage("AdminAccount HighlightMenuItem - Start : " + DateTime.Now);
+
             foreach (ToolStripMenuItem item in menuStrip.Items)
             {
                 item.BackColor = Color.White;
@@ -760,10 +855,14 @@ namespace PackingApplication
                 topMenu = clickedItem;
             }
             topMenu.BackColor = Color.FromArgb(230, 240, 255);
+
+            Log.writeMessage("AdminAccount HighlightMenuItem - End : " + DateTime.Now);
         }
 
         private void AddMinimizedFormToMenu(string formKey)
         {
+            Log.writeMessage("AdminAccount AddMinimizedFormToMenu - Start : " + DateTime.Now);
+
             ToolStripMenuItem item = new ToolStripMenuItem(formKey);
             item.Click += (s, e) =>
             {
@@ -780,31 +879,43 @@ namespace PackingApplication
             };
             item.Font = FontManager.GetFont(8, FontStyle.Regular);
             windows.DropDownItems.Add(item);
+
+            Log.writeMessage("AdminAccount AddMinimizedFormToMenu - End : " + DateTime.Now);
         }
 
         private void MinimizedFormMenu_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount MinimizedFormMenu_Click - Start : " + DateTime.Now);
+
             var menuItem = sender as ToolStripMenuItem;
             var form = menuItem?.Tag as Form;
             if (form != null)
             {
                 RestoreForm(form);
             }
+
+            Log.writeMessage("AdminAccount MinimizedFormMenu_Click - End : " + DateTime.Now);
         }
 
         private void RestoreForm(Form form)
         {
+            Log.writeMessage("AdminAccount RestoreForm - Start : " + DateTime.Now);
+
             // Hide currently active form
             if (activeForm != null && activeForm != form)
                 activeForm.WindowState = FormWindowState.Minimized;
             form.WindowState = FormWindowState.Normal;
             form.Activate();
 
-            activeForm = form;            
+            activeForm = form;
+
+            Log.writeMessage("AdminAccount RestoreForm - End : " + DateTime.Now);
         }
 
         private void OpenForm<T>(string title) where T : Form, new()
         {
+            Log.writeMessage("AdminAccount OpenForm - Start : " + DateTime.Now);
+
             string formKey = typeof(T).Name;
 
             // Create or restore form
@@ -816,18 +927,26 @@ namespace PackingApplication
 
             LoadFormInContent(form, formKey);
             this.Text = title;
+
+            Log.writeMessage("AdminAccount OpenForm - End : " + DateTime.Now);
         }
 
         private void FocusFirstField(Form form)
         {
+            Log.writeMessage("AdminAccount FocusFirstField - Start : " + DateTime.Now);
+
             form.BeginInvoke(new Action(() =>
             {
                 form.SelectNextControl(null, true, true, true, true);
             }));
+
+            Log.writeMessage("AdminAccount FocusFirstField - End : " + DateTime.Now);
         }
 
         private void Child_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Log.writeMessage("AdminAccount Child_FormClosed - Start : " + DateTime.Now);
+
             Form closedForm = sender as Form;
             if (closedForm == null) return;
 
@@ -860,14 +979,20 @@ namespace PackingApplication
             // If the active form was closed → clear activeChild
             if (activeChild == closedForm)
                 activeChild = null;
+
+            Log.writeMessage("AdminAccount Child_FormClosed - End : " + DateTime.Now);
         }
 
         private void Windows_DropDownOpened(object sender, EventArgs e)
         {
+            Log.writeMessage("AdminAccount Windows_DropDownOpened - Start : " + DateTime.Now);
+
             foreach (ToolStripItem item in windows.DropDownItems)
             {
                 item.Font = FontManager.GetFont(8, FontStyle.Regular);
             }
+
+            Log.writeMessage("AdminAccount Windows_DropDownOpened - End : " + DateTime.Now);
         }
 
     }

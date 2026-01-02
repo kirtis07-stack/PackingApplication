@@ -59,6 +59,8 @@ namespace PackingApplication
         string selectedSrProductionDate = null;
         public DeleteDTYPackingForm()
         {
+            Log.writeMessage("DTY DeleteDTYPackingForm - Start : " + DateTime.Now);
+
             InitializeComponent();
             ApplyFonts();
             //this.Shown += DeleteDTYPackingForm_Shown;
@@ -73,10 +75,14 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.closelistbtn, 8);
 
             rowMaterial.AutoGenerateColumns = false;
+
+            Log.writeMessage("DTY DeleteDTYPackingForm - End : " + DateTime.Now);
         }
 
         private void DeleteDTYPackingForm_Load(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY DeleteDTYPackingForm_Load - Start : " + DateTime.Now);
+
             LoadDropdowns();
 
             copyno.Text = "1";
@@ -118,10 +124,14 @@ namespace PackingApplication
             this.tableLayoutPanel4.SetColumnSpan(this.panel8, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel9, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel16, 3);
+
+            Log.writeMessage("DTY DeleteDTYPackingForm_Load - End : " + DateTime.Now);
         }
 
         private void LoadDropdowns()
         {
+            Log.writeMessage("DTY LoadDropdowns - Start : " + DateTime.Now);
+
             var machineList = new List<MachineResponse>();
             machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
             LineNoList.DataSource = machineList;
@@ -228,10 +238,14 @@ namespace PackingApplication
             SrBoxNoList.DisplayMember = "BoxNo";
             SrBoxNoList.ValueMember = "ProductionId";
             SrBoxNoList.SelectedIndex = 0;
+
+            Log.writeMessage("DTY LoadDropdowns - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
         {
+            Log.writeMessage("DTY ApplyFonts - Start : " + DateTime.Now);
+
             this.lineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.department.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.mergeno.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -363,6 +377,8 @@ namespace PackingApplication
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.cancelbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.delete.Font = FontManager.GetFont(8F, FontStyle.Bold);
+
+            Log.writeMessage("DTY ApplyFonts - End : " + DateTime.Now);
         }
 
         //private async void DeleteDTYPackingForm_Shown(object sender, EventArgs e)
@@ -469,6 +485,8 @@ namespace PackingApplication
 
         private async Task LoadProductionDetailsAsync(ProductionResponse prodResponse)
         {
+            Log.writeMessage("DTY LoadProductionDetailsAsync - Start : " + DateTime.Now);
+
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
@@ -620,10 +638,14 @@ namespace PackingApplication
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
             }
+
+            Log.writeMessage("DTY LoadProductionDetailsAsync - End : " + DateTime.Now);
         }
 
         private async void RefreshLastBoxDetails()
         {
+            Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
+
             var getLastBox = _packingService.getLastBoxDetails("dtypacking", 0).Result;
 
             //lastboxdetails
@@ -638,6 +660,8 @@ namespace PackingApplication
                 this.netwttxtbox.Text = getLastBox.NetWt.ToString();
                 this.lastbox.Text = getLastBox.LastBox.ToString();
             }
+
+            Log.writeMessage("DTY RefreshLastBoxDetails - End : " + DateTime.Now);
         }
 
         //private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1168,6 +1192,8 @@ namespace PackingApplication
 
         private async Task<List<string>> getComPortList()
         {
+            Log.writeMessage("DTY getComPortList - Start : " + DateTime.Now);
+
             var getComPortType = new List<string>
             {
                 "Select Com Port",
@@ -1176,11 +1202,14 @@ namespace PackingApplication
                 "COM3",
                 "COM4"
             };
+            Log.writeMessage("DTY getComPortList - End : " + DateTime.Now);
 
             return getComPortType;
         }
         private async Task<List<WeighingItem>> GetWeighingList()
         {
+            Log.writeMessage("DTY GetWeighingList - Start : " + DateTime.Now);
+
             var getWeighingScale = new List<WeighingItem>
             {
                 new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
@@ -1189,12 +1218,15 @@ namespace PackingApplication
                 new WeighingItem { Id = 2, Name = "JISL (9600)" },
                 new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
+            Log.writeMessage("DTY GetWeighingList - End : " + DateTime.Now);
 
             return getWeighingScale;
         }
 
         private void SpoolWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY SpoolWeight_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(spoolwt.Text))
             {
                 CalculateTareWeight();
@@ -1203,10 +1235,14 @@ namespace PackingApplication
             {
                 CalculateTareWeight();
             }
+
+            Log.writeMessage("DTY SpoolWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void PalletWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY PalletWeight_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(palletwtno.Text))
             {
                 CalculateTareWeight();
@@ -1215,10 +1251,13 @@ namespace PackingApplication
             {
                 CalculateTareWeight();
             }
+            Log.writeMessage("DTY PalletWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateTareWeight()
         {
+            Log.writeMessage("DTY CalculateTareWeight - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(spoolwt.Text, out num1);
@@ -1237,11 +1276,13 @@ namespace PackingApplication
                     }
                 }
             }
-
+            Log.writeMessage("DTY CalculateTareWeight - End : " + DateTime.Now);
         }
 
         private void GrossWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY GrossWeight_TextChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
 
             if (string.IsNullOrWhiteSpace(grosswtno.Text))
@@ -1263,10 +1304,14 @@ namespace PackingApplication
                     }
                 }
             }
+
+            Log.writeMessage("DTY GrossWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateNetWeight()
         {
+            Log.writeMessage("DTY CalculateNetWeight - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(grosswtno.Text, out num1);
@@ -1276,15 +1321,23 @@ namespace PackingApplication
                 netwt.Text = (num1 - num2).ToString("F3");
                 CalculateWeightPerCop();
             }
+
+            Log.writeMessage("DTY CalculateNetWeight - End : " + DateTime.Now);
         }
 
         private void NetWeight_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY NetWeight_TextChanged - Start : " + DateTime.Now);
+
             CalculateWeightPerCop();
+
+            Log.writeMessage("DTY NetWeight_TextChanged - End : " + DateTime.Now);
         }
 
         private void SpoolNo_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY SpoolNo_TextChanged - Start : " + DateTime.Now);
+
             if (!isFormReady) return;
             if (string.IsNullOrWhiteSpace(spoolno.Text))
             {
@@ -1313,10 +1366,14 @@ namespace PackingApplication
                     spoolnoerror.Visible = false;
                 }
             }
+
+            Log.writeMessage("DTY SpoolNo_TextChanged - End : " + DateTime.Now);
         }
 
         private void CalculateWeightPerCop()
         {
+            Log.writeMessage("DTY CalculateWeightPerCop - Start : " + DateTime.Now);
+
             decimal num1 = 0, num2 = 0;
 
             decimal.TryParse(netwt.Text, out num1);
@@ -1325,10 +1382,14 @@ namespace PackingApplication
             {
                 wtpercop.Text = (num1 / num2).ToString("F3");
             }
+
+            Log.writeMessage("DTY CalculateWeightPerCop - End : " + DateTime.Now);
         }
 
         private void CopyNos_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY CopyNos_TextChanged - Start : " + DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(copyno.Text))
             {
                 copynoerror.Visible = true;
@@ -1338,141 +1399,251 @@ namespace PackingApplication
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
+
+            Log.writeMessage("DTY CopyNos_TextChanged - End : " + DateTime.Now);
         }
 
         private void qualityqty_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY qualityqty_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+
+            Log.writeMessage("DTY qualityqty_Paint - End : " + DateTime.Now);
         }
 
         private void windinggrid_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY windinggrid_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRectangleBorder((Control)sender, e, Color.LightGray, 2);
+
+            Log.writeMessage("DTY windinggrid_Paint - End : " + DateTime.Now);
         }
 
         private void ordertable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY ordertable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY ordertable_Paint - End : " + DateTime.Now);
         }
 
         private void packagingtable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY packagingtable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY packagingtable_Paint - End : " + DateTime.Now);
         }
 
         private void weightable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY weightable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY weightable_Paint - End : " + DateTime.Now);
         }
 
         private void reviewtable_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY reviewtable_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 12, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY reviewtable_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY machineboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY machineboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY machineboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY machineboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY weighboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY weighboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY weighboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY weighboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY packagingboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY packagingboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY packagingboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY packagingboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxlayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastboxlayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY lastboxlayout_Paint - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastboxheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY lastboxheader_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxcopspanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxcopspanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxcopspanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxtarepanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxtarepanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxtarepanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxgrosswtpanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxgrosswtpanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxgrosswtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void lastbxnetwtpanel_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY lastbxnetwtpanel_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedDashedBorder((Control)sender, e, 8, Color.FromArgb(102, 163, 255), 1);
+
+            Log.writeMessage("DTY lastbxnetwtpanel_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailslayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY printingdetailslayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY printingdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY printingdetailsheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY printingdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailslayout_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY palletdetailslayout_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawRoundedBorder((Control)sender, e, 8, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY palletdetailslayout_Paint - End : " + DateTime.Now);
         }
 
         private void palletdetailsheader_Paint(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("DTY palletdetailsheader_Paint - Start : " + DateTime.Now);
+
             _cmethod.DrawBottomBorder((Control)sender, e, Color.FromArgb(191, 191, 191), 1);
+
+            Log.writeMessage("DTY palletdetailsheader_Paint - End : " + DateTime.Now);
         }
 
         private void machineboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY machineboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(machineboxheader, 8);
+
+            Log.writeMessage("DTY machineboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void weighboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY weighboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(weighboxheader, 8);
+
+            Log.writeMessage("DTY weighboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void packagingboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY packagingboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(packagingboxheader, 8);
+
+            Log.writeMessage("DTY packagingboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void lastboxheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY lastboxheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(lastboxheader, 8);
+
+            Log.writeMessage("DTY lastboxheader_Resize - End : " + DateTime.Now);
         }
 
         private void printingdetailsheader_Resize(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY printingdetailsheader_Resize - Start : " + DateTime.Now);
+
             _cmethod.SetTopRoundedRegion(printingdetailsheader, 8);
+
+            Log.writeMessage("DTY printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
         private void machinetablelayout_Paint(object sender, PaintEventArgs e)
@@ -1495,6 +1666,8 @@ namespace PackingApplication
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY btnCancel_Click - Start : " + DateTime.Now);
+
             if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
             {
                 if (parentForm.MainMenuStrip != null)
@@ -1520,11 +1693,13 @@ namespace PackingApplication
                         ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
                 }
             }
+
+            Log.writeMessage("DTY btnCancel_Click - End : " + DateTime.Now);
         }
 
         private void AdjustNameByCharCount()
         {
-            Log.writeMessage("AdjustNameByCharCount - Start : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - Start : " + DateTime.Now);
 
             int shadeCharCount = shadename.Text.Length;
 
@@ -1549,7 +1724,7 @@ namespace PackingApplication
                 itemname.Location = new System.Drawing.Point(38, 5);
             }
 
-            Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
+            Log.writeMessage("DTY AdjustNameByCharCount - End : " + DateTime.Now);
         }
 
         private void btnFind_Click(object sender, EventArgs e)

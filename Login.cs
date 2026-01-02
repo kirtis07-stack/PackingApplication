@@ -27,8 +27,11 @@ namespace PackingApplication
         private bool isPasswordVisible = false;
         private int finYearId = 0;
         CommonMethod _cmethod = new CommonMethod();
+        private static Logger Log = Logger.GetLogger();
         public Login()
         {
+            Log.writeMessage("Login - Start : " + DateTime.Now);
+
             InitializeComponent();
             getYearList();
             ApplyFonts();
@@ -43,10 +46,14 @@ namespace PackingApplication
             passwrd.Text = "Kirti@123";
             //email.Text = "sanket.bankar@cyberscriptit.com";
             //passwrd.Text = "Sanket@123";
+
+            Log.writeMessage("Login - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
         {
+            Log.writeMessage("Login ApplyFonts - Start : " + DateTime.Now);
+
             this.emailid.Font = FontManager.GetFont(9F, FontStyle.Regular);
             this.email.Font = FontManager.GetFont(9F, FontStyle.Regular);
             this.password.Font = FontManager.GetFont(9F, FontStyle.Regular);
@@ -66,11 +73,14 @@ namespace PackingApplication
             this.yearerror.Font = FontManager.GetFont(9F, FontStyle.Regular);
             this.passworderror.Font = FontManager.GetFont(9F, FontStyle.Regular);
             this.emailerror.Font = FontManager.GetFont(9F, FontStyle.Regular);
+
+            Log.writeMessage("Login ApplyFonts - End : " + DateTime.Now);
         }
 
-        private static Logger Log = Logger.GetLogger();
         public string GetCallApi(string WebApiurl)
         {
+            Log.writeMessage("Login GetCallApi - Start : " + DateTime.Now);
+
             var request = (HttpWebRequest)WebRequest.Create(WebApiurl);
 
             request.Method = "GET";
@@ -88,12 +98,15 @@ namespace PackingApplication
                     }
                 }
             }
+            Log.writeMessage("Login GetCallApi - End : " + DateTime.Now);
 
             return content;
         }
 
         private void getYearList()
         {
+            Log.writeMessage("Login getYearList - Start : " + DateTime.Now);
+
             DateTime today = DateTime.Today;
             var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + true);
             var getYear = JsonConvert.DeserializeObject<List<FinancialYearResponse>>(getYearResponse);
@@ -107,10 +120,14 @@ namespace PackingApplication
                 finYearId = currentYear.FinYearId;
                 label1.Text = "ALL RIGHT RESERVED © " + currentYear.FinYear.ToString();
             }
+
+            Log.writeMessage("Login getYearList - End : " + DateTime.Now);
         }
 
         private void signin_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("Login signin_Click - Start : " + DateTime.Now);
+
             if (ValidateForm())
             {
                 try
@@ -163,11 +180,13 @@ namespace PackingApplication
                     Log.writeMessage("An error occurred: {ex.Message}");
                 }
             }
-            
+            Log.writeMessage("Login signin_Click - End : " + DateTime.Now);
         }
 
         private bool IsValidEmail(string email)
         {
+            Log.writeMessage("Login IsValidEmail - Start : " + DateTime.Now);
+
             try
             {
                 var addr = new System.Net.Mail.MailAddress(email);
@@ -181,6 +200,8 @@ namespace PackingApplication
 
         private bool ValidateForm()
         {
+            Log.writeMessage("Login ValidateForm - Start : " + DateTime.Now);
+
             bool isValid = true;
 
             if (YearList.SelectedValue == null || Convert.ToInt32(YearList.SelectedValue) <= 0)
@@ -204,40 +225,56 @@ namespace PackingApplication
                 isValid = false;
             }
 
+            Log.writeMessage("Login ValidateForm - End : " + DateTime.Now);
+
             return isValid;
         }
 
         private void YearList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("Login YearList_SelectedIndexChanged - Start : " + DateTime.Now);
+
             if (YearList.SelectedIndex > 0)
             {
                 yearerror.Text = "";
                 yearerror.Visible = false;
             }
+
+            Log.writeMessage("Login YearList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         // Hide Email error when user types valid email
         private void Email_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("Login Email_TextChanged - Start : " + DateTime.Now);
+
             if (!string.IsNullOrWhiteSpace(email.Text) && IsValidEmail(email.Text))
             {
                 emailerror.Text = "";
                 emailerror.Visible = false;
             }
+
+            Log.writeMessage("Login Email_TextChanged - End : " + DateTime.Now);
         }
 
         // Hide Password error when user types something
         private void Passwrd_TextChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("Login Passwrd_TextChanged - Start : " + DateTime.Now);
+
             if (!string.IsNullOrWhiteSpace(passwrd.Text))
             {
                 passworderror.Text = "";
                 passworderror.Visible = false;
             }
+
+            Log.writeMessage("Login Passwrd_TextChanged - End : " + DateTime.Now);
         }
 
         private void eyeIcon_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("Login eyeIcon_Click - Start : " + DateTime.Now);
+
             if (isPasswordVisible)
             {
                 this.passwrd.UseSystemPasswordChar = true;
@@ -250,10 +287,14 @@ namespace PackingApplication
                 this.eyeicon.Image = Properties.Resources.icons8_eye_24;    // set open-eye icon
                 isPasswordVisible = true;
             }
+
+            Log.writeMessage("Login eyeIcon_Click - End : " + DateTime.Now);
         }
 
         private void Control_EnterKeyMoveNext(object sender, KeyEventArgs e)
         {
+            Log.writeMessage("Login Control_EnterKeyMoveNext - Start : " + DateTime.Now);
+
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;           // Mark as handled
@@ -280,16 +321,22 @@ namespace PackingApplication
                     btn.FlatStyle = FlatStyle.Standard; // ensures focus rectangle is visible
                 }
             }
+
+            Log.writeMessage("Login Control_EnterKeyMoveNext - End : " + DateTime.Now);
         }
 
         private void CheckBox_DrawFocusBorder(object sender, PaintEventArgs e)
         {
+            Log.writeMessage("Login CheckBox_DrawFocusBorder - Start : " + DateTime.Now);
+
             CheckBox cb = (CheckBox)sender;
 
             if (cb.Focused)
             {
                 _cmethod.DrawRoundedDashedBorder((CheckBox)sender, e, 1, Color.Black, 1);
             }
+
+            Log.writeMessage("Login CheckBox_DrawFocusBorder - End : " + DateTime.Now);
         }
 
     }
