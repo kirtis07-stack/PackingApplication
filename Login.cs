@@ -99,9 +99,12 @@ namespace PackingApplication
             YearList.DataSource = getYear;
             YearList.DisplayMember = "FinYear";
             YearList.ValueMember = "FinYearId";
-            var currentYear = getYear.Where(x => x.FinYear == DateTime.Now.Year.ToString()).ToList();
-            YearList.SelectedValue = currentYear[0].FinYearId;
-            finYearId = currentYear[0].FinYearId;
+            var currentYear = getYear.FirstOrDefault(x => x.FinYear == DateTime.Now.Year.ToString());
+            if (currentYear != null)
+            {
+                YearList.SelectedValue = currentYear.FinYearId;
+                finYearId = currentYear.FinYearId;
+            }
         }
 
         private void signin_Click(object sender, EventArgs e)
@@ -178,7 +181,7 @@ namespace PackingApplication
         {
             bool isValid = true;
 
-            if (YearList.SelectedIndex <= 0)
+            if (YearList.SelectedValue == null || Convert.ToInt32(YearList.SelectedValue) <= 0)
             {
                 yearerror.Text = "Please select valid year.";
                 yearerror.Visible = true;
