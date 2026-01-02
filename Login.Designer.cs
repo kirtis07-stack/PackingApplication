@@ -283,9 +283,8 @@ namespace PackingApplication
             this.label1.Location = new System.Drawing.Point(85, 379);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 13);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 18;
-            this.label1.Text = "ALL RIGHT RESERVED © 2025";
             // 
             // eyeicon
             // 

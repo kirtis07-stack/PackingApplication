@@ -104,6 +104,7 @@ namespace PackingApplication
             {
                 YearList.SelectedValue = currentYear.FinYearId;
                 finYearId = currentYear.FinYearId;
+                label1.Text = "ALL RIGHT RESERVED © " + currentYear.FinYear.ToString();
             }
         }
 

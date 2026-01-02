@@ -34,8 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -224,18 +224,6 @@ namespace PackingApplication
             this.spoolwterror = new System.Windows.Forms.Label();
             this.lastboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.lastboxpanel = new System.Windows.Forms.Panel();
-            this.lastbxnetwtpanel = new System.Windows.Forms.Panel();
-            this.netwttxtbox = new System.Windows.Forms.TextBox();
-            this.netweight = new System.Windows.Forms.Label();
-            this.lastbxgrosswtpanel = new System.Windows.Forms.Panel();
-            this.grosswttxtbox = new System.Windows.Forms.TextBox();
-            this.grossweight = new System.Windows.Forms.Label();
-            this.lastbxtarepanel = new System.Windows.Forms.Panel();
-            this.tarewghttxtbox = new System.Windows.Forms.TextBox();
-            this.tareweight = new System.Windows.Forms.Label();
-            this.lastbxcopspanel = new System.Windows.Forms.Panel();
-            this.cops = new System.Windows.Forms.Label();
-            this.copstxtbox = new System.Windows.Forms.TextBox();
             this.lastboxheader = new System.Windows.Forms.Panel();
             this.Lastboxlbl = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -243,6 +231,19 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.lastbxnetwtpanel = new System.Windows.Forms.Panel();
+            this.netwttxtbox = new System.Windows.Forms.TextBox();
+            this.netweight = new System.Windows.Forms.Label();
+            this.lastbxcopspanel = new System.Windows.Forms.Panel();
+            this.cops = new System.Windows.Forms.Label();
+            this.copstxtbox = new System.Windows.Forms.TextBox();
+            this.lastbxgrosswtpanel = new System.Windows.Forms.Panel();
+            this.grosswttxtbox = new System.Windows.Forms.TextBox();
+            this.grossweight = new System.Windows.Forms.Label();
+            this.lastbxtarepanel = new System.Windows.Forms.Panel();
+            this.tarewghttxtbox = new System.Windows.Forms.TextBox();
+            this.tareweight = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel35.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -321,14 +322,15 @@ namespace PackingApplication
             this.weighboxpanel.SuspendLayout();
             this.lastboxlayout.SuspendLayout();
             this.lastboxpanel.SuspendLayout();
-            this.lastbxnetwtpanel.SuspendLayout();
-            this.lastbxgrosswtpanel.SuspendLayout();
-            this.lastbxtarepanel.SuspendLayout();
-            this.lastbxcopspanel.SuspendLayout();
             this.lastboxheader.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.lastbxnetwtpanel.SuspendLayout();
+            this.lastbxcopspanel.SuspendLayout();
+            this.lastbxgrosswtpanel.SuspendLayout();
+            this.lastbxtarepanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -904,14 +906,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1244,14 +1246,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -2698,168 +2700,13 @@ namespace PackingApplication
             // 
             // lastboxpanel
             // 
-            this.lastboxpanel.Controls.Add(this.lastbxnetwtpanel);
-            this.lastboxpanel.Controls.Add(this.lastbxgrosswtpanel);
-            this.lastboxpanel.Controls.Add(this.lastbxtarepanel);
-            this.lastboxpanel.Controls.Add(this.lastbxcopspanel);
+            this.lastboxpanel.Controls.Add(this.tableLayoutPanel8);
             this.lastboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lastboxpanel.Location = new System.Drawing.Point(4, 23);
             this.lastboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.lastboxpanel.Name = "lastboxpanel";
             this.lastboxpanel.Size = new System.Drawing.Size(212, 48);
             this.lastboxpanel.TabIndex = 107;
-            // 
-            // lastbxnetwtpanel
-            // 
-            this.lastbxnetwtpanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lastbxnetwtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lastbxnetwtpanel.Controls.Add(this.netwttxtbox);
-            this.lastbxnetwtpanel.Controls.Add(this.netweight);
-            this.lastbxnetwtpanel.Location = new System.Drawing.Point(183, 2);
-            this.lastbxnetwtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lastbxnetwtpanel.Name = "lastbxnetwtpanel";
-            this.lastbxnetwtpanel.Size = new System.Drawing.Size(72, 45);
-            this.lastbxnetwtpanel.TabIndex = 8;
-            this.lastbxnetwtpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxnetwtpanel_Paint);
-            // 
-            // netwttxtbox
-            // 
-            this.netwttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.netwttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.netwttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.netwttxtbox.Location = new System.Drawing.Point(7, 23);
-            this.netwttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.netwttxtbox.Name = "netwttxtbox";
-            this.netwttxtbox.ReadOnly = true;
-            this.netwttxtbox.Size = new System.Drawing.Size(57, 13);
-            this.netwttxtbox.TabIndex = 95;
-            this.netwttxtbox.TabStop = false;
-            this.netwttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // netweight
-            // 
-            this.netweight.AutoSize = true;
-            this.netweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.netweight.Location = new System.Drawing.Point(20, 7);
-            this.netweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.netweight.Name = "netweight";
-            this.netweight.Size = new System.Drawing.Size(24, 13);
-            this.netweight.TabIndex = 8;
-            this.netweight.Text = "Net";
-            // 
-            // lastbxgrosswtpanel
-            // 
-            this.lastbxgrosswtpanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lastbxgrosswtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lastbxgrosswtpanel.Controls.Add(this.grosswttxtbox);
-            this.lastbxgrosswtpanel.Controls.Add(this.grossweight);
-            this.lastbxgrosswtpanel.Location = new System.Drawing.Point(106, 2);
-            this.lastbxgrosswtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lastbxgrosswtpanel.Name = "lastbxgrosswtpanel";
-            this.lastbxgrosswtpanel.Size = new System.Drawing.Size(72, 45);
-            this.lastbxgrosswtpanel.TabIndex = 6;
-            this.lastbxgrosswtpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxgrosswtpanel_Paint);
-            // 
-            // grosswttxtbox
-            // 
-            this.grosswttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.grosswttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.grosswttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.grosswttxtbox.Location = new System.Drawing.Point(7, 23);
-            this.grosswttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.grosswttxtbox.Name = "grosswttxtbox";
-            this.grosswttxtbox.ReadOnly = true;
-            this.grosswttxtbox.Size = new System.Drawing.Size(57, 13);
-            this.grosswttxtbox.TabIndex = 7;
-            this.grosswttxtbox.TabStop = false;
-            this.grosswttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // grossweight
-            // 
-            this.grossweight.AutoSize = true;
-            this.grossweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.grossweight.Location = new System.Drawing.Point(15, 7);
-            this.grossweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.grossweight.Name = "grossweight";
-            this.grossweight.Size = new System.Drawing.Size(34, 13);
-            this.grossweight.TabIndex = 6;
-            this.grossweight.Text = "Gross";
-            // 
-            // lastbxtarepanel
-            // 
-            this.lastbxtarepanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lastbxtarepanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lastbxtarepanel.Controls.Add(this.tarewghttxtbox);
-            this.lastbxtarepanel.Controls.Add(this.tareweight);
-            this.lastbxtarepanel.Location = new System.Drawing.Point(30, 2);
-            this.lastbxtarepanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lastbxtarepanel.Name = "lastbxtarepanel";
-            this.lastbxtarepanel.Size = new System.Drawing.Size(72, 45);
-            this.lastbxtarepanel.TabIndex = 5;
-            this.lastbxtarepanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxtarepanel_Paint);
-            // 
-            // tarewghttxtbox
-            // 
-            this.tarewghttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.tarewghttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tarewghttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.tarewghttxtbox.Location = new System.Drawing.Point(7, 23);
-            this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tarewghttxtbox.Name = "tarewghttxtbox";
-            this.tarewghttxtbox.ReadOnly = true;
-            this.tarewghttxtbox.Size = new System.Drawing.Size(57, 13);
-            this.tarewghttxtbox.TabIndex = 5;
-            this.tarewghttxtbox.TabStop = false;
-            this.tarewghttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tareweight
-            // 
-            this.tareweight.AutoSize = true;
-            this.tareweight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tareweight.Location = new System.Drawing.Point(17, 7);
-            this.tareweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.tareweight.Name = "tareweight";
-            this.tareweight.Size = new System.Drawing.Size(29, 13);
-            this.tareweight.TabIndex = 4;
-            this.tareweight.Text = "Tare";
-            // 
-            // lastbxcopspanel
-            // 
-            this.lastbxcopspanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lastbxcopspanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.lastbxcopspanel.Controls.Add(this.cops);
-            this.lastbxcopspanel.Controls.Add(this.copstxtbox);
-            this.lastbxcopspanel.Location = new System.Drawing.Point(-46, 2);
-            this.lastbxcopspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.lastbxcopspanel.Name = "lastbxcopspanel";
-            this.lastbxcopspanel.Size = new System.Drawing.Size(72, 45);
-            this.lastbxcopspanel.TabIndex = 4;
-            this.lastbxcopspanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxcopspanel_Paint);
-            // 
-            // cops
-            // 
-            this.cops.AutoSize = true;
-            this.cops.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.cops.Location = new System.Drawing.Point(17, 7);
-            this.cops.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.cops.Name = "cops";
-            this.cops.Size = new System.Drawing.Size(31, 13);
-            this.cops.TabIndex = 2;
-            this.cops.Text = "Cops";
-            // 
-            // copstxtbox
-            // 
-            this.copstxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            this.copstxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.copstxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.copstxtbox.Location = new System.Drawing.Point(7, 23);
-            this.copstxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.copstxtbox.Name = "copstxtbox";
-            this.copstxtbox.ReadOnly = true;
-            this.copstxtbox.Size = new System.Drawing.Size(45, 13);
-            this.copstxtbox.TabIndex = 3;
-            this.copstxtbox.TabStop = false;
-            this.copstxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lastboxheader
             // 
@@ -2930,6 +2777,178 @@ namespace PackingApplication
             this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 4;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.Controls.Add(this.lastbxnetwtpanel, 3, 0);
+            this.tableLayoutPanel8.Controls.Add(this.lastbxcopspanel, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.lastbxgrosswtpanel, 2, 0);
+            this.tableLayoutPanel8.Controls.Add(this.lastbxtarepanel, 1, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(212, 48);
+            this.tableLayoutPanel8.TabIndex = 125;
+            // 
+            // lastbxnetwtpanel
+            // 
+            this.lastbxnetwtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lastbxnetwtpanel.Controls.Add(this.netwttxtbox);
+            this.lastbxnetwtpanel.Controls.Add(this.netweight);
+            this.lastbxnetwtpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lastbxnetwtpanel.Location = new System.Drawing.Point(161, 3);
+            this.lastbxnetwtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxnetwtpanel.Name = "lastbxnetwtpanel";
+            this.lastbxnetwtpanel.Size = new System.Drawing.Size(49, 42);
+            this.lastbxnetwtpanel.TabIndex = 8;
+            this.lastbxnetwtpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxnetwtpanel_Paint);
+            // 
+            // netwttxtbox
+            // 
+            this.netwttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.netwttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.netwttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.netwttxtbox.Location = new System.Drawing.Point(7, 23);
+            this.netwttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.netwttxtbox.Name = "netwttxtbox";
+            this.netwttxtbox.ReadOnly = true;
+            this.netwttxtbox.Size = new System.Drawing.Size(57, 13);
+            this.netwttxtbox.TabIndex = 95;
+            this.netwttxtbox.TabStop = false;
+            this.netwttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // netweight
+            // 
+            this.netweight.AutoSize = true;
+            this.netweight.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.netweight.Location = new System.Drawing.Point(20, 7);
+            this.netweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.netweight.Name = "netweight";
+            this.netweight.Size = new System.Drawing.Size(24, 13);
+            this.netweight.TabIndex = 8;
+            this.netweight.Text = "Net";
+            // 
+            // lastbxcopspanel
+            // 
+            this.lastbxcopspanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lastbxcopspanel.Controls.Add(this.cops);
+            this.lastbxcopspanel.Controls.Add(this.copstxtbox);
+            this.lastbxcopspanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lastbxcopspanel.Location = new System.Drawing.Point(2, 3);
+            this.lastbxcopspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxcopspanel.Name = "lastbxcopspanel";
+            this.lastbxcopspanel.Size = new System.Drawing.Size(49, 42);
+            this.lastbxcopspanel.TabIndex = 4;
+            this.lastbxcopspanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxcopspanel_Paint);
+            // 
+            // cops
+            // 
+            this.cops.AutoSize = true;
+            this.cops.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.cops.Location = new System.Drawing.Point(17, 7);
+            this.cops.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.cops.Name = "cops";
+            this.cops.Size = new System.Drawing.Size(31, 13);
+            this.cops.TabIndex = 2;
+            this.cops.Text = "Cops";
+            // 
+            // copstxtbox
+            // 
+            this.copstxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.copstxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.copstxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.copstxtbox.Location = new System.Drawing.Point(7, 23);
+            this.copstxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.copstxtbox.Name = "copstxtbox";
+            this.copstxtbox.ReadOnly = true;
+            this.copstxtbox.Size = new System.Drawing.Size(45, 13);
+            this.copstxtbox.TabIndex = 3;
+            this.copstxtbox.TabStop = false;
+            this.copstxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lastbxgrosswtpanel
+            // 
+            this.lastbxgrosswtpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lastbxgrosswtpanel.Controls.Add(this.grosswttxtbox);
+            this.lastbxgrosswtpanel.Controls.Add(this.grossweight);
+            this.lastbxgrosswtpanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lastbxgrosswtpanel.Location = new System.Drawing.Point(108, 3);
+            this.lastbxgrosswtpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxgrosswtpanel.Name = "lastbxgrosswtpanel";
+            this.lastbxgrosswtpanel.Size = new System.Drawing.Size(49, 42);
+            this.lastbxgrosswtpanel.TabIndex = 6;
+            this.lastbxgrosswtpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxgrosswtpanel_Paint);
+            // 
+            // grosswttxtbox
+            // 
+            this.grosswttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.grosswttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grosswttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.grosswttxtbox.Location = new System.Drawing.Point(7, 23);
+            this.grosswttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.grosswttxtbox.Name = "grosswttxtbox";
+            this.grosswttxtbox.ReadOnly = true;
+            this.grosswttxtbox.Size = new System.Drawing.Size(57, 13);
+            this.grosswttxtbox.TabIndex = 7;
+            this.grosswttxtbox.TabStop = false;
+            this.grosswttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // grossweight
+            // 
+            this.grossweight.AutoSize = true;
+            this.grossweight.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.grossweight.Location = new System.Drawing.Point(15, 7);
+            this.grossweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.grossweight.Name = "grossweight";
+            this.grossweight.Size = new System.Drawing.Size(34, 13);
+            this.grossweight.TabIndex = 6;
+            this.grossweight.Text = "Gross";
+            // 
+            // lastbxtarepanel
+            // 
+            this.lastbxtarepanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.lastbxtarepanel.Controls.Add(this.tarewghttxtbox);
+            this.lastbxtarepanel.Controls.Add(this.tareweight);
+            this.lastbxtarepanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lastbxtarepanel.Location = new System.Drawing.Point(55, 3);
+            this.lastbxtarepanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.lastbxtarepanel.Name = "lastbxtarepanel";
+            this.lastbxtarepanel.Size = new System.Drawing.Size(49, 42);
+            this.lastbxtarepanel.TabIndex = 5;
+            this.lastbxtarepanel.Paint += new System.Windows.Forms.PaintEventHandler(this.lastbxtarepanel_Paint);
+            // 
+            // tarewghttxtbox
+            // 
+            this.tarewghttxtbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            this.tarewghttxtbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tarewghttxtbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.tarewghttxtbox.Location = new System.Drawing.Point(7, 23);
+            this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tarewghttxtbox.Name = "tarewghttxtbox";
+            this.tarewghttxtbox.ReadOnly = true;
+            this.tarewghttxtbox.Size = new System.Drawing.Size(57, 13);
+            this.tarewghttxtbox.TabIndex = 5;
+            this.tarewghttxtbox.TabStop = false;
+            this.tarewghttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tareweight
+            // 
+            this.tareweight.AutoSize = true;
+            this.tareweight.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tareweight.Location = new System.Drawing.Point(17, 7);
+            this.tareweight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.tareweight.Name = "tareweight";
+            this.tareweight.Size = new System.Drawing.Size(29, 13);
+            this.tareweight.TabIndex = 4;
+            this.tareweight.Text = "Tare";
             // 
             // DeleteChipsPackingForm
             // 
@@ -3067,20 +3086,21 @@ namespace PackingApplication
             this.weighboxpanel.PerformLayout();
             this.lastboxlayout.ResumeLayout(false);
             this.lastboxpanel.ResumeLayout(false);
-            this.lastbxnetwtpanel.ResumeLayout(false);
-            this.lastbxnetwtpanel.PerformLayout();
-            this.lastbxgrosswtpanel.ResumeLayout(false);
-            this.lastbxgrosswtpanel.PerformLayout();
-            this.lastbxtarepanel.ResumeLayout(false);
-            this.lastbxtarepanel.PerformLayout();
-            this.lastbxcopspanel.ResumeLayout(false);
-            this.lastbxcopspanel.PerformLayout();
             this.lastboxheader.ResumeLayout(false);
             this.lastboxheader.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.lastbxnetwtpanel.ResumeLayout(false);
+            this.lastbxnetwtpanel.PerformLayout();
+            this.lastbxcopspanel.ResumeLayout(false);
+            this.lastbxcopspanel.PerformLayout();
+            this.lastbxgrosswtpanel.ResumeLayout(false);
+            this.lastbxgrosswtpanel.PerformLayout();
+            this.lastbxtarepanel.ResumeLayout(false);
+            this.lastbxtarepanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3132,20 +3152,8 @@ namespace PackingApplication
         private Panel machineboxpanel;
         private TableLayoutPanel lastboxlayout;
         private Panel lastboxpanel;
-        private TextBox copstxtbox;
-        private System.Windows.Forms.Label cops;
         private Panel lastboxheader;
         private System.Windows.Forms.Label Lastboxlbl;
-        private Panel lastbxcopspanel;
-        private Panel lastbxtarepanel;
-        private TextBox tarewghttxtbox;
-        private System.Windows.Forms.Label tareweight;
-        private Panel lastbxnetwtpanel;
-        private TextBox netwttxtbox;
-        private System.Windows.Forms.Label netweight;
-        private Panel lastbxgrosswtpanel;
-        private TextBox grosswttxtbox;
-        private System.Windows.Forms.Label grossweight;
         private GroupBox rowMaterialBox;
         private DataGridView rowMaterial;
         private Panel rowMaterialPanel;
@@ -3296,6 +3304,19 @@ namespace PackingApplication
         private TableLayoutPanel tableLayoutPanel10;
         private Button closelistbtn;
         private DataGridView dataGridView1;
+        private TableLayoutPanel tableLayoutPanel8;
+        private Panel lastbxnetwtpanel;
+        private TextBox netwttxtbox;
+        private System.Windows.Forms.Label netweight;
+        private Panel lastbxcopspanel;
+        private System.Windows.Forms.Label cops;
+        private TextBox copstxtbox;
+        private Panel lastbxgrosswtpanel;
+        private TextBox grosswttxtbox;
+        private System.Windows.Forms.Label grossweight;
+        private Panel lastbxtarepanel;
+        private TextBox tarewghttxtbox;
+        private System.Windows.Forms.Label tareweight;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
