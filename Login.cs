@@ -94,12 +94,13 @@ namespace PackingApplication
 
         private void getYearList()
         {
+            DateTime today = DateTime.Today;
             var getYearResponse = GetCallApi(masterURL + "FinancialYear/GetAll?IsDropDown=" + true);
             var getYear = JsonConvert.DeserializeObject<List<FinancialYearResponse>>(getYearResponse);
             YearList.DataSource = getYear;
             YearList.DisplayMember = "FinYear";
             YearList.ValueMember = "FinYearId";
-            var currentYear = getYear.FirstOrDefault(x => x.FinYear == DateTime.Now.Year.ToString());
+            var currentYear = getYear.FirstOrDefault(x => today >= x.StartDate.Date && today <= x.EndDate.Date);
             if (currentYear != null)
             {
                 YearList.SelectedValue = currentYear.FinYearId;
