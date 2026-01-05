@@ -87,7 +87,7 @@ namespace PackingApplication
             grosswtno.Text = "0";
             tarewt.Text = "0";
             netwt.Text = "0";
-            wtpercop.Text = "0";
+            //wtpercop.Text = "0";
             boxpalletstock.Text = "0";
             //boxpalletitemwt.Text = "0";
             //frdenier.Text = "0";
@@ -139,13 +139,6 @@ namespace PackingApplication
             PackSizeList.DisplayMember = "PackSizeName";
             PackSizeList.ValueMember = "PackSizeId";
             PackSizeList.SelectedIndex = 0;
-
-            var windingtypeList = new List<WindingTypeResponse>();
-            windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-            WindingTypeList.DataSource = windingtypeList;
-            WindingTypeList.DisplayMember = "WindingTypeName";
-            WindingTypeList.ValueMember = "WindingTypeId";
-            WindingTypeList.SelectedIndex = 0;
 
             var qualityList = new List<QualityResponse>();
             qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
@@ -233,7 +226,6 @@ namespace PackingApplication
             this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -252,7 +244,6 @@ namespace PackingApplication
             this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.ComPortList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.WeighingList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.BoxItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -266,8 +257,8 @@ namespace PackingApplication
             this.prtwist.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            //this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label4.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tarewt.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -491,13 +482,6 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
-
-                WindingTypeList.DataSource = null;
-                WindingTypeList.Items.Clear();
-                WindingTypeList.Items.Add("Select Winding Type");
-                WindingTypeList.Items.Add(productionResponse.WindingTypeName);
-                WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
-                productionRequest.WindingTypeId = productionResponse.WindingTypeId;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -1130,7 +1114,7 @@ namespace PackingApplication
             decimal.TryParse(netwt.Text, out num1);
             if (num1 > 0)
             {
-                wtpercop.Text = (num1).ToString("F3");
+                //wtpercop.Text = (num1).ToString("F3");
             }
 
             Log.writeMessage("Chips CalculateWeightPerCop - End : " + DateTime.Now);

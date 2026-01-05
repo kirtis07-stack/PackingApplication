@@ -110,7 +110,7 @@ namespace PackingApplication
             grosswtno.Text = "0.000";
             tarewt.Text = "0.000";
             netwt.Text = "0.000";
-            wtpercop.Text = "0.000";
+            //wtpercop.Text = "0.000";
             boxpalletstock.Text = "0";
             //boxpalletitemwt.Text = "0";
             //frdenier.Text = "0";
@@ -165,13 +165,6 @@ namespace PackingApplication
             PackSizeList.DisplayMember = "PackSizeName";
             PackSizeList.ValueMember = "PackSizeId";
             PackSizeList.SelectedIndex = 0;
-
-            var windingtypeList = new List<WindingTypeResponse>();
-            windingtypeList.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-            WindingTypeList.DataSource = windingtypeList;
-            WindingTypeList.DisplayMember = "WindingTypeName";
-            WindingTypeList.ValueMember = "WindingTypeId";
-            WindingTypeList.SelectedIndex = 0;
 
             var qualityList = new List<QualityResponse>();
             qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
@@ -259,7 +252,6 @@ namespace PackingApplication
             this.packsize.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.frdenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.updenier.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.windingtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.comport.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.boxpalletitemwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.boxtype.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -278,7 +270,6 @@ namespace PackingApplication
             this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.ComPortList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.WeighingList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.BoxItemList.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -292,8 +283,8 @@ namespace PackingApplication
             this.prtwist.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.copyno.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            //this.wtpercop.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            //this.label5.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.netwt.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label4.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.tarewt.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -521,13 +512,6 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
-
-                WindingTypeList.DataSource = null;
-                WindingTypeList.Items.Clear();
-                WindingTypeList.Items.Add("Select Winding Type");
-                WindingTypeList.Items.Add(productionResponse.WindingTypeName);
-                WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
-                productionRequest.WindingTypeId = productionResponse.WindingTypeId;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -1147,97 +1131,6 @@ namespace PackingApplication
             Log.writeMessage("Chips QualityList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private void WindingTypeList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Log.writeMessage("Chips WindingTypeList_SelectedIndexChanged - Start : " + DateTime.Now);
-
-            if (!isFormReady) return;
-                       
-            lblLoading.Visible = true;
-            try
-            {
-                if (WindingTypeList.SelectedValue != null)
-                {
-                    WindingTypeResponse selectedWindingType = (WindingTypeResponse)WindingTypeList.SelectedItem;
-                    int selectedWindingTypeId = selectedWindingType.WindingTypeId;
-
-                    if (selectedWindingTypeId > 0)
-                    {
-                        productionRequest.WindingTypeId = selectedWindingTypeId;
-                    }
-
-                    if (_productionId > 0 && productionResponse != null)
-                    {
-                        WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                    }
-                }
-            }
-            finally
-            {
-                lblLoading.Visible = false;
-            }
-
-            Log.writeMessage("Chips WindingTypeList_SelectedIndexChanged - End : " + DateTime.Now);
-        }
-
-        private void WindingTypeList_TextUpdate(object sender, EventArgs e)
-        {
-            Log.writeMessage("Chips WindingTypeList_TextUpdate - Start : " + DateTime.Now);
-
-            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
-            string typedText = cb.Text;
-
-            if (string.IsNullOrWhiteSpace(cb.Text))
-            {
-                cb.TextUpdate -= WindingTypeList_TextUpdate;
-
-                cb.SelectedIndex = 0;
-                cb.Text = string.Empty;
-                cb.DroppedDown = false;
-
-                cb.TextUpdate += WindingTypeList_TextUpdate;
-                return;
-            }
-
-            int cursorPosition = cb.SelectionStart;
-
-            if (typedText.Length >= 2)
-            {
-                suppressEvents = true;
-
-                //WindingTypeList.Items.Clear();
-
-                var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
-                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                if (getWindingType.Count <= 1)
-                {
-                    getWindingType = _masterService.GetWindingTypeList(typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
-                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-
-                }
-
-                WindingTypeList.BeginUpdate();
-                WindingTypeList.DataSource = null;
-                WindingTypeList.DisplayMember = "WindingTypeName";
-                WindingTypeList.ValueMember = "WindingTypeId";
-                WindingTypeList.DataSource = getWindingType;
-                WindingTypeList.EndUpdate();
-
-                WindingTypeList.TextUpdate -= WindingTypeList_TextUpdate;
-                WindingTypeList.DroppedDown = true;
-                WindingTypeList.SelectionLength = typedText.Length;
-                WindingTypeList.SelectedIndex = -1;
-                WindingTypeList.Text = typedText;
-                WindingTypeList.SelectionStart = cursorPosition;
-                WindingTypeList.TextUpdate += WindingTypeList_TextUpdate;
-
-                suppressEvents = false;
-            }
-
-            Log.writeMessage("Chips WindingTypeList_TextUpdate - End : " + DateTime.Now);
-        }
-
         private async void RefreshGradewiseGrid()
         {
             Log.writeMessage("Chips RefreshGradewiseGrid - Start : " + DateTime.Now);
@@ -1756,7 +1649,7 @@ namespace PackingApplication
             decimal.TryParse(netwt.Text, out num1);
             if (num1 > 0)
             {
-                wtpercop.Text = (num1).ToString("F3");
+                //wtpercop.Text = (num1).ToString("F3");
             }
 
             Log.writeMessage("Chips CalculateWeightPerCop - End : " + DateTime.Now);
@@ -1813,6 +1706,7 @@ namespace PackingApplication
                 productionRequest.NetWt = Convert.ToDecimal(netwt.Text.Trim());
                 productionRequest.ProductionDate = dateTimePicker1.Value;
                 productionRequest.ProdTypeId = productionResponse.ProdTypeId;
+                productionRequest.WindingTypeId = 0;
 
                 productionRequest.PrintCompany = prcompany.Checked;
                 productionRequest.PrintOwner = prowner.Checked;
@@ -1975,12 +1869,6 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            if (WindingTypeList.SelectedIndex <= 0)
-            {
-                MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
-
             if (BoxItemList.SelectedIndex <= 0)
             {
                 MessageBox.Show("Please select box item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2005,20 +1893,20 @@ namespace PackingApplication
             {
                 MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 netwt.Text = "0";
-                wtpercop.Text = "0";
+                //wtpercop.Text = "0";
                 isValid = false;
             }
-            decimal whtpercop = 0;
-            decimal.TryParse(wtpercop.Text, out whtpercop);
-            if (whtpercop >= startWeight && whtpercop <= endWeight)
-            {
-                isValid = true;
-            }
-            else
-            {
-                MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
+            //decimal whtpercop = 0;
+            //decimal.TryParse(wtpercop.Text, out whtpercop);
+            //if (whtpercop >= startWeight && whtpercop <= endWeight)
+            //{
+            //    isValid = true;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    isValid = false;
+            //}
             if (balanceQty <= 0)
             {
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
@@ -2489,41 +2377,6 @@ namespace PackingApplication
             Log.writeMessage("Chips QualityList_KeyDown - End : " + DateTime.Now);
         }
 
-        private void WindingTypeList_KeyDown(object sender, KeyEventArgs e)
-        {
-            Log.writeMessage("Chips WindingTypeList_KeyDown - Start : " + DateTime.Now);
-
-            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
-            {
-                WindingTypeList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                WindingTypeList.DroppedDown = false;
-            }
-            if (e.KeyCode == Keys.F2) // Detect F2 key
-            {
-                WindingTypeList.DataSource = null;
-                var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
-                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                if (getWindingType.Count <= 1)
-                {
-                    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
-                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                }
-                WindingTypeList.DisplayMember = "WindingTypeName";
-                WindingTypeList.ValueMember = "WindingTypeId";
-                WindingTypeList.DataSource = getWindingType;
-                WindingTypeList.SelectedIndex = 0;
-                WindingTypeList.DroppedDown = true; // Open the dropdown list
-                e.SuppressKeyPress = true;    // Prevent any side effect
-            }
-
-            Log.writeMessage("Chips WindingTypeList_KeyDown - End : " + DateTime.Now);
-        }
-
         private void ComPortList_KeyDown(object sender, KeyEventArgs e)
         {
             Log.writeMessage("Chips ComPortList_KeyDown - Start : " + DateTime.Now);
@@ -2668,7 +2521,7 @@ namespace PackingApplication
                 grosswtno.Text = "0";
                 tarewt.Text = "0";
                 netwt.Text = "0";
-                wtpercop.Text = "0";
+                //wtpercop.Text = "0";
                 boxpalletitemwt.Text = "0";
                 boxpalletstock.Text = "0";
                 boxpalletitemwt.Text = "0";
@@ -2911,6 +2764,7 @@ namespace PackingApplication
 
             Log.writeMessage("Chips txtNumeric_Leave - End : " + DateTime.Now);
         }
+
         private void FormatToThreeDecimalPlaces(TextBox textBox)
         {
             Log.writeMessage("Chips FormatToThreeDecimalPlaces - Start : " + DateTime.Now);
@@ -2961,11 +2815,6 @@ namespace PackingApplication
             QualityList.Items.Clear();
             QualityList.Items.Add("Select Quality");
             QualityList.SelectedItem = "Select Quality";
-
-            WindingTypeList.DataSource = null;
-            WindingTypeList.Items.Clear();
-            WindingTypeList.Items.Add("Select Winding Type");
-            WindingTypeList.SelectedItem = "Select Winding Type";
 
             Log.writeMessage("Chips ResetDependentDropdownValues - End : " + DateTime.Now);
         }
