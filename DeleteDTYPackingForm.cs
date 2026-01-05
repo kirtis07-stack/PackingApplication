@@ -107,7 +107,7 @@ namespace PackingApplication
             //this.reportViewer1.RefreshReport();
             selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
 
-            RefreshLastBoxDetails();
+            //RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;
             srlinenoradiobtn.FlatStyle = FlatStyle.System;

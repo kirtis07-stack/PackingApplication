@@ -1062,7 +1062,6 @@ namespace PackingApplication
             this.rightpanel.Name = "rightpanel";
             this.rightpanel.Size = new System.Drawing.Size(909, 521);
             this.rightpanel.TabIndex = 89;
-            this.rightpanel.Click += new System.EventHandler(this.btnFind_Click);
             this.rightpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
             // 
             // datalistpopuppanel

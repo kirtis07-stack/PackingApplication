@@ -62,7 +62,7 @@ namespace PackingApplication.Helper
         {
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderSize = 0;
-            button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
+            //button.FlatAppearance.BorderColor = Color.FromArgb(0, 92, 232); // Set to the background color of your form or panel
             button.FlatAppearance.MouseOverBackColor = button.BackColor; // To prevent color change on mouseover
             //button.BackColor = Color.FromArgb(0, 92, 232);
 

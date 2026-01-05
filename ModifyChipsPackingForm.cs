@@ -119,7 +119,7 @@ namespace PackingApplication
             isFormReady = true;
             selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
 
-            RefreshLastBoxDetails();
+            //RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;
             srlinenoradiobtn.FlatStyle = FlatStyle.System;
