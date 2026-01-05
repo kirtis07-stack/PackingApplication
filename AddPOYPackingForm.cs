@@ -3783,6 +3783,18 @@ namespace PackingApplication
             {
                 QualityList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                QualityList.DataSource = null;
+                var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
+                qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                QualityList.DisplayMember = "Name";
+                QualityList.ValueMember = "QualityId";
+                QualityList.DataSource = qualityList;
+                QualityList.SelectedIndex = 0;
+                QualityList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("POY QualityList_KeyDown - End : " + DateTime.Now);
         }

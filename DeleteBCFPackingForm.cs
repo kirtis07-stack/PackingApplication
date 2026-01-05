@@ -2867,6 +2867,18 @@ namespace PackingApplication
             {
                 SrLineNoList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                SrLineNoList.DataSource = null;
+                var machineList = _masterService.GetMachineList("BCFLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                SrLineNoList.DataSource = machineList;
+                SrLineNoList.DisplayMember = "MachineName";
+                SrLineNoList.ValueMember = "MachineId";
+                SrLineNoList.SelectedIndex = 0;
+                SrLineNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF SrLineNoList_KeyDown - End : " + DateTime.Now);
         }
@@ -2884,6 +2896,18 @@ namespace PackingApplication
             {
                 SrDeptList.DroppedDown = false;
             }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                SrDeptList.DataSource = null;
+                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                SrDeptList.DisplayMember = "DepartmentName";
+                SrDeptList.ValueMember = "DepartmentId";
+                SrDeptList.DataSource = deptList;
+                SrDeptList.SelectedIndex = 0;
+                SrDeptList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
 
             Log.writeMessage("BCF SrDeptList_KeyDown - End : " + DateTime.Now);
         }
@@ -2900,6 +2924,18 @@ namespace PackingApplication
             if (e.KeyCode == Keys.Escape)
             {
                 SrBoxNoList.DroppedDown = false;
+            }
+            if (e.KeyCode == Keys.F2) // Detect F2 key
+            {
+                SrBoxNoList.DataSource = null;
+                var srboxnoList = _packingService.getAllBoxNoByPackingType("BCFPacking", "").Result;
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                SrBoxNoList.DataSource = srboxnoList;
+                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.ValueMember = "ProductionId";
+                SrBoxNoList.SelectedIndex = 0;
+                SrBoxNoList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
             Log.writeMessage("BCF SrBoxNoList_KeyDown - End : " + DateTime.Now);
