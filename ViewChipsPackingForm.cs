@@ -117,7 +117,7 @@ namespace PackingApplication
             closepopupbtn.FlatStyle = FlatStyle.System;
             SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
-            this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel13, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel8, 2);
