@@ -2,6 +2,7 @@
 using Microsoft.Reporting.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PackingApplication.Constants;
 using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
@@ -141,6 +142,7 @@ namespace PackingApplication
             //deniervalue.Text = "0";
             //partyn.Text = "";
             //partyshade.Text = "";
+            dateTimePicker1.Value = DateTimeHelper.GetDateTime();
             isFormReady = true;
 
             RefreshLastBoxDetails();

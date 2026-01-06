@@ -2,12 +2,14 @@
 using Microsoft.Reporting.WinForms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PackingApplication.Constants;
 using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Properties;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +42,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 using File = System.IO.File;
-using PdfiumViewer;
 
 namespace PackingApplication
 {
@@ -140,6 +141,7 @@ namespace PackingApplication
             //deniervalue.Text = "0";
             //partyn.Text = "";
             //partyshade.Text = "";
+            dateTimePicker1.Value = DateTimeHelper.GetDateTime();
             isFormReady = true;
 
             RefreshLastBoxDetails();

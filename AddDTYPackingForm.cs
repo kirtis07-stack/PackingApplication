@@ -1,8 +1,10 @@
-﻿using PackingApplication.Helper;
+﻿using PackingApplication.Constants;
+using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using PdfiumViewer;
 
 namespace PackingApplication
 {
@@ -113,6 +114,7 @@ namespace PackingApplication
             //twistvalue.Text = "0";
             //partyn.Text = "";
             //partyshade.Text = "";
+            dateTimePicker1.Value = DateTimeHelper.GetDateTime();
             isFormReady = true;
 
             RefreshLastBoxDetails();

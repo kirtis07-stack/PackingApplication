@@ -1,4 +1,5 @@
-﻿using PackingApplication.Helper;
+﻿using PackingApplication.Constants;
+using PackingApplication.Helper;
 using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
@@ -106,6 +107,7 @@ namespace PackingApplication
             //frdenier.Text = "0";
             //updenier.Text = "0";
             //deniervalue.Text = "0";
+            dateTimePicker1.Value = DateTimeHelper.GetDateTime();
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
 
