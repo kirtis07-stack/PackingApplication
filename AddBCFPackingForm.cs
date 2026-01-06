@@ -4238,14 +4238,19 @@ namespace PackingApplication
                 return;
             }
 
+            string newText =
+                    txt.Text.Remove(txt.SelectionStart, txt.SelectionLength)
+                .Insert(txt.SelectionStart, e.KeyChar.ToString());
+
             // Check for 3 digits after decimal
-            if (txt.Text.Contains('.'))
+            if (newText.Contains('.'))
             {
-                int decimalIndex = txt.Text.IndexOf('.');
-                string afterDecimal = txt.Text.Substring(decimalIndex + 1);
-                if (afterDecimal.Length >= 3 && txt.SelectionStart > decimalIndex)
+                int decimalIndex = newText.IndexOf('.');
+                int digitsAfterDecimal = newText.Length - decimalIndex - 1;
+                if (digitsAfterDecimal > 3)
                 {
                     e.Handled = true;
+                    return;
                 }
             }
 
