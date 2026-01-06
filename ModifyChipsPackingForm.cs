@@ -2563,6 +2563,9 @@ namespace PackingApplication
                 prcompany.Checked = false;
                 prowner.Checked = false;
                 productionRequest = new ProductionRequest();
+                salelotvalue.Text = "";
+                lastbox.Text = "";
+                boxnofrmt.Text = "";
             }
             finally
             {

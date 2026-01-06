@@ -3212,6 +3212,9 @@ namespace PackingApplication
                 prowner.Checked = false;
                 spoolno.Text = "";
                 productionRequest = new ProductionRequest();
+                salelotvalue.Text = "";
+                lastbox.Text = "";
+                boxnofrmt.Text = "";
             }
             finally
             {
