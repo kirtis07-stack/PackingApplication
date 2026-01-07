@@ -185,5 +185,9 @@ namespace PackingApplication.Models.ResponseEntities
         public short ItemTypeId { get; set; }
         public short MainItemTypeId { get; set; }
         public string LastBox { get; set; }
+        public int LastBoxSpools { get; set; }
+        public decimal LastBoxGrossWt { get; set; }
+        public decimal LastBoxTareWt { get; set; }
+        public decimal LastBoxNetWt { get; set; }
     }
 }

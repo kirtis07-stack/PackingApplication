@@ -1867,10 +1867,10 @@ namespace PackingApplication
                 _productionId = getSelectedProductionDetails.ProductionId;
                 await LoadProductionDetailsAsync(getSelectedProductionDetails);
 
-                this.copstxtbox.Text = getSelectedProductionDetails.Spools.ToString();
-                this.tarewghttxtbox.Text = getSelectedProductionDetails.TareWt.ToString();
-                this.grosswttxtbox.Text = getSelectedProductionDetails.GrossWt.ToString();
-                this.netwttxtbox.Text = getSelectedProductionDetails.NetWt.ToString();
+                this.copstxtbox.Text = getSelectedProductionDetails.LastBoxSpools.ToString();
+                this.tarewghttxtbox.Text = getSelectedProductionDetails.LastBoxTareWt.ToString();
+                this.grosswttxtbox.Text = getSelectedProductionDetails.LastBoxGrossWt.ToString();
+                this.netwttxtbox.Text = getSelectedProductionDetails.LastBoxNetWt.ToString();
                 this.lastbox.Text = (!string.IsNullOrEmpty(getSelectedProductionDetails.LastBox) ? getSelectedProductionDetails.LastBox : "");
             }
 
