@@ -510,9 +510,10 @@ namespace PackingApplication
                 OwnerList.Items.Add("Select Owner");
                 if (!string.IsNullOrEmpty(productionResponse.OwnerName))
                 {
-                    OwnerList.Items.Add(productionResponse.OwnerName);
-                    OwnerList.SelectedItem = productionResponse.OwnerName;
+                    OwnerList.Items.Add(productionResponse.BPAddress);
+                    OwnerList.SelectedItem = productionResponse.BPAddress;
                     productionRequest.OwnerId = productionResponse.OwnerId;
+                    productionRequest.BPDetailsId = productionResponse.BPDetailsId;
                 }
 
                 prodtype.Text = productionResponse.ProductionType;

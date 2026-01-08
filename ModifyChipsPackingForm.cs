@@ -532,9 +532,10 @@ namespace PackingApplication
                 OwnerList.Items.Add("Select Owner");
                 if (!string.IsNullOrEmpty(productionResponse.OwnerName))
                 {
-                    OwnerList.Items.Add(productionResponse.OwnerName);
-                    OwnerList.SelectedItem = productionResponse.OwnerName;
+                    OwnerList.Items.Add(productionResponse.BPAddress);
+                    OwnerList.SelectedItem = productionResponse.BPAddress;
                     productionRequest.OwnerId = productionResponse.OwnerId;
+                    productionRequest.BPDetailsId = productionResponse.BPDetailsId;
                 }
 
                 prodtype.Text = productionResponse.ProductionType;
@@ -1449,6 +1450,7 @@ namespace PackingApplication
                     int selectedOwnerId = selectedOwner.BusinessPartnerId;
 
                     productionRequest.OwnerId = selectedOwnerId;
+                    productionRequest.BPDetailsId = selectedOwner.BPDetailsId;
                 }
             }
             finally
@@ -1486,11 +1488,11 @@ namespace PackingApplication
 
                 var ownerList = _masterService.GetOwnerList(typedText).Result.OrderBy(x => x.LegalName).ToList();
 
-                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, LegalName = "Select Owner" });
+                ownerList.Insert(0, new BusinessPartnerResponse { BusinessPartnerId = 0, Address = "Select Owner" });
 
                 OwnerList.BeginUpdate();
                 OwnerList.DataSource = null;
-                OwnerList.DisplayMember = "LegalName";
+                OwnerList.DisplayMember = "Address";
                 OwnerList.ValueMember = "BusinessPartnerId";
                 OwnerList.DataSource = ownerList;
                 OwnerList.EndUpdate();
@@ -1697,6 +1699,7 @@ namespace PackingApplication
             if (ValidateForm())
             {
                 productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
+                productionRequest.BPDetailsId = productionRequest.OwnerId == 0 ? 0 : productionRequest.BPDetailsId;
                 productionRequest.PackingType = "ChpPacking";
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());

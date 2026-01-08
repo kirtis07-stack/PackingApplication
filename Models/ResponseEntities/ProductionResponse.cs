@@ -189,5 +189,7 @@ namespace PackingApplication.Models.ResponseEntities
         public decimal LastBoxGrossWt { get; set; }
         public decimal LastBoxTareWt { get; set; }
         public decimal LastBoxNetWt { get; set; }
+        public int BPDetailsId { get; set; }
+        public string BPAddress { get; set; }
     }
 }
