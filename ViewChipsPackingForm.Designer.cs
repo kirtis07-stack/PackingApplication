@@ -179,9 +179,6 @@ namespace PackingApplication
             this.deniervalue = new System.Windows.Forms.Label();
             this.denier = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.prodtype = new System.Windows.Forms.Label();
-            this.productiontype = new System.Windows.Forms.Label();
             this.panel46 = new System.Windows.Forms.Panel();
             this.salelotvalue = new System.Windows.Forms.Label();
             this.salelot = new System.Windows.Forms.Label();
@@ -189,6 +186,9 @@ namespace PackingApplication
             this.boxnofrmt = new System.Windows.Forms.Label();
             this.req2 = new System.Windows.Forms.Label();
             this.boxnoerror = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.prodtype = new System.Windows.Forms.Label();
+            this.productiontype = new System.Windows.Forms.Label();
             this.tblpanl1 = new System.Windows.Forms.Panel();
             this.printingdetailslayout = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -294,9 +294,9 @@ namespace PackingApplication
             this.panel12.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel17.SuspendLayout();
-            this.panel13.SuspendLayout();
             this.panel46.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.tblpanl1.SuspendLayout();
             this.printingdetailslayout.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -1083,7 +1083,7 @@ namespace PackingApplication
             this.printbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.printbtn.Name = "printbtn";
             this.printbtn.Size = new System.Drawing.Size(81, 24);
-            this.printbtn.TabIndex = 122;
+            this.printbtn.TabIndex = 121;
             this.printbtn.Text = "Print";
             this.printbtn.UseVisualStyleBackColor = false;
             this.printbtn.Click += new System.EventHandler(this.btnPrint_Click);
@@ -1113,7 +1113,7 @@ namespace PackingApplication
             this.cancelbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cancelbtn.Name = "cancelbtn";
             this.cancelbtn.Size = new System.Drawing.Size(81, 24);
-            this.cancelbtn.TabIndex = 121;
+            this.cancelbtn.TabIndex = 122;
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = false;
             this.cancelbtn.Click += new System.EventHandler(this.btnCancel_Click);
@@ -2147,37 +2147,6 @@ namespace PackingApplication
             this.panel17.Size = new System.Drawing.Size(82, 33);
             this.panel17.TabIndex = 124;
             // 
-            // panel13
-            // 
-            this.tableLayoutPanel4.SetColumnSpan(this.panel13, 2);
-            this.panel13.Controls.Add(this.prodtype);
-            this.panel13.Controls.Add(this.productiontype);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(0, 124);
-            this.panel13.Margin = new System.Windows.Forms.Padding(0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(82, 23);
-            this.panel13.TabIndex = 8;
-            // 
-            // prodtype
-            // 
-            this.prodtype.AutoSize = true;
-            this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.prodtype.Location = new System.Drawing.Point(50, 3);
-            this.prodtype.Name = "prodtype";
-            this.prodtype.Size = new System.Drawing.Size(0, 13);
-            this.prodtype.TabIndex = 5;
-            // 
-            // productiontype
-            // 
-            this.productiontype.AutoSize = true;
-            this.productiontype.Location = new System.Drawing.Point(-3, 3);
-            this.productiontype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.productiontype.Name = "productiontype";
-            this.productiontype.Size = new System.Drawing.Size(34, 26);
-            this.productiontype.TabIndex = 44;
-            this.productiontype.Text = "Prod Type:";
-            // 
             // panel46
             // 
             this.panel46.Controls.Add(this.salelotvalue);
@@ -2252,6 +2221,37 @@ namespace PackingApplication
             this.boxnoerror.Size = new System.Drawing.Size(0, 13);
             this.boxnoerror.TabIndex = 105;
             this.boxnoerror.Visible = false;
+            // 
+            // panel13
+            // 
+            this.tableLayoutPanel4.SetColumnSpan(this.panel13, 2);
+            this.panel13.Controls.Add(this.prodtype);
+            this.panel13.Controls.Add(this.productiontype);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(0, 124);
+            this.panel13.Margin = new System.Windows.Forms.Padding(0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(164, 23);
+            this.panel13.TabIndex = 8;
+            // 
+            // prodtype
+            // 
+            this.prodtype.AutoSize = true;
+            this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.prodtype.Location = new System.Drawing.Point(50, 3);
+            this.prodtype.Name = "prodtype";
+            this.prodtype.Size = new System.Drawing.Size(0, 13);
+            this.prodtype.TabIndex = 5;
+            // 
+            // productiontype
+            // 
+            this.productiontype.AutoSize = true;
+            this.productiontype.Location = new System.Drawing.Point(-3, 3);
+            this.productiontype.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.productiontype.Name = "productiontype";
+            this.productiontype.Size = new System.Drawing.Size(59, 13);
+            this.productiontype.TabIndex = 44;
+            this.productiontype.Text = "Prod Type:";
             // 
             // tblpanl1
             // 
@@ -2975,12 +2975,12 @@ namespace PackingApplication
             this.panel14.PerformLayout();
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
             this.panel46.ResumeLayout(false);
             this.panel46.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.tblpanl1.ResumeLayout(false);
             this.printingdetailslayout.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
