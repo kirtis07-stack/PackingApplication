@@ -589,7 +589,6 @@ namespace PackingApplication
                 palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 RefreshGradewiseGrid();
-                AdjustNameByCharCount();
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
@@ -605,7 +604,7 @@ namespace PackingApplication
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
-
+                AdjustNameByCharCount();
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
             }
@@ -2825,6 +2824,16 @@ namespace PackingApplication
             else
             {
                 itemname.Location = new System.Drawing.Point(38, 5);
+            }
+
+            int boxnoCharCount = boxnofrmt.Text.Length;
+            if (boxnoCharCount > 8)
+            {
+                boxnofrmt.Location = new System.Drawing.Point(34, -3);
+            }
+            else
+            {
+                boxnofrmt.Location = new System.Drawing.Point(34, 5);
             }
 
             Log.writeMessage("Chips AdjustNameByCharCount - End : " + DateTime.Now);

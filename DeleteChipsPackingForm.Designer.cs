@@ -2190,9 +2190,12 @@ namespace PackingApplication
             // 
             // boxnofrmt
             // 
+            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.boxnofrmt.AutoSize = true;
             this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.boxnofrmt.Location = new System.Drawing.Point(40, 5);
+            this.boxnofrmt.Location = new System.Drawing.Point(34, 5);
+            this.boxnofrmt.MaximumSize = new System.Drawing.Size(80, 0);
             this.boxnofrmt.Name = "boxnofrmt";
             this.boxnofrmt.Size = new System.Drawing.Size(0, 16);
             this.boxnofrmt.TabIndex = 124;
@@ -2203,7 +2206,7 @@ namespace PackingApplication
             // 
             this.req2.AutoSize = true;
             this.req2.ForeColor = System.Drawing.Color.Red;
-            this.req2.Location = new System.Drawing.Point(23, 2);
+            this.req2.Location = new System.Drawing.Point(20, 2);
             this.req2.Name = "req2";
             this.req2.Size = new System.Drawing.Size(11, 13);
             this.req2.TabIndex = 106;
