@@ -84,4 +84,15 @@ namespace PackingApplication.Models.RequestEntities
         public int UserId { get; set; }
         public DateTime PrintDate { get; set; }
     }
+
+    public class GetProductionList
+    {
+        public string PackingType { get; set; }
+        public int MachineId { get; set; }
+        public int DeptId { get; set; }
+        public string BoxNo { get; set; }
+        public string ProductionDate { get; set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+    }
 }

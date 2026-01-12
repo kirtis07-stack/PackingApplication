@@ -68,6 +68,8 @@ namespace PackingApplication
         string UserName = ConfigurationManager.AppSettings["UserName"];
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
+        private int currentPage = 1;
+        private int totalPages = 0;
         public ViewBCFPackingForm()
         {
             Log.writeMessage("BCF ViewBCFPackingForm - Start : " + DateTime.Now);
@@ -409,6 +411,9 @@ namespace PackingApplication
             this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.printbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.prevbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.nextbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.lblPageInfo.Font = FontManager.GetFont(8F, FontStyle.Regular);
 
             Log.writeMessage("BCF ApplyFonts - End : " + DateTime.Now);
         }
@@ -2554,6 +2559,16 @@ namespace PackingApplication
                 MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            getProductionList(1);
+
+            Log.writeMessage("BCF btnSearch_Click - End : " + DateTime.Now);
+        }
+
+        private void getProductionList(int currentPage)
+        {
+            Log.writeMessage("BCF getProductionList - Start : " + DateTime.Now);
+
             int machineid = 0, deptid = 0;
             string boxnoid = null;
             string proddt = null;
@@ -2561,13 +2576,25 @@ namespace PackingApplication
             if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
             if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
             if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
-            packingList = _packingService.getProductionDetailsBySelectedParameter("BCFPacking", machineid, deptid, boxnoid, proddt).Result;
+
+            GetProductionList getListRequest = new GetProductionList();
+            getListRequest.PackingType = "BCFPacking";
+            getListRequest.MachineId = machineid;
+            getListRequest.DeptId = deptid;
+            getListRequest.BoxNo = boxnoid;
+            getListRequest.ProductionDate = proddt;
+            getListRequest.PageNumber = currentPage;
+            getListRequest.PageSize = 10;
+
+            packingList = _packingService.getProductionDetailsBySelectedParameter(getListRequest).Result;
 
             if (packingList.Count > 0)
             {
                 datalistpopuppanel.Visible = true;
                 datalistpopuppanel.BringToFront();
 
+                totalPages = (int)Math.Ceiling((double)packingList[0].TotalCount / 10);
+                lblPageInfo.Text = $"Page {currentPage} of {totalPages}";
                 // Center popup in form
                 datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
                 datalistpopuppanel.Top = (this.ClientSize.Height - datalistpopuppanel.Height) / 2;
@@ -2641,7 +2668,33 @@ namespace PackingApplication
                 MessageBox.Show("Data not found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            Log.writeMessage("BCF btnSearch_Click - End : " + DateTime.Now);
+            Log.writeMessage("BCF getProductionList - End : " + DateTime.Now);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF btnNext_Click - Start : " + DateTime.Now);
+
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                getProductionList(currentPage);
+            }
+
+            Log.writeMessage("BCF btnNext_Click - End : " + DateTime.Now);
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF btnPrevious_Click - Start : " + DateTime.Now);
+
+            if (currentPage > 1)
+            {
+                currentPage--;
+                getProductionList(currentPage);
+            }
+
+            Log.writeMessage("BCF btnPrevious_Click - End : " + DateTime.Now);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

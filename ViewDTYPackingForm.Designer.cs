@@ -90,6 +90,11 @@ namespace PackingApplication
             this.rightpanel = new System.Windows.Forms.Panel();
             this.datalistpopuppanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel59 = new System.Windows.Forms.Panel();
+            this.nextbtn = new System.Windows.Forms.Button();
+            this.lblPageInfo = new System.Windows.Forms.Label();
+            this.prevbtn = new System.Windows.Forms.Button();
+            this.panel60 = new System.Windows.Forms.Panel();
             this.closelistbtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.popuppanel = new System.Windows.Forms.Panel();
@@ -290,6 +295,8 @@ namespace PackingApplication
             this.rightpanel.SuspendLayout();
             this.datalistpopuppanel.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            this.panel59.SuspendLayout();
+            this.panel60.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.popuppanel.SuspendLayout();
             this.panel58.SuspendLayout();
@@ -992,7 +999,7 @@ namespace PackingApplication
             this.datalistpopuppanel.Margin = new System.Windows.Forms.Padding(0);
             this.datalistpopuppanel.Name = "datalistpopuppanel";
             this.datalistpopuppanel.Padding = new System.Windows.Forms.Padding(5);
-            this.datalistpopuppanel.Size = new System.Drawing.Size(629, 428);
+            this.datalistpopuppanel.Size = new System.Drawing.Size(629, 417);
             this.datalistpopuppanel.TabIndex = 126;
             this.datalistpopuppanel.Visible = false;
             this.datalistpopuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
@@ -1003,14 +1010,64 @@ namespace PackingApplication
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
-            this.tableLayoutPanel10.Controls.Add(this.closelistbtn, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.panel59, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.panel60, 2, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(5, 394);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(5, 383);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.Size = new System.Drawing.Size(619, 29);
             this.tableLayoutPanel10.TabIndex = 110;
+            // 
+            // panel59
+            // 
+            this.panel59.Controls.Add(this.nextbtn);
+            this.panel59.Controls.Add(this.lblPageInfo);
+            this.panel59.Controls.Add(this.prevbtn);
+            this.panel59.Location = new System.Drawing.Point(3, 3);
+            this.panel59.Name = "panel59";
+            this.panel59.Size = new System.Drawing.Size(257, 23);
+            this.panel59.TabIndex = 2;
+            // 
+            // nextbtn
+            // 
+            this.nextbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nextbtn.Location = new System.Drawing.Point(207, 0);
+            this.nextbtn.Name = "nextbtn";
+            this.nextbtn.Size = new System.Drawing.Size(47, 22);
+            this.nextbtn.TabIndex = 2;
+            this.nextbtn.Text = "Next";
+            this.nextbtn.UseVisualStyleBackColor = true;
+            // 
+            // lblPageInfo
+            // 
+            this.lblPageInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPageInfo.AutoSize = true;
+            this.lblPageInfo.Location = new System.Drawing.Point(62, 5);
+            this.lblPageInfo.Name = "lblPageInfo";
+            this.lblPageInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblPageInfo.TabIndex = 4;
+            // 
+            // prevbtn
+            // 
+            this.prevbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prevbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.prevbtn.Location = new System.Drawing.Point(0, 0);
+            this.prevbtn.Name = "prevbtn";
+            this.prevbtn.Size = new System.Drawing.Size(53, 23);
+            this.prevbtn.TabIndex = 1;
+            this.prevbtn.Text = "Prev";
+            this.prevbtn.UseVisualStyleBackColor = true;
+            // 
+            // panel60
+            // 
+            this.panel60.Controls.Add(this.closelistbtn);
+            this.panel60.Location = new System.Drawing.Point(358, 3);
+            this.panel60.Name = "panel60";
+            this.panel60.Size = new System.Drawing.Size(258, 23);
+            this.panel60.TabIndex = 3;
             // 
             // closelistbtn
             // 
@@ -1018,11 +1075,11 @@ namespace PackingApplication
             this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closelistbtn.Location = new System.Drawing.Point(265, 3);
+            this.closelistbtn.Location = new System.Drawing.Point(195, 0);
             this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closelistbtn.Name = "closelistbtn";
             this.closelistbtn.Size = new System.Drawing.Size(61, 22);
-            this.closelistbtn.TabIndex = 1;
+            this.closelistbtn.TabIndex = 3;
             this.closelistbtn.Text = "Close";
             this.closelistbtn.UseVisualStyleBackColor = false;
             this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
@@ -1059,7 +1116,7 @@ namespace PackingApplication
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(619, 418);
+            this.dataGridView1.Size = new System.Drawing.Size(619, 407);
             this.dataGridView1.TabIndex = 99;
             // 
             // popuppanel
@@ -3398,6 +3455,9 @@ namespace PackingApplication
             this.rightpanel.ResumeLayout(false);
             this.datalistpopuppanel.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
+            this.panel59.ResumeLayout(false);
+            this.panel59.PerformLayout();
+            this.panel60.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.popuppanel.ResumeLayout(false);
             this.panel58.ResumeLayout(false);
@@ -3779,6 +3839,11 @@ namespace PackingApplication
         private Panel lastbxtarepanel;
         private TextBox tarewghttxtbox;
         private System.Windows.Forms.Label tareweight;
+        private Panel panel59;
+        private Panel panel60;
+        private Button prevbtn;
+        private Button nextbtn;
+        private System.Windows.Forms.Label lblPageInfo;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

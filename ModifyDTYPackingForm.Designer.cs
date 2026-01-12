@@ -34,8 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -92,6 +92,10 @@ namespace PackingApplication
             this.datalistpopuppanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.closelistbtn = new System.Windows.Forms.Button();
+            this.panel59 = new System.Windows.Forms.Panel();
+            this.nextbtn = new System.Windows.Forms.Button();
+            this.lblPageInfo = new System.Windows.Forms.Label();
+            this.prevbtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.popuppanel = new System.Windows.Forms.Panel();
             this.searchbtn = new System.Windows.Forms.Button();
@@ -257,13 +261,6 @@ namespace PackingApplication
             this.spoolwterror = new System.Windows.Forms.Label();
             this.lastboxlayout = new System.Windows.Forms.TableLayoutPanel();
             this.lastboxpanel = new System.Windows.Forms.Panel();
-            this.lastboxheader = new System.Windows.Forms.Panel();
-            this.Lastboxlbl = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.menu = new System.Windows.Forms.Label();
-            this.menuBtn = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.lastbxnetwtpanel = new System.Windows.Forms.Panel();
             this.netwttxtbox = new System.Windows.Forms.TextBox();
@@ -277,6 +274,14 @@ namespace PackingApplication
             this.lastbxtarepanel = new System.Windows.Forms.Panel();
             this.tarewghttxtbox = new System.Windows.Forms.TextBox();
             this.tareweight = new System.Windows.Forms.Label();
+            this.lastboxheader = new System.Windows.Forms.Panel();
+            this.Lastboxlbl = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.menu = new System.Windows.Forms.Label();
+            this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.panel60 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -291,6 +296,7 @@ namespace PackingApplication
             this.rightpanel.SuspendLayout();
             this.datalistpopuppanel.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            this.panel59.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.popuppanel.SuspendLayout();
             this.panel58.SuspendLayout();
@@ -365,15 +371,16 @@ namespace PackingApplication
             this.weighboxpanel.SuspendLayout();
             this.lastboxlayout.SuspendLayout();
             this.lastboxpanel.SuspendLayout();
-            this.lastboxheader.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
             this.tableLayoutPanel12.SuspendLayout();
             this.lastbxnetwtpanel.SuspendLayout();
             this.lastbxcopspanel.SuspendLayout();
             this.lastbxgrosswtpanel.SuspendLayout();
             this.lastbxtarepanel.SuspendLayout();
+            this.lastboxheader.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.panel60.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1053,7 +1060,8 @@ namespace PackingApplication
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.5F));
-            this.tableLayoutPanel10.Controls.Add(this.closelistbtn, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.panel59, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.panel60, 2, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(5, 383);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -1068,14 +1076,57 @@ namespace PackingApplication
             this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closelistbtn.Location = new System.Drawing.Point(261, 3);
+            this.closelistbtn.Location = new System.Drawing.Point(188, 0);
             this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closelistbtn.Name = "closelistbtn";
             this.closelistbtn.Size = new System.Drawing.Size(66, 22);
-            this.closelistbtn.TabIndex = 1;
+            this.closelistbtn.TabIndex = 3;
             this.closelistbtn.Text = "Close";
             this.closelistbtn.UseVisualStyleBackColor = false;
             this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
+            // 
+            // panel59
+            // 
+            this.panel59.Controls.Add(this.nextbtn);
+            this.panel59.Controls.Add(this.lblPageInfo);
+            this.panel59.Controls.Add(this.prevbtn);
+            this.panel59.Location = new System.Drawing.Point(3, 3);
+            this.panel59.Name = "panel59";
+            this.panel59.Size = new System.Drawing.Size(253, 23);
+            this.panel59.TabIndex = 5;
+            // 
+            // nextbtn
+            // 
+            this.nextbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nextbtn.Location = new System.Drawing.Point(206, 0);
+            this.nextbtn.Name = "nextbtn";
+            this.nextbtn.Size = new System.Drawing.Size(47, 22);
+            this.nextbtn.TabIndex = 2;
+            this.nextbtn.Text = "Next";
+            this.nextbtn.UseVisualStyleBackColor = true;
+            this.nextbtn.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // lblPageInfo
+            // 
+            this.lblPageInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPageInfo.AutoSize = true;
+            this.lblPageInfo.Location = new System.Drawing.Point(62, 5);
+            this.lblPageInfo.Name = "lblPageInfo";
+            this.lblPageInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblPageInfo.TabIndex = 4;
+            // 
+            // prevbtn
+            // 
+            this.prevbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prevbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.prevbtn.Location = new System.Drawing.Point(0, 0);
+            this.prevbtn.Name = "prevbtn";
+            this.prevbtn.Size = new System.Drawing.Size(53, 23);
+            this.prevbtn.TabIndex = 1;
+            this.prevbtn.Text = "Prev";
+            this.prevbtn.UseVisualStyleBackColor = true;
+            this.prevbtn.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // dataGridView1
             // 
@@ -1088,14 +1139,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1430,7 +1481,7 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -3189,76 +3240,6 @@ namespace PackingApplication
             this.lastboxpanel.Size = new System.Drawing.Size(212, 48);
             this.lastboxpanel.TabIndex = 107;
             // 
-            // lastboxheader
-            // 
-            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.lastboxheader.Controls.Add(this.Lastboxlbl);
-            this.lastboxheader.Location = new System.Drawing.Point(2, 2);
-            this.lastboxheader.Margin = new System.Windows.Forms.Padding(0);
-            this.lastboxheader.Name = "lastboxheader";
-            this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.lastboxheader.Size = new System.Drawing.Size(216, 17);
-            this.lastboxheader.TabIndex = 107;
-            this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
-            this.lastboxheader.Resize += new System.EventHandler(this.lastboxheader_Resize);
-            // 
-            // Lastboxlbl
-            // 
-            this.Lastboxlbl.AutoSize = true;
-            this.Lastboxlbl.Location = new System.Drawing.Point(4, 2);
-            this.Lastboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Lastboxlbl.Name = "Lastboxlbl";
-            this.Lastboxlbl.Size = new System.Drawing.Size(80, 13);
-            this.Lastboxlbl.TabIndex = 107;
-            this.Lastboxlbl.Text = "Last box details";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Location = new System.Drawing.Point(3, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(197, 76);
-            this.panel5.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.Location = new System.Drawing.Point(195, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(606, 447);
-            this.panel6.TabIndex = 1;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.menu);
-            this.panel7.Controls.Add(this.menuBtn);
-            this.panel7.Location = new System.Drawing.Point(21, 9);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(139, 55);
-            this.panel7.TabIndex = 1;
-            // 
-            // menu
-            // 
-            this.menu.AutoSize = true;
-            this.menu.ForeColor = System.Drawing.Color.Black;
-            this.menu.Location = new System.Drawing.Point(48, 20);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(34, 13);
-            this.menu.TabIndex = 1;
-            this.menu.Text = "Menu";
-            // 
-            // menuBtn
-            // 
-            this.menuBtn.Image = global::PackingApplication.Properties.Resources.icons8_menu_50;
-            this.menuBtn.Location = new System.Drawing.Point(3, 15);
-            this.menuBtn.Name = "menuBtn";
-            this.menuBtn.Size = new System.Drawing.Size(29, 24);
-            this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.menuBtn.TabIndex = 1;
-            this.menuBtn.TabStop = false;
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 4;
@@ -3275,7 +3256,7 @@ namespace PackingApplication
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(212, 48);
             this.tableLayoutPanel12.TabIndex = 125;
             // 
@@ -3431,6 +3412,84 @@ namespace PackingApplication
             this.tareweight.TabIndex = 4;
             this.tareweight.Text = "Tare";
             // 
+            // lastboxheader
+            // 
+            this.lastboxheader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lastboxheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.lastboxheader.Controls.Add(this.Lastboxlbl);
+            this.lastboxheader.Location = new System.Drawing.Point(2, 2);
+            this.lastboxheader.Margin = new System.Windows.Forms.Padding(0);
+            this.lastboxheader.Name = "lastboxheader";
+            this.lastboxheader.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            this.lastboxheader.Size = new System.Drawing.Size(216, 17);
+            this.lastboxheader.TabIndex = 107;
+            this.lastboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.lastboxheader_Paint);
+            this.lastboxheader.Resize += new System.EventHandler(this.lastboxheader_Resize);
+            // 
+            // Lastboxlbl
+            // 
+            this.Lastboxlbl.AutoSize = true;
+            this.Lastboxlbl.Location = new System.Drawing.Point(4, 2);
+            this.Lastboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Lastboxlbl.Name = "Lastboxlbl";
+            this.Lastboxlbl.Size = new System.Drawing.Size(80, 13);
+            this.Lastboxlbl.TabIndex = 107;
+            this.Lastboxlbl.Text = "Last box details";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(197, 76);
+            this.panel5.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.Location = new System.Drawing.Point(195, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(606, 447);
+            this.panel6.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.menu);
+            this.panel7.Controls.Add(this.menuBtn);
+            this.panel7.Location = new System.Drawing.Point(21, 9);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(139, 55);
+            this.panel7.TabIndex = 1;
+            // 
+            // menu
+            // 
+            this.menu.AutoSize = true;
+            this.menu.ForeColor = System.Drawing.Color.Black;
+            this.menu.Location = new System.Drawing.Point(48, 20);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(34, 13);
+            this.menu.TabIndex = 1;
+            this.menu.Text = "Menu";
+            // 
+            // menuBtn
+            // 
+            this.menuBtn.Image = global::PackingApplication.Properties.Resources.icons8_menu_50;
+            this.menuBtn.Location = new System.Drawing.Point(3, 15);
+            this.menuBtn.Name = "menuBtn";
+            this.menuBtn.Size = new System.Drawing.Size(29, 24);
+            this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.menuBtn.TabIndex = 1;
+            this.menuBtn.TabStop = false;
+            // 
+            // panel60
+            // 
+            this.panel60.Controls.Add(this.closelistbtn);
+            this.panel60.Location = new System.Drawing.Point(353, 3);
+            this.panel60.Name = "panel60";
+            this.panel60.Size = new System.Drawing.Size(254, 23);
+            this.panel60.TabIndex = 6;
+            // 
             // ModifyDTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3467,6 +3526,8 @@ namespace PackingApplication
             this.rightpanel.ResumeLayout(false);
             this.datalistpopuppanel.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
+            this.panel59.ResumeLayout(false);
+            this.panel59.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.popuppanel.ResumeLayout(false);
             this.panel58.ResumeLayout(false);
@@ -3585,12 +3646,6 @@ namespace PackingApplication
             this.weighboxpanel.PerformLayout();
             this.lastboxlayout.ResumeLayout(false);
             this.lastboxpanel.ResumeLayout(false);
-            this.lastboxheader.ResumeLayout(false);
-            this.lastboxheader.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.lastbxnetwtpanel.ResumeLayout(false);
             this.lastbxnetwtpanel.PerformLayout();
@@ -3600,6 +3655,13 @@ namespace PackingApplication
             this.lastbxgrosswtpanel.PerformLayout();
             this.lastbxtarepanel.ResumeLayout(false);
             this.lastbxtarepanel.PerformLayout();
+            this.lastboxheader.ResumeLayout(false);
+            this.lastboxheader.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.panel60.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3849,6 +3911,11 @@ namespace PackingApplication
         private Panel lastbxtarepanel;
         private TextBox tarewghttxtbox;
         private System.Windows.Forms.Label tareweight;
+        private Panel panel59;
+        private Button prevbtn;
+        private Button nextbtn;
+        private System.Windows.Forms.Label lblPageInfo;
+        private Panel panel60;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
