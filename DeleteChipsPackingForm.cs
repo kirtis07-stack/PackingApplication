@@ -1403,33 +1403,101 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips btnCancel_Click - Start : " + DateTime.Now);
 
-            if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
+            ResetForm(this);
+
+            Log.writeMessage("Chips btnCancel_Click - End : " + DateTime.Now);
+        }
+
+        private void ResetForm(Control parent)
+        {
+            Log.writeMessage("Chips ResetForm - Start : " + DateTime.Now);
+
+            lblLoading.Visible = true;
+            try
             {
-                if (parentForm.MainMenuStrip != null)
+                foreach (Control c in parent.Controls)
                 {
-                    parentForm.MainMenuStrip.Focus();
-                    bool highlightedFound = false;
+                    if (c is System.Windows.Forms.TextBox)
+                        ((System.Windows.Forms.TextBox)c).Clear();
 
-                    foreach (ToolStripMenuItem item in parentForm.MainMenuStrip.Items)
+                    else if (c is System.Windows.Forms.ComboBox)
+                        ((System.Windows.Forms.ComboBox)c).SelectedIndex = 0;
+
+                    else if (c is DateTimePicker)
+                        ((DateTimePicker)c).Value = DateTime.Now;
+                }
+                copyno.Text = "1";
+                palletwtno.Text = "0";
+                grosswtno.Text = "0";
+                tarewt.Text = "0";
+                netwt.Text = "0";
+                //wtpercop.Text = "0";
+                boxpalletitemwt.Text = "0";
+                boxpalletstock.Text = "0";
+                boxpalletitemwt.Text = "0";
+                frdenier.Text = "0";
+                updenier.Text = "0";
+                deniervalue.Text = "0";
+                itemname.Text = "";
+                shadename.Text = "";
+                shadecd.Text = "";
+                prodtype.Text = "";
+                frwt.Text = "0";
+                upwt.Text = "0";
+                remarks.Text = "";
+                lotResponse = new LotsResponse();
+                lotsDetailsList = new List<LotsDetailsResponse>();
+                LoadDropdowns();
+                rowMaterial.Columns.Clear();
+                totalProdQty = 0;
+                selectedSOId = 0;
+                totalSOQty = 0;
+                balanceQty = 0;
+                selectLotId = 0;
+                selectedSOId = 0;
+                prcompany.Checked = false;
+                prowner.Checked = false;
+                productionRequest = new ProductionRequest();
+                salelotvalue.Text = "";
+                lastbox.Text = "";
+                boxnofrmt.Text = "";
+                copstxtbox.Text = "";
+                tarewghttxtbox.Text = "";
+                grosswttxtbox.Text = "";
+                netwttxtbox.Text = "";
+            }
+            finally
+            {
+                lblLoading.Visible = false;
+                isFormReady = true;
+                if (Application.OpenForms["AdminAccount"] is AdminAccount parentForm)
+                {
+                    if (parentForm.MainMenuStrip != null)
                     {
-                        if (item.BackColor == Color.FromArgb(230, 240, 255))
+                        parentForm.MainMenuStrip.Focus();
+                        bool highlightedFound = false;
+
+                        foreach (ToolStripMenuItem item in parentForm.MainMenuStrip.Items)
                         {
-                            item.Select();
-                            parentForm.MainMenuStrip.Focus();
+                            if (item.BackColor == Color.FromArgb(230, 240, 255))
+                            {
+                                item.Select();
+                                parentForm.MainMenuStrip.Focus();
 
-                            // select the current active item
-                            parentForm.MainMenuStrip.Items[0].Owner.Focus();
-                            highlightedFound = true;
-                            break;
+                                // select the current active item
+                                parentForm.MainMenuStrip.Items[0].Owner.Focus();
+                                highlightedFound = true;
+                                break;
+                            }
                         }
-                    }
 
-                    if (!highlightedFound && parentForm.MainMenuStrip.Items.Count > 0)
-                        ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
+                        if (!highlightedFound && parentForm.MainMenuStrip.Items.Count > 0)
+                            ((ToolStripMenuItem)parentForm.MainMenuStrip.Items[0]).Select();
+                    }
                 }
             }
 
-            Log.writeMessage("Chips btnCancel_Click - End : " + DateTime.Now);
+            Log.writeMessage("Chips ResetForm - End : " + DateTime.Now);
         }
 
         private void AdjustNameByCharCount()

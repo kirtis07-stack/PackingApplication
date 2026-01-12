@@ -3939,6 +3939,10 @@ namespace PackingApplication
                 salelotvalue.Text = "";
                 lastbox.Text = "";
                 boxnofrmt.Text = "";
+                copstxtbox.Text = "";
+                tarewghttxtbox.Text = "";
+                grosswttxtbox.Text = "";
+                netwttxtbox.Text = "";
             }
             finally
             {
