@@ -1914,17 +1914,17 @@ namespace PackingApplication
             //    MessageBox.Show("Weight Per Cops is out of range.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //    isValid = false;
             //}
-            if (balanceQty <= 0)
-            {
-                MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                isValid = false;
-            }
-            decimal newBalanceQty = balanceQty - gross;
-            if (newBalanceQty < 0)
-            {
-                MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
-            }
+            //if (balanceQty <= 0)
+            //{
+            //    MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
+            //    isValid = false;
+            //}
+            //decimal newBalanceQty = balanceQty - gross;
+            //if (newBalanceQty < 0)
+            //{
+            //    MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    isValid = false;
+            //}
 
             Log.writeMessage("Chips ValidateForm - End : " + DateTime.Now);
 

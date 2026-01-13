@@ -3215,7 +3215,7 @@ namespace PackingApplication
                 selectedSONumber = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
-                spoolno.Text = "";
+                spoolno.Text = "0";
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
                 lastbox.Text = "";

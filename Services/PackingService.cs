@@ -122,14 +122,14 @@ namespace PackingApplication.Services
 
         public async Task<List<ProductionResponse>> getProductionDetailsBySelectedParameter(GetProductionList productionRequest)
         {
-            string ProductionDate = null;
-            if (!string.IsNullOrEmpty(productionRequest.ProductionDate))
-            {
-                if (DateTime.TryParseExact(productionRequest.ProductionDate, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
-                {
-                    ProductionDate = parsedDate.ToString("yyyy-MM-dd");
-                }
-            }
+            //string ProductionDate = null;
+            //if (!string.IsNullOrEmpty(productionRequest.ProductionDate))
+            //{
+            //    if (DateTime.TryParseExact(productionRequest.ProductionDate, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            //    {
+            //        ProductionDate = parsedDate.ToString("yyyy-MM-dd");
+            //    }
+            //}
             var getPackingResponse = method.PostCallApi(packingURL + "Production/GetProductionDetailsBySelectedParameter", productionRequest).Result;
             if (getPackingResponse.StatusCode != 200)
             {

@@ -1734,7 +1734,7 @@ namespace PackingApplication
                 selectedSONumber = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
-                spoolno.Text = "";
+                spoolno.Text = "0";
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
                 lastbox.Text = "";
@@ -2174,12 +2174,28 @@ namespace PackingApplication
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY btnNext_Click - Start : " + DateTime.Now);
 
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                getProductionList(currentPage);
+            }
+
+            Log.writeMessage("DTY btnNext_Click - End : " + DateTime.Now);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
+            Log.writeMessage("DTY btnPrevious_Click - Start : " + DateTime.Now);
 
+            if (currentPage > 1)
+            {
+                currentPage--;
+                getProductionList(currentPage);
+            }
+
+            Log.writeMessage("DTY btnPrevious_Click - End : " + DateTime.Now);
         }
 
         //private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

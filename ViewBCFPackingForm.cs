@@ -2233,7 +2233,7 @@ namespace PackingApplication
                 rowCount = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
-                spoolno.Text = "";
+                spoolno.Text = "0";
                 salelotvalue.Text = "";
                 lastbox.Text = "";
                 boxnofrmt.Text = "";

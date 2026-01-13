@@ -3394,7 +3394,7 @@ namespace PackingApplication
                 //WindingTypeList.SelectedIndex = 0;
 
                 //isFormReady = false;
-                spoolno.Text = "";
+                spoolno.Text = "0";
             }
             finally
             {
