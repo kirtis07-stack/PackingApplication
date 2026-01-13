@@ -2938,21 +2938,28 @@ namespace PackingApplication
         {
             Log.writeMessage("POY btnDelete_Click - Start : " + DateTime.Now);
 
-            DialogResult result = MessageBox.Show("Are you sure you want to delete?",
+            if (_productionId > 0) 
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete?",
                 "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (result == DialogResult.Yes)
-            {
-                productionRequest.IsDisabled = true;
-
-                ProductionResponse response = new ProductionResponse();
-                response = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
-                if (response.IsDisabled)
+                if (result == DialogResult.Yes)
                 {
-                    ShowCustomMessage(response.BoxNoFmtd);
-                    //delete.Enabled = false;
-                    ResetForm(this);
+                    productionRequest.IsDisabled = true;
+
+                    ProductionResponse response = new ProductionResponse();
+                    response = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
+                    if (response.IsDisabled)
+                    {
+                        ShowCustomMessage(response.BoxNoFmtd);
+                        //delete.Enabled = false;
+                        ResetForm(this);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Log.writeMessage("POY btnDelete_Click - End : " + DateTime.Now);

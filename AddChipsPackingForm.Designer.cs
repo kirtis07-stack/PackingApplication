@@ -683,7 +683,7 @@ namespace PackingApplication
             // 
             this.req8.AutoSize = true;
             this.req8.ForeColor = System.Drawing.Color.Red;
-            this.req8.Location = new System.Drawing.Point(46, 0);
+            this.req8.Location = new System.Drawing.Point(45, 0);
             this.req8.Name = "req8";
             this.req8.Size = new System.Drawing.Size(11, 13);
             this.req8.TabIndex = 112;

@@ -2139,38 +2139,45 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips btnDelete_Click - Start : " + DateTime.Now);
 
-            DialogResult result = MessageBox.Show("Are you sure you want to delete?",
+            if (_productionId > 0)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete?",
                 "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
+                {
+                    productionRequest.IsDisabled = true;
+                    productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
+
+                    productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
+                    foreach (var lot in lotsDetailsList)
+                    {
+                        ProductionConsumptionDetailsRequest consumptionDetailsRequest = new ProductionConsumptionDetailsRequest();
+                        consumptionDetailsRequest.Extruder = lot.Extruder;
+                        consumptionDetailsRequest.InputPerc = lot.InputPerc;
+                        consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
+                        consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
+                        consumptionDetailsRequest.ProductionLotId = lot.LotId;
+                        consumptionDetailsRequest.InputLotId = lot.LotId;
+                        consumptionDetailsRequest.InputItemId = lot.PrevLotItemId;
+                        consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
+                        consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
+                        productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
+                    }
+
+                    ProductionResponse response = new ProductionResponse();
+                    response = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
+                    if (response.IsDisabled)
+                    {
+                        ShowCustomMessage(response.BoxNoFmtd);
+                        //delete.Enabled = false;
+                        ResetForm(this);
+                    }
+                }
+            }
+            else
             {
-                productionRequest.IsDisabled = true;
-                productionRequest.PalletDetailsRequest = new List<ProductionPalletDetailsRequest>();
-
-                productionRequest.ConsumptionDetailsRequest = new List<ProductionConsumptionDetailsRequest>();
-                foreach (var lot in lotsDetailsList)
-                {
-                    ProductionConsumptionDetailsRequest consumptionDetailsRequest = new ProductionConsumptionDetailsRequest();
-                    consumptionDetailsRequest.Extruder = lot.Extruder;
-                    consumptionDetailsRequest.InputPerc = lot.InputPerc;
-                    consumptionDetailsRequest.GainLossPerc = lot.GainLossPerc;
-                    consumptionDetailsRequest.ProductionPerc = lot.ProductionPerc;
-                    consumptionDetailsRequest.ProductionLotId = lot.LotId;
-                    consumptionDetailsRequest.InputLotId = lot.LotId;
-                    consumptionDetailsRequest.InputItemId = lot.PrevLotItemId;
-                    consumptionDetailsRequest.InputQualityId = lot.PrevLotQualityId;
-                    consumptionDetailsRequest.PropWeight = consumptionDetailsRequest.ProductionPerc * productionRequest.NetWt;
-                    productionRequest.ConsumptionDetailsRequest.Add(consumptionDetailsRequest);
-                }
-
-                ProductionResponse response = new ProductionResponse();
-                response = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
-                if (response.IsDisabled)
-                {
-                    ShowCustomMessage(response.BoxNoFmtd);
-                    //delete.Enabled = false;
-                    ResetForm(this);
-                }
+                MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Log.writeMessage("Chips btnDelete_Click - End : " + DateTime.Now);
