@@ -2806,9 +2806,12 @@ namespace PackingApplication
             // 
             // boxnofrmt
             // 
+            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.boxnofrmt.AutoSize = true;
             this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.boxnofrmt.Location = new System.Drawing.Point(33, 5);
+            this.boxnofrmt.MaximumSize = new System.Drawing.Size(70, 0);
             this.boxnofrmt.Name = "boxnofrmt";
             this.boxnofrmt.Size = new System.Drawing.Size(0, 16);
             this.boxnofrmt.TabIndex = 124;

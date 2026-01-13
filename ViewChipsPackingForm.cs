@@ -197,6 +197,15 @@ namespace PackingApplication
             WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            LoadSearchDropdowns();
+
+            Log.writeMessage("Chips LoadDropdowns - End : " + DateTime.Now);
+        }
+
+        private void LoadSearchDropdowns()
+        {
+            Log.writeMessage("Chips LoadSearchDropdowns - Start : " + DateTime.Now);
+
             var srmachineList = new List<MachineResponse>();
             srmachineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
             SrLineNoList.DataSource = srmachineList;
@@ -218,7 +227,7 @@ namespace PackingApplication
             SrBoxNoList.ValueMember = "ProductionId";
             SrBoxNoList.SelectedIndex = 0;
 
-            Log.writeMessage("Chips LoadDropdowns - End : " + DateTime.Now);
+            Log.writeMessage("Chips LoadSearchDropdowns - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
@@ -539,7 +548,6 @@ namespace PackingApplication
                 productionRequest.PrintQRCode = productionResponse.PrintQRCode;
                 prtwist.Checked = productionResponse.PrintTwist;
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
-                boxnofrmt.Text = productionResponse.BoxNoFmtd;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
                 lotsDetailsList = new List<LotsDetailsResponse>();
@@ -1578,6 +1586,7 @@ namespace PackingApplication
             popuppanel.Visible = false;
             srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            LoadSearchDropdowns();
             findbtn.Focus();
 
             Log.writeMessage("Chips btnClosePopup_Click - End : " + DateTime.Now);

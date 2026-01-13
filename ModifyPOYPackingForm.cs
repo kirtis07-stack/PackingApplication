@@ -252,6 +252,15 @@ namespace PackingApplication
             PalletTypeList.ValueMember = "ItemId";
             PalletTypeList.SelectedIndex = 0;
 
+            LoadSearchDropdowns();
+
+            Log.writeMessage("POY LoadDropdowns - End : " + DateTime.Now);
+        }
+
+        private void LoadSearchDropdowns()
+        {
+            Log.writeMessage("POY LoadSearchDropdowns - Start : " + DateTime.Now);
+
             var srmachineList = new List<MachineResponse>();
             srmachineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
             SrLineNoList.DataSource = srmachineList;
@@ -273,7 +282,7 @@ namespace PackingApplication
             SrBoxNoList.ValueMember = "ProductionId";
             SrBoxNoList.SelectedIndex = 0;
 
-            Log.writeMessage("POY LoadDropdowns - End : " + DateTime.Now);
+            Log.writeMessage("POY LoadSearchDropdowns - End : " + DateTime.Now);
         }
 
         private void ApplyFonts()
@@ -716,7 +725,6 @@ namespace PackingApplication
                 grdsoqty.Text = totalSOQty.ToString("F2");
                 RefreshGradewiseGrid();
                 RefreshWindingGrid();
-                AdjustNameByCharCount();
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
@@ -761,6 +769,7 @@ namespace PackingApplication
                 productionRequest.NetWt = productionResponse.NetWt;
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
+                AdjustNameByCharCount();
             }
 
             Log.writeMessage("POY LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -790,7 +799,7 @@ namespace PackingApplication
                 rowCount++;
 
                 Panel rowPanel = new Panel();
-                rowPanel.Size = new Size(width, 35);
+                //rowPanel.Size = new Size(width, 35);
                 rowPanel.BorderStyle = BorderStyle.None;
 
                 rowPanel.Paint += (s, pe) =>
@@ -810,8 +819,8 @@ namespace PackingApplication
                 System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                 // Item Name
-                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, Width = 140, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
-
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 160, MaximumSize = new Size(200, 160), Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
+                lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                 // Qty
                 System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
                 // Edit Button
@@ -912,7 +921,11 @@ namespace PackingApplication
                 rowPanel.Controls.Add(btnEdit);
                 rowPanel.Controls.Add(btnDelete);
                 rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
-
+                //if itemname is larger then increase the rowPanel height and change its location point
+                int rowHeight = Math.Max(lblItem.Height + 10, 35);
+                rowPanel.Size = new Size(width, rowHeight);
+                int newY = (rowPanel.Height - lblItem.Height) / 2;
+                lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
                 flowLayoutPanel1.Controls.Add(rowPanel);
             }
 
@@ -2428,7 +2441,7 @@ namespace PackingApplication
                     rowCount++;
 
                     Panel rowPanel = new Panel();
-                    rowPanel.Size = new Size(width, 35);
+                    //rowPanel.Size = new Size(width, 35);
                     rowPanel.BorderStyle = BorderStyle.None;
 
                     rowPanel.Paint += (s, pe) =>
@@ -2448,8 +2461,8 @@ namespace PackingApplication
                     System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
                     // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId };
-
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 160, MaximumSize = new Size(200, 160), Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
+                    lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                     // Qty
                     System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 60, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
 
@@ -2550,6 +2563,11 @@ namespace PackingApplication
                     rowPanel.Controls.Add(btnEdit);
                     rowPanel.Controls.Add(btnDelete);
                     rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
+                    //if itemname is larger then increase the rowPanel height and change its location point
+                    int rowHeight = Math.Max(lblItem.Height + 10, 35);
+                    rowPanel.Size = new Size(width, rowHeight);
+                    int newY = (rowPanel.Height - lblItem.Height) / 2;
+                    lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
 
                     flowLayoutPanel1.Controls.Add(rowPanel);
                     flowLayoutPanel1.AutoScroll = true;
@@ -4234,6 +4252,16 @@ namespace PackingApplication
                 itemname.Location = new System.Drawing.Point(38, 5);
             }
 
+            int boxnoCharCount = boxnofrmt.Text.Length;
+            if (boxnoCharCount > 8)
+            {
+                boxnofrmt.Location = new System.Drawing.Point(34, -3);
+            }
+            else
+            {
+                boxnofrmt.Location = new System.Drawing.Point(34, 5);
+            }
+
             Log.writeMessage("AdjustNameByCharCount - End : " + DateTime.Now);
         }
 
@@ -4282,6 +4310,7 @@ namespace PackingApplication
             popuppanel.Visible = false;
             srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            LoadSearchDropdowns();
             findbtn.Focus();
 
             Log.writeMessage("POY btnClosePopup_Click - End : " + DateTime.Now);
