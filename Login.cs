@@ -1,22 +1,23 @@
 ﻿using Newtonsoft.Json;
+using PackingApplication.Helper;
+using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
+using PackingApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PackingApplication.Helper;
-using PackingApplication.Models.CommonEntities;
-using System.Configuration;
 
 namespace PackingApplication
 {
@@ -128,10 +129,19 @@ namespace PackingApplication
         {
             Log.writeMessage("Login signin_Click - Start : " + DateTime.Now);
 
+            SignIn();
+
+            Log.writeMessage("Login signin_Click - End : " + DateTime.Now);
+        }
+
+        private void SignIn()
+        {
+            Log.writeMessage("Login SignIn - Start : " + DateTime.Now);
+
             if (ValidateForm())
             {
                 try
-                {                 
+                {
                     Log.writeMessage("CheckLogin start");
                     LoginRequest login = new LoginRequest();
                     login.Email = email.Text;
@@ -169,7 +179,7 @@ namespace PackingApplication
 
                             var userResponse = JsonConvert.DeserializeObject<ErrorResponse>(errorMessage);
 
-                            MessageBox.Show(userResponse.message.ToString(),"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(userResponse.message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
 
@@ -180,7 +190,8 @@ namespace PackingApplication
                     Log.writeMessage("An error occurred: {ex.Message}");
                 }
             }
-            Log.writeMessage("Login signin_Click - End : " + DateTime.Now);
+
+            Log.writeMessage("Login SignIn - End : " + DateTime.Now);
         }
 
         private bool IsValidEmail(string email)
@@ -300,26 +311,27 @@ namespace PackingApplication
                 e.Handled = true;           // Mark as handled
                 e.SuppressKeyPress = true;
 
-                Control current = (Control)sender;
+                SignIn();
+                //Control current = (Control)sender;
 
-                if (current == rememberme)
-                {
-                    signin.Focus();
-                }
-                else
-                {
-                    this.SelectNextControl(current, true, true, true, true);
-                }
-                if (this.ActiveControl is CheckBox cb)
-                {
-                    cb.Invalidate(); // triggers paint to show focus border
-                }
-                if (this.ActiveControl is Button btn)
-                {
-                    // This makes Windows draw the dotted focus rectangle
-                    btn.Focus();
-                    btn.FlatStyle = FlatStyle.Standard; // ensures focus rectangle is visible
-                }
+                //if (current == rememberme)
+                //{
+                //    signin.Focus();
+                //}
+                //else
+                //{
+                //    this.SelectNextControl(current, true, true, true, true);
+                //}
+                //if (this.ActiveControl is CheckBox cb)
+                //{
+                //    cb.Invalidate(); // triggers paint to show focus border
+                //}
+                //if (this.ActiveControl is Button btn)
+                //{
+                //    // This makes Windows draw the dotted focus rectangle
+                //    btn.Focus();
+                //    btn.FlatStyle = FlatStyle.Standard; // ensures focus rectangle is visible
+                //}
             }
 
             Log.writeMessage("Login Control_EnterKeyMoveNext - End : " + DateTime.Now);
@@ -339,5 +351,21 @@ namespace PackingApplication
             Log.writeMessage("Login CheckBox_DrawFocusBorder - End : " + DateTime.Now);
         }
 
+        private void YearList_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("Login YearList_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.ShiftKey) // Detect Shift key
+            {
+                YearList.DroppedDown = true; // Open the dropdown list
+                e.SuppressKeyPress = true;    // Prevent any side effect
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                YearList.DroppedDown = false;
+            }
+
+            Log.writeMessage("Login YearList_KeyDown - End : " + DateTime.Now);
+        }
     }
 }

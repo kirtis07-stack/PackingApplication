@@ -123,6 +123,7 @@ namespace PackingApplication
             this.YearList.TabIndex = 5;
             this.YearList.SelectedIndexChanged += new System.EventHandler(this.YearList_SelectedIndexChanged);
             this.YearList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Control_EnterKeyMoveNext);
+            this.YearList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.YearList_KeyDown);
             // 
             // rememberme
             // 
