@@ -496,6 +496,7 @@ namespace PackingApplication
                 saveprint.Text = "Update && Print";
                 submit.Enabled = productionResponse.IsDisabled ? false : true;
                 saveprint.Enabled = productionResponse.IsDisabled ? false : true;
+                findbtn.Enabled = false;
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -1946,6 +1947,9 @@ namespace PackingApplication
             Log.writeMessage("Chips btnCancel_Click - Start : " + DateTime.Now);
 
             ResetForm(this);
+            submit.Enabled = false;
+            saveprint.Enabled = false;
+            findbtn.Enabled = true;
 
             Log.writeMessage("Chips btnCancel_Click - End : " + DateTime.Now);
         }

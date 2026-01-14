@@ -607,7 +607,7 @@ namespace PackingApplication
                 saveprint.Text = "Update && Print";
                 submit.Enabled = productionResponse.IsDisabled ? false : true;
                 saveprint.Enabled = productionResponse.IsDisabled ? false : true;
-
+                findbtn.Enabled = false;
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
                 MergeNoList.Items.Add("Select MergeNo");
@@ -3179,6 +3179,9 @@ namespace PackingApplication
             Log.writeMessage("BCF btnCancel_Click - Start : " + DateTime.Now);
 
             ResetForm(this);
+            submit.Enabled = false;
+            saveprint.Enabled = false;
+            findbtn.Enabled = true;
 
             Log.writeMessage("BCF btnCancel_Click - End : " + DateTime.Now);
         }
