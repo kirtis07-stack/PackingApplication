@@ -120,7 +120,8 @@ namespace PackingApplication
             //deniervalue.Text = "0";
             isFormReady = true;
             selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
-
+            saveprint.Enabled = false;
+            submit.Enabled = false;
             //RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;

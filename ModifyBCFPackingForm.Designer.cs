@@ -1489,7 +1489,7 @@ namespace PackingApplication
             this.findbtn.Location = new System.Drawing.Point(0, 1);
             this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.findbtn.Name = "findbtn";
-            this.findbtn.Size = new System.Drawing.Size(81, 24);
+            this.findbtn.Size = new System.Drawing.Size(65, 24);
             this.findbtn.TabIndex = 119;
             this.findbtn.Text = "Find";
             this.findbtn.UseVisualStyleBackColor = false;
@@ -1506,7 +1506,7 @@ namespace PackingApplication
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(81, 24);
             this.submit.TabIndex = 122;
-            this.submit.Text = "Save";
+            this.submit.Text = "Update";
             this.submit.UseVisualStyleBackColor = false;
             this.submit.Click += new System.EventHandler(this.submit_Click);
             // 
@@ -1531,12 +1531,12 @@ namespace PackingApplication
             this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(89, 1);
+            this.saveprint.Location = new System.Drawing.Point(76, 1);
             this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.saveprint.Name = "saveprint";
-            this.saveprint.Size = new System.Drawing.Size(81, 24);
+            this.saveprint.Size = new System.Drawing.Size(94, 24);
             this.saveprint.TabIndex = 120;
-            this.saveprint.Text = "Save && Print";
+            this.saveprint.Text = "Update && Print";
             this.saveprint.UseVisualStyleBackColor = false;
             this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
             // 
@@ -2903,7 +2903,7 @@ namespace PackingApplication
             // 
             // boxnofrmt
             // 
-            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxnofrmt.AutoSize = true;
             this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));

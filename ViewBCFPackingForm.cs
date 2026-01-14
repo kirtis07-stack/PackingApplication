@@ -122,7 +122,7 @@ namespace PackingApplication
             //partyshade.Text = "";
             isFormReady = true;
             selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
-
+            printbtn.Enabled = false;
             //RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;

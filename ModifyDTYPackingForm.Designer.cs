@@ -34,8 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -91,11 +91,12 @@ namespace PackingApplication
             this.rightpanel = new System.Windows.Forms.Panel();
             this.datalistpopuppanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.closelistbtn = new System.Windows.Forms.Button();
             this.panel59 = new System.Windows.Forms.Panel();
             this.nextbtn = new System.Windows.Forms.Button();
             this.lblPageInfo = new System.Windows.Forms.Label();
             this.prevbtn = new System.Windows.Forms.Button();
+            this.panel60 = new System.Windows.Forms.Panel();
+            this.closelistbtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.popuppanel = new System.Windows.Forms.Panel();
             this.searchbtn = new System.Windows.Forms.Button();
@@ -281,7 +282,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.panel60 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -297,6 +297,7 @@ namespace PackingApplication
             this.datalistpopuppanel.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.panel59.SuspendLayout();
+            this.panel60.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.popuppanel.SuspendLayout();
             this.panel58.SuspendLayout();
@@ -380,7 +381,6 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
-            this.panel60.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -1019,7 +1019,7 @@ namespace PackingApplication
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(81, 24);
             this.submit.TabIndex = 122;
-            this.submit.Text = "Save";
+            this.submit.Text = "Update";
             this.submit.UseVisualStyleBackColor = false;
             this.submit.Click += new System.EventHandler(this.submit_Click);
             // 
@@ -1070,21 +1070,6 @@ namespace PackingApplication
             this.tableLayoutPanel10.Size = new System.Drawing.Size(610, 29);
             this.tableLayoutPanel10.TabIndex = 110;
             // 
-            // closelistbtn
-            // 
-            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closelistbtn.Location = new System.Drawing.Point(188, 0);
-            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.closelistbtn.Name = "closelistbtn";
-            this.closelistbtn.Size = new System.Drawing.Size(66, 22);
-            this.closelistbtn.TabIndex = 3;
-            this.closelistbtn.Text = "Close";
-            this.closelistbtn.UseVisualStyleBackColor = false;
-            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
-            // 
             // panel59
             // 
             this.panel59.Controls.Add(this.nextbtn);
@@ -1128,6 +1113,29 @@ namespace PackingApplication
             this.prevbtn.UseVisualStyleBackColor = true;
             this.prevbtn.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
+            // panel60
+            // 
+            this.panel60.Controls.Add(this.closelistbtn);
+            this.panel60.Location = new System.Drawing.Point(353, 3);
+            this.panel60.Name = "panel60";
+            this.panel60.Size = new System.Drawing.Size(254, 23);
+            this.panel60.TabIndex = 6;
+            // 
+            // closelistbtn
+            // 
+            this.closelistbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.closelistbtn.Location = new System.Drawing.Point(188, 0);
+            this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.closelistbtn.Name = "closelistbtn";
+            this.closelistbtn.Size = new System.Drawing.Size(66, 22);
+            this.closelistbtn.TabIndex = 3;
+            this.closelistbtn.Text = "Close";
+            this.closelistbtn.UseVisualStyleBackColor = false;
+            this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -1139,14 +1147,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1392,7 +1400,7 @@ namespace PackingApplication
             this.findbtn.Location = new System.Drawing.Point(0, 1);
             this.findbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.findbtn.Name = "findbtn";
-            this.findbtn.Size = new System.Drawing.Size(81, 24);
+            this.findbtn.Size = new System.Drawing.Size(65, 24);
             this.findbtn.TabIndex = 119;
             this.findbtn.Text = "Find";
             this.findbtn.UseVisualStyleBackColor = false;
@@ -1419,12 +1427,12 @@ namespace PackingApplication
             this.saveprint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveprint.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveprint.Location = new System.Drawing.Point(89, 1);
+            this.saveprint.Location = new System.Drawing.Point(76, 1);
             this.saveprint.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.saveprint.Name = "saveprint";
-            this.saveprint.Size = new System.Drawing.Size(81, 24);
+            this.saveprint.Size = new System.Drawing.Size(94, 24);
             this.saveprint.TabIndex = 120;
-            this.saveprint.Text = "Save && Print";
+            this.saveprint.Text = "Update && Print";
             this.saveprint.UseVisualStyleBackColor = false;
             this.saveprint.Click += new System.EventHandler(this.saveprint_Click);
             // 
@@ -1481,7 +1489,7 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -2518,7 +2526,7 @@ namespace PackingApplication
             // 
             // boxnofrmt
             // 
-            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxnofrmt.AutoSize = true;
             this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -3485,14 +3493,6 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
-            // panel60
-            // 
-            this.panel60.Controls.Add(this.closelistbtn);
-            this.panel60.Location = new System.Drawing.Point(353, 3);
-            this.panel60.Name = "panel60";
-            this.panel60.Size = new System.Drawing.Size(254, 23);
-            this.panel60.TabIndex = 6;
-            // 
             // ModifyDTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3531,6 +3531,7 @@ namespace PackingApplication
             this.tableLayoutPanel10.ResumeLayout(false);
             this.panel59.ResumeLayout(false);
             this.panel59.PerformLayout();
+            this.panel60.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.popuppanel.ResumeLayout(false);
             this.panel58.ResumeLayout(false);
@@ -3664,7 +3665,6 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
-            this.panel60.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
