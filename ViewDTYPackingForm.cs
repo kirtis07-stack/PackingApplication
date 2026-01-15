@@ -515,6 +515,7 @@ namespace PackingApplication
                 productionResponse = prodResponse;
                 printbtn.Enabled = productionResponse.IsDisabled ? false : true;
                 findbtn.Enabled = false;
+                cancelbtn.Enabled = true;
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -1827,6 +1828,7 @@ namespace PackingApplication
             popuppanel.Visible = false;
             srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
             LoadSearchDropdowns();
             findbtn.Focus();
 
@@ -2090,6 +2092,9 @@ namespace PackingApplication
             {
                 datalistpopuppanel.Visible = true;
                 datalistpopuppanel.BringToFront();
+
+                findbtn.Enabled = false;
+                cancelbtn.Enabled = false;
 
                 totalPages = (int)Math.Ceiling((double)packingList[0].TotalCount / 10);
                 lblPageInfo.Text = $"Page {currentPage} of {totalPages}";
@@ -2394,6 +2399,12 @@ namespace PackingApplication
             Log.writeMessage("DTY btnDatalistClosePopup_Click - Start : " + DateTime.Now);
 
             datalistpopuppanel.Visible = false;
+            findbtn.Enabled = true;
+            cancelbtn.Enabled = true;
+            dataGridView1.DataSource = null;
+            srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
+            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
             panel58.Focus();
 
             Log.writeMessage("DTY btnDatalistClosePopup_Click - End : " + DateTime.Now);
