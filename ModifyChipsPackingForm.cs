@@ -468,36 +468,12 @@ namespace PackingApplication
             {
                 productionResponse = prodResponse;
 
-                //LineNoList.SelectedValue = productionResponse.MachineId;
-                //DeptList.SelectedValue = productionResponse.DepartmentId;
-                //MergeNoList.SelectedValue = productionResponse.LotId;
-                //boxnofrmt.Text = productionResponse.BoxNoFmtd;
-                //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                //dateTimePicker1.Value = productionResponse.ProductionDate;
-                //QualityList.SelectedValue = productionResponse.QualityId;
-                //WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                //PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                //BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                //proChipspe.Text = productionResponse.ProductionType;
-                //remarks.Text = productionResponse.Remarks;
-                //prcompany.Checked = productionResponse.PrintCompany;
-                //prowner.Checked = productionResponse.PrintOwner;
-                //prdate.Checked = productionResponse.PrintDate;
-                //pruser.Checked = productionResponse.PrintUser;
-                //prhindi.Checked = productionResponse.PrintHindiWords;
-                //prwtps.Checked = productionResponse.PrintWTPS;
-                //prqrcode.Checked = productionResponse.PrintQRCode;
-                //prtwist.Checked = productionResponse.PrintTwist;
-                //palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                //grosswtno.Text = productionResponse.GrossWt.ToString();
-                //tarewt.Text = productionResponse.TareWt.ToString();
-                //netwt.Text = productionResponse.NetWt.ToString();
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
                 submit.Enabled = productionResponse.IsDisabled ? false : true;
                 saveprint.Enabled = productionResponse.IsDisabled ? false : true;
                 findbtn.Enabled = false;
-                //OwnerList.SelectedValue = productionResponse.OwnerId;
+
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
                 LineNoList.Items.Add("Select Line No.");
@@ -1771,11 +1747,12 @@ namespace PackingApplication
             if (result != null && result.ProductionId > 0)
             {
                 slipRequest.ProductionId = result.ProductionId;
-                submit.Enabled = true;
-                saveprint.Enabled = true;
+                //submit.Enabled = true;
+                //saveprint.Enabled = true;
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
+                findbtn.Enabled = true;
                 if (isPrint)
                 {
                     //call ssrs report to print
@@ -2878,6 +2855,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips btnFind_Click - Start : " + DateTime.Now);
 
+            if (datalistpopuppanel.Visible) datalistpopuppanel.Visible = false;
             popuppanel.Visible = true;
             popuppanel.BringToFront();
 
@@ -3229,6 +3207,8 @@ namespace PackingApplication
                 {
                     dataGridView1.Cursor = Cursors.Default; // Reset back to default
                 };
+
+                LoadSearchDropdowns();
             }
             else
             {

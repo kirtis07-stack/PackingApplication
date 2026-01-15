@@ -513,39 +513,8 @@ namespace PackingApplication
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
-
-                //LineNoList.SelectedValue = productionResponse.MachineId;
-                //DeptList.SelectedValue = productionResponse.DepartmentId;
-                //MergeNoList.SelectedValue = productionResponse.LotId;
-                //boxnofrmt.Text = productionResponse.BoxNoFmtd;
-                //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                //dateTimePicker1.Value = productionResponse.ProductionDate;
-                //SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                //QualityList.SelectedValue = productionResponse.QualityId;
-                //WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                //PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                //CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                //BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                //prodtype.Text = productionResponse.ProductionType;
-                //remarks.Text = productionResponse.Remarks;
-                //prcompany.Checked = productionResponse.PrintCompany;
-                //prowner.Checked = productionResponse.PrintOwner;
-                //prdate.Checked = productionResponse.PrintDate;
-                //pruser.Checked = productionResponse.PrintUser;
-                //prhindi.Checked = productionResponse.PrintHindiWords;
-                //prwtps.Checked = productionResponse.PrintWTPS;
-                //prqrcode.Checked = productionResponse.PrintQRCode;
-                //prtwist.Checked = productionResponse.PrintTwist;
-                //spoolno.Text = productionResponse.Spools.ToString();
-                //spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                //palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                //grosswtno.Text = productionResponse.GrossWt.ToString();
-                //tarewt.Text = productionResponse.TareWt.ToString();
-                //netwt.Text = productionResponse.NetWt.ToString();
-                //OwnerList.SelectedValue = productionResponse.OwnerId;
-
-                //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
                 printbtn.Enabled = productionResponse.IsDisabled ? false : true;
+                findbtn.Enabled = false;
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -1838,6 +1807,7 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY btnFind_Click - Start : " + DateTime.Now);
 
+            if (datalistpopuppanel.Visible) datalistpopuppanel.Visible = false;
             popuppanel.Visible = true;
             popuppanel.BringToFront();
 
@@ -2189,6 +2159,8 @@ namespace PackingApplication
                 {
                     dataGridView1.Cursor = Cursors.Default; // Reset back to default
                 };
+
+                LoadSearchDropdowns();
             }
             else
             {
@@ -2670,6 +2642,9 @@ namespace PackingApplication
             {
                 MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            findbtn.Enabled = true;
+            LoadSearchDropdowns();
 
             Log.writeMessage("DTY btnPrint_Click - End : " + DateTime.Now);
         }

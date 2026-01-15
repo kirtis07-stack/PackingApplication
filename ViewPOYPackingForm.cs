@@ -548,6 +548,7 @@ namespace PackingApplication
             {
                 productionResponse = prodResponse;
                 printbtn.Enabled = productionResponse.IsDisabled ? false : true;
+                findbtn.Enabled = false;
 
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
@@ -2337,6 +2338,7 @@ namespace PackingApplication
         {
             Log.writeMessage("POY btnFind_Click - Start : " + DateTime.Now);
 
+            if (datalistpopuppanel.Visible) datalistpopuppanel.Visible = false;
             popuppanel.Visible = true;
             popuppanel.BringToFront();
 
@@ -2688,6 +2690,8 @@ namespace PackingApplication
                 {
                     dataGridView1.Cursor = Cursors.Default; // Reset back to default
                 };
+
+                LoadSearchDropdowns();
             }
             else
             {
@@ -3160,6 +3164,9 @@ namespace PackingApplication
             {
                 MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            findbtn.Enabled = true;
+            LoadSearchDropdowns();
 
             Log.writeMessage("POY btnPrint_Click - End : " + DateTime.Now);
         }

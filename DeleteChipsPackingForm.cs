@@ -436,35 +436,10 @@ namespace PackingApplication
             if (prodResponse != null)
             {
                 productionResponse = prodResponse;
-
-                //LineNoList.SelectedValue = productionResponse.MachineId;
-                //DeptList.SelectedValue = productionResponse.DepartmentId;
-                //boxnofrmt.Text = productionResponse.BoxNoFmtd;
-                //MergeNoList.SelectedValue = productionResponse.LotId;
-                //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                //dateTimePicker1.Value = productionResponse.ProductionDate;
-                //QualityList.SelectedValue = productionResponse.QualityId;
-                //WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                //PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                //BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                //prodtype.Text = productionResponse.ProductionType;
-                //remarks.Text = productionResponse.Remarks;
-                //prcompany.Checked = productionResponse.PrintCompany;
-                //prowner.Checked = productionResponse.PrintOwner;
-                //prdate.Checked = productionResponse.PrintDate;
-                //pruser.Checked = productionResponse.PrintUser;
-                //prhindi.Checked = productionResponse.PrintHindiWords;
-                //prwtps.Checked = productionResponse.PrintWTPS;
-                //prqrcode.Checked = productionResponse.PrintQRCode;
-                //prtwist.Checked = productionResponse.PrintTwist;
-                //palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                //grosswtno.Text = productionResponse.GrossWt.ToString();
-                //tarewt.Text = productionResponse.TareWt.ToString();
-                //netwt.Text = productionResponse.NetWt.ToString();
-                //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
                 productionRequest.PackingType = productionResponse.PackingType;
                 productionRequest.ProductionDate = productionResponse.ProductionDate;
                 delete.Enabled = productionResponse.IsDisabled ? false : true;
+                findbtn.Enabled = false;
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -1555,6 +1530,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips btnFind_Click - Start : " + DateTime.Now);
 
+            if (datalistpopuppanel.Visible) datalistpopuppanel.Visible = false;
             popuppanel.Visible = true;
             popuppanel.BringToFront();
 
@@ -1906,6 +1882,8 @@ namespace PackingApplication
                 {
                     dataGridView1.Cursor = Cursors.Default; // Reset back to default
                 };
+
+                LoadSearchDropdowns();
             }
             else
             {
@@ -2179,6 +2157,10 @@ namespace PackingApplication
             {
                 MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            delete.Enabled = false;
+            findbtn.Enabled = true;
+            LoadSearchDropdowns();
 
             Log.writeMessage("Chips btnDelete_Click - End : " + DateTime.Now);
         }

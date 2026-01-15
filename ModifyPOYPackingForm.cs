@@ -562,52 +562,12 @@ namespace PackingApplication
             {
                 productionResponse = prodResponse;
 
-                //LineNoList.SelectedValue = productionResponse.MachineId;
-                //DeptList.SelectedValue = productionResponse.DepartmentId;
-                //boxnofrmt.Text = productionResponse.BoxNoFmtd;
-                //MergeNoList.SelectedValue = productionResponse.LotId;
-                //dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                //dateTimePicker1.Value = productionResponse.ProductionDate;
-                //SaleOrderList.SelectedValue = productionResponse.SaleOrderItemsId;
-                //QualityList.SelectedValue = productionResponse.QualityId;
-                //WindingTypeList.SelectedValue = productionResponse.WindingTypeId;
-                //PackSizeList.SelectedValue = productionResponse.PackSizeId;
-                //CopsItemList.SelectedValue = productionResponse.SpoolItemId;
-                //BoxItemList.SelectedValue = productionResponse.BoxItemId;
-                //prodtype.Text = productionResponse.ProductionType;
-                //remarks.Text = productionResponse.Remarks;
-                //prcompany.Checked = productionResponse.PrintCompany;
-                //prowner.Checked = productionResponse.PrintOwner;
-                //prdate.Checked = productionResponse.PrintDate;
-                //pruser.Checked = productionResponse.PrintUser;
-                //prhindi.Checked = productionResponse.PrintHindiWords;
-                //prwtps.Checked = productionResponse.PrintWTPS;
-                //prqrcode.Checked = productionResponse.PrintQRCode;
-                //spoolno.Text = productionResponse.Spools.ToString();
-                //spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                //palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
-                //grosswtno.Text = productionResponse.GrossWt.ToString();
-                //tarewt.Text = productionResponse.TareWt.ToString();
-                //netwt.Text = productionResponse.NetWt.ToString();
-                //OwnerList.SelectedValue = productionResponse.OwnerId;
-                //submit.Text = "Update";
-                //saveprint.Text = "Update && Print";
-
-                //if (productionResponse.PalletDetailsResponse.Count > 0)
-                //{
-                //    if (productionResponse?.PalletDetailsResponse != null && productionResponse.PalletDetailsResponse.Any())
-                //    {
-                //        this.BeginInvoke((Action)(() =>
-                //        BindPalletDetails(productionResponse.PalletDetailsResponse)
-                //        ));
-                //    }
-                //}
-
                 submit.Text = "Update";
                 saveprint.Text = "Update && Print";
                 submit.Enabled = productionResponse.IsDisabled ? false : true;
                 saveprint.Enabled = productionResponse.IsDisabled ? false : true;
                 findbtn.Enabled = false;
+
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
                 MergeNoList.Items.Add("Select MergeNo");
@@ -2957,12 +2917,13 @@ namespace PackingApplication
             if (result != null && result.ProductionId > 0)
             {
                 slipRequest.ProductionId = result.ProductionId;
-                submit.Enabled = true;
-                saveprint.Enabled = true;
+                //submit.Enabled = true;
+                //saveprint.Enabled = true;
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
+                findbtn.Enabled = true;
                 if (isPrint)
                 {
                     //call ssrs report to print
@@ -4295,6 +4256,7 @@ namespace PackingApplication
         {
             Log.writeMessage("POY btnFind_Click - Start : " + DateTime.Now);
 
+            if (datalistpopuppanel.Visible) datalistpopuppanel.Visible = false;
             popuppanel.Visible = true;
             popuppanel.BringToFront();
 
@@ -4646,6 +4608,8 @@ namespace PackingApplication
                 {
                     dataGridView1.Cursor = Cursors.Default; // Reset back to default
                 };
+
+                LoadSearchDropdowns();
             }
             else
             {

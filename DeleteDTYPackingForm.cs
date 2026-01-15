@@ -507,6 +507,7 @@ namespace PackingApplication
                 productionRequest.PackingType = productionResponse.PackingType;
                 productionRequest.ProductionDate = productionResponse.ProductionDate;
                 delete.Enabled = productionResponse.IsDisabled ? false : true;
+                findbtn.Enabled = false;
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
@@ -1831,6 +1832,7 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY btnFind_Click - Start : " + DateTime.Now);
 
+            if (datalistpopuppanel.Visible) datalistpopuppanel.Visible = false;
             popuppanel.Visible = true;
             popuppanel.BringToFront();
 
@@ -2182,6 +2184,8 @@ namespace PackingApplication
                 {
                     dataGridView1.Cursor = Cursors.Default; // Reset back to default
                 };
+
+                LoadSearchDropdowns();
             }
             else
             {
@@ -2464,6 +2468,10 @@ namespace PackingApplication
             {
                 MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            delete.Enabled = false;
+            findbtn.Enabled = true;
+            LoadSearchDropdowns();
 
             Log.writeMessage("DTY btnDelete_Click - End : " + DateTime.Now);
         }

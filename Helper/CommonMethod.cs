@@ -296,6 +296,52 @@ namespace PackingApplication.Helper
             }
         }
 
+        public void SetControlReadOnly(Control control, bool isReadOnly)
+        {
+            switch (control)
+            {
+                case TextBoxBase txt:
+                    txt.ReadOnly = isReadOnly;
+                    txt.BackColor = Color.White;
+                    txt.ForeColor = isReadOnly ? Color.Blue : Color.Black;
+                    txt.TabStop = !isReadOnly;
+                    break;
+
+                case ComboBox cmb:
+                    if (isReadOnly)
+                    {
+                        cmb.DropDownStyle = ComboBoxStyle.DropDownList;
+                        cmb.Enabled = true;
+                        cmb.BackColor = Color.White;
+                        cmb.ForeColor = Color.Blue;
+
+                        //cmb.KeyPress += BlockKeyPress;
+                        //cmb.MouseDown += BlockMouseDown;
+                    }
+                    else
+                    {
+                        //cmb.KeyPress -= BlockKeyPress;
+                        //cmb.MouseDown -= BlockMouseDown;
+                        cmb.ForeColor = Color.Black;
+                    }
+                    break;
+
+                case CheckBox chk:
+                    chk.Enabled = true;
+                    chk.ForeColor = isReadOnly ? Color.Blue : Color.Black;
+
+                    if (isReadOnly)
+                    {
+                        //chk.Click += BlockClick;
+                    }
+                    else
+                    {
+                        //chk.Click -= BlockClick;
+                    }
+                    break;
+            }
+        }
+
 
     }
 }
