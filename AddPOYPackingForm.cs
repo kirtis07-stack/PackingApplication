@@ -908,7 +908,7 @@ namespace PackingApplication
                         selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList(selectedMachine.DepartmentName).Result;
+                            var deptTask = _masterService.GetDepartmentList("POY", selectedMachine.DepartmentName).Result;
                             deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
@@ -2042,7 +2042,7 @@ namespace PackingApplication
 
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                var deptTask = _masterService.GetDepartmentList(selectedPrefix.Department).Result;
+                var deptTask = _masterService.GetDepartmentList("POY", selectedPrefix.Department).Result;
                 deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                 DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                 DeptList.DataSource = deptTask;
@@ -2262,7 +2262,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("POY", typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
@@ -4142,7 +4142,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("POY", "").Result.OrderBy(x => x.DepartmentName).ToList();
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                 DeptList.DisplayMember = "DepartmentName";
                 DeptList.ValueMember = "DepartmentId";

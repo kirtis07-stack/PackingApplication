@@ -1643,7 +1643,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("CHIPS", typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
@@ -2181,7 +2181,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("").Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("CHIPS", "").Result.OrderBy(x => x.DepartmentName).ToList();
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
                 SrDeptList.DisplayMember = "DepartmentName";
                 SrDeptList.ValueMember = "DepartmentId";

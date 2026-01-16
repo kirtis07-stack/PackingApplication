@@ -218,12 +218,12 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public async Task<List<DepartmentResponse>> GetDepartmentList(string subString)
+        public async Task<List<DepartmentResponse>> GetDepartmentList(string packingType, string subString)
         {
             Log.writeMessage("API call GetDepartmentList - Start : " + DateTime.Now);
-            Log.writeMessage("GetDepartmentList : Departments/GetAll?IsDropDown=false");
+            Log.writeMessage("GetDepartmentsByPackingType : Departments/packingType?packingType=packingType&subString=subString");
 
-            var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAll?IsDropDown=" + false + "&subString=" + subString);
+            var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAllByPackingType?packingType=" + packingType + "&subString=" + subString);
 
             Log.writeMessage("GetDepartmentList Response : " + getDepartmentResponse);
 
