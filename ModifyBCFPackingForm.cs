@@ -135,12 +135,12 @@ namespace PackingApplication
             //RefreshLastBoxDetails();
 
             prcompany.FlatStyle = FlatStyle.System;
-            srlinenoradiobtn.FlatStyle = FlatStyle.System;
-            srdeptradiobtn.FlatStyle = FlatStyle.System;
-            srboxnoradiobtn.FlatStyle = FlatStyle.System;
-            srproddateradiobtn.FlatStyle = FlatStyle.System;
+            //srlinenoradiobtn.FlatStyle = FlatStyle.System;
+            //srdeptradiobtn.FlatStyle = FlatStyle.System;
+            //srboxnoradiobtn.FlatStyle = FlatStyle.System;
+            //srproddateradiobtn.FlatStyle = FlatStyle.System;
             closepopupbtn.FlatStyle = FlatStyle.System;
-            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
@@ -424,13 +424,13 @@ namespace PackingApplication
             this.findbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.closepopupbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.searchbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
-            this.srlinenoradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.srlineno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.SrLineNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.srdeptradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.srdept.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.SrDeptList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.srboxnoradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.srboxno.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.SrBoxNoList.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.srproddateradiobtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.srproddate.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.dateTimePicker2.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.closelistbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.prevbtn.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -4272,9 +4272,10 @@ namespace PackingApplication
             Log.writeMessage("BCF btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
-            srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
-            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
-            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
+            //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
+            //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null;
+            dateTimePicker2.Value = DateTime.Today; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             LoadSearchDropdowns();
             findbtn.Focus();
 
@@ -4401,8 +4402,13 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
                 //DeptList.Items.Clear();
+                GetProductionList getListRequest = new GetProductionList();
+                getListRequest.PackingType = "BCFPacking";
+                getListRequest.MachineId = selectedSrMachineId;
+                getListRequest.DeptId = selectedSrDeptId;
+                getListRequest.SubString = typedText;
 
-                var srboxnoList = _packingService.getAllBoxNoByPackingType("BCFPacking", typedText).Result;
+                var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
                 srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
 
@@ -4425,65 +4431,65 @@ namespace PackingApplication
             Log.writeMessage("BCF SrBoxNoList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private void rbLineNo_CheckedChanged(object sender, EventArgs e)
-        {
-            Log.writeMessage("BCF rbLineNo_CheckedChanged - Start : " + DateTime.Now);
+        //private void rbLineNo_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    Log.writeMessage("BCF rbLineNo_CheckedChanged - Start : " + DateTime.Now);
 
-            if (!srlinenoradiobtn.Checked)
-                return;
+        //    if (!srlinenoradiobtn.Checked)
+        //        return;
 
-            SrLineNoList.Enabled = srlinenoradiobtn.Checked;
-            SrDeptList.Enabled = false;
-            SrBoxNoList.Enabled = false;
-            dateTimePicker2.Enabled = false;
+        //    SrLineNoList.Enabled = srlinenoradiobtn.Checked;
+        //    SrDeptList.Enabled = false;
+        //    SrBoxNoList.Enabled = false;
+        //    dateTimePicker2.Enabled = false;
 
-            Log.writeMessage("BCF rbLineNo_CheckedChanged - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF rbLineNo_CheckedChanged - End : " + DateTime.Now);
+        //}
 
-        private void rbDepartment_CheckedChanged(object sender, EventArgs e)
-        {
-            Log.writeMessage("BCF rbDepartment_CheckedChanged - Start : " + DateTime.Now);
+        //private void rbDepartment_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    Log.writeMessage("BCF rbDepartment_CheckedChanged - Start : " + DateTime.Now);
 
-            if (!srdeptradiobtn.Checked)
-                return;
+        //    if (!srdeptradiobtn.Checked)
+        //        return;
 
-            SrDeptList.Enabled = srdeptradiobtn.Checked;
-            SrLineNoList.Enabled = false;
-            SrBoxNoList.Enabled = false;
-            dateTimePicker2.Enabled = false;
+        //    SrDeptList.Enabled = srdeptradiobtn.Checked;
+        //    SrLineNoList.Enabled = false;
+        //    SrBoxNoList.Enabled = false;
+        //    dateTimePicker2.Enabled = false;
 
-            Log.writeMessage("BCF rbDepartment_CheckedChanged - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF rbDepartment_CheckedChanged - End : " + DateTime.Now);
+        //}
 
-        private void rbBoxNo_CheckedChanged(object sender, EventArgs e)
-        {
-            Log.writeMessage("BCF rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
+        //private void rbBoxNo_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    Log.writeMessage("BCF rbBoxNo_CheckedChanged - Start : " + DateTime.Now);
 
-            if (!srboxnoradiobtn.Checked)
-                return;
+        //    if (!srboxnoradiobtn.Checked)
+        //        return;
 
-            SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
-            SrLineNoList.Enabled = false;
-            SrDeptList.Enabled = false;
-            dateTimePicker2.Enabled = false;
+        //    SrBoxNoList.Enabled = srboxnoradiobtn.Checked;
+        //    SrLineNoList.Enabled = false;
+        //    SrDeptList.Enabled = false;
+        //    dateTimePicker2.Enabled = false;
 
-            Log.writeMessage("BCF rbBoxNo_CheckedChanged - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF rbBoxNo_CheckedChanged - End : " + DateTime.Now);
+        //}
 
-        private void rbDate_CheckedChanged(object sender, EventArgs e)
-        {
-            Log.writeMessage("BCF rbDate_CheckedChanged - Start : " + DateTime.Now);
+        //private void rbDate_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    Log.writeMessage("BCF rbDate_CheckedChanged - Start : " + DateTime.Now);
 
-            if (!srproddateradiobtn.Checked)
-                return;
+        //    if (!srproddateradiobtn.Checked)
+        //        return;
 
-            dateTimePicker2.Enabled = srproddateradiobtn.Checked;
-            SrLineNoList.Enabled = false;
-            SrDeptList.Enabled = false;
-            SrBoxNoList.Enabled = false;
+        //    dateTimePicker2.Enabled = srproddateradiobtn.Checked;
+        //    SrLineNoList.Enabled = false;
+        //    SrDeptList.Enabled = false;
+        //    SrBoxNoList.Enabled = false;
 
-            Log.writeMessage("BCF rbDate_CheckedChanged - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF rbDate_CheckedChanged - End : " + DateTime.Now);
+        //}
 
         //public List<ProductionResponse> GetPackingList(int machineId, int deptId, string boxNo, string productionDate)
         //{
@@ -4500,11 +4506,11 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF btnSearch_Click - Start : " + DateTime.Now);
 
-            if (!srlinenoradiobtn.Checked && !srdeptradiobtn.Checked && !srboxnoradiobtn.Checked && !srproddateradiobtn.Checked)
-            {
-                MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //if (!srlinenoradiobtn.Checked && !srdeptradiobtn.Checked && !srboxnoradiobtn.Checked && !srproddateradiobtn.Checked)
+            //{
+            //    MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
 
             getProductionList(1);
 
@@ -4515,20 +4521,20 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF getProductionList - Start : " + DateTime.Now);
 
-            int machineid = 0, deptid = 0;
-            string boxnoid = null;
-            string proddt = null;
-            if (srlinenoradiobtn.Checked) { machineid = selectedSrMachineId; }
-            if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
-            if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
-            if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
+            //int machineid = 0, deptid = 0;
+            //string boxnoid = null;
+            //string proddt = null;
+            //if (srlinenoradiobtn.Checked) { machineid = selectedSrMachineId; }
+            //if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
+            //if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
+            //if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
 
             GetProductionList getListRequest = new GetProductionList();
             getListRequest.PackingType = "BCFPacking";
-            getListRequest.MachineId = machineid;
-            getListRequest.DeptId = deptid;
-            getListRequest.BoxNo = boxnoid;
-            getListRequest.ProductionDate = proddt;
+            getListRequest.MachineId = selectedSrMachineId;
+            getListRequest.DeptId = selectedSrDeptId;
+            getListRequest.BoxNo = selectedSrBoxNo;
+            getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
             getListRequest.PageSize = 10;
 
@@ -4839,9 +4845,10 @@ namespace PackingApplication
             findbtn.Enabled = true;
             cancelbtn.Enabled = true;
             dataGridView1.DataSource = null;
-            srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
-            SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
-            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
+            //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
+            //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null;
+            dateTimePicker2.Value = DateTime.Today; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             panel58.Focus();
 
             Log.writeMessage("BCF btnDatalistClosePopup_Click - End : " + DateTime.Now);
@@ -4920,8 +4927,14 @@ namespace PackingApplication
             }
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
+                GetProductionList getListRequest = new GetProductionList();
+                getListRequest.PackingType = "BCFPacking";
+                getListRequest.MachineId = selectedSrMachineId;
+                getListRequest.DeptId = selectedSrDeptId;
+                getListRequest.SubString = null;
+
                 SrBoxNoList.DataSource = null;
-                var srboxnoList = _packingService.getAllBoxNoByPackingType("BCFPacking", "").Result;
+                var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
                 srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
                 SrBoxNoList.DataSource = srboxnoList;
                 SrBoxNoList.DisplayMember = "BoxNo";
@@ -4934,91 +4947,91 @@ namespace PackingApplication
             Log.writeMessage("BCF SrBoxNoList_KeyDown - End : " + DateTime.Now);
         }
 
-        private void SrLineNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
-        {
-            Log.writeMessage("BCF SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        //private void SrLineNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    Log.writeMessage("BCF SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                RadioButton rb = sender as RadioButton;
-                rb.Checked = !rb.Checked;   // toggle select / deselect
-                if (rb.Checked) srdeptradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
-                e.Handled = true;
-            }
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        RadioButton rb = sender as RadioButton;
+        //        rb.Checked = !rb.Checked;   // toggle select / deselect
+        //        if (rb.Checked) srdeptradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
+        //        e.Handled = true;
+        //    }
 
-            Log.writeMessage("BCF SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF SrLineNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        //}
 
-        private void SrDeptRadiobtn_KeyDown(object sender, KeyEventArgs e)
-        {
-            Log.writeMessage("BCF SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
+        //private void SrDeptRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    Log.writeMessage("BCF SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                RadioButton rb = sender as RadioButton;
-                rb.Checked = !rb.Checked;   // toggle select / deselect
-                if (rb.Checked) srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
-                e.Handled = true;
-            }
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        RadioButton rb = sender as RadioButton;
+        //        rb.Checked = !rb.Checked;   // toggle select / deselect
+        //        if (rb.Checked) srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = srproddateradiobtn.Checked = false;
+        //        e.Handled = true;
+        //    }
 
-            Log.writeMessage("BCF SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF SrDeptRadiobtn_KeyDown - End : " + DateTime.Now);
+        //}
 
-        private void SrBoxNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
-        {
-            Log.writeMessage("BCF SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        //private void SrBoxNoRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    Log.writeMessage("BCF SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                RadioButton rb = sender as RadioButton;
-                rb.Checked = !rb.Checked;   // toggle select / deselect
-                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srproddateradiobtn.Checked = false;
-                e.Handled = true;
-            }
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        RadioButton rb = sender as RadioButton;
+        //        rb.Checked = !rb.Checked;   // toggle select / deselect
+        //        if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srproddateradiobtn.Checked = false;
+        //        e.Handled = true;
+        //    }
 
-            Log.writeMessage("BCF SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF SrBoxNoRadiobtn_KeyDown - End : " + DateTime.Now);
+        //}
 
-        private void SrProdDateRadiobtn_KeyDown(object sender, KeyEventArgs e)
-        {
-            Log.writeMessage("BCF SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+        //private void SrProdDateRadiobtn_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    Log.writeMessage("BCF SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                RadioButton rb = sender as RadioButton;
-                rb.Checked = !rb.Checked;   // toggle select / deselect
-                if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = false;
-                e.Handled = true;
-            }
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        RadioButton rb = sender as RadioButton;
+        //        rb.Checked = !rb.Checked;   // toggle select / deselect
+        //        if (rb.Checked) srdeptradiobtn.Checked = srlinenoradiobtn.Checked = srboxnoradiobtn.Checked = false;
+        //        e.Handled = true;
+        //    }
 
-            Log.writeMessage("BCF SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF SrProdDateRadiobtn_KeyDown - End : " + DateTime.Now);
+        //}
 
-        private void RadioButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            Log.writeMessage("BCF RadioButton_MouseDown - End : " + DateTime.Now);
+        //private void RadioButton_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    Log.writeMessage("BCF RadioButton_MouseDown - End : " + DateTime.Now);
 
-            RadioButton rb = sender as RadioButton;
-            if (rb == null) return;
+        //    RadioButton rb = sender as RadioButton;
+        //    if (rb == null) return;
 
-            SelectRadio(rb);
+        //    SelectRadio(rb);
 
-            Log.writeMessage("BCF RadioButton_MouseDown - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF RadioButton_MouseDown - End : " + DateTime.Now);
+        //}
 
-        private void SelectRadio(RadioButton selected)
-        {
-            Log.writeMessage("BCF SelectRadio - End : " + DateTime.Now);
+        //private void SelectRadio(RadioButton selected)
+        //{
+        //    Log.writeMessage("BCF SelectRadio - End : " + DateTime.Now);
 
-            foreach (Control ctrl in selected.Parent.Controls)
-            {
-                if (ctrl is RadioButton rb)
-                {
-                    rb.Checked = (rb == selected);
-                }
-            }
+        //    foreach (Control ctrl in selected.Parent.Controls)
+        //    {
+        //        if (ctrl is RadioButton rb)
+        //        {
+        //            rb.Checked = (rb == selected);
+        //        }
+        //    }
 
-            Log.writeMessage("BCF SelectRadio - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF SelectRadio - End : " + DateTime.Now);
+        //}
     }
 }

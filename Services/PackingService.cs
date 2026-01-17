@@ -110,14 +110,17 @@ namespace PackingApplication.Services
             return getPacking;
         }
 
-        public async Task<List<ProductionResponse>> getAllBoxNoByPackingType(string packingType, string subString)
+        public async Task<List<ProductionResponse>> getAllBoxNoByPackingType(GetProductionList productionRequest)
         {
-            var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetAllBoxNoByPackingType?packingType=" + packingType + "&subString=" + subString);
-            if (string.IsNullOrWhiteSpace(getPackingResponse))
-                return new List<ProductionResponse>();
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
-                ?? new List<ProductionResponse>();
-            return getPacking;
+            var getPackingResponse = method.PostCallApi(packingURL + "Production/GetAllBoxNoByPackingType", productionRequest).Result;
+            if (getPackingResponse.StatusCode != 200)
+            {
+                var error = JsonConvert.DeserializeObject<ApiErrorResponse>(getPackingResponse.ResponseBody);
+                MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            Log.writeMessage("getProductionDetailsBySelectedParameter : " + getPackingResponse);
+            return JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse.ResponseBody);
         }
 
         public async Task<List<ProductionResponse>> getProductionDetailsBySelectedParameter(GetProductionList productionRequest)

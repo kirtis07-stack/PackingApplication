@@ -733,7 +733,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ckSmX0XhTgsLlO0O1vcoz2N179pQFQ+npg1vIu06h7k=</dsig:DigestValue>
+        <dsig:DigestValue>mwaSD97vTPqYZ7jgG+6sXJf0J6r7IdCBtvRCTEq+82M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -923,7 +923,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UL86o66qzXANY5GW5InYetSYgyChfOMJqvaLMGgKuyo=</dsig:DigestValue>
+      <dsig:DigestValue>62Dz2E5bYrkbop1rqX7fsSvRkFkZKDpqZ7QdVbCKpyE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SqlServerTypes\readme.htm" size="2369">

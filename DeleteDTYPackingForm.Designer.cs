@@ -34,8 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -101,10 +101,6 @@ namespace PackingApplication
             this.searchbtn = new System.Windows.Forms.Button();
             this.closepopupbtn = new System.Windows.Forms.Button();
             this.panel58 = new System.Windows.Forms.Panel();
-            this.srproddateradiobtn = new System.Windows.Forms.RadioButton();
-            this.srboxnoradiobtn = new System.Windows.Forms.RadioButton();
-            this.srdeptradiobtn = new System.Windows.Forms.RadioButton();
-            this.srlinenoradiobtn = new System.Windows.Forms.RadioButton();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.SrBoxNoList = new System.Windows.Forms.ComboBox();
             this.SrDeptList = new System.Windows.Forms.ComboBox();
@@ -281,6 +277,10 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.srlineno = new System.Windows.Forms.Label();
+            this.srdept = new System.Windows.Forms.Label();
+            this.srboxno = new System.Windows.Forms.Label();
+            this.srproddate = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -1097,14 +1097,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1168,10 +1168,10 @@ namespace PackingApplication
             // 
             // panel58
             // 
-            this.panel58.Controls.Add(this.srproddateradiobtn);
-            this.panel58.Controls.Add(this.srboxnoradiobtn);
-            this.panel58.Controls.Add(this.srdeptradiobtn);
-            this.panel58.Controls.Add(this.srlinenoradiobtn);
+            this.panel58.Controls.Add(this.srproddate);
+            this.panel58.Controls.Add(this.srboxno);
+            this.panel58.Controls.Add(this.srdept);
+            this.panel58.Controls.Add(this.srlineno);
             this.panel58.Controls.Add(this.dateTimePicker2);
             this.panel58.Controls.Add(this.SrBoxNoList);
             this.panel58.Controls.Add(this.SrDeptList);
@@ -1184,66 +1184,6 @@ namespace PackingApplication
             this.panel58.Size = new System.Drawing.Size(230, 120);
             this.panel58.TabIndex = 1;
             this.panel58.TabStop = true;
-            // 
-            // srproddateradiobtn
-            // 
-            this.srproddateradiobtn.AutoCheck = false;
-            this.srproddateradiobtn.AutoSize = true;
-            this.srproddateradiobtn.Location = new System.Drawing.Point(0, 92);
-            this.srproddateradiobtn.Name = "srproddateradiobtn";
-            this.srproddateradiobtn.Size = new System.Drawing.Size(51, 17);
-            this.srproddateradiobtn.TabIndex = 7;
-            this.srproddateradiobtn.TabStop = true;
-            this.srproddateradiobtn.Text = "Date:";
-            this.srproddateradiobtn.UseVisualStyleBackColor = true;
-            this.srproddateradiobtn.CheckedChanged += new System.EventHandler(this.rbDate_CheckedChanged);
-            this.srproddateradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDateRadiobtn_KeyDown);
-            this.srproddateradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
-            // 
-            // srboxnoradiobtn
-            // 
-            this.srboxnoradiobtn.AutoCheck = false;
-            this.srboxnoradiobtn.AutoSize = true;
-            this.srboxnoradiobtn.Location = new System.Drawing.Point(0, 64);
-            this.srboxnoradiobtn.Name = "srboxnoradiobtn";
-            this.srboxnoradiobtn.Size = new System.Drawing.Size(60, 17);
-            this.srboxnoradiobtn.TabIndex = 5;
-            this.srboxnoradiobtn.TabStop = true;
-            this.srboxnoradiobtn.Text = "BoxNo:";
-            this.srboxnoradiobtn.UseVisualStyleBackColor = true;
-            this.srboxnoradiobtn.CheckedChanged += new System.EventHandler(this.rbBoxNo_CheckedChanged);
-            this.srboxnoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrBoxNoRadiobtn_KeyDown);
-            this.srboxnoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
-            // 
-            // srdeptradiobtn
-            // 
-            this.srdeptradiobtn.AutoCheck = false;
-            this.srdeptradiobtn.AutoSize = true;
-            this.srdeptradiobtn.Location = new System.Drawing.Point(0, 36);
-            this.srdeptradiobtn.Name = "srdeptradiobtn";
-            this.srdeptradiobtn.Size = new System.Drawing.Size(51, 17);
-            this.srdeptradiobtn.TabIndex = 3;
-            this.srdeptradiobtn.TabStop = true;
-            this.srdeptradiobtn.Text = "Dept:";
-            this.srdeptradiobtn.UseVisualStyleBackColor = true;
-            this.srdeptradiobtn.CheckedChanged += new System.EventHandler(this.rbDepartment_CheckedChanged);
-            this.srdeptradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrDeptRadiobtn_KeyDown);
-            this.srdeptradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
-            // 
-            // srlinenoradiobtn
-            // 
-            this.srlinenoradiobtn.AutoCheck = false;
-            this.srlinenoradiobtn.AutoSize = true;
-            this.srlinenoradiobtn.Location = new System.Drawing.Point(0, 8);
-            this.srlinenoradiobtn.Name = "srlinenoradiobtn";
-            this.srlinenoradiobtn.Size = new System.Drawing.Size(62, 17);
-            this.srlinenoradiobtn.TabIndex = 1;
-            this.srlinenoradiobtn.TabStop = true;
-            this.srlinenoradiobtn.Text = "LineNo:";
-            this.srlinenoradiobtn.UseVisualStyleBackColor = true;
-            this.srlinenoradiobtn.CheckedChanged += new System.EventHandler(this.rbLineNo_CheckedChanged);
-            this.srlinenoradiobtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrLineNoRadiobtn_KeyDown);
-            this.srlinenoradiobtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RadioButton_MouseDown);
             // 
             // dateTimePicker2
             // 
@@ -1437,14 +1377,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -2460,7 +2400,7 @@ namespace PackingApplication
             // 
             // boxnofrmt
             // 
-            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.boxnofrmt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxnofrmt.AutoSize = true;
             this.boxnofrmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -3423,6 +3363,42 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
+            // srlineno
+            // 
+            this.srlineno.AutoSize = true;
+            this.srlineno.Location = new System.Drawing.Point(8, 8);
+            this.srlineno.Name = "srlineno";
+            this.srlineno.Size = new System.Drawing.Size(47, 13);
+            this.srlineno.TabIndex = 100;
+            this.srlineno.Text = "Line No:";
+            // 
+            // srdept
+            // 
+            this.srdept.AutoSize = true;
+            this.srdept.Location = new System.Drawing.Point(8, 36);
+            this.srdept.Name = "srdept";
+            this.srdept.Size = new System.Drawing.Size(33, 13);
+            this.srdept.TabIndex = 101;
+            this.srdept.Text = "Dept:";
+            // 
+            // srboxno
+            // 
+            this.srboxno.AutoSize = true;
+            this.srboxno.Location = new System.Drawing.Point(8, 65);
+            this.srboxno.Name = "srboxno";
+            this.srboxno.Size = new System.Drawing.Size(45, 13);
+            this.srboxno.TabIndex = 102;
+            this.srboxno.Text = "Box No:";
+            // 
+            // srproddate
+            // 
+            this.srproddate.AutoSize = true;
+            this.srproddate.Location = new System.Drawing.Point(8, 95);
+            this.srproddate.Name = "srproddate";
+            this.srproddate.Size = new System.Drawing.Size(33, 13);
+            this.srproddate.TabIndex = 103;
+            this.srproddate.Text = "Date:";
+            // 
             // DeleteDTYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3817,10 +3793,6 @@ namespace PackingApplication
         private Button searchbtn;
         private Button closepopupbtn;
         private Panel panel58;
-        internal RadioButton srproddateradiobtn;
-        private RadioButton srboxnoradiobtn;
-        private RadioButton srdeptradiobtn;
-        private RadioButton srlinenoradiobtn;
         private DateTimePicker dateTimePicker2;
         private ComboBox SrBoxNoList;
         private ComboBox SrDeptList;
@@ -3848,6 +3820,10 @@ namespace PackingApplication
         private Button prevbtn;
         private Button nextbtn;
         private System.Windows.Forms.Label lblPageInfo;
+        private System.Windows.Forms.Label srlineno;
+        private System.Windows.Forms.Label srdept;
+        private System.Windows.Forms.Label srboxno;
+        private System.Windows.Forms.Label srproddate;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
