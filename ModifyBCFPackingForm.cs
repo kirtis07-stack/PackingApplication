@@ -129,7 +129,7 @@ namespace PackingApplication
             //partyn.Text = "";
             //partyshade.Text = "";
             isFormReady = true;
-            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            //selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             saveprint.Enabled = false;
             submit.Enabled = false;
             //RefreshLastBoxDetails();
@@ -4274,8 +4274,7 @@ namespace PackingApplication
             popuppanel.Visible = false;
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
-            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null;
-            dateTimePicker2.Value = DateTime.Today; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
             LoadSearchDropdowns();
             findbtn.Focus();
 
@@ -4831,6 +4830,8 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF SrProdDate_ValueChanged - Start : " + DateTime.Now);
 
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             DateTime selectedDate = dateTimePicker2.Value.Date;
             selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
 
@@ -4847,8 +4848,7 @@ namespace PackingApplication
             dataGridView1.DataSource = null;
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
-            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null;
-            dateTimePicker2.Value = DateTime.Today; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
             panel58.Focus();
 
             Log.writeMessage("BCF btnDatalistClosePopup_Click - End : " + DateTime.Now);
