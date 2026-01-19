@@ -1771,6 +1771,9 @@ namespace PackingApplication
                 tarewghttxtbox.Text = "";
                 grosswttxtbox.Text = "";
                 netwttxtbox.Text = "";
+                findbtn.Enabled = true;
+                delete.Enabled = false;
+                _productionId = 0;
             }
             finally
             {

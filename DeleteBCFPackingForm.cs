@@ -2302,6 +2302,9 @@ namespace PackingApplication
                 grosswttxtbox.Text = "";
                 netwttxtbox.Text = "";
                 productionRequest = new ProductionRequest();
+                findbtn.Enabled = true;
+                delete.Enabled = false;
+                _productionId = 0;
             }
             finally
             {

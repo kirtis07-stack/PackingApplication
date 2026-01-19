@@ -2260,6 +2260,9 @@ namespace PackingApplication
                 tarewghttxtbox.Text = "";
                 grosswttxtbox.Text = "";
                 netwttxtbox.Text = "";
+                findbtn.Enabled = true;
+                printbtn.Enabled = false;
+                _productionId = 0;
             }
             finally
             {
