@@ -2607,11 +2607,11 @@ namespace PackingApplication
         {
             Log.writeMessage("POY btnSearch_Click - Start : " + DateTime.Now);
 
-            //if (!srlinenoradiobtn.Checked && !srdeptradiobtn.Checked && !srboxnoradiobtn.Checked && !srproddateradiobtn.Checked)
-            //{
-            //    MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            if (selectedSrMachineId == 0 && selectedSrDeptId == 0 && (string.IsNullOrEmpty(selectedSrBoxNo)) && (string.IsNullOrEmpty(selectedSrProductionDate)))
+            {
+                MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             getProductionList(1);
 
