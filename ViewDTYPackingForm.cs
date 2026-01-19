@@ -70,6 +70,7 @@ namespace PackingApplication
         string Domain = ConfigurationManager.AppSettings["Domain"];
         private int currentPage = 1;
         private int totalPages = 0;
+        private int pageSize = 10;
         public ViewDTYPackingForm()
         {
             Log.writeMessage("DTY ViewDTYPackingForm constructor - Start : " + DateTime.Now);
@@ -2092,7 +2093,7 @@ namespace PackingApplication
             getListRequest.BoxNo = selectedSrBoxNo;
             getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
-            getListRequest.PageSize = 10;
+            getListRequest.PageSize = pageSize;
 
             packingList = _packingService.getProductionDetailsBySelectedParameter(getListRequest).Result;
 
@@ -2115,15 +2116,15 @@ namespace PackingApplication
                 dataGridView1.Columns.Clear();
 
                 // Define columns
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", DataPropertyName = "SerialNo", HeaderText = "SR. No" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No", SortMode = DataGridViewColumnSortMode.Automatic });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department", SortMode = DataGridViewColumnSortMode.Automatic });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine", SortMode = DataGridViewColumnSortMode.Automatic });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No", SortMode = DataGridViewColumnSortMode.Automatic });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No", SortMode = DataGridViewColumnSortMode.Automatic });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date", SortMode = DataGridViewColumnSortMode.Automatic });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order", SortMode = DataGridViewColumnSortMode.Automatic });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
@@ -2149,9 +2150,13 @@ namespace PackingApplication
                 dataGridView1.RowTemplate.Height = 40; // row height
                 dataGridView1.Columns.Add(btn);
 
-                dataGridView1.DataSource = packingList;
+                //dataGridView1.DataSource = packingList;
+                ListtoDataTableConverter converter = new ListtoDataTableConverter();
+                DataTable dt = converter.ToDataTable(packingList);
+                dataGridView1.DataSource = dt;
 
                 dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+                dataGridView1.RowPostPaint += dataGridView1_RowPostPaint;
 
                 dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
 
@@ -2182,6 +2187,12 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY getProductionList - End : " + DateTime.Now);
+        }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            int srNo = (currentPage - 1) * pageSize + e.RowIndex + 1;
+            dataGridView1.Rows[e.RowIndex].Cells["SrNo"].Value = srNo;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
