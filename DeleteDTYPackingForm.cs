@@ -512,99 +512,118 @@ namespace PackingApplication
 
                 LineNoList.DataSource = null;
                 LineNoList.Items.Clear();
-                LineNoList.Items.Add("Select Line No.");
+                //LineNoList.Items.Add("Select Line No.");
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                _cmethod.SetReadOnlyBlue(LineNoList, true);
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
+                //DeptList.Items.Add("Select Dept");
                 DeptList.Items.Add(productionResponse.DepartmentName);
                 DeptList.SelectedItem = productionResponse.DepartmentName;
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
+                _cmethod.SetReadOnlyBlue(DeptList, true);
 
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
-                MergeNoList.Items.Add("Select MergeNo");
+                //MergeNoList.Items.Add("Select MergeNo");
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
+                _cmethod.SetReadOnlyBlue(MergeNoList, true);
 
                 SaleOrderList.DataSource = null;
                 SaleOrderList.Items.Clear();
-                SaleOrderList.Items.Add("Select Sale Order Item");
+                //SaleOrderList.Items.Add("Select Sale Order Item");
                 var salesOrderNumber = "";
                 salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.SOItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
+                _cmethod.SetReadOnlyBlue(SaleOrderList, true);
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
-                QualityList.Items.Add("Select Quality");
+                //QualityList.Items.Add("Select Quality");
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
+                _cmethod.SetReadOnlyBlue(QualityList, true);
 
                 WindingTypeList.DataSource = null;
                 WindingTypeList.Items.Clear();
-                WindingTypeList.Items.Add("Select Winding Type");
+                //WindingTypeList.Items.Add("Select Winding Type");
                 WindingTypeList.Items.Add(productionResponse.WindingTypeName);
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
                 productionRequest.WindingTypeId = productionResponse.WindingTypeId;
+                _cmethod.SetReadOnlyBlue(WindingTypeList, true);
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
-                PackSizeList.Items.Add("Select Pack Size");
+                //PackSizeList.Items.Add("Select Pack Size");
                 PackSizeList.Items.Add(productionResponse.PackSizeName);
                 PackSizeList.SelectedItem = productionResponse.PackSizeName;
                 productionRequest.PackSizeId = productionResponse.PackSizeId;
+                _cmethod.SetReadOnlyBlue(PackSizeList, true);
 
                 CopsItemList.DataSource = null;
                 CopsItemList.Items.Clear();
-                CopsItemList.Items.Add("Select Cops Item");
+                //CopsItemList.Items.Add("Select Cops Item");
                 CopsItemList.Items.Add(productionResponse.SpoolItemName);
                 CopsItemList.SelectedItem = productionResponse.SpoolItemName;
                 productionRequest.SpoolItemId = productionResponse.SpoolItemId;
+                _cmethod.SetReadOnlyBlue(CopsItemList, true);
 
                 BoxItemList.DataSource = null;
                 BoxItemList.Items.Clear();
-                BoxItemList.Items.Add("Select Box/Pallet");
+                //BoxItemList.Items.Add("Select Box/Pallet");
                 BoxItemList.Items.Add(productionResponse.BoxItemName);
                 BoxItemList.SelectedItem = productionResponse.BoxItemName;
                 productionRequest.BoxItemId = productionResponse.BoxItemId;
+                _cmethod.SetReadOnlyBlue(BoxItemList, true);
 
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
-                OwnerList.Items.Add("Select Owner");
+                //OwnerList.Items.Add("Select Owner");
                 if (!string.IsNullOrEmpty(productionResponse.OwnerName))
                 {
                     OwnerList.Items.Add(productionResponse.OwnerName);
                     OwnerList.SelectedItem = productionResponse.OwnerName;
                     productionRequest.OwnerId = productionResponse.OwnerId;
                 }
+                _cmethod.SetReadOnlyBlue(OwnerList, true);
 
                 prodtype.Text = productionResponse.ProductionType;
                 productionRequest.ProdTypeId = productionResponse.ProdTypeId;
                 remarks.Text = productionResponse.Remarks;
                 productionRequest.Remarks = productionResponse.Remarks;
+                _cmethod.SetReadOnlyBlue(remarks, true);
                 prcompany.Checked = productionResponse.PrintCompany;
                 productionRequest.PrintCompany = productionResponse.PrintCompany;
+                _cmethod.SetReadOnlyBlue(prcompany, true);
                 prowner.Checked = productionResponse.PrintOwner;
                 productionRequest.PrintOwner = productionResponse.PrintOwner;
+                _cmethod.SetReadOnlyBlue(prowner, true);
                 prdate.Checked = productionResponse.PrintDate;
                 productionRequest.PrintDate = productionResponse.PrintDate;
+                _cmethod.SetReadOnlyBlue(prdate, true);
                 pruser.Checked = productionResponse.PrintUser;
                 productionRequest.PrintUser = productionResponse.PrintUser;
+                _cmethod.SetReadOnlyBlue(pruser, true);
                 prhindi.Checked = productionResponse.PrintHindiWords;
                 productionRequest.PrintHindiWords = productionResponse.PrintHindiWords;
+                _cmethod.SetReadOnlyBlue(prhindi, true);
                 prwtps.Checked = productionResponse.PrintWTPS;
                 productionRequest.PrintWTPS = productionResponse.PrintWTPS;
+                _cmethod.SetReadOnlyBlue(prwtps, true);
                 prqrcode.Checked = productionResponse.PrintQRCode;
                 productionRequest.PrintQRCode = productionResponse.PrintQRCode;
+                _cmethod.SetReadOnlyBlue(prqrcode, true);
                 prtwist.Checked = productionResponse.PrintTwist;
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
+                _cmethod.SetReadOnlyBlue(prtwist, true);
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {
@@ -640,19 +659,25 @@ namespace PackingApplication
                 boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
+                _cmethod.SetReadOnlyBlue(dateTimePicker1, true);
                 spoolno.Text = productionResponse.Spools.ToString();
                 productionRequest.Spools = productionResponse.Spools;
+                _cmethod.SetReadOnlyBlue(spoolno, true);
                 spoolwt.Text = productionResponse.SpoolsWt.ToString();
                 productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
+                _cmethod.SetReadOnlyBlue(palletwtno, true);
                 grosswtno.Text = productionResponse.GrossWt.ToString();
                 productionRequest.GrossWt = productionResponse.GrossWt;
+                _cmethod.SetReadOnlyBlue(grosswtno, true);
                 tarewt.Text = productionResponse.TareWt.ToString();
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
                 AdjustNameByCharCount();
+                _cmethod.SetReadOnlyBlue(ComPortList, true);
+                _cmethod.SetReadOnlyBlue(WeighingList, true);
             }
 
             Log.writeMessage("DTY LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -1213,10 +1238,6 @@ namespace PackingApplication
             var getComPortType = new List<string>
             {
                 "Select Com Port",
-                "COM1",
-                "COM2",
-                "COM3",
-                "COM4"
             };
             Log.writeMessage("DTY getComPortList - End : " + DateTime.Now);
 
@@ -1230,10 +1251,6 @@ namespace PackingApplication
             var getWeighingScale = new List<WeighingItem>
             {
                 new WeighingItem { Id = -1, Name = "Select Weigh Scale" },
-                new WeighingItem { Id = 0, Name = "Old" },
-                new WeighingItem { Id = 1, Name = "Unique" },
-                new WeighingItem { Id = 2, Name = "JISL (9600)" },
-                new WeighingItem { Id = 3, Name = "JISL (2400)" }
             };
             Log.writeMessage("DTY GetWeighingList - End : " + DateTime.Now);
 

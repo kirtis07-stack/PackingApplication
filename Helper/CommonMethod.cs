@@ -296,52 +296,43 @@ namespace PackingApplication.Helper
             }
         }
 
-        public void SetControlReadOnly(Control control, bool isReadOnly)
+        public void SetReadOnlyBlue(Control ctrl, bool isReadOnly)
         {
-            switch (control)
+            switch (ctrl)
             {
-                case TextBoxBase txt:
+                case TextBox txt:
                     txt.ReadOnly = isReadOnly;
-                    txt.BackColor = Color.White;
-                    txt.ForeColor = isReadOnly ? Color.Blue : Color.Black;
-                    txt.TabStop = !isReadOnly;
+                    txt.BackColor = SystemColors.Window;
                     break;
 
                 case ComboBox cmb:
-                    if (isReadOnly)
-                    {
-                        cmb.DropDownStyle = ComboBoxStyle.DropDownList;
-                        cmb.Enabled = true;
-                        cmb.BackColor = Color.White;
-                        cmb.ForeColor = Color.Blue;
-
-                        //cmb.KeyPress += BlockKeyPress;
-                        //cmb.MouseDown += BlockMouseDown;
-                    }
-                    else
-                    {
-                        //cmb.KeyPress -= BlockKeyPress;
-                        //cmb.MouseDown -= BlockMouseDown;
-                        cmb.ForeColor = Color.Black;
-                    }
+                    cmb.ForeColor = Color.Blue;
+                    cmb.BackColor = Color.FromArgb(242, 242, 242);
+                    //cmb.MouseDown += BlockComboBox;
+                    cmb.KeyPress += BlockKeyPress;
+                    cmb.DropDown += BlockDropDown;
                     break;
 
                 case CheckBox chk:
-                    chk.Enabled = true;
-                    chk.ForeColor = isReadOnly ? Color.Blue : Color.Black;
-
-                    if (isReadOnly)
-                    {
-                        //chk.Click += BlockClick;
-                    }
-                    else
-                    {
-                        //chk.Click -= BlockClick;
-                    }
+                    chk.AutoCheck = !isReadOnly;
                     break;
             }
         }
 
+        private static void BlockComboBox(object sender, EventArgs e)
+        {
+            ((ComboBox)sender).DroppedDown = false;
+        }
+
+        private static void BlockKeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private static void BlockDropDown(object sender, EventArgs e)
+        {
+            ((ComboBox)sender).DroppedDown = false;
+        }
 
     }
 }
