@@ -108,6 +108,10 @@ namespace PackingApplication
             this.searchbtn = new System.Windows.Forms.Button();
             this.closepopupbtn = new System.Windows.Forms.Button();
             this.panel58 = new System.Windows.Forms.Panel();
+            this.srproddate = new System.Windows.Forms.Label();
+            this.srboxno = new System.Windows.Forms.Label();
+            this.srdept = new System.Windows.Forms.Label();
+            this.srlineno = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.SrBoxNoList = new System.Windows.Forms.ComboBox();
             this.SrDeptList = new System.Windows.Forms.ComboBox();
@@ -297,10 +301,6 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
-            this.srlineno = new System.Windows.Forms.Label();
-            this.srdept = new System.Windows.Forms.Label();
-            this.srboxno = new System.Windows.Forms.Label();
-            this.srproddate = new System.Windows.Forms.Label();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -1236,7 +1236,7 @@ namespace PackingApplication
             // 
             this.closepopupbtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.closepopupbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.closepopupbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closepopupbtn.ForeColor = System.Drawing.SystemColors.Control;
             this.closepopupbtn.Location = new System.Drawing.Point(146, 150);
             this.closepopupbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1265,6 +1265,42 @@ namespace PackingApplication
             this.panel58.Size = new System.Drawing.Size(230, 120);
             this.panel58.TabIndex = 1;
             this.panel58.TabStop = true;
+            // 
+            // srproddate
+            // 
+            this.srproddate.AutoSize = true;
+            this.srproddate.Location = new System.Drawing.Point(8, 95);
+            this.srproddate.Name = "srproddate";
+            this.srproddate.Size = new System.Drawing.Size(33, 13);
+            this.srproddate.TabIndex = 102;
+            this.srproddate.Text = "Date:";
+            // 
+            // srboxno
+            // 
+            this.srboxno.AutoSize = true;
+            this.srboxno.Location = new System.Drawing.Point(8, 65);
+            this.srboxno.Name = "srboxno";
+            this.srboxno.Size = new System.Drawing.Size(45, 13);
+            this.srboxno.TabIndex = 101;
+            this.srboxno.Text = "Box No:";
+            // 
+            // srdept
+            // 
+            this.srdept.AutoSize = true;
+            this.srdept.Location = new System.Drawing.Point(8, 36);
+            this.srdept.Name = "srdept";
+            this.srdept.Size = new System.Drawing.Size(33, 13);
+            this.srdept.TabIndex = 100;
+            this.srdept.Text = "Dept:";
+            // 
+            // srlineno
+            // 
+            this.srlineno.AutoSize = true;
+            this.srlineno.Location = new System.Drawing.Point(8, 8);
+            this.srlineno.Name = "srlineno";
+            this.srlineno.Size = new System.Drawing.Size(47, 13);
+            this.srlineno.TabIndex = 99;
+            this.srlineno.Text = "Line No:";
             // 
             // dateTimePicker2
             // 
@@ -3645,42 +3681,6 @@ namespace PackingApplication
             this.menuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
-            // 
-            // srlineno
-            // 
-            this.srlineno.AutoSize = true;
-            this.srlineno.Location = new System.Drawing.Point(8, 8);
-            this.srlineno.Name = "srlineno";
-            this.srlineno.Size = new System.Drawing.Size(47, 13);
-            this.srlineno.TabIndex = 99;
-            this.srlineno.Text = "Line No:";
-            // 
-            // srdept
-            // 
-            this.srdept.AutoSize = true;
-            this.srdept.Location = new System.Drawing.Point(8, 36);
-            this.srdept.Name = "srdept";
-            this.srdept.Size = new System.Drawing.Size(33, 13);
-            this.srdept.TabIndex = 100;
-            this.srdept.Text = "Dept:";
-            // 
-            // srboxno
-            // 
-            this.srboxno.AutoSize = true;
-            this.srboxno.Location = new System.Drawing.Point(8, 65);
-            this.srboxno.Name = "srboxno";
-            this.srboxno.Size = new System.Drawing.Size(45, 13);
-            this.srboxno.TabIndex = 101;
-            this.srboxno.Text = "Box No:";
-            // 
-            // srproddate
-            // 
-            this.srproddate.AutoSize = true;
-            this.srproddate.Location = new System.Drawing.Point(8, 95);
-            this.srproddate.Name = "srproddate";
-            this.srproddate.Size = new System.Drawing.Size(33, 13);
-            this.srproddate.TabIndex = 102;
-            this.srproddate.Text = "Date:";
             // 
             // ViewBCFPackingForm
             // 

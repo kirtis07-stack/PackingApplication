@@ -126,7 +126,7 @@ namespace PackingApplication
             //srdeptradiobtn.FlatStyle = FlatStyle.System;
             //srboxnoradiobtn.FlatStyle = FlatStyle.System;
             //srproddateradiobtn.FlatStyle = FlatStyle.System;
-            closepopupbtn.FlatStyle = FlatStyle.System;
+            //closepopupbtn.FlatStyle = FlatStyle.System;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
