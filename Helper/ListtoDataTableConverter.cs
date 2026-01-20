@@ -10,28 +10,35 @@ namespace PackingApplication.Helper
 {
     public class ListtoDataTableConverter
     {
-        public DataTable ToDataTable<T>(List<T> items)
+        public DataTable ToDataTable<T>(IList<T> data)
         {
-            DataTable dataTable = new DataTable(typeof(T).Name);
-            //Get all the properties
-            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (PropertyInfo prop in Props)
+            DataTable table = new DataTable(typeof(T).Name);
+
+            var props = typeof(T).GetProperties(
+                System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.Instance);
+
+            foreach (var prop in props)
             {
-                //Setting column names as Property names
-                dataTable.Columns.Add(prop.Name);
+                Type colType = Nullable.GetUnderlyingType(prop.PropertyType)
+                               ?? prop.PropertyType;
+
+                table.Columns.Add(prop.Name, colType);
             }
-            foreach (T item in items)
+
+            foreach (var item in data)
             {
-                var values = new object[Props.Length];
-                for (int i = 0; i < Props.Length; i++)
+                DataRow row = table.NewRow();
+                foreach (var prop in props)
                 {
-                    //inserting property values to datatable rows
-                    values[i] = Props[i].GetValue(item, null);
+                    object value = prop.GetValue(item, null);
+                    row[prop.Name] = value ?? DBNull.Value;
                 }
-                dataTable.Rows.Add(values);
+                table.Rows.Add(row);
             }
-            //put a breakpoint here and check datatable
-            return dataTable;
+
+            return table;
         }
     }
+
 }

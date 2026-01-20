@@ -3167,7 +3167,15 @@ namespace PackingApplication
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No", SortMode = DataGridViewColumnSortMode.Automatic });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionDate", DataPropertyName = "ProductionDate", HeaderText = "Production Date", SortMode = DataGridViewColumnSortMode.Automatic });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "ProductionDate",
+                    DataPropertyName = "ProductionDate",
+                    HeaderText = "Production Date",
+                    SortMode = DataGridViewColumnSortMode.Automatic,
+                    ValueType = typeof(DateTime),
+                    DefaultCellStyle = { Format = "dd/MM/yyyy", Font = FontManager.GetFont(8F, FontStyle.Regular), Alignment = DataGridViewContentAlignment.MiddleLeft }
+                });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order" });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
@@ -3192,6 +3200,7 @@ namespace PackingApplication
                 btn.Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 20, 20);
                 btn.ImageLayout = DataGridViewImageCellLayout.Normal;
                 btn.Width = 45;  // column width
+                btn.SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridView1.RowTemplate.Height = 40; // row height
                 dataGridView1.Columns.Add(btn);
 
@@ -3296,19 +3305,33 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips EditRow - Start : " + DateTime.Now);
 
-            if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count)
-                return;
+            //if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count)
+            //    return;
 
-            var rowObj = dataGridView1.Rows[rowIndex].DataBoundItem as ProductionResponse;
-            if (!rowObj.CanModifyDelete)
+            //var rowObj = dataGridView1.Rows[rowIndex].DataBoundItem as ProductionResponse;
+            //if (!rowObj.CanModifyDelete)
+            //    return;
+
+            DataRowView drv = dataGridView1.Rows[rowIndex].DataBoundItem as DataRowView;
+
+            if (drv == null) return;
+
+            bool canModifyDelete =
+                Convert.ToBoolean(drv["CanModifyDelete"] == DBNull.Value
+                    ? false
+                    : drv["CanModifyDelete"]);
+
+            if (!canModifyDelete)
                 return;
 
             popuppanel.Visible = false;
             datalistpopuppanel.Visible = false;
 
-            long productionId = Convert.ToInt32(
-                ((ProductionResponse)dataGridView1.Rows[rowIndex].DataBoundItem).ProductionId
-            );
+            //long productionId = Convert.ToInt32(
+            //    ((ProductionResponse)dataGridView1.Rows[rowIndex].DataBoundItem).ProductionId
+            //);
+
+            long productionId = Convert.ToInt32(drv["ProductionId"]);
 
             var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
 
