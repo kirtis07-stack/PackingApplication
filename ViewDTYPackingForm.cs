@@ -1949,6 +1949,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
+                selectedSrBoxNo = null;
 
                 cb.TextUpdate += SrBoxNoList_TextUpdate;
                 return;
