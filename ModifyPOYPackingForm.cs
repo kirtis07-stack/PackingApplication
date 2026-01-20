@@ -4309,9 +4309,17 @@ namespace PackingApplication
 
             if (typedText.Length >= 2)
             {
-
-                var machineList = _masterService.GetMachineList("SpinningLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedSrDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList("SpinningLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSrDeptId, "SpinningLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
 
                 SrLineNoList.BeginUpdate();
                 SrLineNoList.DataSource = null;
@@ -4777,6 +4785,21 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         selectedSrMachineId = selectedMachine.MachineId;
+
+                        if (selectedMachine != null)
+                        {
+                            var deptTask = _masterService.GetDepartmentList("POY", selectedMachine.DepartmentName).Result;
+                            deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            SrDeptList.DataSource = deptTask;
+                            SrDeptList.SelectedValue = selectedMachine.DepartmentId;
+                            selectedSrDeptId = selectedMachine.DepartmentId;
+                            SrDeptList.DisplayMember = "DepartmentName";
+                            SrDeptList.ValueMember = "DepartmentId";
+                            if (SrDeptList.Items.Count > 1)
+                            {
+                                SrDeptList.SelectedIndex = 1;
+                            }
+                        }
                     }
                 }
             }
