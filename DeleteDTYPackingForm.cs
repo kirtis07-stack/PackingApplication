@@ -2383,6 +2383,21 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         selectedSrMachineId = selectedMachine.MachineId;
+
+                        if (selectedMachine != null)
+                        {
+                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.DepartmentName).Result;
+                            deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            SrDeptList.DataSource = deptTask;
+                            SrDeptList.SelectedValue = selectedMachine.DepartmentId;
+                            selectedSrDeptId = selectedMachine.DepartmentId;
+                            SrDeptList.DisplayMember = "DepartmentName";
+                            SrDeptList.ValueMember = "DepartmentId";
+                            if (SrDeptList.Items.Count > 1)
+                            {
+                                SrDeptList.SelectedIndex = 1;
+                            }
+                        }
                     }
                 }
             }
