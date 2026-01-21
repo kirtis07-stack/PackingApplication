@@ -1568,6 +1568,8 @@ namespace PackingApplication
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = " ";
             LoadSearchDropdowns();
             findbtn.Focus();
 
@@ -2168,16 +2170,16 @@ namespace PackingApplication
             Log.writeMessage("Chips SrBoxNoList_SelectionChangeCommitted - End : " + DateTime.Now);
         }
 
-        private void SrProdDate_ValueChanged(object sender, EventArgs e)
+        private void SrProdDate_DropDownClosed(object sender, EventArgs e)
         {
-            Log.writeMessage("Chips SrProdDate_ValueChanged - Start : " + DateTime.Now);
+            Log.writeMessage("Chips SrProdDate_DropDownClosed - Start : " + DateTime.Now);
 
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             DateTime selectedDate = dateTimePicker2.Value.Date;
             selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
 
-            Log.writeMessage("Chips SrProdDate_ValueChanged - End : " + DateTime.Now);
+            Log.writeMessage("Chips SrProdDate_DropDownClosed - End : " + DateTime.Now);
         }
 
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)
@@ -2191,6 +2193,8 @@ namespace PackingApplication
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = " ";
             panel58.Focus();
 
             Log.writeMessage("Chips btnDatalistClosePopup_Click - End : " + DateTime.Now);

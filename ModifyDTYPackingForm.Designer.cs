@@ -1283,7 +1283,7 @@ namespace PackingApplication
             this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
             this.dateTimePicker2.TabIndex = 8;
             this.dateTimePicker2.TabStop = false;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.SrProdDate_ValueChanged);
+            this.dateTimePicker2.CloseUp += new System.EventHandler(this.SrProdDate_DropDownClosed);
             // 
             // SrBoxNoList
             // 
