@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,7 +98,8 @@ namespace PackingApplication
             //updenier.Text = "0";
             //deniervalue.Text = "0";
             isFormReady = true;
-            //selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            dateTimePicker2.Value = DateTime.Now;
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             delete.Enabled = false;
             //RefreshLastBoxDetails();
 
@@ -533,8 +535,8 @@ namespace PackingApplication
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
                 _cmethod.SetReadOnlyBlue(prtwist, true);
                 boxnofrmt.Text = productionResponse.BoxNoFmtd;
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dateTimePicker1.Value = productionResponse.ProductionDate;
                 _cmethod.SetReadOnlyBlue(dateTimePicker1, true);
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
@@ -568,8 +570,8 @@ namespace PackingApplication
                 productionRequest.TwistId = productionResponse.TwistId;
                 productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
                 boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dateTimePicker1.Value = productionResponse.ProductionDate;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
                 _cmethod.SetReadOnlyBlue(palletwtno, true);
@@ -580,6 +582,8 @@ namespace PackingApplication
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
+                _cmethod.SetReadOnlyBlue(netwt, true);
+                _cmethod.SetReadOnlyBlue(copyno, true);
                 AdjustNameByCharCount();
                 _cmethod.SetReadOnlyBlue(ComPortList, true);
                 _cmethod.SetReadOnlyBlue(WeighingList, true);
@@ -1469,6 +1473,7 @@ namespace PackingApplication
                 findbtn.Enabled = true;
                 delete.Enabled = false;
                 _productionId = 0;
+                dateTimePicker1.Text = "";
             }
             finally
             {
@@ -2181,6 +2186,20 @@ namespace PackingApplication
             selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
 
             Log.writeMessage("Chips SrProdDate_DropDownClosed - End : " + DateTime.Now);
+        }
+
+        private void SrProdDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("Chips SrProdDate_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                dateTimePicker2.CustomFormat = " ";
+                selectedSrProductionDate = null;
+            }
+
+            Log.writeMessage("Chips SrProdDate_KeyDown - End : " + DateTime.Now);
         }
 
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)

@@ -303,6 +303,7 @@ namespace PackingApplication.Helper
                 case TextBox txt:
                     txt.ReadOnly = isReadOnly;
                     txt.BackColor = SystemColors.Window;
+                    txt.ForeColor = Color.Blue;
                     break;
 
                 case ComboBox cmb:

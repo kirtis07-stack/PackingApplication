@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -108,7 +109,8 @@ namespace PackingApplication
             //partyshade.Text = "";
             isFormReady = true;
             //this.reportViewer1.RefreshReport();
-            //selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            dateTimePicker2.Value = DateTime.Now;
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             delete.Enabled = false;
             //RefreshLastBoxDetails();
 
@@ -658,8 +660,8 @@ namespace PackingApplication
                 productionRequest.TwistId = productionResponse.TwistId;
                 productionRequest.ContainerTypeId = productionResponse.ContainerTypeId;
                 boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
-                dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
-                dateTimePicker1.Value = productionResponse.ProductionDate;
+                dateTimePicker1.Text = productionResponse.ProductionDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //dateTimePicker1.Value = productionResponse.ProductionDate;
                 _cmethod.SetReadOnlyBlue(dateTimePicker1, true);
                 spoolno.Text = productionResponse.Spools.ToString();
                 productionRequest.Spools = productionResponse.Spools;
@@ -676,6 +678,8 @@ namespace PackingApplication
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
+                _cmethod.SetReadOnlyBlue(netwt, true);
+                _cmethod.SetReadOnlyBlue(copyno, true);
                 AdjustNameByCharCount();
                 _cmethod.SetReadOnlyBlue(ComPortList, true);
                 _cmethod.SetReadOnlyBlue(WeighingList, true);
@@ -1775,6 +1779,7 @@ namespace PackingApplication
                 findbtn.Enabled = true;
                 delete.Enabled = false;
                 _productionId = 0;
+                dateTimePicker1.Text = "";
             }
             finally
             {
@@ -2496,6 +2501,20 @@ namespace PackingApplication
             selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
 
             Log.writeMessage("DTY SrProdDate_DropDownClosed - End : " + DateTime.Now);
+        }
+
+        private void SrProdDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrProdDate_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                dateTimePicker2.CustomFormat = " ";
+                selectedSrProductionDate = null;
+            }
+
+            Log.writeMessage("DTY SrProdDate_KeyDown - End : " + DateTime.Now);
         }
 
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)

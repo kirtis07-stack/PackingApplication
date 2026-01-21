@@ -206,7 +206,7 @@ namespace PackingApplication
             this.lastboxno = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.packingdate = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.Label();
             this.machineboxpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel46 = new System.Windows.Forms.Panel();
@@ -1314,6 +1314,7 @@ namespace PackingApplication
             this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
             this.dateTimePicker2.TabIndex = 8;
             this.dateTimePicker2.CloseUp += new System.EventHandler(this.SrProdDate_DropDownClosed);
+            this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDate_KeyDown);
             // 
             // SrBoxNoList
             // 
@@ -2530,15 +2531,12 @@ namespace PackingApplication
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(39, 2);
+            this.dateTimePicker1.ForeColor = System.Drawing.Color.Blue;
+            this.dateTimePicker1.Location = new System.Drawing.Point(39, 5);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(50, 20);
             this.dateTimePicker1.TabIndex = 6;
-            this.dateTimePicker1.TabStop = false;
             // 
             // machineboxpanel
             // 
@@ -4102,7 +4100,7 @@ namespace PackingApplication
         private System.Windows.Forms.Label lastboxno;
         private Panel panel10;
         private System.Windows.Forms.Label packingdate;
-        private DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label dateTimePicker1;
         private Panel popuppanel;
         private Button searchbtn;
         private Button closepopupbtn;

@@ -118,7 +118,8 @@ namespace PackingApplication
             //partyn.Text = "";
             //partyshade.Text = "";
             isFormReady = true;
-            //selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            dateTimePicker2.Value = DateTime.Now;
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             printbtn.Enabled = false;
             //RefreshLastBoxDetails();
 
@@ -2454,6 +2455,20 @@ namespace PackingApplication
             selectedSrProductionDate = selectedDate.ToString("dd-MM-yyyy");
 
             Log.writeMessage("DTY SrProdDate_DropDownClosed - End : " + DateTime.Now);
+        }
+
+        private void SrProdDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("DTY SrProdDate_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                dateTimePicker2.CustomFormat = " ";
+                selectedSrProductionDate = null;
+            }
+
+            Log.writeMessage("DTY SrProdDate_KeyDown - End : " + DateTime.Now);
         }
 
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)

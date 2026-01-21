@@ -1306,7 +1306,7 @@ namespace PackingApplication
             // 
             this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.CustomFormat = " ";
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(62, 89);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1314,6 +1314,7 @@ namespace PackingApplication
             this.dateTimePicker2.Size = new System.Drawing.Size(161, 20);
             this.dateTimePicker2.TabIndex = 8;
             this.dateTimePicker2.CloseUp += new System.EventHandler(this.SrProdDate_DropDownClosed);
+            this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDate_KeyDown);
             // 
             // SrBoxNoList
             // 
