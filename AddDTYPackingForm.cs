@@ -3643,6 +3643,7 @@ namespace PackingApplication
 
             Log.writeMessage("DTY txtNumeric_Leave - End : " + DateTime.Now);
         }
+
         private void FormatToThreeDecimalPlaces(System.Windows.Forms.TextBox textBox)
         {
             Log.writeMessage("DTY FormatToThreeDecimalPlaces - Start : " + DateTime.Now);

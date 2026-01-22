@@ -4405,6 +4405,7 @@ namespace PackingApplication
 
             Log.writeMessage("BCF txtNumeric_Leave - End : " + DateTime.Now);
         }
+
         private void FormatToThreeDecimalPlaces(System.Windows.Forms.TextBox textBox)
         {
             Log.writeMessage("BCF FormatToThreeDecimalPlaces - Start : " + DateTime.Now);

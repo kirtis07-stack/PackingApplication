@@ -2364,11 +2364,12 @@ namespace PackingApplication
             Log.writeMessage("POY btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            dateTimePicker2.Value = DateTime.Now;
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
-            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = " ";
+            dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             LoadSearchDropdowns();
             findbtn.Focus();
 
@@ -3004,11 +3005,12 @@ namespace PackingApplication
             findbtn.Enabled = true;
             cancelbtn.Enabled = true;
             dataGridView1.DataSource = null;
+            dateTimePicker2.Value = DateTime.Now;
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
-            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = null;
+            selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = " ";
+            dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             panel58.Focus();
 
             Log.writeMessage("POY btnDatalistClosePopup_Click - End : " + DateTime.Now);
