@@ -1576,6 +1576,7 @@ namespace PackingApplication
             this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.windinggrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.windinggrid.EnableHeadersVisualStyles = false;
             this.windinggrid.Location = new System.Drawing.Point(2, 16);
             this.windinggrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1585,7 +1586,7 @@ namespace PackingApplication
             this.windinggrid.RowHeadersVisible = false;
             this.windinggrid.RowHeadersWidth = 62;
             this.windinggrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.windinggrid.Size = new System.Drawing.Size(369, 64);
+            this.windinggrid.Size = new System.Drawing.Size(367, 67);
             this.windinggrid.TabIndex = 92;
             this.windinggrid.TabStop = false;
             // 
@@ -1632,6 +1633,8 @@ namespace PackingApplication
             this.qualityqty.AllowUserToDeleteRows = false;
             this.qualityqty.AllowUserToResizeColumns = false;
             this.qualityqty.AllowUserToResizeRows = false;
+            this.qualityqty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.qualityqty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
