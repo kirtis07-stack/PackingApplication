@@ -885,7 +885,7 @@ namespace PackingApplication
             // 
             this.prevbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.prevbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.prevbtn.Location = new System.Drawing.Point(3, 0);
+            this.prevbtn.Location = new System.Drawing.Point(1, 0);
             this.prevbtn.Name = "prevbtn";
             this.prevbtn.Size = new System.Drawing.Size(53, 23);
             this.prevbtn.TabIndex = 2;
@@ -907,7 +907,7 @@ namespace PackingApplication
             this.closelistbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closelistbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closelistbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.closelistbtn.Location = new System.Drawing.Point(160, 0);
+            this.closelistbtn.Location = new System.Drawing.Point(160, 1);
             this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closelistbtn.Name = "closelistbtn";
             this.closelistbtn.Size = new System.Drawing.Size(75, 22);

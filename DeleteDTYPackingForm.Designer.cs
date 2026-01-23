@@ -1055,7 +1055,7 @@ namespace PackingApplication
             // 
             this.prevbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.prevbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.prevbtn.Location = new System.Drawing.Point(3, 0);
+            this.prevbtn.Location = new System.Drawing.Point(1, 0);
             this.prevbtn.Name = "prevbtn";
             this.prevbtn.Size = new System.Drawing.Size(53, 23);
             this.prevbtn.TabIndex = 1;
