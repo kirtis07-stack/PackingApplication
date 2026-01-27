@@ -92,6 +92,8 @@ namespace PackingApplication
             this.datalistpopuppanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.panel59 = new System.Windows.Forms.Panel();
+            this.lastpgbtn = new System.Windows.Forms.Button();
+            this.firstpgbtn = new System.Windows.Forms.Button();
             this.nextbtn = new System.Windows.Forms.Button();
             this.lblPageInfo = new System.Windows.Forms.Label();
             this.prevbtn = new System.Windows.Forms.Button();
@@ -1072,6 +1074,8 @@ namespace PackingApplication
             // 
             // panel59
             // 
+            this.panel59.Controls.Add(this.lastpgbtn);
+            this.panel59.Controls.Add(this.firstpgbtn);
             this.panel59.Controls.Add(this.nextbtn);
             this.panel59.Controls.Add(this.lblPageInfo);
             this.panel59.Controls.Add(this.prevbtn);
@@ -1080,15 +1084,44 @@ namespace PackingApplication
             this.panel59.Size = new System.Drawing.Size(253, 23);
             this.panel59.TabIndex = 5;
             // 
+            // lastpgbtn
+            // 
+            this.lastpgbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lastpgbtn.BackgroundImage = global::PackingApplication.Properties.Resources.icons8_double_right_64;
+            this.lastpgbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.lastpgbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lastpgbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lastpgbtn.Location = new System.Drawing.Point(228, 0);
+            this.lastpgbtn.Name = "lastpgbtn";
+            this.lastpgbtn.Size = new System.Drawing.Size(25, 23);
+            this.lastpgbtn.TabIndex = 4;
+            this.lastpgbtn.UseVisualStyleBackColor = true;
+            this.lastpgbtn.Click += new System.EventHandler(this.btnLastPg_Click);
+            // 
+            // firstpgbtn
+            // 
+            this.firstpgbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.firstpgbtn.BackgroundImage = global::PackingApplication.Properties.Resources.icons8_double_left_64;
+            this.firstpgbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.firstpgbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.firstpgbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.firstpgbtn.Location = new System.Drawing.Point(0, 0);
+            this.firstpgbtn.Name = "firstpgbtn";
+            this.firstpgbtn.Size = new System.Drawing.Size(25, 23);
+            this.firstpgbtn.TabIndex = 1;
+            this.firstpgbtn.UseVisualStyleBackColor = true;
+            this.firstpgbtn.Click += new System.EventHandler(this.btnFirstPg_Click);
+            // 
             // nextbtn
             // 
             this.nextbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextbtn.BackgroundImage = global::PackingApplication.Properties.Resources.icons8_chevron_right_50;
+            this.nextbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.nextbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.nextbtn.Location = new System.Drawing.Point(206, 0);
+            this.nextbtn.Location = new System.Drawing.Point(204, 0);
             this.nextbtn.Name = "nextbtn";
-            this.nextbtn.Size = new System.Drawing.Size(47, 22);
-            this.nextbtn.TabIndex = 2;
-            this.nextbtn.Text = "Next";
+            this.nextbtn.Size = new System.Drawing.Size(25, 23);
+            this.nextbtn.TabIndex = 3;
             this.nextbtn.UseVisualStyleBackColor = true;
             this.nextbtn.Click += new System.EventHandler(this.btnNext_Click);
             // 
@@ -1096,7 +1129,7 @@ namespace PackingApplication
             // 
             this.lblPageInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPageInfo.AutoSize = true;
-            this.lblPageInfo.Location = new System.Drawing.Point(62, 5);
+            this.lblPageInfo.Location = new System.Drawing.Point(60, 5);
             this.lblPageInfo.Name = "lblPageInfo";
             this.lblPageInfo.Size = new System.Drawing.Size(0, 13);
             this.lblPageInfo.TabIndex = 4;
@@ -1104,12 +1137,13 @@ namespace PackingApplication
             // prevbtn
             // 
             this.prevbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.prevbtn.BackgroundImage = global::PackingApplication.Properties.Resources.icons8_chevron_left_50;
+            this.prevbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.prevbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.prevbtn.Location = new System.Drawing.Point(1, 0);
+            this.prevbtn.Location = new System.Drawing.Point(25, 0);
             this.prevbtn.Name = "prevbtn";
-            this.prevbtn.Size = new System.Drawing.Size(53, 23);
-            this.prevbtn.TabIndex = 1;
-            this.prevbtn.Text = "Prev";
+            this.prevbtn.Size = new System.Drawing.Size(25, 23);
+            this.prevbtn.TabIndex = 2;
             this.prevbtn.UseVisualStyleBackColor = true;
             this.prevbtn.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
@@ -1131,7 +1165,7 @@ namespace PackingApplication
             this.closelistbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.closelistbtn.Name = "closelistbtn";
             this.closelistbtn.Size = new System.Drawing.Size(66, 22);
-            this.closelistbtn.TabIndex = 3;
+            this.closelistbtn.TabIndex = 5;
             this.closelistbtn.Text = "Close";
             this.closelistbtn.UseVisualStyleBackColor = false;
             this.closelistbtn.Click += new System.EventHandler(this.btnDatalistClosePopup_Click);
@@ -3896,6 +3930,8 @@ namespace PackingApplication
         private System.Windows.Forms.Label srdept;
         private System.Windows.Forms.Label srboxno;
         private System.Windows.Forms.Label srproddate;
+        private Button firstpgbtn;
+        private Button lastpgbtn;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

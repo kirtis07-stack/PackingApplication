@@ -2678,7 +2678,7 @@ namespace PackingApplication
                 findbtn.Enabled = false;
                 cancelbtn.Enabled = false;
 
-                totalPages = (int)Math.Ceiling((double)packingList[0].TotalCount / 10);
+                totalPages = (int)Math.Ceiling((double)packingList[0].TotalCount / pageSize);
                 lblPageInfo.Text = $"Page {currentPage} of {totalPages}";
                 // Center popup in form
                 datalistpopuppanel.Left = (this.ClientSize.Width - datalistpopuppanel.Width) / 2;
@@ -2801,6 +2801,32 @@ namespace PackingApplication
             }
 
             Log.writeMessage("POY btnPrevious_Click - End : " + DateTime.Now);
+        }
+
+        private void btnFirstPg_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("POY btnFirstPg_Click - Start : " + DateTime.Now);
+
+            if (currentPage <= totalPages)
+            {
+                currentPage = 1;
+                getProductionList(currentPage);
+            }
+
+            Log.writeMessage("POY btnFirstPg_Click - End : " + DateTime.Now);
+        }
+
+        private void btnLastPg_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("POY btnLastPg_Click - Start : " + DateTime.Now);
+
+            if (currentPage < totalPages)
+            {
+                currentPage = totalPages;
+                getProductionList(currentPage);
+            }
+
+            Log.writeMessage("POY btnLastPg_Click - End : " + DateTime.Now);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -73,6 +73,26 @@ namespace PackingApplication.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_chevron_left_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-chevron-left-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_chevron_right_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-chevron-right-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_circled_2_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-circled-2-48", resourceCulture);
@@ -96,6 +116,26 @@ namespace PackingApplication.Properties {
         internal static System.Drawing.Bitmap icons8_circled_4_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-circled-4-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_double_left_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-double-left-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_double_right_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-double-right-64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
