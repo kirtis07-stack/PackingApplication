@@ -822,7 +822,7 @@ namespace PackingApplication
             // 
             this.spoolwt.AutoSize = true;
             this.spoolwt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.spoolwt.Location = new System.Drawing.Point(45, 17);
+            this.spoolwt.Location = new System.Drawing.Point(40, 19);
             this.spoolwt.Name = "spoolwt";
             this.spoolwt.Size = new System.Drawing.Size(0, 13);
             this.spoolwt.TabIndex = 112;
@@ -3037,7 +3037,7 @@ namespace PackingApplication
             // 
             this.prodtype.AutoSize = true;
             this.prodtype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.prodtype.Location = new System.Drawing.Point(34, 5);
+            this.prodtype.Location = new System.Drawing.Point(30, 5);
             this.prodtype.Name = "prodtype";
             this.prodtype.Size = new System.Drawing.Size(0, 13);
             this.prodtype.TabIndex = 5;

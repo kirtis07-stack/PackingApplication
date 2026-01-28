@@ -2913,8 +2913,6 @@ namespace PackingApplication
         {
             Log.writeMessage("POY SubmitPacking - Start : " + DateTime.Now);
 
-            submit.Enabled = false;
-            saveprint.Enabled = false;
             ProductionResponse result = new ProductionResponse();
             result = _packingService.AddUpdatePOYPacking(_productionId, productionRequest);
             if (result != null && result.ProductionId > 0)
@@ -2927,6 +2925,8 @@ namespace PackingApplication
                 RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
                 findbtn.Enabled = true;
+                submit.Enabled = false;
+                saveprint.Enabled = false;
                 if (isPrint)
                 {
                     //call ssrs report to print
@@ -2987,6 +2987,7 @@ namespace PackingApplication
                     // Clean up temp file
                     File.Delete(tempFile);
                 }
+                ResetForm(this);
             }
             else
             {
@@ -3934,6 +3935,7 @@ namespace PackingApplication
                 tarewghttxtbox.Text = "";
                 grosswttxtbox.Text = "";
                 netwttxtbox.Text = "";
+                _productionId = 0;
             }
             finally
             {
