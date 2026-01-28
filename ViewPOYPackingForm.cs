@@ -2320,7 +2320,7 @@ namespace PackingApplication
             }
 
             int itemCharCount = itemname.Text.Length;
-            if (itemCharCount > 20)
+            if (itemCharCount > 30)
             {
                 itemname.Location = new System.Drawing.Point(38, -3);
             }
