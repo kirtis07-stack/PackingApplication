@@ -3206,6 +3206,9 @@ namespace PackingApplication
                 //dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
 
                 dataGridView1.Columns["SrNo"].Width = 50;
+                dataGridView1.Columns["DepartmentName"].Width = 130;
+                dataGridView1.Columns["MachineName"].Width = 120;
+                dataGridView1.Columns["BoxNo"].Width = 120;
 
                 // Add Edit button column
                 DataGridViewImageColumn btn = new DataGridViewImageColumn();

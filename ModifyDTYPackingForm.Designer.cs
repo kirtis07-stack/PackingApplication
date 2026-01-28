@@ -34,8 +34,8 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -1047,11 +1047,11 @@ namespace PackingApplication
             this.datalistpopuppanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.datalistpopuppanel.Controls.Add(this.tableLayoutPanel10);
             this.datalistpopuppanel.Controls.Add(this.dataGridView1);
-            this.datalistpopuppanel.Location = new System.Drawing.Point(14, 494);
+            this.datalistpopuppanel.Location = new System.Drawing.Point(9, 494);
             this.datalistpopuppanel.Margin = new System.Windows.Forms.Padding(0);
             this.datalistpopuppanel.Name = "datalistpopuppanel";
             this.datalistpopuppanel.Padding = new System.Windows.Forms.Padding(5);
-            this.datalistpopuppanel.Size = new System.Drawing.Size(620, 417);
+            this.datalistpopuppanel.Size = new System.Drawing.Size(629, 417);
             this.datalistpopuppanel.TabIndex = 125;
             this.datalistpopuppanel.Visible = false;
             this.datalistpopuppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.popuppanel_Paint);
@@ -1069,7 +1069,7 @@ namespace PackingApplication
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(610, 29);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(619, 29);
             this.tableLayoutPanel10.TabIndex = 110;
             // 
             // panel59
@@ -1150,7 +1150,7 @@ namespace PackingApplication
             // panel60
             // 
             this.panel60.Controls.Add(this.closelistbtn);
-            this.panel60.Location = new System.Drawing.Point(353, 3);
+            this.panel60.Location = new System.Drawing.Point(358, 3);
             this.panel60.Name = "panel60";
             this.panel60.Size = new System.Drawing.Size(254, 23);
             this.panel60.TabIndex = 6;
@@ -1181,14 +1181,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1202,7 +1202,7 @@ namespace PackingApplication
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(610, 407);
+            this.dataGridView1.Size = new System.Drawing.Size(619, 407);
             this.dataGridView1.TabIndex = 99;
             // 
             // popuppanel
@@ -1500,7 +1500,7 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
