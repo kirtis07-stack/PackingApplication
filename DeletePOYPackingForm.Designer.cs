@@ -34,10 +34,10 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
             this.saleorderno = new System.Windows.Forms.Label();
@@ -803,7 +803,7 @@ namespace PackingApplication
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.35038F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.46027F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.36975F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(206, 118);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(206, 130);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // panel31
@@ -814,10 +814,10 @@ namespace PackingApplication
             this.panel31.Controls.Add(this.req7);
             this.panel31.Controls.Add(this.spoolnoerror);
             this.panel31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel31.Location = new System.Drawing.Point(0, 31);
+            this.panel31.Location = new System.Drawing.Point(0, 34);
             this.panel31.Margin = new System.Windows.Forms.Padding(0);
             this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(61, 35);
+            this.panel31.Size = new System.Drawing.Size(61, 39);
             this.panel31.TabIndex = 3;
             // 
             // spoolwt
@@ -857,10 +857,10 @@ namespace PackingApplication
             this.panel35.Controls.Add(this.label4);
             this.panel35.Controls.Add(this.netwt);
             this.panel35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel35.Location = new System.Drawing.Point(61, 66);
+            this.panel35.Location = new System.Drawing.Point(61, 73);
             this.panel35.Margin = new System.Windows.Forms.Padding(0);
             this.panel35.Name = "panel35";
-            this.panel35.Size = new System.Drawing.Size(72, 25);
+            this.panel35.Size = new System.Drawing.Size(72, 27);
             this.panel35.TabIndex = 7;
             // 
             // panel32
@@ -870,10 +870,10 @@ namespace PackingApplication
             this.panel32.Controls.Add(this.palletwterror);
             this.panel32.Controls.Add(this.palletwtno);
             this.panel32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel32.Location = new System.Drawing.Point(61, 31);
+            this.panel32.Location = new System.Drawing.Point(61, 34);
             this.panel32.Margin = new System.Windows.Forms.Padding(0);
             this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(72, 35);
+            this.panel32.Size = new System.Drawing.Size(72, 39);
             this.panel32.TabIndex = 4;
             // 
             // req8
@@ -906,7 +906,7 @@ namespace PackingApplication
             this.panel28.Location = new System.Drawing.Point(0, 0);
             this.panel28.Margin = new System.Windows.Forms.Padding(0);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(61, 31);
+            this.panel28.Size = new System.Drawing.Size(61, 34);
             this.panel28.TabIndex = 0;
             // 
             // panel29
@@ -917,7 +917,7 @@ namespace PackingApplication
             this.panel29.Location = new System.Drawing.Point(61, 0);
             this.panel29.Margin = new System.Windows.Forms.Padding(0);
             this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(72, 31);
+            this.panel29.Size = new System.Drawing.Size(72, 34);
             this.panel29.TabIndex = 1;
             // 
             // panel33
@@ -927,10 +927,10 @@ namespace PackingApplication
             this.panel33.Controls.Add(this.label2);
             this.panel33.Controls.Add(this.grosswtno);
             this.panel33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel33.Location = new System.Drawing.Point(133, 31);
+            this.panel33.Location = new System.Drawing.Point(133, 34);
             this.panel33.Margin = new System.Windows.Forms.Padding(0);
             this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(73, 35);
+            this.panel33.Size = new System.Drawing.Size(73, 39);
             this.panel33.TabIndex = 5;
             // 
             // grosswterror
@@ -960,10 +960,10 @@ namespace PackingApplication
             this.panel34.Controls.Add(this.tarewt);
             this.panel34.Controls.Add(this.label3);
             this.panel34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel34.Location = new System.Drawing.Point(0, 66);
+            this.panel34.Location = new System.Drawing.Point(0, 73);
             this.panel34.Margin = new System.Windows.Forms.Padding(0);
             this.panel34.Name = "panel34";
-            this.panel34.Size = new System.Drawing.Size(61, 25);
+            this.panel34.Size = new System.Drawing.Size(61, 27);
             this.panel34.TabIndex = 6;
             // 
             // tarewt
@@ -981,10 +981,10 @@ namespace PackingApplication
             this.panel36.Controls.Add(this.wtpercop);
             this.panel36.Controls.Add(this.label5);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel36.Location = new System.Drawing.Point(133, 66);
+            this.panel36.Location = new System.Drawing.Point(133, 73);
             this.panel36.Margin = new System.Windows.Forms.Padding(0);
             this.panel36.Name = "panel36";
-            this.panel36.Size = new System.Drawing.Size(73, 25);
+            this.panel36.Size = new System.Drawing.Size(73, 27);
             this.panel36.TabIndex = 8;
             // 
             // wtpercop
@@ -1003,10 +1003,10 @@ namespace PackingApplication
             this.panel45.Controls.Add(this.copynoerror);
             this.panel45.Controls.Add(this.label1);
             this.panel45.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel45.Location = new System.Drawing.Point(0, 91);
+            this.panel45.Location = new System.Drawing.Point(0, 100);
             this.panel45.Margin = new System.Windows.Forms.Padding(0);
             this.panel45.Name = "panel45";
-            this.panel45.Size = new System.Drawing.Size(61, 27);
+            this.panel45.Size = new System.Drawing.Size(61, 30);
             this.panel45.TabIndex = 9;
             // 
             // copynoerror
@@ -1213,14 +1213,14 @@ namespace PackingApplication
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 34;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1530,14 +1530,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1602,14 +1602,14 @@ namespace PackingApplication
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1675,14 +1675,14 @@ namespace PackingApplication
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -3360,7 +3360,7 @@ namespace PackingApplication
             this.weighboxlayout.RowCount = 2;
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
             this.weighboxlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86F));
-            this.weighboxlayout.Size = new System.Drawing.Size(214, 148);
+            this.weighboxlayout.Size = new System.Drawing.Size(214, 162);
             this.weighboxlayout.TabIndex = 3;
             this.weighboxlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxlayout_Paint);
             // 
@@ -3372,7 +3372,7 @@ namespace PackingApplication
             this.weighboxheader.Location = new System.Drawing.Point(2, 2);
             this.weighboxheader.Margin = new System.Windows.Forms.Padding(0);
             this.weighboxheader.Name = "weighboxheader";
-            this.weighboxheader.Size = new System.Drawing.Size(210, 20);
+            this.weighboxheader.Size = new System.Drawing.Size(210, 22);
             this.weighboxheader.TabIndex = 107;
             this.weighboxheader.Paint += new System.Windows.Forms.PaintEventHandler(this.weighboxheader_Paint);
             this.weighboxheader.Resize += new System.EventHandler(this.weighboxheader_Resize);
@@ -3380,7 +3380,7 @@ namespace PackingApplication
             // Weighboxlbl
             // 
             this.Weighboxlbl.AutoSize = true;
-            this.Weighboxlbl.Location = new System.Drawing.Point(2, 2);
+            this.Weighboxlbl.Location = new System.Drawing.Point(2, 3);
             this.Weighboxlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Weighboxlbl.Name = "Weighboxlbl";
             this.Weighboxlbl.Size = new System.Drawing.Size(88, 13);
@@ -3392,10 +3392,10 @@ namespace PackingApplication
             this.weighboxpanel.Controls.Add(this.tableLayoutPanel6);
             this.weighboxpanel.Controls.Add(this.spoolwterror);
             this.weighboxpanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.weighboxpanel.Location = new System.Drawing.Point(4, 25);
+            this.weighboxpanel.Location = new System.Drawing.Point(4, 27);
             this.weighboxpanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.weighboxpanel.Name = "weighboxpanel";
-            this.weighboxpanel.Size = new System.Drawing.Size(206, 118);
+            this.weighboxpanel.Size = new System.Drawing.Size(206, 130);
             this.weighboxpanel.TabIndex = 107;
             // 
             // spoolwterror
