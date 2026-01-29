@@ -243,6 +243,34 @@ namespace PackingApplication
             WeighingList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             WeighingList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
+            _cmethod.SetReadOnlyBlue(LineNoList, true, false);
+            _cmethod.SetReadOnlyBlue(DeptList, true, false);
+            _cmethod.SetReadOnlyBlue(PackSizeList, true, false);
+            _cmethod.SetReadOnlyBlue(SaleOrderList, true, false);
+            _cmethod.SetReadOnlyBlue(WindingTypeList, true, false);
+            _cmethod.SetReadOnlyBlue(QualityList, true, false);
+            _cmethod.SetReadOnlyBlue(MergeNoList, true, false);
+            _cmethod.SetReadOnlyBlue(CopsItemList, true, false);
+            _cmethod.SetReadOnlyBlue(BoxItemList, true, false);
+            _cmethod.SetReadOnlyBlue(OwnerList, true, false);
+            _cmethod.SetReadOnlyBlue(ComPortList, true, false);
+            _cmethod.SetReadOnlyBlue(WeighingList, true, false);
+            _cmethod.SetReadOnlyBlue(remarks, true, false);
+            _cmethod.SetReadOnlyBlue(remarks, true, false);
+            _cmethod.SetReadOnlyBlue(prcompany, true, false);
+            _cmethod.SetReadOnlyBlue(prowner, true, false);
+            _cmethod.SetReadOnlyBlue(prdate, true, false);
+            _cmethod.SetReadOnlyBlue(pruser, true, false);
+            _cmethod.SetReadOnlyBlue(prhindi, true, false);
+            _cmethod.SetReadOnlyBlue(prwtps, true, false);
+            _cmethod.SetReadOnlyBlue(prqrcode, true, false);
+            _cmethod.SetReadOnlyBlue(prtwist, true, false);
+            _cmethod.SetReadOnlyBlue(spoolno, true, false);
+            _cmethod.SetReadOnlyBlue(palletwtno, true, false);
+            _cmethod.SetReadOnlyBlue(grosswtno, true, false);
+            _cmethod.SetReadOnlyBlue(netwt, true, false);
+            _cmethod.SetReadOnlyBlue(copyno, true, false);
+
             LoadSearchDropdowns();
 
             Log.writeMessage("LoadDropdowns - End : " + DateTime.Now);
@@ -692,6 +720,34 @@ namespace PackingApplication
                 AdjustNameByCharCount();
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
+
+                _cmethod.SetReadOnlyBlue(LineNoList, false, false);
+                _cmethod.SetReadOnlyBlue(DeptList, false, false);
+                _cmethod.SetReadOnlyBlue(PackSizeList, false, false);
+                _cmethod.SetReadOnlyBlue(SaleOrderList, false, false);
+                _cmethod.SetReadOnlyBlue(WindingTypeList, false, false);
+                _cmethod.SetReadOnlyBlue(QualityList, false, false);
+                _cmethod.SetReadOnlyBlue(MergeNoList, false, false);
+                _cmethod.SetReadOnlyBlue(CopsItemList, false, false);
+                _cmethod.SetReadOnlyBlue(BoxItemList, false, false);
+                _cmethod.SetReadOnlyBlue(OwnerList, false, false);
+                _cmethod.SetReadOnlyBlue(ComPortList, false, false);
+                _cmethod.SetReadOnlyBlue(WeighingList, false, false);
+                _cmethod.SetReadOnlyBlue(remarks, false, false);
+                _cmethod.SetReadOnlyBlue(remarks, false, false);
+                _cmethod.SetReadOnlyBlue(prcompany, false, false);
+                _cmethod.SetReadOnlyBlue(prowner, false, false);
+                _cmethod.SetReadOnlyBlue(prdate, false, false);
+                _cmethod.SetReadOnlyBlue(pruser, false, false);
+                _cmethod.SetReadOnlyBlue(prhindi, false, false);
+                _cmethod.SetReadOnlyBlue(prwtps, false, false);
+                _cmethod.SetReadOnlyBlue(prqrcode, false, false);
+                _cmethod.SetReadOnlyBlue(prtwist, false, false);
+                _cmethod.SetReadOnlyBlue(spoolno, false, false);
+                _cmethod.SetReadOnlyBlue(palletwtno, false, false);
+                _cmethod.SetReadOnlyBlue(grosswtno, false, false);
+                _cmethod.SetReadOnlyBlue(netwt, false, false);
+                _cmethod.SetReadOnlyBlue(copyno, false, false);
             }
 
             Log.writeMessage("DTY LoadProductionDetailsAsync - End : " + DateTime.Now);

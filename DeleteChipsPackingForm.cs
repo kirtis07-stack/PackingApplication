@@ -451,7 +451,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
-                _cmethod.SetReadOnlyBlue(LineNoList, true);
+                _cmethod.SetReadOnlyBlue(LineNoList, true, true);
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
@@ -459,7 +459,7 @@ namespace PackingApplication
                 DeptList.Items.Add(productionResponse.DepartmentName);
                 DeptList.SelectedItem = productionResponse.DepartmentName;
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
-                _cmethod.SetReadOnlyBlue(DeptList, true);
+                _cmethod.SetReadOnlyBlue(DeptList, true, true);
 
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
@@ -467,7 +467,7 @@ namespace PackingApplication
                 MergeNoList.Items.Add(productionResponse.LotNo);
                 MergeNoList.SelectedItem = productionResponse.LotNo;
                 productionRequest.LotId = productionResponse.LotId;
-                _cmethod.SetReadOnlyBlue(MergeNoList, true);
+                _cmethod.SetReadOnlyBlue(MergeNoList, true, true);
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -475,7 +475,7 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
-                _cmethod.SetReadOnlyBlue(QualityList, true);
+                _cmethod.SetReadOnlyBlue(QualityList, true, true);
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -483,7 +483,7 @@ namespace PackingApplication
                 PackSizeList.Items.Add(productionResponse.PackSizeName);
                 PackSizeList.SelectedItem = productionResponse.PackSizeName;
                 productionRequest.PackSizeId = productionResponse.PackSizeId;
-                _cmethod.SetReadOnlyBlue(PackSizeList, true);
+                _cmethod.SetReadOnlyBlue(PackSizeList, true, true);
 
                 BoxItemList.DataSource = null;
                 BoxItemList.Items.Clear();
@@ -491,7 +491,7 @@ namespace PackingApplication
                 BoxItemList.Items.Add(productionResponse.BoxItemName);
                 BoxItemList.SelectedItem = productionResponse.BoxItemName;
                 productionRequest.BoxItemId = productionResponse.BoxItemId;
-                _cmethod.SetReadOnlyBlue(BoxItemList, true);
+                _cmethod.SetReadOnlyBlue(BoxItemList, true, true);
 
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
@@ -503,41 +503,41 @@ namespace PackingApplication
                     productionRequest.OwnerId = productionResponse.OwnerId;
                     productionRequest.BPDetailsId = productionResponse.BPDetailsId;
                 }
-                _cmethod.SetReadOnlyBlue(OwnerList, true);
+                _cmethod.SetReadOnlyBlue(OwnerList, true, true);
 
                 prodtype.Text = productionResponse.ProductionType;
                 productionRequest.ProdTypeId = productionResponse.ProdTypeId;
                 remarks.Text = productionResponse.Remarks;
                 productionRequest.Remarks = productionResponse.Remarks;
-                _cmethod.SetReadOnlyBlue(remarks, true);
+                _cmethod.SetReadOnlyBlue(remarks, true, true);
                 prcompany.Checked = productionResponse.PrintCompany;
                 productionRequest.PrintCompany = productionResponse.PrintCompany;
-                _cmethod.SetReadOnlyBlue(prcompany, true);
+                _cmethod.SetReadOnlyBlue(prcompany, true, true);
                 prowner.Checked = productionResponse.PrintOwner;
                 productionRequest.PrintOwner = productionResponse.PrintOwner;
-                _cmethod.SetReadOnlyBlue(prowner, true);
+                _cmethod.SetReadOnlyBlue(prowner, true, true);
                 prdate.Checked = productionResponse.PrintDate;
                 productionRequest.PrintDate = productionResponse.PrintDate;
-                _cmethod.SetReadOnlyBlue(prdate, true);
+                _cmethod.SetReadOnlyBlue(prdate, true, true);
                 pruser.Checked = productionResponse.PrintUser;
                 productionRequest.PrintUser = productionResponse.PrintUser;
-                _cmethod.SetReadOnlyBlue(pruser, true);
+                _cmethod.SetReadOnlyBlue(pruser, true, true);
                 prhindi.Checked = productionResponse.PrintHindiWords;
                 productionRequest.PrintHindiWords = productionResponse.PrintHindiWords;
-                _cmethod.SetReadOnlyBlue(prhindi, true);
+                _cmethod.SetReadOnlyBlue(prhindi, true, true);
                 prwtps.Checked = productionResponse.PrintWTPS;
                 productionRequest.PrintWTPS = productionResponse.PrintWTPS;
-                _cmethod.SetReadOnlyBlue(prwtps, true);
+                _cmethod.SetReadOnlyBlue(prwtps, true, true);
                 prqrcode.Checked = productionResponse.PrintQRCode;
                 productionRequest.PrintQRCode = productionResponse.PrintQRCode;
-                _cmethod.SetReadOnlyBlue(prqrcode, true);
+                _cmethod.SetReadOnlyBlue(prqrcode, true, true);
                 prtwist.Checked = productionResponse.PrintTwist;
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
-                _cmethod.SetReadOnlyBlue(prtwist, true);
+                _cmethod.SetReadOnlyBlue(prtwist, true, true);
                 boxnofrmt.Text = productionResponse.BoxNoFmtd;
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                 //dateTimePicker1.Value = productionResponse.ProductionDate;
-                _cmethod.SetReadOnlyBlue(dateTimePicker1, true);
+                _cmethod.SetReadOnlyBlue(dateTimePicker1, true, true);
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {
@@ -574,19 +574,19 @@ namespace PackingApplication
                 //dateTimePicker1.Value = productionResponse.ProductionDate;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
-                _cmethod.SetReadOnlyBlue(palletwtno, true);
+                _cmethod.SetReadOnlyBlue(palletwtno, true, true);
                 grosswtno.Text = productionResponse.GrossWt.ToString();
                 productionRequest.GrossWt = productionResponse.GrossWt;
-                _cmethod.SetReadOnlyBlue(grosswtno, true);
+                _cmethod.SetReadOnlyBlue(grosswtno, true, true);
                 tarewt.Text = productionResponse.TareWt.ToString();
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
-                _cmethod.SetReadOnlyBlue(netwt, true);
-                _cmethod.SetReadOnlyBlue(copyno, true);
+                _cmethod.SetReadOnlyBlue(netwt, true, true);
+                _cmethod.SetReadOnlyBlue(copyno, true, true);
                 AdjustNameByCharCount();
-                _cmethod.SetReadOnlyBlue(ComPortList, true);
-                _cmethod.SetReadOnlyBlue(WeighingList, true);
+                _cmethod.SetReadOnlyBlue(ComPortList, true, true);
+                _cmethod.SetReadOnlyBlue(WeighingList, true, true);
             }
 
             Log.writeMessage("Chips LoadProductionDetailsAsync - End : " + DateTime.Now);

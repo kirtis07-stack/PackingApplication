@@ -296,22 +296,32 @@ namespace PackingApplication.Helper
             }
         }
 
-        public void SetReadOnlyBlue(Control ctrl, bool isReadOnly)
+        public void SetReadOnlyBlue(Control ctrl, bool isReadOnly, bool isDelete)
         {
             switch (ctrl)
             {
                 case TextBox txt:
                     txt.ReadOnly = isReadOnly;
                     txt.BackColor = SystemColors.Window;
-                    txt.ForeColor = Color.Blue;
+                    txt.ForeColor = isDelete ? Color.Blue : SystemColors.ControlText;
                     break;
 
                 case ComboBox cmb:
-                    cmb.ForeColor = Color.Blue;
-                    cmb.BackColor = Color.FromArgb(242, 242, 242);
-                    //cmb.MouseDown += BlockComboBox;
-                    cmb.KeyPress += BlockKeyPress;
-                    cmb.DropDown += BlockDropDown;
+                    if (isReadOnly)
+                    {
+                        cmb.ForeColor = isDelete ? Color.Blue : SystemColors.ControlText;
+                        cmb.BackColor = isDelete ? Color.FromArgb(242, 242, 242) : SystemColors.Window;
+                        //cmb.MouseDown += BlockComboBox;
+                        cmb.KeyPress += BlockKeyPress;
+                        cmb.DropDown += BlockDropDown;
+                    }
+                    else
+                    {
+                        cmb.ForeColor = SystemColors.ControlText;
+                        cmb.BackColor = SystemColors.Window;
+                        cmb.KeyPress -= BlockKeyPress;
+                        cmb.DropDown -= BlockDropDown;
+                    }
                     break;
 
                 case CheckBox chk:
