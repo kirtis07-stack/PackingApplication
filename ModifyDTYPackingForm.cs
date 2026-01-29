@@ -2265,7 +2265,7 @@ namespace PackingApplication
                 //submit.Enabled = true;
                 //saveprint.Enabled = true;
                 RefreshGradewiseGrid();
-                RefreshLastBoxDetails();
+                //RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
                 findbtn.Enabled = true;
                 submit.Enabled = false;

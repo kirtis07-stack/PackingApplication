@@ -2922,7 +2922,7 @@ namespace PackingApplication
                 //saveprint.Enabled = true;
                 RefreshWindingGrid();
                 RefreshGradewiseGrid();
-                RefreshLastBoxDetails();
+                //RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
                 findbtn.Enabled = true;
                 submit.Enabled = false;
