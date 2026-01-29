@@ -4333,6 +4333,7 @@ namespace PackingApplication
             Log.writeMessage("BCF btnClosePopup_Click - Start : " + DateTime.Now);
 
             popuppanel.Visible = false;
+            dateTimePicker2.Value = DateTime.Now;
             //srlinenoradiobtn.Checked = srdeptradiobtn.Checked = srproddateradiobtn.Checked = srboxnoradiobtn.Checked = false;
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
