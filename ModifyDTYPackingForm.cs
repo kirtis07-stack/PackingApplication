@@ -3336,6 +3336,7 @@ namespace PackingApplication
                 if (current == grosswtno) // replace with your last field
                 {
                     saveprint.Focus(); // replace with your button name
+                    saveprint.Paint += _cmethod.Button_Paint;
                 }
                 else
                 {

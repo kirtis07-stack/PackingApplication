@@ -335,5 +335,20 @@ namespace PackingApplication.Helper
             ((ComboBox)sender).DroppedDown = false;
         }
 
+        public void Button_Paint(object sender, PaintEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn == null || !btn.Focused) return;
+
+            Rectangle rect = btn.ClientRectangle;
+            rect.Inflate(-4, -4);
+
+            using (Pen pen = new Pen(Color.FromArgb(120, Color.White), 1))
+            {
+                pen.Alignment = PenAlignment.Inset;
+                e.Graphics.DrawRectangle(pen, rect);
+            }
+        }
+
     }
 }

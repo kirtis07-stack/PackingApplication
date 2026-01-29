@@ -4280,6 +4280,7 @@ namespace PackingApplication
                 if (current == grosswtno)
                 {
                     saveprint.Focus();
+                    saveprint.Paint += _cmethod.Button_Paint;
                 }
                 else
                 {
