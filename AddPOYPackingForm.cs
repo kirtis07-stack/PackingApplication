@@ -2933,7 +2933,7 @@ namespace PackingApplication
 
             addqty.Text = "Update";
             PalletTypeList.Enabled = true;
-
+            PalletTypeList.Focus();
             Log.writeMessage("POY editPallet_Click - End : " + DateTime.Now);
         }
 

@@ -2814,7 +2814,7 @@ namespace PackingApplication
 
             addqty.Text = "Update";
             PalletTypeList.Enabled = true;
-
+            PalletTypeList.Focus();
             Log.writeMessage("BCF editPallet_Click - End : " + DateTime.Now);
         }
 

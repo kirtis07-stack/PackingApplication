@@ -2261,6 +2261,10 @@ namespace PackingApplication
                 findbtn.Enabled = true;
                 printbtn.Enabled = false;
                 _productionId = 0;
+                dateTimePicker2.Value = DateTime.Now;
+                selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+                dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             }
             finally
             {
@@ -2348,7 +2352,7 @@ namespace PackingApplication
             popuppanel.Left = (this.ClientSize.Width - popuppanel.Width) / 2;
             popuppanel.Top = (this.ClientSize.Height - popuppanel.Height) / 2;
 
-            panel58.Focus();
+            SrLineNoList.Focus();
 
             Log.writeMessage("BCF btnFind_Click - End : " + DateTime.Now);
         }
@@ -3032,7 +3036,7 @@ namespace PackingApplication
             selectedSrMachineId = 0; selectedSrDeptId = 0; selectedSrBoxNo = null; selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            panel58.Focus();
+            SrLineNoList.Focus();
 
             Log.writeMessage("BCF btnDatalistClosePopup_Click - End : " + DateTime.Now);
         }
