@@ -2414,13 +2414,17 @@ namespace PackingApplication
                 qtyLabel.Text = qty.ToString();
 
                 // Update item name label
-                var lblItem = _editingPanel.Controls
+                System.Windows.Forms.Label lblItem = _editingPanel.Controls
                                 .OfType<System.Windows.Forms.Label>()
                                 .FirstOrDefault(l => l.Name == "lblItemName");
 
                 if (lblItem != null)
                 {
-                    lblItem.Text = selectedItem.Name;
+                    lblItem.Text = selectedItem.Name;   
+                    lblItem.AutoSize = false;
+                    lblItem.Width = 160; lblItem.MaximumSize = new Size(200, 160); lblItem.Location = new System.Drawing.Point(50, 10);
+                    lblItem.Font = FontManager.GetFont(8F, FontStyle.Regular); lblItem.Tag = selectedItem.ItemId; lblItem.TextAlign = ContentAlignment.TopLeft;
+                    lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                 }
 
                 var btnRemove = _editingPanel.Controls
@@ -2682,26 +2686,29 @@ namespace PackingApplication
             var btn = sender as System.Windows.Forms.Button;
             if (btn == null) return;
 
-            _editingPanel = btn.Parent as Panel;
-            if (_editingPanel == null) return;
+            Panel rowPanel = btn.Parent as Panel;
+            if (rowPanel == null) return;
+
+            _editingPanel = rowPanel;
 
             // Disable remove button ONLY for this row
-            var btnRemove = _editingPanel.Controls
+            var btnRemove = rowPanel.Controls
                 .OfType<System.Windows.Forms.Button>()
                 .FirstOrDefault(b => b.Name == "btnRemove");
 
             if (btnRemove != null)
                 btnRemove.Enabled = false;
 
-            var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)btn.Tag;
+            var tag = rowPanel.Tag as Tuple<ItemResponse, System.Windows.Forms.Label>;
+            var selectedItem = tag.Item1;
 
             PalletTypeList.DataSource = null;
             PalletTypeList.Items.Clear();
             PalletTypeList.Items.Add(new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
-            PalletTypeList.Items.Add(tag.Item1);
+            PalletTypeList.Items.Add(selectedItem);
             PalletTypeList.DisplayMember = "Name";
             PalletTypeList.ValueMember = "ItemId";
-            PalletTypeList.SelectedIndex = 1;
+            PalletTypeList.SelectedItem = PalletTypeList.Items.Cast<ItemResponse>().FirstOrDefault(i => i.ItemId == selectedItem.ItemId);
             qnty.Text = tag.Item2.Text;
 
             addqty.Text = "Update";
