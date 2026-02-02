@@ -2529,6 +2529,14 @@ namespace PackingApplication
                 if (lblItem != null)
                 {
                     lblItem.Text = selectedItem.Name;
+                    lblItem.AutoSize = false;
+                    lblItem.Width = 160;
+                    lblItem.MaximumSize = new Size(200, 160);
+                    lblItem.Location = new System.Drawing.Point(50, 10);
+                    lblItem.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                    lblItem.Tag = selectedItem.ItemId;
+                    lblItem.TextAlign = ContentAlignment.TopLeft;
+                    lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                 }
 
                 var btnRemove = _editingPanel.Controls
@@ -2537,6 +2545,11 @@ namespace PackingApplication
 
                 if (btnRemove != null)
                     btnRemove.Enabled = true;
+
+                //if itemname is larger then increase the rowPanel height and change its location point
+                int rowHeight = Math.Max(lblItem.Height + 10, 35);
+                int newY = (_editingPanel.Height - lblItem.Height) / 2;
+                lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
 
                 // Reset UI
                 addqty.Text = "Add";
