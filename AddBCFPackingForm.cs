@@ -2461,6 +2461,7 @@ namespace PackingApplication
             if (selectedItem == null || selectedItem.ItemId == 0)
             {
                 MessageBox.Show("Please select an item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PalletTypeList.Focus();
                 return;
             }
 
@@ -2468,6 +2469,7 @@ namespace PackingApplication
             if (string.IsNullOrEmpty(qnty.Text))
             {
                 MessageBox.Show("Please enter quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                qnty.Focus();
                 return;
             }
             if (!int.TryParse(qnty.Text, out int quty) || quty < 0)
@@ -2508,6 +2510,7 @@ namespace PackingApplication
                 if (duplicate)
                 {
                     MessageBox.Show("Item already added.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PalletTypeList.Focus();
                     return;
                 }
 
@@ -2573,8 +2576,8 @@ namespace PackingApplication
 
                 if (alreadyExists)
                 {
-                    MessageBox.Show("Item already added.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Item already added.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PalletTypeList.Focus();
                     return;
                 }
 
@@ -2724,18 +2727,14 @@ namespace PackingApplication
                 }
                 else
                 {
-                    MessageBox.Show("Item already added.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBox.Show("Item already added.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    PalletTypeList.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("Please select an item.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Please select an item.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                PalletTypeList.Focus();
             }
 
             Log.writeMessage("BCF addqty_Click - End : " + DateTime.Now);
