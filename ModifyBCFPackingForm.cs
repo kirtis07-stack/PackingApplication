@@ -614,6 +614,7 @@ namespace PackingApplication
                 salesOrderNumber = productionResponse.SalesOrderNumber + "--" + productionResponse.SOItemName + "--" + productionResponse.ShadeName + "--" + productionResponse.SOQuantity;
                 SaleOrderList.Items.Add(salesOrderNumber);
                 SaleOrderList.SelectedItem = salesOrderNumber;
+                selectedSONumber = productionResponse.SalesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
                 selectedSOId = productionResponse.SaleOrderItemsId;
 
@@ -3201,13 +3202,13 @@ namespace PackingApplication
             if (balanceQty <= 0)
             {
                 MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                isValid = false;
+                //isValid = false;
             }
             decimal newBalanceQty = balanceQty - gross;
             if (newBalanceQty < 0)
             {
-                MessageBox.Show("No Prod Bal Qty remaining", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                isValid = false;
+                MessageBox.Show("No Prod Bal Qty remaining", "Warning", MessageBoxButtons.OK);
+                //isValid = false;
             }
 
             Log.writeMessage("BCF ValidateForm - End : " + DateTime.Now);
