@@ -3201,14 +3201,28 @@ namespace PackingApplication
             balanceQty = (totalSOQty - totalProdQty);
             if (balanceQty <= 0)
             {
-                MessageBox.Show("Quantity not remaining for " + selectedSONumber, "Warning", MessageBoxButtons.OK);
-                //isValid = false;
+                DialogResult qtyresult = MessageBox.Show(balanceQty + " Quantity remaining for " + selectedSONumber + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (qtyresult == DialogResult.Yes)
+                {
+                    isValid = true;
+                }
+                else
+                {
+                    isValid = false;
+                }
             }
             decimal newBalanceQty = balanceQty - gross;
             if (newBalanceQty < 0)
             {
-                MessageBox.Show("No Prod Bal Qty remaining", "Warning", MessageBoxButtons.OK);
-                //isValid = false;
+                DialogResult prodbalresult = MessageBox.Show(balanceQty + " Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (prodbalresult == DialogResult.Yes)
+                {
+                    isValid = true;
+                }
+                else
+                {
+                    isValid = false;
+                }
             }
 
             Log.writeMessage("BCF ValidateForm - End : " + DateTime.Now);

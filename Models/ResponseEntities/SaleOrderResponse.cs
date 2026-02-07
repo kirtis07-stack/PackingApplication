@@ -113,7 +113,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string AgentName { get; set; }
         public string CustomerName { get; set; }
         public string ShadeCode { get; set; }
-        public decimal RemainingQuantity { get; set; }
+        public decimal ProductionRemainingQty { get; set; }
         public string QualityCode { get; set; }
         public int AgentId { get; set; }            // added for show pending sc in so
         public int AgentDetailsId { get; set; }     // added for show pending sc in so
