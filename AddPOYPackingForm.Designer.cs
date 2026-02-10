@@ -968,7 +968,7 @@ namespace PackingApplication
             // palletdetails
             // 
             this.palletdetails.AutoSize = true;
-            this.palletdetails.Location = new System.Drawing.Point(2, 5);
+            this.palletdetails.Location = new System.Drawing.Point(2, 2);
             this.palletdetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.palletdetails.Name = "palletdetails";
             this.palletdetails.Size = new System.Drawing.Size(71, 13);
@@ -979,22 +979,22 @@ namespace PackingApplication
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 9);
+            this.label6.Location = new System.Drawing.Point(0, 4);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.Size = new System.Drawing.Size(34, 26);
             this.label6.TabIndex = 79;
-            this.label6.Text = "Pallet Type:";
+            this.label6.Text = "Pallet\nType:";
             this.label6.UseMnemonic = false;
             // 
             // PalletTypeList
             // 
             this.PalletTypeList.AllowDrop = true;
             this.PalletTypeList.FormattingEnabled = true;
-            this.PalletTypeList.Location = new System.Drawing.Point(65, 6);
+            this.PalletTypeList.Location = new System.Drawing.Point(36, 6);
             this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.PalletTypeList.Name = "PalletTypeList";
-            this.PalletTypeList.Size = new System.Drawing.Size(154, 21);
+            this.PalletTypeList.Size = new System.Drawing.Size(324, 21);
             this.PalletTypeList.TabIndex = 1;
             this.PalletTypeList.TextUpdate += new System.EventHandler(this.PalletTypeList_TextUpdate);
             this.PalletTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PalletTypeList_KeyDown);
@@ -1003,7 +1003,7 @@ namespace PackingApplication
             // pquantity
             // 
             this.pquantity.AutoSize = true;
-            this.pquantity.Location = new System.Drawing.Point(220, 9);
+            this.pquantity.Location = new System.Drawing.Point(217, 32);
             this.pquantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.pquantity.Name = "pquantity";
             this.pquantity.Size = new System.Drawing.Size(26, 13);
@@ -1013,10 +1013,10 @@ namespace PackingApplication
             // 
             // qnty
             // 
-            this.qnty.Location = new System.Drawing.Point(250, 6);
+            this.qnty.Location = new System.Drawing.Point(247, 29);
             this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.qnty.Name = "qnty";
-            this.qnty.Size = new System.Drawing.Size(48, 20);
+            this.qnty.Size = new System.Drawing.Size(63, 20);
             this.qnty.TabIndex = 2;
             this.qnty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.qnty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.palletQty_KeyPress);
@@ -1032,10 +1032,10 @@ namespace PackingApplication
             this.addqty.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.addqty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addqty.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.addqty.Location = new System.Drawing.Point(305, 6);
+            this.addqty.Location = new System.Drawing.Point(314, 29);
             this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.addqty.Name = "addqty";
-            this.addqty.Size = new System.Drawing.Size(48, 19);
+            this.addqty.Size = new System.Drawing.Size(46, 19);
             this.addqty.TabIndex = 3;
             this.addqty.Text = "Add";
             this.addqty.UseVisualStyleBackColor = false;
@@ -1045,10 +1045,10 @@ namespace PackingApplication
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 31);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 51);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(358, 180);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(358, 173);
             this.flowLayoutPanel1.TabIndex = 84;
             // 
             // tableLayoutPanel11
@@ -1767,14 +1767,14 @@ namespace PackingApplication
             this.palletdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.palletdetailslayout.Controls.Add(this.palletdetailsheader, 0, 0);
             this.palletdetailslayout.Controls.Add(this.palletdetailspanel, 0, 1);
-            this.palletdetailslayout.Location = new System.Drawing.Point(2, 207);
+            this.palletdetailslayout.Location = new System.Drawing.Point(2, 198);
             this.palletdetailslayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletdetailslayout.Name = "palletdetailslayout";
             this.palletdetailslayout.Padding = new System.Windows.Forms.Padding(2);
             this.palletdetailslayout.RowCount = 2;
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.palletdetailslayout.Size = new System.Drawing.Size(370, 244);
+            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92F));
+            this.palletdetailslayout.Size = new System.Drawing.Size(370, 253);
             this.palletdetailslayout.TabIndex = 6;
             this.palletdetailslayout.TabStop = true;
             this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
@@ -1787,7 +1787,7 @@ namespace PackingApplication
             this.palletdetailsheader.Location = new System.Drawing.Point(2, 2);
             this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(0);
             this.palletdetailsheader.Name = "palletdetailsheader";
-            this.palletdetailsheader.Size = new System.Drawing.Size(366, 24);
+            this.palletdetailsheader.Size = new System.Drawing.Size(366, 19);
             this.palletdetailsheader.TabIndex = 9;
             this.palletdetailsheader.TabStop = true;
             this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
@@ -1801,10 +1801,10 @@ namespace PackingApplication
             this.palletdetailspanel.Controls.Add(this.qnty);
             this.palletdetailspanel.Controls.Add(this.addqty);
             this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
-            this.palletdetailspanel.Location = new System.Drawing.Point(4, 29);
+            this.palletdetailspanel.Location = new System.Drawing.Point(4, 24);
             this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletdetailspanel.Name = "palletdetailspanel";
-            this.palletdetailspanel.Size = new System.Drawing.Size(362, 210);
+            this.palletdetailspanel.Size = new System.Drawing.Size(362, 224);
             this.palletdetailspanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
