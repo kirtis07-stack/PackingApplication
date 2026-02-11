@@ -343,7 +343,7 @@ namespace PackingApplication
             this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.label6.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -744,7 +744,7 @@ namespace PackingApplication
                 rowCount++;
 
                 Panel rowPanel = new Panel();
-                //rowPanel.Size = new Size(width, 35);
+                rowPanel.Size = new Size(width, 25);
                 rowPanel.BorderStyle = BorderStyle.None;
 
                 rowPanel.Paint += (s, pe) =>
@@ -761,17 +761,29 @@ namespace PackingApplication
                 };
 
                 // SrNo
-                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 20, Location = new System.Drawing.Point(2, 0), Font = FontManager.GetFont(7F, FontStyle.Regular) };
 
                 // Item Name
-                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 160, MaximumSize = new Size(200, 160), Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 240, MaximumSize = new Size(280, 240), Location = new System.Drawing.Point(40, 2), Font = FontManager.GetFont(7F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
                 lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                 // Qty
-                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(310, 0), Font = FontManager.GetFont(7F, FontStyle.Regular) };
                 // Edit Button
-                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(320, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button()
+                {
+                    Text = "",
+                    Size = new Size(20, 20),
+                    Location = new System.Drawing.Point(360, 0),
+                    Font = FontManager.GetFont(7F, FontStyle.Regular),
+                    BackColor = Color.FromArgb(230, 240, 255),
+                    ForeColor = Color.FromArgb(51, 133, 255),
+                    Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty),
+                    FlatStyle = FlatStyle.Flat,
+                    Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 16, 16), // your image
+                    ImageAlign = ContentAlignment.MiddleCenter,
+                };
+                btnEdit.UseVisualStyleBackColor = false;
                 btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
-                btnEdit.FlatAppearance.BorderSize = 1;
                 btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
                 btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(180, 210, 255);
                 btnEdit.FlatAppearance.BorderSize = 0;
@@ -792,25 +804,45 @@ namespace PackingApplication
 
                         f.Graphics.DrawPath(borderPen, path);
 
+                        if (btnEdit.Image != null)
+                        {
+                            int imgX = (btnEdit.Width - btnEdit.Image.Width) / 2;
+                            int imgY = (btnEdit.Height - btnEdit.Image.Height) / 2;
+                            f.Graphics.DrawImage(btnEdit.Image, imgX, imgY);
+                        }
+
                         if (btnEdit.Focused)
                         {
                             ControlPaint.DrawFocusRectangle(f.Graphics, rect);
                         }
 
-                        TextRenderer.DrawText(
-                            f.Graphics,
-                            btnEdit.Text,
-                            btnEdit.Font,
-                            rect,
-                            btnEdit.ForeColor,
-                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                        );
+                        //TextRenderer.DrawText(
+                        //    f.Graphics,
+                        //    btnEdit.Text,
+                        //    btnEdit.Font,
+                        //    rect,
+                        //    btnEdit.ForeColor,
+                        //    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                        //);
                     }
                 };
                 btnEdit.Click += editPallet_Click;
 
                 // Delete Button
-                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Name = "btnRemove", Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(360, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button()
+                {
+                    Name = "btnRemove",
+                    Text = "",
+                    Size = new Size(20, 20),
+                    Location = new System.Drawing.Point(390, 0),
+                    Font = FontManager.GetFont(7F, FontStyle.Regular),
+                    BackColor = Color.FromArgb(255, 230, 230),
+                    ForeColor = Color.FromArgb(255, 51, 51),
+                    Tag = rowPanel,
+                    FlatStyle = FlatStyle.Flat,
+                    Image = _cmethod.ResizeImage(Properties.Resources.icons8_trash_24, 16, 16), // your image
+                    ImageAlign = ContentAlignment.MiddleCenter,
+                };
                 btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                 btnDelete.FlatAppearance.BorderSize = 1;
                 btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -837,19 +869,26 @@ namespace PackingApplication
                         f.Graphics.FillPath(brush, path);
                         f.Graphics.DrawPath(borderPen, path);
 
+                        if (btnDelete.Image != null)
+                        {
+                            int imgX = (btnDelete.Width - btnDelete.Image.Width) / 2;
+                            int imgY = (btnDelete.Height - btnDelete.Image.Height) / 2;
+                            f.Graphics.DrawImage(btnDelete.Image, imgX, imgY);
+                        }
+
                         if (btnDelete.Focused)
                         {
                             ControlPaint.DrawFocusRectangle(f.Graphics, rect);
                         }
 
-                        TextRenderer.DrawText(
-                            f.Graphics,
-                            button.Text,
-                            button.Font,
-                            rect,
-                            foreColor,
-                            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                        );
+                        //TextRenderer.DrawText(
+                        //    f.Graphics,
+                        //    button.Text,
+                        //    button.Font,
+                        //    rect,
+                        //    foreColor,
+                        //    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                        //);
                     }
                 };
                 // Remove Row
@@ -866,16 +905,22 @@ namespace PackingApplication
                 rowPanel.Controls.Add(btnDelete);
                 rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
                 //if itemname is larger then increase the rowPanel height and change its location point
-                int rowHeight = Math.Max(lblItem.Height + 10, 35);
-                rowPanel.Size = new Size(width, rowHeight);
-                int newY = (rowPanel.Height - lblItem.Height) / 2;
-                lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                if (lblItem.Height > 20)
+                {
+                    int rowHeight = Math.Max(lblItem.Height + 2, 30);
+                    rowPanel.Size = new Size(width, rowHeight);
+                    int newY = (rowPanel.Height - lblItem.Height) / 2;
+                    lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                    lblSrNo.Location = new System.Drawing.Point(2, 2);
+                }
                 flowLayoutPanel1.Controls.Add(rowPanel);
             }
 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Margin = Padding.Empty;
+            flowLayoutPanel1.Padding = new Padding(0);
 
             Log.writeMessage("BCF BindPalletDetails - End : " + DateTime.Now);
         }
@@ -2534,10 +2579,10 @@ namespace PackingApplication
                 {
                     lblItem.Text = selectedItem.Name;
                     lblItem.AutoSize = false;
-                    lblItem.Width = 160;
-                    lblItem.MaximumSize = new Size(200, 160);
-                    lblItem.Location = new System.Drawing.Point(50, 10);
-                    lblItem.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                    lblItem.Width = 240;
+                    lblItem.MaximumSize = new Size(280, 240);
+                    lblItem.Location = new System.Drawing.Point(40, 1);
+                    lblItem.Font = FontManager.GetFont(7F, FontStyle.Regular);
                     lblItem.Tag = selectedItem.ItemId;
                     lblItem.TextAlign = ContentAlignment.TopLeft;
                     lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
@@ -2551,9 +2596,13 @@ namespace PackingApplication
                     btnRemove.Enabled = true;
 
                 //if itemname is larger then increase the rowPanel height and change its location point
-                int rowHeight = Math.Max(lblItem.Height + 10, 35);
-                int newY = (_editingPanel.Height - lblItem.Height) / 2;
-                lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                if (lblItem.Height > 20)
+                {
+                    int rowHeight = Math.Max(lblItem.Height + 2, 30);
+                    _editingPanel.Size = new Size(width, rowHeight);
+                    int newY = (_editingPanel.Height - lblItem.Height) / 2;
+                    lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                }
 
                 // Reset UI
                 addqty.Text = "Add";
@@ -2562,12 +2611,22 @@ namespace PackingApplication
                 PalletTypeList.Enabled = true;
                 _editingPanel = null;
 
-                Log.writeMessage("BCF addqty_Click - End (Update)");
+                Log.writeMessage("POY addqty_Click - End (Update)");
                 return;
             }
 
             if (selectedItem.ItemId > 0)
             {
+                // Check duplicate value
+                //bool alreadyExists = flowLayoutPanel1.Controls
+                //    .OfType<Panel>().Skip(1) // Skip header
+                //    .Any(ctrl => {
+                //        if (ctrl.Tag is Tuple<ItemResponse, int> tagData)
+                //        {
+                //            return tagData.Item1.ItemId == selectedItem.ItemId && tagData.Item2 == qty;
+                //        }
+                //        return false;
+                //    });
 
                 bool alreadyExists = flowLayoutPanel1.Controls
                                     .OfType<Panel>().Skip(1)
@@ -2577,17 +2636,44 @@ namespace PackingApplication
 
                 if (alreadyExists)
                 {
-                    MessageBox.Show("Item already added.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Item already added.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     PalletTypeList.Focus();
                     return;
                 }
+
+                //var existingPanel = flowLayoutPanel1.Controls
+                //    .OfType<Panel>()
+                //    .Skip(1) // Skip header
+                //    .FirstOrDefault(ctrl =>
+                //        ctrl.Tag is Tuple<ItemResponse, int> tag &&
+                //        tag.Item1.ItemId == selectedItem.ItemId);
+
+                //if (existingPanel != null)
+                //{
+                //    var tag = (Tuple<ItemResponse, System.Windows.Forms.Label>)existingPanel.Tag;
+                //    tag.Item2.Text = qty.ToString();
+                //    //MessageBox.Show("Item quantity updated.");
+                //    foreach (var control in existingPanel.Controls.OfType<System.Windows.Forms.Button>())
+                //    {
+                //        if (control.Text == "Remove")
+                //        {
+                //            control.Enabled = true;
+                //        }
+                //    }
+
+                //    addqty.Text = "Add"; // reset button text back to Add
+                //    qnty.Text = "";
+                //    PalletTypeList.SelectedIndex = 0;
+                //    PalletTypeList.Enabled = true;
+                //    return;
+                //}
 
                 if (!alreadyExists)
                 {
                     rowCount++;
 
                     Panel rowPanel = new Panel();
-                    //rowPanel.Size = new Size(width, 35);
+                    rowPanel.Size = new Size(width, 25);
                     rowPanel.BorderStyle = BorderStyle.None;
 
                     rowPanel.Paint += (s, pe) =>
@@ -2604,16 +2690,28 @@ namespace PackingApplication
                     };
 
                     // SrNo
-                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                    System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 20, Location = new System.Drawing.Point(2, 0), Font = FontManager.GetFont(7F, FontStyle.Regular) };
 
                     // Item Name
-                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 160, MaximumSize = new Size(200, 160), Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
+                    System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 240, MaximumSize = new Size(280, 240), Location = new System.Drawing.Point(40, 2), Font = FontManager.GetFont(7F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
                     lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                     // Qty
-                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 60, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                    System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = qty.ToString(), Width = 50, Location = new System.Drawing.Point(310, 0), Font = FontManager.GetFont(7F, FontStyle.Regular) };
 
                     // Edit Button
-                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button() { Text = "Edit", Size = new Size(35, 23), Location = new System.Drawing.Point(320, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(230, 240, 255), ForeColor = Color.FromArgb(51, 133, 255), Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty), FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnEdit = new System.Windows.Forms.Button()
+                    {
+                        Text = "",
+                        Size = new Size(20, 20),
+                        Location = new System.Drawing.Point(360, 0),
+                        Font = FontManager.GetFont(7F, FontStyle.Regular),
+                        BackColor = Color.FromArgb(230, 240, 255),
+                        ForeColor = Color.FromArgb(51, 133, 255),
+                        Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty),
+                        FlatStyle = FlatStyle.Flat,
+                        Image = _cmethod.ResizeImage(Properties.Resources.icons8_edit_48, 16, 16), // your image
+                        ImageAlign = ContentAlignment.MiddleCenter,
+                    };
                     btnEdit.FlatAppearance.BorderColor = Color.FromArgb(51, 133, 255);
                     btnEdit.FlatAppearance.BorderSize = 1;
                     btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(210, 230, 255);
@@ -2636,25 +2734,45 @@ namespace PackingApplication
 
                             f.Graphics.DrawPath(borderPen, path);
 
+                            if (btnEdit.Image != null)
+                            {
+                                int imgX = (btnEdit.Width - btnEdit.Image.Width) / 2;
+                                int imgY = (btnEdit.Height - btnEdit.Image.Height) / 2;
+                                f.Graphics.DrawImage(btnEdit.Image, imgX, imgY);
+                            }
+
                             if (btnEdit.Focused)
                             {
                                 ControlPaint.DrawFocusRectangle(f.Graphics, rect);
                             }
 
-                            TextRenderer.DrawText(
-                                f.Graphics,
-                                btnEdit.Text,
-                                btnEdit.Font,
-                                rect,
-                                btnEdit.ForeColor,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                            );
+                            //TextRenderer.DrawText(
+                            //    f.Graphics,
+                            //    btnEdit.Text,
+                            //    btnEdit.Font,
+                            //    rect,
+                            //    btnEdit.ForeColor,
+                            //    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            //);
                         }
                     };
                     btnEdit.Click += editPallet_Click;
 
                     // Delete Button
-                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button() { Name = "btnRemove", Text = "Remove", Size = new Size(50, 23), Location = new System.Drawing.Point(360, 5), Font = FontManager.GetFont(7F, FontStyle.Regular), BackColor = Color.FromArgb(255, 230, 230), ForeColor = Color.FromArgb(255, 51, 51), Tag = rowPanel, FlatStyle = FlatStyle.Flat };
+                    System.Windows.Forms.Button btnDelete = new System.Windows.Forms.Button()
+                    {
+                        Name = "btnRemove",
+                        Text = "",
+                        Size = new Size(20, 20),
+                        Location = new System.Drawing.Point(390, 0),
+                        Font = FontManager.GetFont(7F, FontStyle.Regular),
+                        BackColor = Color.FromArgb(255, 230, 230),
+                        ForeColor = Color.FromArgb(255, 51, 51),
+                        Tag = rowPanel,
+                        FlatStyle = FlatStyle.Flat,
+                        Image = _cmethod.ResizeImage(Properties.Resources.icons8_trash_24, 16, 16), // your image
+                        ImageAlign = ContentAlignment.MiddleCenter,
+                    };
                     btnDelete.FlatAppearance.BorderColor = Color.FromArgb(255, 51, 51);
                     btnDelete.FlatAppearance.BorderSize = 1;
                     btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 204, 204);
@@ -2681,19 +2799,26 @@ namespace PackingApplication
                             f.Graphics.FillPath(brush, path);
                             f.Graphics.DrawPath(borderPen, path);
 
+                            if (btnDelete.Image != null)
+                            {
+                                int imgX = (btnDelete.Width - btnDelete.Image.Width) / 2;
+                                int imgY = (btnDelete.Height - btnDelete.Image.Height) / 2;
+                                f.Graphics.DrawImage(btnDelete.Image, imgX, imgY);
+                            }
+
                             if (btnDelete.Focused)
                             {
                                 ControlPaint.DrawFocusRectangle(f.Graphics, rect);
                             }
 
-                            TextRenderer.DrawText(
-                                f.Graphics,
-                                button.Text,
-                                button.Font,
-                                rect,
-                                foreColor,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                            );
+                            //TextRenderer.DrawText(
+                            //    f.Graphics,
+                            //    button.Text,
+                            //    button.Font,
+                            //    rect,
+                            //    foreColor,
+                            //    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+                            //);
                         }
                     };
                     // Remove Row
@@ -2710,10 +2835,14 @@ namespace PackingApplication
                     rowPanel.Controls.Add(btnDelete);
                     rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
                     //if itemname is larger then increase the rowPanel height and change its location point
-                    int rowHeight = Math.Max(lblItem.Height + 10, 35);
-                    rowPanel.Size = new Size(width, rowHeight);
-                    int newY = (rowPanel.Height - lblItem.Height) / 2;
-                    lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                    if (lblItem.Height > 20)
+                    {
+                        int rowHeight = Math.Max(lblItem.Height + 2, 30);
+                        rowPanel.Size = new Size(width, rowHeight);
+                        int newY = (rowPanel.Height - lblItem.Height) / 2;
+                        lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                        lblSrNo.Location = new System.Drawing.Point(2, 2);
+                    }
 
                     flowLayoutPanel1.Controls.Add(rowPanel);
                     flowLayoutPanel1.AutoScroll = true;
@@ -2728,13 +2857,13 @@ namespace PackingApplication
                 }
                 else
                 {
-                    MessageBox.Show("Item already added.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Item already added.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     PalletTypeList.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("Please select an item.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please select an item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 PalletTypeList.Focus();
             }
 
@@ -2771,25 +2900,27 @@ namespace PackingApplication
             Log.writeMessage("BCF AddHeader - Start : " + DateTime.Now);
 
             Panel headerPanel = new Panel();
-            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 35);
-            headerPanel.BackColor = Color.White;
-            headerPanel.Paint += (s, pe) =>
-            {
-                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1))
-                {
-                    pe.Graphics.DrawLine(
-                        pen,
-                        0, headerPanel.Height - 1,
-                        headerPanel.Width, headerPanel.Height - 1
-                    );
-                }
-            };
+            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 20);
+            headerPanel.BackColor = Color.Transparent;
+            //headerPanel.Paint += (s, pe) =>
+            //{
+            //    using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1)) 
+            //    {
+            //        pe.Graphics.DrawLine(
+            //            pen,
+            //            0, headerPanel.Height - 1,
+            //            headerPanel.Width, headerPanel.Height - 1
+            //        );
+            //    }
+            //};
 
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 70, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new System.Drawing.Point(350, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 20, Location = new System.Drawing.Point(2, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 240, Location = new System.Drawing.Point(40, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new System.Drawing.Point(310, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Action", Width = 120, Location = new System.Drawing.Point(360, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
 
+            //headerPanel.Padding = new Padding(0);
+            //headerPanel.Margin = Padding.Empty;
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
 
@@ -3601,14 +3732,14 @@ namespace PackingApplication
             Log.writeMessage("BCF printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
-        private void palletdetailsheader_Resize(object sender, EventArgs e)
-        {
-            Log.writeMessage("BCF palletdetailsheader_Resize - Start : " + DateTime.Now);
+        //private void palletdetailsheader_Resize(object sender, EventArgs e)
+        //{
+        //    Log.writeMessage("BCF palletdetailsheader_Resize - Start : " + DateTime.Now);
 
-            _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
+        //    _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
 
-            Log.writeMessage("BCF palletdetailsheader_Resize - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("BCF palletdetailsheader_Resize - End : " + DateTime.Now);
+        //}
 
         private void machinetablelayout_Paint(object sender, PaintEventArgs e)
         {

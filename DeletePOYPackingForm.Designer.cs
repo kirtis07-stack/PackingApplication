@@ -65,12 +65,6 @@ namespace PackingApplication
             this.palletwt = new System.Windows.Forms.Label();
             this.spoolno = new System.Windows.Forms.TextBox();
             this.spool = new System.Windows.Forms.Label();
-            this.palletdetails = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.PalletTypeList = new System.Windows.Forms.ComboBox();
-            this.pquantity = new System.Windows.Forms.Label();
-            this.qnty = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.spoolwt = new System.Windows.Forms.Label();
@@ -138,9 +132,6 @@ namespace PackingApplication
             this.qualityqty = new System.Windows.Forms.DataGridView();
             this.totalprodbalqty = new System.Windows.Forms.Label();
             this.saleordrqty = new System.Windows.Forms.Label();
-            this.palletdetailslayout = new System.Windows.Forms.TableLayoutPanel();
-            this.palletdetailsheader = new System.Windows.Forms.Panel();
-            this.palletdetailspanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel44 = new System.Windows.Forms.Panel();
             this.packagingboxlayout = new System.Windows.Forms.TableLayoutPanel();
@@ -303,6 +294,13 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.palletgrpbox = new System.Windows.Forms.GroupBox();
+            this.palletdetailspanel = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.PalletTypeList = new System.Windows.Forms.ComboBox();
+            this.pquantity = new System.Windows.Forms.Label();
+            this.qnty = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -334,9 +332,6 @@ namespace PackingApplication
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
             this.gradewiseprodn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
-            this.palletdetailslayout.SuspendLayout();
-            this.palletdetailsheader.SuspendLayout();
-            this.palletdetailspanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel44.SuspendLayout();
             this.packagingboxlayout.SuspendLayout();
@@ -409,6 +404,8 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.palletgrpbox.SuspendLayout();
+            this.palletdetailspanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -716,68 +713,6 @@ namespace PackingApplication
             this.spool.Size = new System.Drawing.Size(42, 13);
             this.spool.TabIndex = 0;
             this.spool.Text = "Spools:";
-            // 
-            // palletdetails
-            // 
-            this.palletdetails.AutoSize = true;
-            this.palletdetails.Location = new System.Drawing.Point(2, 5);
-            this.palletdetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.palletdetails.Name = "palletdetails";
-            this.palletdetails.Size = new System.Drawing.Size(71, 13);
-            this.palletdetails.TabIndex = 78;
-            this.palletdetails.Text = "Pallet Details:";
-            this.palletdetails.UseMnemonic = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 9);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 79;
-            this.label6.Text = "Pallet Type:";
-            this.label6.UseMnemonic = false;
-            // 
-            // PalletTypeList
-            // 
-            this.PalletTypeList.AllowDrop = true;
-            this.PalletTypeList.FormattingEnabled = true;
-            this.PalletTypeList.Location = new System.Drawing.Point(65, 6);
-            this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
-            this.PalletTypeList.Name = "PalletTypeList";
-            this.PalletTypeList.Size = new System.Drawing.Size(154, 21);
-            this.PalletTypeList.TabIndex = 1;
-            // 
-            // pquantity
-            // 
-            this.pquantity.AutoSize = true;
-            this.pquantity.Location = new System.Drawing.Point(220, 9);
-            this.pquantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.pquantity.Name = "pquantity";
-            this.pquantity.Size = new System.Drawing.Size(26, 13);
-            this.pquantity.TabIndex = 81;
-            this.pquantity.Text = "Qty:";
-            this.pquantity.UseMnemonic = false;
-            // 
-            // qnty
-            // 
-            this.qnty.Location = new System.Drawing.Point(250, 6);
-            this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.qnty.Name = "qnty";
-            this.qnty.Size = new System.Drawing.Size(48, 20);
-            this.qnty.TabIndex = 2;
-            this.qnty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 31);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(358, 184);
-            this.flowLayoutPanel1.TabIndex = 84;
             // 
             // tableLayoutPanel6
             // 
@@ -1570,9 +1505,9 @@ namespace PackingApplication
             // 
             // tblpnl3
             // 
+            this.tblpnl3.Controls.Add(this.palletgrpbox);
             this.tblpnl3.Controls.Add(this.wgroupbox);
             this.tblpnl3.Controls.Add(this.gradewiseprodn);
-            this.tblpnl3.Controls.Add(this.palletdetailslayout);
             this.tblpnl3.Location = new System.Drawing.Point(3, 3);
             this.tblpnl3.Name = "tblpnl3";
             this.tblpnl3.Size = new System.Drawing.Size(373, 450);
@@ -1720,54 +1655,6 @@ namespace PackingApplication
             this.saleordrqty.Size = new System.Drawing.Size(82, 13);
             this.saleordrqty.TabIndex = 92;
             this.saleordrqty.Text = "Sale Order Qty :";
-            // 
-            // palletdetailslayout
-            // 
-            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.palletdetailslayout.BackColor = System.Drawing.Color.White;
-            this.palletdetailslayout.ColumnCount = 1;
-            this.palletdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.palletdetailslayout.Controls.Add(this.palletdetailsheader, 0, 0);
-            this.palletdetailslayout.Controls.Add(this.palletdetailspanel, 0, 1);
-            this.palletdetailslayout.Location = new System.Drawing.Point(2, 195);
-            this.palletdetailslayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.palletdetailslayout.Name = "palletdetailslayout";
-            this.palletdetailslayout.Padding = new System.Windows.Forms.Padding(2);
-            this.palletdetailslayout.RowCount = 2;
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.palletdetailslayout.Size = new System.Drawing.Size(370, 252);
-            this.palletdetailslayout.TabIndex = 6;
-            this.palletdetailslayout.TabStop = true;
-            this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
-            // 
-            // palletdetailsheader
-            // 
-            this.palletdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.palletdetailsheader.Controls.Add(this.palletdetails);
-            this.palletdetailsheader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.palletdetailsheader.Location = new System.Drawing.Point(2, 2);
-            this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(0);
-            this.palletdetailsheader.Name = "palletdetailsheader";
-            this.palletdetailsheader.Size = new System.Drawing.Size(366, 24);
-            this.palletdetailsheader.TabIndex = 9;
-            this.palletdetailsheader.TabStop = true;
-            this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
-            this.palletdetailsheader.Resize += new System.EventHandler(this.palletdetailsheader_Resize);
-            // 
-            // palletdetailspanel
-            // 
-            this.palletdetailspanel.Controls.Add(this.label6);
-            this.palletdetailspanel.Controls.Add(this.PalletTypeList);
-            this.palletdetailspanel.Controls.Add(this.pquantity);
-            this.palletdetailspanel.Controls.Add(this.qnty);
-            this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
-            this.palletdetailspanel.Location = new System.Drawing.Point(4, 29);
-            this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.palletdetailspanel.Name = "palletdetailspanel";
-            this.palletdetailspanel.Size = new System.Drawing.Size(362, 218);
-            this.palletdetailspanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -3717,6 +3604,82 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
+            // palletgrpbox
+            // 
+            this.palletgrpbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.palletgrpbox.Controls.Add(this.palletdetailspanel);
+            this.palletgrpbox.Location = new System.Drawing.Point(0, 198);
+            this.palletgrpbox.Name = "palletgrpbox";
+            this.palletgrpbox.Size = new System.Drawing.Size(373, 253);
+            this.palletgrpbox.TabIndex = 11;
+            this.palletgrpbox.TabStop = false;
+            this.palletgrpbox.Text = "PalletDetails";
+            // 
+            // palletdetailspanel
+            // 
+            this.palletdetailspanel.Controls.Add(this.label6);
+            this.palletdetailspanel.Controls.Add(this.PalletTypeList);
+            this.palletdetailspanel.Controls.Add(this.pquantity);
+            this.palletdetailspanel.Controls.Add(this.qnty);
+            this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
+            this.palletdetailspanel.Location = new System.Drawing.Point(5, 12);
+            this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.palletdetailspanel.Name = "palletdetailspanel";
+            this.palletdetailspanel.Size = new System.Drawing.Size(363, 229);
+            this.palletdetailspanel.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(0, 2);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 26);
+            this.label6.TabIndex = 79;
+            this.label6.Text = "Pallet\nType:";
+            this.label6.UseMnemonic = false;
+            // 
+            // PalletTypeList
+            // 
+            this.PalletTypeList.AllowDrop = true;
+            this.PalletTypeList.FormattingEnabled = true;
+            this.PalletTypeList.Location = new System.Drawing.Point(36, 2);
+            this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
+            this.PalletTypeList.Name = "PalletTypeList";
+            this.PalletTypeList.Size = new System.Drawing.Size(324, 21);
+            this.PalletTypeList.TabIndex = 1;
+            // 
+            // pquantity
+            // 
+            this.pquantity.AutoSize = true;
+            this.pquantity.Location = new System.Drawing.Point(268, 28);
+            this.pquantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pquantity.Name = "pquantity";
+            this.pquantity.Size = new System.Drawing.Size(26, 13);
+            this.pquantity.TabIndex = 81;
+            this.pquantity.Text = "Qty:";
+            this.pquantity.UseMnemonic = false;
+            // 
+            // qnty
+            // 
+            this.qnty.Location = new System.Drawing.Point(298, 24);
+            this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.qnty.Name = "qnty";
+            this.qnty.Size = new System.Drawing.Size(63, 20);
+            this.qnty.TabIndex = 2;
+            this.qnty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 45);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(365, 187);
+            this.flowLayoutPanel1.TabIndex = 84;
+            // 
             // DeletePOYPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3773,11 +3736,6 @@ namespace PackingApplication
             this.gradewiseprodn.ResumeLayout(false);
             this.gradewiseprodn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).EndInit();
-            this.palletdetailslayout.ResumeLayout(false);
-            this.palletdetailsheader.ResumeLayout(false);
-            this.palletdetailsheader.PerformLayout();
-            this.palletdetailspanel.ResumeLayout(false);
-            this.palletdetailspanel.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel44.ResumeLayout(false);
             this.packagingboxlayout.ResumeLayout(false);
@@ -3897,6 +3855,9 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.palletgrpbox.ResumeLayout(false);
+            this.palletdetailspanel.ResumeLayout(false);
+            this.palletdetailspanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3929,11 +3890,6 @@ namespace PackingApplication
         private System.Windows.Forms.TextBox netwt;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox PalletTypeList;
-        private System.Windows.Forms.Label pquantity;
-        private System.Windows.Forms.TextBox qnty;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         //private System.Windows.Forms.Button Logout;
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label role;
@@ -3975,10 +3931,6 @@ namespace PackingApplication
         private Panel lastboxpanel;
         private Panel lastboxheader;
         private System.Windows.Forms.Label Lastboxlbl;
-        private TableLayoutPanel palletdetailslayout;
-        private Panel palletdetailsheader;
-        private Panel palletdetailspanel;
-        private System.Windows.Forms.Label palletdetails;
         private System.Windows.Forms.Label grdsoqty;
         private System.Windows.Forms.Label prodnbalqty;
         private GroupBox rowMaterialBox;
@@ -4177,6 +4129,13 @@ namespace PackingApplication
         private System.Windows.Forms.Label srproddate;
         private Button firstpgbtn;
         private Button lastpgbtn;
+        private GroupBox palletgrpbox;
+        private Panel palletdetailspanel;
+        private System.Windows.Forms.Label label6;
+        private ComboBox PalletTypeList;
+        private System.Windows.Forms.Label pquantity;
+        private TextBox qnty;
+        private FlowLayoutPanel flowLayoutPanel1;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

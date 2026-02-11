@@ -352,7 +352,7 @@ namespace PackingApplication
             this.spoolno.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.spool.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.prodtype.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
+            //this.palletdetails.Font = FontManager.GetFont(9F, FontStyle.Bold);
             this.label6.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.PalletTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.pquantity.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -735,7 +735,7 @@ namespace PackingApplication
                 rowCount++;
 
                 Panel rowPanel = new Panel();
-                //rowPanel.Size = new Size(width, 35);
+                rowPanel.Size = new Size(width, 25);
                 rowPanel.BorderStyle = BorderStyle.None;
 
                 rowPanel.Paint += (s, pe) =>
@@ -752,29 +752,34 @@ namespace PackingApplication
                 };
 
                 // SrNo
-                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                System.Windows.Forms.Label lblSrNo = new System.Windows.Forms.Label() { Text = rowCount.ToString(), Width = 20, Location = new System.Drawing.Point(2, 0), Font = FontManager.GetFont(7F, FontStyle.Regular) };
 
                 // Item Name
-                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 160, MaximumSize = new Size(200, 160), Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(8F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
+                System.Windows.Forms.Label lblItem = new System.Windows.Forms.Label() { Name = "lblItemName", Text = selectedItem.Name, AutoSize = false, Width = 240, MaximumSize = new Size(280, 240), Location = new System.Drawing.Point(40, 2), Font = FontManager.GetFont(7F, FontStyle.Regular), Tag = selectedItem.ItemId, TextAlign = ContentAlignment.TopLeft };
                 lblItem.Height = TextRenderer.MeasureText(lblItem.Text, lblItem.Font, new Size(lblItem.Width, int.MaxValue), TextFormatFlags.WordBreak).Height;
                 // Qty
-                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(8F, FontStyle.Regular) };
+                System.Windows.Forms.Label lblQty = new System.Windows.Forms.Label() { Text = palletDetail.Quantity.ToString(), Width = 50, Location = new System.Drawing.Point(310, 0), Font = FontManager.GetFont(7F, FontStyle.Regular) };
 
                 rowPanel.Controls.Add(lblSrNo);
                 rowPanel.Controls.Add(lblItem);
                 rowPanel.Controls.Add(lblQty);
                 rowPanel.Tag = new Tuple<ItemResponse, System.Windows.Forms.Label>(selectedItem, lblQty);
                 //if itemname is larger then increase the rowPanel height and change its location point
-                int rowHeight = Math.Max(lblItem.Height + 10, 35);
-                rowPanel.Size = new Size(width, rowHeight);
-                int newY = (rowPanel.Height - lblItem.Height) / 2;
-                lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                if (lblItem.Height > 20)
+                {
+                    int rowHeight = Math.Max(lblItem.Height + 2, 30);
+                    rowPanel.Size = new Size(width, rowHeight);
+                    int newY = (rowPanel.Height - lblItem.Height) / 2;
+                    lblItem.Location = new System.Drawing.Point(lblItem.Location.X, newY);
+                }
                 flowLayoutPanel1.Controls.Add(rowPanel);
             }
 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Margin = Padding.Empty;
+            flowLayoutPanel1.Padding = new Padding(0);
 
             Log.writeMessage("POY BindPalletDetails - End : " + DateTime.Now);
         }
@@ -1673,23 +1678,23 @@ namespace PackingApplication
             Log.writeMessage("POY AddHeader - Start : " + DateTime.Now);
 
             Panel headerPanel = new Panel();
-            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 35);
-            headerPanel.BackColor = Color.White;
-            headerPanel.Paint += (s, pe) =>
-            {
-                using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1))
-                {
-                    pe.Graphics.DrawLine(
-                        pen,
-                        0, headerPanel.Height - 1,
-                        headerPanel.Width, headerPanel.Height - 1
-                    );
-                }
-            };
+            headerPanel.Size = new Size(flowLayoutPanel1.ClientSize.Width, 20);
+            headerPanel.BackColor = Color.Transparent;
+            //headerPanel.Paint += (s, pe) =>
+            //{
+            //    using (Pen pen = new Pen(Color.FromArgb(230, 230, 230), 1))
+            //    {
+            //        pe.Graphics.DrawLine(
+            //            pen,
+            //            0, headerPanel.Height - 1,
+            //            headerPanel.Width, headerPanel.Height - 1
+            //        );
+            //    }
+            //};
 
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 30, Location = new System.Drawing.Point(2, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 160, Location = new System.Drawing.Point(50, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
-            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 70, Location = new System.Drawing.Point(260, 10), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "SrNo", Width = 20, Location = new System.Drawing.Point(2, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Item Name", Width = 240, Location = new System.Drawing.Point(40, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
+            headerPanel.Controls.Add(new System.Windows.Forms.Label() { Text = "Qty", Width = 50, Location = new System.Drawing.Point(310, 2), Font = FontManager.GetFont(7F, FontStyle.Bold) });
 
             flowLayoutPanel1.Controls.Add(headerPanel);
             headerAdded = true;
@@ -2153,14 +2158,14 @@ namespace PackingApplication
             Log.writeMessage("POY printingdetailsheader_Resize - End : " + DateTime.Now);
         }
 
-        private void palletdetailsheader_Resize(object sender, EventArgs e)
-        {
-            Log.writeMessage("POY palletdetailsheader_Resize - Start : " + DateTime.Now);
+        //private void palletdetailsheader_Resize(object sender, EventArgs e)
+        //{
+        //    Log.writeMessage("POY palletdetailsheader_Resize - Start : " + DateTime.Now);
 
-            _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
+        //    _cmethod.SetTopRoundedRegion(palletdetailsheader, 8);
 
-            Log.writeMessage("POY palletdetailsheader_Resize - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("POY palletdetailsheader_Resize - End : " + DateTime.Now);
+        //}
 
         private void machinetablelayout_Paint(object sender, PaintEventArgs e)
         {

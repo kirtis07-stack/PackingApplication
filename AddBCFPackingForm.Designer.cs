@@ -34,9 +34,9 @@ namespace PackingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             this.shadecode = new System.Windows.Forms.Label();
             this.boxno = new System.Windows.Forms.Label();
             this.quality = new System.Windows.Forms.Label();
@@ -80,13 +80,6 @@ namespace PackingApplication
             this.palletwt = new System.Windows.Forms.Label();
             this.spoolno = new System.Windows.Forms.TextBox();
             this.spool = new System.Windows.Forms.Label();
-            this.palletdetails = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.PalletTypeList = new System.Windows.Forms.ComboBox();
-            this.pquantity = new System.Windows.Forms.Label();
-            this.qnty = new System.Windows.Forms.TextBox();
-            this.addqty = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.spoolwt = new System.Windows.Forms.Label();
@@ -130,9 +123,6 @@ namespace PackingApplication
             this.qualityqty = new System.Windows.Forms.DataGridView();
             this.totalprodbalqty = new System.Windows.Forms.Label();
             this.saleordrqty = new System.Windows.Forms.Label();
-            this.palletdetailslayout = new System.Windows.Forms.TableLayoutPanel();
-            this.palletdetailsheader = new System.Windows.Forms.Panel();
-            this.palletdetailspanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel44 = new System.Windows.Forms.Panel();
             this.packagingboxlayout = new System.Windows.Forms.TableLayoutPanel();
@@ -277,6 +267,14 @@ namespace PackingApplication
             this.panel7 = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.Label();
             this.menuBtn = new System.Windows.Forms.PictureBox();
+            this.palletgrpbox = new System.Windows.Forms.GroupBox();
+            this.palletdetailspanel = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.PalletTypeList = new System.Windows.Forms.ComboBox();
+            this.pquantity = new System.Windows.Forms.Label();
+            this.qnty = new System.Windows.Forms.TextBox();
+            this.addqty = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel35.SuspendLayout();
@@ -301,9 +299,6 @@ namespace PackingApplication
             ((System.ComponentModel.ISupportInitialize)(this.windinggrid)).BeginInit();
             this.gradewiseprodn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).BeginInit();
-            this.palletdetailslayout.SuspendLayout();
-            this.palletdetailsheader.SuspendLayout();
-            this.palletdetailspanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel44.SuspendLayout();
             this.packagingboxlayout.SuspendLayout();
@@ -375,6 +370,8 @@ namespace PackingApplication
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).BeginInit();
+            this.palletgrpbox.SuspendLayout();
+            this.palletdetailspanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // shadecode
@@ -922,92 +919,6 @@ namespace PackingApplication
             this.spool.TabIndex = 0;
             this.spool.Text = "Spools:";
             // 
-            // palletdetails
-            // 
-            this.palletdetails.AutoSize = true;
-            this.palletdetails.Location = new System.Drawing.Point(2, 5);
-            this.palletdetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.palletdetails.Name = "palletdetails";
-            this.palletdetails.Size = new System.Drawing.Size(71, 13);
-            this.palletdetails.TabIndex = 78;
-            this.palletdetails.Text = "Pallet Details:";
-            this.palletdetails.UseMnemonic = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 9);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 79;
-            this.label6.Text = "Pallet Type:";
-            this.label6.UseMnemonic = false;
-            // 
-            // PalletTypeList
-            // 
-            this.PalletTypeList.AllowDrop = true;
-            this.PalletTypeList.FormattingEnabled = true;
-            this.PalletTypeList.Location = new System.Drawing.Point(65, 6);
-            this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
-            this.PalletTypeList.Name = "PalletTypeList";
-            this.PalletTypeList.Size = new System.Drawing.Size(154, 21);
-            this.PalletTypeList.TabIndex = 1;
-            this.PalletTypeList.TextUpdate += new System.EventHandler(this.PalletTypeList_TextUpdate);
-            this.PalletTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PalletTypeList_KeyDown);
-            this.PalletTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
-            // 
-            // pquantity
-            // 
-            this.pquantity.AutoSize = true;
-            this.pquantity.Location = new System.Drawing.Point(220, 9);
-            this.pquantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.pquantity.Name = "pquantity";
-            this.pquantity.Size = new System.Drawing.Size(26, 13);
-            this.pquantity.TabIndex = 81;
-            this.pquantity.Text = "Qty:";
-            this.pquantity.UseMnemonic = false;
-            // 
-            // qnty
-            // 
-            this.qnty.Location = new System.Drawing.Point(250, 6);
-            this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.qnty.Name = "qnty";
-            this.qnty.Size = new System.Drawing.Size(48, 20);
-            this.qnty.TabIndex = 2;
-            this.qnty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.qnty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.palletQty_KeyPress);
-            // 
-            // addqty
-            // 
-            this.addqty.BackColor = System.Drawing.SystemColors.Highlight;
-            this.addqty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.addqty.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addqty.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.addqty.FlatAppearance.BorderSize = 0;
-            this.addqty.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.addqty.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.addqty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addqty.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.addqty.Location = new System.Drawing.Point(305, 6);
-            this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.addqty.Name = "addqty";
-            this.addqty.Size = new System.Drawing.Size(48, 19);
-            this.addqty.TabIndex = 3;
-            this.addqty.Text = "Add";
-            this.addqty.UseVisualStyleBackColor = false;
-            this.addqty.Click += new System.EventHandler(this.addqty_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 31);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(358, 180);
-            this.flowLayoutPanel1.TabIndex = 84;
-            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 3;
@@ -1428,14 +1339,14 @@ namespace PackingApplication
             this.rowMaterial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.rowMaterial.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rowMaterial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rowMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             this.rowMaterial.ColumnHeadersHeight = 34;
             this.rowMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rowMaterial.EnableHeadersVisualStyles = false;
@@ -1468,9 +1379,9 @@ namespace PackingApplication
             // 
             // tblpnl3
             // 
+            this.tblpnl3.Controls.Add(this.palletgrpbox);
             this.tblpnl3.Controls.Add(this.wgroupbox);
             this.tblpnl3.Controls.Add(this.gradewiseprodn);
-            this.tblpnl3.Controls.Add(this.palletdetailslayout);
             this.tblpnl3.Location = new System.Drawing.Point(3, 3);
             this.tblpnl3.Name = "tblpnl3";
             this.tblpnl3.Size = new System.Drawing.Size(373, 451);
@@ -1500,14 +1411,14 @@ namespace PackingApplication
             this.windinggrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.windinggrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.windinggrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.windinggrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.windinggrid.ColumnHeadersHeight = 34;
             this.windinggrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.windinggrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1573,14 +1484,14 @@ namespace PackingApplication
             this.qualityqty.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.qualityqty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.qualityqty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(240)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle45.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.qualityqty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle45;
             this.qualityqty.ColumnHeadersHeight = 34;
             this.qualityqty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.qualityqty.EnableHeadersVisualStyles = false;
@@ -1618,55 +1529,6 @@ namespace PackingApplication
             this.saleordrqty.Size = new System.Drawing.Size(82, 13);
             this.saleordrqty.TabIndex = 92;
             this.saleordrqty.Text = "Sale Order Qty :";
-            // 
-            // palletdetailslayout
-            // 
-            this.palletdetailslayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.palletdetailslayout.BackColor = System.Drawing.Color.White;
-            this.palletdetailslayout.ColumnCount = 1;
-            this.palletdetailslayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.palletdetailslayout.Controls.Add(this.palletdetailsheader, 0, 0);
-            this.palletdetailslayout.Controls.Add(this.palletdetailspanel, 0, 1);
-            this.palletdetailslayout.Location = new System.Drawing.Point(2, 207);
-            this.palletdetailslayout.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.palletdetailslayout.Name = "palletdetailslayout";
-            this.palletdetailslayout.Padding = new System.Windows.Forms.Padding(2);
-            this.palletdetailslayout.RowCount = 2;
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.palletdetailslayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.palletdetailslayout.Size = new System.Drawing.Size(370, 244);
-            this.palletdetailslayout.TabIndex = 6;
-            this.palletdetailslayout.TabStop = true;
-            this.palletdetailslayout.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailslayout_Paint);
-            // 
-            // palletdetailsheader
-            // 
-            this.palletdetailsheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.palletdetailsheader.Controls.Add(this.palletdetails);
-            this.palletdetailsheader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.palletdetailsheader.Location = new System.Drawing.Point(2, 2);
-            this.palletdetailsheader.Margin = new System.Windows.Forms.Padding(0);
-            this.palletdetailsheader.Name = "palletdetailsheader";
-            this.palletdetailsheader.Size = new System.Drawing.Size(366, 24);
-            this.palletdetailsheader.TabIndex = 9;
-            this.palletdetailsheader.TabStop = true;
-            this.palletdetailsheader.Paint += new System.Windows.Forms.PaintEventHandler(this.palletdetailsheader_Paint);
-            this.palletdetailsheader.Resize += new System.EventHandler(this.palletdetailsheader_Resize);
-            // 
-            // palletdetailspanel
-            // 
-            this.palletdetailspanel.Controls.Add(this.label6);
-            this.palletdetailspanel.Controls.Add(this.PalletTypeList);
-            this.palletdetailspanel.Controls.Add(this.pquantity);
-            this.palletdetailspanel.Controls.Add(this.qnty);
-            this.palletdetailspanel.Controls.Add(this.addqty);
-            this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
-            this.palletdetailspanel.Location = new System.Drawing.Point(4, 29);
-            this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.palletdetailspanel.Name = "palletdetailspanel";
-            this.palletdetailspanel.Size = new System.Drawing.Size(362, 210);
-            this.palletdetailspanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -3419,6 +3281,107 @@ namespace PackingApplication
             this.menuBtn.TabIndex = 1;
             this.menuBtn.TabStop = false;
             // 
+            // palletgrpbox
+            // 
+            this.palletgrpbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.palletgrpbox.Controls.Add(this.palletdetailspanel);
+            this.palletgrpbox.Location = new System.Drawing.Point(0, 198);
+            this.palletgrpbox.Name = "palletgrpbox";
+            this.palletgrpbox.Size = new System.Drawing.Size(373, 253);
+            this.palletgrpbox.TabIndex = 9;
+            this.palletgrpbox.TabStop = false;
+            this.palletgrpbox.Text = "PalletDetails";
+            // 
+            // palletdetailspanel
+            // 
+            this.palletdetailspanel.Controls.Add(this.label6);
+            this.palletdetailspanel.Controls.Add(this.PalletTypeList);
+            this.palletdetailspanel.Controls.Add(this.pquantity);
+            this.palletdetailspanel.Controls.Add(this.qnty);
+            this.palletdetailspanel.Controls.Add(this.addqty);
+            this.palletdetailspanel.Controls.Add(this.flowLayoutPanel1);
+            this.palletdetailspanel.Location = new System.Drawing.Point(5, 12);
+            this.palletdetailspanel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.palletdetailspanel.Name = "palletdetailspanel";
+            this.palletdetailspanel.Size = new System.Drawing.Size(363, 229);
+            this.palletdetailspanel.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(0, 2);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 26);
+            this.label6.TabIndex = 79;
+            this.label6.Text = "Pallet\nType:";
+            this.label6.UseMnemonic = false;
+            // 
+            // PalletTypeList
+            // 
+            this.PalletTypeList.AllowDrop = true;
+            this.PalletTypeList.FormattingEnabled = true;
+            this.PalletTypeList.Location = new System.Drawing.Point(36, 2);
+            this.PalletTypeList.Margin = new System.Windows.Forms.Padding(2);
+            this.PalletTypeList.Name = "PalletTypeList";
+            this.PalletTypeList.Size = new System.Drawing.Size(324, 21);
+            this.PalletTypeList.TabIndex = 1;
+            this.PalletTypeList.TextUpdate += new System.EventHandler(this.PalletTypeList_TextUpdate);
+            this.PalletTypeList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PalletTypeList_KeyDown);
+            this.PalletTypeList.Leave += new System.EventHandler(this.ComboBox_Leave);
+            // 
+            // pquantity
+            // 
+            this.pquantity.AutoSize = true;
+            this.pquantity.Location = new System.Drawing.Point(217, 29);
+            this.pquantity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.pquantity.Name = "pquantity";
+            this.pquantity.Size = new System.Drawing.Size(26, 13);
+            this.pquantity.TabIndex = 81;
+            this.pquantity.Text = "Qty:";
+            this.pquantity.UseMnemonic = false;
+            // 
+            // qnty
+            // 
+            this.qnty.Location = new System.Drawing.Point(247, 25);
+            this.qnty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.qnty.Name = "qnty";
+            this.qnty.Size = new System.Drawing.Size(63, 20);
+            this.qnty.TabIndex = 2;
+            this.qnty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.qnty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.palletQty_KeyPress);
+            // 
+            // addqty
+            // 
+            this.addqty.BackColor = System.Drawing.SystemColors.Highlight;
+            this.addqty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.addqty.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addqty.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.addqty.FlatAppearance.BorderSize = 0;
+            this.addqty.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.addqty.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.addqty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addqty.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.addqty.Location = new System.Drawing.Point(314, 25);
+            this.addqty.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.addqty.Name = "addqty";
+            this.addqty.Size = new System.Drawing.Size(46, 19);
+            this.addqty.TabIndex = 3;
+            this.addqty.Text = "Add";
+            this.addqty.UseVisualStyleBackColor = false;
+            this.addqty.Click += new System.EventHandler(this.addqty_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 45);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(365, 187);
+            this.flowLayoutPanel1.TabIndex = 84;
+            // 
             // AddBCFPackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3466,11 +3429,6 @@ namespace PackingApplication
             this.gradewiseprodn.ResumeLayout(false);
             this.gradewiseprodn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qualityqty)).EndInit();
-            this.palletdetailslayout.ResumeLayout(false);
-            this.palletdetailsheader.ResumeLayout(false);
-            this.palletdetailsheader.PerformLayout();
-            this.palletdetailspanel.ResumeLayout(false);
-            this.palletdetailspanel.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel44.ResumeLayout(false);
             this.packagingboxlayout.ResumeLayout(false);
@@ -3588,6 +3546,9 @@ namespace PackingApplication
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuBtn)).EndInit();
+            this.palletgrpbox.ResumeLayout(false);
+            this.palletdetailspanel.ResumeLayout(false);
+            this.palletdetailspanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3636,12 +3597,6 @@ namespace PackingApplication
         private System.Windows.Forms.TextBox netwt;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox PalletTypeList;
-        private System.Windows.Forms.Label pquantity;
-        private System.Windows.Forms.TextBox qnty;
-        private System.Windows.Forms.Button addqty;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button submit;
         //private System.Windows.Forms.Button Logout;
         private System.Windows.Forms.Label Username;
@@ -3690,10 +3645,6 @@ namespace PackingApplication
         private TableLayoutPanel printingdetailslayout;
         private Panel printingdetailsheader;
         private System.Windows.Forms.Label Printinglbl;
-        private TableLayoutPanel palletdetailslayout;
-        private Panel palletdetailsheader;
-        private Panel palletdetailspanel;
-        private System.Windows.Forms.Label palletdetails;
         private System.Windows.Forms.Label grdsoqty;
         private System.Windows.Forms.Label prodnbalqty;
         private GroupBox rowMaterialBox;
@@ -3843,6 +3794,14 @@ namespace PackingApplication
         private Panel lastbxtarepanel;
         private TextBox tarewghttxtbox;
         private System.Windows.Forms.Label tareweight;
+        private GroupBox palletgrpbox;
+        private Panel palletdetailspanel;
+        private System.Windows.Forms.Label label6;
+        private ComboBox PalletTypeList;
+        private System.Windows.Forms.Label pquantity;
+        private TextBox qnty;
+        private Button addqty;
+        private FlowLayoutPanel flowLayoutPanel1;
         //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
