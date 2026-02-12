@@ -43,6 +43,7 @@ namespace PackingApplication
         string comPort;
         int selectedSOId = 0;
         decimal totalSOQty = 0;
+        decimal totalWTQty = 0;
         decimal totalProdQty = 0;
         int selectLotId = 0;
         decimal balanceQty = 0;
@@ -668,6 +669,7 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
+                totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
                 RefreshGradewiseGrid();
                 RefreshWindingGrid();
@@ -1127,11 +1129,11 @@ namespace PackingApplication
                 //int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
                 if (productionRequest.WindingTypeId > 0)
                 {
-                    var getProductionByWindingType = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
+                    var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
                     List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemsId == winding.SaleOrderItemsId);
+                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
                         if (existing == null)
                         {
@@ -1139,21 +1141,21 @@ namespace PackingApplication
                             grid.WindingTypeId = winding.WindingTypeId;
                             grid.SaleOrderItemsId = winding.SaleOrderItemsId;
                             grid.WindingTypeName = winding.WindingTypeName;
-                            grid.SaleOrderQty = totalSOQty;
-                            grid.GrossWt = winding.GrossWt;
+                            grid.WindingQty = totalWTQty;
+                            grid.NetWt = winding.NetWt;
 
                             gridList.Add(grid);
                         }
                         else
                         {
-                            existing.GrossWt += winding.GrossWt;
+                            existing.NetWt += winding.NetWt;
                         }
 
                     }
                     windinggrid.Columns.Clear();
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
                     windinggrid.DataSource = gridList;
                 }
@@ -1184,24 +1186,24 @@ namespace PackingApplication
                         grid.SaleOrderItemsId = quality.SaleOrderItemsId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
-                        grid.GrossWt = quality.GrossWt;
+                        grid.NetWt = quality.NetWt;
 
                         gridList.Add(grid);
                     }
                     else
                     {
-                        existing.GrossWt += quality.GrossWt;
+                        existing.NetWt += quality.NetWt;
                     }
                 }
                 qualityqty.Columns.Clear();
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
                 qualityqty.DataSource = gridList;
 
                 totalProdQty = 0;
                 foreach (var proditem in gridList)
                 {
-                    totalProdQty += proditem.GrossWt;
+                    totalProdQty += proditem.NetWt;
                 }
                 balanceQty = (totalSOQty - totalProdQty);
                 if (balanceQty <= 0)

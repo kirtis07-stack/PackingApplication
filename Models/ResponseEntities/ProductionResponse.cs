@@ -192,5 +192,6 @@ namespace PackingApplication.Models.ResponseEntities
         public int BPDetailsId { get; set; }
         public string BPAddress { get; set; }
         public int TotalCount { get; set; }
+        public decimal WindingQuantity { get; set; }
     }
 }

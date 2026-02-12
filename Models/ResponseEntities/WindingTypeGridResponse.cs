@@ -11,12 +11,12 @@ namespace PackingApplication.Models.ResponseEntities
         public int WindingTypeId { get; set; }
         public string WindingTypeName { get; set; }
         public int SaleOrderItemsId { get; set; }
-        public decimal SaleOrderQty { get; set; } 
-        public decimal GrossWt { get; set; }
+        public decimal WindingQty { get; set; } 
+        public decimal NetWt { get; set; }
 
         public decimal BalanceQty
         {
-            get { return SaleOrderQty - GrossWt; }
+            get { return WindingQty - NetWt; }
         }
     }
 
@@ -26,6 +26,6 @@ namespace PackingApplication.Models.ResponseEntities
         public string QualityName { get; set; }
         public int SaleOrderItemsId { get; set; }
         public decimal SaleOrderQty { get; set; }
-        public decimal GrossWt { get; set; }
+        public decimal NetWt { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string DepartmentName { get; set; }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
+        public string ItemTradeName { get; set; }
         public int ShadeId { get; set; }
         public string ShadeName { get; set; }
         public string ShadeCode { get; set; }

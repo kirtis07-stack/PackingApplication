@@ -58,6 +58,7 @@ namespace PackingApplication.Services
                 return new LotsResponse();
             var getLot = JsonConvert.DeserializeObject<LotsResponse>(getLotsResponse)
                 ?? new LotsResponse();
+            getLot.ItemName = getLot.ItemTradeName;
             return getLot;
         }
 
@@ -85,6 +86,7 @@ namespace PackingApplication.Services
                 WindingTypeResponse type = new WindingTypeResponse();
                 type.WindingTypeId = item.WindingTypeId;
                 type.WindingTypeName = item.WindingTypeName;
+                type.Quantity = item.Quantity;
                 getWindingList.Add(type);
             }
             return getWindingList;

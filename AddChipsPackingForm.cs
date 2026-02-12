@@ -972,6 +972,32 @@ namespace PackingApplication
                         endWeight = packsize.EndWeight;
                         frwt.Text = packsize.StartWeight.ToString();
                         upwt.Text = packsize.EndWeight.ToString();
+
+                        List<QualityResponse> qualityList = new List<QualityResponse>();
+                        qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        qualityList.Insert(1, new QualityResponse { QualityId = packsize.QualityId, Name = packsize.Quality });
+                        QualityList.DataSource = qualityList;
+                        QualityList.DisplayMember = "Name";
+                        QualityList.ValueMember = "QualityId";
+
+                        if (QualityList.Items.Count > 1)
+                        {
+                            QualityList.SelectedIndex = 1;
+                            QualityList.Enabled = false;
+                        }
+                        else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                        {
+                            QualityList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            QualityList.SelectedIndex = -1; // no selection possible
+                        }
+                        if (QualityList.SelectedIndex >= 0)
+                        {
+                            int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
+                            productionRequest.QualityId = firstQualityId;
+                        }
                     }
                 }
             }
@@ -1116,7 +1142,7 @@ namespace PackingApplication
                 List<QualityGridResponse> gridList = new List<QualityGridResponse>();
                 foreach (var quality in getProductionByQuality)
                 {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
+                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId);
 
                     if (existing == null)
                     {
@@ -1125,13 +1151,13 @@ namespace PackingApplication
                         grid.SaleOrderItemsId = quality.SaleOrderItemsId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
-                        grid.GrossWt = quality.GrossWt;
+                        grid.NetWt = quality.NetWt;
 
                         gridList.Add(grid);
                     }
                     else
                     {
-                        existing.GrossWt += quality.GrossWt;
+                        existing.NetWt += quality.NetWt;
                     }
 
                 }                

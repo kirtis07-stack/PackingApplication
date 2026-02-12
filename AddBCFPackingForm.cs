@@ -66,6 +66,7 @@ namespace PackingApplication
         string comPort;
         int selectedSOId = 0;
         decimal totalSOQty = 0;
+        decimal totalWTQty = 0;
         decimal totalProdQty = 0;
         int selectLotId = 0;
         decimal balanceQty = 0;
@@ -679,6 +680,7 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
+                totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
                 RefreshGradewiseGrid();
                 RefreshWindingGrid();
@@ -1402,6 +1404,32 @@ namespace PackingApplication
                         endWeight = packsize.EndWeight;
                         frwt.Text = packsize.StartWeight.ToString();
                         upwt.Text = packsize.EndWeight.ToString();
+
+                        List<QualityResponse> qualityList = new List<QualityResponse>();
+                        qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        qualityList.Insert(1, new QualityResponse { QualityId = packsize.QualityId, Name = packsize.Quality });
+                        QualityList.DataSource = qualityList;
+                        QualityList.DisplayMember = "Name";
+                        QualityList.ValueMember = "QualityId";
+
+                        if (QualityList.Items.Count > 1)
+                        {
+                            QualityList.SelectedIndex = 1;
+                            QualityList.Enabled = false;
+                        }
+                        else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                        {
+                            QualityList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            QualityList.SelectedIndex = -1; // no selection possible
+                        }
+                        if (QualityList.SelectedIndex >= 0)
+                        {
+                            int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
+                            productionRequest.QualityId = firstQualityId;
+                        }
                     }
                 }
             }
@@ -1551,6 +1579,7 @@ namespace PackingApplication
                     if (selectedWindingTypeId > 0)
                     {
                         productionRequest.WindingTypeId = selectedWindingTypeId;
+                        totalWTQty = selectedWindingType.Quantity;
                         RefreshWindingGrid();
                     }
                 }
@@ -1733,12 +1762,12 @@ namespace PackingApplication
                 //int selectedWindingTypeId = productionRequest.WindingTypeId;
                 if (productionRequest.WindingTypeId > 0)
                 {
-                    var getProductionByWindingType = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
+                    var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
                     List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
 
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId && x.SaleOrderItemsId == winding.SaleOrderItemsId);
+                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
                         if (existing == null)
                         {
@@ -1746,21 +1775,21 @@ namespace PackingApplication
                             grid.WindingTypeId = winding.WindingTypeId;
                             grid.SaleOrderItemsId = winding.SaleOrderItemsId;
                             grid.WindingTypeName = winding.WindingTypeName;
-                            grid.SaleOrderQty = totalSOQty;
-                            grid.GrossWt = winding.GrossWt;
+                            grid.WindingQty = totalWTQty;
+                            grid.NetWt = winding.NetWt;
 
                             windinggridList.Add(grid);
                         }
                         else
                         {
-                            existing.GrossWt += winding.GrossWt;
+                            existing.NetWt += winding.NetWt;
                         }
                     }
 
                     windinggrid.Columns.Clear();
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalSOQty", DataPropertyName = "SaleOrderQty", HeaderText = "SaleOrder Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
+                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
                     windinggrid.DataSource = windinggridList;
                 }
@@ -1791,24 +1820,24 @@ namespace PackingApplication
                         grid.SaleOrderItemsId = quality.SaleOrderItemsId;
                         grid.QualityName = quality.QualityName;
                         grid.SaleOrderQty = totalSOQty;
-                        grid.GrossWt = quality.GrossWt;
+                        grid.NetWt = quality.NetWt;
 
                         gridList.Add(grid);
                     }
                     else
                     {
-                        existing.GrossWt += quality.GrossWt;
+                        existing.NetWt += quality.NetWt;
                     }
                 }
                 qualityqty.Columns.Clear();
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "GrossWt", HeaderText = "Production Qty" });
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
                 qualityqty.DataSource = gridList;
 
                 totalProdQty = 0;
                 foreach (var proditem in gridList)
                 {
-                    totalProdQty += proditem.GrossWt;
+                    totalProdQty += proditem.NetWt;
                 }
                 balanceQty = (totalSOQty - totalProdQty);
                 if (balanceQty <= 0)
@@ -3427,9 +3456,10 @@ namespace PackingApplication
                 isValid = false;
 
             }
-            decimal gross, tare;
+            decimal gross, tare, net;
             decimal.TryParse(grosswtno.Text, out gross);
             decimal.TryParse(tarewt.Text, out tare);
+            decimal.TryParse(netwt.Text, out net);
             if (gross < tare)
             {
                 MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3461,7 +3491,7 @@ namespace PackingApplication
                     isValid = false;
                 }
             }
-            decimal newBalanceQty = balanceQty - gross;
+            decimal newBalanceQty = balanceQty - net;
             if (newBalanceQty < 0)
             {
                 DialogResult prodbalresult = MessageBox.Show(balanceQty + " Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

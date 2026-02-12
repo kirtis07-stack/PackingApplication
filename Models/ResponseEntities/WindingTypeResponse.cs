@@ -12,5 +12,6 @@ namespace PackingApplication.Models.ResponseEntities
         public string WindingTypeName { get; set; }
         public string ShortCode { get; set; }
         public string CName { get; set; }
+        public decimal Quantity { get; set; }
     }
 }
