@@ -1185,42 +1185,45 @@ namespace PackingApplication
                 //int selectedWindingTypeId = Convert.ToInt32(WindingTypeList.SelectedValue.ToString());
                 if (productionRequest.WindingTypeId > 0)
                 {
-                    var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                    List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
-                    foreach (var winding in getProductionByWindingType)
+                    if (totalWTQty > 0)
                     {
-                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
-
-                        if (existing == null)
+                        var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
+                        List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
+                        foreach (var winding in getProductionByWindingType)
                         {
-                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                            grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                            grid.WindingTypeName = winding.WindingTypeName;
-                            grid.WindingQty = totalWTQty;
-                            grid.NetWt = winding.NetWt;
+                            var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
-                            windinggridList.Add(grid);
+                            if (existing == null)
+                            {
+                                WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                                grid.WindingTypeId = winding.WindingTypeId;
+                                grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+                                grid.WindingTypeName = winding.WindingTypeName;
+                                grid.WindingQty = totalWTQty;
+                                grid.NetWt = winding.NetWt;
+
+                                windinggridList.Add(grid);
+                            }
+                            else
+                            {
+                                existing.NetWt += winding.NetWt;
+                            }
+
                         }
-                        else
+                        windinggrid.Columns.Clear();
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                        windinggrid.DataSource = windinggridList;
+
+                        totalWTProdQty = 0;
+                        foreach (var proditem in windinggridList)
                         {
-                            existing.NetWt += winding.NetWt;
+                            totalWTProdQty += proditem.NetWt;
                         }
-
+                        balanceWTQty = (totalWTQty - totalWTProdQty);
                     }
-                    windinggrid.Columns.Clear();
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                    windinggrid.DataSource = windinggridList;
-
-                    totalWTProdQty = 0;
-                    foreach (var proditem in windinggridList)
-                    {
-                        totalWTProdQty += proditem.NetWt;
-                    }
-                    balanceWTQty = (totalWTQty - totalWTProdQty);
                 }
             }
 

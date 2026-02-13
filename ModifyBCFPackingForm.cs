@@ -1820,43 +1820,46 @@ namespace PackingApplication
                 //int selectedWindingTypeId = productionRequest.WindingTypeId;
                 if (productionRequest.WindingTypeId > 0)
                 {
-                    var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                    List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
-
-                    foreach (var winding in getProductionByWindingType)
+                    if (totalWTQty > 0)
                     {
-                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+                        var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
+                        List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
 
-                        if (existing == null)
+                        foreach (var winding in getProductionByWindingType)
                         {
-                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                            grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                            grid.WindingTypeName = winding.WindingTypeName;
-                            grid.WindingQty = totalWTQty;
-                            grid.NetWt = winding.NetWt;
+                            var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
-                            windinggridList.Add(grid);
+                            if (existing == null)
+                            {
+                                WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                                grid.WindingTypeId = winding.WindingTypeId;
+                                grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+                                grid.WindingTypeName = winding.WindingTypeName;
+                                grid.WindingQty = totalWTQty;
+                                grid.NetWt = winding.NetWt;
+
+                                windinggridList.Add(grid);
+                            }
+                            else
+                            {
+                                existing.NetWt += winding.NetWt;
+                            }
                         }
-                        else
+
+                        windinggrid.Columns.Clear();
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                        windinggrid.DataSource = windinggridList;
+
+                        totalWTProdQty = 0;
+                        foreach (var proditem in windinggridList)
                         {
-                            existing.NetWt += winding.NetWt;
+                            totalWTProdQty += proditem.NetWt;
                         }
+                        balanceWTQty = (totalWTQty - totalWTProdQty);
                     }
-
-                    windinggrid.Columns.Clear();
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
-                    windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                    windinggrid.DataSource = windinggridList;
-
-                    totalWTProdQty = 0;
-                    foreach (var proditem in windinggridList)
-                    {
-                        totalWTProdQty += proditem.NetWt;
-                    }
-                    balanceWTQty = (totalWTQty - totalWTProdQty);
                 }
             }
 
@@ -3399,30 +3402,33 @@ namespace PackingApplication
                     isValid = false;
                 }
             }
-            balanceWTQty = (totalWTQty - totalWTProdQty);
-            if (balanceWTQty <= 0)
+            if (totalWTQty > 0)
             {
-                DialogResult qtyresult = MessageBox.Show(balanceWTQty + " Quantity remaining for " + selectedWT + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (qtyresult == DialogResult.Yes)
+                balanceWTQty = (totalWTQty - totalWTProdQty);
+                if (balanceWTQty <= 0)
                 {
-                    //isValid = true;
+                    DialogResult qtyresult = MessageBox.Show(balanceWTQty + " Quantity remaining for " + selectedWT + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (qtyresult == DialogResult.Yes)
+                    {
+                        //isValid = true;
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
                 }
-                else
+                decimal newBalanceWTQty = balanceWTQty - net;
+                if (newBalanceWTQty < 0)
                 {
-                    isValid = false;
-                }
-            }
-            decimal newBalanceWTQty = balanceWTQty - net;
-            if (newBalanceWTQty < 0)
-            {
-                DialogResult prodbalresult = MessageBox.Show(balanceWTQty + " Winding Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (prodbalresult == DialogResult.Yes)
-                {
-                    //isValid = true;
-                }
-                else
-                {
-                    isValid = false;
+                    DialogResult prodbalresult = MessageBox.Show(balanceWTQty + " Winding Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (prodbalresult == DialogResult.Yes)
+                    {
+                        //isValid = true;
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
                 }
             }
 

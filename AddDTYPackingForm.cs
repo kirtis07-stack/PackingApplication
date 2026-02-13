@@ -1530,36 +1530,39 @@ namespace PackingApplication
                 //int selectedWindingTypeId = productionRequest.WindingTypeId;
                 if (productionRequest.WindingTypeId > 0)
                 {
-                    var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                    List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
-
-                    foreach (var winding in getProductionByWindingType)
+                    if (totalWTQty > 0)
                     {
-                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+                        var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
+                        List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
 
-                        if (existing == null)
+                        foreach (var winding in getProductionByWindingType)
                         {
-                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                            grid.WindingTypeId = winding.WindingTypeId;
-                            grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                            grid.WindingTypeName = winding.WindingTypeName;
-                            grid.WindingQty = totalWTQty;
-                            grid.NetWt = winding.NetWt;
+                            var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
-                            windinggridList.Add(grid);
+                            if (existing == null)
+                            {
+                                WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                                grid.WindingTypeId = winding.WindingTypeId;
+                                grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+                                grid.WindingTypeName = winding.WindingTypeName;
+                                grid.WindingQty = totalWTQty;
+                                grid.NetWt = winding.NetWt;
+
+                                windinggridList.Add(grid);
+                            }
+                            else
+                            {
+                                existing.NetWt += winding.NetWt;
+                            }
                         }
-                        else
+
+                        totalWTProdQty = 0;
+                        foreach (var proditem in windinggridList)
                         {
-                            existing.NetWt += winding.NetWt;
+                            totalWTProdQty += proditem.NetWt;
                         }
+                        balanceWTQty = (totalWTQty - totalWTProdQty);
                     }
-
-                    totalWTProdQty = 0;
-                    foreach (var proditem in windinggridList)
-                    {
-                        totalWTProdQty += proditem.NetWt;
-                    }
-                    balanceWTQty = (totalWTQty - totalWTProdQty);
                 }
             }
 
@@ -2637,10 +2640,10 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            decimal gross, tare;
+            decimal gross, tare, net;
             decimal.TryParse(grosswtno.Text, out gross);
             decimal.TryParse(tarewt.Text, out tare);
-
+            decimal.TryParse(netwt.Text, out net);
             if (gross < tare)
             {
                 MessageBox.Show("Gross Wt > Tare Wt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2673,7 +2676,7 @@ namespace PackingApplication
                     isValid = false;
                 }
             }
-            decimal newBalanceQty = balanceQty - gross;
+            decimal newBalanceQty = balanceQty - net;
             if (newBalanceQty < 0)
             {
                 DialogResult prodbalresult = MessageBox.Show(balanceQty + " Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -2686,6 +2689,36 @@ namespace PackingApplication
                     isValid = false;
                 }
             }
+            if(totalWTQty > 0)
+            {
+                balanceWTQty = (totalWTQty - totalWTProdQty);
+                if (balanceWTQty <= 0)
+                {
+                    DialogResult qtyresult = MessageBox.Show(balanceWTQty + " Quantity remaining for " + selectedWT + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (qtyresult == DialogResult.Yes)
+                    {
+                        //isValid = true;
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
+                }
+                decimal newBalanceWTQty = balanceWTQty - net;
+                if (newBalanceWTQty < 0)
+                {
+                    DialogResult prodbalresult = MessageBox.Show(balanceWTQty + " Winding Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (prodbalresult == DialogResult.Yes)
+                    {
+                        //isValid = true;
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
+                }
+            }
+            
 
             Log.writeMessage("DTY ValidateForm - End : " + DateTime.Now);
             return isValid;
