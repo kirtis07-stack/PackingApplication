@@ -726,14 +726,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="4102624">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="4150240">
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>tSsaWzy3twWVcf5gfpaJ1gjmHbqQUkL4v3xLtK71VBE=</dsig:DigestValue>
+        <dsig:DigestValue>HfhBRSPQ2b36AbjBei+rmUOY2LnysKIX1aVgXCSoWnw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -923,7 +923,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>tIKjckajL8t0IkV5V7xnZxYnK+y5NL0rvX+3RswvAoU=</dsig:DigestValue>
+      <dsig:DigestValue>YfkeJoCuDf7ZNtR26ijzpjRBV6Z3d6xp3wba1hElT90=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\icons8-trash-24.png" size="174">

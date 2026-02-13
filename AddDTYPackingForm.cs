@@ -43,10 +43,14 @@ namespace PackingApplication
         string comPort;
         int selectedSOId = 0;
         decimal totalSOQty = 0;
+        decimal totalWTQty = 0;
         decimal totalProdQty = 0;
+        decimal totalWTProdQty = 0;
         int selectLotId = 0;
         decimal balanceQty = 0;
+        decimal balanceWTQty = 0;
         string selectedSONumber = "";
+        string selectedWT = "";
         private System.Windows.Forms.Label lblLoading;
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -536,6 +540,7 @@ namespace PackingApplication
                 WindingTypeList.Items.Add(productionResponse.WindingTypeName);
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
                 productionRequest.WindingTypeId = productionResponse.WindingTypeId;
+                selectedWT = productionResponse.WindingTypeName;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -631,7 +636,9 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
+                totalWTQty = productionResponse.WindingQuantity;
                 RefreshGradewiseGrid();
+                RefreshWindingGrid();
                 AdjustNameByCharCount();
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
@@ -1080,11 +1087,15 @@ namespace PackingApplication
             ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             totalProdQty = 0;
+            totalWTProdQty = 0;
             selectedSOId = 0;
             totalSOQty = 0;
+            totalWTQty = 0;
             balanceQty = 0;
+            balanceWTQty = 0;
             selectLotId = 0;
             selectedSONumber = "";
+            selectedWT = "";
             selectedItemTypeid = 0;
             //MergeNoList.SelectedIndex = 0;
             Log.writeMessage("DTY ResetLotValues - End : " + DateTime.Now);
@@ -1296,7 +1307,11 @@ namespace PackingApplication
 
                     if (selectedWindingTypeId > 0)
                     {
+                        totalWTQty = 0;
                         productionRequest.WindingTypeId = selectedWindingTypeId;
+                        totalWTQty = selectedWindingType.Quantity;
+                        selectedWT = selectedWindingType.WindingTypeName;
+                        RefreshWindingGrid();
                     }
                 }
             }
@@ -1504,6 +1519,51 @@ namespace PackingApplication
             }
 
             Log.writeMessage("DTY RefreshGradewiseGrid - End : " + DateTime.Now);
+        }
+
+        private async void RefreshWindingGrid()
+        {
+            Log.writeMessage("DTY RefreshWindingGrid - Start : " + DateTime.Now);
+
+            if (productionRequest.WindingTypeId != 0)
+            {
+                //int selectedWindingTypeId = productionRequest.WindingTypeId;
+                if (productionRequest.WindingTypeId > 0)
+                {
+                    var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
+                    List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
+
+                    foreach (var winding in getProductionByWindingType)
+                    {
+                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+
+                        if (existing == null)
+                        {
+                            WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                            grid.WindingTypeId = winding.WindingTypeId;
+                            grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+                            grid.WindingTypeName = winding.WindingTypeName;
+                            grid.WindingQty = totalWTQty;
+                            grid.NetWt = winding.NetWt;
+
+                            windinggridList.Add(grid);
+                        }
+                        else
+                        {
+                            existing.NetWt += winding.NetWt;
+                        }
+                    }
+
+                    totalWTProdQty = 0;
+                    foreach (var proditem in windinggridList)
+                    {
+                        totalWTProdQty += proditem.NetWt;
+                    }
+                    balanceWTQty = (totalWTQty - totalWTProdQty);
+                }
+            }
+
+            Log.writeMessage("DTY RefreshWindingGrid - End : " + DateTime.Now);
         }
 
         private async void RefreshLastBoxDetails()
@@ -2390,6 +2450,7 @@ namespace PackingApplication
                 submit.Enabled = true;
                 saveprint.Enabled = true;
                 RefreshGradewiseGrid();
+                RefreshWindingGrid();
                 RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
                 isFormReady = false;
@@ -2404,6 +2465,7 @@ namespace PackingApplication
                 this.spoolno.Focus();
                 if (isPrint)
                 {
+                    Log.writeMessage("DTY Print - Start : " + DateTime.Now);
                     //call ssrs report to print
                     string reportpathlink = reportPath + "/Texture";
                     string format = "PDF";
@@ -2462,7 +2524,7 @@ namespace PackingApplication
                     // 5️⃣ Clean up temp file
                     File.Delete(tempFile);
                 }
-
+                Log.writeMessage("DTY Print - End : " + DateTime.Now);
             }
             else
             {
@@ -3388,6 +3450,10 @@ namespace PackingApplication
                 selectLotId = 0;
                 selectedSOId = 0;
                 selectedSONumber = "";
+                totalWTQty = 0;
+                totalWTProdQty = 0;
+                balanceWTQty = 0;
+                selectedWT = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
                 productionRequest = new ProductionRequest();

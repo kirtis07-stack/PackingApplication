@@ -38,9 +38,12 @@ namespace PackingApplication
         decimal totalSOQty = 0;
         decimal totalWTQty = 0;
         decimal totalProdQty = 0;
+        decimal totalWTProdQty = 0;
         int selectLotId = 0;
         decimal balanceQty = 0;
+        decimal balanceWTQty = 0;
         string selectedSONumber = "";
+        string selectedWT = "";
         private System.Windows.Forms.Label lblLoading;
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -1183,10 +1186,10 @@ namespace PackingApplication
                 if (productionRequest.WindingTypeId > 0)
                 {
                     var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                    List<WindingTypeGridResponse> gridList = new List<WindingTypeGridResponse>();
+                    List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
                     foreach (var winding in getProductionByWindingType)
                     {
-                        var existing = gridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+                        var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
                         if (existing == null)
                         {
@@ -1197,7 +1200,7 @@ namespace PackingApplication
                             grid.WindingQty = totalWTQty;
                             grid.NetWt = winding.NetWt;
 
-                            gridList.Add(grid);
+                            windinggridList.Add(grid);
                         }
                         else
                         {
@@ -1210,7 +1213,14 @@ namespace PackingApplication
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
-                    windinggrid.DataSource = gridList;
+                    windinggrid.DataSource = windinggridList;
+
+                    totalWTProdQty = 0;
+                    foreach (var proditem in windinggridList)
+                    {
+                        totalWTProdQty += proditem.NetWt;
+                    }
+                    balanceWTQty = (totalWTQty - totalWTProdQty);
                 }
             }
 
@@ -2300,6 +2310,10 @@ namespace PackingApplication
                 selectLotId = 0;
                 selectedSOId = 0;
                 selectedSONumber = "";
+                totalWTQty = 0;
+                totalWTProdQty = 0;
+                balanceWTQty = 0;
+                selectedWT = "";
                 flowLayoutPanel1.Controls.Clear();
                 rowCount = 0;
                 prcompany.Checked = false;

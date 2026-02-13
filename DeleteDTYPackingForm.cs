@@ -38,11 +38,7 @@ namespace PackingApplication
         WeighingScaleReader wtReader = new WeighingScaleReader();
         string comPort;
         int selectedSOId = 0;
-        decimal totalSOQty = 0;
-        decimal totalProdQty = 0;
         int selectLotId = 0;
-        decimal balanceQty = 0;
-        string selectedSONumber = "";
         private System.Windows.Forms.Label lblLoading;
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -1758,13 +1754,9 @@ namespace PackingApplication
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 LoadDropdowns();
                 rowMaterial.Columns.Clear();
-                totalProdQty = 0;
                 selectedSOId = 0;
-                totalSOQty = 0;
-                balanceQty = 0;
                 selectLotId = 0;
                 selectedSOId = 0;
-                selectedSONumber = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
                 spoolno.Text = "0";

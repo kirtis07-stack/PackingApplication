@@ -1926,6 +1926,7 @@ namespace PackingApplication
                 isFormReady = true;
                 if (isPrint)
                 {
+                    Log.writeMessage("Chips Print - Start : " + DateTime.Now);
                     //call ssrs report to print
                     string reportpathlink = reportPath + "/Chips";
                     string format = "PDF";
@@ -1985,7 +1986,7 @@ namespace PackingApplication
                     //Clean up temp file
                     File.Delete(tempFile);
                 }
-
+                Log.writeMessage("Chips Print - End : " + DateTime.Now);
             }
             else
             {

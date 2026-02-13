@@ -42,9 +42,12 @@ namespace PackingApplication
         decimal totalSOQty = 0;
         decimal totalWTQty = 0;
         decimal totalProdQty = 0;
+        decimal totalWTProdQty = 0;
         int selectLotId = 0;
         decimal balanceQty = 0;
+        decimal balanceWTQty = 0;
         string selectedSONumber = "";
+        string selectedWT = "";
         private System.Windows.Forms.Label lblLoading;
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -632,6 +635,7 @@ namespace PackingApplication
                 WindingTypeList.Items.Add(productionResponse.WindingTypeName);
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
                 productionRequest.WindingTypeId = productionResponse.WindingTypeId;
+                selectedWT = productionResponse.WindingTypeName;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -1412,13 +1416,17 @@ namespace PackingApplication
             windinggrid.Columns.Clear();
             qualityqty.Columns.Clear();
             totalProdQty = 0;
+            totalWTProdQty = 0;
             prodnbalqty.Text = "";
             selectedSOId = 0;
             totalSOQty = 0;
+            totalWTQty = 0;
             grdsoqty.Text = "";
             balanceQty = 0;
+            balanceWTQty = 0;
             selectLotId = 0;
             selectedSONumber = "";
+            selectedWT = "";
             selectedItemTypeid = 0;
             flowLayoutPanel1.Controls.Clear();
             rowCount = 0;
@@ -1634,8 +1642,10 @@ namespace PackingApplication
 
                     if (selectedWindingTypeId > 0)
                     {
+                        totalWTQty = 0;
                         productionRequest.WindingTypeId = selectedWindingTypeId;
                         totalWTQty = selectedWindingType.Quantity;
+                        selectedWT = selectedWindingType.WindingTypeName;
                         RefreshWindingGrid();
                     }
                 }
@@ -1840,6 +1850,13 @@ namespace PackingApplication
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
                     windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
                     windinggrid.DataSource = windinggridList;
+
+                    totalWTProdQty = 0;
+                    foreach (var proditem in windinggridList)
+                    {
+                        totalWTProdQty += proditem.NetWt;
+                    }
+                    balanceWTQty = (totalWTQty - totalWTProdQty);
                 }
             }
 
@@ -3219,6 +3236,7 @@ namespace PackingApplication
                     // Clean up temp file
                     File.Delete(tempFile);
                 }
+                Log.writeMessage("POY Print - End : " + DateTime.Now);
                 ResetForm(this);
             }
             else
@@ -3360,7 +3378,7 @@ namespace PackingApplication
                 DialogResult qtyresult = MessageBox.Show(balanceQty + " Quantity remaining for " + selectedSONumber + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (qtyresult == DialogResult.Yes)
                 {
-                    isValid = true;
+                    //isValid = true;
                 }
                 else
                 {
@@ -3373,7 +3391,33 @@ namespace PackingApplication
                 DialogResult prodbalresult = MessageBox.Show(balanceQty + " Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (prodbalresult == DialogResult.Yes)
                 {
-                    isValid = true;
+                    //isValid = true;
+                }
+                else
+                {
+                    isValid = false;
+                }
+            }
+            balanceWTQty = (totalWTQty - totalWTProdQty);
+            if (balanceWTQty <= 0)
+            {
+                DialogResult qtyresult = MessageBox.Show(balanceWTQty + " Quantity remaining for " + selectedWT + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (qtyresult == DialogResult.Yes)
+                {
+                    //isValid = true;
+                }
+                else
+                {
+                    isValid = false;
+                }
+            }
+            decimal newBalanceWTQty = balanceWTQty - net;
+            if (newBalanceWTQty < 0)
+            {
+                DialogResult prodbalresult = MessageBox.Show(balanceWTQty + " Winding Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (prodbalresult == DialogResult.Yes)
+                {
+                    //isValid = true;
                 }
                 else
                 {
@@ -4166,6 +4210,10 @@ namespace PackingApplication
                 selectLotId = 0;
                 selectedSOId = 0;
                 selectedSONumber = "";
+                totalWTQty = 0;
+                totalWTProdQty = 0;
+                balanceWTQty = 0;
+                selectedWT = "";
                 flowLayoutPanel1.Controls.Clear();
                 rowCount = 0;
                 prcompany.Checked = false;
