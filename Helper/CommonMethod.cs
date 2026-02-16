@@ -69,10 +69,10 @@ namespace PackingApplication.Helper
             // Set the border radius
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             int diameter = radius * 2;
-            path.AddArc(0, 0, diameter, diameter, 180, 95); // Top-left corner
+            path.AddArc(0, 0, diameter, diameter, 181, 95); // Top-left corner
             path.AddArc(button.Width - diameter, 0, diameter, diameter, 270, 95); // Top-right corner
             path.AddArc(button.Width - diameter, button.Height - diameter, diameter, diameter, 0, 95); // Bottom-right corner
-            path.AddArc(0, button.Height - diameter, diameter, diameter, 90, 95); // Bottom-left corner
+            path.AddArc(0, button.Height - diameter, diameter, diameter, 91, 95); // Bottom-left corner
             path.CloseFigure();
 
             button.Region = new Region(path);
