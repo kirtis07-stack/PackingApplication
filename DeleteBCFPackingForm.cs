@@ -324,7 +324,6 @@ namespace PackingApplication
             this.prowner.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prdate.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.pruser.Font = FontManager.GetFont(8F, FontStyle.Regular);
-            this.prhindi.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prwtps.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.prqrcode.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.label1.Font = FontManager.GetFont(8F, FontStyle.Bold);
@@ -639,9 +638,6 @@ namespace PackingApplication
                 pruser.Checked = productionResponse.PrintUser;
                 productionRequest.PrintUser = productionResponse.PrintUser;
                 _cmethod.SetReadOnlyBlue(pruser, true, true);
-                prhindi.Checked = productionResponse.PrintHindiWords;
-                productionRequest.PrintHindiWords = productionResponse.PrintHindiWords;
-                _cmethod.SetReadOnlyBlue(prhindi, true, true);
                 prwtps.Checked = productionResponse.PrintWTPS;
                 productionRequest.PrintWTPS = productionResponse.PrintWTPS;
                 _cmethod.SetReadOnlyBlue(prwtps, true, true);
@@ -1213,10 +1209,10 @@ namespace PackingApplication
 
                         }
                         windinggrid.Columns.Clear();
-                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WindingType Qty" });
-                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
-                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Balance Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "WT" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WT Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Prod Qty" });
+                        windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Bal Qty" });
                         windinggrid.DataSource = windinggridList;
 
                         totalWTProdQty = 0;
@@ -1265,7 +1261,7 @@ namespace PackingApplication
                 }
                 qualityqty.Columns.Clear();
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
-                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Production Qty" });
+                qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Prod Qty" });
                 qualityqty.DataSource = gridList;
 
                 totalProdQty = 0;
