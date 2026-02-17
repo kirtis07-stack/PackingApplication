@@ -1878,7 +1878,17 @@ namespace PackingApplication
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log.writeMessage("POY ComPortList_SelectedIndexChanged - Start : " + DateTime.Now);
 
+            if (!isFormReady) return;
+
+            if (ComPortList.SelectedValue != null)
+            {
+                var ComPort = ComPortList.SelectedValue.ToString();
+                comPort = ComPortList.SelectedValue.ToString();
+            }
+
+            Log.writeMessage("POY ComPortList_SelectedIndexChanged - End : " + DateTime.Now);
         }
 
         private void WeighingList_SelectedIndexChanged(object sender, EventArgs e)
