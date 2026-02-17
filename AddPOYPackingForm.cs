@@ -1066,6 +1066,7 @@ namespace PackingApplication
 
                 LineNoList.TextUpdate -= LinoNoList_TextUpdate;
                 LineNoList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 LineNoList.SelectionLength = typedText.Length;
                 LineNoList.SelectedIndex = -1;
                 LineNoList.Text = typedText;
@@ -1312,6 +1313,7 @@ namespace PackingApplication
 
                 MergeNoList.TextUpdate -= MergeNoList_TextUpdate;
                 MergeNoList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 MergeNoList.SelectionLength = typedText.Length;
                 MergeNoList.SelectedIndex = -1;
                 MergeNoList.Text = typedText;
@@ -1472,6 +1474,7 @@ namespace PackingApplication
 
                 PackSizeList.TextUpdate -= PackSizeList_TextUpdate;
                 PackSizeList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 PackSizeList.SelectionLength = typedText.Length;
                 PackSizeList.SelectedIndex = -1;
                 PackSizeList.Text = typedText;
@@ -1539,6 +1542,7 @@ namespace PackingApplication
 
                 QualityList.TextUpdate -= QualityList_TextUpdate;
                 QualityList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 QualityList.SelectionLength = typedText.Length;
                 QualityList.SelectedIndex = -1;
                 QualityList.Text = typedText;
@@ -1629,6 +1633,7 @@ namespace PackingApplication
 
                 WindingTypeList.TextUpdate -= WindingTypeList_TextUpdate;
                 WindingTypeList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 WindingTypeList.SelectionLength = typedText.Length;
                 WindingTypeList.SelectedIndex = -1;
                 WindingTypeList.Text = typedText;
@@ -1732,6 +1737,7 @@ namespace PackingApplication
 
                 SaleOrderList.TextUpdate -= SaleOrderList_TextUpdate;
                 SaleOrderList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 SaleOrderList.SelectionLength = typedText.Length;
                 SaleOrderList.SelectedIndex = -1;
                 SaleOrderList.Text = typedText;
@@ -1998,6 +2004,7 @@ namespace PackingApplication
 
                 CopsItemList.TextUpdate -= CopsItemList_TextUpdate;
                 CopsItemList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 CopsItemList.SelectionLength = typedText.Length;
                 CopsItemList.SelectedIndex = -1;
                 CopsItemList.Text = typedText;
@@ -2089,6 +2096,7 @@ namespace PackingApplication
 
                 BoxItemList.TextUpdate -= BoxItemList_TextUpdate;
                 BoxItemList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 BoxItemList.SelectionLength = typedText.Length;
                 BoxItemList.SelectedIndex = -1;
                 BoxItemList.Text = typedText;
@@ -2208,6 +2216,7 @@ namespace PackingApplication
 
                 PrefixList.TextUpdate -= PrefixList_TextUpdate;
                 PrefixList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 PrefixList.SelectionLength = typedText.Length;
                 PrefixList.SelectedIndex = -1;
                 PrefixList.Text = typedText;
@@ -2351,6 +2360,7 @@ namespace PackingApplication
 
                 DeptList.TextUpdate -= DeptList_TextUpdate;
                 DeptList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 DeptList.SelectionLength = typedText.Length;
                 DeptList.SelectedIndex = -1;
                 DeptList.Text = typedText;
@@ -2432,6 +2442,7 @@ namespace PackingApplication
 
                 OwnerList.TextUpdate -= OwnerList_TextUpdate;
                 OwnerList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 OwnerList.SelectionLength = typedText.Length;
                 OwnerList.SelectedIndex = -1;
                 OwnerList.Text = typedText;
@@ -2478,6 +2489,7 @@ namespace PackingApplication
 
                 PalletTypeList.TextUpdate -= PalletTypeList_TextUpdate;
                 PalletTypeList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 PalletTypeList.SelectionLength = typedText.Length;
                 PalletTypeList.SelectedIndex = -1;
                 PalletTypeList.Text = typedText;
@@ -3987,6 +3999,7 @@ namespace PackingApplication
                 LineNoList.ValueMember = "MachineId";
                 LineNoList.SelectedIndex = 0;
                 LineNoList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4018,6 +4031,7 @@ namespace PackingApplication
                 MergeNoList.DataSource = mergenoList;
                 MergeNoList.SelectedIndex = 0;
                 MergeNoList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4047,6 +4061,7 @@ namespace PackingApplication
                 PackSizeList.DataSource = packsizeList;
                 PackSizeList.SelectedIndex = 0;
                 PackSizeList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4076,6 +4091,7 @@ namespace PackingApplication
                 QualityList.DataSource = qualityList;
                 QualityList.SelectedIndex = 0;
                 QualityList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4130,6 +4146,7 @@ namespace PackingApplication
                 PrefixList.DataSource = prefixList;
                 PrefixList.SelectedIndex = 0;
                 PrefixList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4165,6 +4182,7 @@ namespace PackingApplication
                 WindingTypeList.DataSource = getWindingType;
                 WindingTypeList.SelectedIndex = 0;
                 WindingTypeList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4228,6 +4246,7 @@ namespace PackingApplication
                 CopsItemList.DataSource = copsitemList;
                 CopsItemList.SelectedIndex = 0;
                 CopsItemList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4257,6 +4276,7 @@ namespace PackingApplication
                 BoxItemList.DataSource = boxitemList;
                 BoxItemList.SelectedIndex = 0;
                 BoxItemList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4286,6 +4306,7 @@ namespace PackingApplication
                 PalletTypeList.DataSource = palletitemList;
                 PalletTypeList.SelectedIndex = 0;
                 PalletTypeList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4315,6 +4336,7 @@ namespace PackingApplication
                 DeptList.DataSource = deptList;
                 DeptList.SelectedIndex = 0;
                 DeptList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -4344,6 +4366,7 @@ namespace PackingApplication
                 OwnerList.DataSource = ownerList;
                 OwnerList.SelectedIndex = 0;
                 OwnerList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 

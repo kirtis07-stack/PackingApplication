@@ -2450,6 +2450,7 @@ namespace PackingApplication
 
                 SrLineNoList.TextUpdate -= SrLineNoList_TextUpdate;
                 SrLineNoList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 SrLineNoList.SelectionLength = typedText.Length;
                 SrLineNoList.SelectedIndex = -1;
                 SrLineNoList.Text = typedText;
@@ -2499,6 +2500,7 @@ namespace PackingApplication
 
                 SrDeptList.TextUpdate -= SrDeptList_TextUpdate;
                 SrDeptList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 SrDeptList.SelectionLength = typedText.Length;
                 SrDeptList.SelectedIndex = -1;
                 SrDeptList.Text = typedText;
@@ -2553,6 +2555,7 @@ namespace PackingApplication
 
                 SrBoxNoList.TextUpdate -= SrBoxNoList_TextUpdate;
                 SrBoxNoList.DroppedDown = true;
+                Cursor.Current = Cursors.Default;
                 SrBoxNoList.SelectionLength = typedText.Length;
                 SrBoxNoList.SelectedIndex = -1;
                 SrBoxNoList.Text = typedText;
@@ -3103,6 +3106,7 @@ namespace PackingApplication
                 SrLineNoList.ValueMember = "MachineId";
                 SrLineNoList.SelectedIndex = 0;
                 SrLineNoList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -3132,6 +3136,7 @@ namespace PackingApplication
                 SrDeptList.DataSource = deptList;
                 SrDeptList.SelectedIndex = 0;
                 SrDeptList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 
@@ -3167,6 +3172,7 @@ namespace PackingApplication
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.SelectedIndex = 0;
                 SrBoxNoList.DroppedDown = true; // Open the dropdown list
+                Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
 

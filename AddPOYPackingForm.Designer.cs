@@ -3171,7 +3171,7 @@ namespace PackingApplication
             this.netwttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.netwttxtbox.Name = "netwttxtbox";
             this.netwttxtbox.ReadOnly = true;
-            this.netwttxtbox.Size = new System.Drawing.Size(30, 13);
+            this.netwttxtbox.Size = new System.Drawing.Size(40, 13);
             this.netwttxtbox.TabIndex = 95;
             this.netwttxtbox.TabStop = false;
             this.netwttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -3247,7 +3247,7 @@ namespace PackingApplication
             this.grosswttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.grosswttxtbox.Name = "grosswttxtbox";
             this.grosswttxtbox.ReadOnly = true;
-            this.grosswttxtbox.Size = new System.Drawing.Size(30, 13);
+            this.grosswttxtbox.Size = new System.Drawing.Size(40, 13);
             this.grosswttxtbox.TabIndex = 7;
             this.grosswttxtbox.TabStop = false;
             this.grosswttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -3285,7 +3285,7 @@ namespace PackingApplication
             this.tarewghttxtbox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tarewghttxtbox.Name = "tarewghttxtbox";
             this.tarewghttxtbox.ReadOnly = true;
-            this.tarewghttxtbox.Size = new System.Drawing.Size(30, 13);
+            this.tarewghttxtbox.Size = new System.Drawing.Size(40, 13);
             this.tarewghttxtbox.TabIndex = 5;
             this.tarewghttxtbox.TabStop = false;
             this.tarewghttxtbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
