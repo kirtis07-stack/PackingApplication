@@ -634,7 +634,7 @@ namespace PackingApplication
                 upwt.Text = productionResponse.EndWeight.ToString();
                 copsitemwt.Text = productionResponse.CopsItemWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 RefreshGradewiseGrid();

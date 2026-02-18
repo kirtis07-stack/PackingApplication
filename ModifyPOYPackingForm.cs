@@ -718,7 +718,7 @@ namespace PackingApplication
                 upwt.Text = productionResponse.EndWeight.ToString();
                 copsitemwt.Text = productionResponse.CopsItemWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
@@ -754,10 +754,6 @@ namespace PackingApplication
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
                 selectedDeptId = productionResponse.DepartmentId;
 
-                spoolno.Text = productionResponse.Spools.ToString();
-                productionRequest.Spools = productionResponse.Spools;
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
                 grosswtno.Text = productionResponse.GrossWt.ToString();
@@ -768,6 +764,10 @@ namespace PackingApplication
                 productionRequest.NetWt = productionResponse.NetWt;
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
+                spoolno.Text = productionResponse.Spools.ToString();
+                productionRequest.Spools = productionResponse.Spools;
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 AdjustNameByCharCount();
 
                 _cmethod.SetReadOnlyBlue(LineNoList, false, false);

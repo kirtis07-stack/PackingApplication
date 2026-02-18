@@ -617,16 +617,16 @@ namespace PackingApplication
                 upwt.Text = productionResponse.EndWeight.ToString();
                 copsitemwt.Text = productionResponse.CopsItemWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                spoolno.Text = productionResponse.Spools.ToString();
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 grosswtno.Text = productionResponse.GrossWt.ToString();
                 tarewt.Text = productionResponse.TareWt.ToString();
                 netwt.Text = productionResponse.NetWt.ToString();
+                spoolno.Text = productionResponse.Spools.ToString();
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
                 AdjustNameByCharCount();
             }
 

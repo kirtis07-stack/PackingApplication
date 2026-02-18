@@ -701,7 +701,7 @@ namespace PackingApplication
                 upwt.Text = productionResponse.EndWeight.ToString();
                 copsitemwt.Text = productionResponse.CopsItemWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 RefreshGradewiseGrid();
@@ -713,10 +713,6 @@ namespace PackingApplication
                 boxnofrmt.Text = (!string.IsNullOrEmpty(productionResponse.BoxNoFmtd)) ? productionResponse.BoxNoFmtd : "";
                 dateTimePicker1.Text = productionResponse.ProductionDate.ToString();
                 dateTimePicker1.Value = productionResponse.ProductionDate;
-                spoolno.Text = productionResponse.Spools.ToString();
-                productionRequest.Spools = productionResponse.Spools;
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
                 grosswtno.Text = productionResponse.GrossWt.ToString();
@@ -725,6 +721,10 @@ namespace PackingApplication
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
+                spoolno.Text = productionResponse.Spools.ToString();
+                productionRequest.Spools = productionResponse.Spools;
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 AdjustNameByCharCount();
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;

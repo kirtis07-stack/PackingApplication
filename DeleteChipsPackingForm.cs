@@ -563,7 +563,7 @@ namespace PackingApplication
                 frwt.Text = productionResponse.StartWeight.ToString();
                 upwt.Text = productionResponse.EndWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;

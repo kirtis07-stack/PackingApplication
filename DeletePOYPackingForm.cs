@@ -677,7 +677,7 @@ namespace PackingApplication
                 upwt.Text = productionResponse.EndWeight.ToString();
                 copsitemwt.Text = productionResponse.CopsItemWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
@@ -713,11 +713,6 @@ namespace PackingApplication
                 productionRequest.DepartmentId = productionResponse.DepartmentId;
                 _cmethod.SetReadOnlyBlue(DeptList, true, true);
 
-                spoolno.Text = productionResponse.Spools.ToString();
-                productionRequest.Spools = productionResponse.Spools;
-                _cmethod.SetReadOnlyBlue(spoolno, true, true);
-                spoolwt.Text = productionResponse.SpoolsWt.ToString();
-                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 productionRequest.EmptyBoxPalletWt = productionResponse.EmptyBoxPalletWt;
                 _cmethod.SetReadOnlyBlue(palletwtno, true, true);
@@ -729,6 +724,11 @@ namespace PackingApplication
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
                 _cmethod.SetReadOnlyBlue(netwt, true, true);
+                spoolno.Text = productionResponse.Spools.ToString();
+                productionRequest.Spools = productionResponse.Spools;
+                _cmethod.SetReadOnlyBlue(spoolno, true, true);
+                spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                productionRequest.SpoolsWt = productionResponse.SpoolsWt;
                 _cmethod.SetReadOnlyBlue(copyno, true, true);
                 AdjustNameByCharCount();
                 _cmethod.SetReadOnlyBlue(ComPortList, true, true);

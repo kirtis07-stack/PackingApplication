@@ -24,6 +24,10 @@ namespace PackingApplication.Services
                 return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
                 ?? new List<LotsResponse>();
+            foreach (var item in getItem)
+            {
+                item.LotNoFrmt = item.LotNoFrmt + "--" + item.ItemTradeName;
+            }
             return getItem;
         }
 
@@ -99,6 +103,10 @@ namespace PackingApplication.Services
                 return new List<LotsResponse>();
             var getItem = JsonConvert.DeserializeObject<List<LotsResponse>>(getLotsResponse)
                 ?? new List<LotsResponse>();
+            foreach (var item in getItem)
+            {
+                item.LotNoFrmt = item.LotNoFrmt + "--" + item.ItemTradeName;
+            }
             return getItem;
         }
     }

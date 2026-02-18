@@ -550,7 +550,7 @@ namespace PackingApplication
                 frwt.Text = productionResponse.StartWeight.ToString();
                 upwt.Text = productionResponse.EndWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
-                palletwtno.Text = productionResponse.BoxItemWeight.ToString();
+                palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 totalSOQty = productionResponse.SOQuantity;
                 RefreshGradewiseGrid();
                 AdjustNameByCharCount();
