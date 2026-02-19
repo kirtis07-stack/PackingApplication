@@ -98,6 +98,7 @@ namespace PackingApplication
         short selectedMainItemTypeid = 0;
         ProductionPrintSlipRequest slipRequest = new ProductionPrintSlipRequest();
         private Panel _editingPanel = null;
+        int selectedWeightScaleId = 0;
         public AddBCFPackingForm()
         {
             Log.writeMessage("BCF AddBCFPackingForm - Start : " + DateTime.Now);
@@ -721,6 +722,10 @@ namespace PackingApplication
 
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
+                if (selectedWeightScaleId > 0 && !(string.IsNullOrEmpty(comPort)))
+                {
+                    grosswtno.Text = productionResponse.GrossWt.ToString();
+                }
             }
 
             Log.writeMessage("BCF LoadProductionDetailsAsync - End : " + DateTime.Now);
@@ -1925,16 +1930,16 @@ namespace PackingApplication
             if (WeighingList.SelectedValue != null)
             {
                 WeighingItem selectedWeighingScale = (WeighingItem)WeighingList.SelectedItem;
-                int selectedScaleId = selectedWeighingScale.Id;
+                selectedWeightScaleId = selectedWeighingScale.Id;
 
-                if (selectedScaleId >= 0 && !string.IsNullOrEmpty(comPort))
+                if (selectedWeightScaleId >= 0 && !string.IsNullOrEmpty(comPort))
                 {
-                    var readWeight = wtReader.ReadWeight(comPort, selectedScaleId);
+                    var readWeight = wtReader.ReadWeight(comPort, selectedWeightScaleId);
                     if (readWeight != null && (!string.IsNullOrEmpty(readWeight)))
                     {
                         grosswtno.Text = readWeight.ToString();
-                        grosswtno.ReadOnly = true;
-                        grosswtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+                        //grosswtno.ReadOnly = true;
+                        //grosswtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
                     }
                 }
             }
@@ -3302,7 +3307,10 @@ namespace PackingApplication
                 isFormReady = false;
                 this.spoolno.Text = "0";
                 this.spoolwt.Text = "0";
-                this.grosswtno.Text = "0.000";
+                if (selectedWeightScaleId <= 0 && (string.IsNullOrEmpty(comPort)))
+                {
+                    this.grosswtno.Text = "0.000";
+                }
                 this.tarewt.Text = "0.000";
                 this.netwt.Text = "0.000";
                 this.wtpercop.Text = "0.000";
