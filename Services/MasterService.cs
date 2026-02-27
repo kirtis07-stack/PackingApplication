@@ -79,26 +79,26 @@ namespace PackingApplication.Services
             return getPackSize;
         }
 
-        //public async Task<List<WindingTypeResponse>> GetWindingTypeList(string subString)
-        //{
-        //    Log.writeMessage("API call GetWindingTypeList - Start : " + DateTime.Now);
-        //    Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=false" + "&subString=" + subString);
+        public async Task<List<WindingTypeResponse>> GetWindingTypeList(string subString)
+        {
+            Log.writeMessage("API call GetWindingTypeList - Start : " + DateTime.Now);
+            Log.writeMessage("GetWindingTypeList : WindingType/GetAll?IsDropDown=false" + "&subString=" + subString);
 
-        //    var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + false + "&subString=" + subString);
+            var getWindingTypeResponse = await method.GetCallApi(masterURL + "WindingType/GetAll?IsDropDown=" + false + "&subString=" + subString);
 
-        //    Log.writeMessage("GetWindingTypeList Response : " + getWindingTypeResponse);
+            Log.writeMessage("GetWindingTypeList Response : " + getWindingTypeResponse);
 
-        //    if (string.IsNullOrWhiteSpace(getWindingTypeResponse))
-        //    {                
-        //        Log.writeMessage("API call GetWindingTypeList - End : " + DateTime.Now);
-        //        return new List<WindingTypeResponse>();
-        //    }
+            if (string.IsNullOrWhiteSpace(getWindingTypeResponse))
+            {
+                Log.writeMessage("API call GetWindingTypeList - End : " + DateTime.Now);
+                return new List<WindingTypeResponse>();
+            }
 
-        //    List<WindingTypeResponse> getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse);
-        //    Log.writeMessage("API call GetWindingTypeList - End : " + DateTime.Now);
+            List<WindingTypeResponse> getWindingType = JsonConvert.DeserializeObject<List<WindingTypeResponse>>(getWindingTypeResponse);
+            Log.writeMessage("API call GetWindingTypeList - End : " + DateTime.Now);
 
-        //    return getWindingType;
-        //}
+            return getWindingType;
+        }
 
         public async Task<List<ItemResponse>> GetItemList(int categoryId, string subString)
         {

@@ -1440,14 +1440,14 @@ namespace PackingApplication
                 //WindingTypeList.Items.Clear();
 
                 var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
-                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                //if (getWindingType.Count <= 1)
-                //{
-                //    getWindingType = _masterService.GetWindingTypeList(typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
-                //    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                //getWindingType = _productionService.getWinderTypeList(selectLotId, typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
+                //getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                if (getWindingType.Count <= 1)
+                {
+                    getWindingType = _masterService.GetWindingTypeList(typedText).Result.OrderBy(x => x.WindingTypeName).ToList();
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
-                //}
+                }
 
                 WindingTypeList.BeginUpdate();
                 WindingTypeList.DataSource = null;
@@ -3187,13 +3187,13 @@ namespace PackingApplication
             {
                 WindingTypeList.DataSource = null;
                 var getWindingType = new List<WindingTypeResponse>();
-                getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
-                getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                //if (getWindingType.Count <= 1)
-                //{
-                //    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
-                //    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                //}
+                //getWindingType = _productionService.getWinderTypeList(selectLotId, "").Result.OrderBy(x => x.WindingTypeName).ToList();
+                //getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                if (getWindingType.Count <= 1)
+                {
+                    getWindingType = _masterService.GetWindingTypeList("").Result.OrderBy(x => x.WindingTypeName).ToList();
+                    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                }
                 WindingTypeList.DisplayMember = "WindingTypeName";
                 WindingTypeList.ValueMember = "WindingTypeId";
                 WindingTypeList.DataSource = getWindingType;
