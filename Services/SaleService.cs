@@ -35,7 +35,7 @@ namespace PackingApplication.Services
             return getSaleOrderItem;
         }
 
-        public async Task<SaleOrderItemsResponse> getSaleOrderItemById(int saleOrderItemsId)
+        public async Task<SaleOrderItemsResponse> getSaleOrderItemById(long saleOrderItemsId)
         {
             var getSaleOrderResponse = await method.GetCallApi(saleURL + "SaleOrderItems/GetById?saleOrderItemsId=" + saleOrderItemsId);
             if (string.IsNullOrWhiteSpace(getSaleOrderResponse))

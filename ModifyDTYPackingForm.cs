@@ -40,7 +40,7 @@ namespace PackingApplication
         LotsResponse lotResponse = new LotsResponse();
         WeighingScaleReader wtReader = new WeighingScaleReader();
         string comPort;
-        int selectedSOId = 0;
+        long selectedSOId = 0;
         decimal totalSOQty = 0;
         decimal totalWTQty = 0;
         decimal totalProdQty = 0;
@@ -1483,7 +1483,7 @@ namespace PackingApplication
                 if (SaleOrderList.SelectedValue != null)
                 {
                     LotSaleOrderDetailsResponse selectedSaleOrder = (LotSaleOrderDetailsResponse)SaleOrderList.SelectedItem;
-                    int selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
+                    long selectedSaleOrderId = selectedSaleOrder.SaleOrderItemsId;
                     string soNumber = selectedSaleOrder.SaleOrderNumber;
                     productionRequest.SaleOrderItemsId = selectedSaleOrderId;
                     if (selectedSaleOrderId > 0)

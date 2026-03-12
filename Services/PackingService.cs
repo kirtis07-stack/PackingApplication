@@ -100,7 +100,7 @@ namespace PackingApplication.Services
             return getPacking;
         }
 
-        public async Task<List<ProductionResponse>> getAllByLotIdandSaleOrderItemIdandPackingType(int lotId, int saleOrderItemId)
+        public async Task<List<ProductionResponse>> getAllByLotIdandSaleOrderItemIdandPackingType(int lotId, long saleOrderItemId)
         {
             var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetAllByLotIdandSaleOrderItemId?lotId=" + lotId + "&saleOrderItemId=" + saleOrderItemId);
             if (string.IsNullOrWhiteSpace(getPackingResponse))

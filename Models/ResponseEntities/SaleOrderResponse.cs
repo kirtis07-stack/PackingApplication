@@ -9,7 +9,7 @@ namespace PackingApplication.Models.ResponseEntities
 {
     public class SaleOrderResponse : BaseAuditEntity
     {
-        public int SalesOrderId { get; set; }
+        public long SalesOrderId { get; set; }
         public int BranchId { get; set; }
         public string BranchName { get; set; }
         public string SalesOrderNumber { get; set; }
@@ -51,8 +51,8 @@ namespace PackingApplication.Models.ResponseEntities
 
     public class SaleOrderItemsResponse : BaseAuditEntity
     {
-        public int SaleOrderItemsId { get; set; }
-        public int SaleOrderId { get; set; }
+        public long SaleOrderItemsId { get; set; }
+        public long SaleOrderId { get; set; }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public short ItemTypeId { get; set; }

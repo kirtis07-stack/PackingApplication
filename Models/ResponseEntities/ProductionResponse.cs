@@ -154,7 +154,7 @@ namespace PackingApplication.Models.ResponseEntities
         public List<LotsDetailsResponse> LotsDetailsResponse { get; set; }
         public int DispatchChallanId { get; set; }
         public DateTime? DispatchDate { get; set; }
-        public int SaleOrderItemsId { get; set; }
+        public long SaleOrderItemsId { get; set; }
         public int PalletId { get; set; }
         public string SaleLot { get; set; }
         public int DispatchReserveId { get; set; }

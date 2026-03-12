@@ -34,7 +34,7 @@ namespace PackingApplication
         LotsResponse lotResponse = new LotsResponse();
         WeighingScaleReader wtReader = new WeighingScaleReader();
         string comPort;
-        int selectedSOId = 0;
+        long selectedSOId = 0;
         decimal totalSOQty = 0;
         decimal totalWTQty = 0;
         decimal totalProdQty = 0;

@@ -12,7 +12,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int LotSaleOrderDetailsId { get; set; }
         public long LotId { get; set; }
         public string LotType { get; set; }
-        public int SaleOrderItemsId { get; set; }
+        public long SaleOrderItemsId { get; set; }
         public string ItemName { get; set; }
         public string SaleOrderNumber { get; set; }
         public int QualityId { get; set; }
