@@ -3195,7 +3195,7 @@ namespace PackingApplication
                 if (isPrint)
                 {
                     //call ssrs report to print
-                    string reportpathlink = reportPath + "/Texture";
+                    string reportpathlink = reportPath + "/POY";
                     string format = "PDF";
 
                     //set params

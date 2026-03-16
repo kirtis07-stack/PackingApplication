@@ -3368,7 +3368,7 @@ namespace PackingApplication
                 {
                     Log.writeMessage("POY Print - Start : " + DateTime.Now);
                     //call ssrs report to print
-                    string reportpathlink = reportPath + "/Texture";
+                    string reportpathlink = reportPath + "/POY";
                     string format = "PDF";
 
                     //set params

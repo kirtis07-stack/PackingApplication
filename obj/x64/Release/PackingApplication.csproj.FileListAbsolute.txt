@@ -135,3 +135,4 @@ D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x64\Release\Pack
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x64\Release\PackingA.5D2CC269.Up2Date
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x64\Release\PackingApplication.exe
 D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x64\Release\PackingApplication.pdb
+D:\Kirti\Beekaylon\API\WindowApplication\PackingApplication\obj\x64\Release\PackingApplication.exe.config
