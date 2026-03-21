@@ -1070,6 +1070,15 @@ namespace PackingApplication
                                 productionRequest.QualityId = firstQualityId;
                             }
                         }
+                        else
+                        {
+                            QualityList.Enabled = true;
+                            List<QualityResponse> qualityList = new List<QualityResponse>();
+                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                            QualityList.DataSource = qualityList;
+                            QualityList.DisplayMember = "Name";
+                            QualityList.ValueMember = "QualityId";
+                        }
                     }
                 }
             }
