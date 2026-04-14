@@ -48,9 +48,7 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        int itemBoxCategoryId = 2;
-        int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 5;
+        string itemPalletCategory = "PALLET";
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -765,7 +763,7 @@ namespace PackingApplication
 
             foreach (var palletDetail in palletDetailsResponse)
             {
-                var palletItemList = _masterService.GetItemList(itemPalletCategoryId, "").Result;
+                var palletItemList = _masterService.GetItemList(itemPalletCategory, "").Result;
                 _cmethod.SetReadOnlyBlue(PalletTypeList, true, true);
                 _cmethod.SetReadOnlyBlue(qnty, true, true);
                 var selectedItem = palletItemList.FirstOrDefault(x => x.ItemId == palletDetail.PalletId);

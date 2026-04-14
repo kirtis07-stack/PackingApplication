@@ -100,12 +100,12 @@ namespace PackingApplication.Services
             return getWindingType;
         }
 
-        public async Task<List<ItemResponse>> GetItemList(int categoryId, string subString)
+        public async Task<List<ItemResponse>> GetItemList(string category, string subString)
         {
             Log.writeMessage("API call GetItemList - Start : " + DateTime.Now);
-            Log.writeMessage("GetItemList : Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId + "&subString=" + subString);
+            Log.writeMessage("GetItemList : Items/GetAllItemsByItemCategory?itemCategory=" + category + "&subString=" + subString);
 
-            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategoryId?itemCategoryId=" + categoryId + "&subString=" + subString);
+            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategory?itemCategory=" + category + "&subString=" + subString);
 
             Log.writeMessage("GetItemList Response : " + getItemResponse);
 

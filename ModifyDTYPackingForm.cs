@@ -54,9 +54,8 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        int itemBoxCategoryId = 2;
-        int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 5;
+        string itemBoxCategory = "BOX";
+        string itemCopsCategory = "COPS";
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -612,6 +611,7 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
+                QualityList.Enabled = false;
 
                 WindingTypeList.DataSource = null;
                 WindingTypeList.Items.Clear();
@@ -620,6 +620,7 @@ namespace PackingApplication
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
                 productionRequest.WindingTypeId = productionResponse.WindingTypeId;
                 selectedWT = productionResponse.WindingTypeName;
+                WindingTypeList.Enabled = false;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -996,6 +997,7 @@ namespace PackingApplication
                                     if (QualityList.Items.Count > 1)
                                     {
                                         QualityList.SelectedIndex = 1;
+                                        QualityList.Enabled = false;
                                     }
                                     else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
                                     {
@@ -1015,19 +1017,40 @@ namespace PackingApplication
                             //}
                         }
 
-                        //var getWindingType = new List<WindingTypeResponse>();
-                        //getWindingType = _productionService.getWinderTypeList(selectedLotId).Result;
-                        //getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                        //if (getWindingType.Count <= 1)
-                        //{
-                        //    getWindingType = _masterService.GetWindingTypeList().Result;
-                        //    getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                        var getWindingType = new List<WindingTypeResponse>();
+                        getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
+                        getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                        if (getWindingType.Count <= 1)
+                        {
+                            getWindingType = _masterService.GetWindingTypeList("").Result;
+                            getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
-                        //}
-                        //WindingTypeList.SelectedIndexChanged -= WindingTypeList_SelectedIndexChanged;
-                        //WindingTypeList.DataSource = getWindingType;
-                        //WindingTypeList.DisplayMember = "WindingTypeName";
-                        //WindingTypeList.ValueMember = "WindingTypeId";
+                        }
+                        WindingTypeList.DataSource = getWindingType;
+                        WindingTypeList.DisplayMember = "WindingTypeName";
+                        WindingTypeList.ValueMember = "WindingTypeId";
+                        if (WindingTypeList.Items.Count > 2)
+                        {
+                            WindingTypeList.SelectedIndex = 0;
+                        }
+                        else if (WindingTypeList.Items.Count > 1)
+                        {
+                            WindingTypeList.SelectedIndex = 1;
+                            WindingTypeList.Enabled = false;
+                        }
+                        else if (WindingTypeList.Items.Count > 0) // fallback to first item if only one exists
+                        {
+                            WindingTypeList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            WindingTypeList.SelectedIndex = -1; // no selection possible
+                        }
+                        if (WindingTypeList.SelectedIndex >= 0)
+                        {
+                            int firstWTId = Convert.ToInt32(WindingTypeList.SelectedValue);
+                            productionRequest.WindingTypeId = firstWTId;
+                        }
                         //WindingTypeList.SelectedIndex = 0;
                         ////WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         ////WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -1803,7 +1826,7 @@ namespace PackingApplication
             {
                 //CopsItemList.Items.Clear();
 
-                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
+                var copsitemList = _masterService.GetItemList(itemCopsCategory, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
 
@@ -1895,7 +1918,7 @@ namespace PackingApplication
             {
                 //BoxItemList.Items.Clear();
 
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
+                var boxitemList = _masterService.GetItemList(itemBoxCategory, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
@@ -3207,7 +3230,15 @@ namespace PackingApplication
                 WindingTypeList.ValueMember = "WindingTypeId";
                 WindingTypeList.DataSource = getWindingType;
                 WindingTypeList.SelectedIndex = 0;
-                WindingTypeList.DroppedDown = true; // Open the dropdown list
+                if (getWindingType.Count == 2) // 1 real + 1 default
+                {
+                    WindingTypeList.Enabled = false;
+                }
+                else
+                {
+                    WindingTypeList.Enabled = true;
+                    WindingTypeList.DroppedDown = true; // Open only when multiple options
+                }
                 Cursor.Current = Cursors.Default;
                 e.SuppressKeyPress = true;    // Prevent any side effect
             }
@@ -3265,7 +3296,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 CopsItemList.DataSource = null;
-                var copsitemList = _masterService.GetItemList(itemCopsCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                var copsitemList = _masterService.GetItemList(itemCopsCategory, "").Result.OrderBy(x => x.Name).ToList();
                 copsitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Cops Item" });
                 CopsItemList.DisplayMember = "Name";
                 CopsItemList.ValueMember = "ItemId";
@@ -3295,7 +3326,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 BoxItemList.DataSource = null;
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                var boxitemList = _masterService.GetItemList(itemBoxCategory, "").Result.OrderBy(x => x.Name).ToList();
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
                 BoxItemList.DisplayMember = "Name";
                 BoxItemList.ValueMember = "ItemId";
@@ -3760,11 +3791,13 @@ namespace PackingApplication
             QualityList.Items.Clear();
             QualityList.Items.Add("Select Quality");
             QualityList.SelectedItem = "Select Quality";
+            QualityList.Enabled = true;
 
             WindingTypeList.DataSource = null;
             WindingTypeList.Items.Clear();
             WindingTypeList.Items.Add("Select Winding Type");
             WindingTypeList.SelectedItem = "Select Winding Type";
+            WindingTypeList.Enabled = true;
 
             Log.writeMessage("DTY ResetDependentDropdownValues - End : " + DateTime.Now);
         }

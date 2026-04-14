@@ -249,6 +249,16 @@ namespace PackingApplication
             {
                 yearerror.Text = "";
                 yearerror.Visible = false;
+                if (YearList.SelectedValue != null)
+                {
+                    FinancialYearResponse selectedYear = (FinancialYearResponse)YearList.SelectedItem;
+                    int selectedYearId = selectedYear.FinYearId;
+                    if (selectedYearId > 0)
+                    {
+                        finYearId = selectedYear.FinYearId;
+                        label1.Text = "ALL RIGHT RESERVED © " + selectedYear.FinYear.ToString();
+                    }
+                }
             }
 
             Log.writeMessage("Login YearList_SelectedIndexChanged - End : " + DateTime.Now);

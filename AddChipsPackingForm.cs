@@ -52,9 +52,7 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        int itemBoxCategoryId = 2;
-        int itemCopsCategoryId = 3;
-        int itemPalletCategoryId = 5;
+        string itemBoxCategory = "BOX";
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -477,6 +475,7 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
+                QualityList.Enabled = false;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -810,6 +809,7 @@ namespace PackingApplication
                                     if (QualityList.Items.Count > 1)
                                     {
                                         QualityList.SelectedIndex = 1;
+                                        QualityList.Enabled = false;
                                     }
                                     else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
                                     {
@@ -1317,7 +1317,7 @@ namespace PackingApplication
             {
                 //BoxItemList.Items.Clear();
 
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, typedText).Result.OrderBy(x => x.Name).ToList();
+                var boxitemList = _masterService.GetItemList(itemBoxCategory, typedText).Result.OrderBy(x => x.Name).ToList();
 
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
 
@@ -2663,7 +2663,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 BoxItemList.DataSource = null;
-                var boxitemList = _masterService.GetItemList(itemBoxCategoryId, "").Result.OrderBy(x => x.Name).ToList();
+                var boxitemList = _masterService.GetItemList(itemBoxCategory, "").Result.OrderBy(x => x.Name).ToList();
                 boxitemList.Insert(0, new ItemResponse { ItemId = 0, Name = "Select Box/Pallet" });
                 BoxItemList.DisplayMember = "Name";
                 BoxItemList.ValueMember = "ItemId";
@@ -3087,6 +3087,7 @@ namespace PackingApplication
             QualityList.Items.Clear();
             QualityList.Items.Add("Select Quality");
             QualityList.SelectedItem = "Select Quality";
+            QualityList.Enabled = true;
 
             Log.writeMessage("Chips ResetDependentDropdownValues - End : " + DateTime.Now);
         }
