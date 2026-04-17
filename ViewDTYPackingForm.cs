@@ -2707,7 +2707,7 @@ namespace PackingApplication
             {
                 slipRequest.ProductionId = _productionId;
                 //call ssrs report to print
-                string reportpathlink = reportPath + "/POY";
+                string reportpathlink = reportPath + "/DTY";
                 string format = "PDF";
 
                 //set params

@@ -2523,7 +2523,7 @@ namespace PackingApplication
                 {
                     Log.writeMessage("DTY Print - Start : " + DateTime.Now);
                     //call ssrs report to print
-                    string reportpathlink = reportPath + "/POY";
+                    string reportpathlink = reportPath + "/DTY";
                     string format = "PDF";
 
                     //set params
