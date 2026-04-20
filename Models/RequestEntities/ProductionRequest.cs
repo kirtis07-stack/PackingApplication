@@ -53,6 +53,7 @@ namespace PackingApplication.Models.RequestEntities
         public int ContainerTypeId { get; set; }    //added for to insert in ProductionSummary and FinishedGoodsStock table
         public int OwnerId { get; set; }
         public int BPDetailsId { get; set; }
+        public long DispatchInstructionDetailsID { get; set; }
     }
 
     public class ProductionPalletDetailsRequest : BaseAuditEntity
