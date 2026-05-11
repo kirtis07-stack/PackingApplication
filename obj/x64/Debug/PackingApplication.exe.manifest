@@ -733,7 +733,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kAa+AIurmcpPp3fRBHk402jr68xkL+M4i54plVMvqfk=</dsig:DigestValue>
+        <dsig:DigestValue>f4kwckIVGCqaC9tD+RGeT9yOjjHKflq1QikTYJuble8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -923,7 +923,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UL86o66qzXANY5GW5InYetSYgyChfOMJqvaLMGgKuyo=</dsig:DigestValue>
+      <dsig:DigestValue>tIKjckajL8t0IkV5V7xnZxYnK+y5NL0rvX+3RswvAoU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\icons8-trash-24.png" size="174">

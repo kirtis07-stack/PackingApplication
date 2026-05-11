@@ -3385,11 +3385,12 @@ namespace PackingApplication
                                 // PrinterName = "YourPrinterName", // optional, default printer if omitted
                                 Copies = 1
                             };
-                            // Set custom 4x4 label size
-                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-
                             printDoc.PrinterSettings = printerSettings;
+                            // Set custom 4x4 label size
+                            //printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+                            printDoc.OriginAtMargins = false;
+
                             //printDoc.Print(); // sends PDF to printer
                             try
                             {
