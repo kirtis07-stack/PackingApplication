@@ -78,9 +78,9 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        string itemBoxCategory = "BOX";
+        string itemBoxCategory = "BOX, BOX & PALLET";
         string itemCopsCategory = "COPS";
-        string itemPalletCategory = "PALLET";
+        string itemPalletCategory = "PALLET, BOX & PALLET";
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();

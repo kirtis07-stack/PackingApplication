@@ -105,7 +105,7 @@ namespace PackingApplication.Services
             Log.writeMessage("API call GetItemList - Start : " + DateTime.Now);
             Log.writeMessage("GetItemList : Items/GetAllItemsByItemCategory?itemCategory=" + category + "&subString=" + subString);
 
-            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategory?itemCategory=" + category + "&subString=" + subString);
+            var getItemResponse = await method.GetCallApi(masterURL + "Items/GetAllItemsByItemCategory?itemCategory=" + Uri.EscapeDataString(category) + "&subString=" + subString);
 
             Log.writeMessage("GetItemList Response : " + getItemResponse);
 
