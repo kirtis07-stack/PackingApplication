@@ -3408,56 +3408,55 @@ namespace PackingApplication
                     string productionId = result.ProductionId.ToString();
                     string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
-                    WebClient client = new WebClient();
-                    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
-                    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
-                    //client.UseDefaultCredentials = false;
-
-                    // Download PDF
-                    byte[] bytes = client.DownloadData(url);
-
-                    // Save to temp
-                    string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
-                    File.WriteAllBytes(tempFile, bytes);
-
-                    using (var pdfDoc = PdfDocument.Load(tempFile))
+                    try
                     {
-                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        using (WebClient client = new WebClient())
                         {
-                            var printerSettings = new PrinterSettings()
-                            {
-                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                                Copies = 1
-                            };
-                            printDoc.PrinterSettings = printerSettings;
-                            // Set custom 4x4 label size
-                            //printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-                            printDoc.OriginAtMargins = false;
+                            client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
 
-                            //printDoc.Print(); // sends PDF to printer
-                            try
+                            byte[] bytes = client.DownloadData(url);
+
+                            using (MemoryStream ms = new MemoryStream(bytes))
+                            using (var pdfDoc = PdfDocument.Load(ms))
+                            using (var printDoc = pdfDoc.CreatePrintDocument())
                             {
+                                var printerSettings = new PrinterSettings()
+                                {
+                                    // PrinterName = "YourPrinterName",
+                                    Copies = 1
+                                };
+
+                                printDoc.PrinterSettings = printerSettings;
+
+                                // Silent print - no print popup
+                                printDoc.PrintController = new StandardPrintController();
+
+                                // 4 inch x 4 inch paper
+                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+
+                                printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                                printDoc.OriginAtMargins = false;
+                                printerSettings.DefaultPageSettings.Landscape = true;
+                                printDoc.DefaultPageSettings.Landscape = true;
+
                                 printDoc.Print();
+
                                 int slipId = _packingService.AddPrintSlip(slipRequest);
-                            }
-                            catch (InvalidPrinterException ex)
-                            {
-                                MessageBox.Show("Printer is not available.\n" + ex.Message);
-                            }
-                            catch (Win32Exception ex)
-                            {
-                                MessageBox.Show("Printing failed.\n" + ex.Message);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Unexpected printing error.\n" + ex.Message);
                             }
                         }
                     }
-
-                    // Clean up temp file
-                    File.Delete(tempFile);
+                    catch (InvalidPrinterException ex)
+                    {
+                        MessageBox.Show("Printer is not available.\n" + ex.Message);
+                    }
+                    catch (Win32Exception ex)
+                    {
+                        MessageBox.Show("Printing failed.\n" + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                    }
                 }
                 Log.writeMessage("POY Print - End : " + DateTime.Now);
             }

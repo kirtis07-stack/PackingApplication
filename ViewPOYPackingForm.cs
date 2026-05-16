@@ -3268,6 +3268,72 @@ namespace PackingApplication
         {
             Log.writeMessage("POY btnPrint_Click - Start : " + DateTime.Now);
 
+            //if (_productionId > 0)
+            //{
+            //    slipRequest.ProductionId = _productionId;
+            //    //call ssrs report to print
+            //    string reportpathlink = reportPath + "/POY";
+            //    string format = "PDF";
+
+            //    //set params
+            //    string productionId = _productionId.ToString();
+            //    string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
+
+            //    WebClient client = new WebClient();
+            //    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            //    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+            //    //client.UseDefaultCredentials = false;
+
+            //    // Download PDF
+            //    byte[] bytes = client.DownloadData(url);
+
+            //    // Save to temp
+            //    string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
+            //    System.IO.File.WriteAllBytes(tempFile, bytes);
+
+            //    using (var pdfDoc = PdfDocument.Load(tempFile))
+            //    {
+            //        using (var printDoc = pdfDoc.CreatePrintDocument())
+            //        {
+            //            var printerSettings = new PrinterSettings()
+            //            {
+            //                // PrinterName = "YourPrinterName", // optional, default printer if omitted
+            //                Copies = 1
+            //            };
+            //            printDoc.PrinterSettings = printerSettings;
+            //            // Set custom 4x4 label size
+            //            //printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+            //            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
+            //            printDoc.OriginAtMargins = false;
+            //            //printDoc.Print(); // sends PDF to printer
+            //            try
+            //            {
+            //                printDoc.Print();
+            //                int slipId = _packingService.AddPrintSlip(slipRequest);
+            //            }
+            //            catch (InvalidPrinterException ex)
+            //            {
+            //                MessageBox.Show("Printer is not available.\n" + ex.Message);
+            //            }
+            //            catch (Win32Exception ex)
+            //            {
+            //                MessageBox.Show("Printing failed.\n" + ex.Message);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+            //            }
+            //        }
+            //    }
+
+            //    // Clean up temp file
+            //    System.IO.File.Delete(tempFile);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Please select box.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
             if (_productionId > 0)
             {
                 slipRequest.ProductionId = _productionId;
@@ -3279,55 +3345,55 @@ namespace PackingApplication
                 string productionId = _productionId.ToString();
                 string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
-                WebClient client = new WebClient();
-                //client.Credentials = CredentialCache.DefaultNetworkCredentials;
-                client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
-                //client.UseDefaultCredentials = false;
-
-                // Download PDF
-                byte[] bytes = client.DownloadData(url);
-
-                // Save to temp
-                string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
-                System.IO.File.WriteAllBytes(tempFile, bytes);
-
-                using (var pdfDoc = PdfDocument.Load(tempFile))
+                try
                 {
-                    using (var printDoc = pdfDoc.CreatePrintDocument())
+                    using (WebClient client = new WebClient())
                     {
-                        var printerSettings = new PrinterSettings()
+                        client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+
+                        byte[] bytes = client.DownloadData(url);
+
+                        using (MemoryStream ms = new MemoryStream(bytes))
+                        using (var pdfDoc = PdfDocument.Load(ms))
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
                         {
-                            // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                            Copies = 1
-                        };
-                        printDoc.PrinterSettings = printerSettings;
-                        // Set custom 4x4 label size
-                        //printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                        printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-                        printDoc.OriginAtMargins = false;
-                        //printDoc.Print(); // sends PDF to printer
-                        try
-                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName",
+                                Copies = 1
+                            };
+
+                            printDoc.PrinterSettings = printerSettings;
+
+                            // Silent print - no print popup
+                            printDoc.PrintController = new StandardPrintController();
+
+                            // 4 inch x 4 inch paper
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                            printDoc.OriginAtMargins = false;
+                            printerSettings.DefaultPageSettings.Landscape = true;
+                            printDoc.DefaultPageSettings.Landscape = true;
+
                             printDoc.Print();
+
                             int slipId = _packingService.AddPrintSlip(slipRequest);
-                        }
-                        catch (InvalidPrinterException ex)
-                        {
-                            MessageBox.Show("Printer is not available.\n" + ex.Message);
-                        }
-                        catch (Win32Exception ex)
-                        {
-                            MessageBox.Show("Printing failed.\n" + ex.Message);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Unexpected printing error.\n" + ex.Message);
                         }
                     }
                 }
-
-                // Clean up temp file
-                System.IO.File.Delete(tempFile);
+                catch (InvalidPrinterException ex)
+                {
+                    MessageBox.Show("Printer is not available.\n" + ex.Message);
+                }
+                catch (Win32Exception ex)
+                {
+                    MessageBox.Show("Printing failed.\n" + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                }
             }
             else
             {
