@@ -356,6 +356,12 @@
     <Compile Include="POYPackingList.Designer.cs">
       <DependentUpon>POYPackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintSlip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintSlip.Designer.cs">
+      <DependentUpon>PrintSlip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MasterService.cs" />
@@ -440,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="POYPackingList.resx">
       <DependentUpon>POYPackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintSlip.resx">
+      <DependentUpon>PrintSlip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -104,7 +104,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem printpoy = new ToolStripMenuItem("Print POY Packing Slip")
+            ToolStripMenuItem printpoy = new ToolStripMenuItem("Print POY Packing Slip", null, PrintPackingSlip_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -828,6 +828,23 @@ namespace PackingApplication
             }
 
             Log.writeMessage("AdminAccount DeleteChipsPacking_Click - End : " + DateTime.Now);
+        }
+
+        private void PrintPackingSlip_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("AdminAccount PrintPackingSlip_Click - Start : " + DateTime.Now);
+
+            //var dashboard = this.FindForm() as AdminAccount;
+            //if (dashboard != null)
+            //{
+            //    var form = new PrintSlip();
+            //    var formKey = "PrintSlip";
+            //    form.Tag = "Packing - Print Slip";
+            //    dashboard.LoadFormInContent(form, formKey);
+            //    //this.Text = form.Tag.ToString();
+            //}
+
+            Log.writeMessage("AdminAccount PrintPackingSlip_Click - End : " + DateTime.Now);
         }
 
         // highlight selected menu

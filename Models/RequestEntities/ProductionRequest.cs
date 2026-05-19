@@ -97,4 +97,14 @@ namespace PackingApplication.Models.RequestEntities
         public int PageSize { get; set; }
         public string SubString { get; set; } = null;
     }
+
+    public class GetProductionListForPrint
+    {
+        public string PackingType { get; set; }
+        public int DeptId { get; set; }
+        public long StartBoxNoId { get; set; }
+        public long EndBoxNoId { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+    }
 }

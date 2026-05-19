@@ -170,5 +170,18 @@ namespace PackingApplication.Services
                      ?? new List<ProductionResponse>();             // handle null JSON
             return getPacking;
         }
+
+        public async Task<List<ProductionResponse>> getAllBoxesForPrint(GetProductionListForPrint productionRequest)
+        {
+            var getPackingResponse = method.PostCallApi(packingURL + "Production/GetAllBoxesForPrint", productionRequest).Result;
+            if (getPackingResponse.StatusCode != 200)
+            {
+                var error = JsonConvert.DeserializeObject<ApiErrorResponse>(getPackingResponse.ResponseBody);
+                MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            Log.writeMessage("getProductionDetailsBySelectedParameter : " + getPackingResponse);
+            return JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse.ResponseBody);
+        }
     }
 }
