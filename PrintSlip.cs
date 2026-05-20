@@ -3,16 +3,21 @@ using PackingApplication.Helper;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PackingApplication
 {
@@ -20,7 +25,7 @@ namespace PackingApplication
     {
         private static Logger Log = Logger.GetLogger();
         private bool isFormReady = false;
-        string pakingType;
+        string packingType;
         MasterService _masterService = new MasterService();
         bool suppressEvents = false;
         private System.Windows.Forms.Label lblLoading;
@@ -28,6 +33,12 @@ namespace PackingApplication
         CommonMethod _cmethod = new CommonMethod();
         GetProductionListForPrint getBoxListRequest = new GetProductionListForPrint();
         List<ProductionResponse> packingList = new List<ProductionResponse>();
+        ProductionPrintSlipRequest slipRequest = new ProductionPrintSlipRequest();
+        string reportServer = ConfigurationManager.AppSettings["reportServer"];
+        string reportPath = ConfigurationManager.AppSettings["reportPath"];
+        string UserName = ConfigurationManager.AppSettings["UserName"];
+        string Password = ConfigurationManager.AppSettings["Password"];
+        string Domain = ConfigurationManager.AppSettings["Domain"];
         public PrintSlip()
         {
             Log.writeMessage("PrintSlip - Start : " + DateTime.Now);
@@ -201,8 +212,8 @@ namespace PackingApplication
             if (PackingTypeList.SelectedValue != null)
             {
                 var PackingType = PackingTypeList.SelectedValue.ToString();
-                pakingType = PackingTypeList.SelectedValue.ToString();
-                getBoxListRequest.PackingType = pakingType == "POY" ? "POYPACKING" : pakingType == "DTY" ? "DTYPACKING" : pakingType == "BCF" ? "BCFPACKING" : "CHPPACKING";
+                packingType = PackingTypeList.SelectedValue.ToString();
+                getBoxListRequest.PackingType = packingType == "POY" ? "POYPACKING" : packingType == "DTY" ? "DTYPACKING" : packingType == "BCF" ? "BCFPACKING" : "CHPPACKING";
             }
 
             Log.writeMessage("PrintSlip PackingTypeList_SelectedIndexChanged - End : " + DateTime.Now);
@@ -266,7 +277,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(pakingType, typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(packingType, typedText).Result.OrderBy(x => x.DepartmentName).ToList();
 
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
 
@@ -307,7 +318,7 @@ namespace PackingApplication
             {
                 DeptList.DataSource = null;
                 //selectedPackingType = pakingType == "POY" ? "SpinningLot" : pakingType == "DTY" ? "TexturisingLot" : pakingType == "BCF" ? "BCFLot" : "ChipsLot";
-                var deptList = _masterService.GetDepartmentList(pakingType, "").Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(packingType, "").Result.OrderBy(x => x.DepartmentName).ToList();
                 deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Department" });
                 DeptList.DataSource = deptList;
                 DeptList.DisplayMember = "DepartmentName";
@@ -673,8 +684,17 @@ namespace PackingApplication
                 {
                     Name = "Print",
                     HeaderText = "Print",
-                    DataPropertyName = "Print",
-                    Width = 80
+                    ValueType = typeof(bool),
+                    TrueValue = true,
+                    FalseValue = false,
+                    Width = 80,
+                    ReadOnly = false
+                });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "ProductionId",
+                    DataPropertyName = "ProductionId",
+                    Visible = false
                 });
 
                 dataGridView1.Columns["BoxNoFmtd"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -685,7 +705,6 @@ namespace PackingApplication
                 dataGridView1.Columns["BoxNoFmtd"].Width = 150;
                 dataGridView1.Columns["ProductionDate"].Width = 110;
                 dataGridView1.Columns["NetWt"].Width = 80;
-                dataGridView1.Columns["Print"].Width = 80;
 
                 ListtoDataTableConverter converter = new ListtoDataTableConverter();
                 DataTable dt = converter.ToDataTable(packingList);
@@ -698,6 +717,7 @@ namespace PackingApplication
 
                 dataGridView1.CurrentCellDirtyStateChanged += dataGridView1_CurrentCellDirtyStateChanged;
                 dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+                dataGridView1.KeyDown += dataGridView1_KeyDown;
             }
             else
             {
@@ -722,22 +742,52 @@ namespace PackingApplication
 
             if (e.RowIndex >= 0 && dataGridView1.Columns[e.ColumnIndex].Name == "Print")
             {
-                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                DataGridViewCheckBoxCell chk =
+           (DataGridViewCheckBoxCell)dataGridView1.Rows[e.RowIndex].Cells["Print"];
 
-                bool isChecked = Convert.ToBoolean(
-                    dataGridView1.Rows[e.RowIndex].Cells["Print"].Value
-                );
+                bool currentValue = chk.Value != null &&
+                                    Convert.ToBoolean(chk.Value);
+
+                chk.Value = !currentValue;
 
                 string boxNo = dataGridView1.Rows[e.RowIndex]
-                                            .Cells["BoxNoFmtd"]
-                                            .Value
-                                            .ToString();
+                                .Cells["BoxNoFmtd"]
+                                .Value
+                                .ToString();
 
-                MessageBox.Show("Box No : " + boxNo +
-                                "\nChecked : " + isChecked);
+                //MessageBox.Show("Box No : " + boxNo +
+                //                "\nChecked : " + (!currentValue));
             }
 
             Log.writeMessage("PrintSlip dataGridView1_CellContentClick - End : " + DateTime.Now);
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("PrintSlip dataGridView1_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (dataGridView1.CurrentRow != null)
+                {
+                    int rowIndex = dataGridView1.CurrentCell.RowIndex;
+
+                    DataGridViewCheckBoxCell chk =
+                        (DataGridViewCheckBoxCell)dataGridView1.Rows[rowIndex]
+                        .Cells["Print"];
+
+                    bool currentValue = chk.Value != null &&
+                                        Convert.ToBoolean(chk.Value);
+
+                    chk.Value = !currentValue;
+
+                    dataGridView1.RefreshEdit();
+
+                    // Prevent next row movement
+                    e.Handled = true;
+                }
+            }
+            Log.writeMessage("PrintSlip dataGridView1_KeyDown - End : " + DateTime.Now);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -779,6 +829,127 @@ namespace PackingApplication
             PackingTypeList.Focus();
 
             Log.writeMessage("PrintSlip btnCancel_Click - End : " + DateTime.Now);
+        }
+
+        private void btnUnselectAll_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip btnUnselectAll_Click - Start : " + DateTime.Now);
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Cells["Print"].Value = false;
+            }
+
+            dataGridView1.RefreshEdit();
+
+            Log.writeMessage("PrintSlip btnUnselectAll_Click - End : " + DateTime.Now);
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip btnSelectAll_Click - Start : " + DateTime.Now);
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Cells["Print"].Value = true;
+            }
+
+            dataGridView1.RefreshEdit();
+
+            Log.writeMessage("PrintSlip btnSelectAll_Click - End : " + DateTime.Now);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip btnPrint_Click - Start : " + DateTime.Now);
+
+            List<long> selectedProductionIds = new List<long>();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                bool isChecked = row.Cells["Print"].Value != null &&
+                                 Convert.ToBoolean(row.Cells["Print"].Value);
+
+                if (isChecked)
+                {
+                    long productionId = Convert.ToInt64(
+                        row.Cells["ProductionId"].Value
+                    );
+
+                    selectedProductionIds.Add(productionId);
+                }
+            }
+
+            if (selectedProductionIds.Count == 0)
+            {
+                MessageBox.Show("Please select at least one box.");
+                return;
+            }
+
+            //string ids = string.Join(",", selectedProductionIds);
+            foreach (var item in selectedProductionIds)
+            {
+                slipRequest.ProductionId = item;
+                //call ssrs report to print
+                string reportpathlink = reportPath + "/" + packingType;
+                string format = "PDF";
+
+                //set params
+                string productionId = item.ToString();
+                string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
+
+                try
+                {
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+
+                        byte[] bytes = client.DownloadData(url);
+
+                        using (MemoryStream ms = new MemoryStream(bytes))
+                        using (var pdfDoc = PdfDocument.Load(ms))
+                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        {
+                            var printerSettings = new PrinterSettings()
+                            {
+                                // PrinterName = "YourPrinterName",
+                                Copies = (packingType == "BCF" ? (short)2 : (short)1)
+                            };
+
+                            printDoc.PrinterSettings = printerSettings;
+
+                            // Silent print - no print popup
+                            printDoc.PrintController = new StandardPrintController();
+
+                            // 4 inch x 4 inch paper
+                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                            printDoc.OriginAtMargins = false;
+                            printerSettings.DefaultPageSettings.Landscape = true;
+                            printDoc.DefaultPageSettings.Landscape = true;
+
+                            printDoc.Print();
+
+                            int slipId = _packingService.AddPrintSlip(slipRequest);
+                        }
+                    }
+                }
+                catch (InvalidPrinterException ex)
+                {
+                    MessageBox.Show("Printer is not available.\n" + ex.Message);
+                }
+                catch (Win32Exception ex)
+                {
+                    MessageBox.Show("Printing failed.\n" + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                }
+            }
+
+            Log.writeMessage("PrintSlip btnPrint_Click - End : " + DateTime.Now);
         }
     }
 }

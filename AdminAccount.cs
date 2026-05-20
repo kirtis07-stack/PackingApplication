@@ -834,15 +834,15 @@ namespace PackingApplication
         {
             Log.writeMessage("AdminAccount PrintPackingSlip_Click - Start : " + DateTime.Now);
 
-            //var dashboard = this.FindForm() as AdminAccount;
-            //if (dashboard != null)
-            //{
-            //    var form = new PrintSlip();
-            //    var formKey = "PrintSlip";
-            //    form.Tag = "Packing - Print Slip";
-            //    dashboard.LoadFormInContent(form, formKey);
-            //    //this.Text = form.Tag.ToString();
-            //}
+            var dashboard = this.FindForm() as AdminAccount;
+            if (dashboard != null)
+            {
+                var form = new PrintSlip();
+                var formKey = "PrintSlip";
+                form.Tag = "Packing - Print Slip";
+                dashboard.LoadFormInContent(form, formKey);
+                //this.Text = form.Tag.ToString();
+            }
 
             Log.writeMessage("AdminAccount PrintPackingSlip_Click - End : " + DateTime.Now);
         }
