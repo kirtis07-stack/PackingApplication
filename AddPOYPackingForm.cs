@@ -56,8 +56,6 @@ namespace PackingApplication
         private long _productionId;
         private int width = 0;
         CommonMethod _cmethod = new CommonMethod();
-        bool sidebarExpand = false;
-        private bool showSidebarBorder = true;
         List<LotsDetailsResponse> lotsDetailsList = new List<LotsDetailsResponse>();
         LotsResponse lotResponse = new LotsResponse();
         WeighingScaleReader wtReader = new WeighingScaleReader();
@@ -79,8 +77,6 @@ namespace PackingApplication
         string itemBoxCategory = "BOX, BOX & PALLET";
         string itemCopsCategory = "COPS";
         string itemPalletCategory = "PALLET, BOX & PALLET";
-        List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
-        List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
@@ -91,6 +87,7 @@ namespace PackingApplication
         string Domain = ConfigurationManager.AppSettings["Domain"];
         bool suppressEvents = false;
         int selectedDeptId = 0;
+        int selectedSubDeptId = 0;
         int selectedMachineid = 0;
         short selectedItemTypeid = 0;
         short selectedMainItemTypeid = 0;
@@ -178,11 +175,11 @@ namespace PackingApplication
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
 
-            var deptList = new List<DepartmentResponse>();
-            deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            var deptList = new List<SubDepartmentResponse>();
+            deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
             DeptList.DataSource = deptList;
-            DeptList.DisplayMember = "DepartmentName";
-            DeptList.ValueMember = "DepartmentId";
+            DeptList.DisplayMember = "SubDepartmentName";
+            DeptList.ValueMember = "SubDepartmentId";
             DeptList.SelectedIndex = 0;
 
             var packsizeList = new List<PackSizeResponse>();
@@ -502,7 +499,7 @@ namespace PackingApplication
         //        PalletTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         //        o_departmentResponses = deptList;
-        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select SubDept" });
         //        DeptList.DataSource = deptList;
         //        DeptList.DisplayMember = "DepartmentName";
         //        DeptList.ValueMember = "DepartmentId";
@@ -716,11 +713,11 @@ namespace PackingApplication
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
-                DeptList.Items.Add(productionResponse.DepartmentName);
-                DeptList.SelectedItem = productionResponse.DepartmentName;
-                productionRequest.DepartmentId = productionResponse.DepartmentId;
-                selectedDeptId = productionResponse.DepartmentId;
+                DeptList.Items.Add("Select SubDept");
+                DeptList.Items.Add(productionResponse.SubDepartmentName);
+                DeptList.SelectedItem = productionResponse.SubDepartmentName;
+                productionRequest.SubDepartmentId = productionResponse.SubDepartmentId;
+                selectedSubDeptId = productionResponse.SubDepartmentId;
 
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
@@ -948,18 +945,19 @@ namespace PackingApplication
                         selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("POY", selectedMachine.DepartmentName).Result;
-                            deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            var deptTask = _masterService.GetDepartmentList("POY", selectedMachine.SubDepartmentName, null).Result;
+                            deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
-                            DeptList.SelectedValue = selectedMachine.DepartmentId;
+                            DeptList.SelectedValue = selectedMachine.SubDepartmentId;
+                            selectedSubDeptId = selectedMachine.SubDepartmentId;
                             selectedDeptId = selectedMachine.DepartmentId;
-                            productionRequest.DepartmentId = selectedDeptId;
+                            productionRequest.SubDepartmentId = selectedSubDeptId;
                             //var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
-                            //filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            //filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select SubDept" });
                             //DeptList.DataSource = filteredDepts;
-                            DeptList.DisplayMember = "DepartmentName";
-                            DeptList.ValueMember = "DepartmentId";
+                            DeptList.DisplayMember = "SubDepartmentName";
+                            DeptList.ValueMember = "SubDepartmentId";
                             if (DeptList.Items.Count > 1)
                             {
                                 DeptList.SelectedIndex = 1;
@@ -968,7 +966,7 @@ namespace PackingApplication
                         }
                         if (productionRequest.PrefixCode != 0)
                         {
-                            prefixRequest.DepartmentId = selectedDeptId;
+                            prefixRequest.DepartmentId = selectedSubDeptId;
                             prefixRequest.TxnFlag = "POY";
                             prefixRequest.TransactionTypeId = 5;
                             prefixRequest.ProductionTypeId = 1;
@@ -1051,7 +1049,7 @@ namespace PackingApplication
                 //LineNoList.Items.Clear();
 
                 List<MachineResponse> machineList = new List<MachineResponse>();
-                if (selectedDeptId == 0)
+                if (selectedSubDeptId == 0)
                 {
                     machineList = _masterService.GetMachineList("SpinningLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
 
@@ -1059,7 +1057,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "SpinningLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "SpinningLot").Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -1130,15 +1128,15 @@ namespace PackingApplication
                             productionRequest.MachineId = selectedLot.MachineId;
                             selectedMachineid = selectedLot.MachineId;
                         }
-                        if (selectedDeptId == 0)
+                        if (selectedSubDeptId == 0)
                         {
                             DeptList.DataSource = null;
                             DeptList.Items.Clear();
-                            DeptList.Items.Add("Select Dept");
-                            DeptList.Items.Add(selectedLot.DepartmentName);
-                            DeptList.SelectedItem = selectedLot.DepartmentName;
-                            productionRequest.DepartmentId = selectedLot.DepartmentId;
-                            selectedDeptId = selectedLot.DepartmentId;
+                            DeptList.Items.Add("Select SubDept");
+                            DeptList.Items.Add(selectedLot.SubDepartmentName);
+                            DeptList.SelectedItem = selectedLot.SubDepartmentName;
+                            productionRequest.SubDepartmentId = selectedLot.SubDepartmentId;
+                            selectedSubDeptId = selectedLot.SubDepartmentId;
                         }
                         selectLotId = selectedLotId;
                         lotResponse = _productionService.getLotById(selectedLotId).Result;
@@ -2168,24 +2166,24 @@ namespace PackingApplication
 
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                var deptTask = _masterService.GetDepartmentList("POY", selectedPrefix.Department).Result;
-                deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                var deptTask = _masterService.GetDepartmentList("POY", null,selectedPrefix.Department).Result;
+                deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                 DeptList.DataSource = deptTask;
-                DeptList.SelectedValue = selectedPrefix.DepartmentId;
-                selectedDeptId = selectedPrefix.DepartmentId;
-                productionRequest.DepartmentId = selectedDeptId;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
-                if (DeptList.Items.Count > 1)
-                {
-                    DeptList.SelectedIndex = 1;
-                }
+                //DeptList.SelectedValue = selectedPrefix.DepartmentId;
+                //selectedSubDeptId = selectedPrefix.DepartmentId;
+                //productionRequest.SubDepartmentId = selectedSubDeptId;
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
+                //if (DeptList.Items.Count > 1)
+                //{
+                //    DeptList.SelectedIndex = 1;
+                //}
                 DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
                 List<MachineResponse> machineList = new List<MachineResponse>();
-                if (selectedDeptId != 0)
+                if (selectedSubDeptId != 0)
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "SpinningLot").Result;
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "SpinningLot").Result;
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                     //LineNoList.DataSource = machineList;
@@ -2279,7 +2277,7 @@ namespace PackingApplication
 
             if (DeptList.SelectedIndex <= 0)
             {
-                selectedDeptId = 0;
+                selectedSubDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -2288,8 +2286,8 @@ namespace PackingApplication
             {
                 if (DeptList.SelectedValue != null)
                 {
-                    DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
-                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+                    SubDepartmentResponse selectedDepartment = (SubDepartmentResponse)DeptList.SelectedItem;
+                    int selectedDepartmentId = selectedDepartment.SubDepartmentId;
 
                     //if (selectedDepartment != null && productionRequest.MachineId == 0)
                     //{
@@ -2298,18 +2296,19 @@ namespace PackingApplication
                     //    LineNoList.DataSource = machineList;
                     //}
 
-                    productionRequest.DepartmentId = selectedDepartmentId;
-                    selectedDeptId = selectedDepartmentId;
+                    productionRequest.SubDepartmentId = selectedDepartmentId;
+                    selectedSubDeptId = selectedDepartmentId;
+                    selectedDeptId = selectedDepartment.DepartmentId;
 
                     LineNoList.DataSource = null;
                     LineNoList.Items.Clear();
                     LineNoList.Items.Add("Select Line No.");
                     LineNoList.SelectedItem = "Select Line No.";
 
-                    PrefixList.DataSource = null;
-                    PrefixList.Items.Clear();
-                    PrefixList.Items.Add("Select Prefix");
-                    PrefixList.SelectedItem = "Select Prefix";
+                    //PrefixList.DataSource = null;
+                    //PrefixList.Items.Clear();
+                    //PrefixList.Items.Add("Select Prefix");
+                    //PrefixList.SelectedItem = "Select Prefix";
 
                     MergeNoList.DataSource = null;
                     MergeNoList.Items.Clear();
@@ -2317,7 +2316,7 @@ namespace PackingApplication
                     MergeNoList.SelectedItem = "Select MergeNo";
 
                     ResetLotValues();
-                    prodtype.Text = "";
+                    //prodtype.Text = "";
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "POY";
@@ -2377,7 +2376,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
-                selectedDeptId = 0;
+                selectedSubDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;
@@ -2389,14 +2388,14 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("POY", typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("POY", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
                 DeptList.BeginUpdate();
                 DeptList.DataSource = null;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
                 DeptList.DataSource = deptList;
                 DeptList.EndUpdate();
 
@@ -4066,8 +4065,8 @@ namespace PackingApplication
             }
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
-                selectedMachineid = 0;      // Make selectedMachineid, selectedDeptId so that all mergeno will get in list
-                selectedDeptId = 0;
+                selectedMachineid = 0;      // Make selectedMachineid, selectedSubDeptId so that all mergeno will get in list
+                selectedSubDeptId = 0;
                 MergeNoList.DataSource = null;
                 var mergenoList = _productionService.getLotsByLotType("SpinningLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -4382,10 +4381,10 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("POY", "").Result.OrderBy(x => x.DepartmentName).ToList();
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
+                var deptList = _masterService.GetDepartmentList("POY", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
                 DeptList.DataSource = deptList;
                 DeptList.SelectedIndex = 0;
                 DeptList.DroppedDown = true; // Open the dropdown list
@@ -4481,7 +4480,7 @@ namespace PackingApplication
                 balanceQty = 0;
                 selectedMachineid = 0;
                 selectedItemTypeid = 0;
-                selectedDeptId = 0;
+                selectedSubDeptId = 0;
                 selectLotId = 0;
                 selectedSOId = 0;
                 selectedSONumber = "";
@@ -4496,7 +4495,7 @@ namespace PackingApplication
                 productionRequest = new ProductionRequest();
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
-                //DeptList.Items.Add("Select Dept");
+                //DeptList.Items.Add("Select SubDept");
                 //DeptList.SelectedIndex = 0;
 
                 //MergeNoList.DataSource = null;

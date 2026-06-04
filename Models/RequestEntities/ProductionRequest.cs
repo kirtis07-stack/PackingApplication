@@ -10,7 +10,7 @@ namespace PackingApplication.Models.RequestEntities
     public class ProductionRequest : BaseAuditEntity
     {
         public string PackingType { get; set; }
-        public int DepartmentId { get; set; }
+        public int SubDepartmentId { get; set; }
         public int MachineId { get; set; }
         public int LotId { get; set; }
         public int PrefixCode { get; set; }
@@ -90,7 +90,7 @@ namespace PackingApplication.Models.RequestEntities
     {
         public string PackingType { get; set; }
         public int MachineId { get; set; }
-        public int DeptId { get; set; }
+        public int SubDeptId { get; set; }
         public string BoxNo { get; set; }
         public string ProductionDate { get; set; }
         public int PageNumber { get; set; }
@@ -101,7 +101,7 @@ namespace PackingApplication.Models.RequestEntities
     public class GetProductionListForPrint
     {
         public string PackingType { get; set; }
-        public int DeptId { get; set; }
+        public int SubDeptId { get; set; }
         public long StartBoxNoId { get; set; }
         public long EndBoxNoId { get; set; }
         public string StartDate { get; set; }

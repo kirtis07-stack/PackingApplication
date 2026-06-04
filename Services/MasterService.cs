@@ -218,23 +218,23 @@ namespace PackingApplication.Services
             return getItem;
         }
 
-        public async Task<List<DepartmentResponse>> GetDepartmentList(string packingType, string subString)
+        public async Task<List<SubDepartmentResponse>> GetDepartmentList(string packingType, string subString, string departmentName)
         {
-            Log.writeMessage("API call GetDepartmentList - Start : " + DateTime.Now);
-            Log.writeMessage("GetDepartmentsByPackingType : Departments/packingType?packingType=packingType&subString=subString");
+            Log.writeMessage("API call GetSubDepartmentList - Start : " + DateTime.Now);
+            Log.writeMessage("GetSubDepartmentsByPackingType : SubDepartments/packingType?packingType=packingType&subString=subString");
 
-            var getDepartmentResponse = await method.GetCallApi(masterURL + "Departments/GetAllByPackingType?packingType=" + packingType + "&subString=" + subString);
+            var getDepartmentResponse = await method.GetCallApi(masterURL + "SubDepartments/GetAllSubDepartmentByPackingType?packingType=" + packingType + "&subString=" + subString + "&departmentName=" + departmentName);
 
-            Log.writeMessage("GetDepartmentList Response : " + getDepartmentResponse);
+            Log.writeMessage("GetSubDepartmentList Response : " + getDepartmentResponse);
 
             if (string.IsNullOrWhiteSpace(getDepartmentResponse))
             {
-                Log.writeMessage("API call GetDepartmentList - End : " + DateTime.Now);
-                return new List<DepartmentResponse>();
+                Log.writeMessage("API call GetSubDepartmentList - End : " + DateTime.Now);
+                return new List<SubDepartmentResponse>();
             }
 
-            var getDepartment = JsonConvert.DeserializeObject<List<DepartmentResponse>>(getDepartmentResponse) ?? new List<DepartmentResponse>();
-            Log.writeMessage("API call GetDepartmentList - End : " + DateTime.Now);
+            var getDepartment = JsonConvert.DeserializeObject<List<SubDepartmentResponse>>(getDepartmentResponse) ?? new List<SubDepartmentResponse>();
+            Log.writeMessage("API call GetSubDepartmentList - End : " + DateTime.Now);
 
             return getDepartment;
         }

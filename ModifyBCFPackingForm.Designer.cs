@@ -647,7 +647,7 @@ namespace PackingApplication
             this.srdept.Name = "srdept";
             this.srdept.Size = new System.Drawing.Size(33, 13);
             this.srdept.TabIndex = 100;
-            this.srdept.Text = "Dept:";
+            this.srdept.Text = "SubDept:";
             // 
             // srlineno
             // 
@@ -2380,7 +2380,7 @@ namespace PackingApplication
             this.department.Name = "department";
             this.department.Size = new System.Drawing.Size(33, 13);
             this.department.TabIndex = 2;
-            this.department.Text = "Dept:";
+            this.department.Text = "Sub\nDept:";
             // 
             // panel4
             // 

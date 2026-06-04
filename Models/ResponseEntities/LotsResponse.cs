@@ -21,8 +21,8 @@ namespace PackingApplication.Models.ResponseEntities
         public string FinYear { get; set; }
         public int MachineId { get; set; }
         public string MachineName { get; set; }
-        public int DepartmentId { get; set; }
-        public string DepartmentName { get; set; }
+        public int SubDepartmentId { get; set; }
+        public string SubDepartmentName { get; set; }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public string ItemTradeName { get; set; }

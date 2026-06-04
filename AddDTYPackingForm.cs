@@ -57,8 +57,6 @@ namespace PackingApplication
         private bool isFormReady = false;
         string itemBoxCategory = "BOX";
         string itemCopsCategory = "COPS";
-        List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
-        List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         decimal startWeight = 0;
         decimal endWeight = 0;
@@ -70,6 +68,7 @@ namespace PackingApplication
         string Domain = ConfigurationManager.AppSettings["Domain"];
         bool suppressEvents = false;
         int selectedDeptId = 0;
+        int selectedSubDeptId = 0;
         int selectedMachineid = 0;
         short selectedItemTypeid = 0;
         short selectedMainItemTypeid = 0;
@@ -152,11 +151,11 @@ namespace PackingApplication
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
 
-            var deptList = new List<DepartmentResponse>();
-            deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            var deptList = new List<SubDepartmentResponse>();
+            deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
             DeptList.DataSource = deptList;
-            DeptList.DisplayMember = "DepartmentName";
-            DeptList.ValueMember = "DepartmentId";
+            DeptList.DisplayMember = "SubDepartmentName";
+            DeptList.ValueMember = "SubDepartmentId";
             DeptList.SelectedIndex = 0;
 
             var packsizeList = new List<PackSizeResponse>();
@@ -449,7 +448,7 @@ namespace PackingApplication
         //        BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         //        o_departmentResponses = deptList;
-        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select SubDept" });
         //        DeptList.DataSource = deptList;
         //        DeptList.DisplayMember = "DepartmentName";
         //        DeptList.ValueMember = "DepartmentId";
@@ -495,11 +494,11 @@ namespace PackingApplication
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
-                DeptList.Items.Add("Select Dept");
-                DeptList.Items.Add(productionResponse.DepartmentName);
-                DeptList.SelectedItem = productionResponse.DepartmentName;
-                productionRequest.DepartmentId = productionResponse.DepartmentId;
-                selectedDeptId = productionResponse.DepartmentId;
+                DeptList.Items.Add("Select SubDept");
+                DeptList.Items.Add(productionResponse.SubDepartmentName);
+                DeptList.SelectedItem = productionResponse.SubDepartmentName;
+                productionRequest.SubDepartmentId = productionResponse.SubDepartmentId;
+                selectedSubDeptId = productionResponse.SubDepartmentId;
 
                 MergeNoList.DataSource = null;
                 MergeNoList.Items.Clear();
@@ -686,18 +685,19 @@ namespace PackingApplication
                         selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.DepartmentName).Result;
-                            deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.SubDepartmentName, null).Result;
+                            deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
-                            DeptList.SelectedValue = selectedMachine.DepartmentId;
+                            DeptList.SelectedValue = selectedMachine.SubDepartmentId;
+                            selectedSubDeptId = selectedMachine.SubDepartmentId;
                             selectedDeptId = selectedMachine.DepartmentId;
-                            productionRequest.DepartmentId = selectedDeptId;
+                            productionRequest.SubDepartmentId = selectedSubDeptId;
                             //var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
-                            //filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            //filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select SubDept" });
                             //DeptList.DataSource = filteredDepts;
-                            DeptList.DisplayMember = "DepartmentName";
-                            DeptList.ValueMember = "DepartmentId";
+                            DeptList.DisplayMember = "SubDepartmentName";
+                            DeptList.ValueMember = "SubDepartmentId";
                             if (DeptList.Items.Count > 1)
                             {
                                 DeptList.SelectedIndex = 1;
@@ -789,7 +789,7 @@ namespace PackingApplication
             {
                 //LineNoList.Items.Clear();
                 List<MachineResponse> machineList = new List<MachineResponse>();
-                if (selectedDeptId == 0)
+                if (selectedSubDeptId == 0)
                 {
                     machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
 
@@ -797,7 +797,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "TexturisingLot").Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -869,17 +869,17 @@ namespace PackingApplication
                             productionRequest.MachineId = selectedLot.MachineId;
                             selectedMachineid = selectedLot.MachineId;
                         }
-                        if (selectedDeptId == 0)
+                        if (selectedSubDeptId == 0)
                         {
                             DeptList.DataSource = null;
                             DeptList.Items.Clear();
-                            DeptList.Items.Add("Select Dept");
-                            DeptList.Items.Add(selectedLot.DepartmentName);
-                            DeptList.SelectedItem = selectedLot.DepartmentName;
-                            productionRequest.DepartmentId = selectedLot.DepartmentId;
-                            selectedDeptId = selectedLot.DepartmentId;
+                            DeptList.Items.Add("Select SubDept");
+                            DeptList.Items.Add(selectedLot.SubDepartmentName);
+                            DeptList.SelectedItem = selectedLot.SubDepartmentName;
+                            productionRequest.SubDepartmentId = selectedLot.SubDepartmentId;
+                            selectedSubDeptId = selectedLot.SubDepartmentId;
                         }
-                     
+
                         selectLotId = selectedLotId;
                         lotResponse = _productionService.getLotById(selectedLotId).Result;
                         if (lotResponse != null)
@@ -1881,24 +1881,24 @@ namespace PackingApplication
                 int selectedPrefixId = selectedPrefix.PrefixCode;
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                var deptTask = _masterService.GetDepartmentList("DTY", selectedPrefix.Department).Result;
-                deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                var deptTask = _masterService.GetDepartmentList("DTY",null, selectedPrefix.Department).Result;
+                deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                 DeptList.DataSource = deptTask;
-                DeptList.SelectedValue = selectedPrefix.DepartmentId;
-                selectedDeptId = selectedPrefix.DepartmentId;
-                productionRequest.DepartmentId = selectedDeptId;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
-                if (DeptList.Items.Count > 1)
-                {
-                    DeptList.SelectedIndex = 1;
-                }
+                //DeptList.SelectedValue = selectedPrefix.DepartmentId;
+                //selectedSubDeptId = selectedPrefix.DepartmentId;
+                //productionRequest.SubDepartmentId = selectedSubDeptId;
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
+                //if (DeptList.Items.Count > 1)
+                //{
+                //    DeptList.SelectedIndex = 1;
+                //}
                 DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
                 List<MachineResponse> machineList = new List<MachineResponse>();
-                if (selectedDeptId != 0)
+                if (selectedSubDeptId != 0)
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result;
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "TexturisingLot").Result;
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                     //LineNoList.DataSource = machineList;
@@ -1991,7 +1991,7 @@ namespace PackingApplication
 
             if (DeptList.SelectedIndex <= 0)
             {
-                selectedDeptId = 0;
+                selectedSubDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -2000,8 +2000,8 @@ namespace PackingApplication
             {
                 if (DeptList.SelectedValue != null)
                 {
-                    DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
-                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+                    SubDepartmentResponse selectedDepartment = (SubDepartmentResponse)DeptList.SelectedItem;
+                    int selectedDepartmentId = selectedDepartment.SubDepartmentId;
 
                     //if (selectedDepartment != null && productionRequest.DepartmentId == 0)
                     //{
@@ -2011,18 +2011,19 @@ namespace PackingApplication
                     //    LineNoList.DataSource = machineList;
                     //}
 
-                    productionRequest.DepartmentId = selectedDepartmentId;
-                    selectedDeptId = selectedDepartmentId;
+                    productionRequest.SubDepartmentId = selectedDepartmentId;
+                    selectedSubDeptId = selectedDepartmentId;
+                    selectedDeptId = selectedDepartment.DepartmentId;
 
                     LineNoList.DataSource = null;
                     LineNoList.Items.Clear();
                     LineNoList.Items.Add("Select Line No.");
                     LineNoList.SelectedItem = "Select Line No.";
 
-                    PrefixList.DataSource = null;
-                    PrefixList.Items.Clear();
-                    PrefixList.Items.Add("Select Prefix");
-                    PrefixList.SelectedItem = "Select Prefix";
+                    //PrefixList.DataSource = null;
+                    //PrefixList.Items.Clear();
+                    //PrefixList.Items.Add("Select Prefix");
+                    //PrefixList.SelectedItem = "Select Prefix";
 
                     MergeNoList.DataSource = null;
                     MergeNoList.Items.Clear();
@@ -2030,7 +2031,7 @@ namespace PackingApplication
                     MergeNoList.SelectedItem = "Select MergeNo";
 
                     ResetLotValues();
-                    prodtype.Text = "";
+                    //prodtype.Text = "";
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
                     //prefixRequest.TxnFlag = "DTY";
@@ -2090,7 +2091,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;   
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
-                selectedDeptId = 0;
+                selectedSubDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;
@@ -2102,14 +2103,14 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("DTY", typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("DTY", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                deptList.Insert(0, new SubDepartmentResponse { DepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
                 DeptList.BeginUpdate();
                 DeptList.DataSource = null;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
                 DeptList.DataSource = deptList;
                 DeptList.EndUpdate();
 
@@ -2530,56 +2531,55 @@ namespace PackingApplication
                     string productionId = result.ProductionId.ToString();
                     string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
 
-                    WebClient client = new WebClient();
-                    //client.Credentials = CredentialCache.DefaultNetworkCredentials;
-                    client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
-                    //client.UseDefaultCredentials = false;
-
-                    // Download PDF
-                    byte[] bytes = client.DownloadData(url);
-
-                    // Save to temp
-                    string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "Report.pdf");
-                    File.WriteAllBytes(tempFile, bytes);
-
-                    using (var pdfDoc = PdfDocument.Load(tempFile))
+                    try
                     {
-                        using (var printDoc = pdfDoc.CreatePrintDocument())
+                        using (WebClient client = new WebClient())
                         {
-                            var printerSettings = new PrinterSettings()
-                            {
-                                // PrinterName = "YourPrinterName", // optional, default printer if omitted
-                                Copies = 1
-                            };
-                            printDoc.PrinterSettings = printerSettings;
-                            // Set custom 4x4 label size
-                            //printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
-                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // no margins
-                            printDoc.OriginAtMargins = false;
+                            client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
 
-                            //printDoc.Print(); // sends PDF to printer
-                            try
+                            byte[] bytes = client.DownloadData(url);
+
+                            using (MemoryStream ms = new MemoryStream(bytes))
+                            using (var pdfDoc = PdfDocument.Load(ms))
+                            using (var printDoc = pdfDoc.CreatePrintDocument())
                             {
+                                var printerSettings = new PrinterSettings()
+                                {
+                                    // PrinterName = "YourPrinterName",
+                                    Copies = 1
+                                };
+
+                                printDoc.PrinterSettings = printerSettings;
+
+                                // Silent print - no print popup
+                                printDoc.PrintController = new StandardPrintController();
+
+                                // 4 inch x 4 inch paper
+                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+
+                                printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+                                printDoc.OriginAtMargins = false;
+                                printerSettings.DefaultPageSettings.Landscape = true;
+                                printDoc.DefaultPageSettings.Landscape = true;
+
                                 printDoc.Print();
+
                                 int slipId = _packingService.AddPrintSlip(slipRequest);
-                            }
-                            catch (InvalidPrinterException ex)
-                            {
-                                MessageBox.Show("Printer is not available.\n" + ex.Message);
-                            }
-                            catch (Win32Exception ex)
-                            {
-                                MessageBox.Show("Printing failed.\n" + ex.Message);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Unexpected printing error.\n" + ex.Message);
                             }
                         }
                     }
-
-                    // 5️⃣ Clean up temp file
-                    File.Delete(tempFile);
+                    catch (InvalidPrinterException ex)
+                    {
+                        MessageBox.Show("Printer is not available.\n" + ex.Message);
+                    }
+                    catch (Win32Exception ex)
+                    {
+                        MessageBox.Show("Printing failed.\n" + ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unexpected printing error.\n" + ex.Message);
+                    }
                 }
                 Log.writeMessage("DTY Print - End : " + DateTime.Now);
             }
@@ -3158,8 +3158,8 @@ namespace PackingApplication
             }
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
-                selectedMachineid = 0;      // Make selectedMachineid, selectedDeptId so that all mergeno will get in list
-                selectedDeptId = 0;
+                selectedMachineid = 0;      // Make selectedMachineid, selectedSubDeptId so that all mergeno will get in list
+                selectedSubDeptId = 0;
                 MergeNoList.DataSource = null;
                 var mergenoList = _productionService.getLotsByLotType("TexturisingLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
@@ -3456,10 +3456,10 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("DTY", "").Result.OrderBy(x => x.DepartmentName).ToList();
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
+                var deptList = _masterService.GetDepartmentList("DTY", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
                 DeptList.DataSource = deptList;
                 DeptList.SelectedIndex = 0;
                 DeptList.DroppedDown = true; // Open the dropdown list
@@ -3551,7 +3551,7 @@ namespace PackingApplication
                 balanceQty = 0;
                 selectedMachineid = 0;
                 selectedItemTypeid = 0;
-                selectedDeptId = 0;
+                selectedSubDeptId = 0;
                 selectLotId = 0;
                 selectedSOId = 0;
                 selectedSONumber = "";
@@ -3566,7 +3566,7 @@ namespace PackingApplication
                 lastbox.Text = "";
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
-                //DeptList.Items.Add("Select Dept");
+                //DeptList.Items.Add("Select SubDept");
                 //DeptList.SelectedIndex = 0;
 
                 //MergeNoList.DataSource = null;

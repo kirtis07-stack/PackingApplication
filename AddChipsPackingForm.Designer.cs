@@ -1667,12 +1667,12 @@ namespace PackingApplication
             // department
             // 
             this.department.AutoSize = true;
-            this.department.Location = new System.Drawing.Point(0, 3);
+            this.department.Location = new System.Drawing.Point(0, 0);
             this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.department.Name = "department";
             this.department.Size = new System.Drawing.Size(33, 13);
             this.department.TabIndex = 2;
-            this.department.Text = "Dept:";
+            this.department.Text = "Sub\nDept:";
             // 
             // panel16
             // 

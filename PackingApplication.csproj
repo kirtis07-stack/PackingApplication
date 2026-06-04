@@ -296,6 +296,7 @@
     <Compile Include="Models\RequestEntities\Prefix.cs" />
     <Compile Include="Models\ResponseEntities\ApiResponse.cs" />
     <Compile Include="Models\ResponseEntities\BusinessPartnerResponse.cs" />
+    <Compile Include="Models\ResponseEntities\SubDepartmentResponse.cs" />
     <Compile Include="Models\ResponseEntities\DepartmentResponse.cs" />
     <Compile Include="Models\ResponseEntities\PrefixResponse.cs" />
     <Compile Include="Models\ResponseEntities\SaleOrderResponse.cs" />

@@ -138,11 +138,11 @@ namespace PackingApplication
             LineNoList.ValueMember = "MachineId";
             LineNoList.SelectedIndex = 0;
 
-            var deptList = new List<DepartmentResponse>();
-            deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            var deptList = new List<SubDepartmentResponse>();
+            deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
             DeptList.DataSource = deptList;
-            DeptList.DisplayMember = "DepartmentName";
-            DeptList.ValueMember = "DepartmentId";
+            DeptList.DisplayMember = "SubDepartmentName";
+            DeptList.ValueMember = "SubDepartmentId";
             DeptList.SelectedIndex = 0;
 
             var packsizeList = new List<PackSizeResponse>();
@@ -233,11 +233,11 @@ namespace PackingApplication
             SrLineNoList.ValueMember = "MachineId";
             SrLineNoList.SelectedIndex = 0;
 
-            var srdeptList = new List<DepartmentResponse>();
-            srdeptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            var srdeptList = new List<SubDepartmentResponse>();
+            srdeptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
             SrDeptList.DataSource = srdeptList;
-            SrDeptList.DisplayMember = "DepartmentName";
-            SrDeptList.ValueMember = "DepartmentId";
+            SrDeptList.DisplayMember = "SubDepartmentName";
+            SrDeptList.ValueMember = "SubDepartmentId";
             SrDeptList.SelectedIndex = 0;
 
             var srboxnoList = new List<ProductionResponse>();
@@ -468,7 +468,7 @@ namespace PackingApplication
         //        BoxItemList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         //        o_departmentResponses = deptList;
-        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+        //        deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select SubDept" });
         //        DeptList.DataSource = deptList;
         //        DeptList.DisplayMember = "DepartmentName";
         //        DeptList.ValueMember = "DepartmentId";
@@ -517,10 +517,10 @@ namespace PackingApplication
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
-                //DeptList.Items.Add("Select Dept");
-                DeptList.Items.Add(productionResponse.DepartmentName);
-                DeptList.SelectedItem = productionResponse.DepartmentName;
-                productionRequest.DepartmentId = productionResponse.DepartmentId;
+                //DeptList.Items.Add("Select SubDept");
+                DeptList.Items.Add(productionResponse.SubDepartmentName);
+                DeptList.SelectedItem = productionResponse.SubDepartmentName;
+                productionRequest.SubDepartmentId = productionResponse.SubDepartmentId;
                 _cmethod.SetReadOnlyBlue(DeptList, true, true);
 
                 MergeNoList.DataSource = null;
@@ -729,7 +729,7 @@ namespace PackingApplication
         //                {
         //                    DeptList.SelectedValue = selectedMachine.DepartmentId;
         //                    var filteredDepts = o_departmentResponses.Where(m => m.DepartmentId == selectedMachine.DepartmentId).ToList();
-        //                    filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+        //                    filteredDepts.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select SubDept" });
         //                    DeptList.DataSource = filteredDepts;
         //                    DeptList.DisplayMember = "DepartmentName";
         //                    DeptList.ValueMember = "DepartmentId";
@@ -1957,14 +1957,14 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("DTY", typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList("DTY", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
                 SrDeptList.BeginUpdate();
                 SrDeptList.DataSource = null;
-                SrDeptList.DisplayMember = "DepartmentName";
-                SrDeptList.ValueMember = "DepartmentId";
+                SrDeptList.DisplayMember = "SubDepartmentName";
+                SrDeptList.ValueMember = "SubDepartmentId";
                 SrDeptList.DataSource = deptList;
                 SrDeptList.EndUpdate();
 
@@ -2009,7 +2009,7 @@ namespace PackingApplication
                 GetProductionList getListRequest = new GetProductionList();
                 getListRequest.PackingType = "DTYPacking";
                 getListRequest.MachineId = selectedSrMachineId;
-                getListRequest.DeptId = selectedSrDeptId;
+                getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
@@ -2137,7 +2137,7 @@ namespace PackingApplication
             GetProductionList getListRequest = new GetProductionList();
             getListRequest.PackingType = "DTYPacking";
             getListRequest.MachineId = selectedSrMachineId;
-            getListRequest.DeptId = selectedSrDeptId;
+            getListRequest.SubDeptId = selectedSrDeptId;
             getListRequest.BoxNo = selectedSrBoxNo;
             getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
@@ -2166,7 +2166,7 @@ namespace PackingApplication
                 // Define columns
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SrNo", HeaderText = "SR. No", SortMode = DataGridViewColumnSortMode.Automatic });
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackingType", DataPropertyName = "PackingType", HeaderText = "Packing Type" });
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "DepartmentName", DataPropertyName = "DepartmentName", HeaderText = "Department", SortMode = DataGridViewColumnSortMode.Automatic });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SubDepartmentName", DataPropertyName = "SubDepartmentName", HeaderText = "SubDepartment", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "MachineName", DataPropertyName = "MachineName", HeaderText = "Machine", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "LotNo", DataPropertyName = "LotNo", HeaderText = "Lot No", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "BoxNo", DataPropertyName = "BoxNoFmtd", HeaderText = "Box No", SortMode = DataGridViewColumnSortMode.Automatic });
@@ -2187,7 +2187,7 @@ namespace PackingApplication
                 //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
 
                 dataGridView1.Columns["SrNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
-                dataGridView1.Columns["DepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["SubDepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["MachineName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["LotNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["BoxNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -2195,7 +2195,7 @@ namespace PackingApplication
                 dataGridView1.Columns["SalesOrderNumber"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
 
                 dataGridView1.Columns["SrNo"].Width = 50;
-                dataGridView1.Columns["DepartmentName"].Width = 110;
+                dataGridView1.Columns["SubDepartmentName"].Width = 110;
                 dataGridView1.Columns["BoxNo"].Width = 120;
 
                 // Add Edit button column
@@ -2419,13 +2419,13 @@ namespace PackingApplication
 
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.DepartmentName).Result;
-                            deptTask.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.SubDepartmentName, null).Result;
+                            deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             SrDeptList.DataSource = deptTask;
                             SrDeptList.SelectedValue = selectedMachine.DepartmentId;
                             selectedSrDeptId = selectedMachine.DepartmentId;
-                            SrDeptList.DisplayMember = "DepartmentName";
-                            SrDeptList.ValueMember = "DepartmentId";
+                            SrDeptList.DisplayMember = "SubDepartmentName";
+                            SrDeptList.ValueMember = "SubDepartmentId";
                             if (SrDeptList.Items.Count > 1)
                             {
                                 SrDeptList.SelectedIndex = 1;
@@ -2463,11 +2463,11 @@ namespace PackingApplication
             {
                 if (SrDeptList.SelectedValue != null)
                 {
-                    DepartmentResponse selectedDepartment = (DepartmentResponse)SrDeptList.SelectedItem;
-                    int selectedDepartmentId = selectedDepartment.DepartmentId;
+                    SubDepartmentResponse selectedDepartment = (SubDepartmentResponse)SrDeptList.SelectedItem;
+                    int selectedDepartmentId = selectedDepartment.SubDepartmentId;
                     if (selectedDepartmentId > 0)
                     {
-                        selectedSrDeptId = selectedDepartment.DepartmentId;
+                        selectedSrDeptId = selectedDepartment.SubDepartmentId;
                     }
                 }
             }
@@ -2710,10 +2710,10 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("DTY", "").Result.OrderBy(x => x.DepartmentName).ToList();
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
-                SrDeptList.DisplayMember = "DepartmentName";
-                SrDeptList.ValueMember = "DepartmentId";
+                var deptList = _masterService.GetDepartmentList("DTY", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                SrDeptList.DisplayMember = "SubDepartmentName";
+                SrDeptList.ValueMember = "SubDepartmentId";
                 SrDeptList.DataSource = deptList;
                 SrDeptList.SelectedIndex = 0;
                 SrDeptList.DroppedDown = true; // Open the dropdown list
@@ -2742,7 +2742,7 @@ namespace PackingApplication
                 GetProductionList getListRequest = new GetProductionList();
                 getListRequest.PackingType = "DTYPacking";
                 getListRequest.MachineId = selectedSrMachineId;
-                getListRequest.DeptId = selectedSrDeptId;
+                getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;
 
                 SrBoxNoList.DataSource = null;

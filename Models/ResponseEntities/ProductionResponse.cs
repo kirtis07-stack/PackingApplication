@@ -104,8 +104,8 @@ namespace PackingApplication.Models.ResponseEntities
     {
         public long ProductionId { get; set; }
         public string PackingType { get; set; }
-        public int DepartmentId { get; set; }
-        public string DepartmentName { get; set; }
+        public int SubDepartmentId { get; set; }
+        public string SubDepartmentName { get; set; }
         public int MachineId { get; set; }
         public string MachineName { get; set; }
         public int PrefixCode { get; set; }
@@ -155,7 +155,7 @@ namespace PackingApplication.Models.ResponseEntities
         public int DispatchChallanId { get; set; }
         public DateTime? DispatchDate { get; set; }
         public long SaleOrderItemsId { get; set; }
-        public int PalletId { get; set; }
+        public int BoxOnPalletId { get; set; }
         public string SaleLot { get; set; }
         public int DispatchReserveId { get; set; }
         public int OwnerId { get; set; }

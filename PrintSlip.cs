@@ -76,11 +76,11 @@ namespace PackingApplication
         {
             Log.writeMessage("PrintSlip LoadDropdowns - Start : " + DateTime.Now);
 
-            var deptList = new List<DepartmentResponse>();
-            deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+            var deptList = new List<SubDepartmentResponse>();
+            deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
             DeptList.DataSource = deptList;
-            DeptList.DisplayMember = "DepartmentName";
-            DeptList.ValueMember = "DepartmentId";
+            DeptList.DisplayMember = "SubDepartmentName";
+            DeptList.ValueMember = "SubDepartmentId";
             DeptList.SelectedIndex = 0;
 
             var packingTypeList = new List<string>();
@@ -229,7 +229,7 @@ namespace PackingApplication
 
             if (DeptList.SelectedIndex <= 0)
             {
-                getBoxListRequest.DeptId = 0;
+                getBoxListRequest.SubDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -238,8 +238,8 @@ namespace PackingApplication
             {
                 if (DeptList.SelectedValue != null)
                 {
-                    DepartmentResponse selectedDepartment = (DepartmentResponse)DeptList.SelectedItem;
-                    getBoxListRequest.DeptId = selectedDepartment.DepartmentId;
+                    SubDepartmentResponse selectedDepartment = (SubDepartmentResponse)DeptList.SelectedItem;
+                    getBoxListRequest.SubDeptId = selectedDepartment.SubDepartmentId;
                 }
             }
             finally
@@ -265,7 +265,7 @@ namespace PackingApplication
                 cb.SelectedIndex = 0;
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
-                getBoxListRequest.DeptId = 0;
+                getBoxListRequest.SubDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;
@@ -277,14 +277,14 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList(packingType, typedText).Result.OrderBy(x => x.DepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(packingType, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Dept" });
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
 
                 DeptList.BeginUpdate();
                 DeptList.DataSource = null;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
                 DeptList.DataSource = deptList;
                 DeptList.EndUpdate();
 
@@ -318,11 +318,11 @@ namespace PackingApplication
             {
                 DeptList.DataSource = null;
                 //selectedPackingType = pakingType == "POY" ? "SpinningLot" : pakingType == "DTY" ? "TexturisingLot" : pakingType == "BCF" ? "BCFLot" : "ChipsLot";
-                var deptList = _masterService.GetDepartmentList(packingType, "").Result.OrderBy(x => x.DepartmentName).ToList();
-                deptList.Insert(0, new DepartmentResponse { DepartmentId = 0, DepartmentName = "Select Department" });
+                var deptList = _masterService.GetDepartmentList(packingType, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Department" });
                 DeptList.DataSource = deptList;
-                DeptList.DisplayMember = "DepartmentName";
-                DeptList.ValueMember = "DepartmentId";
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
                 DeptList.SelectedIndex = 0;
                 DeptList.DroppedDown = true; // Open the dropdown list
                 Cursor.Current = Cursors.Default;
@@ -350,7 +350,7 @@ namespace PackingApplication
                 GetProductionList getListRequest = new GetProductionList();
                 getListRequest.PackingType = getBoxListRequest.PackingType;
                 getListRequest.MachineId = 0;
-                getListRequest.DeptId = getBoxListRequest.DeptId;
+                getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = null;
 
                 StartBoxList.DataSource = null;
@@ -433,7 +433,7 @@ namespace PackingApplication
                 GetProductionList getListRequest = new GetProductionList();
                 getListRequest.PackingType = getBoxListRequest.PackingType;
                 getListRequest.MachineId = 0;
-                getListRequest.DeptId = getBoxListRequest.DeptId;
+                getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = typedText;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
@@ -478,7 +478,7 @@ namespace PackingApplication
                 GetProductionList getListRequest = new GetProductionList();
                 getListRequest.PackingType = getBoxListRequest.PackingType;
                 getListRequest.MachineId = 0;
-                getListRequest.DeptId = getBoxListRequest.DeptId;
+                getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = null;
 
                 EndBoxList.DataSource = null;
@@ -561,7 +561,7 @@ namespace PackingApplication
                 GetProductionList getListRequest = new GetProductionList();
                 getListRequest.PackingType = getBoxListRequest.PackingType;
                 getListRequest.MachineId = 0;
-                getListRequest.DeptId = getBoxListRequest.DeptId;
+                getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = typedText;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
@@ -644,7 +644,7 @@ namespace PackingApplication
         {
             Log.writeMessage("PrintSlip btnSearch_Click - Start : " + DateTime.Now);
 
-            if (getBoxListRequest.DeptId == 0 && getBoxListRequest.PackingType == null)
+            if (getBoxListRequest.SubDeptId == 0 && getBoxListRequest.PackingType == null)
             {
                 MessageBox.Show("Please select at least any one option.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
