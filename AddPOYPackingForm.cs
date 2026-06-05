@@ -4174,6 +4174,7 @@ namespace PackingApplication
             }
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
+                prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = 0;
                 prefixRequest.TxnFlag = "poy";
                 prefixRequest.TransactionTypeId = 5;
