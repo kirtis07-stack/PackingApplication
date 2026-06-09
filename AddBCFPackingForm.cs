@@ -89,6 +89,8 @@ namespace PackingApplication
         string UserName = ConfigurationManager.AppSettings["UserName"];
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
+        string TransactionTypeName = ConfigurationManager.AppSettings["TransactionTypeName"];
+        string ProductionTypeName = ConfigurationManager.AppSettings["ProductionTypeName"];
         bool suppressEvents = false;
         int selectedDeptId = 0;
         int selectedSubDeptId = 0;
@@ -989,8 +991,8 @@ namespace PackingApplication
                         {
                             prefixRequest.DepartmentId = selectedSubDeptId;
                             prefixRequest.TxnFlag = "BCF";
-                            prefixRequest.TransactionTypeId = 5;
-                            prefixRequest.ProductionTypeId = 1;
+                            prefixRequest.TransactionTypeName = TransactionTypeName;
+                            prefixRequest.ProductionTypeName = ProductionTypeName;
                             prefixRequest.Prefix = "";
                             prefixRequest.FinYearId = SessionManager.FinYearId;
 
@@ -2259,8 +2261,8 @@ namespace PackingApplication
 
                 prefixRequest.DepartmentId = selectedDeptId;
                 prefixRequest.TxnFlag = "BCF";
-                prefixRequest.TransactionTypeId = 5;
-                prefixRequest.ProductionTypeId = 1;
+                prefixRequest.TransactionTypeName = TransactionTypeName;
+                prefixRequest.ProductionTypeName = ProductionTypeName;
                 prefixRequest.Prefix = "";
                 prefixRequest.FinYearId = SessionManager.FinYearId;
                 prefixRequest.SubString = typedText;
@@ -4134,8 +4136,8 @@ namespace PackingApplication
                 prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = 0;
                 prefixRequest.TxnFlag = "BCF";
-                prefixRequest.TransactionTypeId = 5;
-                prefixRequest.ProductionTypeId = 1;
+                prefixRequest.TransactionTypeName = TransactionTypeName;
+                prefixRequest.ProductionTypeName = ProductionTypeName;
                 prefixRequest.Prefix = "";
                 prefixRequest.FinYearId = SessionManager.FinYearId;
                 prefixRequest.GetAllFlag = true;

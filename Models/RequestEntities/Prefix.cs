@@ -16,7 +16,9 @@ namespace PackingApplication.Models.RequestEntities
         public int DepartmentId { get; set; }
         public int MachineId { get; set; }
         public int ProductionTypeId { get; set; }
+        public string ProductionTypeName { get; set; } = "";
         public int TransactionTypeId { get; set; }
+        public string TransactionTypeName { get; set; } = "";
         public int FinYearId { get; set; }
         public DateTime? Date { get; set; } = null;
         public string TxnFlag { get; set; }

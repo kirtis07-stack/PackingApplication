@@ -77,7 +77,7 @@ namespace PackingApplication
             Log.writeMessage("PrintSlip LoadDropdowns - Start : " + DateTime.Now);
 
             var deptList = new List<SubDepartmentResponse>();
-            deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
+            deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
             DeptList.DataSource = deptList;
             DeptList.DisplayMember = "SubDepartmentName";
             DeptList.ValueMember = "SubDepartmentId";
@@ -279,7 +279,7 @@ namespace PackingApplication
 
                 var deptList = _masterService.GetDepartmentList(packingType, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
-                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
                 DeptList.BeginUpdate();
                 DeptList.DataSource = null;
@@ -804,8 +804,8 @@ namespace PackingApplication
 
             DeptList.DataSource = null;
             DeptList.Items.Clear();
-            DeptList.Items.Add("Select Dept");
-            DeptList.SelectedItem = "Select Dept";
+            DeptList.Items.Add("Select SubDept");
+            DeptList.SelectedItem = "Select SubDept";
             DeptList.SelectedIndex = 0;
 
             StartBoxList.DataSource = null;

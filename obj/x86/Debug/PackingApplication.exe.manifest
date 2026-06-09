@@ -733,7 +733,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5FhABptH7Yq3kxo8bPGdLwhijw8Xel/qP8hPZ8P626M=</dsig:DigestValue>
+        <dsig:DigestValue>rgbNs8n++6x0RtxWWgClNMcavP3ZQ2dsEL8rgRqqbo4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -917,13 +917,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PackingApplication.exe.config" size="3803">
+  <file name="PackingApplication.exe.config" size="3911">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UL86o66qzXANY5GW5InYetSYgyChfOMJqvaLMGgKuyo=</dsig:DigestValue>
+      <dsig:DigestValue>k5k3DhamwQei/cYaLsxv2R+veXKac0CpWrPUGIp2GMk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\icons8-trash-24.png" size="174">
