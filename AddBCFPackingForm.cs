@@ -1075,13 +1075,13 @@ namespace PackingApplication
                 List<MachineResponse> machineList = new List<MachineResponse>();
                 if (selectedSubDeptId == 0)
                 {
-                    machineList = _masterService.GetMachineList("BCFLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineList("BCFCHSLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "BCFLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "BCFCHSLot").Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -1351,7 +1351,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    mergenoList = _productionService.getLotsByLotType("BCFLot",typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
+                    mergenoList = _productionService.getLotsByLotType("BCFCHSLot", typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
                     mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                 }
@@ -2207,7 +2207,7 @@ namespace PackingApplication
                 List<MachineResponse> machineList = new List<MachineResponse>();
                 if (selectedSubDeptId != 0)
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "BCFLot").Result;
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "BCFCHSLot").Result;
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                     //LineNoList.DataSource = machineList;
@@ -3996,7 +3996,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 LineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("BCFLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList("BCFCHSLot", "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 LineNoList.DataSource = machineList;
                 LineNoList.DisplayMember = "MachineName";
@@ -4028,7 +4028,7 @@ namespace PackingApplication
                 selectedMachineid = 0;      // Make selectedMachineid, selectedSubDeptId so that all mergeno will get in list
                 selectedSubDeptId = 0;
                 MergeNoList.DataSource = null;
-                var mergenoList = _productionService.getLotsByLotType("BCFLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
+                var mergenoList = _productionService.getLotsByLotType("BCFCHSLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                 MergeNoList.DisplayMember = "LotNoFrmt";
                 MergeNoList.ValueMember = "LotId";

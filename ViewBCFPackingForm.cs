@@ -2420,7 +2420,7 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
 
-                var machineList = _masterService.GetMachineList("BCFLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList("BCFCHSLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
 
                 SrLineNoList.BeginUpdate();
@@ -3081,7 +3081,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrLineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("BCFLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList("BCFCHSLot", "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 SrLineNoList.DataSource = machineList;
                 SrLineNoList.DisplayMember = "MachineName";
