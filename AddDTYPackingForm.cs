@@ -527,6 +527,7 @@ namespace PackingApplication
                 selectedSONumber = productionResponse.SalesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
                 selectedSOId = productionResponse.SaleOrderItemsId;
+                SaleOrderList.Enabled = productionResponse.SaleOrderListEnabled;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -534,7 +535,7 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
-                QualityList.Enabled = false;
+                //QualityList.Enabled = productionResponse.QualityListEnabled;
 
                 WindingTypeList.DataSource = null;
                 WindingTypeList.Items.Clear();
@@ -543,7 +544,7 @@ namespace PackingApplication
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
                 productionRequest.WindingTypeId = productionResponse.WindingTypeId;
                 selectedWT = productionResponse.WindingTypeName;
-                WindingTypeList.Enabled = false;
+                //WindingTypeList.Enabled = productionResponse.WindingTypeListEnabled;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -917,63 +918,63 @@ namespace PackingApplication
                                     //QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                                     //QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                                    if (QualityList.Items.Count > 1)
-                                    {
-                                        QualityList.SelectedIndex = 1;
-                                        QualityList.Enabled = false;
-                                    }
-                                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                                    {
-                                        QualityList.SelectedIndex = 0;
-                                    }
-                                    else
-                                    {
-                                        QualityList.SelectedIndex = -1; // no selection possible
-                                    }
-                                    if (QualityList.SelectedIndex >= 0)
-                                    {
-                                        int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
-                                        productionRequest.QualityId = firstQualityId;
-                                    }
-                                    QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
+                                    //if (QualityList.Items.Count > 1)
+                                    //{
+                                    //    QualityList.SelectedIndex = 1;
+                                    //    QualityList.Enabled = false;
+                                    //}
+                                    //else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                                    //{
+                                    //    QualityList.SelectedIndex = 0;
+                                    //}
+                                    //else
+                                    //{
+                                    //    QualityList.SelectedIndex = -1; // no selection possible
+                                    //}
+                                    //if (QualityList.SelectedIndex >= 0)
+                                    //{
+                                    //    int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
+                                    //    productionRequest.QualityId = firstQualityId;
+                                    //}
+                                    //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
                                 //}
                             //}
                         }
 
                         var getWindingType = new List<WindingTypeResponse>();
-                        getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
-                        getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
-                        if (getWindingType.Count <= 1)
-                        {
+                        //getWindingType = _productionService.getWinderTypeList(selectedLotId, "").Result;
+                        //getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
+                        //if (getWindingType.Count <= 1)
+                        //{
                             getWindingType = _masterService.GetWindingTypeList("").Result;
                             getWindingType.Insert(0, new WindingTypeResponse { WindingTypeId = 0, WindingTypeName = "Select Winding Type" });
 
-                        }
+                        //}
                         WindingTypeList.DataSource = getWindingType;
                         WindingTypeList.DisplayMember = "WindingTypeName";
                         WindingTypeList.ValueMember = "WindingTypeId";
-                        if (WindingTypeList.Items.Count > 2)
-                        {
-                            WindingTypeList.SelectedIndex = 0;
-                        }
-                        else if (WindingTypeList.Items.Count > 1)
-                        {
-                            WindingTypeList.SelectedIndex = 1;
-                            WindingTypeList.Enabled = false;
-                        }
-                        else if (WindingTypeList.Items.Count > 0) // fallback to first item if only one exists
-                        {
-                            WindingTypeList.SelectedIndex = 0;
-                        }
-                        else
-                        {
-                            WindingTypeList.SelectedIndex = -1; // no selection possible
-                        }
-                        if (WindingTypeList.SelectedIndex >= 0)
-                        {
-                            int firstWTId = Convert.ToInt32(WindingTypeList.SelectedValue);
-                            productionRequest.WindingTypeId = firstWTId;
-                        }
+                        //if (WindingTypeList.Items.Count > 2)
+                        //{
+                        //    WindingTypeList.SelectedIndex = 0;
+                        //}
+                        //else if (WindingTypeList.Items.Count > 1)
+                        //{
+                        //    WindingTypeList.SelectedIndex = 1;
+                        //    WindingTypeList.Enabled = false;
+                        //}
+                        //else if (WindingTypeList.Items.Count > 0) // fallback to first item if only one exists
+                        //{
+                        //    WindingTypeList.SelectedIndex = 0;
+                        //}
+                        //else
+                        //{
+                        //    WindingTypeList.SelectedIndex = -1; // no selection possible
+                        //}
+                        //if (WindingTypeList.SelectedIndex >= 0)
+                        //{
+                        //    int firstWTId = Convert.ToInt32(WindingTypeList.SelectedValue);
+                        //    productionRequest.WindingTypeId = firstWTId;
+                        //}
                         //WindingTypeList.SelectedIndex = 0;
                         //WindingTypeList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         //WindingTypeList.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -1178,7 +1179,7 @@ namespace PackingApplication
                             if (QualityList.Items.Count > 1)
                             {
                                 QualityList.SelectedIndex = 1;
-                                QualityList.Enabled = false;
+                                //QualityList.Enabled = false;
                             }
                             else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
                             {
@@ -1194,15 +1195,15 @@ namespace PackingApplication
                                 productionRequest.QualityId = firstQualityId;
                             }
                         }
-                        else
-                        {
-                            QualityList.Enabled = true;
-                            List<QualityResponse> qualityList = new List<QualityResponse>();
-                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                            QualityList.DataSource = qualityList;
-                            QualityList.DisplayMember = "Name";
-                            QualityList.ValueMember = "QualityId";
-                        }
+                        //else
+                        //{
+                        //    QualityList.Enabled = true;
+                        //    List<QualityResponse> qualityList = new List<QualityResponse>();
+                        //    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        //    QualityList.DataSource = qualityList;
+                        //    QualityList.DisplayMember = "Name";
+                        //    QualityList.ValueMember = "QualityId";
+                        //}
                     }
                 }
             }

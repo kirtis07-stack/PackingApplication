@@ -620,6 +620,7 @@ namespace PackingApplication
                 selectedSONumber = productionResponse.SalesOrderNumber;
                 productionRequest.SaleOrderItemsId = productionResponse.SaleOrderItemsId;
                 selectedSOId = productionResponse.SaleOrderItemsId;
+                SaleOrderList.Enabled = productionResponse.SaleOrderListEnabled;
 
                 QualityList.DataSource = null;
                 QualityList.Items.Clear();
@@ -627,7 +628,7 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
-                QualityList.Enabled = false;
+                //QualityList.Enabled = productionResponse.QualityListEnabled;
 
                 WindingTypeList.DataSource = null;
                 WindingTypeList.Items.Clear();
@@ -636,7 +637,7 @@ namespace PackingApplication
                 WindingTypeList.SelectedItem = productionResponse.WindingTypeName;
                 productionRequest.WindingTypeId = productionResponse.WindingTypeId;
                 selectedWT = productionResponse.WindingTypeName;
-                WindingTypeList.Enabled = false;
+                WindingTypeList.Enabled = productionResponse.WindingTypeListEnabled;
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -1243,7 +1244,7 @@ namespace PackingApplication
                                     if (QualityList.Items.Count > 1)
                                     {
                                         QualityList.SelectedIndex = 1;
-                                        QualityList.Enabled = false;
+                                        //QualityList.Enabled = false;
                                     }
                                     else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
                                     {
@@ -1505,7 +1506,7 @@ namespace PackingApplication
                             if (QualityList.Items.Count > 1)
                             {
                                 QualityList.SelectedIndex = 1;
-                                QualityList.Enabled = false;
+                                //QualityList.Enabled = false;
                             }
                             else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
                             {
@@ -1521,15 +1522,15 @@ namespace PackingApplication
                                 productionRequest.QualityId = firstQualityId;
                             }
                         }
-                        else
-                        {
-                            QualityList.Enabled = true;
-                            List<QualityResponse> qualityList = new List<QualityResponse>();
-                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                            QualityList.DataSource = qualityList;
-                            QualityList.DisplayMember = "Name";
-                            QualityList.ValueMember = "QualityId";
-                        }
+                        //else
+                        //{
+                        //    QualityList.Enabled = true;
+                        //    List<QualityResponse> qualityList = new List<QualityResponse>();
+                        //    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        //    QualityList.DataSource = qualityList;
+                        //    QualityList.DisplayMember = "Name";
+                        //    QualityList.ValueMember = "QualityId";
+                        //}
                     }
                 }
             }

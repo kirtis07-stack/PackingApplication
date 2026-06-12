@@ -476,7 +476,7 @@ namespace PackingApplication
                 QualityList.Items.Add(productionResponse.QualityName);
                 QualityList.SelectedItem = productionResponse.QualityName;
                 productionRequest.QualityId = productionResponse.QualityId;
-                QualityList.Enabled = false;
+                //QualityList.Enabled = productionResponse.QualityListEnabled; 
 
                 PackSizeList.DataSource = null;
                 PackSizeList.Items.Clear();
@@ -808,25 +808,25 @@ namespace PackingApplication
                                     //QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                                     //QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                                    if (QualityList.Items.Count > 1)
-                                    {
-                                        QualityList.SelectedIndex = 1;
-                                        QualityList.Enabled = false;
-                                    }
-                                    else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                                    {
-                                        QualityList.SelectedIndex = 0;
-                                    }
-                                    else
-                                    {
-                                        QualityList.SelectedIndex = -1; // no selection possible
-                                    }
-                                    if (QualityList.SelectedIndex >= 0)
-                                    {
-                                        int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
-                                        productionRequest.QualityId = firstQualityId;
-                                    }
-                                    QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
+                                    //if (QualityList.Items.Count > 1)
+                                    //{
+                                    //    QualityList.SelectedIndex = 1;
+                                    //    QualityList.Enabled = false;
+                                    //}
+                                    //else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                                    //{
+                                    //    QualityList.SelectedIndex = 0;
+                                    //}
+                                    //else
+                                    //{
+                                    //    QualityList.SelectedIndex = -1; // no selection possible
+                                    //}
+                                    //if (QualityList.SelectedIndex >= 0)
+                                    //{
+                                    //    int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
+                                    //    productionRequest.QualityId = firstQualityId;
+                                    //}
+                                    //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
                             //    }
                             //}
                         }
@@ -993,7 +993,7 @@ namespace PackingApplication
                             if (QualityList.Items.Count > 1)
                             {
                                 QualityList.SelectedIndex = 1;
-                                QualityList.Enabled = false;
+                                //QualityList.Enabled = false;
                             }
                             else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
                             {
@@ -1009,15 +1009,15 @@ namespace PackingApplication
                                 productionRequest.QualityId = firstQualityId;
                             }
                         }
-                        else
-                        {
-                            QualityList.Enabled = true;
-                            List<QualityResponse> qualityList = new List<QualityResponse>();
-                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                            QualityList.DataSource = qualityList;
-                            QualityList.DisplayMember = "Name";
-                            QualityList.ValueMember = "QualityId";
-                        }
+                        //else
+                        //{
+                        //    QualityList.Enabled = true;
+                        //    List<QualityResponse> qualityList = new List<QualityResponse>();
+                        //    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                        //    QualityList.DataSource = qualityList;
+                        //    QualityList.DisplayMember = "Name";
+                        //    QualityList.ValueMember = "QualityId";
+                        //}
                     }
                 }
             }
