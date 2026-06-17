@@ -1128,7 +1128,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "SpinningLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "SpinningLot").Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -1603,12 +1603,22 @@ namespace PackingApplication
 
             if (!isFormReady) return;
 
-            if (QualityList.SelectedValue != null)
-            {
-                QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
-                int selectedQualityId = selectedQuality.QualityId;
+            lblLoading.Visible = true;
 
-                productionRequest.QualityId = selectedQualityId;
+            try
+            {
+
+                if (QualityList.SelectedValue != null)
+                {
+                    QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
+                    int selectedQualityId = selectedQuality.QualityId;
+
+                    productionRequest.QualityId = selectedQualityId;
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
             }
 
             Log.writeMessage("POY QualityList_SelectedIndexChanged - End : " + DateTime.Now);
@@ -2241,14 +2251,21 @@ namespace PackingApplication
                     //    LineNoList.DataSource = machineList;
                     //}
 
+                    if (selectedMachineid > 0 && selectedSubDeptId == selectedDepartmentId)
+                    {
+
+                    }
+                    else
+                    {
+                        LineNoList.DataSource = null;
+                        LineNoList.Items.Clear();
+                        LineNoList.Items.Add("Select Line No.");
+                        LineNoList.SelectedItem = "Select Line No.";
+                    }
+
                     productionRequest.SubDepartmentId = selectedDepartmentId;
                     selectedSubDeptId = selectedDepartmentId;
                     selectedDeptId = selectedDepartment.DepartmentId;
-
-                    LineNoList.DataSource = null;
-                    LineNoList.Items.Clear();
-                    LineNoList.Items.Add("Select Line No.");
-                    LineNoList.SelectedItem = "Select Line No.";
 
                     MergeNoList.DataSource = null;
                     MergeNoList.Items.Clear();
@@ -3346,11 +3363,11 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            //if (WindingTypeList.SelectedIndex <= 0)
-            //{
-            //    MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    isValid = false;
-            //}
+            if (WindingTypeList.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
 
             if (BoxItemList.SelectedIndex <= 0)
             {

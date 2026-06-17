@@ -800,7 +800,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "TexturisingLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -936,7 +936,7 @@ namespace PackingApplication
                                     //    int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
                                     //    productionRequest.QualityId = firstQualityId;
                                     //}
-                                    //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
+                                    QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
                                 //}
                             //}
                         }
@@ -1274,12 +1274,21 @@ namespace PackingApplication
 
             if (!isFormReady) return;
 
-            if (QualityList.SelectedValue != null)
-            {
-                QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
-                int selectedQualityId = selectedQuality.QualityId;
+            lblLoading.Visible = true;
 
-                productionRequest.QualityId = selectedQualityId;
+            try
+            {
+                if (QualityList.SelectedValue != null)
+                {
+                    QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
+                    int selectedQualityId = selectedQuality.QualityId;
+
+                    productionRequest.QualityId = selectedQualityId;
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
             }
 
             Log.writeMessage("DTY QualityList_SelectedIndexChanged - End : " + DateTime.Now);
@@ -1884,38 +1893,38 @@ namespace PackingApplication
                 int selectedPrefixId = selectedPrefix.PrefixCode;
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                var deptTask = _masterService.GetDepartmentList("DTY",null, selectedPrefix.Department).Result;
-                deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
-                DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
-                DeptList.DataSource = deptTask;
-                //DeptList.SelectedValue = selectedPrefix.DepartmentId;
-                //selectedSubDeptId = selectedPrefix.DepartmentId;
-                //productionRequest.SubDepartmentId = selectedSubDeptId;
-                DeptList.DisplayMember = "SubDepartmentName";
-                DeptList.ValueMember = "SubDepartmentId";
-                //if (DeptList.Items.Count > 1)
+                //var deptTask = _masterService.GetDepartmentList("DTY",null, selectedPrefix.Department).Result;
+                //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                //DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
+                //DeptList.DataSource = deptTask;
+                ////DeptList.SelectedValue = selectedPrefix.DepartmentId;
+                ////selectedSubDeptId = selectedPrefix.DepartmentId;
+                ////productionRequest.SubDepartmentId = selectedSubDeptId;
+                //DeptList.DisplayMember = "SubDepartmentName";
+                //DeptList.ValueMember = "SubDepartmentId";
+                ////if (DeptList.Items.Count > 1)
+                ////{
+                ////    DeptList.SelectedIndex = 1;
+                ////}
+                //DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
+                //List<MachineResponse> machineList = new List<MachineResponse>();
+                //if (selectedSubDeptId != 0)
                 //{
-                //    DeptList.SelectedIndex = 1;
+                //    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "TexturisingLot").Result;
+
+                //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                //    //LineNoList.DataSource = machineList;
+
+                //    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
+                //    if (!isExist) {
+                //        LineNoList.BeginUpdate();
+                //        LineNoList.DataSource = null;
+                //        LineNoList.DisplayMember = "MachineName";
+                //        LineNoList.ValueMember = "MachineId";
+                //        LineNoList.DataSource = machineList;
+                //        LineNoList.EndUpdate();
+                //    }
                 //}
-                DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
-                List<MachineResponse> machineList = new List<MachineResponse>();
-                if (selectedSubDeptId != 0)
-                {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "TexturisingLot").Result;
-
-                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                    //LineNoList.DataSource = machineList;
-
-                    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
-                    if (!isExist) {
-                        LineNoList.BeginUpdate();
-                        LineNoList.DataSource = null;
-                        LineNoList.DisplayMember = "MachineName";
-                        LineNoList.ValueMember = "MachineId";
-                        LineNoList.DataSource = machineList;
-                        LineNoList.EndUpdate();
-                    }
-                }
 
                 if (selectedPrefix.ProductionType.ToString() != null)
                 {
@@ -1952,7 +1961,7 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
                 //PrefixList.Items.Clear();
-
+                prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = selectedDeptId;
                 prefixRequest.TxnFlag = "DTY";
                 prefixRequest.TransactionTypeName = TransactionTypeName;
@@ -2014,14 +2023,21 @@ namespace PackingApplication
                     //    LineNoList.DataSource = machineList;
                     //}
 
+                    if (selectedMachineid > 0 && selectedSubDeptId == selectedDepartmentId)
+                    {
+
+                    }
+                    else
+                    {
+                        LineNoList.DataSource = null;
+                        LineNoList.Items.Clear();
+                        LineNoList.Items.Add("Select Line No.");
+                        LineNoList.SelectedItem = "Select Line No.";
+                    }
+
                     productionRequest.SubDepartmentId = selectedDepartmentId;
                     selectedSubDeptId = selectedDepartmentId;
                     selectedDeptId = selectedDepartment.DepartmentId;
-
-                    LineNoList.DataSource = null;
-                    LineNoList.Items.Clear();
-                    LineNoList.Items.Add("Select Line No.");
-                    LineNoList.SelectedItem = "Select Line No.";
 
                     //PrefixList.DataSource = null;
                     //PrefixList.Items.Clear();
@@ -2642,11 +2658,11 @@ namespace PackingApplication
                 isValid = false;
             }
 
-            //if (WindingTypeList.SelectedIndex <= 0)
-            //{
-            //    MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    isValid = false;
-            //}
+            if (WindingTypeList.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select winding type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                isValid = false;
+            }
 
             if (PrefixList.SelectedIndex <= 0)
             {

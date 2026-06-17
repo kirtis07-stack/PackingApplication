@@ -620,7 +620,7 @@ namespace PackingApplication
                         }
                         if (productionRequest.PrefixCode != 0)
                         {
-                            prefixRequest.DepartmentId = selectedSubDeptId;
+                            prefixRequest.DepartmentId = selectedDeptId;
                             prefixRequest.TxnFlag = "Chp";
                             prefixRequest.TransactionTypeName = TransactionTypeName;
                             prefixRequest.ProductionTypeName = ProductionTypeName;
@@ -693,7 +693,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "ChipsLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "ChipsLot").Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -797,36 +797,36 @@ namespace PackingApplication
                             //    var itemResponse = _masterService.GetItemById(lotResponse.ItemId).Result;
                             //    if (itemResponse != null)
                             //    {
-                                    //selectedItemTypeid = itemResponse.ItemTypeId;
-                                    var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
-                                    qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
-                                    QualityList.SelectedIndexChanged -= QualityList_SelectedIndexChanged;
-                                    QualityList.DataSource = qualityList;
-                                    QualityList.DisplayMember = "Name";
-                                    QualityList.ValueMember = "QualityId";
-                                    //QualityList.SelectedIndex = 0;
-                                    //QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                                    //QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            //selectedItemTypeid = itemResponse.ItemTypeId;
+                            var qualityList = _masterService.GetQualityListByItemTypeId(selectedItemTypeid).Result.OrderBy(x => x.Name).ToList();
+                            qualityList.Insert(0, new QualityResponse { QualityId = 0, Name = "Select Quality" });
+                            QualityList.SelectedIndexChanged -= QualityList_SelectedIndexChanged;
+                            QualityList.DataSource = qualityList;
+                            QualityList.DisplayMember = "Name";
+                            QualityList.ValueMember = "QualityId";
+                            //QualityList.SelectedIndex = 0;
+                            //QualityList.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                            //QualityList.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                                    //if (QualityList.Items.Count > 1)
-                                    //{
-                                    //    QualityList.SelectedIndex = 1;
-                                    //    QualityList.Enabled = false;
-                                    //}
-                                    //else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
-                                    //{
-                                    //    QualityList.SelectedIndex = 0;
-                                    //}
-                                    //else
-                                    //{
-                                    //    QualityList.SelectedIndex = -1; // no selection possible
-                                    //}
-                                    //if (QualityList.SelectedIndex >= 0)
-                                    //{
-                                    //    int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
-                                    //    productionRequest.QualityId = firstQualityId;
-                                    //}
-                                    //QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
+                            //if (QualityList.Items.Count > 1)
+                            //{
+                            //    QualityList.SelectedIndex = 1;
+                            //    QualityList.Enabled = false;
+                            //}
+                            //else if (QualityList.Items.Count > 0) // fallback to first item if only one exists
+                            //{
+                            //    QualityList.SelectedIndex = 0;
+                            //}
+                            //else
+                            //{
+                            //    QualityList.SelectedIndex = -1; // no selection possible
+                            //}
+                            //if (QualityList.SelectedIndex >= 0)
+                            //{
+                            //    int firstQualityId = Convert.ToInt32(QualityList.SelectedValue);
+                            //    productionRequest.QualityId = firstQualityId;
+                            //}
+                            QualityList.SelectedIndexChanged += QualityList_SelectedIndexChanged;
                             //    }
                             //}
                         }
@@ -1089,12 +1089,22 @@ namespace PackingApplication
 
             if (!isFormReady) return;
 
-            if (QualityList.SelectedValue != null)
-            {
-                QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
-                int selectedQualityId = selectedQuality.QualityId;
+            lblLoading.Visible = true;
 
-                productionRequest.QualityId = selectedQualityId;
+            try
+            {
+
+                if (QualityList.SelectedValue != null)
+                {
+                    QualityResponse selectedQuality = (QualityResponse)QualityList.SelectedItem;
+                    int selectedQualityId = selectedQuality.QualityId;
+
+                    productionRequest.QualityId = selectedQualityId;
+                }
+            }
+            finally
+            {
+                lblLoading.Visible = false;
             }
 
             Log.writeMessage("Chips QualityList_SelectedIndexChanged - End : " + DateTime.Now);
@@ -1182,7 +1192,7 @@ namespace PackingApplication
                         existing.NetWt += quality.NetWt;
                     }
 
-                }                
+                }
             }
 
             Log.writeMessage("Chips RefreshGradewiseGrid - End : " + DateTime.Now);
@@ -1362,39 +1372,39 @@ namespace PackingApplication
 
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                var deptTask = _masterService.GetDepartmentList("CHIPS",null, selectedPrefix.Department).Result;
-                deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
-                DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
-                DeptList.DataSource = deptTask;
-                //DeptList.SelectedValue = selectedPrefix.DepartmentId;
-                //selectedSubDeptId = selectedPrefix.DepartmentId;
-                //productionRequest.SubDepartmentId = selectedSubDeptId;
-                DeptList.DisplayMember = "SubDepartmentName";
-                DeptList.ValueMember = "SubDepartmentId";
-                //if (DeptList.Items.Count > 1)
+                //var deptTask = _masterService.GetDepartmentList("CHIPS", null, selectedPrefix.Department).Result;
+                //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                //DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
+                //DeptList.DataSource = deptTask;
+                ////DeptList.SelectedValue = selectedPrefix.DepartmentId;
+                ////selectedSubDeptId = selectedPrefix.DepartmentId;
+                ////productionRequest.SubDepartmentId = selectedSubDeptId;
+                //DeptList.DisplayMember = "SubDepartmentName";
+                //DeptList.ValueMember = "SubDepartmentId";
+                ////if (DeptList.Items.Count > 1)
+                ////{
+                ////    DeptList.SelectedIndex = 1;
+                ////}
+                //DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
+                //List<MachineResponse> machineList = new List<MachineResponse>();
+                //if (selectedSubDeptId != 0)
                 //{
-                //    DeptList.SelectedIndex = 1;
+                //    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "ChipsLot").Result;
+
+                //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                //    //LineNoList.DataSource = machineList;
+
+                //    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
+                //    if (!isExist)
+                //    {
+                //        LineNoList.BeginUpdate();
+                //        LineNoList.DataSource = null;
+                //        LineNoList.DisplayMember = "MachineName";
+                //        LineNoList.ValueMember = "MachineId";
+                //        LineNoList.DataSource = machineList;
+                //        LineNoList.EndUpdate();
+                //    }
                 //}
-                DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
-                List<MachineResponse> machineList = new List<MachineResponse>();
-                if (selectedSubDeptId != 0)
-                {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSubDeptId, "ChipsLot").Result;
-
-                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                    //LineNoList.DataSource = machineList;
-
-                    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
-                    if (!isExist)
-                    {
-                        LineNoList.BeginUpdate();
-                        LineNoList.DataSource = null;
-                        LineNoList.DisplayMember = "MachineName";
-                        LineNoList.ValueMember = "MachineId";
-                        LineNoList.DataSource = machineList;
-                        LineNoList.EndUpdate();
-                    }
-                }
 
                 if (selectedPrefix.ProductionType.ToString() != null)
                 {
@@ -1431,7 +1441,7 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
                 //PrefixList.Items.Clear();
-
+                prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = selectedDeptId;
                 prefixRequest.TxnFlag = "Chp";
                 prefixRequest.TransactionTypeName = TransactionTypeName;
@@ -1494,14 +1504,21 @@ namespace PackingApplication
                     //    LineNoList.SelectedValue = productionResponse.MachineId;
                     //}
 
+                    if (selectedMachineid > 0 && selectedSubDeptId == selectedDepartmentId)
+                    {
+
+                    }
+                    else
+                    {
+                        LineNoList.DataSource = null;
+                        LineNoList.Items.Clear();
+                        LineNoList.Items.Add("Select Line No.");
+                        LineNoList.SelectedItem = "Select Line No.";
+                    }
+
                     productionRequest.SubDepartmentId = selectedDepartmentId;
                     selectedSubDeptId = selectedDepartmentId;
                     selectedDeptId = selectedDepartment.DepartmentId;
-
-                    LineNoList.DataSource = null;
-                    LineNoList.Items.Clear();
-                    LineNoList.Items.Add("Select Line No.");
-                    LineNoList.SelectedItem = "Select Line No.";
 
                     //PrefixList.DataSource = null;
                     //PrefixList.Items.Clear();
