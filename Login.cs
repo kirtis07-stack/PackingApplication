@@ -43,10 +43,12 @@ namespace PackingApplication
             email.TextChanged += Email_TextChanged;
             passwrd.TextChanged += Passwrd_TextChanged;
 
-            email.Text = "kirti.shinde@cyberscriptit.com";
-            passwrd.Text = "Kirti@123";
+            //email.Text = "kirti.shinde@cyberscriptit.com";
+            //passwrd.Text = "Kirti@123";
             //email.Text = "satish@beekaylon.com";
             //passwrd.Text = "Test@123";
+            email.Text = "sanket.bankar@cyberscriptit.com";
+            passwrd.Text = "Sanket@123";
 
             Log.writeMessage("Login - End : " + DateTime.Now);
         }

@@ -4392,8 +4392,8 @@ namespace PackingApplication
                             var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             SrDeptList.DataSource = deptTask;
-                            SrDeptList.SelectedValue = selectedMachine.DepartmentId;
-                            selectedSrDeptId = selectedMachine.DepartmentId;
+                            SrDeptList.SelectedValue = selectedMachine.SubDepartmentId;
+                            selectedSrDeptId = selectedMachine.SubDepartmentId;
                             SrDeptList.DisplayMember = "SubDepartmentName";
                             SrDeptList.ValueMember = "SubDepartmentId";
                             if (SrDeptList.Items.Count > 1)
