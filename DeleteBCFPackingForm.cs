@@ -6,6 +6,7 @@ using PackingApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -48,7 +49,8 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        string itemPalletCategory = "PALLET, BOX & PALLET";
+        string itemPalletCategory = ConfigurationManager.AppSettings["ItemPalletCategory"];
+        string BCFLot = ConfigurationManager.AppSettings["BCFLot"];
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -2468,7 +2470,7 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
 
-                var machineList = _masterService.GetMachineList("BCFCHSLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(BCFLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
 
                 SrLineNoList.BeginUpdate();
@@ -3214,7 +3216,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrLineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("BCFCHSLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(BCFLot, "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 SrLineNoList.DataSource = machineList;
                 SrLineNoList.DisplayMember = "MachineName";

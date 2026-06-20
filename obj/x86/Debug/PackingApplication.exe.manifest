@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="PackingApplication.exe" version="1.0.0.206" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
+  <asmv1:assemblyIdentity name="PackingApplication.exe" version="1.0.0.207" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
@@ -726,14 +726,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="4199392">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PackingApplication.exe" size="4201440">
       <assemblyIdentity name="PackingApplication" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>r7GEhlXCai0siLIkpxZs8xFHQ8fC02yw0D4teNk0oec=</dsig:DigestValue>
+        <dsig:DigestValue>aZu3zgvjRPCH+jCh+ceMon/CwY21V0T/NmKCvKNN7+I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -917,13 +917,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PackingApplication.exe.config" size="3911">
+  <file name="PackingApplication.exe.config" size="4524">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>k5k3DhamwQei/cYaLsxv2R+veXKac0CpWrPUGIp2GMk=</dsig:DigestValue>
+      <dsig:DigestValue>y0GJAAkq2rBR3KG2wBJkgHn6ZyGSePzeORRZDj+hF3U=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\icons8-trash-24.png" size="174">

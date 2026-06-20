@@ -55,7 +55,7 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        string itemPalletCategory = "PALLET, BOX & PALLET";
+        string itemPalletCategory = ConfigurationManager.AppSettings["ItemPalletCategory"];
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -73,6 +73,7 @@ namespace PackingApplication
         string UserName = ConfigurationManager.AppSettings["UserName"];
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
+        string POYLot = ConfigurationManager.AppSettings["POYLot"];
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
@@ -439,7 +440,7 @@ namespace PackingApplication
         //    try
         //    {
 
-        //        var machineTask = _masterService.GetMachineList("SpinningLot", "");
+        //        var machineTask = _masterService.GetMachineList(POYLot, "");
         //        var packsizeTask = _masterService.GetPackSizeList("");
         //        var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
         //        var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
@@ -1368,7 +1369,7 @@ namespace PackingApplication
 
         //            if (selectedDepartment != null && productionRequest.MachineId == 0)
         //            {
-        //                var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "SpinningLot").Result;
+        //                var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, POYLot).Result;
 
         //                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
         //                LineNoList.DataSource = machineList;
@@ -2430,12 +2431,12 @@ namespace PackingApplication
                 List<MachineResponse> machineList = new List<MachineResponse>();
                 if (selectedSrDeptId == 0)
                 {
-                    machineList = _masterService.GetMachineList("SpinningLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineList(POYLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSrDeptId, "SpinningLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSrDeptId, POYLot).Result.OrderBy(x => x.MachineName).ToList();
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
 
@@ -3097,7 +3098,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrLineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("SpinningLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(POYLot, "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 SrLineNoList.DataSource = machineList;
                 SrLineNoList.DisplayMember = "MachineName";

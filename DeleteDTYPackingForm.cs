@@ -7,6 +7,7 @@ using PackingApplication.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -48,6 +49,7 @@ namespace PackingApplication
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
         bool suppressEvents = false;
         List<ProductionResponse> packingList = new List<ProductionResponse>();
+        string DTYLot = ConfigurationManager.AppSettings["DTYLot"];
         int selectedSrDeptId = 0;
         int selectedSrMachineId = 0;
         string selectedSrBoxNo = null;
@@ -396,7 +398,7 @@ namespace PackingApplication
         //{
         //    try
         //    {
-        //        var machineTask = _masterService.GetMachineList("TexturisingLot", "");
+        //        var machineTask = _masterService.GetMachineList(DTYLot, "");
         //        var packsizeTask = _masterService.GetPackSizeList("");
         //        var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
         //        var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
@@ -1155,7 +1157,7 @@ namespace PackingApplication
 
         //            if (selectedDepartment != null && productionRequest.MachineId == 0)
         //            {
-        //                var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "TexturisingLot").Result;
+        //                var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, DTYLot).Result;
 
         //                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
         //                LineNoList.DataSource = machineList;
@@ -1908,7 +1910,7 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
 
-                var machineList = _masterService.GetMachineList("TexturisingLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(DTYLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
 
                 SrLineNoList.BeginUpdate();
@@ -2680,7 +2682,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrLineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("TexturisingLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(DTYLot, "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 SrLineNoList.DataSource = machineList;
                 SrLineNoList.DisplayMember = "MachineName";

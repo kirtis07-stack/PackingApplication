@@ -52,7 +52,7 @@ namespace PackingApplication
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
         private bool isFormReady = false;
-        string itemBoxCategory = "BOX";
+        string itemBoxCategory = ConfigurationManager.AppSettings["ItemBoxCategoryChips"];
         List<MachineResponse> o_machinesResponse = new List<MachineResponse>();
         List<DepartmentResponse> o_departmentResponses = new List<DepartmentResponse>();
         TransactionTypePrefixRequest prefixRequest = new TransactionTypePrefixRequest();
@@ -75,6 +75,8 @@ namespace PackingApplication
         string UserName = ConfigurationManager.AppSettings["UserName"];
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
+        string ChipsPacking = ConfigurationManager.AppSettings["ChipsPacking"];
+        string ChipsLot = ConfigurationManager.AppSettings["ChipsLot"];
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
@@ -395,7 +397,7 @@ namespace PackingApplication
         //{
         //    try
         //    {
-        //        var machineTask = _masterService.GetMachineList("ChipsLot", "");
+        //        var machineTask = _masterService.GetMachineList(ChipsLot, "");
         //        var packsizeTask = _masterService.GetPackSizeList("");
         //        var copsitemTask = _masterService.GetItemList(itemCopsCategoryId, "");
         //        var boxitemTask = _masterService.GetItemList(itemBoxCategoryId, "");
@@ -750,13 +752,13 @@ namespace PackingApplication
                 List<MachineResponse> machineList = new List<MachineResponse>();
                 if (selectedSubDeptId == 0)
                 {
-                    machineList = _masterService.GetMachineList("ChipsLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineList(ChipsLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, "ChipsLot").Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, ChipsLot).Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -961,7 +963,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    mergenoList = _productionService.getLotsByLotType("ChipsLot", typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
+                    mergenoList = _productionService.getLotsByLotType(ChipsLot, typedText).Result.OrderBy(x => x.LotNoFrmt).ToList();
 
                     mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                 }
@@ -1440,7 +1442,7 @@ namespace PackingApplication
 
                     //if (selectedDepartment != null && productionRequest.MachineId == 0)
                     //{
-                    //    var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, "ChipsLot").Result;
+                    //    var machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDepartmentId, ChipsLot).Result;
 
                     //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                     //    LineNoList.DataSource = machineList;
@@ -1804,7 +1806,7 @@ namespace PackingApplication
             {
                 productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
                 productionRequest.BPDetailsId = productionRequest.OwnerId == 0 ? 0 : productionRequest.BPDetailsId;
-                productionRequest.PackingType = "ChpPacking";
+                productionRequest.PackingType = ChipsPacking;
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
                 productionRequest.GrossWt = Convert.ToDecimal(grosswtno.Text.Trim());
@@ -2401,7 +2403,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 LineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("ChipsLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(ChipsLot, "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 LineNoList.DataSource = machineList;
                 LineNoList.DisplayMember = "MachineName";
@@ -2433,7 +2435,7 @@ namespace PackingApplication
                 selectedMachineid = 0;      // Make selectedMachineid, selectedSubDeptId so that all mergeno will get in list
                 selectedSubDeptId = 0;
                 MergeNoList.DataSource = null;
-                var mergenoList = _productionService.getLotsByLotType("ChipsLot", "").Result.OrderBy(x => x.LotNoFrmt).ToList();
+                var mergenoList = _productionService.getLotsByLotType(ChipsLot, "").Result.OrderBy(x => x.LotNoFrmt).ToList();
                 mergenoList.Insert(0, new LotsResponse { LotId = 0, LotNoFrmt = "Select MergeNo" });
                 MergeNoList.DisplayMember = "LotNoFrmt";
                 MergeNoList.ValueMember = "LotId";
@@ -3042,7 +3044,7 @@ namespace PackingApplication
                 List<MachineResponse> machineList = new List<MachineResponse>();
                 if (selectedSrDeptId == 0)
                 {
-                    machineList = _masterService.GetMachineList("ChipsLot", typedText).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineList(ChipsLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
                 else
@@ -3710,7 +3712,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrLineNoList.DataSource = null;
-                var machineList = _masterService.GetMachineList("ChipsLot", "").Result.OrderBy(x => x.MachineName).ToList();
+                var machineList = _masterService.GetMachineList(ChipsLot, "").Result.OrderBy(x => x.MachineName).ToList();
                 machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 SrLineNoList.DataSource = machineList;
                 SrLineNoList.DisplayMember = "MachineName";
