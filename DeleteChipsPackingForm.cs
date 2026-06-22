@@ -57,6 +57,7 @@ namespace PackingApplication
         private int totalPages = 0;
         private int pageSize = 10;
         string ChipsLot = ConfigurationManager.AppSettings["ChipsLot"];
+        string ChipsPacking = ConfigurationManager.AppSettings["ChipsPacking"];
         public DeleteChipsPackingForm()
         {
             Log.writeMessage("Chips DeleteChipsPackingForm Constructor - Start : " + DateTime.Now);
@@ -450,6 +451,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                productionRequest.PackingType = productionResponse.PackingType;
                 _cmethod.SetReadOnlyBlue(LineNoList, true, true);
 
                 DeptList.DataSource = null;
@@ -849,7 +851,7 @@ namespace PackingApplication
 
         private async void RefreshLastBoxDetails()
         {
-            var getLastBox = _packingService.getLastBoxDetails("chppacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails(ChipsPacking, 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1660,7 +1662,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("CHIPS", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -2114,7 +2116,7 @@ namespace PackingApplication
 
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("CHIPS", selectedMachine.SubDepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(ChipsPacking, selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             SrDeptList.DataSource = deptTask;
                             SrDeptList.SelectedValue = selectedMachine.SubDepartmentId;
@@ -2405,7 +2407,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("CHIPS", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 SrDeptList.DisplayMember = "SubDepartmentName";
                 SrDeptList.ValueMember = "SubDepartmentId";

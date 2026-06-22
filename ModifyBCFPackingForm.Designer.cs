@@ -645,7 +645,7 @@ namespace PackingApplication
             this.srdept.AutoSize = true;
             this.srdept.Location = new System.Drawing.Point(8, 36);
             this.srdept.Name = "srdept";
-            this.srdept.Size = new System.Drawing.Size(33, 13);
+            this.srdept.Size = new System.Drawing.Size(52, 13);
             this.srdept.TabIndex = 100;
             this.srdept.Text = "SubDept:";
             // 
@@ -2375,10 +2375,10 @@ namespace PackingApplication
             // department
             // 
             this.department.AutoSize = true;
-            this.department.Location = new System.Drawing.Point(0, 3);
+            this.department.Location = new System.Drawing.Point(0, 0);
             this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(33, 13);
+            this.department.Size = new System.Drawing.Size(33, 26);
             this.department.TabIndex = 2;
             this.department.Text = "Sub\nDept:";
             // 

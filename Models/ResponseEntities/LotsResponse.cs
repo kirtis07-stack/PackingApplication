@@ -55,6 +55,7 @@ namespace PackingApplication.Models.ResponseEntities
         public List<LotSaleOrderDetailsResponse> LotSaleOrderDetailsResponses { get; set; }
         public short MainItemTypeId { get; set; }
         public short ItemTypeId { get; set; }
+        public string PackingType { get; set; }
     }
 
     public class LotsProductionDetailsResponse : BaseAuditEntity

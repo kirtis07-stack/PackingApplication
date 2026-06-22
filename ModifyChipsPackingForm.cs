@@ -507,6 +507,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                productionRequest.PackingType = productionResponse.PackingType;
                 selectedMachineid = productionResponse.MachineId;
 
                 DeptList.DataSource = null;
@@ -681,10 +682,11 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
+                        productionRequest.PackingType = selectedMachine.PackingType;
                         selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("CHIPS", selectedMachine.SubDepartmentName,null).Result;
+                            var deptTask = _masterService.GetDepartmentList(ChipsPacking, selectedMachine.SubDepartmentName,null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
@@ -827,6 +829,7 @@ namespace PackingApplication
                             LineNoList.Items.Add(selectedLot.MachineName);
                             LineNoList.SelectedItem = selectedLot.MachineName;
                             productionRequest.MachineId = selectedLot.MachineId;
+                            productionRequest.PackingType = selectedLot.PackingType;
                             selectedMachineid = selectedLot.MachineId;
                         }
                         if (selectedSubDeptId == 0)
@@ -851,6 +854,7 @@ namespace PackingApplication
                             salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
                             productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                             productionRequest.MachineId = lotResponse.MachineId;
+                            productionRequest.PackingType = lotResponse.PackingType;
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
                             LineNoList.SelectedValue = lotResponse.MachineId;
@@ -1266,7 +1270,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("chppacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails(ChipsPacking, 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1508,7 +1512,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("CHIPS", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -2589,7 +2593,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("CHIPS", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 DeptList.DisplayMember = "SubDepartmentName";
                 DeptList.ValueMember = "SubDepartmentId";
@@ -3099,7 +3103,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("CHIPS", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -3553,7 +3557,7 @@ namespace PackingApplication
 
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("CHIPS", selectedMachine.SubDepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(ChipsPacking, selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             SrDeptList.DataSource = deptTask;
                             SrDeptList.SelectedValue = selectedMachine.SubDepartmentId;
@@ -3742,7 +3746,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("CHIPS", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 SrDeptList.DisplayMember = "SubDepartmentName";
                 SrDeptList.ValueMember = "SubDepartmentId";

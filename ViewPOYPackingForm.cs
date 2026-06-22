@@ -74,6 +74,7 @@ namespace PackingApplication
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
         string POYLot = ConfigurationManager.AppSettings["POYLot"];
+        string POYPacking = ConfigurationManager.AppSettings["POYPacking"];
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
@@ -696,6 +697,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                productionRequest.PackingType = productionResponse.PackingType;
 
                 DeptList.DataSource = null;
                 DeptList.Items.Clear();
@@ -1236,7 +1238,7 @@ namespace PackingApplication
         {
             Log.writeMessage("POY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("poypacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails(POYPacking, 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -2486,7 +2488,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("POY", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(POYPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -2536,7 +2538,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "POYPacking";
+                getListRequest.PackingType = POYPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
@@ -2664,7 +2666,7 @@ namespace PackingApplication
             //if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
 
             GetProductionList getListRequest = new GetProductionList();
-            getListRequest.PackingType = "POYPacking";
+            getListRequest.PackingType = POYPacking;
             getListRequest.MachineId = selectedSrMachineId;
             getListRequest.SubDeptId = selectedSrDeptId;
             getListRequest.BoxNo = selectedSrBoxNo;
@@ -2893,7 +2895,7 @@ namespace PackingApplication
 
             long productionId = Convert.ToInt32(drv["ProductionId"]);
 
-            var getSelectedProductionDetails = _packingService.getLastBoxDetails("poypacking", productionId).Result;
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails(POYPacking, productionId).Result;
 
             //SelectedProductionDetails
             if (getSelectedProductionDetails.ProductionId > 0)
@@ -2939,7 +2941,7 @@ namespace PackingApplication
 
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("POY", selectedMachine.SubDepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(POYPacking, selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             SrDeptList.DataSource = deptTask;
                             SrDeptList.SelectedValue = selectedMachine.SubDepartmentId;
@@ -3128,7 +3130,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("POY", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(POYPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 SrDeptList.DisplayMember = "SubDepartmentName";
                 SrDeptList.ValueMember = "SubDepartmentId";
@@ -3158,7 +3160,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "POYPacking";
+                getListRequest.PackingType = POYPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;

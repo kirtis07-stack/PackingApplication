@@ -50,6 +50,7 @@ namespace PackingApplication
         bool suppressEvents = false;
         List<ProductionResponse> packingList = new List<ProductionResponse>();
         string DTYLot = ConfigurationManager.AppSettings["DTYLot"];
+        string DTYPacking = ConfigurationManager.AppSettings["DTYPacking"];
         int selectedSrDeptId = 0;
         int selectedSrMachineId = 0;
         string selectedSrBoxNo = null;
@@ -688,7 +689,7 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("dtypacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails(DTYPacking, 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1959,7 +1960,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("DTY", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(DTYPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -2009,7 +2010,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "DTYPacking";
+                getListRequest.PackingType = DTYPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
@@ -2102,7 +2103,7 @@ namespace PackingApplication
         //{
         //    Log.writeMessage("DTY GetPackingList - Start : " + DateTime.Now);
 
-        //    packingList = _packingService.getProductionDetailsBySelectedParameter("DTYPacking", machineId, deptId, boxNo, productionDate).Result;
+        //    packingList = _packingService.getProductionDetailsBySelectedParameter(DTYPacking, machineId, deptId, boxNo, productionDate).Result;
 
         //    Log.writeMessage("DTY GetPackingList - End : " + DateTime.Now);
 
@@ -2137,7 +2138,7 @@ namespace PackingApplication
             //if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
 
             GetProductionList getListRequest = new GetProductionList();
-            getListRequest.PackingType = "DTYPacking";
+            getListRequest.PackingType = DTYPacking;
             getListRequest.MachineId = selectedSrMachineId;
             getListRequest.SubDeptId = selectedSrDeptId;
             getListRequest.BoxNo = selectedSrBoxNo;
@@ -2375,7 +2376,7 @@ namespace PackingApplication
 
             long productionId = Convert.ToInt32(drv["ProductionId"]);
 
-            var getSelectedProductionDetails = _packingService.getLastBoxDetails("dtypacking", productionId).Result;
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails(DTYPacking, productionId).Result;
 
             //SelectedProductionDetails
             if (getSelectedProductionDetails.ProductionId > 0)
@@ -2421,7 +2422,7 @@ namespace PackingApplication
 
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.SubDepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(DTYPacking, selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             SrDeptList.DataSource = deptTask;
                             SrDeptList.SelectedValue = selectedMachine.SubDepartmentId;
@@ -2712,7 +2713,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("DTY", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(DTYPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 SrDeptList.DisplayMember = "SubDepartmentName";
                 SrDeptList.ValueMember = "SubDepartmentId";
@@ -2742,7 +2743,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "DTYPacking";
+                getListRequest.PackingType = DTYPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;

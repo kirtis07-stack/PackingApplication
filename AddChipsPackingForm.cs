@@ -65,6 +65,7 @@ namespace PackingApplication
         string ProductionTypeName = ConfigurationManager.AppSettings["ProductionTypeName"];
         string ChipsPacking = ConfigurationManager.AppSettings["ChipsPacking"];
         string ChipsLot = ConfigurationManager.AppSettings["ChipsLot"];
+        string ChipsPackingTxn = ConfigurationManager.AppSettings["ChipsPackingTxn"];
         bool suppressEvents = false;
         int selectedDeptId = 0;
         int selectedSubDeptId = 0;
@@ -447,6 +448,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                productionRequest.PackingType = productionResponse.PackingType;
                 selectedMachineid = productionResponse.MachineId;
 
                 DeptList.DataSource = null;
@@ -598,10 +600,11 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
+                        productionRequest.PackingType = selectedMachine.PackingType;
                         selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("CHIPS", selectedMachine.DepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(ChipsPacking, selectedMachine.DepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
@@ -623,7 +626,7 @@ namespace PackingApplication
                         if (productionRequest.PrefixCode != 0)
                         {
                             prefixRequest.DepartmentId = selectedDeptId;
-                            prefixRequest.TxnFlag = "Chp";
+                            prefixRequest.TxnFlag = ChipsPackingTxn;
                             prefixRequest.TransactionTypeName = TransactionTypeName;
                             prefixRequest.ProductionTypeName = ProductionTypeName;
                             prefixRequest.Prefix = "";
@@ -764,6 +767,7 @@ namespace PackingApplication
                             LineNoList.Items.Add(selectedLot.MachineName);
                             LineNoList.SelectedItem = selectedLot.MachineName;
                             productionRequest.MachineId = selectedLot.MachineId;
+                            productionRequest.PackingType = selectedLot.PackingType;
                             selectedMachineid = selectedLot.MachineId;
                         }
                         if (selectedSubDeptId == 0)
@@ -788,6 +792,7 @@ namespace PackingApplication
                             salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
                             productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                             productionRequest.MachineId = lotResponse.MachineId;
+                            productionRequest.PackingType = lotResponse.PackingType;
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
                             LineNoList.SelectedValue = lotResponse.MachineId;
@@ -1204,7 +1209,7 @@ namespace PackingApplication
         {
             Log.writeMessage("Chips RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("chppacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails(ChipsPacking, 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1374,7 +1379,7 @@ namespace PackingApplication
 
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                //var deptTask = _masterService.GetDepartmentList("CHIPS", null, selectedPrefix.Department).Result;
+                //var deptTask = _masterService.GetDepartmentList(ChipsPacking, null, selectedPrefix.Department).Result;
                 //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 //DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                 //DeptList.DataSource = deptTask;
@@ -1445,7 +1450,7 @@ namespace PackingApplication
                 //PrefixList.Items.Clear();
                 prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = selectedDeptId;
-                prefixRequest.TxnFlag = "Chp";
+                prefixRequest.TxnFlag = ChipsPackingTxn;
                 prefixRequest.TransactionTypeName = TransactionTypeName;
                 prefixRequest.ProductionTypeName = ProductionTypeName;
                 prefixRequest.Prefix = "";
@@ -1536,7 +1541,7 @@ namespace PackingApplication
                     //prodtype.Text = "";
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
-                    //prefixRequest.TxnFlag = "Chp";
+                    //prefixRequest.TxnFlag = ChipsPackingTxn;
                     //prefixRequest.TransactionTypeId = 5;
                     //prefixRequest.ProductionTypeId = 1;
                     //prefixRequest.Prefix = "";
@@ -1604,7 +1609,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("CHIPS", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -1902,7 +1907,6 @@ namespace PackingApplication
             {
                 productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
                 productionRequest.BPDetailsId = productionRequest.OwnerId == 0 ? 0 : productionRequest.BPDetailsId;
-                productionRequest.PackingType = ChipsPacking;
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.EmptyBoxPalletWt = Convert.ToDecimal(palletwtno.Text.Trim());
                 productionRequest.GrossWt = Convert.ToDecimal(grosswtno.Text.Trim());
@@ -2613,7 +2617,7 @@ namespace PackingApplication
             {
                 prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = 0;
-                prefixRequest.TxnFlag = "Chp";
+                prefixRequest.TxnFlag = ChipsPackingTxn;
                 prefixRequest.TransactionTypeName = TransactionTypeName;
                 prefixRequest.ProductionTypeName = ProductionTypeName;
                 prefixRequest.Prefix = "";
@@ -2715,7 +2719,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("CHIPS", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(ChipsPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 DeptList.DisplayMember = "SubDepartmentName";
                 DeptList.ValueMember = "SubDepartmentId";

@@ -494,6 +494,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                productionRequest.PackingType = productionResponse.PackingType;
                 selectedMachineid = productionResponse.MachineId;
 
                 DeptList.DataSource = null;
@@ -687,10 +688,11 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
+                        productionRequest.PackingType = selectedMachine.PackingType;
                         selectedMachineid = selectedMachine.MachineId;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("DTY", selectedMachine.SubDepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(DTYPacking, selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
@@ -713,7 +715,7 @@ namespace PackingApplication
                         if (productionRequest.PrefixCode != 0)
                         {
                             prefixRequest.DepartmentId = selectedDeptId;
-                            prefixRequest.TxnFlag = "DTY";
+                            prefixRequest.TxnFlag = DTYPacking;
                             prefixRequest.TransactionTypeName = TransactionTypeName;
                             prefixRequest.ProductionTypeName = ProductionTypeName;
                             prefixRequest.Prefix = "";
@@ -872,6 +874,7 @@ namespace PackingApplication
                             LineNoList.Items.Add(selectedLot.MachineName);
                             LineNoList.SelectedItem = selectedLot.MachineName;
                             productionRequest.MachineId = selectedLot.MachineId;
+                            productionRequest.PackingType = selectedLot.PackingType;
                             selectedMachineid = selectedLot.MachineId;
                         }
                         if (selectedSubDeptId == 0)
@@ -899,6 +902,7 @@ namespace PackingApplication
                             productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                             productionRequest.TwistId = lotResponse.TwistId;
                             productionRequest.MachineId = lotResponse.MachineId;
+                            productionRequest.PackingType = lotResponse.PackingType;
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
                             LineNoList.SelectedValue = lotResponse.MachineId;
@@ -1632,7 +1636,7 @@ namespace PackingApplication
         {
             Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("dtypacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails(DTYPacking, 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -1895,7 +1899,7 @@ namespace PackingApplication
                 int selectedPrefixId = selectedPrefix.PrefixCode;
                 productionRequest.PrefixCode = selectedPrefixId;
 
-                //var deptTask = _masterService.GetDepartmentList("DTY",null, selectedPrefix.Department).Result;
+                //var deptTask = _masterService.GetDepartmentList(DTYPacking,null, selectedPrefix.Department).Result;
                 //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 //DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                 //DeptList.DataSource = deptTask;
@@ -1965,7 +1969,7 @@ namespace PackingApplication
                 //PrefixList.Items.Clear();
                 prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = selectedDeptId;
-                prefixRequest.TxnFlag = "DTY";
+                prefixRequest.TxnFlag = DTYPacking;
                 prefixRequest.TransactionTypeName = TransactionTypeName;
                 prefixRequest.ProductionTypeName = ProductionTypeName;
                 prefixRequest.Prefix = "";
@@ -2055,7 +2059,7 @@ namespace PackingApplication
                     //prodtype.Text = "";
                     ResetDependentDropdownValues();
                     //prefixRequest.DepartmentId = selectedDepartmentId;
-                    //prefixRequest.TxnFlag = "DTY";
+                    //prefixRequest.TxnFlag = DTYPacking;
                     //prefixRequest.TransactionTypeId = 5;
                     //prefixRequest.ProductionTypeId = 1;
                     //prefixRequest.Prefix = "";
@@ -2124,7 +2128,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("DTY", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(DTYPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { DepartmentId = 0, SubDepartmentName = "Select SubDept" });
 
@@ -2466,7 +2470,6 @@ namespace PackingApplication
             if (ValidateForm())
             {
                 productionRequest.OwnerId = this.OwnerList.SelectedIndex <= 0 ? 0 : productionRequest.OwnerId;
-                productionRequest.PackingType = DTYPacking;
                 productionRequest.Remarks = remarks.Text.Trim();
                 productionRequest.Spools = Convert.ToInt32(spoolno.Text.Trim());
                 productionRequest.SpoolsWt = Convert.ToDecimal(spoolwt.Text.Trim());
@@ -3302,7 +3305,7 @@ namespace PackingApplication
             {
                 prefixRequest = new TransactionTypePrefixRequest();
                 prefixRequest.DepartmentId = 0;
-                prefixRequest.TxnFlag = "DTY";
+                prefixRequest.TxnFlag = DTYPacking;
                 prefixRequest.TransactionTypeName = TransactionTypeName;
                 prefixRequest.ProductionTypeName = ProductionTypeName;
                 prefixRequest.Prefix = "";
@@ -3478,7 +3481,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("DTY", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(DTYPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 DeptList.DisplayMember = "SubDepartmentName";
                 DeptList.ValueMember = "SubDepartmentId";

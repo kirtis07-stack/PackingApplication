@@ -748,6 +748,7 @@ namespace PackingApplication
                 LineNoList.Items.Add(productionResponse.MachineName);
                 LineNoList.SelectedItem = productionResponse.MachineName;
                 productionRequest.MachineId = productionResponse.MachineId;
+                productionRequest.PackingType = productionResponse.PackingType;
                 selectedMachineid = productionResponse.MachineId;
 
                 DeptList.DataSource = null;
@@ -1036,10 +1037,10 @@ namespace PackingApplication
                     if (selectedMachineId > 0)
                     {
                         productionRequest.MachineId = selectedMachineId;
-
+                        productionRequest.PackingType = selectedMachine.PackingType;
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("BCF", selectedMachine.SubDepartmentName,null).Result;
+                            var deptTask = _masterService.GetDepartmentList(BCFPacking, selectedMachine.SubDepartmentName,null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
                             DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
                             DeptList.DataSource = deptTask;
@@ -1199,6 +1200,7 @@ namespace PackingApplication
                             LineNoList.Items.Add(selectedLot.MachineName);
                             LineNoList.SelectedItem = selectedLot.MachineName;
                             productionRequest.MachineId = selectedLot.MachineId;
+                            productionRequest.PackingType = selectedLot.PackingType;
                             selectedMachineid = selectedLot.MachineId;
                         }
                         if (selectedSubDeptId == 0)
@@ -1223,6 +1225,7 @@ namespace PackingApplication
                             salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
                             productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
                             productionRequest.MachineId = lotResponse.MachineId;
+                            productionRequest.PackingType = lotResponse.PackingType;
                             productionRequest.ItemId = lotResponse.ItemId;
                             productionRequest.ShadeId = lotResponse.ShadeId;
                             LineNoList.SelectedValue = lotResponse.MachineId;
@@ -1979,7 +1982,7 @@ namespace PackingApplication
         {
             Log.writeMessage("BCF RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails("BCFpacking", 0).Result;
+            var getLastBox = _packingService.getLastBoxDetails("BCF", 0).Result;
 
             //lastboxdetails
             if (getLastBox.ProductionId > 0)
@@ -2313,7 +2316,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("BCF", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(BCFPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
 
@@ -4198,7 +4201,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("BCF", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(BCFPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
                 DeptList.DisplayMember = "SubDepartmentName";
                 DeptList.ValueMember = "SubDepartmentId";
@@ -4763,7 +4766,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
 
-                var deptList = _masterService.GetDepartmentList("BCF", typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(BCFPacking, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
 
@@ -4813,7 +4816,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "BCFPacking";
+                getListRequest.PackingType = BCFPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
@@ -4941,7 +4944,7 @@ namespace PackingApplication
             //if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
 
             GetProductionList getListRequest = new GetProductionList();
-            getListRequest.PackingType = "BCFPacking";
+            getListRequest.PackingType = BCFPacking;
             getListRequest.MachineId = selectedSrMachineId;
             getListRequest.SubDeptId = selectedSrDeptId;
             getListRequest.BoxNo = selectedSrBoxNo;
@@ -5170,7 +5173,7 @@ namespace PackingApplication
 
             long productionId = Convert.ToInt32(drv["ProductionId"]);
 
-            var getSelectedProductionDetails = _packingService.getLastBoxDetails("BCFpacking", productionId).Result;
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails(BCFPacking, productionId).Result;
 
             //SelectedProductionDetails
             if (getSelectedProductionDetails.ProductionId > 0)
@@ -5216,7 +5219,7 @@ namespace PackingApplication
 
                         if (selectedMachine != null)
                         {
-                            var deptTask = _masterService.GetDepartmentList("BCF", selectedMachine.SubDepartmentName, null).Result;
+                            var deptTask = _masterService.GetDepartmentList(BCFPacking, selectedMachine.SubDepartmentName, null).Result;
                             deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
                             SrDeptList.DataSource = deptTask;
                             SrDeptList.SelectedValue = selectedMachine.SubDepartmentId;
@@ -5405,7 +5408,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 SrDeptList.DataSource = null;
-                var deptList = _masterService.GetDepartmentList("BCF", "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
+                var deptList = _masterService.GetDepartmentList(BCFPacking, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Dept" });
                 SrDeptList.DisplayMember = "SubDepartmentName";
                 SrDeptList.ValueMember = "SubDepartmentId";
@@ -5435,7 +5438,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "BCFPacking";
+                getListRequest.PackingType = BCFPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;
