@@ -3153,7 +3153,7 @@ namespace PackingApplication
             {
                 //DeptList.Items.Clear();
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "ChpPacking";
+                getListRequest.PackingType = ChipsPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
@@ -3246,7 +3246,7 @@ namespace PackingApplication
         //{
         //    Log.writeMessage("Chips GetPackingList - Start : " + DateTime.Now);
 
-        //    packingList = _packingService.getProductionDetailsBySelectedParameter("ChpPacking", machineId, deptId, boxNo, productionDate).Result;
+        //    packingList = _packingService.getProductionDetailsBySelectedParameter(ChipsPacking, machineId, deptId, boxNo, productionDate).Result;
 
         //    Log.writeMessage("Chips GetPackingList - End : " + DateTime.Now);
 
@@ -3281,7 +3281,7 @@ namespace PackingApplication
             //if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
 
             GetProductionList getListRequest = new GetProductionList();
-            getListRequest.PackingType = "ChpPacking";
+            getListRequest.PackingType = ChipsPacking;
             getListRequest.MachineId = selectedSrMachineId;
             getListRequest.SubDeptId = selectedSrDeptId;
             getListRequest.BoxNo = selectedSrBoxNo;
@@ -3511,7 +3511,7 @@ namespace PackingApplication
 
             long productionId = Convert.ToInt32(drv["ProductionId"]);
 
-            var getSelectedProductionDetails = _packingService.getLastBoxDetails("Chppacking", productionId).Result;
+            var getSelectedProductionDetails = _packingService.getLastBoxDetails(ChipsPacking, productionId).Result;
 
             //SelectedProductionDetails
             if (getSelectedProductionDetails.ProductionId > 0)
@@ -3776,7 +3776,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 GetProductionList getListRequest = new GetProductionList();
-                getListRequest.PackingType = "ChpPacking";
+                getListRequest.PackingType = ChipsPacking;
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;

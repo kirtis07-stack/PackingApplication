@@ -3588,7 +3588,7 @@ namespace PackingApplication
                 prowner.Checked = false;
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
-                lastbox.Text = "";
+                //lastbox.Text = "";
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
                 //DeptList.Items.Add("Select SubDept");

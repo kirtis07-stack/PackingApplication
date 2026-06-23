@@ -486,10 +486,12 @@ namespace PackingApplication
             this.remarks.AcceptsReturn = true;
             this.remarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.remarks.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.remarks.Location = new System.Drawing.Point(56, 0);
             this.remarks.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.remarks.Multiline = true;
             this.remarks.Name = "remarks";
+            this.remarks.ReadOnly = true;
             this.remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.remarks.Size = new System.Drawing.Size(124, 28);
             this.remarks.TabIndex = 5;
@@ -845,7 +847,7 @@ namespace PackingApplication
             this.srdept.AutoSize = true;
             this.srdept.Location = new System.Drawing.Point(8, 36);
             this.srdept.Name = "srdept";
-            this.srdept.Size = new System.Drawing.Size(33, 13);
+            this.srdept.Size = new System.Drawing.Size(52, 13);
             this.srdept.TabIndex = 100;
             this.srdept.Text = "SubDept:";
             // 
@@ -2302,7 +2304,7 @@ namespace PackingApplication
             this.department.Location = new System.Drawing.Point(0, 0);
             this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(33, 13);
+            this.department.Size = new System.Drawing.Size(33, 26);
             this.department.TabIndex = 2;
             this.department.Text = "Sub\nDept:";
             // 
@@ -2763,9 +2765,11 @@ namespace PackingApplication
             // 
             this.spoolno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.spoolno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.spoolno.Location = new System.Drawing.Point(45, 2);
             this.spoolno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.spoolno.Name = "spoolno";
+            this.spoolno.ReadOnly = true;
             this.spoolno.Size = new System.Drawing.Size(15, 20);
             this.spoolno.TabIndex = 3;
             this.spoolno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -2881,6 +2885,7 @@ namespace PackingApplication
             this.palletwtno.Location = new System.Drawing.Point(42, 2);
             this.palletwtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.palletwtno.Name = "palletwtno";
+            this.palletwtno.ReadOnly = true;
             this.palletwtno.Size = new System.Drawing.Size(27, 20);
             this.palletwtno.TabIndex = 4;
             this.palletwtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -2991,9 +2996,11 @@ namespace PackingApplication
             // 
             this.grosswtno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grosswtno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.grosswtno.Location = new System.Drawing.Point(43, 2);
             this.grosswtno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.grosswtno.Name = "grosswtno";
+            this.grosswtno.ReadOnly = true;
             this.grosswtno.Size = new System.Drawing.Size(28, 20);
             this.grosswtno.TabIndex = 5;
             this.grosswtno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

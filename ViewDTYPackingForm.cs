@@ -583,13 +583,21 @@ namespace PackingApplication
                 prodtype.Text = productionResponse.ProductionType;
                 remarks.Text = productionResponse.Remarks;
                 prcompany.Checked = productionResponse.PrintCompany;
+                _cmethod.SetReadOnlyBlue(prcompany, true, true);
                 prowner.Checked = productionResponse.PrintOwner;
+                _cmethod.SetReadOnlyBlue(prowner, true, true);
                 prdate.Checked = productionResponse.PrintDate;
+                _cmethod.SetReadOnlyBlue(prdate, true, true);
                 pruser.Checked = productionResponse.PrintUser;
+                _cmethod.SetReadOnlyBlue(pruser, true, true);
                 prhindi.Checked = productionResponse.PrintHindiWords;
+                _cmethod.SetReadOnlyBlue(prhindi, true, true);
                 prwtps.Checked = productionResponse.PrintWTPS;
+                _cmethod.SetReadOnlyBlue(prwtps, true, true);
                 prqrcode.Checked = productionResponse.PrintQRCode;
+                _cmethod.SetReadOnlyBlue(prqrcode, true, true);
                 prtwist.Checked = productionResponse.PrintTwist;
+                _cmethod.SetReadOnlyBlue(prtwist, true, true);
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {

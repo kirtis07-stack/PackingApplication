@@ -4505,7 +4505,7 @@ namespace PackingApplication
                 //isFormReady = false;
                 spoolno.Text = "0";
                 salelotvalue.Text = "";
-                lastbox.Text = "";
+                //lastbox.Text = "";
                 AddHeader();
             }
             finally
