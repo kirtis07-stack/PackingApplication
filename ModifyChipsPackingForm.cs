@@ -1876,7 +1876,7 @@ namespace PackingApplication
                 {
                     Log.writeMessage("Chips Print - Start : " + DateTime.Now);
                     //call ssrs report to print
-                    string reportpathlink = reportPath + "/Chips";
+                    string reportpathlink = reportPath + "/Chip";
                     string format = "PDF";
 
                     //set params
@@ -1898,7 +1898,7 @@ namespace PackingApplication
                                 var printerSettings = new PrinterSettings()
                                 {
                                     // PrinterName = "YourPrinterName",
-                                    Copies = 1
+                                    Copies = Convert.ToByte(productionRequest.NoOfCopies)
                                 };
 
                                 printDoc.PrinterSettings = printerSettings;

@@ -503,7 +503,6 @@ namespace PackingApplication
             this.copyno.Location = new System.Drawing.Point(45, 3);
             this.copyno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copyno.Name = "copyno";
-            this.copyno.ReadOnly = true;
             this.copyno.Size = new System.Drawing.Size(26, 20);
             this.copyno.TabIndex = 3;
             this.copyno.TabStop = false;
@@ -1072,7 +1071,7 @@ namespace PackingApplication
             this.srdept.AutoSize = true;
             this.srdept.Location = new System.Drawing.Point(8, 36);
             this.srdept.Name = "srdept";
-            this.srdept.Size = new System.Drawing.Size(33, 13);
+            this.srdept.Size = new System.Drawing.Size(52, 13);
             this.srdept.TabIndex = 101;
             this.srdept.Text = "SubDept:";
             // 
@@ -2050,7 +2049,7 @@ namespace PackingApplication
             this.department.Location = new System.Drawing.Point(0, 3);
             this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(33, 13);
+            this.department.Size = new System.Drawing.Size(33, 26);
             this.department.TabIndex = 2;
             this.department.Text = "Sub\nDept:";
             // 

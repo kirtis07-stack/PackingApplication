@@ -3273,7 +3273,7 @@ namespace PackingApplication
                                 var printerSettings = new PrinterSettings()
                                 {
                                     // PrinterName = "YourPrinterName",
-                                    Copies = 1
+                                    Copies = Convert.ToByte(productionRequest.NoOfCopies)
                                 };
 
                                 printDoc.PrinterSettings = printerSettings;

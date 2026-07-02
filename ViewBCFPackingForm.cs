@@ -713,6 +713,7 @@ namespace PackingApplication
                 netwt.Text = productionResponse.NetWt.ToString();
                 spoolno.Text = productionResponse.Spools.ToString();
                 spoolwt.Text = productionResponse.SpoolsWt.ToString();
+                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
                 AdjustNameByCharCount();
             }
 
@@ -1926,6 +1927,7 @@ namespace PackingApplication
             }
             else
             {
+                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
@@ -3287,7 +3289,7 @@ namespace PackingApplication
                             var printerSettings = new PrinterSettings()
                             {
                                 // PrinterName = "YourPrinterName",
-                                Copies = 2
+                                Copies = Convert.ToByte(productionRequest.NoOfCopies)
                             };
 
                             printDoc.PrinterSettings = printerSettings;

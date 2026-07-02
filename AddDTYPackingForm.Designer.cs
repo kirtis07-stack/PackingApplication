@@ -784,7 +784,6 @@ namespace PackingApplication
             this.copyno.Location = new System.Drawing.Point(45, 3);
             this.copyno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copyno.Name = "copyno";
-            this.copyno.ReadOnly = true;
             this.copyno.Size = new System.Drawing.Size(15, 20);
             this.copyno.TabIndex = 3;
             this.copyno.TabStop = false;
@@ -2190,7 +2189,7 @@ namespace PackingApplication
             this.department.Location = new System.Drawing.Point(0, 0);
             this.department.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.department.Name = "department";
-            this.department.Size = new System.Drawing.Size(33, 13);
+            this.department.Size = new System.Drawing.Size(33, 26);
             this.department.TabIndex = 2;
             this.department.Text = "Sub\nDept:";
             // 

@@ -682,6 +682,7 @@ namespace PackingApplication
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
+                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
                 RefreshGradewiseGrid();
                 RefreshWindingGrid();
                 productionRequest.ItemId = productionResponse.ItemId;
@@ -1932,6 +1933,7 @@ namespace PackingApplication
             }
             else
             {
+                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
@@ -3370,7 +3372,7 @@ namespace PackingApplication
                             var printerSettings = new PrinterSettings()
                             {
                                 // PrinterName = "YourPrinterName",
-                                Copies = 1
+                                Copies = Convert.ToByte(productionRequest.NoOfCopies)
                             };
 
                             printDoc.PrinterSettings = printerSettings;

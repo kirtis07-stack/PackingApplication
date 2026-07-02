@@ -3274,7 +3274,7 @@ namespace PackingApplication
                                 var printerSettings = new PrinterSettings()
                                 {
                                     // PrinterName = "YourPrinterName",
-                                    Copies = 2
+                                    Copies = Convert.ToByte(productionRequest.NoOfCopies)
                                 };
 
                                 printDoc.PrinterSettings = printerSettings;

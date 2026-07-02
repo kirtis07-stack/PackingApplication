@@ -578,6 +578,7 @@ namespace PackingApplication
                 productionRequest.TareWt = productionResponse.TareWt;
                 netwt.Text = productionResponse.NetWt.ToString();
                 productionRequest.NetWt = productionResponse.NetWt;
+                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
                 AdjustNameByCharCount();
             }
 
@@ -1140,6 +1141,7 @@ namespace PackingApplication
             }
             else
             {
+                productionRequest.NoOfCopies = Convert.ToInt32(copyno.Text.Trim());
                 copynoerror.Text = "";
                 copynoerror.Visible = false;
             }
@@ -2452,7 +2454,7 @@ namespace PackingApplication
             {
                 slipRequest.ProductionId = _productionId;
                 //call ssrs report to print
-                string reportpathlink = reportPath + "/Chips";
+                string reportpathlink = reportPath + "/Chip";
                 string format = "PDF";
 
                 //set params
@@ -2474,7 +2476,7 @@ namespace PackingApplication
                             var printerSettings = new PrinterSettings()
                             {
                                 // PrinterName = "YourPrinterName",
-                                Copies = 1
+                                Copies = Convert.ToByte(productionRequest.NoOfCopies)
                             };
 
                             printDoc.PrinterSettings = printerSettings;
