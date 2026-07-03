@@ -605,8 +605,7 @@ namespace PackingApplication
             this.copyno.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.copyno.Name = "copyno";
             this.copyno.Size = new System.Drawing.Size(15, 20);
-            this.copyno.TabIndex = 3;
-            this.copyno.TabStop = false;
+            this.copyno.TabIndex = 6;
             this.copyno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.copyno.TextChanged += new System.EventHandler(this.CopyNos_TextChanged);
             // 
