@@ -679,6 +679,7 @@ namespace PackingApplication
                 shadecd.Text = productionResponse.ShadeCode;
                 deniervalue.Text = productionResponse.Denier.ToString();
                 salelotvalue.Text = productionResponse.SaleLot.ToString();
+                productionRequest.SaleLot = productionResponse.SaleLot;
                 frdenier.Text = productionResponse.FromDenier.ToString();
                 updenier.Text = productionResponse.UpToDenier.ToString();
                 startWeight = productionResponse.StartWeight;

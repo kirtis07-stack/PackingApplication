@@ -633,6 +633,7 @@ namespace PackingApplication
                 deniervalue.Text = productionResponse.Denier.ToString();
                 twistvalue.Text = productionResponse.TwistName.ToString();
                 salelotvalue.Text = productionResponse.SaleLot.ToString();
+                productionRequest.SaleLot = productionResponse.SaleLot;
                 frdenier.Text = productionResponse.FromDenier.ToString();
                 updenier.Text = productionResponse.UpToDenier.ToString();
                 startWeight = productionResponse.StartWeight;
