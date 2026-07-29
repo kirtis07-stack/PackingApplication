@@ -196,5 +196,7 @@ namespace PackingApplication.Models.ResponseEntities
         public bool QualityListEnabled { get; set; }
         public bool WindingTypeListEnabled { get; set; }
         public bool SaleOrderListEnabled { get; set; }
+        public string PONo { get; set; }
+        public string Yarncode { get; set; }
     }
 }

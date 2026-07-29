@@ -2051,13 +2051,13 @@ namespace PackingApplication
 
             if (drv == null) return;
 
-            bool canModifyDelete =
-                Convert.ToBoolean(drv["CanModifyDelete"] == DBNull.Value
-                    ? false
-                    : drv["CanModifyDelete"]);
+            //bool canModifyDelete =
+            //    Convert.ToBoolean(drv["CanModifyDelete"] == DBNull.Value
+            //        ? false
+            //        : drv["CanModifyDelete"]);
 
-            if (!canModifyDelete)
-                return;
+            //if (!canModifyDelete)
+            //    return;
 
             //if (rowIndex < 0 || rowIndex >= dataGridView1.Rows.Count)
             //    return;

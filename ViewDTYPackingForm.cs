@@ -2323,13 +2323,13 @@ namespace PackingApplication
 
             if (drv == null) return;
 
-            bool canModifyDelete =
-                Convert.ToBoolean(drv["CanModifyDelete"] == DBNull.Value
-                    ? false
-                    : drv["CanModifyDelete"]);
+            //bool canModifyDelete =
+            //    Convert.ToBoolean(drv["CanModifyDelete"] == DBNull.Value
+            //        ? false
+            //        : drv["CanModifyDelete"]);
 
-            if (!canModifyDelete)
-                return;
+            //if (!canModifyDelete)
+            //    return;
 
             popuppanel.Visible = false;
             datalistpopuppanel.Visible = false;

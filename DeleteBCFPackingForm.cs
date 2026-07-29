@@ -131,6 +131,8 @@ namespace PackingApplication
             //SrLineNoList.Enabled = SrDeptList.Enabled = SrBoxNoList.Enabled = dateTimePicker2.Enabled = false;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel40, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel59, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
@@ -313,6 +315,10 @@ namespace PackingApplication
             this.itemname.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.shadename.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.ponumber.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.yarn.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pono.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.yarncode.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -668,6 +674,8 @@ namespace PackingApplication
                 itemname.Text = productionResponse.ItemName;
                 shadename.Text = productionResponse.ShadeName;
                 shadecd.Text = productionResponse.ShadeCode;
+                ponumber.Text = productionResponse.PONo;
+                yarn.Text = productionResponse.Yarncode;
                 deniervalue.Text = productionResponse.Denier.ToString();
                 salelotvalue.Text = (!string.IsNullOrEmpty(productionResponse.SaleLot)) ? productionResponse.SaleLot.ToString() : "";
                 productionRequest.SaleLot = productionResponse.SaleLot;
@@ -2292,6 +2300,8 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 prodtype.Text = "";
+                ponumber.Text = "";
+                yarn.Text = "";
                 frwt.Text = "0";
                 upwt.Text = "0";
                 remarks.Text = "";

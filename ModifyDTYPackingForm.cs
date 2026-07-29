@@ -1969,6 +1969,7 @@ namespace PackingApplication
             if (DeptList.SelectedIndex <= 0)
             {
                 selectedSubDeptId = 0;
+                selectedDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -2070,6 +2071,7 @@ namespace PackingApplication
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
                 selectedSubDeptId = 0;
+                selectedDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;

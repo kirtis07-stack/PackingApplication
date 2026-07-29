@@ -1378,7 +1378,18 @@ namespace PackingApplication
                 PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
                 int selectedPrefixId = selectedPrefix.PrefixCode;
 
-                productionRequest.PrefixCode = selectedPrefixId;
+                if (selectedDeptId != 0 && selectedPrefix.DepartmentId != selectedDeptId)
+                {
+                    MessageBox.Show("Selected Prefix does not match with selected SubDepartment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    productionRequest.PrefixCode = 0;
+                    selectedPrefixId = 0;
+                    PrefixList.SelectedIndex = 0;
+                    return;
+                }
+                else
+                {
+                    productionRequest.PrefixCode = selectedPrefixId;
+                }
 
                 //var deptTask = _masterService.GetDepartmentList(ChipsPacking, null, selectedPrefix.Department).Result;
                 //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
@@ -1492,6 +1503,7 @@ namespace PackingApplication
             if (DeptList.SelectedIndex <= 0)
             {
                 selectedSubDeptId = 0;
+                selectedDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -1599,6 +1611,7 @@ namespace PackingApplication
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
                 selectedSubDeptId = 0;
+                selectedDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;

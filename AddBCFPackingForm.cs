@@ -159,6 +159,8 @@ namespace PackingApplication
             prcompany.FlatStyle = FlatStyle.System;
             this.tableLayoutPanel4.SetColumnSpan(this.panel11, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel12, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel40, 2);
+            this.tableLayoutPanel4.SetColumnSpan(this.panel56, 2);
             this.tableLayoutPanel4.SetColumnSpan(this.panel17, 3);
             this.tableLayoutPanel4.SetColumnSpan(this.panel30, 3);
             this.tableLayoutPanel6.SetColumnSpan(this.panel29, 2);
@@ -321,6 +323,10 @@ namespace PackingApplication
             this.itemname.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.shadename.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.shadecd.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.ponumber.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.yarn.Font = FontManager.GetFont(8F, FontStyle.Regular);
+            this.pono.Font = FontManager.GetFont(8F, FontStyle.Bold);
+            this.yarncode.Font = FontManager.GetFont(8F, FontStyle.Bold);
             this.QualityList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.PackSizeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
             this.WindingTypeList.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -679,6 +685,8 @@ namespace PackingApplication
                 itemname.Text = productionResponse.ItemName;
                 shadename.Text = productionResponse.ShadeName;
                 shadecd.Text = productionResponse.ShadeCode;
+                ponumber.Text = productionResponse.PONo;
+                yarn.Text = productionResponse.Yarncode;
                 deniervalue.Text = productionResponse.Denier.ToString();
                 salelotvalue.Text = productionResponse.SaleLot.ToString();
                 productionRequest.SaleLot = productionResponse.SaleLot;
@@ -1179,6 +1187,8 @@ namespace PackingApplication
                             deniervalue.Text = lotResponse.Denier.ToString();
                             salelotvalue.Text = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot.ToString() : null;
                             productionRequest.SaleLot = (!string.IsNullOrEmpty(lotResponse.SaleLot)) ? lotResponse.SaleLot : null;
+                            ponumber.Text = (!string.IsNullOrEmpty(lotResponse.PONo)) ? lotResponse.PONo : "";
+                            yarn.Text = (!string.IsNullOrEmpty(lotResponse.Yarncode)) ? lotResponse.Yarncode : "";
                             productionRequest.MachineId = lotResponse.MachineId;
                             productionRequest.PackingType = lotResponse.PackingType;
                             productionRequest.ItemId = lotResponse.ItemId;
@@ -1396,6 +1406,8 @@ namespace PackingApplication
             salelotvalue.Text = "";
             partyn.Text = "";
             partyshade.Text = "";
+            ponumber.Text = "";
+            yarn.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
             ResetDependentDropdownValues();
@@ -2205,7 +2217,18 @@ namespace PackingApplication
                 PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
                 int selectedPrefixId = selectedPrefix.PrefixCode;
 
-                productionRequest.PrefixCode = selectedPrefixId;
+                if (selectedDeptId != 0 && selectedPrefix.DepartmentId != selectedDeptId)
+                {
+                    MessageBox.Show("Selected Prefix does not match with selected SubDepartment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    productionRequest.PrefixCode = 0;
+                    selectedPrefixId = 0;
+                    PrefixList.SelectedIndex = 0;
+                    return;
+                }
+                else
+                {
+                    productionRequest.PrefixCode = selectedPrefixId;
+                }
 
                 //var deptTask = _masterService.GetDepartmentList(BCFPacking,null,selectedPrefix.Department).Result;
                 //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
@@ -2319,6 +2342,7 @@ namespace PackingApplication
             if (DeptList.SelectedIndex <= 0)
             {
                 selectedSubDeptId = 0;
+                selectedDeptId = 0;
                 return;
             }
             suppressEvents = true;
@@ -2425,6 +2449,7 @@ namespace PackingApplication
                 cb.Text = string.Empty;
                 cb.DroppedDown = false;
                 selectedSubDeptId = 0;
+                selectedDeptId = 0;
 
                 cb.TextUpdate += DeptList_TextUpdate;
                 return;
@@ -4447,6 +4472,8 @@ namespace PackingApplication
                 shadename.Text = "";
                 shadecd.Text = "";
                 prodtype.Text = "";
+                ponumber.Text = "";
+                yarn.Text = "";
                 frwt.Text = "0";
                 upwt.Text = "0";
                 remarks.Text = "";

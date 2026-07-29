@@ -213,7 +213,7 @@ namespace PackingApplication
             {
                 var PackingType = PackingTypeList.SelectedValue.ToString();
                 packingType = PackingTypeList.SelectedValue.ToString();
-                getBoxListRequest.PackingType = packingType == "POY" ? "POYPACKING" : packingType == "DTY" ? "DTYPACKING" : packingType == "BCF" ? "BCFPACKING" : "CHPPACKING";
+                getBoxListRequest.PackingType = packingType == "POY" ? "POY" : packingType == "DTY" ? "DTY" : packingType == "BCF" ? "BCF" : "CHIPS";
             }
 
             Log.writeMessage("PrintSlip PackingTypeList_SelectedIndexChanged - End : " + DateTime.Now);
