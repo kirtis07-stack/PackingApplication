@@ -3108,6 +3108,13 @@ namespace PackingApplication
             Log.writeMessage("BCF SrProdDate_KeyDown - End : " + DateTime.Now);
         }
 
+        private void SrProdDate_ValueChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("BCF SrProdDate_ValueChanged - Start : " + DateTime.Now);
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            Log.writeMessage("BCF SrProdDate_ValueChanged - End : " + DateTime.Now);
+        }
+
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)
         {
             Log.writeMessage("BCF btnDatalistClosePopup_Click - Start : " + DateTime.Now);

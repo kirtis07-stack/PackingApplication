@@ -1316,6 +1316,7 @@ namespace PackingApplication
             this.dateTimePicker2.TabIndex = 8;
             this.dateTimePicker2.TabStop = false;
             this.dateTimePicker2.CloseUp += new System.EventHandler(this.SrProdDate_DropDownClosed);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.SrProdDate_ValueChanged);
             this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SrProdDate_KeyDown);
             // 
             // SrBoxNoList

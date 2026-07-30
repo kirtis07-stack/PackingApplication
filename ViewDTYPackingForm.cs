@@ -2510,6 +2510,13 @@ namespace PackingApplication
             Log.writeMessage("DTY SrProdDate_KeyDown - End : " + DateTime.Now);
         }
 
+        private void SrProdDate_ValueChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("DTY SrProdDate_ValueChanged - Start : " + DateTime.Now);
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            Log.writeMessage("DTY SrProdDate_ValueChanged - End : " + DateTime.Now);
+        }
+
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)
         {
             Log.writeMessage("DTY btnDatalistClosePopup_Click - Start : " + DateTime.Now);

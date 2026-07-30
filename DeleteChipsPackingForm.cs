@@ -2241,6 +2241,13 @@ namespace PackingApplication
             Log.writeMessage("Chips SrProdDate_KeyDown - End : " + DateTime.Now);
         }
 
+        private void SrProdDate_ValueChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("Chips SrProdDate_ValueChanged - Start : " + DateTime.Now);
+            selectedSrProductionDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            Log.writeMessage("Chips SrProdDate_ValueChanged - End : " + DateTime.Now);
+        }
+
         private void btnDatalistClosePopup_Click(object sender, EventArgs e)
         {
             Log.writeMessage("Chips btnDatalistClosePopup_Click - Start : " + DateTime.Now);
