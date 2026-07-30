@@ -627,12 +627,12 @@ namespace PackingApplication
                     rowMaterial.DataSource = productionResponse.LotsDetailsResponse;
                     lotsDetailsList = productionResponse.LotsDetailsResponse;
                 }
-                itemname.Text = productionResponse.ItemName;
-                shadename.Text = productionResponse.ShadeName;
-                shadecd.Text = productionResponse.ShadeCode;
+                itemname.Text = (!string.IsNullOrEmpty(productionResponse.ItemName)) ? productionResponse.ItemName : "";
+                shadename.Text = (!string.IsNullOrEmpty(productionResponse.ShadeName)) ? productionResponse.ShadeName : "";
+                shadecd.Text = (!string.IsNullOrEmpty(productionResponse.ShadeCode)) ? productionResponse.ShadeCode : "";
                 deniervalue.Text = productionResponse.Denier.ToString();
-                twistvalue.Text = productionResponse.TwistName.ToString();
-                salelotvalue.Text = productionResponse.SaleLot.ToString();
+                twistvalue.Text = (!string.IsNullOrEmpty(productionResponse.TwistName)) ? productionResponse.TwistName.ToString() : "";
+                salelotvalue.Text = (!string.IsNullOrEmpty(productionResponse.SaleLot)) ? productionResponse.SaleLot.ToString() : "";
                 productionRequest.SaleLot = productionResponse.SaleLot;
                 frdenier.Text = productionResponse.FromDenier.ToString();
                 updenier.Text = productionResponse.UpToDenier.ToString();

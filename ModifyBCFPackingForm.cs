@@ -718,8 +718,8 @@ namespace PackingApplication
                 itemname.Text = (!string.IsNullOrEmpty(productionResponse.ItemName)) ? productionResponse.ItemName : "";
                 shadename.Text = (!string.IsNullOrEmpty(productionResponse.ShadeName)) ? productionResponse.ShadeName : "";
                 shadecd.Text = (!string.IsNullOrEmpty(productionResponse.ShadeCode)) ? productionResponse.ShadeCode : "";
-                ponumber.Text = productionResponse.PONo;
-                yarn.Text = productionResponse.Yarncode;
+                ponumber.Text = (!string.IsNullOrEmpty(productionResponse.PONo)) ? productionResponse.PONo.ToString() : "";
+                yarn.Text = (!string.IsNullOrEmpty(productionResponse.Yarncode)) ? productionResponse.Yarncode.ToString() : "";
                 deniervalue.Text = productionResponse.Denier.ToString();
                 salelotvalue.Text = (!string.IsNullOrEmpty(productionResponse.SaleLot)) ? productionResponse.SaleLot.ToString() : "";
                 productionRequest.SaleLot = productionResponse.SaleLot;
