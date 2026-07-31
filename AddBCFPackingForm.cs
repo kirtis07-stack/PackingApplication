@@ -3440,7 +3440,7 @@ namespace PackingApplication
                                 printDoc.PrintController = new StandardPrintController();
 
                                 // 4 inch x 4 inch paper
-                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x6", 400, 600);
 
                                 printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
                                 printDoc.OriginAtMargins = false;
