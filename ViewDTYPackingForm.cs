@@ -67,6 +67,7 @@ namespace PackingApplication
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
+        private int finYearId = 0;
         public ViewDTYPackingForm()
         {
             Log.writeMessage("DTY ViewDTYPackingForm constructor - Start : " + DateTime.Now);
@@ -75,6 +76,7 @@ namespace PackingApplication
             ApplyFonts();
             //this.Shown += ViewDTYPackingForm_Shown;
             this.AutoScroll = true;
+            finYearId = SessionManager.FinYearId;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
@@ -643,27 +645,27 @@ namespace PackingApplication
             Log.writeMessage("DTY LoadProductionDetailsAsync - End : " + DateTime.Now);
         }
 
-        private async void RefreshLastBoxDetails()
-        {
-            Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
+        //private async void RefreshLastBoxDetails()
+        //{
+        //    Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails(DTYPacking, 0).Result;
+        //    var getLastBox = _packingService.getLastBoxDetails(DTYPacking, 0).Result;
 
-            //lastboxdetails
-            if (getLastBox.ProductionId > 0)
-            {
-                _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(getLastBox);
+        //    //lastboxdetails
+        //    if (getLastBox.ProductionId > 0)
+        //    {
+        //        _productionId = getLastBox.ProductionId;
+        //        await LoadProductionDetailsAsync(getLastBox);
 
-                this.copstxtbox.Text = getLastBox.Spools.ToString();
-                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.LastBox.ToString();
-            }
+        //        this.copstxtbox.Text = getLastBox.Spools.ToString();
+        //        this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+        //        this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+        //        this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+        //        this.lastbox.Text = getLastBox.LastBox.ToString();
+        //    }
 
-            Log.writeMessage("DTY RefreshLastBoxDetails - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("DTY RefreshLastBoxDetails - End : " + DateTime.Now);
+        //}
 
         //private async void LineNoList_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -1725,6 +1727,8 @@ namespace PackingApplication
                 selectedSOId = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                SaleOrderList.Enabled = true;
+                QualityList.Enabled = true;
                 spoolno.Text = "0";
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
@@ -1978,14 +1982,15 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
+                getListRequest.FinYearId = finYearId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
 
                 SrBoxNoList.BeginUpdate();
                 SrBoxNoList.DataSource = null;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.DataSource = srboxnoList;
                 SrBoxNoList.EndUpdate();
@@ -2109,6 +2114,7 @@ namespace PackingApplication
             getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
             getListRequest.PageSize = pageSize;
+            getListRequest.FinYearId = finYearId;
 
             packingList = _packingService.getProductionDetailsBySelectedParameter(getListRequest).Result;
 
@@ -2471,7 +2477,7 @@ namespace PackingApplication
                     long selectedProductionId = selectedBoxNo.ProductionId;
                     if (selectedProductionId > 0)
                     {
-                        selectedSrBoxNo = selectedBoxNo.BoxNo;
+                        selectedSrBoxNo = selectedBoxNo.BoxNoFmtd;
                     }
                 }
             }
@@ -2616,12 +2622,13 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;
+                getListRequest.FinYearId = finYearId;
 
                 SrBoxNoList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
                 SrBoxNoList.DataSource = srboxnoList;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.SelectedIndex = 0;
                 SrBoxNoList.DroppedDown = true; // Open the dropdown list

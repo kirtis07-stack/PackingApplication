@@ -96,6 +96,7 @@ namespace PackingApplication.Models.RequestEntities
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string SubString { get; set; } = null;
+        public int FinYearId { get; set; }
     }
 
     public class GetProductionListForPrint
@@ -106,5 +107,6 @@ namespace PackingApplication.Models.RequestEntities
         public long EndBoxNoId { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+        public int FinYearId { get; set; } = 0;
     }
 }

@@ -42,12 +42,12 @@ namespace PackingApplication
         string comPort;
         long selectedSOId = 0;
         decimal totalSOQty = 0;
-        decimal totalWTQty = 0;
+        //decimal totalWTQty = 0;
         decimal totalProdQty = 0;
-        decimal totalWTProdQty = 0;
+        //decimal totalWTProdQty = 0;
         int selectLotId = 0;
         decimal balanceQty = 0;
-        decimal balanceWTQty = 0;
+        //decimal balanceWTQty = 0;
         string selectedSONumber = "";
         string selectedWT = "";
         private System.Windows.Forms.Label lblLoading;
@@ -80,6 +80,7 @@ namespace PackingApplication
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
+        private int finYearId = 0;
         public ModifyDTYPackingForm()
         {
             Log.writeMessage("ModifyDTYPackingForm - Start : "+ DateTime.Now);
@@ -88,6 +89,7 @@ namespace PackingApplication
             ApplyFonts();
             //this.Shown += ModifyDTYPackingForm_Shown;
             this.AutoScroll = true;
+            finYearId = SessionManager.FinYearId;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.submit, 8);
@@ -707,9 +709,10 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
                 totalSOQty = productionResponse.SOQuantity;
-                totalWTQty = productionResponse.WindingQuantity;
-                RefreshGradewiseGrid();
-                RefreshWindingGrid();
+                //totalWTQty = productionResponse.WindingQuantity;
+                totalProdQty = productionResponse.ProducedQuantity;
+                //RefreshGradewiseGrid();
+                //RefreshWindingGrid();
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
@@ -1203,12 +1206,12 @@ namespace PackingApplication
             ResetDependentDropdownValues();
             rowMaterial.Columns.Clear();
             totalProdQty = 0;
-            totalWTProdQty = 0;
+            //totalWTProdQty = 0;
             selectedSOId = 0;
             totalSOQty = 0;
-            totalWTQty = 0;
+            //totalWTQty = 0;
             balanceQty = 0;
-            balanceWTQty = 0;
+            //balanceWTQty = 0;
             selectLotId = 0;
             selectedSONumber = "";
             selectedWT = "";
@@ -1446,11 +1449,11 @@ namespace PackingApplication
 
                     if (selectedWindingTypeId > 0)
                     {
-                        totalWTQty = 0;
+                        //totalWTQty = 0;
                         productionRequest.WindingTypeId = selectedWindingTypeId;
-                        totalWTQty = selectedWindingType.Quantity;
+                        //totalWTQty = selectedWindingType.Quantity;
                         selectedWT = selectedWindingType.WindingTypeName;
-                        RefreshWindingGrid();
+                        //RefreshWindingGrid();
                     }
                 }
             }
@@ -1550,7 +1553,7 @@ namespace PackingApplication
 
                         totalSOQty = selectedSaleOrder.Quantity;
 
-                        RefreshGradewiseGrid();
+                        //RefreshGradewiseGrid();
 
                         //if (_productionId > 0 && productionResponse != null)
                         //{
@@ -1621,116 +1624,116 @@ namespace PackingApplication
             Log.writeMessage("DTY SaleOrderList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private async void RefreshGradewiseGrid()
-        {
-            Log.writeMessage("DTY RefreshGradewiseGrid - Start : " + DateTime.Now);
+        //private async void RefreshGradewiseGrid()
+        //{
+        //    Log.writeMessage("DTY RefreshGradewiseGrid - Start : " + DateTime.Now);
 
-            if (productionRequest.QualityId != 0)
-            {
-                balanceQty = 0;
-                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-                var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
-                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-                foreach (var quality in getProductionByQuality)
-                {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
+        //    if (productionRequest.QualityId != 0)
+        //    {
+        //        balanceQty = 0;
+        //        //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+        //        var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
+        //        List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+        //        foreach (var quality in getProductionByQuality)
+        //        {
+        //            var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
 
-                    if (existing == null)
-                    {
-                        QualityGridResponse grid = new QualityGridResponse();
-                        grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
-                        grid.QualityName = quality.QualityName;
-                        grid.SaleOrderQty = totalSOQty;
-                        grid.NetWt = quality.NetWt;
+        //            if (existing == null)
+        //            {
+        //                QualityGridResponse grid = new QualityGridResponse();
+        //                grid.QualityId = quality.QualityId;
+        //                grid.SaleOrderItemsId = quality.SaleOrderItemsId;
+        //                grid.QualityName = quality.QualityName;
+        //                grid.SaleOrderQty = totalSOQty;
+        //                grid.NetWt = quality.NetWt;
 
-                        gridList.Add(grid);
-                    }
-                    else
-                    {
-                        existing.NetWt += quality.NetWt;
-                    }
-                }
+        //                gridList.Add(grid);
+        //            }
+        //            else
+        //            {
+        //                existing.NetWt += quality.NetWt;
+        //            }
+        //        }
 
-                totalProdQty = 0;
-                foreach (var proditem in gridList)
-                {
-                    totalProdQty += proditem.NetWt;
-                }
-            }
+        //        totalProdQty = 0;
+        //        foreach (var proditem in gridList)
+        //        {
+        //            totalProdQty += proditem.NetWt;
+        //        }
+        //    }
 
-            Log.writeMessage("DTY RefreshGradewiseGrid - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("DTY RefreshGradewiseGrid - End : " + DateTime.Now);
+        //}
 
-        private async void RefreshWindingGrid()
-        {
-            Log.writeMessage("DTY RefreshWindingGrid - Start : " + DateTime.Now);
+        //private async void RefreshWindingGrid()
+        //{
+        //    Log.writeMessage("DTY RefreshWindingGrid - Start : " + DateTime.Now);
 
-            if (productionRequest.WindingTypeId != 0)
-            {
-                //int selectedWindingTypeId = productionRequest.WindingTypeId;
-                if (productionRequest.WindingTypeId > 0)
-                {
-                    if (totalWTQty > 0)
-                    {
-                        var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                        List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
+        //    if (productionRequest.WindingTypeId != 0)
+        //    {
+        //        //int selectedWindingTypeId = productionRequest.WindingTypeId;
+        //        if (productionRequest.WindingTypeId > 0)
+        //        {
+        //            if (totalWTQty > 0)
+        //            {
+        //                var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
+        //                List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
 
-                        foreach (var winding in getProductionByWindingType)
-                        {
-                            var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+        //                foreach (var winding in getProductionByWindingType)
+        //                {
+        //                    var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
-                            if (existing == null)
-                            {
-                                WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                                grid.WindingTypeId = winding.WindingTypeId;
-                                grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                                grid.WindingTypeName = winding.WindingTypeName;
-                                grid.WindingQty = totalWTQty;
-                                grid.NetWt = winding.NetWt;
+        //                    if (existing == null)
+        //                    {
+        //                        WindingTypeGridResponse grid = new WindingTypeGridResponse();
+        //                        grid.WindingTypeId = winding.WindingTypeId;
+        //                        grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+        //                        grid.WindingTypeName = winding.WindingTypeName;
+        //                        grid.WindingQty = totalWTQty;
+        //                        grid.NetWt = winding.NetWt;
 
-                                windinggridList.Add(grid);
-                            }
-                            else
-                            {
-                                existing.NetWt += winding.NetWt;
-                            }
-                        }
+        //                        windinggridList.Add(grid);
+        //                    }
+        //                    else
+        //                    {
+        //                        existing.NetWt += winding.NetWt;
+        //                    }
+        //                }
 
-                        totalWTProdQty = 0;
-                        foreach (var proditem in windinggridList)
-                        {
-                            totalWTProdQty += proditem.NetWt;
-                        }
-                        balanceWTQty = (totalWTQty - totalWTProdQty);
-                    }
-                }
-            }
+        //                totalWTProdQty = 0;
+        //                foreach (var proditem in getProductionByWindingType)
+        //                {
+        //                    totalWTProdQty += proditem.NetWt;
+        //                }
+        //                balanceWTQty = (totalWTQty - totalWTProdQty);
+        //            }
+        //        }
+        //    }
 
-            Log.writeMessage("DTY RefreshWindingGrid - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("DTY RefreshWindingGrid - End : " + DateTime.Now);
+        //}
 
-        private async void RefreshLastBoxDetails()
-        {
-            Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
+        //private async void RefreshLastBoxDetails()
+        //{
+        //    Log.writeMessage("DTY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails(DTYPacking, 0).Result;
+        //    var getLastBox = _packingService.getLastBoxDetails(DTYPacking, 0).Result;
 
-            //lastboxdetails
-            if (getLastBox.ProductionId > 0)
-            {
-                _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(getLastBox);
+        //    //lastboxdetails
+        //    if (getLastBox.ProductionId > 0)
+        //    {
+        //        _productionId = getLastBox.ProductionId;
+        //        await LoadProductionDetailsAsync(getLastBox);
 
-                this.copstxtbox.Text = getLastBox.Spools.ToString();
-                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.LastBox.ToString();
-            }
+        //        this.copstxtbox.Text = getLastBox.Spools.ToString();
+        //        this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+        //        this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+        //        this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+        //        this.lastbox.Text = getLastBox.LastBox.ToString();
+        //    }
 
-            Log.writeMessage("DTY RefreshLastBoxDetails - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("DTY RefreshLastBoxDetails - End : " + DateTime.Now);
+        //}
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2480,8 +2483,8 @@ namespace PackingApplication
                 slipRequest.ProductionId = result.ProductionId;
                 //submit.Enabled = true;
                 //saveprint.Enabled = true;
-                RefreshGradewiseGrid();
-                RefreshWindingGrid();
+                //RefreshGradewiseGrid();
+                //RefreshWindingGrid();
                 //RefreshLastBoxDetails();
                 ShowCustomMessage(result.BoxNoFmtd);
                 findbtn.Enabled = true;
@@ -2691,7 +2694,7 @@ namespace PackingApplication
                     isValid = false;
                 }
             }
-            decimal newBalanceQty = balanceQty - gross;
+            decimal newBalanceQty = balanceQty - net;
             if (newBalanceQty < 0)
             {
                 DialogResult prodbalresult = MessageBox.Show(balanceQty + " Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -2704,35 +2707,35 @@ namespace PackingApplication
                     isValid = false;
                 }
             }
-            if (totalWTQty > 0)
-            {
-                balanceWTQty = (totalWTQty - totalWTProdQty);
-                if (balanceWTQty <= 0)
-                {
-                    DialogResult qtyresult = MessageBox.Show(balanceWTQty + " Quantity remaining for " + selectedWT + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (qtyresult == DialogResult.Yes)
-                    {
-                        //isValid = true;
-                    }
-                    else
-                    {
-                        isValid = false;
-                    }
-                }
-                decimal newBalanceWTQty = balanceWTQty - net;
-                if (newBalanceWTQty < 0)
-                {
-                    DialogResult prodbalresult = MessageBox.Show(balanceWTQty + " Winding Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (prodbalresult == DialogResult.Yes)
-                    {
-                        //isValid = true;
-                    }
-                    else
-                    {
-                        isValid = false;
-                    }
-                }
-            }
+            //if (totalWTQty > 0)
+            //{
+            //    balanceWTQty = (totalWTQty - totalWTProdQty);
+            //    if (balanceWTQty <= 0)
+            //    {
+            //        DialogResult qtyresult = MessageBox.Show(balanceWTQty + " Quantity remaining for " + selectedWT + ". Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //        if (qtyresult == DialogResult.Yes)
+            //        {
+            //            //isValid = true;
+            //        }
+            //        else
+            //        {
+            //            isValid = false;
+            //        }
+            //    }
+            //    decimal newBalanceWTQty = balanceWTQty - net;
+            //    if (newBalanceWTQty < 0)
+            //    {
+            //        DialogResult prodbalresult = MessageBox.Show(balanceWTQty + " Winding Production Balance Qty remaining. Do you still want to submit?", "Confirm Submit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //        if (prodbalresult == DialogResult.Yes)
+            //        {
+            //            //isValid = true;
+            //        }
+            //        else
+            //        {
+            //            isValid = false;
+            //        }
+            //    }
+            //}
 
             Log.writeMessage("DTY ValidateForm - End : " + DateTime.Now);
             return isValid;
@@ -3482,12 +3485,14 @@ namespace PackingApplication
                 selectLotId = 0;
                 selectedSOId = 0;
                 selectedSONumber = "";
-                totalWTQty = 0;
-                totalWTProdQty = 0;
-                balanceWTQty = 0;
+                //totalWTQty = 0;
+                //totalWTProdQty = 0;
+                //balanceWTQty = 0;
                 selectedWT = "";
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                SaleOrderList.Enabled = true;
+                QualityList.Enabled = true;
                 spoolno.Text = "0";
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
@@ -3812,6 +3817,7 @@ namespace PackingApplication
             SaleOrderList.Items.Clear();
             SaleOrderList.Items.Add("Select Sale Order Item");
             SaleOrderList.SelectedItem = "Select Sale Order Item";
+            SaleOrderList.Enabled = true;
 
             QualityList.DataSource = null;
             QualityList.Items.Clear();
@@ -3998,14 +4004,15 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
+                getListRequest.FinYearId = finYearId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
 
                 SrBoxNoList.BeginUpdate();
                 SrBoxNoList.DataSource = null;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.DataSource = srboxnoList;
                 SrBoxNoList.EndUpdate();
@@ -4129,6 +4136,7 @@ namespace PackingApplication
             getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
             getListRequest.PageSize = pageSize;
+            getListRequest.FinYearId = finYearId;
 
             packingList = _packingService.getProductionDetailsBySelectedParameter(getListRequest).Result;
 
@@ -4482,7 +4490,7 @@ namespace PackingApplication
                     long selectedProductionId = selectedBoxNo.ProductionId;
                     if (selectedProductionId > 0)
                     {
-                        selectedSrBoxNo = selectedBoxNo.BoxNo;
+                        selectedSrBoxNo = selectedBoxNo.BoxNoFmtd;
                     }
                 }
             }
@@ -4627,12 +4635,13 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;
+                getListRequest.FinYearId = finYearId;
 
                 SrBoxNoList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
                 SrBoxNoList.DataSource = srboxnoList;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.SelectedIndex = 0;
                 SrBoxNoList.DroppedDown = true; // Open the dropdown list

@@ -1,5 +1,6 @@
 ﻿using PackingApplication.Constants;
 using PackingApplication.Helper;
+using PackingApplication.Models.CommonEntities;
 using PackingApplication.Models.RequestEntities;
 using PackingApplication.Models.ResponseEntities;
 using PackingApplication.Services;
@@ -39,12 +40,21 @@ namespace PackingApplication
         string UserName = ConfigurationManager.AppSettings["UserName"];
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
+        private int finYearId = 0;
         public PrintSlip()
         {
             Log.writeMessage("PrintSlip - Start : " + DateTime.Now);
 
             InitializeComponent();
             ApplyFonts();
+            finYearId = SessionManager.FinYearId;
+            // Set allowed range
+            dateTimePicker1.MinDate = SessionManager.StartDate;
+            dateTimePicker1.MaxDate = SessionManager.EndDate;
+
+            dateTimePicker2.MinDate = SessionManager.StartDate;
+            dateTimePicker2.MaxDate = SessionManager.EndDate;
+
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.findbtn, 8);
@@ -352,12 +362,13 @@ namespace PackingApplication
                 getListRequest.MachineId = 0;
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = null;
+                getListRequest.FinYearId = finYearId;
 
                 StartBoxList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
                 StartBoxList.DataSource = srboxnoList;
-                StartBoxList.DisplayMember = "BoxNo";
+                StartBoxList.DisplayMember = "BoxNoFmtd";
                 StartBoxList.ValueMember = "ProductionId";
                 StartBoxList.SelectedIndex = 0;
                 StartBoxList.DroppedDown = true; // Open the dropdown list
@@ -393,6 +404,13 @@ namespace PackingApplication
                     if (selectedProductionId > 0)
                     {
                         getBoxListRequest.StartBoxNoId = selectedProductionId;
+
+                        EndBoxList.DataSource = null;
+                        EndBoxList.Items.Clear();
+                        EndBoxList.Items.Add(selectedBoxNo.BoxNoFmtd);
+                        EndBoxList.SelectedItem = selectedBoxNo.BoxNoFmtd;
+
+                        getBoxListRequest.EndBoxNoId = selectedProductionId;
                     }
                 }
             }
@@ -435,14 +453,15 @@ namespace PackingApplication
                 getListRequest.MachineId = 0;
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = typedText;
+                getListRequest.FinYearId = finYearId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
 
                 StartBoxList.BeginUpdate();
                 StartBoxList.DataSource = null;
-                StartBoxList.DisplayMember = "BoxNo";
+                StartBoxList.DisplayMember = "BoxNoFmtd";
                 StartBoxList.ValueMember = "ProductionId";
                 StartBoxList.DataSource = srboxnoList;
                 StartBoxList.EndUpdate();
@@ -480,12 +499,13 @@ namespace PackingApplication
                 getListRequest.MachineId = 0;
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = null;
+                getListRequest.FinYearId = finYearId;
 
                 EndBoxList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
                 EndBoxList.DataSource = srboxnoList;
-                EndBoxList.DisplayMember = "BoxNo";
+                EndBoxList.DisplayMember = "BoxNoFmtd";
                 EndBoxList.ValueMember = "ProductionId";
                 EndBoxList.SelectedIndex = 0;
                 EndBoxList.DroppedDown = true; // Open the dropdown list
@@ -563,14 +583,15 @@ namespace PackingApplication
                 getListRequest.MachineId = 0;
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = typedText;
+                getListRequest.FinYearId = finYearId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
 
                 EndBoxList.BeginUpdate();
                 EndBoxList.DataSource = null;
-                EndBoxList.DisplayMember = "BoxNo";
+                EndBoxList.DisplayMember = "BoxNoFmtd";
                 EndBoxList.ValueMember = "ProductionId";
                 EndBoxList.DataSource = srboxnoList;
                 EndBoxList.EndUpdate();
@@ -614,6 +635,13 @@ namespace PackingApplication
             Log.writeMessage("PrintSlip StartDate_KeyDown - End : " + DateTime.Now);
         }
 
+        private void StartDate_ValueChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip StartDate_ValueChanged - Start : " + DateTime.Now);
+            getBoxListRequest.StartDate = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+            Log.writeMessage("PrintSlip StartDate_ValueChanged - End : " + DateTime.Now);
+        }
+
         private void EndDate_DropDownClosed(object sender, EventArgs e)
         {
             Log.writeMessage("PrintSlip EndDate_DropDownClosed - Start : " + DateTime.Now);
@@ -640,6 +668,13 @@ namespace PackingApplication
             Log.writeMessage("PrintSlip EndDate_KeyDown - End : " + DateTime.Now);
         }
 
+        private void EndDate_ValueChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip EndDate_ValueChanged - Start : " + DateTime.Now);
+            getBoxListRequest.EndDate = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            Log.writeMessage("PrintSlip EndDate_ValueChanged - End : " + DateTime.Now);
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Log.writeMessage("PrintSlip btnSearch_Click - Start : " + DateTime.Now);
@@ -659,6 +694,8 @@ namespace PackingApplication
         {
             Log.writeMessage("PrintSlip getProductionList - Start : " + DateTime.Now);
 
+            getBoxListRequest.FinYearId = finYearId;
+
             packingList = _packingService.getAllBoxesForPrint(getBoxListRequest).Result;
 
             if (packingList.Count > 0)
@@ -677,8 +714,10 @@ namespace PackingApplication
                     HeaderText = "Packing Date",
                     SortMode = DataGridViewColumnSortMode.Automatic,
                     ValueType = typeof(DateTime),
+                    Width = 90,
                     DefaultCellStyle = { Format = "dd/MM/yyyy", Font = FontManager.GetFont(8F, FontStyle.Regular), Alignment = DataGridViewContentAlignment.MiddleLeft }
                 });
+                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "Spools", DataPropertyName = "Spools", HeaderText = "Cops", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NetWt", DataPropertyName = "NetWt", HeaderText = "Quantity", SortMode = DataGridViewColumnSortMode.Automatic });
                 dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn
                 {
@@ -687,7 +726,7 @@ namespace PackingApplication
                     ValueType = typeof(bool),
                     TrueValue = true,
                     FalseValue = false,
-                    Width = 80,
+                    Width = 60,
                     ReadOnly = false
                 });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
@@ -699,12 +738,14 @@ namespace PackingApplication
 
                 dataGridView1.Columns["BoxNoFmtd"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["ProductionDate"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
+                dataGridView1.Columns["Spools"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["NetWt"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["Print"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
 
-                dataGridView1.Columns["BoxNoFmtd"].Width = 150;
-                dataGridView1.Columns["ProductionDate"].Width = 110;
-                dataGridView1.Columns["NetWt"].Width = 80;
+                dataGridView1.Columns["BoxNoFmtd"].Width = 130;
+                dataGridView1.Columns["ProductionDate"].Width = 90;
+                dataGridView1.Columns["Spools"].Width = 60;
+                dataGridView1.Columns["NetWt"].Width = 60;
 
                 ListtoDataTableConverter converter = new ListtoDataTableConverter();
                 DataTable dt = converter.ToDataTable(packingList);

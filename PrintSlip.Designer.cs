@@ -151,8 +151,6 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -163,28 +161,24 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 481F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(538, 481);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(356, 481);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
             // panel7
             // 
-            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.Controls.Add(this.panel10);
             this.panel7.Controls.Add(this.panel9);
             this.panel7.Location = new System.Drawing.Point(3, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(532, 475);
+            this.panel7.Size = new System.Drawing.Size(350, 475);
             this.panel7.TabIndex = 4;
             // 
             // panel10
             // 
-            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.Controls.Add(this.dataGridView1);
             this.panel10.Location = new System.Drawing.Point(0, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(532, 418);
+            this.panel10.Size = new System.Drawing.Size(347, 418);
             this.panel10.TabIndex = 6;
             // 
             // dataGridView1
@@ -204,7 +198,6 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -215,7 +208,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(532, 418);
+            this.dataGridView1.Size = new System.Drawing.Size(347, 418);
             this.dataGridView1.TabIndex = 9;
             // 
             // panel9
@@ -225,7 +218,7 @@
             this.panel9.Controls.Add(this.selectbtn);
             this.panel9.Location = new System.Drawing.Point(3, 427);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(529, 27);
+            this.panel9.Size = new System.Drawing.Size(347, 27);
             this.panel9.TabIndex = 5;
             // 
             // printbtn
@@ -234,7 +227,7 @@
             this.printbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.printbtn.Location = new System.Drawing.Point(392, 0);
+            this.printbtn.Location = new System.Drawing.Point(262, 0);
             this.printbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.printbtn.Name = "printbtn";
             this.printbtn.Size = new System.Drawing.Size(66, 24);
@@ -249,7 +242,7 @@
             this.unselectbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.unselectbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unselectbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.unselectbtn.Location = new System.Drawing.Point(105, 0);
+            this.unselectbtn.Location = new System.Drawing.Point(20, 0);
             this.unselectbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.unselectbtn.Name = "unselectbtn";
             this.unselectbtn.Size = new System.Drawing.Size(88, 24);
@@ -264,7 +257,7 @@
             this.selectbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.selectbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.selectbtn.Location = new System.Drawing.Point(252, 0);
+            this.selectbtn.Location = new System.Drawing.Point(145, 0);
             this.selectbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.selectbtn.Name = "selectbtn";
             this.selectbtn.Size = new System.Drawing.Size(81, 24);
@@ -773,6 +766,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(102, 20);
             this.dateTimePicker1.TabIndex = 4;
             this.dateTimePicker1.CloseUp += new System.EventHandler(this.StartDate_DropDownClosed);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.StartDate_ValueChanged);
             this.dateTimePicker1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StartDate_KeyDown);
             // 
             // panel3
@@ -864,6 +858,7 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker2.TabIndex = 6;
             this.dateTimePicker2.CloseUp += new System.EventHandler(this.EndDate_DropDownClosed);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.EndDate_ValueChanged);
             this.dateTimePicker2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EndDate_KeyDown);
             // 
             // enddate

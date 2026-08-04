@@ -100,13 +100,13 @@ namespace PackingApplication.Services
             return getPacking;
         }
 
-        public async Task<List<ProductionResponse>> getAllByLotIdandSaleOrderItemIdandPackingType(int lotId, long saleOrderItemId)
+        public async Task<List<QualityGridResponse>> getAllByLotIdandSaleOrderItemIdandPackingType(int lotId, long saleOrderItemId)
         {
             var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetAllByLotIdandSaleOrderItemId?lotId=" + lotId + "&saleOrderItemId=" + saleOrderItemId);
             if (string.IsNullOrWhiteSpace(getPackingResponse))
-                return new List<ProductionResponse>();              // handle empty response
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
-                     ?? new List<ProductionResponse>();             // handle null JSON
+                return new List<QualityGridResponse>();              // handle empty response
+            var getPacking = JsonConvert.DeserializeObject<List<QualityGridResponse>>(getPackingResponse)
+                     ?? new List<QualityGridResponse>();             // handle null JSON
             return getPacking;
         }
 
@@ -161,13 +161,13 @@ namespace PackingApplication.Services
             return JsonConvert.DeserializeObject<int>(getSlipResponse.ResponseBody);
         }
 
-        public async Task<List<ProductionResponse>> getAllByWindingTypeandLotId(int windingTypeId, long lotId)
+        public async Task<List<WindingTypeGridResponse>> getAllByWindingTypeandLotId(int windingTypeId, long lotId)
         {
             var getPackingResponse = await method.GetCallApi(packingURL + "Production/GetAllByWindingTypeandLotId?windingTypeId=" + windingTypeId + "&lotId=" + lotId);
             if (string.IsNullOrWhiteSpace(getPackingResponse))
-                return new List<ProductionResponse>();              // handle empty response
-            var getPacking = JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse)
-                     ?? new List<ProductionResponse>();             // handle null JSON
+                return new List<WindingTypeGridResponse>();              // handle empty response
+            var getPacking = JsonConvert.DeserializeObject<List<WindingTypeGridResponse>>(getPackingResponse)
+                     ?? new List<WindingTypeGridResponse>();             // handle null JSON
             return getPacking;
         }
 

@@ -121,6 +121,8 @@ namespace PackingApplication
             {
                 YearList.SelectedValue = currentYear.FinYearId;
                 finYearId = currentYear.FinYearId;
+                SessionManager.StartDate = currentYear.StartDate;
+                SessionManager.EndDate = currentYear.EndDate;
                 label1.Text = "ALL RIGHT RESERVED © " + currentYear.FinYear.ToString();
             }
 

@@ -80,6 +80,7 @@ namespace PackingApplication
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
+        private int finYearId = 0; 
         public ModifyPOYPackingForm()
         {
             Log.writeMessage("POY ModifyPOYPackingForm - Start : " + DateTime.Now);
@@ -89,6 +90,7 @@ namespace PackingApplication
 
             //this.Shown += ModifyPOYPackingForm_Shown;
             this.AutoScroll = true;
+            finYearId = SessionManager.FinYearId;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.addqty, 8);
@@ -726,6 +728,7 @@ namespace PackingApplication
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
+                totalProdQty = productionResponse.ProducedQuantity;
                 RefreshGradewiseGrid();
                 RefreshWindingGrid();
                 productionRequest.ItemId = productionResponse.ItemId;
@@ -1881,38 +1884,38 @@ namespace PackingApplication
                     if (totalWTQty > 0)
                     {
                         var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                        List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
+                        //List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
 
-                        foreach (var winding in getProductionByWindingType)
-                        {
-                            var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+                        //foreach (var winding in getProductionByWindingType)
+                        //{
+                        //    var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
-                            if (existing == null)
-                            {
-                                WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                                grid.WindingTypeId = winding.WindingTypeId;
-                                grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                                grid.WindingTypeName = winding.WindingTypeName;
-                                grid.WindingQty = totalWTQty;
-                                grid.NetWt = winding.NetWt;
+                        //    if (existing == null)
+                        //    {
+                        //        WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                        //        grid.WindingTypeId = winding.WindingTypeId;
+                        //        grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+                        //        grid.WindingTypeName = winding.WindingTypeName;
+                        //        grid.WindingQty = totalWTQty;
+                        //        grid.NetWt = winding.NetWt;
 
-                                windinggridList.Add(grid);
-                            }
-                            else
-                            {
-                                existing.NetWt += winding.NetWt;
-                            }
-                        }
+                        //        windinggridList.Add(grid);
+                        //    }
+                        //    else
+                        //    {
+                        //        existing.NetWt += winding.NetWt;
+                        //    }
+                        //}
 
                         windinggrid.Columns.Clear();
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "WT" });
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WT Qty" });
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Prod Qty" });
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Bal Qty" });
-                        windinggrid.DataSource = windinggridList;
+                        windinggrid.DataSource = getProductionByWindingType;
 
                         totalWTProdQty = 0;
-                        foreach (var proditem in windinggridList)
+                        foreach (var proditem in getProductionByWindingType)
                         {
                             totalWTProdQty += proditem.NetWt;
                         }
@@ -1934,37 +1937,37 @@ namespace PackingApplication
                 balanceQty = 0;
                 //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
-                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-                foreach (var quality in getProductionByQuality)
-                {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
+                //List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+                //foreach (var quality in getProductionByQuality)
+                //{
+                //    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
 
-                    if (existing == null)
-                    {
-                        QualityGridResponse grid = new QualityGridResponse();
-                        grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
-                        grid.QualityName = quality.QualityName;
-                        grid.SaleOrderQty = totalSOQty;
-                        grid.NetWt = quality.NetWt;
+                //    if (existing == null)
+                //    {
+                //        QualityGridResponse grid = new QualityGridResponse();
+                //        grid.QualityId = quality.QualityId;
+                //        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
+                //        grid.QualityName = quality.QualityName;
+                //        grid.SaleOrderQty = totalSOQty;
+                //        grid.NetWt = quality.NetWt;
 
-                        gridList.Add(grid);
-                    }
-                    else
-                    {
-                        existing.NetWt += quality.NetWt;
-                    }
-                }
+                //        gridList.Add(grid);
+                //    }
+                //    else
+                //    {
+                //        existing.NetWt += quality.NetWt;
+                //    }
+                //}
                 qualityqty.Columns.Clear();
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Prod Qty" });
-                qualityqty.DataSource = gridList;
+                qualityqty.DataSource = getProductionByQuality;
 
-                totalProdQty = 0;
-                foreach (var proditem in gridList)
-                {
-                    totalProdQty += proditem.NetWt;
-                }
+                //totalProdQty = 0;
+                //foreach (var proditem in getProductionByQuality)
+                //{
+                //    totalProdQty += proditem.NetWt;
+                //}
                 balanceQty = (totalSOQty - totalProdQty);
                 if (balanceQty <= 0)
                 {
@@ -1979,27 +1982,27 @@ namespace PackingApplication
             Log.writeMessage("POY RefreshGradewiseGrid - End : " + DateTime.Now);
         }
 
-        private async void RefreshLastBoxDetails()
-        {
-            Log.writeMessage("POY RefreshLastBoxDetails - Start : " + DateTime.Now);
+        //private async void RefreshLastBoxDetails()
+        //{
+        //    Log.writeMessage("POY RefreshLastBoxDetails - Start : " + DateTime.Now);
 
-            var getLastBox = _packingService.getLastBoxDetails(POYPacking, 0).Result;
+        //    var getLastBox = _packingService.getLastBoxDetails(POYPacking, 0).Result;
 
-            //lastboxdetails
-            if (getLastBox.ProductionId > 0)
-            {
-                _productionId = getLastBox.ProductionId;
-                await LoadProductionDetailsAsync(getLastBox);
+        //    //lastboxdetails
+        //    if (getLastBox.ProductionId > 0)
+        //    {
+        //        _productionId = getLastBox.ProductionId;
+        //        await LoadProductionDetailsAsync(getLastBox);
 
-                this.copstxtbox.Text = getLastBox.Spools.ToString();
-                this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
-                this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
-                this.netwttxtbox.Text = getLastBox.NetWt.ToString();
-                this.lastbox.Text = getLastBox.LastBox.ToString();
-            }
+        //        this.copstxtbox.Text = getLastBox.Spools.ToString();
+        //        this.tarewghttxtbox.Text = getLastBox.TareWt.ToString();
+        //        this.grosswttxtbox.Text = getLastBox.GrossWt.ToString();
+        //        this.netwttxtbox.Text = getLastBox.NetWt.ToString();
+        //        this.lastbox.Text = getLastBox.LastBox.ToString();
+        //    }
 
-            Log.writeMessage("POY RefreshLastBoxDetails - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("POY RefreshLastBoxDetails - End : " + DateTime.Now);
+        //}
 
         private void ComPortList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -4314,6 +4317,8 @@ namespace PackingApplication
                 rowCount = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                SaleOrderList.Enabled = true;
+                QualityList.Enabled = true;
                 spoolno.Text = "0";
                 salelotvalue.Text = "";
                 lastbox.Text = "";
@@ -4639,6 +4644,7 @@ namespace PackingApplication
             SaleOrderList.Items.Clear();
             SaleOrderList.Items.Add("Select Sale Order Item");
             SaleOrderList.SelectedItem = "Select Sale Order Item";
+            SaleOrderList.Enabled = true;
 
             QualityList.DataSource = null;
             QualityList.Items.Clear();
@@ -4825,14 +4831,15 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
+                getListRequest.FinYearId = finYearId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
 
                 SrBoxNoList.BeginUpdate();
                 SrBoxNoList.DataSource = null;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.DataSource = srboxnoList;
                 SrBoxNoList.EndUpdate();
@@ -4940,14 +4947,6 @@ namespace PackingApplication
         {
             Log.writeMessage("POY getProductionList - Start : " + DateTime.Now);
 
-            //int machineid = 0, deptid = 0;
-            //string boxnoid = null;
-            //string proddt = null;
-            //if (srlinenoradiobtn.Checked) { machineid = selectedSrMachineId; }
-            //if (srdeptradiobtn.Checked) { deptid = selectedSrDeptId; }
-            //if (srboxnoradiobtn.Checked) { boxnoid = selectedSrBoxNo; }
-            //if (srproddateradiobtn.Checked) { proddt = selectedSrProductionDate; }
-
             GetProductionList getListRequest = new GetProductionList();
             getListRequest.PackingType = POYPacking;
             getListRequest.MachineId = selectedSrMachineId;
@@ -4956,6 +4955,7 @@ namespace PackingApplication
             getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
             getListRequest.PageSize = pageSize;
+            getListRequest.FinYearId = finYearId;
 
             packingList = _packingService.getProductionDetailsBySelectedParameter(getListRequest).Result;
 
@@ -4993,12 +4993,7 @@ namespace PackingApplication
                     ValueType = typeof(DateTime),
                     DefaultCellStyle = { Format = "dd/MM/yyyy", Font = FontManager.GetFont(8F, FontStyle.Regular), Alignment = DataGridViewContentAlignment.MiddleLeft }
                 });
-                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "QualityName", DataPropertyName = "QualityName", HeaderText = "Quality" });
                 dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "SalesOrderNumber", DataPropertyName = "SalesOrderNumber", HeaderText = "Sales Order", SortMode = DataGridViewColumnSortMode.Automatic });
-                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "PackSizeName", DataPropertyName = "PackSizeName", HeaderText = "Pack Size" });
-                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "Winding Type" });
-                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionType", DataPropertyName = "ProductionType", HeaderText = "Production Type" });
-                //dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { Name = "NoOfCopies", DataPropertyName = "NoOfCopies", HeaderText = "Copies" });
 
                 dataGridView1.Columns["SrNo"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
                 dataGridView1.Columns["SubDepartmentName"].DefaultCellStyle.Font = FontManager.GetFont(8F, FontStyle.Regular);
@@ -5309,7 +5304,7 @@ namespace PackingApplication
                     long selectedProductionId = selectedBoxNo.ProductionId;
                     if (selectedProductionId > 0)
                     {
-                        selectedSrBoxNo = selectedBoxNo.BoxNo;
+                        selectedSrBoxNo = selectedBoxNo.BoxNoFmtd;
                     }
                 }
             }
@@ -5454,12 +5449,13 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;
+                getListRequest.FinYearId = finYearId;
 
                 SrBoxNoList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
                 SrBoxNoList.DataSource = srboxnoList;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.SelectedIndex = 0;
                 SrBoxNoList.DroppedDown = true; // Open the dropdown list

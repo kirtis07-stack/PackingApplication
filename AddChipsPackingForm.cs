@@ -558,7 +558,8 @@ namespace PackingApplication
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 palletwtno.Text = productionResponse.EmptyBoxPalletWt.ToString();
                 totalSOQty = productionResponse.SOQuantity;
-                RefreshGradewiseGrid();
+                totalProdQty = productionResponse.ProducedQuantity;
+                //RefreshGradewiseGrid();
                 AdjustNameByCharCount();
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
@@ -1170,41 +1171,41 @@ namespace PackingApplication
             Log.writeMessage("Chips QualityList_TextUpdate - End : " + DateTime.Now);
         }
 
-        private async void RefreshGradewiseGrid()
-        {
-            Log.writeMessage("Chips RefreshGradewiseGrid - Start : " + DateTime.Now);
+        //private async void RefreshGradewiseGrid()
+        //{
+        //    Log.writeMessage("Chips RefreshGradewiseGrid - Start : " + DateTime.Now);
 
-            if (productionRequest.QualityId != 0)
-            {
-                balanceQty = 0;
-                //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
-                var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
-                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-                foreach (var quality in getProductionByQuality)
-                {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId);
+        //    if (productionRequest.QualityId != 0)
+        //    {
+        //        balanceQty = 0;
+        //        //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
+        //        var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
+        //        List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+        //        foreach (var quality in getProductionByQuality)
+        //        {
+        //            var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId);
 
-                    if (existing == null)
-                    {
-                        QualityGridResponse grid = new QualityGridResponse();
-                        grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
-                        grid.QualityName = quality.QualityName;
-                        grid.SaleOrderQty = totalSOQty;
-                        grid.NetWt = quality.NetWt;
+        //            if (existing == null)
+        //            {
+        //                QualityGridResponse grid = new QualityGridResponse();
+        //                grid.QualityId = quality.QualityId;
+        //                grid.SaleOrderItemsId = quality.SaleOrderItemsId;
+        //                grid.QualityName = quality.QualityName;
+        //                grid.SaleOrderQty = totalSOQty;
+        //                grid.NetWt = quality.NetWt;
 
-                        gridList.Add(grid);
-                    }
-                    else
-                    {
-                        existing.NetWt += quality.NetWt;
-                    }
+        //                gridList.Add(grid);
+        //            }
+        //            else
+        //            {
+        //                existing.NetWt += quality.NetWt;
+        //            }
 
-                }
-            }
+        //        }
+        //    }
 
-            Log.writeMessage("Chips RefreshGradewiseGrid - End : " + DateTime.Now);
-        }
+        //    Log.writeMessage("Chips RefreshGradewiseGrid - End : " + DateTime.Now);
+        //}
 
         private async void RefreshLastBoxDetails()
         {
@@ -1977,7 +1978,7 @@ namespace PackingApplication
                 slipRequest.ProductionId = result.ProductionId;
                 submit.Enabled = true;
                 saveprint.Enabled = true;
-                RefreshGradewiseGrid();
+                //RefreshGradewiseGrid();
                 RefreshLastBoxDetails();
 
                 ShowCustomMessage(result.BoxNoFmtd);
@@ -2829,6 +2830,7 @@ namespace PackingApplication
                 selectedSOId = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                QualityList.Enabled = true;
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
                 //lastbox.Text = "";

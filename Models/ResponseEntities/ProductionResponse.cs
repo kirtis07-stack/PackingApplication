@@ -198,5 +198,6 @@ namespace PackingApplication.Models.ResponseEntities
         public bool SaleOrderListEnabled { get; set; }
         public string PONo { get; set; }
         public string Yarncode { get; set; }
+        public decimal ProducedQuantity { get; set; }
     }
 }

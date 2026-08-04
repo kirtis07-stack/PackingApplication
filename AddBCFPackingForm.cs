@@ -702,6 +702,7 @@ namespace PackingApplication
                 totalSOQty = productionResponse.SOQuantity;
                 totalWTQty = productionResponse.WindingQuantity;
                 grdsoqty.Text = totalSOQty.ToString("F2");
+                totalProdQty = productionResponse.ProducedQuantity;
                 RefreshGradewiseGrid();
                 RefreshWindingGrid();
                 AdjustNameByCharCount();
@@ -1854,38 +1855,38 @@ namespace PackingApplication
                     if (totalWTQty > 0)
                     {
                         var getProductionByWindingType = _packingService.getAllByWindingTypeandLotId(productionRequest.WindingTypeId, selectLotId).Result;
-                        List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
+                        //List<WindingTypeGridResponse> windinggridList = new List<WindingTypeGridResponse>();
 
-                        foreach (var winding in getProductionByWindingType)
-                        {
-                            var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
+                        //foreach (var winding in getProductionByWindingType)
+                        //{
+                        //    var existing = windinggridList.FirstOrDefault(x => x.WindingTypeId == winding.WindingTypeId);
 
-                            if (existing == null)
-                            {
-                                WindingTypeGridResponse grid = new WindingTypeGridResponse();
-                                grid.WindingTypeId = winding.WindingTypeId;
-                                grid.SaleOrderItemsId = winding.SaleOrderItemsId;
-                                grid.WindingTypeName = winding.WindingTypeName;
-                                grid.WindingQty = totalWTQty;
-                                grid.NetWt = winding.NetWt;
+                        //    if (existing == null)
+                        //    {
+                        //        WindingTypeGridResponse grid = new WindingTypeGridResponse();
+                        //        grid.WindingTypeId = winding.WindingTypeId;
+                        //        grid.SaleOrderItemsId = winding.SaleOrderItemsId;
+                        //        grid.WindingTypeName = winding.WindingTypeName;
+                        //        grid.WindingQty = totalWTQty;
+                        //        grid.NetWt = winding.NetWt;
 
-                                windinggridList.Add(grid);
-                            }
-                            else
-                            {
-                                existing.NetWt += winding.NetWt;
-                            }
-                        }
+                        //        windinggridList.Add(grid);
+                        //    }
+                        //    else
+                        //    {
+                        //        existing.NetWt += winding.NetWt;
+                        //    }
+                        //}
 
                         windinggrid.Columns.Clear();
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "WindingTypeName", DataPropertyName = "WindingTypeName", HeaderText = "WT" });
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "TotalWTQty", DataPropertyName = "WindingQty", HeaderText = "WT Qty" });
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Prod Qty" });
                         windinggrid.Columns.Add(new DataGridViewTextBoxColumn { Name = "BalanceQty", DataPropertyName = "BalanceQty", HeaderText = "Bal Qty" });
-                        windinggrid.DataSource = windinggridList;
+                        windinggrid.DataSource = getProductionByWindingType;
 
                         totalWTProdQty = 0;
-                        foreach (var proditem in windinggridList)
+                        foreach (var proditem in getProductionByWindingType)
                         {
                             totalWTProdQty += proditem.NetWt;
                         }
@@ -1907,34 +1908,34 @@ namespace PackingApplication
                 balanceQty = 0;
                 //int selectedQualityId = Convert.ToInt32(QualityList.SelectedValue.ToString());
                 var getProductionByQuality = _packingService.getAllByLotIdandSaleOrderItemIdandPackingType(selectLotId, selectedSOId).Result;
-                List<QualityGridResponse> gridList = new List<QualityGridResponse>();
-                foreach (var quality in getProductionByQuality)
-                {
-                    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
+                //List<QualityGridResponse> gridList = new List<QualityGridResponse>();
+                //foreach (var quality in getProductionByQuality)
+                //{
+                //    var existing = gridList.FirstOrDefault(x => x.QualityId == quality.QualityId && x.SaleOrderItemsId == quality.SaleOrderItemsId);
 
-                    if (existing == null)
-                    {
-                        QualityGridResponse grid = new QualityGridResponse();
-                        grid.QualityId = quality.QualityId;
-                        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
-                        grid.QualityName = quality.QualityName;
-                        grid.SaleOrderQty = totalSOQty;
-                        grid.NetWt = quality.NetWt;
+                //    if (existing == null)
+                //    {
+                //        QualityGridResponse grid = new QualityGridResponse();
+                //        grid.QualityId = quality.QualityId;
+                //        grid.SaleOrderItemsId = quality.SaleOrderItemsId;
+                //        grid.QualityName = quality.QualityName;
+                //        grid.SaleOrderQty = totalSOQty;
+                //        grid.NetWt = quality.NetWt;
 
-                        gridList.Add(grid);
-                    }
-                    else
-                    {
-                        existing.NetWt += quality.NetWt;
-                    }
-                }
+                //        gridList.Add(grid);
+                //    }
+                //    else
+                //    {
+                //        existing.NetWt += quality.NetWt;
+                //    }
+                //}
                 qualityqty.Columns.Clear();
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "Quality", DataPropertyName = "QualityName", HeaderText = "Quality" });
                 qualityqty.Columns.Add(new DataGridViewTextBoxColumn { Name = "ProductionQty", DataPropertyName = "NetWt", HeaderText = "Prod Qty" });
-                qualityqty.DataSource = gridList;
+                qualityqty.DataSource = getProductionByQuality;
 
                 totalProdQty = 0;
-                foreach (var proditem in gridList)
+                foreach (var proditem in getProductionByQuality)
                 {
                     totalProdQty += proditem.NetWt;
                 }
@@ -4503,6 +4504,8 @@ namespace PackingApplication
                 rowCount = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                SaleOrderList.Enabled = true;
+                QualityList.Enabled = true;
                 productionRequest = new ProductionRequest();
                 //DeptList.DataSource = null;
                 //DeptList.Items.Clear();
@@ -4833,6 +4836,7 @@ namespace PackingApplication
             SaleOrderList.Items.Clear();
             SaleOrderList.Items.Add("Select Sale Order Item");
             SaleOrderList.SelectedItem = "Select Sale Order Item";
+            SaleOrderList.Enabled = true;
 
             QualityList.DataSource = null;
             QualityList.Items.Clear();

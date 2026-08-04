@@ -12,6 +12,8 @@ namespace PackingApplication.Models.CommonEntities
         public static string UserName { get; set; }
         public static string Role { get; set; }
         public static int FinYearId { get; set; }
+        public static DateTime StartDate { get; set; }
+        public static DateTime EndDate { get; set; }
 
         public static void Clear()
         {
@@ -19,6 +21,8 @@ namespace PackingApplication.Models.CommonEntities
             UserName = null;
             Role = null;
             FinYearId = 0;
+            StartDate = DateTime.MinValue;
+            EndDate = DateTime.MinValue;
         }
     }
 }

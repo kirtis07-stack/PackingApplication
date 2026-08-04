@@ -37,12 +37,12 @@ namespace PackingApplication
         LotsResponse lotResponse = new LotsResponse();
         WeighingScaleReader wtReader = new WeighingScaleReader();
         string comPort;
-        int selectedSOId = 0;
-        decimal totalSOQty = 0;
-        decimal totalProdQty = 0;
+        //int selectedSOId = 0;
+        //decimal totalSOQty = 0;
+        //decimal totalProdQty = 0;
         int selectLotId = 0;
-        decimal balanceQty = 0;
-        string selectedSONumber = "";
+        //decimal balanceQty = 0;
+        //string selectedSONumber = "";
         private System.Windows.Forms.Label lblLoading;
         ProductionResponse productionResponse = new ProductionResponse();
         private ProductionRequest productionRequest = new ProductionRequest();
@@ -67,6 +67,7 @@ namespace PackingApplication
         private int currentPage = 1;
         private int totalPages = 0;
         private int pageSize = 10;
+        private int finYearId = 0;
         public ViewChipsPackingForm()
         {
             Log.writeMessage("Chips ViewChipsPackingForm Constructor - Start : " + DateTime.Now);
@@ -75,6 +76,7 @@ namespace PackingApplication
             ApplyFonts();
             //this.Shown += ViewChipsPackingForm_Shown;
             this.AutoScroll = true;
+            finYearId = SessionManager.FinYearId;
             lblLoading = CommonMethod.InitializeLoadingLabel(this);
 
             _cmethod.SetButtonBorderRadius(this.cancelbtn, 8);
@@ -563,7 +565,7 @@ namespace PackingApplication
                 upwt.Text = productionResponse.EndWeight.ToString();
                 boxpalletitemwt.Text = productionResponse.BoxItemWeight.ToString();
                 //palletwtno.Text = productionResponse.BoxItemWeight.ToString();
-                totalSOQty = productionResponse.SOQuantity;
+                //totalSOQty = productionResponse.SOQuantity;
                 productionRequest.ItemId = productionResponse.ItemId;
                 productionRequest.ShadeId = productionResponse.ShadeId;
                 productionRequest.TwistId = productionResponse.TwistId;
@@ -1461,14 +1463,15 @@ namespace PackingApplication
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 LoadDropdowns();
                 rowMaterial.Columns.Clear();
-                totalProdQty = 0;
-                selectedSOId = 0;
-                totalSOQty = 0;
-                balanceQty = 0;
+                //totalProdQty = 0;
+                //selectedSOId = 0;
+                //totalSOQty = 0;
+                //balanceQty = 0;
                 selectLotId = 0;
-                selectedSOId = 0;
+                //selectedSOId = 0;
                 prcompany.Checked = false;
                 prowner.Checked = false;
+                QualityList.Enabled = true;
                 productionRequest = new ProductionRequest();
                 salelotvalue.Text = "";
                 lastbox.Text = "";
@@ -1721,14 +1724,15 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = typedText;
+                getListRequest.FinYearId = finYearId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
 
                 SrBoxNoList.BeginUpdate();
                 SrBoxNoList.DataSource = null;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.DataSource = srboxnoList;
                 SrBoxNoList.EndUpdate();
@@ -1852,6 +1856,7 @@ namespace PackingApplication
             getListRequest.ProductionDate = selectedSrProductionDate;
             getListRequest.PageNumber = currentPage;
             getListRequest.PageSize = pageSize;
+            getListRequest.FinYearId = finYearId;
 
             packingList = _packingService.getProductionDetailsBySelectedParameter(getListRequest).Result;
 
@@ -2206,7 +2211,7 @@ namespace PackingApplication
                     long selectedProductionId = selectedBoxNo.ProductionId;
                     if (selectedProductionId > 0)
                     {
-                        selectedSrBoxNo = selectedBoxNo.BoxNo;
+                        selectedSrBoxNo = selectedBoxNo.BoxNoFmtd;
                     }
                 }
             }
@@ -2351,12 +2356,13 @@ namespace PackingApplication
                 getListRequest.MachineId = selectedSrMachineId;
                 getListRequest.SubDeptId = selectedSrDeptId;
                 getListRequest.SubString = null;
+                getListRequest.FinYearId = finYearId;
 
                 SrBoxNoList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
-                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNo = "Select BoxNo" });
+                srboxnoList.Insert(0, new ProductionResponse { ProductionId = 0, BoxNoFmtd = "Select BoxNo" });
                 SrBoxNoList.DataSource = srboxnoList;
-                SrBoxNoList.DisplayMember = "BoxNo";
+                SrBoxNoList.DisplayMember = "BoxNoFmtd";
                 SrBoxNoList.ValueMember = "ProductionId";
                 SrBoxNoList.SelectedIndex = 0;
                 SrBoxNoList.DroppedDown = true; // Open the dropdown list
