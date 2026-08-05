@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,6 +86,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.enddate = new System.Windows.Forms.Label();
+            this.previewbtn = new System.Windows.Forms.Button();
             this.rightpanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -190,14 +191,14 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 20;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -213,6 +214,7 @@
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.previewbtn);
             this.panel9.Controls.Add(this.printbtn);
             this.panel9.Controls.Add(this.unselectbtn);
             this.panel9.Controls.Add(this.selectbtn);
@@ -227,11 +229,11 @@
             this.printbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.printbtn.Location = new System.Drawing.Point(262, 0);
+            this.printbtn.Location = new System.Drawing.Point(278, 0);
             this.printbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.printbtn.Name = "printbtn";
             this.printbtn.Size = new System.Drawing.Size(66, 24);
-            this.printbtn.TabIndex = 12;
+            this.printbtn.TabIndex = 13;
             this.printbtn.Text = "Print";
             this.printbtn.UseVisualStyleBackColor = false;
             this.printbtn.Click += new System.EventHandler(this.btnPrint_Click);
@@ -242,7 +244,7 @@
             this.unselectbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.unselectbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unselectbtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.unselectbtn.Location = new System.Drawing.Point(20, 0);
+            this.unselectbtn.Location = new System.Drawing.Point(2, 0);
             this.unselectbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.unselectbtn.Name = "unselectbtn";
             this.unselectbtn.Size = new System.Drawing.Size(88, 24);
@@ -257,7 +259,7 @@
             this.selectbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.selectbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.selectbtn.Location = new System.Drawing.Point(145, 0);
+            this.selectbtn.Location = new System.Drawing.Point(103, 0);
             this.selectbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.selectbtn.Name = "selectbtn";
             this.selectbtn.Size = new System.Drawing.Size(81, 24);
@@ -403,8 +405,6 @@
             // prtwist
             // 
             this.prtwist.AutoSize = true;
-            this.prtwist.Checked = true;
-            this.prtwist.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prtwist.Location = new System.Drawing.Point(1, 1);
             this.prtwist.Name = "prtwist";
             this.prtwist.Size = new System.Drawing.Size(75, 17);
@@ -412,6 +412,7 @@
             this.prtwist.TabStop = false;
             this.prtwist.Text = "Print Twist";
             this.prtwist.UseVisualStyleBackColor = true;
+            this.prtwist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel37
             // 
@@ -436,6 +437,8 @@
             this.prcompany.TabStop = false;
             this.prcompany.Text = "Print Company";
             this.prcompany.UseVisualStyleBackColor = true;
+            this.prcompany.CheckedChanged += new System.EventHandler(this.prcompany_CheckedChanged);
+            this.prcompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel38
             // 
@@ -458,6 +461,8 @@
             this.prowner.TabStop = false;
             this.prowner.Text = "Print Owner";
             this.prowner.UseVisualStyleBackColor = true;
+            this.prowner.CheckedChanged += new System.EventHandler(this.prowner_CheckedChanged);
+            this.prowner.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel39
             // 
@@ -483,6 +488,7 @@
             this.prdate.Text = "Print Date";
             this.prdate.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prdate.UseVisualStyleBackColor = true;
+            this.prdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel41
             // 
@@ -508,6 +514,7 @@
             this.pruser.Text = "Print User";
             this.pruser.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.pruser.UseVisualStyleBackColor = true;
+            this.pruser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel40
             // 
@@ -533,6 +540,7 @@
             this.prhindi.Text = "Print Hindi";
             this.prhindi.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prhindi.UseVisualStyleBackColor = true;
+            this.prhindi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel43
             // 
@@ -558,6 +566,7 @@
             this.prqrcode.Text = "Print QR";
             this.prqrcode.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prqrcode.UseVisualStyleBackColor = true;
+            this.prqrcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // panel42
             // 
@@ -583,6 +592,7 @@
             this.prwtps.Text = "Print WT/PS";
             this.prwtps.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.prwtps.UseVisualStyleBackColor = true;
+            this.prwtps.KeyDown += new System.Windows.Forms.KeyEventHandler(this.checkBox1_KeyDown);
             // 
             // machineboxlayout
             // 
@@ -870,6 +880,21 @@
             this.enddate.TabIndex = 0;
             this.enddate.Text = "End Date:";
             // 
+            // previewbtn
+            // 
+            this.previewbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.previewbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.previewbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.previewbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.previewbtn.Location = new System.Drawing.Point(198, 0);
+            this.previewbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.previewbtn.Name = "previewbtn";
+            this.previewbtn.Size = new System.Drawing.Size(66, 24);
+            this.previewbtn.TabIndex = 12;
+            this.previewbtn.Text = "Preview";
+            this.previewbtn.UseVisualStyleBackColor = false;
+            this.previewbtn.Click += new System.EventHandler(this.btnPreview_Click);
+            // 
             // PrintSlip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -986,5 +1011,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button previewbtn;
     }
 }

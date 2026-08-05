@@ -19,6 +19,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using PdfSharpCore.Pdf;
+using PdfSharpCore.Pdf.IO;
 
 namespace PackingApplication
 {
@@ -41,6 +43,7 @@ namespace PackingApplication
         string Password = ConfigurationManager.AppSettings["Password"];
         string Domain = ConfigurationManager.AppSettings["Domain"];
         private int finYearId = 0;
+        ProductionResponse startBox = new ProductionResponse();
         public PrintSlip()
         {
             Log.writeMessage("PrintSlip - Start : " + DateTime.Now);
@@ -62,6 +65,7 @@ namespace PackingApplication
             _cmethod.SetButtonBorderRadius(this.selectbtn, 8);
             _cmethod.SetButtonBorderRadius(this.unselectbtn, 8);
             _cmethod.SetButtonBorderRadius(this.printbtn, 8);
+            _cmethod.SetButtonBorderRadius(this.previewbtn, 8);
 
             Log.writeMessage("PrintSlip - End : " + DateTime.Now);
         }
@@ -224,6 +228,13 @@ namespace PackingApplication
                 var PackingType = PackingTypeList.SelectedValue.ToString();
                 packingType = PackingTypeList.SelectedValue.ToString();
                 getBoxListRequest.PackingType = packingType == "POY" ? "POY" : packingType == "DTY" ? "DTY" : packingType == "BCF" ? "BCF" : "CHIPS";
+                prtwist.Enabled = (getBoxListRequest.PackingType == "DTY" || getBoxListRequest.PackingType == "CHIPS") ? true : false;
+                prtwist.Checked = (getBoxListRequest.PackingType == "DTY" || getBoxListRequest.PackingType == "CHIPS") ? true : false;
+                var deptList = new List<SubDepartmentResponse>();
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                DeptList.DataSource = deptList;
+                getBoxListRequest.SubDeptId = 0;
+                DeptList.SelectedValue = 0;
             }
 
             Log.writeMessage("PrintSlip PackingTypeList_SelectedIndexChanged - End : " + DateTime.Now);
@@ -363,6 +374,7 @@ namespace PackingApplication
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = null;
                 getListRequest.FinYearId = finYearId;
+                getListRequest.BoxPrefix = null;
 
                 StartBoxList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
@@ -400,6 +412,7 @@ namespace PackingApplication
                 if (StartBoxList.SelectedValue != null)
                 {
                     ProductionResponse selectedBoxNo = (ProductionResponse)StartBoxList.SelectedItem;
+                    startBox = selectedBoxNo;
                     long selectedProductionId = selectedBoxNo.ProductionId;
                     if (selectedProductionId > 0)
                     {
@@ -454,6 +467,7 @@ namespace PackingApplication
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = typedText;
                 getListRequest.FinYearId = finYearId;
+                getListRequest.BoxPrefix = null;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
@@ -500,6 +514,8 @@ namespace PackingApplication
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = null;
                 getListRequest.FinYearId = finYearId;
+                getListRequest.BoxPrefix = startBox.BoxPrefix;
+                getListRequest.StartBoxNoId = getBoxListRequest.StartBoxNoId;
 
                 EndBoxList.DataSource = null;
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
@@ -584,6 +600,8 @@ namespace PackingApplication
                 getListRequest.SubDeptId = getBoxListRequest.SubDeptId;
                 getListRequest.SubString = typedText;
                 getListRequest.FinYearId = finYearId;
+                getListRequest.BoxPrefix = startBox.BoxPrefix;
+                getListRequest.StartBoxNoId = getBoxListRequest.StartBoxNoId;
 
                 var srboxnoList = _packingService.getAllBoxNoByPackingType(getListRequest).Result;
 
@@ -617,7 +635,7 @@ namespace PackingApplication
             dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             DateTime selectedDate = dateTimePicker1.Value.Date;
             getBoxListRequest.StartDate = selectedDate.ToString("dd-MM-yyyy");
-
+            dateTimePicker2.MinDate = selectedDate;
             Log.writeMessage("PrintSlip StartDate_DropDownClosed - End : " + DateTime.Now);
         }
 
@@ -927,6 +945,20 @@ namespace PackingApplication
                 return;
             }
 
+            UpdatePrintingOptionsRequest optionsRequest = new UpdatePrintingOptionsRequest
+            {
+                ProductionId = string.Join(",", selectedProductionIds),
+                PrintCompany = prcompany.Checked,
+                PrintOwner = prowner.Checked,
+                PrintDate = prdate.Checked,
+                PrintUser = pruser.Checked,
+                PrintHindiWords = prhindi.Checked,
+                PrintQRCode = prqrcode.Checked,
+                PrintWTPS = prwtps.Checked,
+                PrintTwist = prtwist.Checked,
+            };
+            int response = _packingService.UpdatePrintingOptions(optionsRequest);
+
             //string ids = string.Join(",", selectedProductionIds);
             foreach (var item in selectedProductionIds)
             {
@@ -948,7 +980,7 @@ namespace PackingApplication
                         byte[] bytes = client.DownloadData(url);
 
                         using (MemoryStream ms = new MemoryStream(bytes))
-                        using (var pdfDoc = PdfDocument.Load(ms))
+                        using (var pdfDoc = PdfiumViewer.PdfDocument.Load(ms))
                         using (var printDoc = pdfDoc.CreatePrintDocument())
                         {
                             var printerSettings = new PrinterSettings()
@@ -991,6 +1023,147 @@ namespace PackingApplication
             }
 
             Log.writeMessage("PrintSlip btnPrint_Click - End : " + DateTime.Now);
+        }
+
+        private void prcompany_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip prcompany_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!isFormReady) return;
+
+            if (prcompany.Checked)
+            {
+                prowner.Checked = false;
+                prcompany.Focus();       // keep focus on the current one
+            }
+
+            Log.writeMessage("PrintSlip prcompany_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void prowner_CheckedChanged(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip prowner_CheckedChanged - Start : " + DateTime.Now);
+
+            if (!isFormReady) return;
+
+            if (prowner.Checked)
+            {
+                prcompany.Checked = false;
+                prowner.Focus();           // keep focus
+            }
+
+            Log.writeMessage("PrintSlip prowner_CheckedChanged - End : " + DateTime.Now);
+        }
+
+        private void checkBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Log.writeMessage("PrintSlip checkBox1_KeyDown - Start : " + DateTime.Now);
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+                if (cb != null)
+                {
+                    cb.Checked = !cb.Checked; // toggle the checkbox
+                    e.Handled = true;          // prevent beep
+                }
+            }
+            else
+            {
+                // For Tab (and other keys), don't mark as handled
+                e.Handled = false;
+            }
+
+            Log.writeMessage("PrintSlip checkBox1_KeyDown - End : " + DateTime.Now);
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            Log.writeMessage("PrintSlip btnPreview_Click - Start : " + DateTime.Now);
+
+            List<long> selectedProductionIds = new List<long>();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                bool isChecked = row.Cells["Print"].Value != null &&
+                                 Convert.ToBoolean(row.Cells["Print"].Value);
+
+                if (isChecked)
+                {
+                    long productionId = Convert.ToInt64(
+                        row.Cells["ProductionId"].Value
+                    );
+
+                    selectedProductionIds.Add(productionId);
+                }
+            }
+
+            if (selectedProductionIds.Count == 0)
+            {
+                MessageBox.Show("Please select at least one box.");
+                return;
+            }
+            List<byte[]> pdfFiles = new List<byte[]>();
+
+            foreach (var item in selectedProductionIds)
+            {
+                slipRequest.ProductionId = item;
+                //call ssrs report to print
+                string reportpathlink = reportPath + "/" + packingType;
+                string format = "PDF";
+
+                //set params
+                string productionId = item.ToString();
+                string url = $"{reportServer}?{reportpathlink}&rs:Format={format}" + $"&ProductionId={productionId}&StartDate:null=true&EndDate:null=true";
+
+                try
+                {
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Credentials = new System.Net.NetworkCredential(UserName, Password, Domain);
+
+                        byte[] bytes = client.DownloadData(url);
+                        pdfFiles.Add(bytes);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception\n" + ex.Message);
+                }
+            }
+
+            using (PdfSharpCore.Pdf.PdfDocument mergedPdf = new PdfSharpCore.Pdf.PdfDocument())
+            {
+                foreach (byte[] pdfBytes in pdfFiles)
+                {
+                    using (MemoryStream ms = new MemoryStream(pdfBytes))
+                    {
+                        PdfSharpCore.Pdf.PdfDocument inputPdf = PdfReader.Open(
+                            ms,
+                            PdfDocumentOpenMode.Import);
+
+                        for (int i = 0; i < inputPdf.PageCount; i++)
+                        {
+                            mergedPdf.AddPage(inputPdf.Pages[i]);
+                        }
+                    }
+                }
+
+                string downloadsPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                    "Downloads");
+
+                string filePath = Path.Combine(
+                    downloadsPath,
+                    $"{packingType}_Slips.pdf");
+
+                mergedPdf.Save(filePath);
+
+                MessageBox.Show("PDF created successfully:\n" + filePath);
+            }
+
+            Log.writeMessage("PrintSlip btnPreview_Click - End : " + DateTime.Now);
         }
     }
 }

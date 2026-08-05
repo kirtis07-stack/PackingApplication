@@ -97,6 +97,8 @@ namespace PackingApplication.Models.RequestEntities
         public int PageSize { get; set; }
         public string SubString { get; set; } = null;
         public int FinYearId { get; set; }
+        public string BoxPrefix { get; set; } = "";
+        public long StartBoxNoId { get; set; } = 0;
     }
 
     public class GetProductionListForPrint
@@ -108,5 +110,18 @@ namespace PackingApplication.Models.RequestEntities
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public int FinYearId { get; set; } = 0;
+    }
+
+    public class UpdatePrintingOptionsRequest : BaseAuditEntity
+    {
+        public string ProductionId { get; set; }
+        public bool PrintCompany { get; set; }
+        public bool PrintOwner { get; set; }
+        public bool PrintDate { get; set; }
+        public bool PrintUser { get; set; }
+        public bool PrintHindiWords { get; set; }
+        public bool PrintQRCode { get; set; }
+        public bool PrintTwist { get; set; }
+        public bool PrintWTPS { get; set; }
     }
 }

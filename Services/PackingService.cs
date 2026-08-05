@@ -183,5 +183,22 @@ namespace PackingApplication.Services
             Log.writeMessage("getProductionDetailsBySelectedParameter : " + getPackingResponse);
             return JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse.ResponseBody);
         }
+
+        public int UpdatePrintingOptions(UpdatePrintingOptionsRequest productionRequest)
+        {
+            Log.writeMessage("API call UpdatePrintingOptions - Start : " + DateTime.Now);
+            string jsonRequest = JsonConvert.SerializeObject(productionRequest, Formatting.Indented);
+            Log.writeMessage("UpdatePrintingOptions : Production/UpdatePrintingOptions" + jsonRequest);
+
+            var getProdResponse = method.PostCallApi(packingURL + "Production/UpdatePrintingOptions", productionRequest).Result;
+            if (getProdResponse.StatusCode != 200)
+            {
+                var error = JsonConvert.DeserializeObject<ApiErrorResponse>(getProdResponse.ResponseBody);
+                MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+            Log.writeMessage("UpdatePrintingOptions : " + getProdResponse);
+            return JsonConvert.DeserializeObject<int>(getProdResponse.ResponseBody);
+        }
     }
 }

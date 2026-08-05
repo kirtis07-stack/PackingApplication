@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PackingApplication.exe.manifest" size="58544">
+    <dependentAssembly dependencyType="install" codebase="PackingApplication.exe.manifest" size="61226">
       <assemblyIdentity name="PackingApplication.exe" version="1.0.0.219" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gzicSbcssFLFHPTgDrOK0pYH0rSBEBfmBRj+ZmPey0Q=</dsig:DigestValue>
+        <dsig:DigestValue>dWHL5dEnzfcMZH+BKD1qjfojj47OwAs/ll87hVk1Png=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
