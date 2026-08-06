@@ -3300,7 +3300,7 @@ namespace PackingApplication
                                 // Silent print - no print popup
                                 printDoc.PrintController = new StandardPrintController();
 
-                                // 4 inch x 4 inch paper
+                                // 4 inch x 6 inch paper
                                 printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x6", 400, 600);
 
                                 printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);

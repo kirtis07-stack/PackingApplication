@@ -1005,7 +1005,7 @@ namespace PackingApplication
                             var printerSettings = new PrinterSettings()
                             {
                                 // PrinterName = "YourPrinterName",
-                                Copies = (packingType == "BCF" ? (short)2 : (short)1)
+                                Copies = (packingType == "BCF" || packingType == "CablingHeatSet" ? (short)2 : (short)1)
                             };
 
                             printDoc.PrinterSettings = printerSettings;
@@ -1013,8 +1013,16 @@ namespace PackingApplication
                             // Silent print - no print popup
                             printDoc.PrintController = new StandardPrintController();
 
-                            // 4 inch x 4 inch paper
-                            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            if (packingType == "BCF" || packingType == "CablingHeatSet")
+                            {
+                                // 4 inch x 6 inch paper
+                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x6", 400, 600);
+                            }
+                            else
+                            {
+                                // 4 inch x 4 inch paper
+                                printDoc.DefaultPageSettings.PaperSize = new PaperSize("Label4x4", 400, 400);
+                            }
 
                             printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
                             printDoc.OriginAtMargins = false;
@@ -1173,13 +1181,9 @@ namespace PackingApplication
                     Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
                     "Downloads");
 
-                string filePath = Path.Combine(
-                    downloadsPath,
-                    $"{packingType}_Slips.pdf");
+                string filePath = Path.Combine(downloadsPath,$"{packingType}_Slips.pdf");
 
                 mergedPdf.Save(filePath);
-
-                MessageBox.Show("PDF created successfully:\n" + filePath);
             }
 
             Log.writeMessage("PrintSlip btnPreview_Click - End : " + DateTime.Now);
