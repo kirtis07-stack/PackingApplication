@@ -15,5 +15,6 @@ namespace PackingApplication.Models.ResponseEntities
         public string SubDepartmentName { get; set; }
         public string CName { get; set; }
         public string SubDepartmentCode { get; set; }
+        public string PackingType { get; set; }
     }
 }

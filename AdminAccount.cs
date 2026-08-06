@@ -29,6 +29,7 @@ namespace PackingApplication
         MenuStrip menuStrip = new MenuStrip();
         private Form activeChild = null;
         private static Logger Log = Logger.GetLogger();
+        private PrintSlip printSlipForm;
 
         // Windows menu
         ToolStripMenuItem windows = new ToolStripMenuItem("Windows")
@@ -138,7 +139,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem printdty = new ToolStripMenuItem("Print DTY Packing Slip")
+            ToolStripMenuItem printdty = new ToolStripMenuItem("Print DTY Packing Slip", null, PrintPackingSlip_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -172,7 +173,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem printbcf = new ToolStripMenuItem("Print BCF Packing Slip")
+            ToolStripMenuItem printbcf = new ToolStripMenuItem("Print BCF Packing Slip", null, PrintPackingSlip_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -206,7 +207,7 @@ namespace PackingApplication
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
-            ToolStripMenuItem printchips = new ToolStripMenuItem("Print Chips Packing Slip")
+            ToolStripMenuItem printchips = new ToolStripMenuItem("Print Chips Packing Slip", null, PrintPackingSlip_Click)
             {
                 Font = FontManager.GetFont(8, FontStyle.Regular)
             };
@@ -520,6 +521,10 @@ namespace PackingApplication
                 existing.WindowState = FormWindowState.Normal;
                 existing.Show();
                 existing.BringToFront();
+                if (existing is PrintSlip printSlip)
+                {
+                    printSlip.SetPackingType();
+                }
                 return;
             }
 
@@ -554,6 +559,11 @@ namespace PackingApplication
 
             child.Show();
             child.BringToFront();
+
+            if (child is PrintSlip printSlipForm)
+            {
+                printSlipForm.SetPackingType();
+            }
 
             Log.writeMessage("AdminAccount LoadFormInContent - End : " + DateTime.Now);
         }
@@ -837,11 +847,19 @@ namespace PackingApplication
             var dashboard = this.FindForm() as AdminAccount;
             if (dashboard != null)
             {
+                ToolStripMenuItem subMenu = sender as ToolStripMenuItem;
+                string menuName = "";
+                if (subMenu.OwnerItem is ToolStripMenuItem parentMenu)
+                {
+                    menuName = parentMenu.Text;
+                }
+                SessionManager.MenuName = menuName;
+
                 var form = new PrintSlip();
                 var formKey = "PrintSlip";
                 form.Tag = "Packing - Print Slip";
                 dashboard.LoadFormInContent(form, formKey);
-                this.Text = form.Tag.ToString();
+                this.Text = form.Tag.ToString(); 
             }
 
             Log.writeMessage("AdminAccount PrintPackingSlip_Click - End : " + DateTime.Now);

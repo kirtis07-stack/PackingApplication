@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rightpanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -36,6 +36,7 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.previewbtn = new System.Windows.Forms.Button();
             this.printbtn = new System.Windows.Forms.Button();
             this.unselectbtn = new System.Windows.Forms.Button();
             this.selectbtn = new System.Windows.Forms.Button();
@@ -86,7 +87,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.enddate = new System.Windows.Forms.Label();
-            this.previewbtn = new System.Windows.Forms.Button();
             this.rightpanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -191,14 +191,14 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeight = 20;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -222,6 +222,21 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(347, 27);
             this.panel9.TabIndex = 5;
+            // 
+            // previewbtn
+            // 
+            this.previewbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.previewbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.previewbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.previewbtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.previewbtn.Location = new System.Drawing.Point(198, 0);
+            this.previewbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.previewbtn.Name = "previewbtn";
+            this.previewbtn.Size = new System.Drawing.Size(66, 24);
+            this.previewbtn.TabIndex = 12;
+            this.previewbtn.Text = "Preview";
+            this.previewbtn.UseVisualStyleBackColor = false;
+            this.previewbtn.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // printbtn
             // 
@@ -427,8 +442,6 @@
             // prcompany
             // 
             this.prcompany.AutoSize = true;
-            this.prcompany.Checked = true;
-            this.prcompany.CheckState = System.Windows.Forms.CheckState.Checked;
             this.prcompany.Location = new System.Drawing.Point(1, 1);
             this.prcompany.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.prcompany.Name = "prcompany";
@@ -879,21 +892,6 @@
             this.enddate.Size = new System.Drawing.Size(55, 13);
             this.enddate.TabIndex = 0;
             this.enddate.Text = "End Date:";
-            // 
-            // previewbtn
-            // 
-            this.previewbtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.previewbtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.previewbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.previewbtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.previewbtn.Location = new System.Drawing.Point(198, 0);
-            this.previewbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.previewbtn.Name = "previewbtn";
-            this.previewbtn.Size = new System.Drawing.Size(66, 24);
-            this.previewbtn.TabIndex = 12;
-            this.previewbtn.Text = "Preview";
-            this.previewbtn.UseVisualStyleBackColor = false;
-            this.previewbtn.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // PrintSlip
             // 

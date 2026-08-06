@@ -14,6 +14,7 @@ namespace PackingApplication.Models.CommonEntities
         public static int FinYearId { get; set; }
         public static DateTime StartDate { get; set; }
         public static DateTime EndDate { get; set; }
+        public static string MenuName { get; set; }
 
         public static void Clear()
         {
@@ -23,6 +24,7 @@ namespace PackingApplication.Models.CommonEntities
             FinYearId = 0;
             StartDate = DateTime.MinValue;
             EndDate = DateTime.MinValue;
+            MenuName = null;
         }
     }
 }

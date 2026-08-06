@@ -119,7 +119,7 @@ namespace PackingApplication.Services
                 MessageBox.Show(error?.Message ?? "Something went wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            Log.writeMessage("getProductionDetailsBySelectedParameter : " + getPackingResponse);
+            Log.writeMessage("getAllBoxNoByPackingType : " + getPackingResponse);
             return JsonConvert.DeserializeObject<List<ProductionResponse>>(getPackingResponse.ResponseBody);
         }
 

@@ -51,6 +51,7 @@ namespace PackingApplication
             InitializeComponent();
             ApplyFonts();
             finYearId = SessionManager.FinYearId;
+
             // Set allowed range
             dateTimePicker1.MinDate = SessionManager.StartDate;
             dateTimePicker1.MaxDate = SessionManager.EndDate;
@@ -121,6 +122,19 @@ namespace PackingApplication
             Log.writeMessage("PrintSlip LoadDropdowns - End : " + DateTime.Now);
         }
 
+        public void SetPackingType()
+        {
+            packingType = SessionManager.MenuName.Replace("Packing", "").Trim();
+
+            int index = PackingTypeList.Items.IndexOf(packingType);
+
+            if (index >= 0)
+            {
+                PackingTypeList.SelectedIndex = index;
+                getBoxListRequest.PackingType = packingType;
+            }
+        }
+
         private void ApplyFonts()
         {
             Log.writeMessage("PrintSlip ApplyFonts - Start : " + DateTime.Now);
@@ -165,6 +179,7 @@ namespace PackingApplication
                 "POY",
                 "DTY",
                 "BCF",
+                "CablingHeatSet",
                 "Chips"
             };
 
@@ -227,12 +242,15 @@ namespace PackingApplication
             {
                 var PackingType = PackingTypeList.SelectedValue.ToString();
                 packingType = PackingTypeList.SelectedValue.ToString();
-                getBoxListRequest.PackingType = packingType == "POY" ? "POY" : packingType == "DTY" ? "DTY" : packingType == "BCF" ? "BCF" : "CHIPS";
+                getBoxListRequest.PackingType = packingType == "POY" ? "POY" : packingType == "DTY" ? "DTY" : packingType == "BCF" ? "BCF" : packingType == "CablingHeatSet" ? "CHS" : "CHIPS";
                 prtwist.Enabled = (getBoxListRequest.PackingType == "DTY" || getBoxListRequest.PackingType == "CHIPS") ? true : false;
                 prtwist.Checked = (getBoxListRequest.PackingType == "DTY" || getBoxListRequest.PackingType == "CHIPS") ? true : false;
                 var deptList = new List<SubDepartmentResponse>();
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
                 DeptList.DataSource = deptList;
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
+                DeptList.SelectedIndex = 0;
                 getBoxListRequest.SubDeptId = 0;
                 DeptList.SelectedValue = 0;
             }
@@ -297,7 +315,7 @@ namespace PackingApplication
             if (typedText.Length >= 2)
             {
                 //DeptList.Items.Clear();
-
+                packingType = packingType == "CablingHeatSet" ? "CHS" : null;
                 var deptList = _masterService.GetDepartmentList(packingType, typedText, null).Result.OrderBy(x => x.SubDepartmentName).ToList();
 
                 deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
@@ -338,9 +356,10 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 DeptList.DataSource = null;
+                packingType = packingType == "CablingHeatSet" ? "CHS" : packingType;
                 //selectedPackingType = pakingType == "POY" ? "SpinningLot" : pakingType == "DTY" ? "TexturisingLot" : pakingType == "BCF" ? "BCFLot" : "ChipsLot";
-                var deptList = _masterService.GetDepartmentList(packingType, "", null).Result.OrderBy(x => x.SubDepartmentName).ToList();
-                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select Department" });
+                var deptList = _masterService.GetDepartmentList(packingType, "", null).Result.Where(x => x.PackingType.ToUpper() == packingType.ToUpper()).OrderBy(x => x.SubDepartmentName).ToList();
+                deptList.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDepartment" });
                 DeptList.DataSource = deptList;
                 DeptList.DisplayMember = "SubDepartmentName";
                 DeptList.ValueMember = "SubDepartmentId";
