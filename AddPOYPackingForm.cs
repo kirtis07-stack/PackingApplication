@@ -734,6 +734,7 @@ namespace PackingApplication
                 DeptList.SelectedItem = productionResponse.SubDepartmentName;
                 productionRequest.SubDepartmentId = productionResponse.SubDepartmentId;
                 selectedSubDeptId = productionResponse.SubDepartmentId;
+                selectedDeptId = productionResponse.DepartmentId;
 
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;

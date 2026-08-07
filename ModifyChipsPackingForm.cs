@@ -553,6 +553,7 @@ namespace PackingApplication
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
                 OwnerList.Items.Add("Select Owner");
+                OwnerList.SelectedItem = "Select Owner";
                 if (!string.IsNullOrEmpty(productionResponse.OwnerName))
                 {
                     OwnerList.Items.Add(productionResponse.BPAddress);

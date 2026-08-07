@@ -104,6 +104,7 @@ namespace PackingApplication.Models.ResponseEntities
     {
         public long ProductionId { get; set; }
         public string PackingType { get; set; }
+        public int DepartmentId { get; set; }
         public int SubDepartmentId { get; set; }
         public string SubDepartmentName { get; set; }
         public int MachineId { get; set; }

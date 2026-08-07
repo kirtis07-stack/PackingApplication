@@ -646,6 +646,7 @@ namespace PackingApplication
                 OwnerList.DataSource = null;
                 OwnerList.Items.Clear();
                 OwnerList.Items.Add("Select Owner");
+                OwnerList.SelectedItem = "Select Owner";
                 if (!string.IsNullOrEmpty(productionResponse.OwnerName))
                 {
                     OwnerList.Items.Add(productionResponse.OwnerName);
@@ -743,6 +744,7 @@ namespace PackingApplication
                 DeptList.SelectedItem = productionResponse.SubDepartmentName;
                 productionRequest.SubDepartmentId = productionResponse.SubDepartmentId;
                 selectedSubDeptId = productionResponse.SubDepartmentId;
+                selectedDeptId = productionResponse.DepartmentId;
 
                 selectedMainItemTypeid = productionResponse.MainItemTypeId;
                 selectedItemTypeid = productionResponse.ItemTypeId;
