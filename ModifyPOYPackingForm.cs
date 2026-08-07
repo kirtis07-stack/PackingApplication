@@ -1216,6 +1216,7 @@ namespace PackingApplication
                             DeptList.SelectedItem = selectedLot.SubDepartmentName;
                             productionRequest.SubDepartmentId = selectedLot.SubDepartmentId;
                             selectedSubDeptId = selectedLot.SubDepartmentId;
+                            selectedDeptId = selectedLot.DepartmentId;
                         }
                         selectLotId = selectedLotId;
                         lotResponse = _productionService.getLotById(selectedLotId).Result;
@@ -1445,6 +1446,12 @@ namespace PackingApplication
             salelotvalue.Text = "";
             partyn.Text = "";
             partyshade.Text = "";
+            frdenier.Text = "";
+            updenier.Text = "";
+            startWeight = 0;
+            endWeight = 0;
+            frwt.Text = "";
+            upwt.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
             ResetDependentDropdownValues();
@@ -4657,6 +4664,19 @@ namespace PackingApplication
             WindingTypeList.Items.Add("Select Winding Type");
             WindingTypeList.SelectedItem = "Select Winding Type";
             WindingTypeList.Enabled = true;
+            windinggrid.Columns.Clear();
+
+            PackSizeList.DataSource = null;
+            PackSizeList.Items.Clear();
+            PackSizeList.Items.Add("Select Pack Size");
+            PackSizeList.SelectedItem = "Select Pack Size";
+
+            frdenier.Text = "";
+            updenier.Text = "";
+            startWeight = 0;
+            endWeight = 0;
+            frwt.Text = "";
+            upwt.Text = "";
 
             Log.writeMessage("POY ResetDependentDropdownValues - End : " + DateTime.Now);
         }

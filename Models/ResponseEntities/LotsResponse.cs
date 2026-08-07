@@ -58,6 +58,7 @@ namespace PackingApplication.Models.ResponseEntities
         public string PackingType { get; set; }
         public string PONo { get; set; }
         public string Yarncode { get; set; }
+        public int DepartmentId { get; set; }
     }
 
     public class LotsProductionDetailsResponse : BaseAuditEntity

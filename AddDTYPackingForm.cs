@@ -516,8 +516,15 @@ namespace PackingApplication
                 PrefixList.DataSource = null;
                 PrefixList.Items.Clear();
                 PrefixList.Items.Add("Select Prefix");
-                PrefixList.Items.Add(productionResponse.BoxPrefix);
-                PrefixList.SelectedItem = productionResponse.BoxPrefix;
+                if (productionResponse.PrefixCode != 0)
+                {
+                    PrefixList.Items.Add(productionResponse.BoxPrefix);
+                    PrefixList.SelectedItem = productionResponse.BoxPrefix;
+                }
+                else
+                {
+                    PrefixList.SelectedItem = "Select Prefix";
+                }
                 productionRequest.PrefixCode = productionResponse.PrefixCode;
 
                 SaleOrderList.DataSource = null;
@@ -611,7 +618,7 @@ namespace PackingApplication
                 productionRequest.PrintTwist = productionResponse.PrintTwist;
                 //OwnerList.SelectedValue = productionResponse.OwnerId;
                 //LineNoList_SelectedIndexChanged(LineNoList, EventArgs.Empty);
-                productionRequest.PrefixCode = productionResponse.PrefixCode;
+                //productionRequest.PrefixCode = productionResponse.PrefixCode;
                 lotsDetailsList = new List<LotsDetailsResponse>();
                 if (productionResponse.LotsDetailsResponse.Count > 0)
                 {
@@ -888,6 +895,7 @@ namespace PackingApplication
                             DeptList.SelectedItem = selectedLot.SubDepartmentName;
                             productionRequest.SubDepartmentId = selectedLot.SubDepartmentId;
                             selectedSubDeptId = selectedLot.SubDepartmentId;
+                            selectedDeptId = selectedLot.DepartmentId;
                         }
 
                         selectLotId = selectedLotId;
@@ -1123,6 +1131,12 @@ namespace PackingApplication
             salelotvalue.Text = "";
             partyn.Text = "";
             partyshade.Text = "";
+            frdenier.Text = "";
+            updenier.Text = "";
+            startWeight = 0;
+            endWeight = 0;
+            frwt.Text = "";
+            upwt.Text = "";
             lotResponse = new LotsResponse();
             lotsDetailsList = new List<LotsDetailsResponse>();
             ResetDependentDropdownValues();
@@ -3964,6 +3978,24 @@ namespace PackingApplication
             WindingTypeList.Items.Add("Select Winding Type");
             WindingTypeList.SelectedItem = "Select Winding Type";
             WindingTypeList.Enabled = true;
+
+            PackSizeList.DataSource = null;
+            PackSizeList.Items.Clear();
+            PackSizeList.Items.Add("Select Pack Size");
+            PackSizeList.SelectedItem = "Select Pack Size";
+
+            frdenier.Text = "";
+            updenier.Text = "";
+            startWeight = 0;
+            endWeight = 0;
+            frwt.Text = "";
+            upwt.Text = "";
+
+            PrefixList.DataSource = null;
+            PrefixList.Items.Clear();
+            PrefixList.Items.Add("Select Prefix");
+            PrefixList.SelectedItem = "Select Prefix";
+            prodtype.Text = "";
 
             Log.writeMessage("DTY ResetDependentDropdownValues - End : " + DateTime.Now);
         }
