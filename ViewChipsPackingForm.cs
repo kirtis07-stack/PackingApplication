@@ -1621,9 +1621,17 @@ namespace PackingApplication
 
             if (typedText.Length >= 2)
             {
-
-                var machineList = _masterService.GetMachineList(ChipsLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
-                machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedSrDeptId == 0)
+                {
+                    machineList = _masterService.GetMachineList(ChipsLot, typedText).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
+                else
+                {
+                    machineList = _masterService.GetMachineBySubDepartmentIdAndLotType(selectedSrDeptId, ChipsLot).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                }
 
                 SrLineNoList.BeginUpdate();
                 SrLineNoList.DataSource = null;

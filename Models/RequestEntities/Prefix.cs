@@ -13,7 +13,7 @@ namespace PackingApplication.Models.RequestEntities
         public int CompanyId { get; set; }
         public int CompanyBranchId { get; set; }
         public int BankId { get; set; }
-        public int DepartmentId { get; set; }
+        public int SubDepartmentId { get; set; }
         public int MachineId { get; set; }
         public int ProductionTypeId { get; set; }
         public string ProductionTypeName { get; set; } = "";

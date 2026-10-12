@@ -21,8 +21,8 @@ namespace PackingApplication.Models.ResponseEntities
         public short BankId { get; set; }
         public string BankName { get; set; }
         public string GenType { get; set; }
-        public int DepartmentId { get; set; }
-        public string Department { get; set; }
+        public int SubDepartmentId { get; set; }
+        public string SubDepartment { get; set; }
         public int MachineId { get; set; }
         public string MachineName { get; set; }
         public string VoucherNo { get; set; }

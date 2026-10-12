@@ -725,7 +725,7 @@ namespace PackingApplication
 
                         if (productionRequest.PrefixCode != 0)
                         {
-                            prefixRequest.DepartmentId = selectedDeptId;
+                            prefixRequest.SubDepartmentId = selectedSubDeptId;
                             prefixRequest.TxnFlag = DTYPacking;
                             prefixRequest.TransactionTypeName = TransactionTypeName;
                             prefixRequest.ProductionTypeName = ProductionTypeName;
@@ -815,7 +815,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, DTYLot).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineBySubDepartmentIdAndLotType(selectedSubDeptId, DTYLot).Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -1915,7 +1915,7 @@ namespace PackingApplication
             {
                 PrefixResponse selectedPrefix = (PrefixResponse)PrefixList.SelectedItem;
                 int selectedPrefixId = selectedPrefix.PrefixCode;
-                if (selectedDeptId != 0 && selectedPrefix.DepartmentId != selectedDeptId)
+                if (selectedSubDeptId != 0 && selectedPrefix.SubDepartmentId != selectedSubDeptId)
                 {
                     MessageBox.Show("Selected Prefix does not match with selected SubDepartment", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     productionRequest.PrefixCode = 0;
@@ -1928,38 +1928,39 @@ namespace PackingApplication
                     productionRequest.PrefixCode = selectedPrefixId;
                 }
 
-                //var deptTask = _masterService.GetDepartmentList(DTYPacking,null, selectedPrefix.Department).Result;
-                //deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
-                //DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
-                //DeptList.DataSource = deptTask;
-                ////DeptList.SelectedValue = selectedPrefix.DepartmentId;
-                ////selectedSubDeptId = selectedPrefix.DepartmentId;
-                ////productionRequest.SubDepartmentId = selectedSubDeptId;
-                //DeptList.DisplayMember = "SubDepartmentName";
-                //DeptList.ValueMember = "SubDepartmentId";
-                ////if (DeptList.Items.Count > 1)
-                ////{
-                ////    DeptList.SelectedIndex = 1;
-                ////}
-                //DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
-                //List<MachineResponse> machineList = new List<MachineResponse>();
-                //if (selectedSubDeptId != 0)
+                var deptTask = _masterService.GetDepartmentList(DTYPacking, null, selectedPrefix.SubDepartment).Result;
+                deptTask.Insert(0, new SubDepartmentResponse { SubDepartmentId = 0, SubDepartmentName = "Select SubDept" });
+                DeptList.SelectedIndexChanged -= DeptList_SelectedIndexChanged;
+                DeptList.DataSource = deptTask;
+                DeptList.SelectedValue = selectedPrefix.SubDepartmentId;
+                selectedSubDeptId = selectedPrefix.SubDepartmentId;
+                productionRequest.SubDepartmentId = selectedSubDeptId;
+                DeptList.DisplayMember = "SubDepartmentName";
+                DeptList.ValueMember = "SubDepartmentId";
+                //if (DeptList.Items.Count > 1)
                 //{
-                //    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, DTYLot).Result;
-
-                //    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
-                //    //LineNoList.DataSource = machineList;
-
-                //    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
-                //    if (!isExist) {
-                //        LineNoList.BeginUpdate();
-                //        LineNoList.DataSource = null;
-                //        LineNoList.DisplayMember = "MachineName";
-                //        LineNoList.ValueMember = "MachineId";
-                //        LineNoList.DataSource = machineList;
-                //        LineNoList.EndUpdate();
-                //    }
+                //    DeptList.SelectedIndex = 1;
                 //}
+                DeptList.SelectedIndexChanged += DeptList_SelectedIndexChanged;
+                List<MachineResponse> machineList = new List<MachineResponse>();
+                if (selectedSubDeptId != 0)
+                {
+                    machineList = _masterService.GetMachineBySubDepartmentIdAndLotType(selectedSubDeptId, DTYLot).Result;
+
+                    machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
+                    //LineNoList.DataSource = machineList;
+
+                    var isExist = machineList.Where(x => x.MachineId == selectedMachineid).Any();
+                    if (!isExist)
+                    {
+                        LineNoList.BeginUpdate();
+                        LineNoList.DataSource = null;
+                        LineNoList.DisplayMember = "MachineName";
+                        LineNoList.ValueMember = "MachineId";
+                        LineNoList.DataSource = machineList;
+                        LineNoList.EndUpdate();
+                    }
+                }
 
                 if (selectedPrefix.ProductionType.ToString() != null)
                 {
@@ -1997,7 +1998,7 @@ namespace PackingApplication
             {
                 //PrefixList.Items.Clear();
                 prefixRequest = new TransactionTypePrefixRequest();
-                prefixRequest.DepartmentId = selectedDeptId;
+                prefixRequest.SubDepartmentId = selectedSubDeptId;
                 prefixRequest.TxnFlag = DTYPacking;
                 prefixRequest.TransactionTypeName = TransactionTypeName;
                 prefixRequest.ProductionTypeName = ProductionTypeName;
@@ -3335,7 +3336,7 @@ namespace PackingApplication
             if (e.KeyCode == Keys.F2) // Detect F2 key
             {
                 prefixRequest = new TransactionTypePrefixRequest();
-                prefixRequest.DepartmentId = 0;
+                prefixRequest.SubDepartmentId = 0;
                 prefixRequest.TxnFlag = DTYPacking;
                 prefixRequest.TransactionTypeName = TransactionTypeName;
                 prefixRequest.ProductionTypeName = ProductionTypeName;
@@ -3993,11 +3994,11 @@ namespace PackingApplication
             frwt.Text = "";
             upwt.Text = "";
 
-            PrefixList.DataSource = null;
-            PrefixList.Items.Clear();
-            PrefixList.Items.Add("Select Prefix");
-            PrefixList.SelectedItem = "Select Prefix";
-            prodtype.Text = "";
+            //PrefixList.DataSource = null;
+            //PrefixList.Items.Clear();
+            //PrefixList.Items.Add("Select Prefix");
+            //PrefixList.SelectedItem = "Select Prefix";
+            //prodtype.Text = "";
 
             Log.writeMessage("DTY ResetDependentDropdownValues - End : " + DateTime.Now);
         }

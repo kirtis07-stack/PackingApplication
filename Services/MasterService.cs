@@ -239,23 +239,23 @@ namespace PackingApplication.Services
             return getDepartment;
         }
 
-        public async Task<List<MachineResponse>> GetMachineByDepartmentIdAndLotType(int departmentId, string lotType)
+        public async Task<List<MachineResponse>> GetMachineBySubDepartmentIdAndLotType(int subdepartmentId, string lotType)
         {
-            Log.writeMessage("API call GetMachineByDepartmentIdAndLotType - Start : " + DateTime.Now);
-            Log.writeMessage("GetMachineByDepartmentIdAndLotType : Machine/GetAllByDepartmentIdAndLotType?departmentId=" + departmentId + "&lotType=" + lotType);
+            Log.writeMessage("API call GetMachineBySubDepartmentIdAndLotType - Start : " + DateTime.Now);
+            Log.writeMessage("GetMachineBySubDepartmentIdAndLotType : Machine/GetAllBySubDepartmentIdAndLotType?subdepartmentId=" + subdepartmentId + "&lotType=" + lotType);
 
-            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllByDepartmentIdAndLotType?departmentId=" + departmentId + "&lotType=" + lotType);
+            var getMachineResponse = await method.GetCallApi(masterURL + "Machine/GetAllBySubDepartmentIdAndLotType?subdepartmentId=" + subdepartmentId + "&lotType=" + lotType);
 
-            Log.writeMessage("GetMachineByDepartmentIdAndLotType Response : " + getMachineResponse);
+            Log.writeMessage("GetMachineBySubDepartmentIdAndLotType Response : " + getMachineResponse);
 
             if (string.IsNullOrWhiteSpace(getMachineResponse))
             {
-                Log.writeMessage("API call GetMachineByDepartmentIdAndLotType - End : " + DateTime.Now);
+                Log.writeMessage("API call GetMachineBySubDepartmentIdAndLotType - End : " + DateTime.Now);
                 return new List<MachineResponse>();
             }
 
             var getMachine = JsonConvert.DeserializeObject<List<MachineResponse>>(getMachineResponse) ?? new List<MachineResponse>();
-            Log.writeMessage("API call GetMachineByDepartmentIdAndLotType - End : " + DateTime.Now);
+            Log.writeMessage("API call GetMachineBySubDepartmentIdAndLotType - End : " + DateTime.Now);
 
             return getMachine;
         }

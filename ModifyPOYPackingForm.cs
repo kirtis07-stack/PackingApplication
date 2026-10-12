@@ -1136,7 +1136,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedDeptId, POYLot).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineBySubDepartmentIdAndLotType(selectedSubDeptId, POYLot).Result.OrderBy(x => x.MachineName).ToList();
 
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
@@ -4748,7 +4748,7 @@ namespace PackingApplication
                 }
                 else
                 {
-                    machineList = _masterService.GetMachineByDepartmentIdAndLotType(selectedSrDeptId, POYLot).Result.OrderBy(x => x.MachineName).ToList();
+                    machineList = _masterService.GetMachineBySubDepartmentIdAndLotType(selectedSubDeptId, POYLot).Result.OrderBy(x => x.MachineName).ToList();
                     machineList.Insert(0, new MachineResponse { MachineId = 0, MachineName = "Select Line No." });
                 }
 
