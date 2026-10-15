@@ -2324,6 +2324,7 @@ namespace PackingApplication
                 prefixRequest.Prefix = "";
                 prefixRequest.FinYearId = SessionManager.FinYearId;
                 prefixRequest.SubString = typedText;
+                prefixRequest.GetAllFlag = true;
 
                 List<PrefixResponse> prefixList = _masterService.GetPrefixList(prefixRequest).Result.OrderBy(x => x.Prefix).ToList();
                 prefixList.Insert(0, new PrefixResponse { PrefixCode = 0, Prefix = "Select Prefix" });
